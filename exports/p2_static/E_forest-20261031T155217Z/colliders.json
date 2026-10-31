@@ -1,0 +1,653 @@
+{
+  "key": "E_forest",
+  "source": "model.apply.json",
+  "output": "p2.apply.json",
+  "collider_fields": {
+    "Type": "Static",
+    "CharacterCollider": true,
+    "Sidedness": "DualSided"
+  },
+  "counts": {
+    "mesh": 58,
+    "fixed_collision": 1,
+    "none": 56,
+    "mesh_slots": 115,
+    "object_roots": 72
+  },
+  "objects": [
+    {
+      "slot": "E_forest/EFR_BatFlock_001/EFR_BatFlock_001_Motion/EFR_BatFlock_001_Bat01/EFR_BatFlock_001_Bat01_Body",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "E_forest/EFR_BatFlock_001/EFR_BatFlock_001_Motion/EFR_BatFlock_001_Bat01/EFR_BatFlock_001_Bat01_WingLPivot/EFR_BatFlock_001_Bat01_WingL",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "E_forest/EFR_BatFlock_001/EFR_BatFlock_001_Motion/EFR_BatFlock_001_Bat01/EFR_BatFlock_001_Bat01_WingRPivot/EFR_BatFlock_001_Bat01_WingR",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "E_forest/EFR_BatFlock_001/EFR_BatFlock_001_Motion/EFR_BatFlock_001_Bat02/EFR_BatFlock_001_Bat02_Body",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "E_forest/EFR_BatFlock_001/EFR_BatFlock_001_Motion/EFR_BatFlock_001_Bat02/EFR_BatFlock_001_Bat02_WingLPivot/EFR_BatFlock_001_Bat02_WingL",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "E_forest/EFR_BatFlock_001/EFR_BatFlock_001_Motion/EFR_BatFlock_001_Bat02/EFR_BatFlock_001_Bat02_WingRPivot/EFR_BatFlock_001_Bat02_WingR",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "E_forest/EFR_BatFlock_001/EFR_BatFlock_001_Motion/EFR_BatFlock_001_Bat03/EFR_BatFlock_001_Bat03_Body",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "E_forest/EFR_BatFlock_001/EFR_BatFlock_001_Motion/EFR_BatFlock_001_Bat03/EFR_BatFlock_001_Bat03_WingLPivot/EFR_BatFlock_001_Bat03_WingL",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "E_forest/EFR_BatFlock_001/EFR_BatFlock_001_Motion/EFR_BatFlock_001_Bat03/EFR_BatFlock_001_Bat03_WingRPivot/EFR_BatFlock_001_Bat03_WingR",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "E_forest/EFR_BatFlock_001/EFR_BatFlock_001_Motion/EFR_BatFlock_001_Bat04/EFR_BatFlock_001_Bat04_Body",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "E_forest/EFR_BatFlock_001/EFR_BatFlock_001_Motion/EFR_BatFlock_001_Bat04/EFR_BatFlock_001_Bat04_WingLPivot/EFR_BatFlock_001_Bat04_WingL",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "E_forest/EFR_BatFlock_001/EFR_BatFlock_001_Motion/EFR_BatFlock_001_Bat04/EFR_BatFlock_001_Bat04_WingRPivot/EFR_BatFlock_001_Bat04_WingR",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "E_forest/EFR_BatFlock_001/EFR_BatFlock_001_Motion/EFR_BatFlock_001_Bat05/EFR_BatFlock_001_Bat05_Body",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "E_forest/EFR_BatFlock_001/EFR_BatFlock_001_Motion/EFR_BatFlock_001_Bat05/EFR_BatFlock_001_Bat05_WingLPivot/EFR_BatFlock_001_Bat05_WingL",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "E_forest/EFR_BatFlock_001/EFR_BatFlock_001_Motion/EFR_BatFlock_001_Bat05/EFR_BatFlock_001_Bat05_WingRPivot/EFR_BatFlock_001_Bat05_WingR",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "E_forest/EFR_Bush_001",
+      "policy": "none",
+      "reason": "E_forest のアセット一覧の collider_policy が none（EFR_Bush）"
+    },
+    {
+      "slot": "E_forest/EFR_Bush_002",
+      "policy": "none",
+      "reason": "E_forest のアセット一覧の collider_policy が none（EFR_Bush）"
+    },
+    {
+      "slot": "E_forest/EFR_Bush_003",
+      "policy": "none",
+      "reason": "E_forest のアセット一覧の collider_policy が none（EFR_Bush）"
+    },
+    {
+      "slot": "E_forest/EFR_Bush_004",
+      "policy": "none",
+      "reason": "E_forest のアセット一覧の collider_policy が none（EFR_Bush）"
+    },
+    {
+      "slot": "E_forest/EFR_ClockTower_001/EFR_ClockTower_001_BellBracket",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_ClockTower_001/EFR_ClockTower_001_BellBracket"
+    },
+    {
+      "slot": "E_forest/EFR_ClockTower_001/EFR_ClockTower_001_BellPivot/EFR_ClockTower_001_Bell",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "E_forest/EFR_ClockTower_001/EFR_ClockTower_001_Body",
+      "policy": "fixed_collision",
+      "reason": "Meshy の仮モデル M07 の静的な部分。差し替えの範囲の外の兄弟 Slot に置く",
+      "collider_slot": "E_forest/EFR_ClockTower_001/EFR_ClockTower_001_Body_FixedCollision"
+    },
+    {
+      "slot": "E_forest/EFR_ClockTower_001/EFR_ClockTower_001_Dial",
+      "policy": "none",
+      "reason": "高さ 8 m の仮の文字盤（M07 の差し替えの範囲）。手が届かない"
+    },
+    {
+      "slot": "E_forest/EFR_ClockTower_001/EFR_ClockTower_001_HourHandPivot/EFR_ClockTower_001_HourHand",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "E_forest/EFR_ClockTower_001/EFR_ClockTower_001_MinuteHandPivot/EFR_ClockTower_001_MinuteHand",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "E_forest/EFR_FaceTree_001/EFR_FaceTree_001_BranchLPivot/EFR_FaceTree_001_BranchL",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "E_forest/EFR_FaceTree_001/EFR_FaceTree_001_BranchRPivot/EFR_FaceTree_001_BranchR",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "E_forest/EFR_FaceTree_001/EFR_FaceTree_001_EyeLPivot/EFR_FaceTree_001_EyeL",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "E_forest/EFR_FaceTree_001/EFR_FaceTree_001_EyeRPivot/EFR_FaceTree_001_EyeR",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "E_forest/EFR_FaceTree_001/EFR_FaceTree_001_Mouth",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_FaceTree_001/EFR_FaceTree_001_Mouth"
+    },
+    {
+      "slot": "E_forest/EFR_FaceTree_001/EFR_FaceTree_001_Trunk",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_FaceTree_001/EFR_FaceTree_001_Trunk"
+    },
+    {
+      "slot": "E_forest/EFR_FaceTree_002/EFR_FaceTree_002_BranchLPivot/EFR_FaceTree_002_BranchL",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "E_forest/EFR_FaceTree_002/EFR_FaceTree_002_BranchRPivot/EFR_FaceTree_002_BranchR",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "E_forest/EFR_FaceTree_002/EFR_FaceTree_002_EyeLPivot/EFR_FaceTree_002_EyeL",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "E_forest/EFR_FaceTree_002/EFR_FaceTree_002_EyeRPivot/EFR_FaceTree_002_EyeR",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "E_forest/EFR_FaceTree_002/EFR_FaceTree_002_Mouth",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_FaceTree_002/EFR_FaceTree_002_Mouth"
+    },
+    {
+      "slot": "E_forest/EFR_FaceTree_002/EFR_FaceTree_002_Trunk",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_FaceTree_002/EFR_FaceTree_002_Trunk"
+    },
+    {
+      "slot": "E_forest/EFR_ForecourtLamp_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_ForecourtLamp_001"
+    },
+    {
+      "slot": "E_forest/EFR_ForecourtLamp_002",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_ForecourtLamp_002"
+    },
+    {
+      "slot": "E_forest/EFR_GatePillar_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_GatePillar_001"
+    },
+    {
+      "slot": "E_forest/EFR_GatePillar_002",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_GatePillar_002"
+    },
+    {
+      "slot": "E_forest/EFR_LookoutBench_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_LookoutBench_001"
+    },
+    {
+      "slot": "E_forest/EFR_Lookout_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_Lookout_001"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomCluster_001",
+      "policy": "none",
+      "reason": "E_forest のアセット一覧の collider_policy が none（EFR_MushroomCluster）"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomCluster_001/EFR_MushroomCluster_001_Glow",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomCluster_002",
+      "policy": "none",
+      "reason": "E_forest のアセット一覧の collider_policy が none（EFR_MushroomCluster）"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomCluster_002/EFR_MushroomCluster_002_Glow",
+      "policy": "none",
+      "reason": "E_forest のアセット一覧の collider_policy が none（EFR_MushroomCluster）"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomCluster_003",
+      "policy": "none",
+      "reason": "E_forest のアセット一覧の collider_policy が none（EFR_MushroomCluster）"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomCluster_004",
+      "policy": "none",
+      "reason": "E_forest のアセット一覧の collider_policy が none（EFR_MushroomCluster）"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomCluster_004/EFR_MushroomCluster_004_Glow",
+      "policy": "none",
+      "reason": "E_forest のアセット一覧の collider_policy が none（EFR_MushroomCluster）"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomCluster_005",
+      "policy": "none",
+      "reason": "E_forest のアセット一覧の collider_policy が none（EFR_MushroomCluster）"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomCluster_006",
+      "policy": "none",
+      "reason": "E_forest のアセット一覧の collider_policy が none（EFR_MushroomCluster）"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomCluster_006/EFR_MushroomCluster_006_Glow",
+      "policy": "none",
+      "reason": "E_forest のアセット一覧の collider_policy が none（EFR_MushroomCluster）"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomCluster_007",
+      "policy": "none",
+      "reason": "E_forest のアセット一覧の collider_policy が none（EFR_MushroomCluster）"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomCluster_008",
+      "policy": "none",
+      "reason": "E_forest のアセット一覧の collider_policy が none（EFR_MushroomCluster）"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomCluster_008/EFR_MushroomCluster_008_Glow",
+      "policy": "none",
+      "reason": "E_forest のアセット一覧の collider_policy が none（EFR_MushroomCluster）"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomGiant_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_MushroomGiant_001"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomGiant_001/EFR_MushroomGiant_001_Glow",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomMedium_001",
+      "policy": "none",
+      "reason": "E_forest のアセット一覧の collider_policy が none（EFR_MushroomMedium）"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomMedium_001/EFR_MushroomMedium_001_Glow",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomMedium_002",
+      "policy": "none",
+      "reason": "E_forest のアセット一覧の collider_policy が none（EFR_MushroomMedium）"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomMedium_002/EFR_MushroomMedium_002_Glow",
+      "policy": "none",
+      "reason": "E_forest のアセット一覧の collider_policy が none（EFR_MushroomMedium）"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomMedium_003",
+      "policy": "none",
+      "reason": "E_forest のアセット一覧の collider_policy が none（EFR_MushroomMedium）"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomMedium_003/EFR_MushroomMedium_003_Glow",
+      "policy": "none",
+      "reason": "E_forest のアセット一覧の collider_policy が none（EFR_MushroomMedium）"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomMedium_004",
+      "policy": "none",
+      "reason": "E_forest のアセット一覧の collider_policy が none（EFR_MushroomMedium）"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomMedium_005",
+      "policy": "none",
+      "reason": "E_forest のアセット一覧の collider_policy が none（EFR_MushroomMedium）"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomMedium_006",
+      "policy": "none",
+      "reason": "E_forest のアセット一覧の collider_policy が none（EFR_MushroomMedium）"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomTall_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_MushroomTall_001"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomTall_001/EFR_MushroomTall_001_Glow",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomTall_002",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_MushroomTall_002"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomTall_002/EFR_MushroomTall_002_Glow",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_MushroomTall_002/EFR_MushroomTall_002_Glow"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomTall_003",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_MushroomTall_003"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomTall_003/EFR_MushroomTall_003_Glow",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_MushroomTall_003/EFR_MushroomTall_003_Glow"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomTall_004",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_MushroomTall_004"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomTall_004/EFR_MushroomTall_004_Glow",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_MushroomTall_004/EFR_MushroomTall_004_Glow"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomTall_005",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_MushroomTall_005"
+    },
+    {
+      "slot": "E_forest/EFR_MushroomTall_005/EFR_MushroomTall_005_Glow",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_MushroomTall_005/EFR_MushroomTall_005_Glow"
+    },
+    {
+      "slot": "E_forest/EFR_PathLantern_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_PathLantern_001"
+    },
+    {
+      "slot": "E_forest/EFR_PathLantern_002",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_PathLantern_002"
+    },
+    {
+      "slot": "E_forest/EFR_PathLantern_003",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_PathLantern_003"
+    },
+    {
+      "slot": "E_forest/EFR_PathLantern_004",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_PathLantern_004"
+    },
+    {
+      "slot": "E_forest/EFR_PathLantern_005",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_PathLantern_005"
+    },
+    {
+      "slot": "E_forest/EFR_PathLantern_006",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_PathLantern_006"
+    },
+    {
+      "slot": "E_forest/EFR_PathLantern_007",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_PathLantern_007"
+    },
+    {
+      "slot": "E_forest/EFR_PondBridge_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_PondBridge_001"
+    },
+    {
+      "slot": "E_forest/EFR_Pond_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_Pond_001"
+    },
+    {
+      "slot": "E_forest/EFR_Pond_001/EFR_Pond_001_Water",
+      "policy": "none",
+      "reason": "池の水面。池の底（EFR_Pond_001）に当たり判定がある"
+    },
+    {
+      "slot": "E_forest/EFR_Pumpkin_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_Pumpkin_001"
+    },
+    {
+      "slot": "E_forest/EFR_Pumpkin_002",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_Pumpkin_002"
+    },
+    {
+      "slot": "E_forest/EFR_Pumpkin_003",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_Pumpkin_003"
+    },
+    {
+      "slot": "E_forest/EFR_RestBench_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_RestBench_001"
+    },
+    {
+      "slot": "E_forest/EFR_RestBench_002",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_RestBench_002"
+    },
+    {
+      "slot": "E_forest/EFR_RestBench_003",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_RestBench_003"
+    },
+    {
+      "slot": "E_forest/EFR_RestSpot_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_RestSpot_001"
+    },
+    {
+      "slot": "E_forest/EFR_Rock_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_Rock_001"
+    },
+    {
+      "slot": "E_forest/EFR_Rock_002",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_Rock_002"
+    },
+    {
+      "slot": "E_forest/EFR_Rock_003",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_Rock_003"
+    },
+    {
+      "slot": "E_forest/EFR_TreeOak_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_TreeOak_001"
+    },
+    {
+      "slot": "E_forest/EFR_TreeOak_002",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_TreeOak_002"
+    },
+    {
+      "slot": "E_forest/EFR_TreeOak_003",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_TreeOak_003"
+    },
+    {
+      "slot": "E_forest/EFR_TreeOak_004",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_TreeOak_004"
+    },
+    {
+      "slot": "E_forest/EFR_TreeOak_005",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_TreeOak_005"
+    },
+    {
+      "slot": "E_forest/EFR_TreePine_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_TreePine_001"
+    },
+    {
+      "slot": "E_forest/EFR_TreePine_002",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_TreePine_002"
+    },
+    {
+      "slot": "E_forest/EFR_TreePine_003",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_TreePine_003"
+    },
+    {
+      "slot": "E_forest/EFR_TreePine_004",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_TreePine_004"
+    },
+    {
+      "slot": "E_forest/EFR_TreePine_005",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_TreePine_005"
+    },
+    {
+      "slot": "E_forest/EFR_TreeTwist_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_TreeTwist_001"
+    },
+    {
+      "slot": "E_forest/EFR_TreeTwist_002",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_TreeTwist_002"
+    },
+    {
+      "slot": "E_forest/EFR_TreeTwist_003",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_TreeTwist_003"
+    },
+    {
+      "slot": "E_forest/EFR_WalkNorth_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_WalkNorth_001"
+    },
+    {
+      "slot": "E_forest/EFR_WalkPondSpur_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_WalkPondSpur_001"
+    },
+    {
+      "slot": "E_forest/EFR_WalkSouthSpur_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_WalkSouthSpur_001"
+    },
+    {
+      "slot": "E_forest/EFR_WalkSouth_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_WalkSouth_001"
+    },
+    {
+      "slot": "E_forest/EFR_WalkWest_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "E_forest/EFR_WalkWest_001"
+    }
+  ]
+}

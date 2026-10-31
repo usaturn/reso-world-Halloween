@@ -744,13 +744,13 @@
         0.0
       ],
       "dimensions_m": {
-        "width": 28.11,
+        "width": 20.571,
         "depth": 3.8,
         "height": 3.14
       },
       "bounds_local": {
         "min": [
-          -25.0,
+          -17.461,
           -1.9,
           -1.8
         ],

@@ -1,0 +1,1743 @@
+{
+  "root": "Root/HalloweenMagicalCarnival",
+  "tolerance_m": 0.01,
+  "keys": {
+    "world": {
+      "bundle": "exports/p2_static/world-20261031T155217Z",
+      "declared_slots": 40,
+      "declared_components": 101,
+      "auto_ai_generated_content": 22,
+      "live_slots": 40,
+      "live_components": 123,
+      "objects_declared": 21,
+      "objects_missing": [],
+      "mesh_colliders": {
+        "live": 20,
+        "expected": 20
+      }
+    },
+    "A_plaza": {
+      "bundle": "exports/p2_static/A_plaza-20261031T155217Z",
+      "declared_slots": 166,
+      "declared_components": 332,
+      "auto_ai_generated_content": 47,
+      "live_slots": 166,
+      "live_components": 379,
+      "objects_declared": 141,
+      "objects_missing": [],
+      "mesh_colliders": {
+        "live": 42,
+        "expected": 42
+      }
+    },
+    "B_mansion": {
+      "bundle": "exports/p2_static/B_mansion-20261031T155217Z",
+      "declared_slots": 88,
+      "declared_components": 169,
+      "auto_ai_generated_content": 31,
+      "live_slots": 88,
+      "live_components": 200,
+      "objects_declared": 66,
+      "objects_missing": [],
+      "mesh_colliders": {
+        "live": 28,
+        "expected": 28
+      }
+    },
+    "C_candy": {
+      "bundle": "exports/p2_static/C_candy-20261031T155217Z",
+      "declared_slots": 80,
+      "declared_components": 166,
+      "auto_ai_generated_content": 30,
+      "live_slots": 80,
+      "live_components": 196,
+      "objects_declared": 53,
+      "objects_missing": [],
+      "mesh_colliders": {
+        "live": 27,
+        "expected": 27
+      }
+    },
+    "D_amusement": {
+      "bundle": "exports/p2_static/D_amusement-20261031T155217Z",
+      "declared_slots": 98,
+      "declared_components": 194,
+      "auto_ai_generated_content": 28,
+      "live_slots": 98,
+      "live_components": 222,
+      "objects_declared": 76,
+      "objects_missing": [],
+      "mesh_colliders": {
+        "live": 30,
+        "expected": 30
+      }
+    },
+    "E_forest": {
+      "bundle": "exports/p2_static/E_forest-20261031T155217Z",
+      "declared_slots": 190,
+      "declared_components": 403,
+      "auto_ai_generated_content": 72,
+      "live_slots": 190,
+      "live_components": 475,
+      "objects_declared": 146,
+      "objects_missing": [],
+      "mesh_colliders": {
+        "live": 59,
+        "expected": 59
+      }
+    }
+  },
+  "problems": [],
+  "root_children": [
+    "Environment",
+    "SouthEntranceSpawn",
+    "world",
+    "A_plaza",
+    "B_mansion",
+    "C_candy",
+    "D_amusement",
+    "E_forest"
+  ],
+  "motion_parts": {
+    "count": 78,
+    "max_diff_m": 0.00066,
+    "rows": [
+      {
+        "key": "A_plaza",
+        "motion_root": "APL_Fountain_001_Water",
+        "expected_resonite": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "live_world": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "A_plaza",
+        "motion_root": "APL_JackInteractionPedestal_001_OrbButton",
+        "expected_resonite": [
+          0.0,
+          0.96,
+          -4.71
+        ],
+        "live_world": [
+          0.0,
+          0.96,
+          -4.71
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "A_plaza",
+        "motion_root": "APL_DancingPumpkin_001_Body",
+        "expected_resonite": [
+          -2.72,
+          0.24,
+          -3.89
+        ],
+        "live_world": [
+          -2.72,
+          0.24,
+          -3.89
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "A_plaza",
+        "motion_root": "APL_DancingPumpkin_002_Body",
+        "expected_resonite": [
+          2.72,
+          0.24,
+          -3.89
+        ],
+        "live_world": [
+          2.72,
+          0.24,
+          -3.89
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "A_plaza",
+        "motion_root": "APL_DancingPumpkin_003_Body",
+        "expected_resonite": [
+          4.59,
+          0.24,
+          -1.23
+        ],
+        "live_world": [
+          4.59,
+          0.24,
+          -1.23
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "A_plaza",
+        "motion_root": "APL_DancingPumpkin_004_Body",
+        "expected_resonite": [
+          -4.59,
+          0.24,
+          -1.23
+        ],
+        "live_world": [
+          -4.59,
+          0.24,
+          -1.23
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "A_plaza",
+        "motion_root": "APL_DancingPumpkin_005_Body",
+        "expected_resonite": [
+          3.36,
+          0.24,
+          3.36
+        ],
+        "live_world": [
+          3.36,
+          0.24,
+          3.36
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "A_plaza",
+        "motion_root": "APL_DancingPumpkin_006_Body",
+        "expected_resonite": [
+          -3.36,
+          0.24,
+          3.36
+        ],
+        "live_world": [
+          -3.36,
+          0.24,
+          3.36
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "A_plaza",
+        "motion_root": "APL_FloatingCandy_001_OrbitHub",
+        "expected_resonite": [
+          -2.4,
+          2.45,
+          -2.4
+        ],
+        "live_world": [
+          -2.4,
+          2.45,
+          -2.4
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "A_plaza",
+        "motion_root": "APL_FloatingCandy_002_OrbitHub",
+        "expected_resonite": [
+          2.4,
+          2.45,
+          -2.4
+        ],
+        "live_world": [
+          2.4,
+          2.45,
+          -2.4
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "A_plaza",
+        "motion_root": "APL_FloatingCandy_003_OrbitHub",
+        "expected_resonite": [
+          2.4,
+          2.55,
+          2.4
+        ],
+        "live_world": [
+          2.4,
+          2.55,
+          2.4
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "A_plaza",
+        "motion_root": "APL_FloatingCandy_004_OrbitHub",
+        "expected_resonite": [
+          -2.4,
+          2.55,
+          2.4
+        ],
+        "live_world": [
+          -2.4,
+          2.55,
+          2.4
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "A_plaza",
+        "motion_root": "APL_SeqLantern_001_LanternHead",
+        "expected_resonite": [
+          -3.75,
+          2.05,
+          -9.05
+        ],
+        "live_world": [
+          -3.75,
+          2.05,
+          -9.05
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "A_plaza",
+        "motion_root": "APL_SeqLantern_002_LanternHead",
+        "expected_resonite": [
+          3.75,
+          2.05,
+          -9.05
+        ],
+        "live_world": [
+          3.75,
+          2.05,
+          -9.05
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "A_plaza",
+        "motion_root": "APL_SeqLantern_003_LanternHead",
+        "expected_resonite": [
+          9.05,
+          2.05,
+          -3.75
+        ],
+        "live_world": [
+          9.05,
+          2.05,
+          -3.75
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "A_plaza",
+        "motion_root": "APL_SeqLantern_004_LanternHead",
+        "expected_resonite": [
+          9.05,
+          2.05,
+          3.75
+        ],
+        "live_world": [
+          9.05,
+          2.05,
+          3.75
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "A_plaza",
+        "motion_root": "APL_SeqLantern_005_LanternHead",
+        "expected_resonite": [
+          3.75,
+          2.05,
+          9.05
+        ],
+        "live_world": [
+          3.75,
+          2.05,
+          9.05
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "A_plaza",
+        "motion_root": "APL_SeqLantern_006_LanternHead",
+        "expected_resonite": [
+          -3.75,
+          2.05,
+          9.05
+        ],
+        "live_world": [
+          -3.75,
+          2.05,
+          9.05
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "A_plaza",
+        "motion_root": "APL_SeqLantern_007_LanternHead",
+        "expected_resonite": [
+          -9.05,
+          2.05,
+          3.75
+        ],
+        "live_world": [
+          -9.05,
+          2.05,
+          3.75
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "A_plaza",
+        "motion_root": "APL_SeqLantern_008_LanternHead",
+        "expected_resonite": [
+          -9.05,
+          2.05,
+          -3.75
+        ],
+        "live_world": [
+          -9.05,
+          2.05,
+          -3.75
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "A_plaza",
+        "motion_root": "APL_TrickOrTreatStand_001_Button",
+        "expected_resonite": [
+          -4.697,
+          0.94,
+          -6.347
+        ],
+        "live_world": [
+          -4.6968,
+          0.94,
+          -6.3474
+        ],
+        "diff_m": 0.00051,
+        "colliders_below": []
+      },
+      {
+        "key": "A_plaza",
+        "motion_root": "APL_FireworksSwitch_001_Lever",
+        "expected_resonite": [
+          4.72,
+          0.92,
+          -6.315
+        ],
+        "live_world": [
+          4.7197,
+          0.92,
+          -6.3147
+        ],
+        "diff_m": 0.00044,
+        "colliders_below": []
+      },
+      {
+        "key": "A_plaza",
+        "motion_root": "APL_EntranceGateProxy_001_DoorLeft",
+        "expected_resonite": [
+          -2.18,
+          0.0,
+          -40.0
+        ],
+        "live_world": [
+          -2.18,
+          0.0,
+          -40.0
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "A_plaza",
+        "motion_root": "APL_EntranceGateProxy_001_DoorRight",
+        "expected_resonite": [
+          2.18,
+          0.0,
+          -40.0
+        ],
+        "live_world": [
+          2.18,
+          0.0,
+          -40.0
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "B_mansion",
+        "motion_root": "BMN_Tombstone_001_TiltHinge",
+        "expected_resonite": [
+          -6.2,
+          1.68,
+          30.0
+        ],
+        "live_world": [
+          -6.2,
+          1.68,
+          30.0
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "B_mansion",
+        "motion_root": "BMN_Tombstone_002_TiltHinge",
+        "expected_resonite": [
+          6.2,
+          1.68,
+          30.0
+        ],
+        "live_world": [
+          6.2,
+          1.68,
+          30.0
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "B_mansion",
+        "motion_root": "BMN_MansionDoubleDoor_001_HingeLeft",
+        "expected_resonite": [
+          -0.474,
+          1.779,
+          39.95
+        ],
+        "live_world": [
+          -0.474,
+          1.779,
+          39.95
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "B_mansion",
+        "motion_root": "BMN_MansionDoubleDoor_001_HingeRight",
+        "expected_resonite": [
+          1.144,
+          1.779,
+          39.95
+        ],
+        "live_world": [
+          1.144,
+          1.779,
+          39.95
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "B_mansion",
+        "motion_root": "BMN_WindowGhost_001_PeekPivot",
+        "expected_resonite": [
+          -4.2,
+          4.8,
+          37.23
+        ],
+        "live_world": [
+          -4.2,
+          4.8,
+          37.23
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "B_mansion",
+        "motion_root": "BMN_WindowGhost_002_PeekPivot",
+        "expected_resonite": [
+          4.2,
+          4.8,
+          37.23
+        ],
+        "live_world": [
+          4.2,
+          4.8,
+          37.23
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "B_mansion",
+        "motion_root": "BMN_FloatingGhost_001_FloatPivot",
+        "expected_resonite": [
+          -4.6,
+          2.6,
+          28.0
+        ],
+        "live_world": [
+          -4.6,
+          2.6,
+          28.0
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "B_mansion",
+        "motion_root": "BMN_FloatingGhost_002_FloatPivot",
+        "expected_resonite": [
+          4.6,
+          2.8,
+          33.0
+        ],
+        "live_world": [
+          4.6,
+          2.8,
+          33.0
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "B_mansion",
+        "motion_root": "BMN_MansionBell_001_BellHinge",
+        "expected_resonite": [
+          -3.4,
+          3.95,
+          35.8
+        ],
+        "live_world": [
+          -3.4,
+          3.95,
+          35.8
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "C_candy",
+        "motion_root": "CCD_MagicCauldron_001_StirRodPivot",
+        "expected_resonite": [
+          34.4,
+          1.16,
+          5.2
+        ],
+        "live_world": [
+          34.4,
+          1.16,
+          5.2
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "C_candy",
+        "motion_root": "CCD_CauldronColorControl_001_SwitchPivot",
+        "expected_resonite": [
+          33.0,
+          1.02,
+          3.74
+        ],
+        "live_world": [
+          33.0,
+          1.02,
+          3.74
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "C_candy",
+        "motion_root": "CCD_CandyMachine_001_GearMainPivot",
+        "expected_resonite": [
+          33.7,
+          1.15,
+          -5.28
+        ],
+        "live_world": [
+          33.7,
+          1.15,
+          -5.28
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "C_candy",
+        "motion_root": "CCD_CandyMachine_001_GearSubPivot",
+        "expected_resonite": [
+          33.7,
+          1.66,
+          -4.78
+        ],
+        "live_world": [
+          33.7,
+          1.66,
+          -4.78
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "C_candy",
+        "motion_root": "CCD_CandyMachine_001_ExtruderPivot",
+        "expected_resonite": [
+          34.4,
+          1.05,
+          -4.68
+        ],
+        "live_world": [
+          34.4,
+          1.05,
+          -4.68
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "C_candy",
+        "motion_root": "CCD_MagicBroom_001",
+        "expected_resonite": [
+          28.5,
+          0.05,
+          3.2
+        ],
+        "live_world": [
+          28.5,
+          0.05,
+          3.2
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "C_candy",
+        "motion_root": "CCD_WitchPatrolLoop_001_CarrierPivot",
+        "expected_resonite": [
+          43.2,
+          10.2,
+          0.0
+        ],
+        "live_world": [
+          43.2,
+          10.2,
+          0.0
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "D_amusement",
+        "motion_root": "DAM_Carousel_001_TurnRoot",
+        "expected_resonite": [
+          -10.5,
+          0.36,
+          -32.0
+        ],
+        "live_world": [
+          -10.5,
+          0.36,
+          -32.0
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "D_amusement",
+        "motion_root": "DAM_Carousel_001_SeatRoot_001",
+        "expected_resonite": [
+          -7.15,
+          1.41,
+          -32.0
+        ],
+        "live_world": [
+          -7.15,
+          1.41,
+          -32.0
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "D_amusement",
+        "motion_root": "DAM_Carousel_001_SeatRoot_002",
+        "expected_resonite": [
+          -10.5,
+          1.41,
+          -28.65
+        ],
+        "live_world": [
+          -10.5,
+          1.41,
+          -28.65
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "D_amusement",
+        "motion_root": "DAM_Carousel_001_SeatRoot_003",
+        "expected_resonite": [
+          -13.85,
+          1.41,
+          -32.0
+        ],
+        "live_world": [
+          -13.85,
+          1.41,
+          -32.0
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "D_amusement",
+        "motion_root": "DAM_Carousel_001_SeatRoot_004",
+        "expected_resonite": [
+          -10.5,
+          1.41,
+          -35.35
+        ],
+        "live_world": [
+          -10.5,
+          1.41,
+          -35.35
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "D_amusement",
+        "motion_root": "DAM_GhostTrain_001_EngineRoot",
+        "expected_resonite": [
+          7.5,
+          0.14,
+          -30.5
+        ],
+        "live_world": [
+          7.5,
+          0.14,
+          -30.5
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "D_amusement",
+        "motion_root": "DAM_GhostTrain_001_CarRoot_001",
+        "expected_resonite": [
+          7.5,
+          0.14,
+          -33.25
+        ],
+        "live_world": [
+          7.5,
+          0.14,
+          -33.25
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "D_amusement",
+        "motion_root": "DAM_PumpkinCups_001_TurnRoot",
+        "expected_resonite": [
+          11.5,
+          0.22,
+          -42.5
+        ],
+        "live_world": [
+          11.5,
+          0.22,
+          -42.5
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "D_amusement",
+        "motion_root": "DAM_PumpkinCups_001_CupRoot_001",
+        "expected_resonite": [
+          12.99,
+          0.32,
+          -41.64
+        ],
+        "live_world": [
+          12.9896,
+          0.32,
+          -41.64
+        ],
+        "diff_m": 0.0004,
+        "colliders_below": []
+      },
+      {
+        "key": "D_amusement",
+        "motion_root": "DAM_PumpkinCups_001_CupRoot_002",
+        "expected_resonite": [
+          10.01,
+          0.32,
+          -41.64
+        ],
+        "live_world": [
+          10.0104,
+          0.32,
+          -41.64
+        ],
+        "diff_m": 0.0004,
+        "colliders_below": []
+      },
+      {
+        "key": "D_amusement",
+        "motion_root": "DAM_PumpkinCups_001_CupRoot_003",
+        "expected_resonite": [
+          11.5,
+          0.32,
+          -44.22
+        ],
+        "live_world": [
+          11.5,
+          0.32,
+          -44.22
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "E_forest",
+        "motion_root": "EFR_ClockTower_001_HourHandPivot",
+        "expected_resonite": [
+          -38.081,
+          8.032,
+          -0.002
+        ],
+        "live_world": [
+          -38.081,
+          8.032,
+          -0.0015
+        ],
+        "diff_m": 0.0005,
+        "colliders_below": []
+      },
+      {
+        "key": "E_forest",
+        "motion_root": "EFR_ClockTower_001_MinuteHandPivot",
+        "expected_resonite": [
+          -38.041,
+          8.032,
+          -0.002
+        ],
+        "live_world": [
+          -38.041,
+          8.032,
+          -0.0015
+        ],
+        "diff_m": 0.0005,
+        "colliders_below": []
+      },
+      {
+        "key": "E_forest",
+        "motion_root": "EFR_ClockTower_001_BellPivot",
+        "expected_resonite": [
+          -37.05,
+          10.95,
+          -0.002
+        ],
+        "live_world": [
+          -37.05,
+          10.95,
+          -0.0015
+        ],
+        "diff_m": 0.0005,
+        "colliders_below": []
+      },
+      {
+        "key": "E_forest",
+        "motion_root": "EFR_FaceTree_001_BranchLPivot",
+        "expected_resonite": [
+          -24.517,
+          4.0,
+          7.22
+        ],
+        "live_world": [
+          -24.5171,
+          4.0,
+          7.2197
+        ],
+        "diff_m": 0.0003,
+        "colliders_below": []
+      },
+      {
+        "key": "E_forest",
+        "motion_root": "EFR_FaceTree_001_EyeLPivot",
+        "expected_resonite": [
+          -24.46,
+          3.0,
+          6.112
+        ],
+        "live_world": [
+          -24.4605,
+          3.0,
+          6.1121
+        ],
+        "diff_m": 0.00049,
+        "colliders_below": []
+      },
+      {
+        "key": "E_forest",
+        "motion_root": "EFR_FaceTree_001_BranchRPivot",
+        "expected_resonite": [
+          -25.93,
+          4.25,
+          6.469
+        ],
+        "live_world": [
+          -25.9298,
+          4.25,
+          6.4686
+        ],
+        "diff_m": 0.00046,
+        "colliders_below": []
+      },
+      {
+        "key": "E_forest",
+        "motion_root": "EFR_FaceTree_001_EyeRPivot",
+        "expected_resonite": [
+          -25.043,
+          3.0,
+          5.802
+        ],
+        "live_world": [
+          -25.0432,
+          3.0,
+          5.8022
+        ],
+        "diff_m": 0.00033,
+        "colliders_below": []
+      },
+      {
+        "key": "E_forest",
+        "motion_root": "EFR_FaceTree_002_BranchLPivot",
+        "expected_resonite": [
+          -37.291,
+          4.0,
+          -7.594
+        ],
+        "live_world": [
+          -37.2912,
+          4.0,
+          -7.5941
+        ],
+        "diff_m": 0.00021,
+        "colliders_below": []
+      },
+      {
+        "key": "E_forest",
+        "motion_root": "EFR_FaceTree_002_EyeLPivot",
+        "expected_resonite": [
+          -36.34,
+          3.0,
+          -7.024
+        ],
+        "live_world": [
+          -36.3398,
+          3.0,
+          -7.0241
+        ],
+        "diff_m": 0.00022,
+        "colliders_below": []
+      },
+      {
+        "key": "E_forest",
+        "motion_root": "EFR_FaceTree_002_BranchRPivot",
+        "expected_resonite": [
+          -35.965,
+          4.25,
+          -8.489
+        ],
+        "live_world": [
+          -35.9647,
+          4.25,
+          -8.4888
+        ],
+        "diff_m": 0.00033,
+        "colliders_below": []
+      },
+      {
+        "key": "E_forest",
+        "motion_root": "EFR_FaceTree_002_EyeRPivot",
+        "expected_resonite": [
+          -35.793,
+          3.0,
+          -7.393
+        ],
+        "live_world": [
+          -35.7926,
+          3.0,
+          -7.3932
+        ],
+        "diff_m": 0.0004,
+        "colliders_below": []
+      },
+      {
+        "key": "E_forest",
+        "motion_root": "EFR_BatFlock_001_Motion",
+        "expected_resonite": [
+          -28.8,
+          10.4,
+          -6.5
+        ],
+        "live_world": [
+          -28.8,
+          10.4,
+          -6.5
+        ],
+        "diff_m": 0.0,
+        "colliders_below": []
+      },
+      {
+        "key": "E_forest",
+        "motion_root": "EFR_BatFlock_001_Bat01",
+        "expected_resonite": [
+          -27.72,
+          10.4,
+          -6.29
+        ],
+        "live_world": [
+          -27.7202,
+          10.4,
+          -6.2901
+        ],
+        "diff_m": 0.00024,
+        "colliders_below": []
+      },
+      {
+        "key": "E_forest",
+        "motion_root": "EFR_BatFlock_001_Bat01_WingLPivot",
+        "expected_resonite": [
+          -27.828,
+          10.44,
+          -6.311
+        ],
+        "live_world": [
+          -27.8282,
+          10.44,
+          -6.3111
+        ],
+        "diff_m": 0.00021,
+        "colliders_below": []
+      },
+      {
+        "key": "E_forest",
+        "motion_root": "EFR_BatFlock_001_Bat01_WingRPivot",
+        "expected_resonite": [
+          -27.612,
+          10.44,
+          -6.269
+        ],
+        "live_world": [
+          -27.6122,
+          10.44,
+          -6.2691
+        ],
+        "diff_m": 0.00026,
+        "colliders_below": []
+      },
+      {
+        "key": "E_forest",
+        "motion_root": "EFR_BatFlock_001_Bat02",
+        "expected_resonite": [
+          -28.584,
+          10.731,
+          -4.738
+        ],
+        "live_world": [
+          -28.5837,
+          10.7312,
+          -4.7382
+        ],
+        "diff_m": 0.00044,
+        "colliders_below": []
+      },
+      {
+        "key": "E_forest",
+        "motion_root": "EFR_BatFlock_001_Bat02_WingLPivot",
+        "expected_resonite": [
+          -28.597,
+          10.771,
+          -4.847
+        ],
+        "live_world": [
+          -28.5971,
+          10.7712,
+          -4.8474
+        ],
+        "diff_m": 0.00047,
+        "colliders_below": []
+      },
+      {
+        "key": "E_forest",
+        "motion_root": "EFR_BatFlock_001_Bat02_WingRPivot",
+        "expected_resonite": [
+          -28.57,
+          10.771,
+          -4.629
+        ],
+        "live_world": [
+          -28.5703,
+          10.7712,
+          -4.6291
+        ],
+        "diff_m": 0.00035,
+        "colliders_below": []
+      },
+      {
+        "key": "E_forest",
+        "motion_root": "EFR_BatFlock_001_Bat03",
+        "expected_resonite": [
+          -30.001,
+          10.186,
+          -5.94
+        ],
+        "live_world": [
+          -30.0009,
+          10.1858,
+          -5.94
+        ],
+        "diff_m": 0.00021,
+        "colliders_below": []
+      },
+      {
+        "key": "E_forest",
+        "motion_root": "EFR_BatFlock_001_Bat03_WingLPivot",
+        "expected_resonite": [
+          -29.901,
+          10.226,
+          -5.987
+        ],
+        "live_world": [
+          -29.9012,
+          10.2259,
+          -5.9865
+        ],
+        "diff_m": 0.00053,
+        "colliders_below": []
+      },
+      {
+        "key": "E_forest",
+        "motion_root": "EFR_BatFlock_001_Bat03_WingRPivot",
+        "expected_resonite": [
+          -30.101,
+          10.226,
+          -5.894
+        ],
+        "live_world": [
+          -30.1006,
+          10.2259,
+          -5.8935
+        ],
+        "diff_m": 0.00066,
+        "colliders_below": []
+      },
+      {
+        "key": "E_forest",
+        "motion_root": "EFR_BatFlock_001_Bat04",
+        "expected_resonite": [
+          -30.164,
+          10.207,
+          -7.963
+        ],
+        "live_world": [
+          -30.164,
+          10.2073,
+          -7.9627
+        ],
+        "diff_m": 0.00039,
+        "colliders_below": []
+      },
+      {
+        "key": "E_forest",
+        "motion_root": "EFR_BatFlock_001_Bat04_WingLPivot",
+        "expected_resonite": [
+          -30.089,
+          10.247,
+          -7.882
+        ],
+        "live_world": [
+          -30.089,
+          10.2473,
+          -7.8823
+        ],
+        "diff_m": 0.00037,
+        "colliders_below": []
+      },
+      {
+        "key": "E_forest",
+        "motion_root": "EFR_BatFlock_001_Bat04_WingRPivot",
+        "expected_resonite": [
+          -30.239,
+          10.247,
+          -8.043
+        ],
+        "live_world": [
+          -30.239,
+          10.2473,
+          -8.0432
+        ],
+        "diff_m": 0.0003,
+        "colliders_below": []
+      },
+      {
+        "key": "E_forest",
+        "motion_root": "EFR_BatFlock_001_Bat05",
+        "expected_resonite": [
+          -28.049,
+          10.739,
+          -7.856
+        ],
+        "live_world": [
+          -28.0485,
+          10.7388,
+          -7.8557
+        ],
+        "diff_m": 0.00061,
+        "colliders_below": []
+      },
+      {
+        "key": "E_forest",
+        "motion_root": "EFR_BatFlock_001_Bat05_WingLPivot",
+        "expected_resonite": [
+          -28.102,
+          10.779,
+          -7.759
+        ],
+        "live_world": [
+          -28.1019,
+          10.7788,
+          -7.7595
+        ],
+        "diff_m": 0.00052,
+        "colliders_below": []
+      },
+      {
+        "key": "E_forest",
+        "motion_root": "EFR_BatFlock_001_Bat05_WingRPivot",
+        "expected_resonite": [
+          -27.995,
+          10.779,
+          -7.952
+        ],
+        "live_world": [
+          -27.9952,
+          10.7788,
+          -7.9519
+        ],
+        "diff_m": 0.00034,
+        "colliders_below": []
+      }
+    ]
+  },
+  "placeholders": [
+    {
+      "row": "M01",
+      "placeholder": "APL_EntranceGateProxy_001",
+      "expected_resonite": [
+        0.0,
+        0.0,
+        -40.0
+      ],
+      "live_world": [
+        0.0,
+        0.0,
+        -40.0
+      ],
+      "diff_m": 0.0,
+      "fixed_collision_slot": "HalloweenMagicalCarnival/A_plaza/APL_EntranceGateProxy_001/APL_EntranceGateProxy_001_Arch_FixedCollision"
+    },
+    {
+      "row": "M02",
+      "placeholder": "APL_GiantJackProxy_001",
+      "expected_resonite": [
+        0.0,
+        1.6,
+        0.0
+      ],
+      "live_world": [
+        0.0,
+        1.6,
+        0.0
+      ],
+      "diff_m": 0.0,
+      "fixed_collision_slot": "HalloweenMagicalCarnival/A_plaza/APL_GiantJackProxy_001/APL_GiantJackProxy_001_Body_FixedCollision"
+    },
+    {
+      "row": "M03",
+      "placeholder": "BMN_MansionPlaceholder_001",
+      "expected_resonite": [
+        0.0,
+        1.5,
+        41.5
+      ],
+      "live_world": [
+        0.0,
+        1.5,
+        41.5
+      ],
+      "diff_m": 0.0,
+      "fixed_collision_slot": "HalloweenMagicalCarnival/B_mansion/BMN_MansionPlaceholder_001_FixedCollision"
+    },
+    {
+      "row": "M04",
+      "placeholder": "CCD_M04_CandyWorkshopProxy_001",
+      "expected_resonite": [
+        38.0,
+        0.0,
+        0.0
+      ],
+      "live_world": [
+        38.0,
+        0.0,
+        0.0
+      ],
+      "diff_m": 0.0,
+      "fixed_collision_slot": "HalloweenMagicalCarnival/C_candy/CCD_M04_CandyWorkshopProxy_001_FixedCollision"
+    },
+    {
+      "row": "M05_CenterCasing",
+      "placeholder": "DAM_Carousel_001_M05_CenterCasing",
+      "expected_resonite": [
+        -10.5,
+        0.55,
+        -32.0
+      ],
+      "live_world": [
+        -10.5,
+        0.55,
+        -32.0
+      ],
+      "diff_m": 0.0,
+      "fixed_collision_slot": null
+    },
+    {
+      "row": "M05_Canopy",
+      "placeholder": "DAM_Carousel_001_M05_Canopy",
+      "expected_resonite": [
+        -10.5,
+        3.514,
+        -32.0
+      ],
+      "live_world": [
+        -10.5,
+        3.514,
+        -32.0
+      ],
+      "diff_m": 0.0,
+      "fixed_collision_slot": null
+    },
+    {
+      "row": "M06",
+      "placeholder": "DAM_GhostTrain_001_M06_EngineShell",
+      "expected_resonite": [
+        7.5,
+        0.14,
+        -30.5
+      ],
+      "live_world": [
+        7.5,
+        0.14,
+        -30.5
+      ],
+      "diff_m": 0.0,
+      "fixed_collision_slot": null
+    },
+    {
+      "row": "M07",
+      "placeholder": "EFR_ClockTower_001_Body",
+      "expected_resonite": [
+        -38.5,
+        0.0,
+        0.0
+      ],
+      "live_world": [
+        -38.5,
+        0.0,
+        0.0
+      ],
+      "diff_m": 0.0,
+      "fixed_collision_slot": "HalloweenMagicalCarnival/E_forest/EFR_ClockTower_001/EFR_ClockTower_001_Body_FixedCollision"
+    },
+    {
+      "row": "M08",
+      "placeholder": "CCD_M08_FlyingWitchProxy_001",
+      "expected_resonite": [
+        43.2,
+        10.2,
+        0.0
+      ],
+      "live_world": [
+        43.2,
+        10.2,
+        0.0
+      ],
+      "diff_m": 0.0,
+      "fixed_collision_slot": null
+    }
+  ],
+  "landmarks": [
+    {
+      "landmark": "LM_A_PumpkinTower_001",
+      "built_asset": "APL_GiantJackProxy_001",
+      "expected_resonite": [
+        0.0,
+        1.6,
+        0.0
+      ],
+      "live_world": [
+        0.0,
+        1.6,
+        0.0
+      ],
+      "diff_m": 0.0
+    },
+    {
+      "landmark": "LM_B_HauntedMansion_001",
+      "built_asset": "BMN_MansionPlaceholder_001",
+      "expected_resonite": [
+        0.0,
+        1.5,
+        41.5
+      ],
+      "live_world": [
+        0.0,
+        1.5,
+        41.5
+      ],
+      "diff_m": 0.0
+    },
+    {
+      "landmark": "LM_C_CandyArch_001",
+      "built_asset": "CCD_CandyArch_001",
+      "expected_resonite": [
+        33.0,
+        0.0,
+        0.0
+      ],
+      "live_world": [
+        33.0,
+        0.0,
+        0.0
+      ],
+      "diff_m": 0.0
+    },
+    {
+      "landmark": "LM_D_CarouselGate_001",
+      "built_asset": "DAM_Carousel_001",
+      "expected_resonite": [
+        -10.5,
+        0.0,
+        -32.0
+      ],
+      "live_world": [
+        -10.5,
+        0.0,
+        -32.0
+      ],
+      "diff_m": 0.0
+    },
+    {
+      "landmark": "LM_E_ClockTower_001",
+      "built_asset": "EFR_ClockTower_001",
+      "expected_resonite": [
+        -38.5,
+        0.0,
+        0.0
+      ],
+      "live_world": [
+        -38.5,
+        0.0,
+        0.0
+      ],
+      "diff_m": 0.0
+    }
+  ],
+  "attachment_points_with_collider": [],
+  "dimensions": [
+    {
+      "key": "B_mansion",
+      "object": "BMN_MansionPlaceholder_001",
+      "axis": "x size",
+      "expected_m": 15.0,
+      "bounds_min": [
+        -7.5,
+        1.5,
+        36.3895
+      ],
+      "bounds_max": [
+        7.5,
+        12.107,
+        46.6105
+      ],
+      "measured_m": 15.0,
+      "diff_m": 0.0
+    },
+    {
+      "key": "B_mansion",
+      "object": "BMN_MansionPlaceholder_001",
+      "axis": "y size",
+      "expected_m": 10.607,
+      "bounds_min": [
+        -7.5,
+        1.5,
+        36.3895
+      ],
+      "bounds_max": [
+        7.5,
+        12.107,
+        46.6105
+      ],
+      "measured_m": 10.607,
+      "diff_m": 0.0
+    },
+    {
+      "key": "E_forest",
+      "object": "EFR_ClockTower_001_Body",
+      "axis": "y size",
+      "expected_m": 14.0,
+      "bounds_min": [
+        -42.289,
+        0.0,
+        -4.12
+      ],
+      "bounds_max": [
+        -34.711,
+        14.0,
+        4.119
+      ],
+      "measured_m": 14.0,
+      "diff_m": 0.0
+    },
+    {
+      "key": "E_forest",
+      "object": "EFR_ClockTower_001_Body",
+      "axis": "x max",
+      "expected_m": -34.711,
+      "bounds_min": [
+        -42.289,
+        0.0,
+        -4.12
+      ],
+      "bounds_max": [
+        -34.711,
+        14.0,
+        4.119
+      ],
+      "measured_m": -34.711,
+      "diff_m": 0.0
+    },
+    {
+      "key": "world",
+      "object": "WLD_WestBridge_001",
+      "axis": "x min",
+      "expected_m": -34.711,
+      "bounds_min": [
+        -34.711,
+        -1.8,
+        -1.9
+      ],
+      "bounds_max": [
+        -14.14,
+        1.34,
+        1.9
+      ],
+      "measured_m": -34.711,
+      "diff_m": -0.0
+    },
+    {
+      "key": "world",
+      "object": "WLD_SouthPromenade_001",
+      "axis": "x size",
+      "expected_m": null,
+      "bounds_min": [
+        -4.51,
+        -1.8,
+        -46.5
+      ],
+      "bounds_max": [
+        4.51,
+        1.34,
+        -14.14
+      ],
+      "measured_m": 9.02
+    },
+    {
+      "key": "world",
+      "object": "WLD_NorthBridge_001",
+      "axis": "x size",
+      "expected_m": 4.0,
+      "bounds_min": [
+        -2.0,
+        -1.8,
+        14.14
+      ],
+      "bounds_max": [
+        2.0,
+        2.84,
+        36.0
+      ],
+      "measured_m": 4.0,
+      "diff_m": 0.0
+    },
+    {
+      "key": "world",
+      "object": "WLD_EastBridge_001",
+      "axis": "z size",
+      "expected_m": 4.0,
+      "bounds_min": [
+        14.14,
+        -1.8,
+        -2.0
+      ],
+      "bounds_max": [
+        42.25,
+        1.34,
+        2.0
+      ],
+      "measured_m": 4.0,
+      "diff_m": 0.0
+    },
+    {
+      "key": "A_plaza",
+      "object": "APL_EntranceGateProxy_001_Arch",
+      "axis": "x size",
+      "expected_m": 11.0,
+      "bounds_min": [
+        -5.5,
+        0.0,
+        -41.311
+      ],
+      "bounds_max": [
+        5.5,
+        7.739,
+        -38.689
+      ],
+      "measured_m": 11.0,
+      "diff_m": 0.0
+    }
+  ],
+  "ok": true
+}

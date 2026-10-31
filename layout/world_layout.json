@@ -106,7 +106,7 @@
       1.0,
       0.0
     ],
-    "clearance_radius_m": 3.0
+    "clearance_radius_m": 2.8
   },
   "spawn_candidates": [
     {
@@ -123,7 +123,7 @@
         1.0,
         0.0
       ],
-      "clearance_radius_m": 3.5,
+      "clearance_radius_m": 2.8,
       "role": "primary_world_entrance",
       "notes": "South-most main arrival terrace looking straight north (+Y) through the Trick Amusement promenade to Central Pumpkin Plaza."
     },
