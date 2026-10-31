@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0",
+  "key": "M04",
+  "updated_at": "2026-10-31",
+  "assets": [
+    {
+      "asset_id": "M04_WitchCandyWorkshop_001",
+      "key": "M04",
+      "category": "architecture",
+      "area_id": "C_candy",
+      "collection": "M04",
+      "blend_file": "blender/M04/M04.blend",
+      "script_file": "modeling/M04/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 8.0,
+        "depth": 5.367,
+        "height": 7.628
+      },
+      "bounds_local": {
+        "min": [
+          -4.0003,
+          -2.6833,
+          -0.0001
+        ],
+        "max": [
+          3.9998,
+          2.6834,
+          7.6278
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "M04_WitchCandyWorkshop_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "M04_WitchCandyWorkshop_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "M04_WitchCandyWorkshop_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_M04_WitchCandyWorkshop"
+      ],
+      "textures": [
+        "blender/M04/textures/M04_WitchCandyWorkshop_001_color.png",
+        "blender/M04/textures/M04_WitchCandyWorkshop_001_metallic.png",
+        "blender/M04/textures/M04_WitchCandyWorkshop_001_roughness.png",
+        "blender/M04/textures/M04_WitchCandyWorkshop_001_emission.png"
+      ],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 30702,
+        "vertices": 49176,
+        "materials_count": 1,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "exported",
+        "bundle_dir": "exports/M04/bundle",
+        "apply_plan": "exports/M04/bundle/model.apply.json",
+        "report_file": "exports/M04/bundle/report.json"
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "future_target": null,
+        "notes": "Finished Meshy visual for the VisualRoot of the C_candy witch's candy workshop exterior (Spec 6.3); in P2 it replaces W04's placeholder CCD_M04_CandyWorkshopProxy_001 (assets/manifest/C_candy.json, whose future_target is M04_WitchCandyWorkshop_001). origin_world is the asset-local origin: the world position is W04's (CCD_M04_CandyWorkshopProxy_001 at [38.0, 0.0, 0.0], rotation_z 90.0, as received.json placement_hint; the front looks west to the plaza). Origin = bottom centre (z=0), front = +Y (Resonite +Z). Building exterior only: no stalls, display, cauldron, candy machines or brooms (W04). The door is a relief and does not open (door bottom [-0.006, 2.128, 0.116]). Window glow: one material, the emission image M04_WitchCandyWorkshop_001_emission.png paints only the 17 window panes (modeling/M04/build.py WINDOWS); control it with the material's EmissiveColor in Resonite (black = off). No collider is part of this visual."
+      }
+    }
+  ]
+}
