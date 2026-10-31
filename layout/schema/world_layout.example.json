@@ -1,0 +1,235 @@
+{
+  "schema_version": "1.0",
+  "world_name": "Halloween Magical Carnival",
+  "coordinate_system": {
+    "origin": [0.0, 0.0, 0.0],
+    "east": "+X",
+    "north": "+Y",
+    "up": "+Z",
+    "unit": "m"
+  },
+  "play_area": {
+    "size_m": [100.0, 100.0],
+    "bounds_min": [-50.0, -50.0, -5.0],
+    "bounds_max": [50.0, 50.0, 25.0]
+  },
+  "central_plaza": {
+    "center": [0.0, 0.0, 0.0],
+    "diameter_m": 28.0,
+    "ring_road_width_m": 3.5,
+    "ring_road_inner_radius_m": 10.5,
+    "ring_road_outer_radius_m": 14.0
+  },
+  "entrance": {
+    "direction": "south",
+    "position": [0.0, -14.0, 0.0],
+    "forward": [0.0, 1.0, 0.0],
+    "width_m": 4.0,
+    "area_key": "A_plaza",
+    "meshy_gate_id": "M01"
+  },
+  "spawn_candidates": [
+    {
+      "id": "W_Spawn_SouthMain_001",
+      "position": [0.0, -18.0, 0.0],
+      "forward": [0.0, 1.0, 0.0],
+      "radius_m": 2.5,
+      "notes": "南側入口ゲート手前の初期スポーン候補"
+    }
+  ],
+  "areas": [
+    {
+      "key": "A_plaza",
+      "area_code": "A",
+      "name": "中央広場（Magical Pumpkin Plaza）",
+      "direction": "center",
+      "center": [0.0, 0.0, 0.0],
+      "bounds_min": [-15.0, -20.0, -1.0],
+      "bounds_max": [15.0, 15.0, 12.0],
+      "entrances": [
+        {
+          "id": "A_Entrance_South_001",
+          "position": [0.0, -14.0, 0.0],
+          "width_m": 4.0,
+          "connects_to": "D_amusement"
+        }
+      ],
+      "connection_points": [
+        {
+          "id": "A_Conn_North_001",
+          "position": [0.0, 14.0, 0.0],
+          "target_area": "B_mansion",
+          "width_m": 3.5,
+          "route_id": "W_Route_North_001"
+        },
+        {
+          "id": "A_Conn_East_001",
+          "position": [14.0, 0.0, 0.0],
+          "target_area": "C_candy",
+          "width_m": 3.5,
+          "route_id": "W_Route_East_001"
+        },
+        {
+          "id": "A_Conn_South_001",
+          "position": [0.0, -14.0, 0.0],
+          "target_area": "D_amusement",
+          "width_m": 3.5,
+          "route_id": "W_Route_South_001"
+        },
+        {
+          "id": "A_Conn_West_001",
+          "position": [-14.0, 0.0, 0.0],
+          "target_area": "E_forest",
+          "width_m": 3.5,
+          "route_id": "W_Route_West_001"
+        }
+      ]
+    },
+    {
+      "key": "B_mansion",
+      "area_code": "B",
+      "name": "北・おばけ屋敷（Haunted Mansion）",
+      "direction": "north",
+      "center": [0.0, 32.0, 0.0],
+      "bounds_min": [-18.0, 18.0, -1.0],
+      "bounds_max": [18.0, 48.0, 18.0],
+      "entrances": [
+        {
+          "id": "B_Entrance_South_001",
+          "position": [0.0, 18.0, 0.0],
+          "width_m": 3.5,
+          "connects_to": "A_plaza"
+        }
+      ],
+      "connection_points": [
+        {
+          "id": "B_Conn_South_001",
+          "position": [0.0, 18.0, 0.0],
+          "target_area": "A_plaza",
+          "width_m": 3.5,
+          "route_id": "W_Route_North_001"
+        }
+      ]
+    },
+    {
+      "key": "C_candy",
+      "area_code": "C",
+      "name": "東・魔女のキャンディストリート（Witch's Candy Street）",
+      "direction": "east",
+      "center": [32.0, 0.0, 0.0],
+      "bounds_min": [18.0, -18.0, -1.0],
+      "bounds_max": [48.0, 18.0, 20.0],
+      "entrances": [
+        {
+          "id": "C_Entrance_West_001",
+          "position": [18.0, 0.0, 0.0],
+          "width_m": 3.5,
+          "connects_to": "A_plaza"
+        }
+      ],
+      "connection_points": [
+        {
+          "id": "C_Conn_West_001",
+          "position": [18.0, 0.0, 0.0],
+          "target_area": "A_plaza",
+          "width_m": 3.5,
+          "route_id": "W_Route_East_001"
+        }
+      ]
+    },
+    {
+      "key": "D_amusement",
+      "area_code": "D",
+      "name": "南・パンプキン遊園地（Pumpkin Amusement）",
+      "direction": "south",
+      "center": [0.0, -32.0, 0.0],
+      "bounds_min": [-20.0, -48.0, -1.0],
+      "bounds_max": [20.0, -18.0, 15.0],
+      "entrances": [
+        {
+          "id": "D_Entrance_North_001",
+          "position": [0.0, -18.0, 0.0],
+          "width_m": 3.5,
+          "connects_to": "A_plaza"
+        }
+      ],
+      "connection_points": [
+        {
+          "id": "D_Conn_North_001",
+          "position": [0.0, -18.0, 0.0],
+          "target_area": "A_plaza",
+          "width_m": 3.5,
+          "route_id": "W_Route_South_001"
+        }
+      ]
+    },
+    {
+      "key": "E_forest",
+      "area_code": "E",
+      "name": "西・魔法の森（Enchanted Forest）",
+      "direction": "west",
+      "center": [-32.0, 0.0, 0.0],
+      "bounds_min": [-48.0, -18.0, -1.0],
+      "bounds_max": [-18.0, 18.0, 18.0],
+      "entrances": [
+        {
+          "id": "E_Entrance_East_001",
+          "position": [-18.0, 0.0, 0.0],
+          "width_m": 3.5,
+          "connects_to": "A_plaza"
+        }
+      ],
+      "connection_points": [
+        {
+          "id": "E_Conn_East_001",
+          "position": [-18.0, 0.0, 0.0],
+          "target_area": "A_plaza",
+          "width_m": 3.5,
+          "route_id": "W_Route_West_001"
+        }
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "id": "W_Route_North_001",
+      "kind": "main_road",
+      "from_area": "A_plaza",
+      "to_area": "B_mansion",
+      "width_m": 3.5,
+      "waypoints": [[0.0, 14.0, 0.0], [0.0, 18.0, 0.0]],
+      "has_handrail": true,
+      "step_free_or_slope": true
+    },
+    {
+      "id": "W_Route_East_001",
+      "kind": "main_road",
+      "from_area": "A_plaza",
+      "to_area": "C_candy",
+      "width_m": 3.5,
+      "waypoints": [[14.0, 0.0, 0.0], [18.0, 0.0, 0.0]],
+      "has_handrail": true,
+      "step_free_or_slope": true
+    },
+    {
+      "id": "W_Route_South_001",
+      "kind": "main_road",
+      "from_area": "A_plaza",
+      "to_area": "D_amusement",
+      "width_m": 3.5,
+      "waypoints": [[0.0, -14.0, 0.0], [0.0, -18.0, 0.0]],
+      "has_handrail": true,
+      "step_free_or_slope": true
+    },
+    {
+      "id": "W_Route_West_001",
+      "kind": "main_road",
+      "from_area": "A_plaza",
+      "to_area": "E_forest",
+      "width_m": 3.5,
+      "waypoints": [[-14.0, 0.0, 0.0], [-18.0, 0.0, 0.0]],
+      "has_handrail": true,
+      "step_free_or_slope": true
+    }
+  ]
+}

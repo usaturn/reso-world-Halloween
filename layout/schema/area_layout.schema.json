@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/usaturn/reso-world-Halloween/layout/schema/area_layout.schema.json",
+  "title": "Halloween Magical Carnival Area Layout",
+  "description": "地区別配置データ（layout/areas/<key>.json）のスキーマ定義。",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "key",
+    "area_code",
+    "center",
+    "bounds_min",
+    "bounds_max",
+    "entrances",
+    "paths",
+    "placements"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "key": {
+      "type": "string",
+      "enum": [
+        "probe",
+        "world",
+        "common",
+        "A_plaza",
+        "B_mansion",
+        "C_candy",
+        "D_amusement",
+        "E_forest",
+        "overview"
+      ]
+    },
+    "area_code": {
+      "type": "string",
+      "enum": ["P0", "W", "CMN", "A", "B", "C", "D", "E", "OVW"]
+    },
+    "center": { "$ref": "#/$defs/vec3" },
+    "bounds_min": { "$ref": "#/$defs/vec3" },
+    "bounds_max": { "$ref": "#/$defs/vec3" },
+    "entrances": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "position", "width_m", "connects_to"],
+        "properties": {
+          "id": { "$ref": "#/$defs/id_string" },
+          "position": { "$ref": "#/$defs/vec3" },
+          "width_m": { "type": "number", "minimum": 2.0 },
+          "connects_to": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "paths": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "kind", "closed", "waypoints"],
+        "properties": {
+          "id": { "$ref": "#/$defs/id_string" },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "main_road",
+              "ring_road",
+              "walkway",
+              "bridge",
+              "side_path",
+              "slope",
+              "patrol_loop",
+              "rail_loop"
+            ]
+          },
+          "width_m": { "type": "number", "exclusiveMinimum": 0 },
+          "clearance_min_z_m": { "type": "number" },
+          "closed": { "type": "boolean" },
+          "has_handrail": { "type": "boolean" },
+          "waypoints": {
+            "type": "array",
+            "minItems": 2,
+            "items": { "$ref": "#/$defs/vec3" }
+          },
+          "gimmick_id": { "type": ["string", "null"] },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "placements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "placement_id",
+          "asset_id",
+          "position",
+          "rotation_euler_deg",
+          "scale",
+          "forward_axis"
+        ],
+        "properties": {
+          "placement_id": { "$ref": "#/$defs/id_string" },
+          "asset_id": { "$ref": "#/$defs/id_string" },
+          "position": { "$ref": "#/$defs/vec3" },
+          "rotation_euler_deg": { "$ref": "#/$defs/vec3" },
+          "scale": { "$ref": "#/$defs/vec3" },
+          "forward_axis": {
+            "type": "string",
+            "enum": ["-Y", "+Y", "+X", "-X", "+Z", "-Z"]
+          },
+          "dimensions_m": { "$ref": "#/$defs/vec3_positive" },
+          "role": { "type": "string" },
+          "notes": { "type": "string" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "vec3": {
+      "type": "array",
+      "items": { "type": "number" },
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "vec3_positive": {
+      "type": "array",
+      "items": { "type": "number", "exclusiveMinimum": 0 },
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "id_string": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9]+(_[A-Za-z0-9]+)+$"
+    }
+  }
+}

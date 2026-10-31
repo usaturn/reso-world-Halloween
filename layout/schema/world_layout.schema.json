@@ -1,0 +1,207 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/usaturn/reso-world-Halloween/layout/schema/world_layout.schema.json",
+  "title": "Halloween Magical Carnival World Layout",
+  "description": "全体の枠（layout/world_layout.json）のスキーマ定義。W01 が作成し、W02〜W07 が参照する。",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "world_name",
+    "coordinate_system",
+    "play_area",
+    "central_plaza",
+    "entrance",
+    "spawn_candidates",
+    "areas",
+    "routes"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "world_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "coordinate_system": {
+      "type": "object",
+      "required": ["origin", "east", "north", "up", "unit"],
+      "properties": {
+        "origin": { "$ref": "#/$defs/vec3" },
+        "east": { "type": "string", "const": "+X" },
+        "north": { "type": "string", "const": "+Y" },
+        "up": { "type": "string", "const": "+Z" },
+        "unit": { "type": "string", "const": "m" }
+      }
+    },
+    "play_area": {
+      "type": "object",
+      "required": ["size_m", "bounds_min", "bounds_max"],
+      "properties": {
+        "size_m": {
+          "type": "array",
+          "items": { "type": "number", "exclusiveMinimum": 0 },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "bounds_min": { "$ref": "#/$defs/vec3" },
+        "bounds_max": { "$ref": "#/$defs/vec3" }
+      }
+    },
+    "central_plaza": {
+      "type": "object",
+      "required": ["center", "diameter_m", "ring_road_width_m"],
+      "properties": {
+        "center": { "$ref": "#/$defs/vec3" },
+        "diameter_m": { "type": "number", "minimum": 20.0, "maximum": 40.0 },
+        "ring_road_width_m": { "type": "number", "minimum": 3.0 },
+        "ring_road_inner_radius_m": { "type": "number", "exclusiveMinimum": 0 },
+        "ring_road_outer_radius_m": { "type": "number", "exclusiveMinimum": 0 }
+      }
+    },
+    "entrance": {
+      "type": "object",
+      "required": ["direction", "position", "forward", "width_m", "area_key"],
+      "properties": {
+        "direction": { "type": "string", "const": "south" },
+        "position": { "$ref": "#/$defs/vec3" },
+        "forward": { "$ref": "#/$defs/vec3" },
+        "width_m": { "type": "number", "minimum": 3.0 },
+        "area_key": { "type": "string", "enum": ["A_plaza", "D_amusement"] },
+        "meshy_gate_id": { "type": "string", "const": "M01" }
+      }
+    },
+    "spawn_candidates": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "position", "forward", "radius_m"],
+        "properties": {
+          "id": { "$ref": "#/$defs/id_string" },
+          "position": { "$ref": "#/$defs/vec3" },
+          "forward": { "$ref": "#/$defs/vec3" },
+          "radius_m": { "type": "number", "exclusiveMinimum": 0 },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "areas": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": [
+          "key",
+          "area_code",
+          "name",
+          "direction",
+          "center",
+          "bounds_min",
+          "bounds_max",
+          "entrances",
+          "connection_points"
+        ],
+        "properties": {
+          "key": {
+            "type": "string",
+            "enum": ["A_plaza", "B_mansion", "C_candy", "D_amusement", "E_forest"]
+          },
+          "area_code": {
+            "type": "string",
+            "enum": ["A", "B", "C", "D", "E"]
+          },
+          "name": { "type": "string", "minLength": 1 },
+          "direction": {
+            "type": "string",
+            "enum": ["center", "north", "east", "south", "west"]
+          },
+          "center": { "$ref": "#/$defs/vec3" },
+          "bounds_min": { "$ref": "#/$defs/vec3" },
+          "bounds_max": { "$ref": "#/$defs/vec3" },
+          "entrances": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["id", "position", "width_m", "connects_to"],
+              "properties": {
+                "id": { "$ref": "#/$defs/id_string" },
+                "position": { "$ref": "#/$defs/vec3" },
+                "width_m": { "type": "number", "minimum": 2.0 },
+                "connects_to": { "type": "string", "minLength": 1 }
+              }
+            }
+          },
+          "connection_points": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["id", "position", "target_area", "width_m"],
+              "properties": {
+                "id": { "$ref": "#/$defs/id_string" },
+                "position": { "$ref": "#/$defs/vec3" },
+                "target_area": {
+                  "type": "string",
+                  "enum": ["A_plaza", "B_mansion", "C_candy", "D_amusement", "E_forest", "entrance_south"]
+                },
+                "width_m": { "type": "number", "minimum": 2.0 },
+                "route_id": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "routes": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "from_area",
+          "to_area",
+          "width_m",
+          "waypoints",
+          "has_handrail",
+          "step_free_or_slope"
+        ],
+        "properties": {
+          "id": { "$ref": "#/$defs/id_string" },
+          "kind": {
+            "type": "string",
+            "enum": ["main_road", "ring_road", "bridge", "side_path", "slope"]
+          },
+          "from_area": { "type": "string", "minLength": 1 },
+          "to_area": { "type": "string", "minLength": 1 },
+          "width_m": { "type": "number", "minimum": 2.0 },
+          "waypoints": {
+            "type": "array",
+            "minItems": 2,
+            "items": { "$ref": "#/$defs/vec3" }
+          },
+          "has_handrail": { "type": "boolean" },
+          "step_free_or_slope": { "type": "boolean" },
+          "notes": { "type": "string" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "vec3": {
+      "type": "array",
+      "items": { "type": "number" },
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "id_string": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9]+(_[A-Za-z0-9]+)+$"
+    }
+  }
+}
