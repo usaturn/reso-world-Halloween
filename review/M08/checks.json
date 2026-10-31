@@ -1,0 +1,414 @@
+{
+  "triangles": 31130,
+  "vertices": 42030,
+  "bounds_m": {
+    "min": [
+      -0.6368,
+      -1.2147,
+      -0.6119
+    ],
+    "max": [
+      0.9049,
+      0.9116,
+      1.8882
+    ]
+  },
+  "bounds_expected_m": {
+    "min": [
+      -0.637,
+      -1.215,
+      -0.612
+    ],
+    "max": [
+      0.905,
+      0.912,
+      1.888
+    ]
+  },
+  "bounds_max_abs_diff_m": 0.0004,
+  "dimensions_m": {
+    "width_x": 1.542,
+    "depth_y": 2.126,
+    "height_z": 2.5
+  },
+  "dimensions_expected_m": {
+    "width_x": 1.542,
+    "depth_y": 2.126,
+    "height_z": 2.5
+  },
+  "origin": {
+    "policy": "hinge_pivot",
+    "note": "飛行の動作中心: ほうきの軸（穂の中心と柄の先を結ぶ線）の上で、外接箱の中心に最も近い点（座る位置の下）",
+    "extent_from_origin_m": {
+      "down": 0.612,
+      "up": 1.888,
+      "front_plus_y": 0.912,
+      "back": 1.215,
+      "plus_x": 0.905,
+      "minus_x": 0.637
+    },
+    "box_centre": [
+      0.134,
+      -0.1515,
+      0.6382
+    ]
+  },
+  "broom": {
+    "method": "Plane sections y = const of the finished triangles; a section centre is the length-weighted mean of the segments within 0.12 m (handle) or 0.3 m (bristle bundle) of W09's axis in x and z. The handle ahead of the hands (y 0.60-0.85) is fitted with a straight line.",
+    "w09_axis": {
+      "bristle_end_centre": [
+        -0.0,
+        -1.043,
+        -0.245
+      ],
+      "broom_tip": [
+        0.0,
+        0.91,
+        0.214
+      ],
+      "yaw_from_plus_y_deg": -0.0,
+      "pitch_deg": 13.23,
+      "origin_distance_m": 0.0001,
+      "nearest_point_to_box_centre": [
+        0.0,
+        -0.0015,
+        -0.0002
+      ],
+      "nearest_point_offset_from_origin_m": 0.0015
+    },
+    "handle_front_sections": [
+      {
+        "y": 0.6,
+        "centre": [
+          -0.0463,
+          0.6,
+          0.1011
+        ],
+        "perimeter_m": 0.34,
+        "span_x_m": 0.107,
+        "span_z_m": 0.108
+      },
+      {
+        "y": 0.65,
+        "centre": [
+          -0.0463,
+          0.65,
+          0.1216
+        ],
+        "perimeter_m": 0.351,
+        "span_x_m": 0.113,
+        "span_z_m": 0.109
+      },
+      {
+        "y": 0.7,
+        "centre": [
+          -0.0465,
+          0.7,
+          0.142
+        ],
+        "perimeter_m": 0.358,
+        "span_x_m": 0.114,
+        "span_z_m": 0.111
+      },
+      {
+        "y": 0.75,
+        "centre": [
+          -0.0464,
+          0.75,
+          0.1636
+        ],
+        "perimeter_m": 0.367,
+        "span_x_m": 0.115,
+        "span_z_m": 0.116
+      },
+      {
+        "y": 0.8,
+        "centre": [
+          -0.0466,
+          0.8,
+          0.1861
+        ],
+        "perimeter_m": 0.382,
+        "span_x_m": 0.118,
+        "span_z_m": 0.121
+      },
+      {
+        "y": 0.85,
+        "centre": [
+          -0.0478,
+          0.85,
+          0.2075
+        ],
+        "perimeter_m": 0.39,
+        "span_x_m": 0.121,
+        "span_z_m": 0.125
+      }
+    ],
+    "handle_front_line": {
+      "yaw_from_plus_y_deg": 0.27,
+      "pitch_deg": 23.12,
+      "x_at_tip_section_m": -0.0472,
+      "max_fit_residual_m": 0.001
+    },
+    "bristle_end_section": {
+      "y": -1.043,
+      "centre": [
+        0.0364,
+        -1.043,
+        -0.2996
+      ],
+      "perimeter_m": 1.355,
+      "span_x_m": 0.393,
+      "span_z_m": 0.397
+    },
+    "measured_axis": {
+      "from": "bristle_end_section centre",
+      "to": "handle section centre at y 0.85",
+      "yaw_from_plus_y_deg": 2.55,
+      "pitch_deg": 14.98,
+      "origin_distance_m": 0.022,
+      "nearest_point_to_box_centre": [
+        -0.0108,
+        0.0172,
+        -0.0156
+      ]
+    },
+    "differences_from_w09_m": {
+      "tip_section_centre_minus_w09_axis": [
+        -0.0478,
+        0.0,
+        0.0076
+      ],
+      "bristle_section_centre_minus_w09_point": [
+        0.0364,
+        0.0,
+        -0.0546
+      ]
+    },
+    "frontmost_vertex_y": 0.9116
+  },
+  "object_transform_identity": true,
+  "uv_cover": 0.6149,
+  "uv_corners_in_unit_square": 1.0,
+  "surface_area_m2": 19.4,
+  "texels_per_m_at_color": 182.2,
+  "topology_welded": {
+    "boundary_edges": 62,
+    "boundary_loops": 31,
+    "nonmanifold_edges": 50,
+    "wire_edges": 0,
+    "components": 1,
+    "largest_component_triangle_share": 1.0,
+    "pieces_after_largest": [],
+    "pieces_not_detailed": 0,
+    "floating_pieces": 0,
+    "floating_threshold": 0.0125,
+    "components_inside_out": 0,
+    "faces_inconsistent": 41
+  },
+  "row_id": "M08",
+  "object": "M08_FlyingWitch_001",
+  "source": {
+    "copy_path": "/workspaces/reso-world/worlds/reso-world-Halloween-meshy/M08/Meshy_AI_M08_Witch_Remeshed_30_1031095331_texture.glb",
+    "sha256": "afa4b611bba02e3a42b62550dbc5d61695c2a0a387d8ac6180b9fc3a31190bce",
+    "copy_sha256_ok": true,
+    "original_path": "/workspaces/reso-world/tmp/halloween_magical_carnival_concept_art/M08_flying_witch_meshy_agent_pack/Meshy_AI_M08_Witch_Remeshed_30_1031095331_texture.glb",
+    "original_sha256_ok": true
+  },
+  "budget": {
+    "view": "far",
+    "view_note": "上空を飛ぶ（経路の高さは 10 m 以上の見込み）",
+    "triangles_max": 31130,
+    "triangles_note": "三角形は削減しない（上限は確定版の数）。どれも 1.5〜4.2 万で、9 ファイルの合計は約 27.3 万。Spec §11 のとおり一律の上限で削らず、削減と焼き直しで UV と色が崩れる危険のほうを避けた",
+    "color_px_max": 1024,
+    "data_px_max": 512,
+    "texels_per_m_at_color": 182.2,
+    "rule": "画像は、derived.texels_per_m が見る距離の目安（近景 90 px/m 以上、中景 45 以上、遠景 20 以上）に届く 1024/2048/4096 のうち最小。金属・粗さの画像は色の半分（512 以上）"
+  },
+  "textures": {
+    "color": {
+      "file": "blender/M08/textures/M08_FlyingWitch_001_color.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "source_size": [
+        4096,
+        4096
+      ]
+    },
+    "metallic": {
+      "file": "blender/M08/textures/M08_FlyingWitch_001_metallic.png",
+      "size": [
+        512,
+        512
+      ],
+      "source": "Blue channel",
+      "range": [
+        0.0,
+        0.5804
+      ]
+    },
+    "roughness": {
+      "file": "blender/M08/textures/M08_FlyingWitch_001_roughness.png",
+      "size": [
+        512,
+        512
+      ],
+      "source": "Green channel",
+      "range": [
+        0.0,
+        0.8275
+      ]
+    }
+  },
+  "uv_texel_share_1024": 0.6778,
+  "backface_check": {
+    "method": "Workbench orthographic, culling off vs on",
+    "pixels": 320,
+    "views": {
+      "front": {
+        "object_pixels": 27837,
+        "see_through": 0.0,
+        "changed": 0.0
+      },
+      "back": {
+        "object_pixels": 27843,
+        "see_through": 0.0,
+        "changed": 7e-05
+      },
+      "left": {
+        "object_pixels": 37919,
+        "see_through": 0.0,
+        "changed": 3e-05
+      },
+      "right": {
+        "object_pixels": 37917,
+        "see_through": 0.0,
+        "changed": 0.0
+      },
+      "top": {
+        "object_pixels": 32213,
+        "see_through": 0.0,
+        "changed": 0.0
+      },
+      "bottom": {
+        "object_pixels": 32212,
+        "see_through": 0.0,
+        "changed": 0.0
+      }
+    },
+    "max_see_through": 0.0,
+    "max_changed": 7e-05,
+    "view_camera_side": {
+      "back": "+Y (front, broom tip)",
+      "front": "-Y (back, bristles)",
+      "right": "+X",
+      "left": "-X (face side)",
+      "top": "+Z (top)",
+      "bottom": "-Z (bottom)"
+    }
+  },
+  "blend_counts": {
+    "objects": 1,
+    "meshes": 1,
+    "materials": 1,
+    "images": 4,
+    "collections": 1
+  },
+  "blender": "5.0.1",
+  "review_images": [
+    "review/M08/M08_views.png",
+    "review/M08/M08_origin_axis.png",
+    "review/M08/M08_compare_source.png",
+    "review/M08/M08_uv_layout.png",
+    "review/M08/M08_backface_culled.png"
+  ],
+  "closeups": [
+    {
+      "name": "face",
+      "camera": [
+        -1.55,
+        0.95,
+        1.2
+      ],
+      "target": [
+        -0.12,
+        0.12,
+        1.0
+      ],
+      "lens_mm": 50.0
+    },
+    {
+      "name": "hat",
+      "camera": [
+        -1.6,
+        0.9,
+        2.1
+      ],
+      "target": [
+        -0.05,
+        -0.15,
+        1.42
+      ],
+      "lens_mm": 40.0
+    },
+    {
+      "name": "cat_bag",
+      "camera": [
+        -1.45,
+        0.05,
+        0.6
+      ],
+      "target": [
+        -0.33,
+        -0.33,
+        0.42
+      ],
+      "lens_mm": 50.0
+    },
+    {
+      "name": "hands_handle",
+      "camera": [
+        -1.1,
+        1.25,
+        0.45
+      ],
+      "target": [
+        -0.05,
+        0.55,
+        0.12
+      ],
+      "lens_mm": 50.0
+    },
+    {
+      "name": "bristles",
+      "camera": [
+        -1.6,
+        -0.45,
+        0.2
+      ],
+      "target": [
+        0.0,
+        -0.9,
+        -0.28
+      ],
+      "lens_mm": 50.0
+    },
+    {
+      "name": "from_12m_below",
+      "camera": [
+        -7.0,
+        6.0,
+        -7.6
+      ],
+      "target": [
+        0.13,
+        -0.15,
+        0.64
+      ],
+      "lens_mm": 135.0
+    }
+  ],
+  "compare_layout": "rows of two pairs; each pair is source (4096 images) | finished"
+}
