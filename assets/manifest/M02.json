@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "key": "M02",
+  "updated_at": "2026-10-31",
+  "assets": [
+    {
+      "asset_id": "M02_GiantPumpkin_001",
+      "key": "M02",
+      "category": "prop",
+      "area_id": "A_plaza",
+      "collection": "M02",
+      "blend_file": "blender/M02/M02.blend",
+      "script_file": "modeling/M02/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 6.202,
+        "depth": 5.87,
+        "height": 6.0
+      },
+      "bounds_local": {
+        "min": [
+          -3.1014,
+          -2.935,
+          0.0001
+        ],
+        "max": [
+          3.1011,
+          2.9351,
+          6.0001
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "M02_GiantPumpkin_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "M02_GiantPumpkin_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "M02_GiantPumpkin_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_M02_GiantPumpkin"
+      ],
+      "textures": [
+        "blender/M02/textures/M02_GiantPumpkin_001_color.png",
+        "blender/M02/textures/M02_GiantPumpkin_001_metallic.png",
+        "blender/M02/textures/M02_GiantPumpkin_001_roughness.png"
+      ],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 30792,
+        "vertices": 26786,
+        "materials_count": 1,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "exported",
+        "bundle_dir": "exports/M02/bundle",
+        "apply_plan": "exports/M02/bundle/model.apply.json",
+        "report_file": "exports/M02/bundle/report.json"
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "future_target": null,
+        "notes": "Finished Meshy visual for the VisualRoot of the A_plaza giant pumpkin (Spec 6.3); it replaces the W02 placeholder (its ID is chosen by W02 #4, not yet made on 2026-10-31) in P2. origin_world is the asset-local origin: the world position is W02's (received.json placement_hint: (0, 0, top of the fountain bowl), rotation_z 180 so the face looks south). Origin = bottom centre (z=0), front = +Y (Resonite +Z). Eye glow (I03) goes inside the hollow, in front of the inner back wall at [-0.002, -2.409, 0.981]; eyes at [1.009, 2.676, 2.317] and [-1.012, 2.676, 2.317]; reaction point mouth [-0.002, 2.806, 1.372]. No emission is baked into the albedo; no collider is part of this visual."
+      }
+    }
+  ]
+}
