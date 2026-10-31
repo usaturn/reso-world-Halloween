@@ -1,0 +1,6 @@
+{
+  "timeoutSeconds": 30,
+  "commandTimeoutSeconds": 900,
+  "fluxExecutable": "flux-sdk",
+  "blenderExecutable": "/workspaces/reso-world/worlds/reso-world-Halloween/.resoloop/blender-system-python"
+}

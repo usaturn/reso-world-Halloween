@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1",
+  "projectDirectory": ".",
+  "parent": "$slot:root",
+  "worldState": "../.resoloop/state/reso_world_halloween.json",
+  "deployState": "../.resoloop/flux-state/main.json",
+  "modules": [
+    {
+      "name": "main",
+      "source": "Main.pg",
+      "module": "Main"
+    }
+  ]
+}

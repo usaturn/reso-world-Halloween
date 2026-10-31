@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "1",
+  "ownership": {
+    "key": "reso_world_halloween"
+  },
+  "slot": {
+    "key": "root",
+    "name": "ResoLoop_Test_reso_world_Halloween",
+    "parent": "Root",
+    "position": [
+      0,
+      1.5,
+      2
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ]
+  },
+  "components": [
+    {
+      "type": "FrooxEngine.Grabbable",
+      "fields": {
+        "Scalable": true
+      }
+    }
+  ],
+  "cameras": {
+    "main": {
+      "position": [
+        0,
+        2.5,
+        -6
+      ],
+      "target": [
+        0,
+        1.5,
+        2
+      ],
+      "fieldOfView": 60,
+      "width": 1280,
+      "height": 720,
+      "output": null,
+      "representative": true
+    }
+  },
+  "tests": [
+    {
+      "name": "root-exists",
+      "assertions": [
+        {
+          "target": "$slot:root",
+          "exists": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+#!/bin/bash
+# uv run が PATH 先頭へ置く .venv/bin を外し、Blender の Python がシステムの NumPy を見つけられるようにする
+CLEAN=""
+IFS=: read -ra P <<< "$PATH"
+for d in "${P[@]}"; do
+  case "$d" in */.venv/bin) ;; *) CLEAN="${CLEAN:+$CLEAN:}$d" ;; esac
+done
+export PATH="$CLEAN"
+unset VIRTUAL_ENV
+exec /usr/bin/blender "$@"

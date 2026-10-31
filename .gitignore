@@ -1,0 +1,9 @@
+# usaturn/reso-world-Halloween（公開）のワールドのプロジェクト。
+# 環境・キャッシュ・作業用の一時ファイルは入れない。ResoLoop の状態は .resoloop/.gitignore、Flux のビルドは flux/.gitignore が除く
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.superpowers/
+.worktrees/
+tmp/
