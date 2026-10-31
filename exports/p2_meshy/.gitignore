@@ -1,0 +1,6 @@
+# W09R: 仕上げた Meshy 素材の export のバンドル（宣言・メッシュ・画像）はコミットしない。docs/conventions.md §8。
+# --pack-pbr が作る pbr_*.png は上位の .gitignore に当たらないので、ここで出力先の中をまとめて除き、記録の JSON だけを残す
+*/*
+!*/report.json
+!*/validate.json
+!*/placement.json

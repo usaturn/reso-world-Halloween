@@ -1,0 +1,153 @@
+{
+  "root": "Root/HalloweenMagicalCarnival",
+  "tolerance_m": 0.01,
+  "root_live": {
+    "slots": 681,
+    "components": 1619
+  },
+  "replacements": [
+    {
+      "meshy_id": "M02",
+      "visual_root": "Root/HalloweenMagicalCarnival/A_plaza/APL_GiantJackProxy_001/APL_GiantJackProxy_001_Body",
+      "bundle": "exports/p2_meshy/M02-20261031T164338Z",
+      "visual_root_world": {
+        "live": [
+          0.0,
+          1.6,
+          0.0
+        ],
+        "expected": [
+          0.0,
+          1.6,
+          0.0
+        ],
+        "diff_m": 0.0
+      },
+      "bounds_world": {
+        "live": {
+          "min": [
+            -3.1011,
+            1.6001,
+            -2.9351
+          ],
+          "max": [
+            3.1014,
+            7.6001,
+            2.935
+          ]
+        },
+        "expected": {
+          "min": [
+            -3.1011,
+            1.6001,
+            -2.9351
+          ],
+          "max": [
+            3.1014,
+            7.6001,
+            2.935
+          ]
+        },
+        "size_live": [
+          6.2025,
+          6.0,
+          5.8701
+        ],
+        "max_diff_m": 0.0
+      },
+      "front": {
+        "live": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "expected": [
+          -0.0,
+          0.0,
+          -1.0
+        ],
+        "diff": 0.0
+      },
+      "renderers_enabled": {
+        "APL_GiantJackProxy_001_Body": false,
+        "APL_GiantJackProxy_001_EyeLightAttach": false,
+        "APL_GiantJackProxy_001_MouthReactionAttach": false,
+        "APL_GiantJackProxy_001_InteriorLightAttach": false,
+        "M02_GiantPumpkin_001": true
+      },
+      "attachment_points": [
+        {
+          "part": "APL_GiantJackProxy_001_EyeLightAttach",
+          "live_world": [
+            0.0,
+            3.917,
+            -2.676
+          ],
+          "expected": [
+            0.0,
+            3.917,
+            -2.676
+          ],
+          "diff_m": 0.0
+        },
+        {
+          "part": "APL_GiantJackProxy_001_MouthReactionAttach",
+          "live_world": [
+            0.0,
+            2.972,
+            -2.806
+          ],
+          "expected": [
+            0.0,
+            2.972,
+            -2.806
+          ],
+          "diff_m": 0.0
+        },
+        {
+          "part": "APL_GiantJackProxy_001_InteriorLightAttach",
+          "live_world": [
+            0.0,
+            2.581,
+            2.409
+          ],
+          "expected": [
+            0.0,
+            2.581,
+            2.409
+          ],
+          "diff_m": 0.0
+        }
+      ],
+      "fixed_collision": {
+        "slot": "APL_GiantJackProxy_001_Body_FixedCollision",
+        "exists": true,
+        "active": true,
+        "same_transform_as_visual_root": true,
+        "collider_enabled": true,
+        "static_character_collider": true,
+        "uses_own_static_mesh": true,
+        "same_mesh_as_visual_root": true
+      },
+      "colliders_under_finished_asset": [],
+      "problems": []
+    }
+  ],
+  "district_counts": {
+    "A_plaza": {
+      "live": [
+        173,
+        386
+      ],
+      "expected": [
+        173,
+        386
+      ],
+      "replacements": [
+        "M02"
+      ],
+      "ok": true
+    }
+  },
+  "ok": true
+}
