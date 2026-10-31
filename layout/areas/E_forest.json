@@ -1,0 +1,5415 @@
+{
+  "schema_version": "1.0",
+  "area_id": "E_forest",
+  "key": "E_forest",
+  "area_code": "E",
+  "name": "西・魔法の森 (Enchanted Forest & Magical Clock Tower)",
+  "theme": "Cute, lively and a little mysterious night forest: glowing mushrooms, a face tree that winks, bats, a shallow glowing pond and the M07 clock tower.",
+  "center": [
+    -33.0,
+    0.0,
+    0.0
+  ],
+  "bounds": {
+    "min": [
+      -48.0,
+      -20.0,
+      0.0
+    ],
+    "max": [
+      -20.0,
+      20.0,
+      16.0
+    ]
+  },
+  "bounds_min": [
+    -48.0,
+    -20.0,
+    0.0
+  ],
+  "bounds_max": [
+    -20.0,
+    20.0,
+    16.0
+  ],
+  "entrances": [
+    {
+      "id": "Ent_E_East",
+      "position": [
+        -20.0,
+        0.0,
+        0.0
+      ],
+      "width_m": 3.8,
+      "connects_to": "A_plaza"
+    },
+    {
+      "id": "Ent_E_North",
+      "position": [
+        -22.0,
+        16.0,
+        0.0
+      ],
+      "width_m": 2.6,
+      "connects_to": "B_mansion"
+    },
+    {
+      "id": "Ent_E_South",
+      "position": [
+        -22.0,
+        -16.0,
+        0.0
+      ],
+      "width_m": 2.6,
+      "connects_to": "D_amusement"
+    }
+  ],
+  "paths": [
+    {
+      "id": "EFR_WalkNorth_001",
+      "kind": "walkway",
+      "closed": false,
+      "width_m": 2.2,
+      "has_handrail": false,
+      "waypoints": [
+        [
+          -24.0,
+          12.5,
+          0.18
+        ],
+        [
+          -37.6,
+          12.5,
+          0.18
+        ]
+      ],
+      "corridor_world": {
+        "min": [
+          -37.6,
+          11.4,
+          0.0
+        ],
+        "max": [
+          -24.0,
+          13.6,
+          2.78
+        ]
+      },
+      "owners": [
+        "EFR_WalkNorth_001",
+        "EFR_PondBridge_001",
+        "EFR_Lookout_001"
+      ],
+      "connects": [
+        "EFR_PondBridge_001",
+        "EFR_Lookout_001"
+      ],
+      "gimmick_id": null
+    },
+    {
+      "id": "EFR_WalkWest_001",
+      "kind": "walkway",
+      "closed": false,
+      "width_m": 2.2,
+      "has_handrail": false,
+      "waypoints": [
+        [
+          -44.4,
+          6.0,
+          0.18
+        ],
+        [
+          -44.4,
+          -9.65,
+          0.18
+        ]
+      ],
+      "corridor_world": {
+        "min": [
+          -45.5,
+          -9.65,
+          0.0
+        ],
+        "max": [
+          -43.3,
+          6.0,
+          2.78
+        ]
+      },
+      "owners": [
+        "EFR_WalkWest_001",
+        "EFR_Lookout_001",
+        "EFR_RestSpot_001"
+      ],
+      "connects": [
+        "EFR_Lookout_001",
+        "EFR_RestSpot_001"
+      ],
+      "gimmick_id": null
+    },
+    {
+      "id": "EFR_WalkSouth_001",
+      "kind": "walkway",
+      "closed": false,
+      "width_m": 2.2,
+      "has_handrail": false,
+      "waypoints": [
+        [
+          -40.0,
+          -12.5,
+          0.18
+        ],
+        [
+          -24.0,
+          -12.5,
+          0.18
+        ]
+      ],
+      "corridor_world": {
+        "min": [
+          -40.0,
+          -13.6,
+          0.0
+        ],
+        "max": [
+          -24.0,
+          -11.4,
+          2.78
+        ]
+      },
+      "owners": [
+        "EFR_WalkSouth_001",
+        "EFR_RestSpot_001",
+        "EFR_WalkSouthSpur_001"
+      ],
+      "connects": [
+        "EFR_RestSpot_001",
+        "EFR_WalkSouthSpur_001"
+      ],
+      "gimmick_id": null
+    },
+    {
+      "id": "EFR_WalkSouthSpur_001",
+      "kind": "walkway",
+      "closed": false,
+      "width_m": 2.2,
+      "has_handrail": false,
+      "waypoints": [
+        [
+          -28.0,
+          -1.95,
+          0.18
+        ],
+        [
+          -28.0,
+          -11.4,
+          0.18
+        ]
+      ],
+      "corridor_world": {
+        "min": [
+          -29.1,
+          -11.4,
+          0.0
+        ],
+        "max": [
+          -26.9,
+          -1.95,
+          2.78
+        ]
+      },
+      "owners": [
+        "EFR_WalkSouthSpur_001",
+        "EFR_WalkSouth_001"
+      ],
+      "connects": [
+        "EFR_WalkSouth_001"
+      ],
+      "gimmick_id": null
+    },
+    {
+      "id": "EFR_WalkPondSpur_001",
+      "kind": "walkway",
+      "closed": false,
+      "width_m": 2.2,
+      "has_handrail": false,
+      "waypoints": [
+        [
+          -31.0,
+          1.95,
+          0.18
+        ],
+        [
+          -31.0,
+          4.0,
+          0.18
+        ]
+      ],
+      "corridor_world": {
+        "min": [
+          -32.1,
+          1.95,
+          0.0
+        ],
+        "max": [
+          -29.9,
+          4.0,
+          2.78
+        ]
+      },
+      "owners": [
+        "EFR_WalkPondSpur_001",
+        "EFR_PondBridge_001"
+      ],
+      "connects": [
+        "EFR_PondBridge_001"
+      ],
+      "gimmick_id": null
+    },
+    {
+      "id": "EFR_PondBridge_001",
+      "kind": "bridge",
+      "closed": false,
+      "width_m": 2.2,
+      "has_handrail": true,
+      "waypoints": [
+        [
+          -31.0,
+          4.0,
+          0.6
+        ],
+        [
+          -31.0,
+          11.4,
+          0.6
+        ]
+      ],
+      "corridor_world": {
+        "min": [
+          -32.1,
+          4.0,
+          0.0
+        ],
+        "max": [
+          -29.9,
+          11.4,
+          3.2
+        ]
+      },
+      "owners": [
+        "EFR_PondBridge_001",
+        "EFR_WalkPondSpur_001",
+        "EFR_WalkNorth_001",
+        "EFR_Pond_001"
+      ],
+      "connects": [
+        "EFR_WalkPondSpur_001",
+        "EFR_WalkNorth_001",
+        "EFR_Pond_001"
+      ],
+      "gimmick_id": null
+    },
+    {
+      "id": "EFR_LookoutRampEast",
+      "kind": "slope",
+      "closed": false,
+      "width_m": 2.2,
+      "has_handrail": true,
+      "waypoints": [
+        [
+          -37.6,
+          12.5,
+          0.75
+        ],
+        [
+          -42.2,
+          12.5,
+          0.75
+        ]
+      ],
+      "corridor_world": {
+        "min": [
+          -42.2,
+          11.4,
+          0.0
+        ],
+        "max": [
+          -37.6,
+          13.6,
+          3.35
+        ]
+      },
+      "owners": [
+        "EFR_Lookout_001",
+        "EFR_WalkNorth_001",
+        "EFR_WalkWest_001"
+      ],
+      "connects": [
+        "EFR_Lookout_001",
+        "EFR_WalkNorth_001",
+        "EFR_WalkWest_001"
+      ],
+      "gimmick_id": null
+    },
+    {
+      "id": "EFR_LookoutRampSouth",
+      "kind": "slope",
+      "closed": false,
+      "width_m": 2.2,
+      "has_handrail": true,
+      "waypoints": [
+        [
+          -44.4,
+          10.2,
+          0.75
+        ],
+        [
+          -44.4,
+          6.0,
+          0.75
+        ]
+      ],
+      "corridor_world": {
+        "min": [
+          -45.5,
+          6.0,
+          0.0
+        ],
+        "max": [
+          -43.3,
+          10.2,
+          3.35
+        ]
+      },
+      "owners": [
+        "EFR_Lookout_001",
+        "EFR_WalkNorth_001",
+        "EFR_WalkWest_001"
+      ],
+      "connects": [
+        "EFR_Lookout_001",
+        "EFR_WalkNorth_001",
+        "EFR_WalkWest_001"
+      ],
+      "gimmick_id": null
+    }
+  ],
+  "Anchor": {
+    "anchor_id": "EFR_ClockTower_001",
+    "position": [
+      -38.5,
+      0.0,
+      0.0
+    ],
+    "dimensions_m": [
+      8.239,
+      7.578,
+      14.0
+    ],
+    "orientation_deg": -90.0,
+    "role": "M07 magical clock tower at the end of the west main road; front (dial, stairs) faces east."
+  },
+  "Circulation": {
+    "primary_path_id": "Route_West_Forest_Bridge",
+    "min_walk_width_m": 2.2,
+    "entry_points": [
+      [
+        -20.0,
+        0.0,
+        0.0
+      ],
+      [
+        -22.0,
+        16.0,
+        0.0
+      ],
+      [
+        -22.0,
+        -16.0,
+        0.0
+      ]
+    ],
+    "loop_description": "Main road -> pond spur and arched bridge -> north boardwalk -> lookout -> west boardwalk behind the tower -> rest spot -> south boardwalk -> south spur -> main road. The NW and SW side bridges land next to the north and south boardwalk ends."
+  },
+  "Framing": {
+    "left_edge": "EFR_GatePillar_001 and EFR_FaceTree_001 (north of the road)",
+    "right_edge": "EFR_GatePillar_002 and the south grove",
+    "focal_target": [
+      -38.136,
+      -0.001,
+      8.095
+    ],
+    "view_cone_deg": 60.0
+  },
+  "Story_Cluster": [
+    {
+      "cluster_id": "EFR_Story_Welcome",
+      "position": [
+        -23.0,
+        4.0,
+        0.0
+      ],
+      "members": [
+        "EFR_GatePillar_001",
+        "EFR_GatePillar_002",
+        "EFR_FaceTree_001"
+      ],
+      "story": "Lantern stumps and a grinning old tree welcome visitors off the west bridge."
+    },
+    {
+      "cluster_id": "EFR_Story_Pond",
+      "position": [
+        -32.0,
+        7.7,
+        0.0
+      ],
+      "members": [
+        "EFR_Pond_001",
+        "EFR_PondBridge_001",
+        "EFR_MushroomTall_001",
+        "EFR_MushroomMedium_002"
+      ],
+      "story": "A glowing shallow pond with lilies under an arched bridge."
+    },
+    {
+      "cluster_id": "EFR_Story_ClockForecourt",
+      "position": [
+        -32.5,
+        0.0,
+        0.0
+      ],
+      "members": [
+        "EFR_ClockTower_001",
+        "EFR_ForecourtLamp_001",
+        "EFR_ForecourtLamp_002",
+        "EFR_Pumpkin_001",
+        "EFR_Pumpkin_002"
+      ],
+      "story": "Watch the hands move and the bell ring from the end of the road."
+    },
+    {
+      "cluster_id": "EFR_Story_RestSpot",
+      "position": [
+        -43.2,
+        -12.6,
+        0.0
+      ],
+      "members": [
+        "EFR_RestSpot_001",
+        "EFR_MushroomGiant_001",
+        "EFR_RestBench_001",
+        "EFR_RestBench_002",
+        "EFR_RestBench_003"
+      ],
+      "story": "Benches under a giant glowing mushroom at the south-west corner."
+    },
+    {
+      "cluster_id": "EFR_Story_Lookout",
+      "position": [
+        -44.4,
+        12.5,
+        0.0
+      ],
+      "members": [
+        "EFR_Lookout_001",
+        "EFR_LookoutBench_001"
+      ],
+      "story": "A witch-hat lookout with a telescope over the cliff."
+    },
+    {
+      "cluster_id": "EFR_Story_Bats",
+      "position": [
+        -28.8,
+        -6.5,
+        10.4
+      ],
+      "members": [
+        "EFR_BatFlock_001",
+        "EFR_FaceTree_002"
+      ],
+      "story": "A small bat flock circles above the south grove."
+    }
+  ],
+  "Common_Placement": [
+    {
+      "placement_id": "EFR_CP_ForecourtLamp_001",
+      "common_asset_id": "CMN_StreetLamp_001",
+      "instance_name": "EFR_ForecourtLamp_001",
+      "position": [
+        -33.9,
+        2.75,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -90.0
+      ],
+      "role": "Tower forecourt lamp, north of the stairs"
+    },
+    {
+      "placement_id": "EFR_CP_ForecourtLamp_002",
+      "common_asset_id": "CMN_StreetLamp_001",
+      "instance_name": "EFR_ForecourtLamp_002",
+      "position": [
+        -33.9,
+        -2.75,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "role": "Tower forecourt lamp, south of the stairs"
+    },
+    {
+      "placement_id": "EFR_CP_PathLantern_001",
+      "common_asset_id": "CMN_Lantern_001",
+      "instance_name": "EFR_PathLantern_001",
+      "position": [
+        -28.2,
+        13.95,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "North boardwalk lantern"
+    },
+    {
+      "placement_id": "EFR_CP_PathLantern_002",
+      "common_asset_id": "CMN_Lantern_001",
+      "instance_name": "EFR_PathLantern_002",
+      "position": [
+        -35.4,
+        13.95,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "North boardwalk lantern"
+    },
+    {
+      "placement_id": "EFR_CP_PathLantern_003",
+      "common_asset_id": "CMN_Lantern_001",
+      "instance_name": "EFR_PathLantern_003",
+      "position": [
+        -45.85,
+        2.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "West boardwalk lantern"
+    },
+    {
+      "placement_id": "EFR_CP_PathLantern_004",
+      "common_asset_id": "CMN_Lantern_001",
+      "instance_name": "EFR_PathLantern_004",
+      "position": [
+        -45.85,
+        -5.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "West boardwalk lantern"
+    },
+    {
+      "placement_id": "EFR_CP_PathLantern_005",
+      "common_asset_id": "CMN_Lantern_001",
+      "instance_name": "EFR_PathLantern_005",
+      "position": [
+        -28.6,
+        -13.95,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "South boardwalk lantern"
+    },
+    {
+      "placement_id": "EFR_CP_PathLantern_006",
+      "common_asset_id": "CMN_Lantern_001",
+      "instance_name": "EFR_PathLantern_006",
+      "position": [
+        -35.8,
+        -13.95,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "South boardwalk lantern"
+    },
+    {
+      "placement_id": "EFR_CP_PathLantern_007",
+      "common_asset_id": "CMN_Lantern_001",
+      "instance_name": "EFR_PathLantern_007",
+      "position": [
+        -26.55,
+        -6.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "South spur lantern"
+    },
+    {
+      "placement_id": "EFR_CP_RestBench_001",
+      "common_asset_id": "CMN_Bench_001",
+      "instance_name": "EFR_RestBench_001",
+      "position": [
+        -45.3143,
+        -11.8305,
+        0.2
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        70.0
+      ],
+      "role": "Rest spot bench (faces outward)"
+    },
+    {
+      "placement_id": "EFR_CP_RestBench_002",
+      "common_asset_id": "CMN_Bench_001",
+      "instance_name": "EFR_RestBench_002",
+      "position": [
+        -44.9236,
+        -14.0463,
+        0.2
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        130.0
+      ],
+      "role": "Rest spot bench (faces outward)"
+    },
+    {
+      "placement_id": "EFR_CP_RestBench_003",
+      "common_asset_id": "CMN_Bench_001",
+      "instance_name": "EFR_RestBench_003",
+      "position": [
+        -42.8093,
+        -14.8158,
+        0.2
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        190.0
+      ],
+      "role": "Rest spot bench (faces outward)"
+    },
+    {
+      "placement_id": "EFR_CP_LookoutBench_001",
+      "common_asset_id": "CMN_Bench_001",
+      "instance_name": "EFR_LookoutBench_001",
+      "position": [
+        -45.9,
+        12.5,
+        0.75
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "role": "Lookout bench facing west over the cliff"
+    },
+    {
+      "placement_id": "EFR_CP_Pumpkin_001",
+      "common_asset_id": "CMN_SmallPumpkin_001",
+      "instance_name": "EFR_Pumpkin_001",
+      "position": [
+        -32.9,
+        2.4,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        30.0
+      ],
+      "role": "Forecourt pumpkin (face turned to the road)"
+    },
+    {
+      "placement_id": "EFR_CP_Pumpkin_002",
+      "common_asset_id": "CMN_SmallPumpkin_001",
+      "instance_name": "EFR_Pumpkin_002",
+      "position": [
+        -32.9,
+        -2.4,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        150.0
+      ],
+      "role": "Forecourt pumpkin (face turned to the road)"
+    },
+    {
+      "placement_id": "EFR_CP_Pumpkin_003",
+      "common_asset_id": "CMN_SmallPumpkin_001",
+      "instance_name": "EFR_Pumpkin_003",
+      "position": [
+        -41.2,
+        -10.8,
+        0.2
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        200.0
+      ],
+      "role": "Rest spot pumpkin"
+    }
+  ],
+  "Hero_or_Gimmick": [
+    {
+      "asset_id": "EFR_ClockTower_001",
+      "gimmick_ids": [
+        "G20"
+      ],
+      "motion_roots": [
+        "EFR_ClockTower_001_HourHandPivot",
+        "EFR_ClockTower_001_MinuteHandPivot",
+        "EFR_ClockTower_001_BellPivot"
+      ],
+      "visual_roots": [
+        "EFR_ClockTower_001_Body",
+        "EFR_ClockTower_001_Dial",
+        "EFR_ClockTower_001_HourHand",
+        "EFR_ClockTower_001_MinuteHand",
+        "EFR_ClockTower_001_Bell"
+      ],
+      "attachment_points": [],
+      "interaction_notes": "M07 magical clock tower placeholder: body, dial, hour and minute hands, bell (G20)."
+    },
+    {
+      "asset_id": "EFR_FaceTree_001",
+      "gimmick_ids": [
+        "G17"
+      ],
+      "motion_roots": [
+        "EFR_FaceTree_001_BranchLPivot",
+        "EFR_FaceTree_001_EyeLPivot",
+        "EFR_FaceTree_001_BranchRPivot",
+        "EFR_FaceTree_001_EyeRPivot"
+      ],
+      "visual_roots": [
+        "EFR_FaceTree_001_Trunk",
+        "EFR_FaceTree_001_Mouth",
+        "EFR_FaceTree_001_BranchL",
+        "EFR_FaceTree_001_EyeL",
+        "EFR_FaceTree_001_BranchR",
+        "EFR_FaceTree_001_EyeR"
+      ],
+      "attachment_points": [],
+      "interaction_notes": "Greets visitors arriving over the west bridge; looks south-south-east at the main road."
+    },
+    {
+      "asset_id": "EFR_FaceTree_002",
+      "gimmick_ids": [
+        "G17"
+      ],
+      "motion_roots": [
+        "EFR_FaceTree_002_BranchLPivot",
+        "EFR_FaceTree_002_EyeLPivot",
+        "EFR_FaceTree_002_BranchRPivot",
+        "EFR_FaceTree_002_EyeRPivot"
+      ],
+      "visual_roots": [
+        "EFR_FaceTree_002_Trunk",
+        "EFR_FaceTree_002_Mouth",
+        "EFR_FaceTree_002_BranchL",
+        "EFR_FaceTree_002_EyeL",
+        "EFR_FaceTree_002_BranchR",
+        "EFR_FaceTree_002_EyeR"
+      ],
+      "attachment_points": [],
+      "interaction_notes": "Watches the tower forecourt and the south spur from the south-west."
+    },
+    {
+      "asset_id": "EFR_MushroomTall_001",
+      "gimmick_ids": [
+        "G18"
+      ],
+      "motion_roots": [],
+      "visual_roots": [],
+      "attachment_points": [
+        "EFR_MushroomTall_001_Glow"
+      ],
+      "interaction_notes": "Reusable tall purple mushroom (cap underside 1.9 m)."
+    },
+    {
+      "asset_id": "EFR_MushroomMedium_001",
+      "gimmick_ids": [
+        "G18"
+      ],
+      "motion_roots": [],
+      "visual_roots": [],
+      "attachment_points": [
+        "EFR_MushroomMedium_001_Glow"
+      ],
+      "interaction_notes": "Reusable medium teal mushroom."
+    },
+    {
+      "asset_id": "EFR_MushroomCluster_001",
+      "gimmick_ids": [
+        "G18"
+      ],
+      "motion_roots": [],
+      "visual_roots": [],
+      "attachment_points": [
+        "EFR_MushroomCluster_001_Glow"
+      ],
+      "interaction_notes": "Reusable cluster of three small orange mushrooms."
+    },
+    {
+      "asset_id": "EFR_MushroomGiant_001",
+      "gimmick_ids": [
+        "G18"
+      ],
+      "motion_roots": [],
+      "visual_roots": [],
+      "attachment_points": [
+        "EFR_MushroomGiant_001_Glow"
+      ],
+      "interaction_notes": "Giant purple mushroom that roofs the rest spot (cap underside 3.1 m)."
+    },
+    {
+      "asset_id": "EFR_BatFlock_001",
+      "gimmick_ids": [
+        "G19"
+      ],
+      "motion_roots": [
+        "EFR_BatFlock_001_Motion",
+        "EFR_BatFlock_001_Bat01",
+        "EFR_BatFlock_001_Bat01_WingLPivot",
+        "EFR_BatFlock_001_Bat01_WingRPivot",
+        "EFR_BatFlock_001_Bat02",
+        "EFR_BatFlock_001_Bat02_WingLPivot",
+        "EFR_BatFlock_001_Bat02_WingRPivot",
+        "EFR_BatFlock_001_Bat03",
+        "EFR_BatFlock_001_Bat03_WingLPivot",
+        "EFR_BatFlock_001_Bat03_WingRPivot",
+        "EFR_BatFlock_001_Bat04",
+        "EFR_BatFlock_001_Bat04_WingLPivot",
+        "EFR_BatFlock_001_Bat04_WingRPivot",
+        "EFR_BatFlock_001_Bat05",
+        "EFR_BatFlock_001_Bat05_WingLPivot",
+        "EFR_BatFlock_001_Bat05_WingRPivot"
+      ],
+      "visual_roots": [
+        "EFR_BatFlock_001_Bat01_Body",
+        "EFR_BatFlock_001_Bat01_WingL",
+        "EFR_BatFlock_001_Bat01_WingR",
+        "EFR_BatFlock_001_Bat02_Body",
+        "EFR_BatFlock_001_Bat02_WingL",
+        "EFR_BatFlock_001_Bat02_WingR",
+        "EFR_BatFlock_001_Bat03_Body",
+        "EFR_BatFlock_001_Bat03_WingL",
+        "EFR_BatFlock_001_Bat03_WingR",
+        "EFR_BatFlock_001_Bat04_Body",
+        "EFR_BatFlock_001_Bat04_WingL",
+        "EFR_BatFlock_001_Bat04_WingR",
+        "EFR_BatFlock_001_Bat05_Body",
+        "EFR_BatFlock_001_Bat05_WingL",
+        "EFR_BatFlock_001_Bat05_WingR"
+      ],
+      "attachment_points": [],
+      "interaction_notes": "Small bat flock; the root is the flight centre (G19)."
+    }
+  ],
+  "Exclusions": [
+    {
+      "zone_id": "EFR_Excl_MainRoad",
+      "bounds": {
+        "min": [
+          -34.6,
+          -1.9,
+          0.0
+        ],
+        "max": [
+          -20.0,
+          1.9,
+          2.8
+        ]
+      },
+      "reason": "W01 main road Route_West_Forest_Bridge (3.8 m) from the east entrance to the tower stairs stays clear.",
+      "allowed": []
+    },
+    {
+      "zone_id": "EFR_Excl_SightLine",
+      "bounds": {
+        "min": [
+          -34.6,
+          -1.9,
+          0.0
+        ],
+        "max": [
+          -20.0,
+          1.9,
+          8.0
+        ]
+      },
+      "reason": "W01 LOS_CentralPlaza_To_WestForest (corridor 3.8 m) towards the clock tower stays open overhead too.",
+      "allowed": []
+    },
+    {
+      "zone_id": "EFR_Excl_EastEntrance",
+      "bounds": {
+        "min": [
+          -22.0,
+          -2.0,
+          0.0
+        ],
+        "max": [
+          -20.0,
+          2.0,
+          2.8
+        ]
+      },
+      "reason": "Conn_E_East_Main / Ent_E_East at (-20, 0): bridge mouth between the cliff walls.",
+      "allowed": []
+    },
+    {
+      "zone_id": "EFR_Excl_NorthLanding",
+      "bounds": {
+        "min": [
+          -23.6,
+          14.4,
+          0.0
+        ],
+        "max": [
+          -20.4,
+          17.6,
+          2.8
+        ]
+      },
+      "reason": "Conn_E_North_Side at (-22, 16): NW side-bridge landing (2.6 m).",
+      "allowed": []
+    },
+    {
+      "zone_id": "EFR_Excl_SouthLanding",
+      "bounds": {
+        "min": [
+          -23.6,
+          -17.6,
+          0.0
+        ],
+        "max": [
+          -20.4,
+          -14.4,
+          2.8
+        ]
+      },
+      "reason": "Conn_E_South_Side at (-22, -16): SW side-bridge landing (2.6 m).",
+      "allowed": []
+    },
+    {
+      "zone_id": "EFR_Excl_TowerStairs",
+      "bounds": {
+        "min": [
+          -35.2,
+          -1.2,
+          0.0
+        ],
+        "max": [
+          -34.6,
+          1.2,
+          2.8
+        ]
+      },
+      "reason": "Foot of the tower stairs (M07 front) stays reachable from the road.",
+      "allowed": [
+        "EFR_ClockTower_001"
+      ]
+    }
+  ],
+  "viewpoints": [
+    {
+      "id": "EFR_View_Lookout",
+      "bounds": {
+        "min": [
+          -46.6,
+          10.2,
+          0.75
+        ],
+        "max": [
+          -42.2,
+          14.8,
+          2.85
+        ]
+      },
+      "owners": [
+        "EFR_Lookout_001",
+        "EFR_LookoutBench_001"
+      ],
+      "notes": "Lookout deck: view west over the cliff and the floating islets."
+    },
+    {
+      "id": "EFR_View_RestSpot",
+      "bounds": {
+        "min": [
+          -46.5,
+          -15.9,
+          0.2
+        ],
+        "max": [
+          -39.9,
+          -9.3,
+          2.3
+        ]
+      },
+      "owners": [
+        "EFR_RestSpot_001",
+        "EFR_WalkWest_001",
+        "EFR_WalkSouth_001",
+        "EFR_MushroomGiant_001",
+        "EFR_RestBench_001",
+        "EFR_RestBench_002",
+        "EFR_RestBench_003",
+        "EFR_Pumpkin_003"
+      ],
+      "notes": "Rest deck under the giant mushroom (benches face outward)."
+    },
+    {
+      "id": "EFR_View_Forecourt",
+      "bounds": {
+        "min": [
+          -34.6,
+          -1.9,
+          0.0
+        ],
+        "max": [
+          -29.0,
+          1.9,
+          2.8
+        ]
+      },
+      "owners": [],
+      "notes": "Main road end in front of the tower: the place to watch the clock and the bell."
+    }
+  ],
+  "walk_clearance_z_m": 2.8,
+  "placements": [
+    {
+      "placement_id": "EFR_Place_BatFlock_001",
+      "asset_id": "EFR_BatFlock_001",
+      "instance_name": "EFR_BatFlock_001",
+      "source_key": "E_forest",
+      "category": "gimmick",
+      "position": [
+        -28.8,
+        -6.5,
+        10.4
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "hinge_pivot",
+      "clearance_radius_m": 0.0,
+      "dimensions_m": [
+        3.3039,
+        4.1887,
+        1.0805
+      ],
+      "footprint_world": {
+        "min": [
+          -30.5113,
+          -8.3908,
+          10.0103
+        ],
+        "max": [
+          -27.2074,
+          -4.2021,
+          11.0908
+        ]
+      },
+      "footprint_low_world": null,
+      "role": "Small bat flock; the root is the flight centre (G19)."
+    },
+    {
+      "placement_id": "EFR_Place_Bush_001",
+      "asset_id": "EFR_Bush_001",
+      "instance_name": "EFR_Bush_001",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -21.6,
+        -10.6,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        130.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.2747,
+      "dimensions_m": [
+        1.5642,
+        1.5878,
+        0.8815
+      ],
+      "footprint_world": {
+        "min": [
+          -22.5349,
+          -11.4665,
+          0.0
+        ],
+        "max": [
+          -20.9707,
+          -9.8787,
+          0.8815
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -22.5349,
+          -11.4665,
+          0.0
+        ],
+        "max": [
+          -20.9707,
+          -9.8787,
+          0.8815
+        ]
+      },
+      "role": "Reusable low bush."
+    },
+    {
+      "placement_id": "EFR_Place_Bush_002",
+      "asset_id": "EFR_Bush_001",
+      "instance_name": "EFR_Bush_002",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -21.6,
+        12.8,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        200.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.1838,
+      "dimensions_m": [
+        1.6831,
+        1.4043,
+        0.8815
+      ],
+      "footprint_world": {
+        "min": [
+          -22.4237,
+          11.9859,
+          0.0
+        ],
+        "max": [
+          -20.7406,
+          13.3902,
+          0.8815
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -22.4237,
+          11.9859,
+          0.0
+        ],
+        "max": [
+          -20.7406,
+          13.3902,
+          0.8815
+        ]
+      },
+      "role": "Reusable low bush."
+    },
+    {
+      "placement_id": "EFR_Place_Bush_003",
+      "asset_id": "EFR_Bush_001",
+      "instance_name": "EFR_Bush_003",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -41.0,
+        -17.3,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        280.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.1662,
+      "dimensions_m": [
+        1.3134,
+        1.7241,
+        0.8815
+      ],
+      "footprint_world": {
+        "min": [
+          -41.5434,
+          -18.1759,
+          0.0
+        ],
+        "max": [
+          -40.23,
+          -16.4518,
+          0.8815
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -41.5434,
+          -18.1759,
+          0.0
+        ],
+        "max": [
+          -40.23,
+          -16.4518,
+          0.8815
+        ]
+      },
+      "role": "Reusable low bush."
+    },
+    {
+      "placement_id": "EFR_Place_Bush_004",
+      "asset_id": "EFR_Bush_001",
+      "instance_name": "EFR_Bush_004",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -25.6,
+        -16.8,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        30.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.2323,
+      "dimensions_m": [
+        1.6277,
+        1.504,
+        0.8815
+      ],
+      "footprint_world": {
+        "min": [
+          -26.4577,
+          -17.4192,
+          0.0
+        ],
+        "max": [
+          -24.83,
+          -15.9152,
+          0.8815
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -26.4577,
+          -17.4192,
+          0.0
+        ],
+        "max": [
+          -24.83,
+          -15.9152,
+          0.8815
+        ]
+      },
+      "role": "Reusable low bush."
+    },
+    {
+      "placement_id": "EFR_Place_ClockTower_001",
+      "asset_id": "EFR_ClockTower_001",
+      "instance_name": "EFR_ClockTower_001",
+      "source_key": "E_forest",
+      "category": "gimmick",
+      "position": [
+        -38.5,
+        0.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 5.5974,
+      "dimensions_m": [
+        7.578,
+        8.239,
+        14.0
+      ],
+      "footprint_world": {
+        "min": [
+          -42.289,
+          -4.12,
+          0.0
+        ],
+        "max": [
+          -34.711,
+          4.119,
+          14.0
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -42.289,
+          -4.12,
+          0.0
+        ],
+        "max": [
+          -34.711,
+          4.119,
+          2.8
+        ]
+      },
+      "role": "M07 magical clock tower placeholder: body, dial, hour and minute hands, bell (G20)."
+    },
+    {
+      "placement_id": "EFR_Place_FaceTree_001",
+      "asset_id": "EFR_FaceTree_001",
+      "instance_name": "EFR_FaceTree_001",
+      "source_key": "E_forest",
+      "category": "gimmick",
+      "position": [
+        -25.2,
+        6.8,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -152.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 2.9701,
+      "dimensions_m": [
+        7.8573,
+        5.8773,
+        9.7519
+      ],
+      "footprint_world": {
+        "min": [
+          -29.1256,
+          4.2365,
+          0.0
+        ],
+        "max": [
+          -21.2683,
+          10.1138,
+          9.7519
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -27.2815,
+          4.6813,
+          0.0
+        ],
+        "max": [
+          -23.1382,
+          8.753,
+          2.7593
+        ]
+      },
+      "role": "Greets visitors arriving over the west bridge; looks south-south-east at the main road."
+    },
+    {
+      "placement_id": "EFR_Place_FaceTree_002",
+      "asset_id": "EFR_FaceTree_002",
+      "instance_name": "EFR_FaceTree_002",
+      "source_key": "E_forest",
+      "category": "gimmick",
+      "position": [
+        -36.6,
+        -8.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -34.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 2.9777,
+      "dimensions_m": [
+        7.3906,
+        6.1603,
+        9.7519
+      ],
+      "footprint_world": {
+        "min": [
+          -40.2625,
+          -11.3927,
+          0.0
+        ],
+        "max": [
+          -32.8719,
+          -5.2324,
+          9.7519
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -38.7145,
+          -10.0419,
+          0.0
+        ],
+        "max": [
+          -34.6177,
+          -5.9035,
+          2.7593
+        ]
+      },
+      "role": "Watches the tower forecourt and the south spur from the south-west."
+    },
+    {
+      "placement_id": "EFR_Place_ForecourtLamp_001",
+      "asset_id": "CMN_StreetLamp_001",
+      "instance_name": "EFR_ForecourtLamp_001",
+      "source_key": "common",
+      "category": "lighting",
+      "position": [
+        -33.9,
+        2.75,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.7262,
+      "dimensions_m": [
+        0.56,
+        0.95,
+        3.42
+      ],
+      "footprint_world": {
+        "min": [
+          -34.18,
+          2.08,
+          0.0
+        ],
+        "max": [
+          -33.62,
+          3.03,
+          3.42
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -34.18,
+          2.08,
+          0.0
+        ],
+        "max": [
+          -33.62,
+          3.03,
+          2.78
+        ]
+      },
+      "role": "Tower forecourt lamp, north of the stairs"
+    },
+    {
+      "placement_id": "EFR_Place_ForecourtLamp_002",
+      "asset_id": "CMN_StreetLamp_001",
+      "instance_name": "EFR_ForecourtLamp_002",
+      "source_key": "common",
+      "category": "lighting",
+      "position": [
+        -33.9,
+        -2.75,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.7262,
+      "dimensions_m": [
+        0.56,
+        0.95,
+        3.42
+      ],
+      "footprint_world": {
+        "min": [
+          -34.18,
+          -3.03,
+          0.0
+        ],
+        "max": [
+          -33.62,
+          -2.08,
+          3.42
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -34.18,
+          -3.03,
+          0.0
+        ],
+        "max": [
+          -33.62,
+          -2.08,
+          2.78
+        ]
+      },
+      "role": "Tower forecourt lamp, south of the stairs"
+    },
+    {
+      "placement_id": "EFR_Place_GatePillar_001",
+      "asset_id": "EFR_GatePillar_001",
+      "instance_name": "EFR_GatePillar_001",
+      "source_key": "E_forest",
+      "category": "lighting",
+      "position": [
+        -21.5,
+        2.9,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        180.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.1118,
+      "dimensions_m": [
+        1.39,
+        1.459,
+        3.0187
+      ],
+      "footprint_world": {
+        "min": [
+          -22.24,
+          2.0703,
+          0.0
+        ],
+        "max": [
+          -20.85,
+          3.5293,
+          3.0187
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -22.24,
+          2.0703,
+          0.0
+        ],
+        "max": [
+          -20.85,
+          3.5293,
+          2.7959
+        ]
+      },
+      "role": "Entrance pillar stump with a hanging lantern and a sign (frames the main road)."
+    },
+    {
+      "placement_id": "EFR_Place_GatePillar_002",
+      "asset_id": "EFR_GatePillar_001",
+      "instance_name": "EFR_GatePillar_002",
+      "source_key": "E_forest",
+      "category": "lighting",
+      "position": [
+        -21.5,
+        -2.9,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.1118,
+      "dimensions_m": [
+        1.39,
+        1.459,
+        3.0187
+      ],
+      "footprint_world": {
+        "min": [
+          -22.15,
+          -3.5293,
+          0.0
+        ],
+        "max": [
+          -20.76,
+          -2.0703,
+          3.0187
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -22.15,
+          -3.5293,
+          0.0
+        ],
+        "max": [
+          -20.76,
+          -2.0703,
+          2.7959
+        ]
+      },
+      "role": "Entrance pillar stump with a hanging lantern and a sign (frames the main road)."
+    },
+    {
+      "placement_id": "EFR_Place_LookoutBench_001",
+      "asset_id": "CMN_Bench_001",
+      "instance_name": "EFR_LookoutBench_001",
+      "source_key": "common",
+      "category": "prop",
+      "position": [
+        -45.9,
+        12.5,
+        0.75
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.9266,
+      "dimensions_m": [
+        0.57,
+        1.76,
+        0.95
+      ],
+      "footprint_world": {
+        "min": [
+          -46.19,
+          11.62,
+          0.75
+        ],
+        "max": [
+          -45.62,
+          13.38,
+          1.7
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -46.19,
+          11.62,
+          0.75
+        ],
+        "max": [
+          -45.62,
+          13.38,
+          1.7
+        ]
+      },
+      "role": "Lookout bench facing west over the cliff"
+    },
+    {
+      "placement_id": "EFR_Place_Lookout_001",
+      "asset_id": "EFR_Lookout_001",
+      "instance_name": "EFR_Lookout_001",
+      "source_key": "E_forest",
+      "category": "architecture",
+      "position": [
+        -44.4,
+        12.5,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 9.4917,
+      "dimensions_m": [
+        9.81,
+        9.51,
+        7.0698
+      ],
+      "footprint_world": {
+        "min": [
+          -47.35,
+          5.94,
+          0.0
+        ],
+        "max": [
+          -37.54,
+          15.45,
+          7.0698
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -46.72,
+          5.94,
+          0.0
+        ],
+        "max": [
+          -37.54,
+          14.92,
+          2.1491
+        ]
+      },
+      "role": "Lookout deck (0.75 m) with ramps, 1.05 m railings, witch-hat roof, lantern and telescope."
+    },
+    {
+      "placement_id": "EFR_Place_MushroomCluster_001",
+      "asset_id": "EFR_MushroomCluster_001",
+      "instance_name": "EFR_MushroomCluster_001",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -21.6,
+        4.6,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.4342,
+      "dimensions_m": [
+        0.58,
+        0.46,
+        0.5003
+      ],
+      "footprint_world": {
+        "min": [
+          -21.84,
+          4.41,
+          0.0
+        ],
+        "max": [
+          -21.26,
+          4.87,
+          0.5003
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -21.84,
+          4.41,
+          0.0
+        ],
+        "max": [
+          -21.26,
+          4.87,
+          0.5003
+        ]
+      },
+      "role": "Reusable cluster of three small orange mushrooms."
+    },
+    {
+      "placement_id": "EFR_Place_MushroomCluster_002",
+      "asset_id": "EFR_MushroomCluster_001",
+      "instance_name": "EFR_MushroomCluster_002",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -33.6,
+        4.6,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        45.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.4703,
+      "dimensions_m": [
+        0.5227,
+        0.5381,
+        0.5003
+      ],
+      "footprint_world": {
+        "min": [
+          -33.9137,
+          4.4123,
+          0.0
+        ],
+        "max": [
+          -33.391,
+          4.9504,
+          0.5003
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -33.9137,
+          4.4123,
+          0.0
+        ],
+        "max": [
+          -33.391,
+          4.9504,
+          0.5003
+        ]
+      },
+      "role": "Reusable cluster of three small orange mushrooms."
+    },
+    {
+      "placement_id": "EFR_Place_MushroomCluster_003",
+      "asset_id": "EFR_MushroomCluster_001",
+      "instance_name": "EFR_MushroomCluster_003",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -44.4,
+        16.4,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.4342,
+      "dimensions_m": [
+        0.46,
+        0.58,
+        0.4844
+      ],
+      "footprint_world": {
+        "min": [
+          -44.67,
+          16.16,
+          0.0
+        ],
+        "max": [
+          -44.21,
+          16.74,
+          0.4844
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -44.67,
+          16.16,
+          0.0
+        ],
+        "max": [
+          -44.21,
+          16.74,
+          0.4844
+        ]
+      },
+      "role": "Reusable cluster of three small orange mushrooms."
+    },
+    {
+      "placement_id": "EFR_Place_MushroomCluster_004",
+      "asset_id": "EFR_MushroomCluster_001",
+      "instance_name": "EFR_MushroomCluster_004",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -24.2,
+        -2.8,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        135.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.4703,
+      "dimensions_m": [
+        0.5381,
+        0.5227,
+        0.5003
+      ],
+      "footprint_world": {
+        "min": [
+          -24.5504,
+          -3.1137,
+          0.0
+        ],
+        "max": [
+          -24.0123,
+          -2.591,
+          0.5003
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -24.5504,
+          -3.1137,
+          0.0
+        ],
+        "max": [
+          -24.0123,
+          -2.591,
+          0.5003
+        ]
+      },
+      "role": "Reusable cluster of three small orange mushrooms."
+    },
+    {
+      "placement_id": "EFR_Place_MushroomCluster_005",
+      "asset_id": "EFR_MushroomCluster_001",
+      "instance_name": "EFR_MushroomCluster_005",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -35.6,
+        -10.4,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        180.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.4342,
+      "dimensions_m": [
+        0.58,
+        0.46,
+        0.4844
+      ],
+      "footprint_world": {
+        "min": [
+          -35.94,
+          -10.67,
+          0.0
+        ],
+        "max": [
+          -35.36,
+          -10.21,
+          0.4844
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -35.94,
+          -10.67,
+          0.0
+        ],
+        "max": [
+          -35.36,
+          -10.21,
+          0.4844
+        ]
+      },
+      "role": "Reusable cluster of three small orange mushrooms."
+    },
+    {
+      "placement_id": "EFR_Place_MushroomCluster_006",
+      "asset_id": "EFR_MushroomCluster_001",
+      "instance_name": "EFR_MushroomCluster_006",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -46.9,
+        -8.9,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        225.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.4703,
+      "dimensions_m": [
+        0.5227,
+        0.5381,
+        0.5003
+      ],
+      "footprint_world": {
+        "min": [
+          -47.109,
+          -9.2504,
+          0.0
+        ],
+        "max": [
+          -46.5863,
+          -8.7123,
+          0.5003
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -47.109,
+          -9.2504,
+          0.0
+        ],
+        "max": [
+          -46.5863,
+          -8.7123,
+          0.5003
+        ]
+      },
+      "role": "Reusable cluster of three small orange mushrooms."
+    },
+    {
+      "placement_id": "EFR_Place_MushroomCluster_007",
+      "asset_id": "EFR_MushroomCluster_001",
+      "instance_name": "EFR_MushroomCluster_007",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -29.0,
+        11.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        270.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.4342,
+      "dimensions_m": [
+        0.46,
+        0.58,
+        0.4844
+      ],
+      "footprint_world": {
+        "min": [
+          -29.19,
+          10.66,
+          0.0
+        ],
+        "max": [
+          -28.73,
+          11.24,
+          0.4844
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -29.19,
+          10.66,
+          0.0
+        ],
+        "max": [
+          -28.73,
+          11.24,
+          0.4844
+        ]
+      },
+      "role": "Reusable cluster of three small orange mushrooms."
+    },
+    {
+      "placement_id": "EFR_Place_MushroomCluster_008",
+      "asset_id": "EFR_MushroomCluster_001",
+      "instance_name": "EFR_MushroomCluster_008",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -33.2,
+        -3.6,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        315.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.4703,
+      "dimensions_m": [
+        0.5381,
+        0.5227,
+        0.5003
+      ],
+      "footprint_world": {
+        "min": [
+          -33.3877,
+          -3.809,
+          0.0
+        ],
+        "max": [
+          -32.8496,
+          -3.2863,
+          0.5003
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -33.3877,
+          -3.809,
+          0.0
+        ],
+        "max": [
+          -32.8496,
+          -3.2863,
+          0.5003
+        ]
+      },
+      "role": "Reusable cluster of three small orange mushrooms."
+    },
+    {
+      "placement_id": "EFR_Place_MushroomGiant_001",
+      "asset_id": "EFR_MushroomGiant_001",
+      "instance_name": "EFR_MushroomGiant_001",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -43.2,
+        -12.6,
+        0.2
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        15.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.0917,
+      "dimensions_m": [
+        5.3926,
+        5.3926,
+        5.2839
+      ],
+      "footprint_world": {
+        "min": [
+          -45.8963,
+          -15.2963,
+          0.2
+        ],
+        "max": [
+          -40.5037,
+          -9.9037,
+          5.4839
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -43.9654,
+          -13.3785,
+          0.2
+        ],
+        "max": [
+          -42.4346,
+          -11.8215,
+          2.525
+        ]
+      },
+      "role": "Giant purple mushroom that roofs the rest spot (cap underside 3.1 m)."
+    },
+    {
+      "placement_id": "EFR_Place_MushroomMedium_001",
+      "asset_id": "EFR_MushroomMedium_001",
+      "instance_name": "EFR_MushroomMedium_001",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -27.4,
+        3.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.6364,
+      "dimensions_m": [
+        0.9,
+        0.9,
+        1.1673
+      ],
+      "footprint_world": {
+        "min": [
+          -27.85,
+          2.55,
+          0.0
+        ],
+        "max": [
+          -26.95,
+          3.45,
+          1.1673
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -27.85,
+          2.55,
+          0.0
+        ],
+        "max": [
+          -26.95,
+          3.45,
+          1.1673
+        ]
+      },
+      "role": "Reusable medium teal mushroom."
+    },
+    {
+      "placement_id": "EFR_Place_MushroomMedium_002",
+      "asset_id": "EFR_MushroomMedium_001",
+      "instance_name": "EFR_MushroomMedium_002",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -34.2,
+        10.8,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        50.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.6348,
+      "dimensions_m": [
+        0.8978,
+        0.8978,
+        1.1673
+      ],
+      "footprint_world": {
+        "min": [
+          -34.6489,
+          10.3511,
+          0.0
+        ],
+        "max": [
+          -33.7511,
+          11.2489,
+          1.1673
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -34.6489,
+          10.3511,
+          0.0
+        ],
+        "max": [
+          -33.7511,
+          11.2489,
+          1.1673
+        ]
+      },
+      "role": "Reusable medium teal mushroom."
+    },
+    {
+      "placement_id": "EFR_Place_MushroomMedium_003",
+      "asset_id": "EFR_MushroomMedium_001",
+      "instance_name": "EFR_MushroomMedium_003",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -30.4,
+        -9.8,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        100.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.6302,
+      "dimensions_m": [
+        0.8912,
+        0.8912,
+        1.1673
+      ],
+      "footprint_world": {
+        "min": [
+          -30.8456,
+          -10.2456,
+          0.0
+        ],
+        "max": [
+          -29.9544,
+          -9.3544,
+          1.1673
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -30.8456,
+          -10.2456,
+          0.0
+        ],
+        "max": [
+          -29.9544,
+          -9.3544,
+          1.1673
+        ]
+      },
+      "role": "Reusable medium teal mushroom."
+    },
+    {
+      "placement_id": "EFR_Place_MushroomMedium_004",
+      "asset_id": "EFR_MushroomMedium_001",
+      "instance_name": "EFR_MushroomMedium_004",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -46.3,
+        1.6,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        150.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.6329,
+      "dimensions_m": [
+        0.895,
+        0.895,
+        1.142
+      ],
+      "footprint_world": {
+        "min": [
+          -46.7475,
+          1.1525,
+          0.0
+        ],
+        "max": [
+          -45.8525,
+          2.0475,
+          1.142
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -46.7475,
+          1.1525,
+          0.0
+        ],
+        "max": [
+          -45.8525,
+          2.0475,
+          1.142
+        ]
+      },
+      "role": "Reusable medium teal mushroom."
+    },
+    {
+      "placement_id": "EFR_Place_MushroomMedium_005",
+      "asset_id": "EFR_MushroomMedium_001",
+      "instance_name": "EFR_MushroomMedium_005",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -21.4,
+        -6.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        200.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.636,
+      "dimensions_m": [
+        0.8994,
+        0.8994,
+        1.142
+      ],
+      "footprint_world": {
+        "min": [
+          -21.8497,
+          -6.4497,
+          0.0
+        ],
+        "max": [
+          -20.9503,
+          -5.5503,
+          1.142
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -21.8497,
+          -6.4497,
+          0.0
+        ],
+        "max": [
+          -20.9503,
+          -5.5503,
+          1.142
+        ]
+      },
+      "role": "Reusable medium teal mushroom."
+    },
+    {
+      "placement_id": "EFR_Place_MushroomMedium_006",
+      "asset_id": "EFR_MushroomMedium_001",
+      "instance_name": "EFR_MushroomMedium_006",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -38.2,
+        -15.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        250.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.636,
+      "dimensions_m": [
+        0.8994,
+        0.8994,
+        1.142
+      ],
+      "footprint_world": {
+        "min": [
+          -38.6497,
+          -15.4497,
+          0.0
+        ],
+        "max": [
+          -37.7503,
+          -14.5503,
+          1.142
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -38.6497,
+          -15.4497,
+          0.0
+        ],
+        "max": [
+          -37.7503,
+          -14.5503,
+          1.142
+        ]
+      },
+      "role": "Reusable medium teal mushroom."
+    },
+    {
+      "placement_id": "EFR_Place_MushroomTall_001",
+      "asset_id": "EFR_MushroomTall_001",
+      "instance_name": "EFR_MushroomTall_001",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -36.8,
+        5.6,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.4142,
+      "dimensions_m": [
+        2.0,
+        2.0,
+        2.7114
+      ],
+      "footprint_world": {
+        "min": [
+          -37.8,
+          4.6,
+          0.0
+        ],
+        "max": [
+          -35.8,
+          6.6,
+          2.7114
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -37.8,
+          4.6,
+          0.0
+        ],
+        "max": [
+          -35.8,
+          6.6,
+          2.7114
+        ]
+      },
+      "role": "Reusable tall purple mushroom (cap underside 1.9 m)."
+    },
+    {
+      "placement_id": "EFR_Place_MushroomTall_002",
+      "asset_id": "EFR_MushroomTall_001",
+      "instance_name": "EFR_MushroomTall_002",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -41.6,
+        -6.4,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        40.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.4108,
+      "dimensions_m": [
+        1.9952,
+        1.9952,
+        2.7114
+      ],
+      "footprint_world": {
+        "min": [
+          -42.5976,
+          -7.3976,
+          0.0
+        ],
+        "max": [
+          -40.6024,
+          -5.4024,
+          2.7114
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -42.5976,
+          -7.3976,
+          0.0
+        ],
+        "max": [
+          -40.6024,
+          -5.4024,
+          2.7114
+        ]
+      },
+      "role": "Reusable tall purple mushroom (cap underside 1.9 m)."
+    },
+    {
+      "placement_id": "EFR_Place_MushroomTall_003",
+      "asset_id": "EFR_MushroomTall_001",
+      "instance_name": "EFR_MushroomTall_003",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -25.8,
+        10.2,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        80.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.4005,
+      "dimensions_m": [
+        1.9806,
+        1.9806,
+        2.7114
+      ],
+      "footprint_world": {
+        "min": [
+          -26.7903,
+          9.2097,
+          0.0
+        ],
+        "max": [
+          -24.8097,
+          11.1903,
+          2.7114
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -26.7903,
+          9.2097,
+          0.0
+        ],
+        "max": [
+          -24.8097,
+          11.1903,
+          2.7114
+        ]
+      },
+      "role": "Reusable tall purple mushroom (cap underside 1.9 m)."
+    },
+    {
+      "placement_id": "EFR_Place_MushroomTall_004",
+      "asset_id": "EFR_MushroomTall_001",
+      "instance_name": "EFR_MushroomTall_004",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -33.0,
+        -9.6,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        120.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.4064,
+      "dimensions_m": [
+        1.989,
+        1.989,
+        2.7114
+      ],
+      "footprint_world": {
+        "min": [
+          -33.9945,
+          -10.5945,
+          0.0
+        ],
+        "max": [
+          -32.0055,
+          -8.6055,
+          2.7114
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -33.9945,
+          -10.5945,
+          0.0
+        ],
+        "max": [
+          -32.0055,
+          -8.6055,
+          2.7114
+        ]
+      },
+      "role": "Reusable tall purple mushroom (cap underside 1.9 m)."
+    },
+    {
+      "placement_id": "EFR_Place_MushroomTall_005",
+      "asset_id": "EFR_MushroomTall_001",
+      "instance_name": "EFR_MushroomTall_005",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -41.0,
+        16.6,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        160.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.4134,
+      "dimensions_m": [
+        1.9988,
+        1.9988,
+        2.7114
+      ],
+      "footprint_world": {
+        "min": [
+          -41.9994,
+          15.6006,
+          0.0
+        ],
+        "max": [
+          -40.0006,
+          17.5994,
+          2.7114
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -41.9994,
+          15.6006,
+          0.0
+        ],
+        "max": [
+          -40.0006,
+          17.5994,
+          2.7114
+        ]
+      },
+      "role": "Reusable tall purple mushroom (cap underside 1.9 m)."
+    },
+    {
+      "placement_id": "EFR_Place_PathLantern_001",
+      "asset_id": "CMN_Lantern_001",
+      "instance_name": "EFR_PathLantern_001",
+      "source_key": "common",
+      "category": "lighting",
+      "position": [
+        -28.2,
+        13.95,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.3175,
+      "dimensions_m": [
+        0.48,
+        0.4156,
+        0.78
+      ],
+      "footprint_world": {
+        "min": [
+          -28.44,
+          13.7422,
+          0.0
+        ],
+        "max": [
+          -27.96,
+          14.1578,
+          0.78
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -28.44,
+          13.7422,
+          0.0
+        ],
+        "max": [
+          -27.96,
+          14.1578,
+          0.78
+        ]
+      },
+      "role": "North boardwalk lantern"
+    },
+    {
+      "placement_id": "EFR_Place_PathLantern_002",
+      "asset_id": "CMN_Lantern_001",
+      "instance_name": "EFR_PathLantern_002",
+      "source_key": "common",
+      "category": "lighting",
+      "position": [
+        -35.4,
+        13.95,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.3175,
+      "dimensions_m": [
+        0.48,
+        0.4156,
+        0.78
+      ],
+      "footprint_world": {
+        "min": [
+          -35.64,
+          13.7422,
+          0.0
+        ],
+        "max": [
+          -35.16,
+          14.1578,
+          0.78
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -35.64,
+          13.7422,
+          0.0
+        ],
+        "max": [
+          -35.16,
+          14.1578,
+          0.78
+        ]
+      },
+      "role": "North boardwalk lantern"
+    },
+    {
+      "placement_id": "EFR_Place_PathLantern_003",
+      "asset_id": "CMN_Lantern_001",
+      "instance_name": "EFR_PathLantern_003",
+      "source_key": "common",
+      "category": "lighting",
+      "position": [
+        -45.85,
+        2.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.3175,
+      "dimensions_m": [
+        0.48,
+        0.4156,
+        0.78
+      ],
+      "footprint_world": {
+        "min": [
+          -46.09,
+          1.7922,
+          0.0
+        ],
+        "max": [
+          -45.61,
+          2.2078,
+          0.78
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -46.09,
+          1.7922,
+          0.0
+        ],
+        "max": [
+          -45.61,
+          2.2078,
+          0.78
+        ]
+      },
+      "role": "West boardwalk lantern"
+    },
+    {
+      "placement_id": "EFR_Place_PathLantern_004",
+      "asset_id": "CMN_Lantern_001",
+      "instance_name": "EFR_PathLantern_004",
+      "source_key": "common",
+      "category": "lighting",
+      "position": [
+        -45.85,
+        -5.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.3175,
+      "dimensions_m": [
+        0.48,
+        0.4156,
+        0.78
+      ],
+      "footprint_world": {
+        "min": [
+          -46.09,
+          -5.2078,
+          0.0
+        ],
+        "max": [
+          -45.61,
+          -4.7922,
+          0.78
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -46.09,
+          -5.2078,
+          0.0
+        ],
+        "max": [
+          -45.61,
+          -4.7922,
+          0.78
+        ]
+      },
+      "role": "West boardwalk lantern"
+    },
+    {
+      "placement_id": "EFR_Place_PathLantern_005",
+      "asset_id": "CMN_Lantern_001",
+      "instance_name": "EFR_PathLantern_005",
+      "source_key": "common",
+      "category": "lighting",
+      "position": [
+        -28.6,
+        -13.95,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.3175,
+      "dimensions_m": [
+        0.48,
+        0.4156,
+        0.78
+      ],
+      "footprint_world": {
+        "min": [
+          -28.84,
+          -14.1578,
+          0.0
+        ],
+        "max": [
+          -28.36,
+          -13.7422,
+          0.78
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -28.84,
+          -14.1578,
+          0.0
+        ],
+        "max": [
+          -28.36,
+          -13.7422,
+          0.78
+        ]
+      },
+      "role": "South boardwalk lantern"
+    },
+    {
+      "placement_id": "EFR_Place_PathLantern_006",
+      "asset_id": "CMN_Lantern_001",
+      "instance_name": "EFR_PathLantern_006",
+      "source_key": "common",
+      "category": "lighting",
+      "position": [
+        -35.8,
+        -13.95,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.3175,
+      "dimensions_m": [
+        0.48,
+        0.4156,
+        0.78
+      ],
+      "footprint_world": {
+        "min": [
+          -36.04,
+          -14.1578,
+          0.0
+        ],
+        "max": [
+          -35.56,
+          -13.7422,
+          0.78
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -36.04,
+          -14.1578,
+          0.0
+        ],
+        "max": [
+          -35.56,
+          -13.7422,
+          0.78
+        ]
+      },
+      "role": "South boardwalk lantern"
+    },
+    {
+      "placement_id": "EFR_Place_PathLantern_007",
+      "asset_id": "CMN_Lantern_001",
+      "instance_name": "EFR_PathLantern_007",
+      "source_key": "common",
+      "category": "lighting",
+      "position": [
+        -26.55,
+        -6.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.3175,
+      "dimensions_m": [
+        0.48,
+        0.4156,
+        0.78
+      ],
+      "footprint_world": {
+        "min": [
+          -26.79,
+          -6.2078,
+          0.0
+        ],
+        "max": [
+          -26.31,
+          -5.7922,
+          0.78
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -26.79,
+          -6.2078,
+          0.0
+        ],
+        "max": [
+          -26.31,
+          -5.7922,
+          0.78
+        ]
+      },
+      "role": "South spur lantern"
+    },
+    {
+      "placement_id": "EFR_Place_PondBridge_001",
+      "asset_id": "EFR_PondBridge_001",
+      "instance_name": "EFR_PondBridge_001",
+      "source_key": "E_forest",
+      "category": "architecture",
+      "position": [
+        -31.0,
+        7.7,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 3.9643,
+      "dimensions_m": [
+        2.74,
+        7.44,
+        2.0367
+      ],
+      "footprint_world": {
+        "min": [
+          -32.37,
+          3.98,
+          0.0
+        ],
+        "max": [
+          -29.63,
+          11.42,
+          2.0367
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -32.37,
+          3.98,
+          0.0
+        ],
+        "max": [
+          -29.63,
+          11.42,
+          2.0367
+        ]
+      },
+      "role": "Arched footbridge over the pond with 1.05 m handrails (crest +0.42 m)."
+    },
+    {
+      "placement_id": "EFR_Place_Pond_001",
+      "asset_id": "EFR_Pond_001",
+      "instance_name": "EFR_Pond_001",
+      "source_key": "E_forest",
+      "category": "terrain",
+      "position": [
+        -32.0,
+        7.7,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 5.5312,
+      "dimensions_m": [
+        9.3378,
+        5.6031,
+        1.0012
+      ],
+      "footprint_world": {
+        "min": [
+          -36.5914,
+          4.8599,
+          0.0
+        ],
+        "max": [
+          -27.2536,
+          10.463,
+          1.0012
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -36.5914,
+          4.8599,
+          0.0
+        ],
+        "max": [
+          -27.2536,
+          10.463,
+          1.0012
+        ]
+      },
+      "role": "Shallow pond: water surface 0.07 m above the ground, no drop; stones left out under the bridge."
+    },
+    {
+      "placement_id": "EFR_Place_Pumpkin_001",
+      "asset_id": "CMN_SmallPumpkin_001",
+      "instance_name": "EFR_Pumpkin_001",
+      "source_key": "common",
+      "category": "prop",
+      "position": [
+        -32.9,
+        2.4,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        30.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.4675,
+      "dimensions_m": [
+        0.643,
+        0.6609,
+        0.64
+      ],
+      "footprint_world": {
+        "min": [
+          -33.2215,
+          2.0606,
+          0.0
+        ],
+        "max": [
+          -32.5785,
+          2.7215,
+          0.64
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -33.2215,
+          2.0606,
+          0.0
+        ],
+        "max": [
+          -32.5785,
+          2.7215,
+          0.64
+        ]
+      },
+      "role": "Forecourt pumpkin (face turned to the road)"
+    },
+    {
+      "placement_id": "EFR_Place_Pumpkin_002",
+      "asset_id": "CMN_SmallPumpkin_001",
+      "instance_name": "EFR_Pumpkin_002",
+      "source_key": "common",
+      "category": "prop",
+      "position": [
+        -32.9,
+        -2.4,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        150.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.4675,
+      "dimensions_m": [
+        0.643,
+        0.6609,
+        0.64
+      ],
+      "footprint_world": {
+        "min": [
+          -33.2215,
+          -2.7215,
+          0.0
+        ],
+        "max": [
+          -32.5785,
+          -2.0606,
+          0.64
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -33.2215,
+          -2.7215,
+          0.0
+        ],
+        "max": [
+          -32.5785,
+          -2.0606,
+          0.64
+        ]
+      },
+      "role": "Forecourt pumpkin (face turned to the road)"
+    },
+    {
+      "placement_id": "EFR_Place_Pumpkin_003",
+      "asset_id": "CMN_SmallPumpkin_001",
+      "instance_name": "EFR_Pumpkin_003",
+      "source_key": "common",
+      "category": "prop",
+      "position": [
+        -41.2,
+        -10.8,
+        0.2
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        200.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.4562,
+      "dimensions_m": [
+        0.6254,
+        0.6449,
+        0.64
+      ],
+      "footprint_world": {
+        "min": [
+          -41.5127,
+          -11.1127,
+          0.2
+        ],
+        "max": [
+          -40.8873,
+          -10.4678,
+          0.84
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -41.5127,
+          -11.1127,
+          0.2
+        ],
+        "max": [
+          -40.8873,
+          -10.4678,
+          0.84
+        ]
+      },
+      "role": "Rest spot pumpkin"
+    },
+    {
+      "placement_id": "EFR_Place_RestBench_001",
+      "asset_id": "CMN_Bench_001",
+      "instance_name": "EFR_RestBench_001",
+      "source_key": "common",
+      "category": "prop",
+      "position": [
+        -45.3143,
+        -11.8305,
+        0.2
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        70.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.0775,
+      "dimensions_m": [
+        1.0893,
+        1.8265,
+        0.95
+      ],
+      "footprint_world": {
+        "min": [
+          -45.8442,
+          -12.7514,
+          0.2
+        ],
+        "max": [
+          -44.7549,
+          -10.9249,
+          1.15
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -45.8442,
+          -12.7514,
+          0.2
+        ],
+        "max": [
+          -44.7549,
+          -10.9249,
+          1.15
+        ]
+      },
+      "role": "Rest spot bench (faces outward)"
+    },
+    {
+      "placement_id": "EFR_Place_RestBench_002",
+      "asset_id": "CMN_Bench_001",
+      "instance_name": "EFR_RestBench_002",
+      "source_key": "common",
+      "category": "prop",
+      "position": [
+        -44.9236,
+        -14.0463,
+        0.2
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        130.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.1518,
+      "dimensions_m": [
+        1.5181,
+        1.6728,
+        0.95
+      ],
+      "footprint_world": {
+        "min": [
+          -45.6654,
+          -14.8682,
+          0.2
+        ],
+        "max": [
+          -44.1473,
+          -13.1954,
+          1.15
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -45.6654,
+          -14.8682,
+          0.2
+        ],
+        "max": [
+          -44.1473,
+          -13.1954,
+          1.15
+        ]
+      },
+      "role": "Rest spot bench (faces outward)"
+    },
+    {
+      "placement_id": "EFR_Place_RestBench_003",
+      "asset_id": "CMN_Bench_001",
+      "instance_name": "EFR_RestBench_003",
+      "source_key": "common",
+      "category": "prop",
+      "position": [
+        -42.8093,
+        -14.8158,
+        0.2
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        190.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.0078,
+      "dimensions_m": [
+        1.821,
+        0.8247,
+        0.95
+      ],
+      "footprint_world": {
+        "min": [
+          -43.7237,
+          -15.2169,
+          0.2
+        ],
+        "max": [
+          -41.9027,
+          -14.3922,
+          1.15
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -43.7237,
+          -15.2169,
+          0.2
+        ],
+        "max": [
+          -41.9027,
+          -14.3922,
+          1.15
+        ]
+      },
+      "role": "Rest spot bench (faces outward)"
+    },
+    {
+      "placement_id": "EFR_Place_RestSpot_001",
+      "asset_id": "EFR_RestSpot_001",
+      "instance_name": "EFR_RestSpot_001",
+      "source_key": "E_forest",
+      "category": "architecture",
+      "position": [
+        -43.2,
+        -12.6,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 4.6669,
+      "dimensions_m": [
+        6.6,
+        6.6,
+        0.24
+      ],
+      "footprint_world": {
+        "min": [
+          -46.5,
+          -15.9,
+          0.0
+        ],
+        "max": [
+          -39.9,
+          -9.3,
+          0.24
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -46.5,
+          -15.9,
+          0.0
+        ],
+        "max": [
+          -39.9,
+          -9.3,
+          0.24
+        ]
+      },
+      "role": "Round rest deck (0.20 m) under the giant mushroom."
+    },
+    {
+      "placement_id": "EFR_Place_Rock_001",
+      "asset_id": "EFR_Rock_001",
+      "instance_name": "EFR_Rock_001",
+      "source_key": "E_forest",
+      "category": "prop",
+      "position": [
+        -21.9,
+        9.6,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        15.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.1643,
+      "dimensions_m": [
+        1.7085,
+        1.3471,
+        0.8486
+      ],
+      "footprint_world": {
+        "min": [
+          -22.7292,
+          9.016,
+          0.0
+        ],
+        "max": [
+          -21.0207,
+          10.3631,
+          0.8486
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -22.7292,
+          9.016,
+          0.0
+        ],
+        "max": [
+          -21.0207,
+          10.3631,
+          0.8486
+        ]
+      },
+      "role": "Reusable mossy boulder."
+    },
+    {
+      "placement_id": "EFR_Place_Rock_002",
+      "asset_id": "EFR_Rock_001",
+      "instance_name": "EFR_Rock_002",
+      "source_key": "E_forest",
+      "category": "prop",
+      "position": [
+        -25.8,
+        -3.4,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        250.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.2858,
+      "dimensions_m": [
+        1.3204,
+        1.7966,
+        0.8486
+      ],
+      "footprint_world": {
+        "min": [
+          -26.3974,
+          -4.4633,
+          0.0
+        ],
+        "max": [
+          -25.077,
+          -2.6667,
+          0.8486
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -26.3974,
+          -4.4633,
+          0.0
+        ],
+        "max": [
+          -25.077,
+          -2.6667,
+          0.8486
+        ]
+      },
+      "role": "Reusable mossy boulder."
+    },
+    {
+      "placement_id": "EFR_Place_Rock_003",
+      "asset_id": "EFR_Rock_001",
+      "instance_name": "EFR_Rock_003",
+      "source_key": "E_forest",
+      "category": "prop",
+      "position": [
+        -37.2,
+        9.6,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        70.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.2858,
+      "dimensions_m": [
+        1.3204,
+        1.7966,
+        0.8486
+      ],
+      "footprint_world": {
+        "min": [
+          -37.923,
+          8.8667,
+          0.0
+        ],
+        "max": [
+          -36.6026,
+          10.6633,
+          0.8486
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -37.923,
+          8.8667,
+          0.0
+        ],
+        "max": [
+          -36.6026,
+          10.6633,
+          0.8486
+        ]
+      },
+      "role": "Reusable mossy boulder."
+    },
+    {
+      "placement_id": "EFR_Place_TreeOak_001",
+      "asset_id": "EFR_TreeOak_001",
+      "instance_name": "EFR_TreeOak_001",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -26.5,
+        16.2,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        20.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.689,
+      "dimensions_m": [
+        6.1065,
+        5.5464,
+        7.5392
+      ],
+      "footprint_world": {
+        "min": [
+          -29.7488,
+          13.392,
+          0.0
+        ],
+        "max": [
+          -23.6423,
+          18.9384,
+          7.5392
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -27.7028,
+          15.0834,
+          0.0
+        ],
+        "max": [
+          -25.4358,
+          17.3857,
+          2.6118
+        ]
+      },
+      "role": "Reusable broad oak with a teal canopy (canopy bottom ~3.8 m)."
+    },
+    {
+      "placement_id": "EFR_Place_TreeOak_002",
+      "asset_id": "EFR_TreeOak_001",
+      "instance_name": "EFR_TreeOak_002",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -36.0,
+        16.2,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        140.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.689,
+      "dimensions_m": [
+        5.5729,
+        6.0702,
+        7.5392
+      ],
+      "footprint_world": {
+        "min": [
+          -39.3341,
+          13.0224,
+          0.0
+        ],
+        "max": [
+          -33.7612,
+          19.0926,
+          7.5392
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -37.0642,
+          15.0834,
+          0.0
+        ],
+        "max": [
+          -34.7972,
+          17.3857,
+          2.6118
+        ]
+      },
+      "role": "Reusable broad oak with a teal canopy (canopy bottom ~3.8 m)."
+    },
+    {
+      "placement_id": "EFR_Place_TreeOak_003",
+      "asset_id": "EFR_TreeOak_001",
+      "instance_name": "EFR_TreeOak_003",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -28.0,
+        -16.2,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        75.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.6872,
+      "dimensions_m": [
+        5.8354,
+        5.997,
+        7.5392
+      ],
+      "footprint_world": {
+        "min": [
+          -30.7725,
+          -18.8478,
+          0.0
+        ],
+        "max": [
+          -24.9371,
+          -12.8508,
+          7.5392
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -29.1241,
+          -17.2544,
+          0.0
+        ],
+        "max": [
+          -26.8185,
+          -14.9956,
+          2.6118
+        ]
+      },
+      "role": "Reusable broad oak with a teal canopy (canopy bottom ~3.8 m)."
+    },
+    {
+      "placement_id": "EFR_Place_TreeOak_004",
+      "asset_id": "EFR_TreeOak_001",
+      "instance_name": "EFR_TreeOak_004",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -34.6,
+        -16.2,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        210.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.6849,
+      "dimensions_m": [
+        5.8224,
+        5.7294,
+        7.5392
+      ],
+      "footprint_world": {
+        "min": [
+          -37.1798,
+          -19.2311,
+          0.0
+        ],
+        "max": [
+          -31.3574,
+          -13.5017,
+          7.5392
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -35.6442,
+          -17.3314,
+          0.0
+        ],
+        "max": [
+          -33.3944,
+          -15.023,
+          2.6118
+        ]
+      },
+      "role": "Reusable broad oak with a teal canopy (canopy bottom ~3.8 m)."
+    },
+    {
+      "placement_id": "EFR_Place_TreeOak_005",
+      "asset_id": "EFR_TreeOak_001",
+      "instance_name": "EFR_TreeOak_005",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -23.8,
+        -8.6,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        300.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.6849,
+      "dimensions_m": [
+        5.7294,
+        5.8224,
+        7.5392
+      ],
+      "footprint_world": {
+        "min": [
+          -26.4983,
+          -11.1798,
+          0.0
+        ],
+        "max": [
+          -20.7689,
+          -5.3574,
+          7.5392
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -24.977,
+          -9.6442,
+          0.0
+        ],
+        "max": [
+          -22.6686,
+          -7.3944,
+          2.6118
+        ]
+      },
+      "role": "Reusable broad oak with a teal canopy (canopy bottom ~3.8 m)."
+    },
+    {
+      "placement_id": "EFR_Place_TreePine_001",
+      "asset_id": "EFR_TreePine_001",
+      "instance_name": "EFR_TreePine_001",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -45.0,
+        17.6,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 2.4311,
+      "dimensions_m": [
+        3.2882,
+        3.4516,
+        8.6
+      ],
+      "footprint_world": {
+        "min": [
+          -46.5941,
+          15.8563,
+          0.0
+        ],
+        "max": [
+          -43.3059,
+          19.3079,
+          8.6
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -46.5941,
+          15.8563,
+          0.0
+        ],
+        "max": [
+          -43.3059,
+          19.3079,
+          2.645
+        ]
+      },
+      "role": "Reusable dark spruce with drooping tiers (lowest tier ~1.6 m)."
+    },
+    {
+      "placement_id": "EFR_Place_TreePine_002",
+      "asset_id": "EFR_TreePine_001",
+      "instance_name": "EFR_TreePine_002",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -31.0,
+        17.4,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        40.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 2.4527,
+      "dimensions_m": [
+        3.4308,
+        3.3602,
+        8.6
+      ],
+      "footprint_world": {
+        "min": [
+          -32.7097,
+          15.7872,
+          0.0
+        ],
+        "max": [
+          -29.2789,
+          19.1474,
+          8.6
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -32.7097,
+          15.7872,
+          0.0
+        ],
+        "max": [
+          -29.2789,
+          19.1474,
+          2.645
+        ]
+      },
+      "role": "Reusable dark spruce with drooping tiers (lowest tier ~1.6 m)."
+    },
+    {
+      "placement_id": "EFR_Place_TreePine_003",
+      "asset_id": "EFR_TreePine_001",
+      "instance_name": "EFR_TreePine_003",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -31.5,
+        -17.4,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        95.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 2.4469,
+      "dimensions_m": [
+        3.4393,
+        3.3379,
+        8.6
+      ],
+      "footprint_world": {
+        "min": [
+          -33.1675,
+          -19.0503,
+          0.0
+        ],
+        "max": [
+          -29.7282,
+          -15.7124,
+          8.6
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -33.1675,
+          -19.0503,
+          0.0
+        ],
+        "max": [
+          -29.7282,
+          -15.7124,
+          2.645
+        ]
+      },
+      "role": "Reusable dark spruce with drooping tiers (lowest tier ~1.6 m)."
+    },
+    {
+      "placement_id": "EFR_Place_TreePine_004",
+      "asset_id": "EFR_TreePine_001",
+      "instance_name": "EFR_TreePine_004",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -37.8,
+        -17.6,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        160.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 2.4741,
+      "dimensions_m": [
+        3.3524,
+        3.4028,
+        8.6
+      ],
+      "footprint_world": {
+        "min": [
+          -39.3919,
+          -19.3383,
+          0.0
+        ],
+        "max": [
+          -36.0395,
+          -15.9355,
+          8.6
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -39.3919,
+          -19.3383,
+          0.0
+        ],
+        "max": [
+          -36.0395,
+          -15.9355,
+          2.645
+        ]
+      },
+      "role": "Reusable dark spruce with drooping tiers (lowest tier ~1.6 m)."
+    },
+    {
+      "placement_id": "EFR_Place_TreePine_005",
+      "asset_id": "EFR_TreePine_001",
+      "instance_name": "EFR_TreePine_005",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -22.7,
+        -4.6,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        250.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 2.4741,
+      "dimensions_m": [
+        3.4028,
+        3.3524,
+        8.6
+      ],
+      "footprint_world": {
+        "min": [
+          -24.3645,
+          -6.1919,
+          0.0
+        ],
+        "max": [
+          -20.9617,
+          -2.8395,
+          8.6
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -24.3645,
+          -6.1919,
+          0.0
+        ],
+        "max": [
+          -20.9617,
+          -2.8395,
+          2.645
+        ]
+      },
+      "role": "Reusable dark spruce with drooping tiers (lowest tier ~1.6 m)."
+    },
+    {
+      "placement_id": "EFR_Place_TreeTwist_001",
+      "asset_id": "EFR_TreeTwist_001",
+      "instance_name": "EFR_TreeTwist_001",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -39.0,
+        6.6,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        30.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.1918,
+      "dimensions_m": [
+        3.4652,
+        3.2465,
+        5.9143
+      ],
+      "footprint_world": {
+        "min": [
+          -40.8005,
+          5.1278,
+          0.0
+        ],
+        "max": [
+          -37.3353,
+          8.3743,
+          5.9143
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -39.8427,
+          5.7573,
+          0.0
+        ],
+        "max": [
+          -38.1573,
+          7.4427,
+          2.7943
+        ]
+      },
+      "role": "Reusable twisted tree with purple leaves and a hanging lantern."
+    },
+    {
+      "placement_id": "EFR_Place_TreeTwist_002",
+      "asset_id": "EFR_TreeTwist_001",
+      "instance_name": "EFR_TreeTwist_002",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -32.4,
+        -5.6,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        200.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.1316,
+      "dimensions_m": [
+        3.5265,
+        3.1479,
+        5.9143
+      ],
+      "footprint_world": {
+        "min": [
+          -34.0663,
+          -7.2741,
+          0.0
+        ],
+        "max": [
+          -30.5398,
+          -4.1262,
+          5.9143
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -33.1535,
+          -6.3535,
+          0.0
+        ],
+        "max": [
+          -31.6465,
+          -4.7558,
+          2.7943
+        ]
+      },
+      "role": "Reusable twisted tree with purple leaves and a hanging lantern."
+    },
+    {
+      "placement_id": "EFR_Place_TreeTwist_003",
+      "asset_id": "EFR_TreeTwist_001",
+      "instance_name": "EFR_TreeTwist_003",
+      "source_key": "E_forest",
+      "category": "vegetation",
+      "position": [
+        -24.5,
+        -16.6,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        120.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.1918,
+      "dimensions_m": [
+        3.2465,
+        3.4652,
+        5.9143
+      ],
+      "footprint_world": {
+        "min": [
+          -26.2743,
+          -18.4005,
+          0.0
+        ],
+        "max": [
+          -23.0278,
+          -14.9353,
+          5.9143
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -25.3427,
+          -17.4427,
+          0.0
+        ],
+        "max": [
+          -23.6573,
+          -15.7573,
+          2.7943
+        ]
+      },
+      "role": "Reusable twisted tree with purple leaves and a hanging lantern."
+    },
+    {
+      "placement_id": "EFR_Place_WalkNorth_001",
+      "asset_id": "EFR_WalkNorth_001",
+      "instance_name": "EFR_WalkNorth_001",
+      "source_key": "E_forest",
+      "category": "architecture",
+      "position": [
+        -30.8,
+        12.5,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        180.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 6.9303,
+      "dimensions_m": [
+        13.6054,
+        2.62,
+        0.8
+      ],
+      "footprint_world": {
+        "min": [
+          -37.6,
+          11.19,
+          0.0
+        ],
+        "max": [
+          -23.9946,
+          13.81,
+          0.8
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -37.6,
+          11.19,
+          0.0
+        ],
+        "max": [
+          -23.9946,
+          13.81,
+          0.8
+        ]
+      },
+      "role": "North boardwalk from the NW side-bridge landing to the lookout ramp; the pond bridge joins from the south at x = -31."
+    },
+    {
+      "placement_id": "EFR_Place_WalkPondSpur_001",
+      "asset_id": "EFR_WalkPondSpur_001",
+      "instance_name": "EFR_WalkPondSpur_001",
+      "source_key": "E_forest",
+      "category": "architecture",
+      "position": [
+        -31.0,
+        2.975,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.6432,
+      "dimensions_m": [
+        2.56,
+        2.0554,
+        0.72
+      ],
+      "footprint_world": {
+        "min": [
+          -32.28,
+          1.9446,
+          0.0
+        ],
+        "max": [
+          -29.72,
+          4.0,
+          0.72
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -32.28,
+          1.9446,
+          0.0
+        ],
+        "max": [
+          -29.72,
+          4.0,
+          0.72
+        ]
+      },
+      "role": "Spur from the main road to the pond bridge."
+    },
+    {
+      "placement_id": "EFR_Place_WalkSouthSpur_001",
+      "asset_id": "EFR_WalkSouthSpur_001",
+      "instance_name": "EFR_WalkSouthSpur_001",
+      "source_key": "E_forest",
+      "category": "architecture",
+      "position": [
+        -28.0,
+        -6.675,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 4.9084,
+      "dimensions_m": [
+        2.62,
+        9.4554,
+        0.8
+      ],
+      "footprint_world": {
+        "min": [
+          -29.31,
+          -11.4,
+          0.0
+        ],
+        "max": [
+          -26.69,
+          -1.9446,
+          0.8
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -29.31,
+          -11.4,
+          0.0
+        ],
+        "max": [
+          -26.69,
+          -1.9446,
+          0.8
+        ]
+      },
+      "role": "Spur from the main road down to the south boardwalk (closes the south loop)."
+    },
+    {
+      "placement_id": "EFR_Place_WalkSouth_001",
+      "asset_id": "EFR_WalkSouth_001",
+      "instance_name": "EFR_WalkSouth_001",
+      "source_key": "E_forest",
+      "category": "architecture",
+      "position": [
+        -32.0,
+        -12.5,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 8.1119,
+      "dimensions_m": [
+        16.0054,
+        2.62,
+        0.8
+      ],
+      "footprint_world": {
+        "min": [
+          -40.0,
+          -13.81,
+          0.0
+        ],
+        "max": [
+          -23.9946,
+          -11.19,
+          0.8
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -40.0,
+          -13.81,
+          0.0
+        ],
+        "max": [
+          -23.9946,
+          -11.19,
+          0.8
+        ]
+      },
+      "role": "South boardwalk from the rest spot to the SW side-bridge landing; the south spur joins from the north at x = -28."
+    },
+    {
+      "placement_id": "EFR_Place_WalkWest_001",
+      "asset_id": "EFR_WalkWest_001",
+      "instance_name": "EFR_WalkWest_001",
+      "source_key": "E_forest",
+      "category": "architecture",
+      "position": [
+        -44.4,
+        -1.825,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "forward_axis": "+Y",
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 7.9339,
+      "dimensions_m": [
+        2.62,
+        15.65,
+        0.8
+      ],
+      "footprint_world": {
+        "min": [
+          -45.71,
+          -9.65,
+          0.0
+        ],
+        "max": [
+          -43.09,
+          6.0,
+          0.8
+        ]
+      },
+      "footprint_low_world": {
+        "min": [
+          -45.71,
+          -9.65,
+          0.0
+        ],
+        "max": [
+          -43.09,
+          6.0,
+          0.8
+        ]
+      },
+      "role": "West boardwalk behind the clock tower, from the lookout's south ramp to the rest spot."
+    }
+  ],
+  "motion_envelopes": [
+    {
+      "asset_id": "EFR_ClockTower_001",
+      "part_name": "EFR_ClockTower_001_HourHandPivot",
+      "gimmick_id": "G20",
+      "envelope_world": {
+        "min": [
+          -38.081,
+          -0.621,
+          7.475
+        ],
+        "max": [
+          -38.051,
+          0.619,
+          8.715
+        ]
+      },
+      "envelope_low_world": null
+    },
+    {
+      "asset_id": "EFR_ClockTower_001",
+      "part_name": "EFR_ClockTower_001_MinuteHandPivot",
+      "gimmick_id": "G20",
+      "envelope_world": {
+        "min": [
+          -38.047,
+          -0.931,
+          7.165
+        ],
+        "max": [
+          -38.011,
+          0.929,
+          9.025
+        ]
+      },
+      "envelope_low_world": null
+    },
+    {
+      "asset_id": "EFR_ClockTower_001",
+      "part_name": "EFR_ClockTower_001_BellPivot",
+      "gimmick_id": "G20",
+      "envelope_world": {
+        "min": [
+          -37.6502,
+          -0.361,
+          10.202
+        ],
+        "max": [
+          -36.4498,
+          0.359,
+          11.0025
+        ]
+      },
+      "envelope_low_world": null
+    },
+    {
+      "asset_id": "EFR_FaceTree_001",
+      "part_name": "EFR_FaceTree_001_BranchLPivot",
+      "gimmick_id": "G17",
+      "envelope_world": {
+        "min": [
+          -24.8708,
+          6.8821,
+          3.7026
+        ],
+        "max": [
+          -21.0832,
+          9.2894,
+          6.8807
+        ]
+      },
+      "envelope_low_world": null
+    },
+    {
+      "asset_id": "EFR_FaceTree_001",
+      "part_name": "EFR_FaceTree_001_EyeLPivot",
+      "gimmick_id": "G17",
+      "envelope_world": {
+        "min": [
+          -24.5777,
+          5.988,
+          2.87
+        ],
+        "max": [
+          -24.3433,
+          6.2361,
+          3.13
+        ]
+      },
+      "envelope_low_world": null
+    },
+    {
+      "asset_id": "EFR_FaceTree_001",
+      "part_name": "EFR_FaceTree_001_BranchRPivot",
+      "gimmick_id": "G17",
+      "envelope_world": {
+        "min": [
+          -29.3104,
+          4.1366,
+          3.9526
+        ],
+        "max": [
+          -25.5618,
+          6.7931,
+          7.1131
+        ]
+      },
+      "envelope_low_world": null
+    },
+    {
+      "asset_id": "EFR_FaceTree_001",
+      "part_name": "EFR_FaceTree_001_EyeRPivot",
+      "gimmick_id": "G17",
+      "envelope_world": {
+        "min": [
+          -25.1964,
+          5.7278,
+          2.87
+        ],
+        "max": [
+          -24.89,
+          5.8648,
+          3.13
+        ]
+      },
+      "envelope_low_world": null
+    },
+    {
+      "asset_id": "EFR_FaceTree_002",
+      "part_name": "EFR_FaceTree_002_BranchLPivot",
+      "gimmick_id": "G17",
+      "envelope_world": {
+        "min": [
+          -40.4364,
+          -7.9272,
+          3.7026
+        ],
+        "max": [
+          -36.926,
+          -5.1294,
+          6.8807
+        ]
+      },
+      "envelope_low_world": null
+    },
+    {
+      "asset_id": "EFR_FaceTree_002",
+      "part_name": "EFR_FaceTree_002_EyeLPivot",
+      "gimmick_id": "G17",
+      "envelope_world": {
+        "min": [
+          -36.4916,
+          -7.0952,
+          2.87
+        ],
+        "max": [
+          -36.188,
+          -6.9476,
+          3.13
+        ]
+      },
+      "envelope_low_world": null
+    },
+    {
+      "asset_id": "EFR_FaceTree_002",
+      "part_name": "EFR_FaceTree_002_BranchRPivot",
+      "gimmick_id": "G17",
+      "envelope_world": {
+        "min": [
+          -36.3173,
+          -10.8512,
+          3.9526
+        ],
+        "max": [
+          -32.6955,
+          -8.14,
+          7.1131
+        ]
+      },
+      "envelope_low_world": null
+    },
+    {
+      "asset_id": "EFR_FaceTree_002",
+      "part_name": "EFR_FaceTree_002_EyeRPivot",
+      "gimmick_id": "G17",
+      "envelope_world": {
+        "min": [
+          -35.8989,
+          -7.5259,
+          2.87
+        ],
+        "max": [
+          -35.6864,
+          -7.2604,
+          3.13
+        ]
+      },
+      "envelope_low_world": null
+    },
+    {
+      "asset_id": "EFR_BatFlock_001",
+      "part_name": "EFR_BatFlock_001_Bat01_WingLPivot",
+      "gimmick_id": "G19",
+      "envelope_world": {
+        "min": [
+          -27.8594,
+          -6.4145,
+          10.0642
+        ],
+        "max": [
+          -27.2074,
+          -6.0846,
+          10.8254
+        ]
+      },
+      "envelope_low_world": null
+    },
+    {
+      "asset_id": "EFR_BatFlock_001",
+      "part_name": "EFR_BatFlock_001_Bat01_WingRPivot",
+      "gimmick_id": "G19",
+      "envelope_world": {
+        "min": [
+          -28.2561,
+          -6.4527,
+          10.0642
+        ],
+        "max": [
+          -27.595,
+          -6.1427,
+          10.8277
+        ]
+      },
+      "envelope_low_world": null
+    },
+    {
+      "asset_id": "EFR_BatFlock_001",
+      "part_name": "EFR_BatFlock_001_Bat02_WingLPivot",
+      "gimmick_id": "G19",
+      "envelope_world": {
+        "min": [
+          -28.7335,
+          -4.8609,
+          10.3954
+        ],
+        "max": [
+          -28.4396,
+          -4.2021,
+          11.1567
+        ]
+      },
+      "envelope_low_world": null
+    },
+    {
+      "asset_id": "EFR_BatFlock_001",
+      "part_name": "EFR_BatFlock_001_Bat02_WingRPivot",
+      "gimmick_id": "G19",
+      "envelope_world": {
+        "min": [
+          -28.7708,
+          -5.2616,
+          10.3954
+        ],
+        "max": [
+          -28.456,
+          -4.6035,
+          11.159
+        ]
+      },
+      "envelope_low_world": null
+    },
+    {
+      "asset_id": "EFR_BatFlock_001",
+      "part_name": "EFR_BatFlock_001_Bat03_WingLPivot",
+      "gimmick_id": "G19",
+      "envelope_world": {
+        "min": [
+          -30.5077,
+          -6.0736,
+          9.8501
+        ],
+        "max": [
+          -29.8717,
+          -5.7049,
+          10.6113
+        ]
+      },
+      "envelope_low_world": null
+    },
+    {
+      "asset_id": "EFR_BatFlock_001",
+      "part_name": "EFR_BatFlock_001_Bat03_WingRPivot",
+      "gimmick_id": "G19",
+      "envelope_world": {
+        "min": [
+          -30.1493,
+          -6.219,
+          9.8501
+        ],
+        "max": [
+          -29.5407,
+          -5.8319,
+          10.6136
+        ]
+      },
+      "envelope_low_world": null
+    },
+    {
+      "asset_id": "EFR_BatFlock_001",
+      "part_name": "EFR_BatFlock_001_Bat04_WingLPivot",
+      "gimmick_id": "G19",
+      "envelope_world": {
+        "min": [
+          -30.5113,
+          -8.3908,
+          9.8715
+        ],
+        "max": [
+          -30.0138,
+          -7.8397,
+          10.6327
+        ]
+      },
+      "envelope_low_world": null
+    },
+    {
+      "asset_id": "EFR_BatFlock_001",
+      "part_name": "EFR_BatFlock_001_Bat04_WingRPivot",
+      "gimmick_id": "G19",
+      "envelope_world": {
+        "min": [
+          -30.2839,
+          -8.1132,
+          9.8715
+        ],
+        "max": [
+          -29.7566,
+          -7.5948,
+          10.635
+        ]
+      },
+      "envelope_low_world": null
+    },
+    {
+      "asset_id": "EFR_BatFlock_001",
+      "part_name": "EFR_BatFlock_001_Bat05_WingLPivot",
+      "gimmick_id": "G19",
+      "envelope_world": {
+        "min": [
+          -28.1533,
+          -8.2975,
+          10.403
+        ],
+        "max": [
+          -27.7412,
+          -7.7035,
+          11.1642
+        ]
+      },
+      "envelope_low_world": null
+    },
+    {
+      "asset_id": "EFR_BatFlock_001",
+      "part_name": "EFR_BatFlock_001_Bat05_WingRPivot",
+      "gimmick_id": "G19",
+      "envelope_world": {
+        "min": [
+          -28.311,
+          -7.9846,
+          10.403
+        ],
+        "max": [
+          -27.9098,
+          -7.3598,
+          11.1665
+        ]
+      },
+      "envelope_low_world": null
+    },
+    {
+      "asset_id": "EFR_BatFlock_001",
+      "part_name": "EFR_BatFlock_001_Motion",
+      "gimmick_id": "G19",
+      "envelope_world": {
+        "min": [
+          -31.6839,
+          -9.3839,
+          8.6103
+        ],
+        "max": [
+          -25.9161,
+          -3.6161,
+          12.4908
+        ]
+      },
+      "envelope_low_world": null
+    }
+  ],
+  "check_violations": []
+}
