@@ -44,7 +44,7 @@ from modeling.lib.scene import reset_scene, save_blend
 from modeling.meshy import finish, meshops, metrics
 
 KEY = "M08"
-NAME = "M08_FlyingWitch_001"  # the replacement target W04 #6 names for CCD_M08_FlyingWitchProxy_001 (in progress)
+NAME = "M08_FlyingWitch_001"  # the future_target of W04's placeholder CCD_M08_FlyingWitchProxy_001 (assets/manifest/C_candy.json)
 RECEIVED = PROJECT_ROOT / "assets" / "meshy" / "received.json"
 BLEND = PROJECT_ROOT / "blender" / KEY / f"{KEY}.blend"
 TEX_DIR = PROJECT_ROOT / "blender" / KEY / "textures"
@@ -503,13 +503,15 @@ def manifest(row: dict, checks: dict, textures: dict) -> dict:
                 "replaces_placeholder": {
                     "manifest": "assets/manifest/C_candy.json",
                     "asset_id": "CCD_M08_FlyingWitchProxy_001",
-                    "status": "named by W04 #6 (in progress; not on main on 2026-10-31). Confirm against main in P2.",
+                    "placed_under": "CCD_WitchPatrolLoop_001_CarrierPivot",
+                    "status": "W04 #6 (PR #36): the placeholder's replacement.future_target is this asset",
                 },
                 "notes": (
                     "Finished Meshy visual for the VisualRoot of the flying witch (Spec 6.3) on the G11 patrol loop "
                     "above C_candy; it replaces W04's rider placeholder in P2 (after W08). One static piece (witch, "
                     "broom, cat bag), no rig. origin_world is the asset-local origin: the flight centre on the broom "
-                    "axis; put it on the patrol path and point +Y (Resonite +Z) along the path tangent. The broom tip "
+                    "axis; put it on the patrol path (W04: the CarrierPivot of CCD_WitchPatrolLoop_001, waypoint 0 "
+                    "[43.2, 0, 10.2], rotation 0) and point +Y (Resonite +Z) along the path tangent. The broom tip "
                     f"rises {w09['pitch_deg']} deg (W09 axis); keep it as the pose. Trails, glow and motion are "
                     "Resonite-side (G11). No emission is baked into the albedo; no collider is part of this visual."
                 ),
