@@ -101,14 +101,17 @@ M02: 三角形 30,792、頂点 27,007、材質 1、描画の区切り 1、画像
 
 ### 5.3 実測（`review/p2_meshy/live_checks.json`、`modeling/p2_meshy/verify_live.py`）
 
+期待値は実測から求めず、データ（W07 の `review/overview/checks.json` の `frame_origin_world`、`received.json` の `placement_hint`、アセット一覧）から求める（GPT のレビューの指摘で、親ごと動いた状態を成功と判定しないように直した。10 章）。
+
 | 検査 | 結果 |
 |---|---|
+| 仮モデルの見た目の Slot の位置 | `_Body` の世界の原点 (0, 1.6, 0) が、W07 の `frame_origin_world` と差 0.0 m |
 | 外接箱 | 世界で x -3.1011〜3.1014、高さ 1.6001〜7.6001、z -2.9351〜2.935（6.2025 × 6.0 × 5.8701 m）。アセット一覧の寸法を `_Body` の位置と 180° で置いた値との差 0.0 m |
-| 正面 | 素材の前方は Resonite の (0, 0, -1)（南。スポーンの向き +Z の逆で、入口から顔が見える） |
-| 描画 | 仮モデルの本体と目印 3 つの `MeshRenderer.Enabled` が false、M02 は true。材質 `PBS_Metallic` 1 つに色の画像がある |
-| 取付位置 | `_EyeLightAttach` (0, 3.917, -2.676)、`_MouthReactionAttach` (0, 2.972, -2.806)、`_InteriorLightAttach` (0, 2.581, 2.409)。アセットの root から `pivot_local` の位置との差 0.0 m（差し替えの前と同じ） |
-| 当たり判定 | `APL_GiantJackProxy_001_Body_FixedCollision` に `MeshCollider` があり、`_Body` と同じメッシュの資産を参照する。M02 の下に当たり判定は無い |
-| 数 | A の Slot 173・Component 386（W08 の 166・379 に、M02 の宣言の Slot 7・Component 6 と自動の `AI_GeneratedContent` 1 を足した値と一致）。W08 の root の下は Slot 681・Component 1,619（W08 から +7・+7） |
+| 正面と鏡像 | 素材の前方（拡縮を含む変換で求めた向き）は Resonite の (0, 0, -1)（南。スポーンの向き +Z の逆で、入口から顔が見える）。祖先の拡縮はすべて正 |
+| 描画 | 仮モデルの本体と目印 3 つの `MeshRenderer.Enabled` が false。M02 は Slot と祖先が有効で、`MeshRenderer` が有効、同じ Slot の `StaticMesh` と、色の画像（URL のある `StaticTexture2D`）を持つ `PBS_Metallic` を参照する |
+| 取付位置 | `_EyeLightAttach` (0, 3.917, -2.676)、`_MouthReactionAttach` (0, 2.972, -2.806)、`_InteriorLightAttach` (0, 2.581, 2.409)。アセット一覧の `origin_world` と `pivot_local` の位置との差 0.0 m（差し替えの前と同じ） |
+| 当たり判定 | `APL_GiantJackProxy_001_Body_FixedCollision` が有効で `_Body` と同じ変換。`MeshCollider` が有効・`Static`・`CharacterCollider` で、同じ Slot の `StaticMesh`（`_Body` と同じメッシュの資産）を参照する。M02 の下に当たり判定は無い |
+| 数 | A の Slot 173・Component 386（W08 の 166・379 に、A のすべての差し替えの宣言（今は M02 だけ。Slot 7・Component 6 と自動の `AI_GeneratedContent` 1）を足した値と一致）。W08 の root の下は Slot 681・Component 1,619（W08 から +7・+7） |
 
 ID・部品名・可動部品は変えていない。`APL_GiantJackProxy_001` の名前（Proxy）は ID なので残した。
 
@@ -165,7 +168,23 @@ ID・部品名・可動部品は変えていない。`APL_GiantJackProxy_001` �
 - `A_plaza`（W02）と `M02`（W09-M02）の所有ファイルは変えていない。`.blend` を作り直して変わった追跡中の `.blend`・確認画像・`assets/manifest/M02.json`（`export_result` が `unexported` に戻る）はコミットしていない（形は変えていない）
 - `docs/conventions.md` §2・§7.6 と `AGENTS.md` に、キー `p2_meshy` と差し替えの手順・state を足した
 
-## 10. Resonite で未確認の項目
+## 10. GPT のレビュー（確認事項 7）
+
+- 起動: `codex exec --sandbox read-only -C <worktree> -o <出力> "<依頼文>" < /dev/null`（codex-cli 0.166.0、モデル gpt-6-astra）。対象は PR #45 の `fd6b0b0`。Resonite には接続させず、checkout も変更させていない。観点は、宣言の正しさ、diff の対象と収束、実測の検査、W08 のファイルの修正、テストの採用基準の 5 つ
+- 結果: 実測の検査に Major 4 件・Minor 1 件、テストに Minor 1 件。宣言・diff・W08 の修正は指摘なし。全文は PR #45 のコメント
+
+| # | 重大度 | 指摘 | 採否 | 対応 |
+|---|---|---|---|---|
+| 1 | Major | 期待値を実測した親から求めるので、仮モデルごと動いても成功する | 採用 | 後続の子も受け入れの証拠に使う検査で、誤った状態を成功と報告するため。`frame_origin_world`・`placement_hint`・アセット一覧の `origin_world` から求めるように直した（祖先の回転を外接箱の期待値に入れていなかった点も、同じ直しで解消） |
+| 2 | Major | 負の拡縮で正面が反転しても成功する | 採用 | 正面を拡縮を含む変換で求め、祖先の拡縮がすべて正であることを確かめる |
+| 3 | Major | Slot が無効、`MeshRenderer` の参照が切れていても成功する | 採用 | 祖先を含む有効、`MeshRenderer` → `StaticMesh`・材質 → 色の画像の参照をたどる |
+| 4 | Major | 当たり判定が無効・設定違い・参照切れ・位置ずれでも成功する | 採用 | `FixedCollision` の有効・変換、`MeshCollider` の有効・`Type`・`CharacterCollider`・参照を確かめる |
+| 5 | Minor | 同じ地区に 2 素材あると数の検査を飛ばす | 採用 | 後続の M01 で A に 2 素材目が入るため。地区ごとに、すべての差し替えの宣言の数を足して比べる（`check_counts`） |
+| 6 | Minor | 検査の誤判定をテストの採用基準の L として扱っている | 採用 | 「失敗を成功と報告する」は S。`tests/test_p2_meshy_verify.py` に、正しい状態で通る例と、1〜5 の守りの代表 1 件ずつ（計 6 件）を足し、各守りを外すと失敗することを確かめた |
+
+直した検査で実際のワールドを観察し直し、すべて合格した（`review/p2_meshy/live_checks.json`）。ワールドへの書き込みは無い。
+
+## 11. Resonite で未確認の項目
 
 - 保存・再読込の後の状態（資産の URL が `resdb:///` に変わった後の再 apply、M02 の画像と光源が保存されるか）。P4
 - VR での見え方、二人以上

@@ -10,6 +10,19 @@
       "meshy_id": "M02",
       "visual_root": "Root/HalloweenMagicalCarnival/A_plaza/APL_GiantJackProxy_001/APL_GiantJackProxy_001_Body",
       "bundle": "exports/p2_meshy/M02-20261031T164338Z",
+      "visual_root_world": {
+        "live": [
+          0.0,
+          1.6,
+          0.0
+        ],
+        "expected": [
+          0.0,
+          1.6,
+          0.0
+        ],
+        "diff_m": 0.0
+      },
       "bounds_world": {
         "live": {
           "min": [
@@ -44,7 +57,7 @@
       },
       "front": {
         "live": [
-          -0.0,
+          0.0,
           0.0,
           -1.0
         ],
@@ -54,10 +67,6 @@
           -1.0
         ],
         "diff": 0.0
-      },
-      "material": {
-        "pbs_metallic": 1,
-        "albedo_texture_set": true
       },
       "renderers_enabled": {
         "APL_GiantJackProxy_001_Body": false,
@@ -112,25 +121,33 @@
       ],
       "fixed_collision": {
         "slot": "APL_GiantJackProxy_001_Body_FixedCollision",
-        "mesh_collider": true,
+        "exists": true,
+        "active": true,
+        "same_transform_as_visual_root": true,
+        "collider_enabled": true,
+        "static_character_collider": true,
+        "uses_own_static_mesh": true,
         "same_mesh_as_visual_root": true
       },
       "colliders_under_finished_asset": [],
-      "counts": {
-        "district_live_slots": 173,
-        "district_live_components": 386,
-        "w08_live": [
-          166,
-          379
-        ],
-        "replacement_declared": {
-          "slots": 7,
-          "components": 6,
-          "auto_ai_generated_content": 1
-        }
-      },
       "problems": []
     }
   ],
+  "district_counts": {
+    "A_plaza": {
+      "live": [
+        173,
+        386
+      ],
+      "expected": [
+        173,
+        386
+      ],
+      "replacements": [
+        "M02"
+      ],
+      "ok": true
+    }
+  },
   "ok": true
 }
