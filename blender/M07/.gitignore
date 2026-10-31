@@ -1,0 +1,2 @@
+# W09-M07: build.py が作るテクスチャ（3D モデルの一部としてコミットしない。docs/conventions.md §8）。M07.blend は上位の .gitignore が除く
+textures/
