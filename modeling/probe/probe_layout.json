@@ -1,0 +1,178 @@
+{
+  "schema_version": "1.0",
+  "area_id": "probe",
+  "key": "probe",
+  "name": "P0 Technical Probe Stage",
+  "theme": "Technical calibration lineup for 1m scale, UV asymmetry, and parent-child pivot hierarchy",
+  "bounds": {
+    "min": [
+      -3.0,
+      -2.0,
+      0.0
+    ],
+    "max": [
+      3.0,
+      2.0,
+      2.5
+    ]
+  },
+  "Anchor": {
+    "anchor_id": "P0_AsymSign_001",
+    "position": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "dimensions_m": [
+      1.0,
+      0.24,
+      1.4
+    ],
+    "orientation_deg": 0.0,
+    "role": "Central UV and orientation calibration signboard"
+  },
+  "Circulation": {
+    "primary_path_id": "P0_Front_Walk_001",
+    "min_walk_width_m": 2.5,
+    "entry_points": [
+      [
+        -2.5,
+        -1.5,
+        0.0
+      ],
+      [
+        2.5,
+        -1.5,
+        0.0
+      ]
+    ],
+    "loop_description": "Front viewing corridor along y = -1.5m facing +Y"
+  },
+  "Framing": {
+    "left_edge": "P0_MeterRef_001 at x = -1.5m",
+    "right_edge": "P0_PivotGate_001 at x = +1.5m",
+    "focal_target": "P0_AsymSign_001 at x = 0.0m",
+    "view_cone_deg": 60.0
+  },
+  "Story_Cluster": [
+    {
+      "cluster_id": "P0_Cluster_Calibration",
+      "center": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "radius_m": 2.5,
+      "intent": "Verify 1m dimensions, texture UV orientation, and hinge rotation pivot",
+      "asset_ids": [
+        "P0_MeterRef_001",
+        "P0_AsymSign_001",
+        "P0_PivotGate_001"
+      ]
+    }
+  ],
+  "Common_Placement": [],
+  "Hero_or_Gimmick": {
+    "asset_id": "P0_PivotGate_001",
+    "motion_roots": [
+      "P0_PivotGate_001_Hinge"
+    ],
+    "visual_roots": [
+      "P0_PivotGate_001_Post",
+      "P0_PivotGate_001_Leaf"
+    ],
+    "attachment_points": [
+      "P0_PivotGate_001_Hook"
+    ],
+    "interaction_notes": "Gate leaf rotates around P0_PivotGate_001_Hinge (+Z axis) without shifting post."
+  },
+  "Exclusions": [
+    {
+      "zone_id": "P0_Excl_CameraFront",
+      "bounds": {
+        "min": [
+          -2.5,
+          -2.0,
+          0.0
+        ],
+        "max": [
+          2.5,
+          -0.6,
+          2.0
+        ]
+      },
+      "reason": "Keep front viewing corridor unobstructed for review cameras."
+    }
+  ],
+  "placements": [
+    {
+      "placement_id": "P0_Place_MeterRef_001",
+      "asset_id": "P0_MeterRef_001",
+      "source_key": "probe",
+      "category": "probe",
+      "position": [
+        -1.5,
+        0.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.75
+    },
+    {
+      "placement_id": "P0_Place_AsymSign_001",
+      "asset_id": "P0_AsymSign_001",
+      "source_key": "probe",
+      "category": "probe",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.65
+    },
+    {
+      "placement_id": "P0_Place_PivotGate_001",
+      "asset_id": "P0_PivotGate_001",
+      "source_key": "probe",
+      "category": "probe",
+      "position": [
+        1.5,
+        0.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.75
+    }
+  ]
+}

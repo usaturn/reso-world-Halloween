@@ -1,0 +1,290 @@
+{
+  "schema_version": "1.0",
+  "key": "probe",
+  "updated_at": "2026-10-31T00:00:00Z",
+  "assets": [
+    {
+      "asset_id": "P0_MeterRef_001",
+      "key": "probe",
+      "category": "probe",
+      "area_id": "probe",
+      "collection": "probe",
+      "blend_file": "blender/probe/probe.blend",
+      "script_file": "modeling/probe/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -1.5,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 1.0,
+        "depth": 1.0,
+        "height": 1.0
+      },
+      "bounds_local": {
+        "min": [
+          -0.5,
+          -0.5,
+          0.0
+        ],
+        "max": [
+          0.5,
+          0.5,
+          1.0
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "P0_MeterRef_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "P0_MeterRef_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "P0_MeterRef_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_P0_MeterRef"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 36,
+        "vertices": 24,
+        "materials_count": 1,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "verified_resonite",
+        "bundle_dir": "exports/probe/bundle",
+        "apply_plan": "exports/probe/bundle/model.apply.json",
+        "report_file": "exports/probe/bundle/report.json"
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "1m x 1m x 1m P0 scale and axis reference block.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "P0_AsymSign_001",
+      "key": "probe",
+      "category": "probe",
+      "area_id": "probe",
+      "collection": "probe",
+      "blend_file": "blender/probe/probe.blend",
+      "script_file": "modeling/probe/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 1.0,
+        "depth": 0.24,
+        "height": 1.4
+      },
+      "bounds_local": {
+        "min": [
+          -0.5,
+          -0.12,
+          0.0
+        ],
+        "max": [
+          0.5,
+          0.12,
+          1.4
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "P0_AsymSign_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "P0_AsymSign_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "P0_AsymSign_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_P0_AsymSign"
+      ],
+      "textures": [
+        "blender/probe/textures/p0_asym_test.png"
+      ],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 48,
+        "vertices": 32,
+        "materials_count": 1,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "verified_resonite",
+        "bundle_dir": "exports/probe/bundle",
+        "apply_plan": "exports/probe/bundle/model.apply.json",
+        "report_file": "exports/probe/bundle/report.json"
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Asymmetric UV and texture orientation test signboard.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "P0_PivotGate_001",
+      "key": "probe",
+      "category": "probe",
+      "area_id": "probe",
+      "collection": "probe",
+      "blend_file": "blender/probe/probe.blend",
+      "script_file": "modeling/probe/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        1.5,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 1.0,
+        "depth": 0.35,
+        "height": 1.3
+      },
+      "bounds_local": {
+        "min": [
+          -0.5,
+          -0.12,
+          0.0
+        ],
+        "max": [
+          0.5,
+          0.2353,
+          1.3
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "P0_PivotGate_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "P0_PivotGate_001_Post",
+          "role": "static_part",
+          "parent_part": "P0_PivotGate_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "P0_PivotGate_001_Hinge",
+          "role": "motion_root",
+          "parent_part": "P0_PivotGate_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            -0.4,
+            0.0,
+            0.1
+          ]
+        },
+        {
+          "part_id": "P0_PivotGate_001_Leaf",
+          "role": "visual_root",
+          "parent_part": "P0_PivotGate_001_Hinge",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "P0_PivotGate_001_Hook",
+          "role": "attachment_point",
+          "parent_part": "P0_PivotGate_001_Leaf",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.72,
+            0.0,
+            0.88
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "P0_PivotGate_001",
+        "motion_roots": [
+          "P0_PivotGate_001_Hinge"
+        ],
+        "visual_roots": [
+          "P0_PivotGate_001_Post",
+          "P0_PivotGate_001_Leaf"
+        ],
+        "attachment_points": [
+          "P0_PivotGate_001_Hook"
+        ]
+      },
+      "materials": [
+        "MAT_P0_GateIron",
+        "MAT_P0_GateLeaf"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 96,
+        "vertices": 64,
+        "materials_count": 2,
+        "objects_count": 5
+      },
+      "export_result": {
+        "status": "verified_resonite",
+        "bundle_dir": "exports/probe/bundle",
+        "apply_plan": "exports/probe/bundle/model.apply.json",
+        "report_file": "exports/probe/bundle/report.json"
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Parent-child hierarchy and hinge pivot gate assembly.",
+        "future_target": null
+      }
+    }
+  ]
+}

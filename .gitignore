@@ -7,3 +7,9 @@ __pycache__/
 .superpowers/
 .worktrees/
 tmp/
+*.blend1
+*.blend2
+exports/**/*.apply.json
+exports/**/*.mesh.json
+exports/**/tex_*.png
+

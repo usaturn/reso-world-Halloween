@@ -19,8 +19,14 @@ Use `resoloop` as the only mutation interface for Resonite content in this proje
 ## このプロジェクト固有
 
 - テスト: このディレクトリで `uv run pytest` を実行する
-- ワールド: reso-world-Halloween（Halloween Magical Carnival）。所有キーと所有ルートスロットは、ワールドの設計が決まったらここに書く
-- state ファイル: `flux/resoloop.flux.json` の `worldState` を既定とする。ワールドごとに分ける場合はここに書く
+- 検査コマンド（W00 で定義）:
+  - 配置データ・アセット一覧の検査: `uv run python tools/check_data.py`（キー指定は `--key <key>`）
+  - `.blend` の検査: `uv run python tools/check_blend.py`（キー指定は `--key <key>`）
+- 再生成コマンド（W00 で定義）: `resoloop blender run modeling/<key>/build.py --json`
+- ワールド: reso-world-Halloween（Halloween Magical Carnival）
+  - 所有キー: `probe`（W00）、`world`・`common`（W01）、`A_plaza`（W02）、`B_mansion`（W03）、`C_candy`（W04）、`D_amusement`（W05）、`E_forest`（W06）、`overview`（W07）
+  - 詳細な座標・命名・ディレクトリ規約は `docs/conventions.md`、環境情報は `docs/environment.md` を参照
+- state ファイル: `flux/resoloop.flux.json` の `worldState`（`.resoloop/state/reso_world_halloween.json`）を既定とする。P0 小規模検証では `.resoloop/state/p0_probe_test.json` を使い、テスト用の `ResoLoop_Test_P0_Probe` スロット配下のみを操作する
 - リポジトリ: `usaturn/reso-world-Halloween`（公開、remote は `origin`、統合の基準は `main`）。公開なので、秘密情報と利用者の個人情報をコミットしない
 - 仕様と進め方: 親 Issue #1（https://github.com/usaturn/reso-world-Halloween/issues/1）。子 Issue を担当するときは、#1 の「子 Issue の進め方」に従う
 - コンセプトアート: `concept_art/`。雰囲気の参考で、寸法図ではない。#1 の仕様と配置データを優先する
