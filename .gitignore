@@ -12,4 +12,16 @@ tmp/
 exports/**/*.apply.json
 exports/**/*.mesh.json
 exports/**/tex_*.png
-
+# 3D モデルはコミットしない（2026-10-31 の利用者の指示。AGENTS.md）。既に追跡している .blend には効かない
+*.blend
+*.glb
+*.gltf
+*.fbx
+*.obj
+*.stl
+*.ply
+*.dae
+*.usd
+*.usda
+*.usdc
+*.usdz

@@ -186,7 +186,9 @@ resoloop blender export blender/<key>/<key>.blend \
 ## 8. Git 管理とファイルサイズ制限
 
 - 1 ファイルあたり **50 MB 未満** を厳守する（GitHub の 100 MB 制限に対する安全マージン）。
-- `.blend` ファイル（`blender/<key>/*.blend`）および確認画像（`review/<key>/*.png`）は Git にコミットする。
+- 確認画像（`review/<key>/*.png`）は Git にコミットする。
+- 3D モデル（`.blend`、GLB・glTF・FBX・OBJ などのモデルのファイル、export のバンドル）は Git にコミットしない（2026-10-31 の利用者の指示）。`.blend` は §7.1 の再生成コマンドで作り直す。Meshy の原本と仕上げた物は Git の外の `/workspaces/reso-world/worlds/reso-world-Halloween-meshy/` に置く。
+- 2026-10-31 より前にコミットした `blender/probe/probe.blend`・`blender/world/world.blend`・`blender/common/common.blend` は残すが、最新とは限らない。作り直して変わってもコミットせず、コミットの前に `git restore` で戻す。
 - `exports/` 配下は、検証・出力サマリである `exports/**/report.json` のみを Git にコミットし、`resoloop blender export` からいつでも再生成できるバンドル本体（`exports/**/*.apply.json`, `exports/**/*.mesh.json`, `exports/**/tex_*.png`）は `.gitignore` で除外する（リポジトリ肥大化防止、および `model.apply.json` 内の `"key": "<識別子>"` に対する Gitleaks `generic-api-key` 誤検出防止のため）。
 - Blender のバックアップファイル（`*.blend1`, `*.blend2`）は `.gitignore` で除外し、コミットしない。
 - テクスチャ画像は外部 PNG として保存したうえで `save_blend(..., pack_images=True)` により `.blend` 内にもパックし、参照パス切れを防ぐ。
