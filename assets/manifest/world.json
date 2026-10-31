@@ -1,0 +1,1030 @@
+{
+  "schema_version": "1.0",
+  "key": "world",
+  "updated_at": "2026-10-31T09:00:00Z",
+  "assets": [
+    {
+      "asset_id": "WLD_CentralIsland_001",
+      "key": "world",
+      "category": "terrain",
+      "area_id": "world",
+      "collection": "world",
+      "blend_file": "blender/world/world.blend",
+      "script_file": "modeling/world/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 37.0,
+        "depth": 37.0,
+        "height": 12.0
+      },
+      "bounds_local": {
+        "min": [
+          -18.5,
+          -18.5,
+          -12.0
+        ],
+        "max": [
+          18.5,
+          18.5,
+          0.0
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "WLD_CentralIsland_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "WLD_CentralIsland_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "WLD_CentralIsland_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_WLD_CliffRock",
+        "MAT_WLD_PlazaCobble"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 164,
+        "vertices": 88,
+        "materials_count": 2,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Central Area A floating island landmass (R=18.5m, top z=0.0m, tapered cliff down to z=-12.0m).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "WLD_NorthPlateau_001",
+      "key": "world",
+      "category": "terrain",
+      "area_id": "world",
+      "collection": "world",
+      "blend_file": "blender/world/world.blend",
+      "script_file": "modeling/world/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.0,
+        34.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 40.0,
+        "depth": 33.0,
+        "height": 15.5
+      },
+      "bounds_local": {
+        "min": [
+          -20.0,
+          -16.5,
+          -14.0
+        ],
+        "max": [
+          20.0,
+          16.5,
+          1.5
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "WLD_NorthPlateau_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "WLD_NorthPlateau_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "WLD_NorthPlateau_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_WLD_CliffRock",
+        "MAT_WLD_MansionSlate"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 68,
+        "vertices": 40,
+        "materials_count": 2,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "North Area B Haunted Mansion elevated plateau (center=(0,34,1.5), top walkable terrace at z=+1.5m).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "WLD_EastIsland_001",
+      "key": "world",
+      "category": "terrain",
+      "area_id": "world",
+      "collection": "world",
+      "blend_file": "blender/world/world.blend",
+      "script_file": "modeling/world/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        34.0,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 28.0,
+        "depth": 40.0,
+        "height": 11.0
+      },
+      "bounds_local": {
+        "min": [
+          -14.0,
+          -20.0,
+          -11.0
+        ],
+        "max": [
+          14.0,
+          20.0,
+          0.0
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "WLD_EastIsland_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "WLD_EastIsland_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "WLD_EastIsland_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_WLD_CliffRock",
+        "MAT_WLD_CandyPaving"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 68,
+        "vertices": 40,
+        "materials_count": 2,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "East Area C Candy Market Alley floating island wing (center=(34,0,0), top z=0.0m).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "WLD_SouthIsland_001",
+      "key": "world",
+      "category": "terrain",
+      "area_id": "world",
+      "collection": "world",
+      "blend_file": "blender/world/world.blend",
+      "script_file": "modeling/world/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.0,
+        -34.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 44.0,
+        "depth": 30.0,
+        "height": 11.5
+      },
+      "bounds_local": {
+        "min": [
+          -22.0,
+          -15.0,
+          -11.5
+        ],
+        "max": [
+          22.0,
+          15.0,
+          0.0
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "WLD_SouthIsland_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "WLD_SouthIsland_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "WLD_SouthIsland_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_WLD_CliffRock",
+        "MAT_WLD_AmusementPaving"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 68,
+        "vertices": 40,
+        "materials_count": 2,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "South Area D Trick Amusement & Entrance floating island wing (center=(0,-34,0), top z=0.0m).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "WLD_WestIsland_001",
+      "key": "world",
+      "category": "terrain",
+      "area_id": "world",
+      "collection": "world",
+      "blend_file": "blender/world/world.blend",
+      "script_file": "modeling/world/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -34.0,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 28.0,
+        "depth": 40.0,
+        "height": 11.5
+      },
+      "bounds_local": {
+        "min": [
+          -14.0,
+          -20.0,
+          -11.5
+        ],
+        "max": [
+          14.0,
+          20.0,
+          0.0
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "WLD_WestIsland_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "WLD_WestIsland_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "WLD_WestIsland_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_WLD_CliffRock",
+        "MAT_WLD_ForestMoss"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 68,
+        "vertices": 40,
+        "materials_count": 2,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "West Area E Witch's Forest floating island wing (center=(-34,0,0), top z=0.0m).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "WLD_CentralRingRoad_001",
+      "key": "world",
+      "category": "terrain",
+      "area_id": "world",
+      "collection": "world",
+      "blend_file": "blender/world/world.blend",
+      "script_file": "modeling/world/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 28.5,
+        "depth": 28.5,
+        "height": 0.12
+      },
+      "bounds_local": {
+        "min": [
+          -14.25,
+          -14.25,
+          0.0
+        ],
+        "max": [
+          14.25,
+          14.25,
+          0.12
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "WLD_CentralRingRoad_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "WLD_CentralRingRoad_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "WLD_CentralRingRoad_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_WLD_RingRoadStone",
+        "MAT_WLD_PlazaCobble"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 620,
+        "vertices": 320,
+        "materials_count": 2,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Central cobblestone plaza disc (diameter 22m) and 3.5m-wide Central Ring Road (outer diameter 29m) with 4 cardinal bridge aprons.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "WLD_NorthBridge_001",
+      "key": "world",
+      "category": "architecture",
+      "area_id": "world",
+      "collection": "world",
+      "blend_file": "blender/world/world.blend",
+      "script_file": "modeling/world/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.0,
+        17.25,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 4.0,
+        "depth": 21.86,
+        "height": 4.64
+      },
+      "bounds_local": {
+        "min": [
+          -2.0,
+          -3.11,
+          -1.8
+        ],
+        "max": [
+          2.0,
+          18.75,
+          2.84
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "WLD_NorthBridge_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "WLD_NorthBridge_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "WLD_NorthBridge_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_WLD_RingRoadStone",
+        "MAT_WLD_CliffRock",
+        "MAT_WLD_ParapetIron",
+        "MAT_WLD_BeaconGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 276,
+        "vertices": 184,
+        "materials_count": 4,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "4.0m-wide North Stone Arch Bridge & gentle ramp (slope 15.2 deg from z=0.0m to z=1.5m) with 1.15m safety handrails.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "WLD_EastBridge_001",
+      "key": "world",
+      "category": "architecture",
+      "area_id": "world",
+      "collection": "world",
+      "blend_file": "blender/world/world.blend",
+      "script_file": "modeling/world/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        17.25,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 28.11,
+        "depth": 4.0,
+        "height": 3.14
+      },
+      "bounds_local": {
+        "min": [
+          -3.11,
+          -2.0,
+          -1.8
+        ],
+        "max": [
+          25.0,
+          2.0,
+          1.34
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "WLD_EastBridge_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "WLD_EastBridge_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "WLD_EastBridge_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_WLD_RingRoadStone",
+        "MAT_WLD_CliffRock",
+        "MAT_WLD_ParapetIron",
+        "MAT_WLD_BeaconGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 276,
+        "vertices": 184,
+        "materials_count": 4,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "4.0m-wide East Festive Causeway Bridge and Candy Alley road spine with 1.15m safety handrails.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "WLD_SouthPromenade_001",
+      "key": "world",
+      "category": "architecture",
+      "area_id": "world",
+      "collection": "world",
+      "blend_file": "blender/world/world.blend",
+      "script_file": "modeling/world/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.0,
+        -30.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 9.02,
+        "depth": 32.36,
+        "height": 3.14
+      },
+      "bounds_local": {
+        "min": [
+          -4.51,
+          -16.5,
+          -1.8
+        ],
+        "max": [
+          4.51,
+          15.86,
+          1.34
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "WLD_SouthPromenade_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "WLD_SouthPromenade_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "WLD_SouthPromenade_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_WLD_RingRoadStone",
+        "MAT_WLD_CliffRock",
+        "MAT_WLD_ParapetIron",
+        "MAT_WLD_BeaconGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 420,
+        "vertices": 280,
+        "materials_count": 4,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "4.0m-wide South Grand Promenade, Causeway Bridge, and South Entrance Spawn Terrace (y=-44m) with 1.15m safety handrails.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "WLD_WestBridge_001",
+      "key": "world",
+      "category": "architecture",
+      "area_id": "world",
+      "collection": "world",
+      "blend_file": "blender/world/world.blend",
+      "script_file": "modeling/world/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -17.25,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 28.11,
+        "depth": 3.8,
+        "height": 3.14
+      },
+      "bounds_local": {
+        "min": [
+          -25.0,
+          -1.9,
+          -1.8
+        ],
+        "max": [
+          3.11,
+          1.9,
+          1.34
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "WLD_WestBridge_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "WLD_WestBridge_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "WLD_WestBridge_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_WLD_BridgeTimber",
+        "MAT_WLD_CliffRock",
+        "MAT_WLD_ParapetIron",
+        "MAT_WLD_BeaconGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 276,
+        "vertices": 184,
+        "materials_count": 4,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "3.8m-wide West Timber & Stone Viaduct Bridge and Forest road spine with 1.15m safety handrails.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "WLD_OuterLoopPaths_001",
+      "key": "world",
+      "category": "architecture",
+      "area_id": "world",
+      "collection": "world",
+      "blend_file": "blender/world/world.blend",
+      "script_file": "modeling/world/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 47.0302,
+        "depth": 47.0302,
+        "height": 2.9
+      },
+      "bounds_local": {
+        "min": [
+          -23.5151,
+          -23.5151,
+          -0.22
+        ],
+        "max": [
+          23.5151,
+          23.5151,
+          2.68
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "WLD_OuterLoopPaths_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "WLD_OuterLoopPaths_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "WLD_OuterLoopPaths_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_WLD_BridgeTimber",
+        "MAT_WLD_CliffRock",
+        "MAT_WLD_ParapetIron"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 912,
+        "vertices": 608,
+        "materials_count": 3,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Four 2.6m-wide diagonal inter-area bridges (NE, SE, SW, NW) with gentle ramps and 1.10m safety handrails.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "WLD_CliffSafetyWalls_001",
+      "key": "world",
+      "category": "architecture",
+      "area_id": "world",
+      "collection": "world",
+      "blend_file": "blender/world/world.blend",
+      "script_file": "modeling/world/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 95.24,
+        "depth": 95.24,
+        "height": 2.68
+      },
+      "bounds_local": {
+        "min": [
+          -47.62,
+          -47.62,
+          0.0
+        ],
+        "max": [
+          47.62,
+          47.62,
+          2.68
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "WLD_CliffSafetyWalls_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "WLD_CliffSafetyWalls_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "WLD_CliffSafetyWalls_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_WLD_CliffRock",
+        "MAT_WLD_ParapetIron"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 4800,
+        "vertices": 3200,
+        "materials_count": 2,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "1.15m-tall perimeter stone & iron safety guard walls along exposed cliff edges of all 5 island sections.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "WLD_FloatingIslets_001",
+      "key": "world",
+      "category": "sky_boundary",
+      "area_id": "world",
+      "collection": "world",
+      "blend_file": "blender/world/world.blend",
+      "script_file": "modeling/world/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 106.2,
+        "depth": 98.1763,
+        "height": 14.5
+      },
+      "bounds_local": {
+        "min": [
+          -53.2,
+          -48.9455,
+          -4.0
+        ],
+        "max": [
+          53.0,
+          49.2308,
+          10.5
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "WLD_FloatingIslets_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "WLD_FloatingIslets_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "WLD_FloatingIslets_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_WLD_CliffRock",
+        "MAT_WLD_BeaconGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 376,
+        "vertices": 220,
+        "materials_count": 2,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Four distant floating rock islets with glowing amber monolith beacons framing the horizon.",
+        "future_target": null
+      }
+    }
+  ]
+}

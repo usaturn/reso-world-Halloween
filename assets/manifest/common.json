@@ -1,0 +1,564 @@
+{
+  "schema_version": "1.0",
+  "key": "common",
+  "updated_at": "2026-10-31T09:00:00Z",
+  "assets": [
+    {
+      "asset_id": "CMN_StreetLamp_001",
+      "key": "common",
+      "category": "lighting",
+      "area_id": "common",
+      "collection": "common",
+      "blend_file": "blender/common/common.blend",
+      "script_file": "modeling/common/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -6.0,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 0.95,
+        "depth": 0.56,
+        "height": 3.42
+      },
+      "bounds_local": {
+        "min": [
+          -0.28,
+          -0.28,
+          0.0
+        ],
+        "max": [
+          0.67,
+          0.28,
+          3.42
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CMN_StreetLamp_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CMN_StreetLamp_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CMN_StreetLamp_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CMN_WarmStone",
+        "MAT_CMN_WroughtIron",
+        "MAT_CMN_AmberGlow",
+        "MAT_CMN_PumpkinOrange"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 436,
+        "vertices": 260,
+        "materials_count": 4,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Reusable wrought-iron Halloween carnival streetlamp (1 object, ground_center origin at z=0.0). Append via append_common_part(..., 'CMN_StreetLamp_001', ...).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CMN_Fence_001",
+      "key": "common",
+      "category": "architecture",
+      "area_id": "common",
+      "collection": "common",
+      "blend_file": "blender/common/common.blend",
+      "script_file": "modeling/common/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -3.2,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 3.04,
+        "depth": 0.3,
+        "height": 1.15
+      },
+      "bounds_local": {
+        "min": [
+          -1.52,
+          -0.15,
+          0.0
+        ],
+        "max": [
+          1.52,
+          0.15,
+          1.15
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CMN_Fence_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CMN_Fence_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CMN_Fence_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CMN_WarmStone",
+        "MAT_CMN_WroughtIron",
+        "MAT_CMN_PumpkinOrange",
+        "MAT_CMN_AmberGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 332,
+        "vertices": 226,
+        "materials_count": 4,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Reusable 3.0m decorative wrought-iron & stone-post fence section along X axis (ground_center origin at z=0.0).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CMN_Handrail_001",
+      "key": "common",
+      "category": "architecture",
+      "area_id": "common",
+      "collection": "common",
+      "blend_file": "blender/common/common.blend",
+      "script_file": "modeling/common/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.4,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 3.0,
+        "depth": 0.24,
+        "height": 1.15
+      },
+      "bounds_local": {
+        "min": [
+          -1.5,
+          -0.12,
+          0.0
+        ],
+        "max": [
+          1.5,
+          0.12,
+          1.15
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CMN_Handrail_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CMN_Handrail_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CMN_Handrail_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CMN_WarmStone",
+        "MAT_CMN_WarmWood",
+        "MAT_CMN_WroughtIron",
+        "MAT_CMN_AmberGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 216,
+        "vertices": 144,
+        "materials_count": 4,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Reusable 3.0m sturdy bridge & cliff safety handrail/balustrade section along X axis (height 1.15m, ground_center origin at z=0.0).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CMN_GarlandFlag_001",
+      "key": "common",
+      "category": "prop",
+      "area_id": "common",
+      "collection": "common",
+      "blend_file": "blender/common/common.blend",
+      "script_file": "modeling/common/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        4.2,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 3.7,
+        "depth": 0.3,
+        "height": 3.2
+      },
+      "bounds_local": {
+        "min": [
+          -1.85,
+          -0.15,
+          0.0
+        ],
+        "max": [
+          1.85,
+          0.15,
+          3.2
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CMN_GarlandFlag_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CMN_GarlandFlag_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CMN_GarlandFlag_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CMN_WroughtIron",
+        "MAT_CMN_FlagPurple",
+        "MAT_CMN_FlagGold",
+        "MAT_CMN_PumpkinOrange",
+        "MAT_CMN_AmberGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 548,
+        "vertices": 346,
+        "materials_count": 5,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Reusable 3.6m festive carnival twin-pole pennant garland & hanging lanterns along X axis (ground_center origin at z=0.0).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CMN_Bench_001",
+      "key": "common",
+      "category": "prop",
+      "area_id": "common",
+      "collection": "common",
+      "blend_file": "blender/common/common.blend",
+      "script_file": "modeling/common/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -4.2,
+        -2.5,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 1.76,
+        "depth": 0.57,
+        "height": 0.95
+      },
+      "bounds_local": {
+        "min": [
+          -0.88,
+          -0.28,
+          0.0
+        ],
+        "max": [
+          0.88,
+          0.29,
+          0.95
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CMN_Bench_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CMN_Bench_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CMN_Bench_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CMN_WroughtIron",
+        "MAT_CMN_WarmWood",
+        "MAT_CMN_PumpkinOrange"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 296,
+        "vertices": 192,
+        "materials_count": 3,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Reusable 1.8m carnival park bench with iron armrests and wooden slats (ground_center origin at z=0.0).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CMN_Lantern_001",
+      "key": "common",
+      "category": "lighting",
+      "area_id": "common",
+      "collection": "common",
+      "blend_file": "blender/common/common.blend",
+      "script_file": "modeling/common/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -1.2,
+        -2.5,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 0.48,
+        "depth": 0.4156,
+        "height": 0.78
+      },
+      "bounds_local": {
+        "min": [
+          -0.24,
+          -0.2078,
+          0.0
+        ],
+        "max": [
+          0.24,
+          0.2078,
+          0.78
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CMN_Lantern_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CMN_Lantern_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CMN_Lantern_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CMN_WroughtIron",
+        "MAT_CMN_AmberGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 112,
+        "vertices": 68,
+        "materials_count": 2,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Reusable 0.78m hexagonal glowing Halloween lantern with witch-hat cap (ground_center origin at z=0.0).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CMN_SmallPumpkin_001",
+      "key": "common",
+      "category": "prop",
+      "area_id": "common",
+      "collection": "common",
+      "blend_file": "blender/common/common.blend",
+      "script_file": "modeling/common/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        1.2,
+        -2.5,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 0.6656,
+        "depth": 0.6656,
+        "height": 0.64
+      },
+      "bounds_local": {
+        "min": [
+          -0.3328,
+          -0.3328,
+          0.0
+        ],
+        "max": [
+          0.3328,
+          0.3328,
+          0.64
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CMN_SmallPumpkin_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CMN_SmallPumpkin_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CMN_SmallPumpkin_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CMN_PumpkinOrange",
+        "MAT_CMN_PumpkinStem",
+        "MAT_CMN_AmberGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 260,
+        "vertices": 148,
+        "materials_count": 3,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Reusable 0.64m ribbed Jack-o'-Lantern small pumpkin prop facing -Y (ground_center origin at z=0.0).",
+        "future_target": null
+      }
+    }
+  ]
+}
