@@ -1,0 +1,5324 @@
+{
+  "schema_version": "1.0",
+  "key": "E_forest",
+  "updated_at": "2026-10-31",
+  "assets": [
+    {
+      "asset_id": "EFR_ClockTower_001",
+      "key": "E_forest",
+      "category": "gimmick",
+      "area_id": "E_forest",
+      "collection": "E_forest",
+      "blend_file": "blender/E_forest/E_forest.blend",
+      "script_file": "modeling/E_forest/build.py",
+      "version": "W06-1",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -38.5,
+        0.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -90.0
+      ],
+      "forward_axis_local": "+Y",
+      "up_axis": "+Z",
+      "unit": "m",
+      "dimensions_m": {
+        "width": 8.239,
+        "depth": 7.578,
+        "height": 14.0
+      },
+      "bounds_local": {
+        "min": [
+          -4.119,
+          -3.789,
+          0.0
+        ],
+        "max": [
+          4.12,
+          3.789,
+          14.0
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "EFR_ClockTower_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "EFR_ClockTower_001_Body",
+          "role": "visual_root",
+          "parent_part": "EFR_ClockTower_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "notes": "Placeholder body; the M07 finished model replaces this object only."
+        },
+        {
+          "part_id": "EFR_ClockTower_001_Dial",
+          "role": "visual_root",
+          "parent_part": "EFR_ClockTower_001",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.001,
+            0.364,
+            8.095
+          ],
+          "notes": "Dial placeholder centred on the clock axis. M07 has its own dial: hide or remove this object when M07 is in."
+        },
+        {
+          "part_id": "EFR_ClockTower_001_HourHandPivot",
+          "role": "motion_root",
+          "parent_part": "EFR_ClockTower_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.001,
+            0.419,
+            8.095
+          ],
+          "notes": "Hour hand rotation axis = clock axis."
+        },
+        {
+          "part_id": "EFR_ClockTower_001_HourHand",
+          "role": "visual_root",
+          "parent_part": "EFR_ClockTower_001_HourHandPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.001,
+            0.419,
+            8.095
+          ]
+        },
+        {
+          "part_id": "EFR_ClockTower_001_MinuteHandPivot",
+          "role": "motion_root",
+          "parent_part": "EFR_ClockTower_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.001,
+            0.459,
+            8.095
+          ],
+          "notes": "Minute hand rotation axis = clock axis."
+        },
+        {
+          "part_id": "EFR_ClockTower_001_MinuteHand",
+          "role": "visual_root",
+          "parent_part": "EFR_ClockTower_001_MinuteHandPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.001,
+            0.459,
+            8.095
+          ]
+        },
+        {
+          "part_id": "EFR_ClockTower_001_BellBracket",
+          "role": "static_part",
+          "parent_part": "EFR_ClockTower_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "notes": "Bell bracket in front of the belfry; kept when M07 replaces the body."
+        },
+        {
+          "part_id": "EFR_ClockTower_001_BellPivot",
+          "role": "motion_root",
+          "parent_part": "EFR_ClockTower_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.001,
+            1.45,
+            10.95
+          ],
+          "notes": "Bell hanging point."
+        },
+        {
+          "part_id": "EFR_ClockTower_001_Bell",
+          "role": "visual_root",
+          "parent_part": "EFR_ClockTower_001_BellPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.001,
+            1.45,
+            10.95
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "EFR_ClockTower_001",
+        "motion_roots": [
+          "EFR_ClockTower_001_HourHandPivot",
+          "EFR_ClockTower_001_MinuteHandPivot",
+          "EFR_ClockTower_001_BellPivot"
+        ],
+        "visual_roots": [
+          "EFR_ClockTower_001_Body",
+          "EFR_ClockTower_001_Dial",
+          "EFR_ClockTower_001_HourHand",
+          "EFR_ClockTower_001_MinuteHand",
+          "EFR_ClockTower_001_Bell"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_EFR_BellBronze",
+        "MAT_EFR_DialFace",
+        "MAT_EFR_FaceSocket",
+        "MAT_EFR_Gold",
+        "MAT_EFR_HandIron",
+        "MAT_EFR_Iron",
+        "MAT_EFR_Moss",
+        "MAT_EFR_PlankDark",
+        "MAT_EFR_TowerRock",
+        "MAT_EFR_TowerRoof",
+        "MAT_EFR_TowerStone",
+        "MAT_EFR_TowerWindow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 5056,
+        "vertices": 2768,
+        "materials_count": 12,
+        "objects_count": 10
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": true,
+        "modifiable": true,
+        "notes": "M07 magical clock tower placeholder: body, dial, hour and minute hands, bell (G20).",
+        "future_target": null
+      },
+      "replacement_slot": {
+        "meshy_id": "M07",
+        "visual_root_part": "EFR_ClockTower_001_Body",
+        "target_dimensions_m": [
+          8.239,
+          7.578,
+          14.0
+        ],
+        "target_bounds_local": {
+          "min": [
+            -4.119,
+            -3.789,
+            0.0
+          ],
+          "max": [
+            4.12,
+            3.789,
+            14.0
+          ]
+        },
+        "forward_axis": "+Y",
+        "origin": "ground_center (W09 decided.origin_source; M07 placed with scale 7.3828, yaw 180)",
+        "dial_centre_local": [
+          0.001,
+          0.364,
+          8.095
+        ],
+        "dial_outer_diameter_m": 2.288,
+        "keep_separate_parts": [
+          "EFR_ClockTower_001_HourHandPivot",
+          "EFR_ClockTower_001_HourHand",
+          "EFR_ClockTower_001_MinuteHandPivot",
+          "EFR_ClockTower_001_MinuteHand",
+          "EFR_ClockTower_001_BellBracket",
+          "EFR_ClockTower_001_BellPivot",
+          "EFR_ClockTower_001_Bell"
+        ],
+        "hide_on_replacement": [
+          "EFR_ClockTower_001_Dial"
+        ],
+        "source": "assets/meshy/received.json (row M07)",
+        "placeholder_bounds_local": {
+          "min": [
+            -4.119,
+            -3.789,
+            0.0
+          ],
+          "max": [
+            4.12,
+            3.789,
+            14.0
+          ]
+        },
+        "placeholder_dimensions_m": [
+          8.239,
+          7.578,
+          14.0
+        ]
+      },
+      "collider_policy": "separate_fixed_collision",
+      "gimmick_ids": [
+        "G20"
+      ],
+      "motion": [
+        {
+          "part_name": "EFR_ClockTower_001_HourHandPivot",
+          "visual_part": "EFR_ClockTower_001_HourHand",
+          "gimmick_id": "G20",
+          "motion_type": "rotation",
+          "pivot_local": [
+            0.001,
+            0.419,
+            8.095
+          ],
+          "pivot_world": [
+            -38.081,
+            -0.001,
+            8.095
+          ],
+          "axis": "-Y",
+          "axis_frame": "pivot local (Blender)",
+          "axis_world": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 360.0,
+            "unit": "deg"
+          },
+          "rest_pose": {
+            "position": [
+              0.001,
+              0.419,
+              8.095
+            ],
+            "rotation_euler_deg": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "envelope_world": {
+            "min": [
+              -38.081,
+              -0.621,
+              7.475
+            ],
+            "max": [
+              -38.051,
+              0.619,
+              8.715
+            ]
+          },
+          "envelope_low_world": null,
+          "notes": "Rest pose 12:00 (pointing +Z). Positive angle about the pivot's -Y axis = clockwise seen from the front. One turn per 12 h."
+        },
+        {
+          "part_name": "EFR_ClockTower_001_MinuteHandPivot",
+          "visual_part": "EFR_ClockTower_001_MinuteHand",
+          "gimmick_id": "G20",
+          "motion_type": "rotation",
+          "pivot_local": [
+            0.001,
+            0.459,
+            8.095
+          ],
+          "pivot_world": [
+            -38.041,
+            -0.001,
+            8.095
+          ],
+          "axis": "-Y",
+          "axis_frame": "pivot local (Blender)",
+          "axis_world": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 360.0,
+            "unit": "deg"
+          },
+          "rest_pose": {
+            "position": [
+              0.001,
+              0.459,
+              8.095
+            ],
+            "rotation_euler_deg": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "envelope_world": {
+            "min": [
+              -38.047,
+              -0.931,
+              7.165
+            ],
+            "max": [
+              -38.011,
+              0.929,
+              9.025
+            ]
+          },
+          "envelope_low_world": null,
+          "notes": "Rest pose 12:00. Clockwise = positive about -Y. One turn per hour; the bell can ring on the hour."
+        },
+        {
+          "part_name": "EFR_ClockTower_001_BellPivot",
+          "visual_part": "EFR_ClockTower_001_Bell",
+          "gimmick_id": "G20",
+          "motion_type": "oscillation",
+          "pivot_local": [
+            0.001,
+            1.45,
+            10.95
+          ],
+          "pivot_world": [
+            -37.05,
+            -0.001,
+            10.95
+          ],
+          "axis": "X",
+          "axis_frame": "pivot local (Blender)",
+          "axis_world": [
+            -0.0,
+            -1.0,
+            0.0
+          ],
+          "range": {
+            "min": -25.0,
+            "max": 25.0,
+            "unit": "deg"
+          },
+          "rest_pose": {
+            "position": [
+              0.001,
+              1.45,
+              10.95
+            ],
+            "rotation_euler_deg": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "envelope_world": {
+            "min": [
+              -37.6502,
+              -0.361,
+              10.202
+            ],
+            "max": [
+              -36.4498,
+              0.359,
+              11.0025
+            ]
+          },
+          "envelope_low_world": null,
+          "notes": "Swings front-back about the hanging point when the clock strikes; rest pose hangs straight down."
+        }
+      ],
+      "attachment_details": [
+        {
+          "name": "EFR_ClockTower_001_HourHandPivot",
+          "purpose": "Clock axis (hands, chime sound source).",
+          "local_position": [
+            0.001,
+            0.419,
+            8.095
+          ],
+          "world_position": [
+            -38.081,
+            -0.001,
+            8.095
+          ],
+          "gimmick_or_interaction_id": "G20"
+        },
+        {
+          "name": "EFR_ClockTower_001_BellPivot",
+          "purpose": "Bell ring sound and sparkle effect.",
+          "local_position": [
+            0.001,
+            1.45,
+            10.95
+          ],
+          "world_position": [
+            -37.05,
+            -0.001,
+            10.95
+          ],
+          "gimmick_or_interaction_id": "G20"
+        }
+      ],
+      "instances": [
+        {
+          "name": "EFR_ClockTower_001",
+          "position": [
+            -38.5,
+            0.0,
+            0.0
+          ],
+          "rotation_z_deg": -90.0
+        }
+      ],
+      "shared_meshes": [
+        "EFR_ClockTower_001_BellBracket_Mesh",
+        "EFR_ClockTower_001_Bell_Mesh",
+        "EFR_ClockTower_001_Body_Mesh",
+        "EFR_ClockTower_001_Dial_Mesh",
+        "EFR_ClockTower_001_HourHand_Mesh",
+        "EFR_ClockTower_001_MinuteHand_Mesh"
+      ],
+      "verification_status": "blender_checked; resonite_unverified"
+    },
+    {
+      "asset_id": "EFR_FaceTree_001",
+      "key": "E_forest",
+      "category": "gimmick",
+      "area_id": "E_forest",
+      "collection": "E_forest",
+      "blend_file": "blender/E_forest/E_forest.blend",
+      "script_file": "modeling/E_forest/build.py",
+      "version": "W06-1",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -25.2,
+        6.8,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -152.0
+      ],
+      "forward_axis_local": "+Y",
+      "up_axis": "+Z",
+      "unit": "m",
+      "dimensions_m": {
+        "width": 8.6198,
+        "depth": 5.3786,
+        "height": 9.7519
+      },
+      "bounds_local": {
+        "min": [
+          -4.2975,
+          -3.4399,
+          0.0
+        ],
+        "max": [
+          4.3223,
+          1.9387,
+          9.7519
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "EFR_FaceTree_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "EFR_FaceTree_001_Trunk",
+          "role": "visual_root",
+          "parent_part": "EFR_FaceTree_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "notes": "Trunk with roots, canopy, brows, nose and dark eye sockets."
+        },
+        {
+          "part_id": "EFR_FaceTree_001_Mouth",
+          "role": "visual_root",
+          "parent_part": "EFR_FaceTree_001",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.97,
+            2.24
+          ],
+          "notes": "Glowing grin (expression part; may glow or be swapped)."
+        },
+        {
+          "part_id": "EFR_FaceTree_001_BranchLPivot",
+          "role": "motion_root",
+          "parent_part": "EFR_FaceTree_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            -0.8,
+            -0.05,
+            4.0
+          ],
+          "notes": "Branch L joint with the trunk."
+        },
+        {
+          "part_id": "EFR_FaceTree_001_BranchL",
+          "role": "visual_root",
+          "parent_part": "EFR_FaceTree_001_BranchLPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            -0.8,
+            -0.05,
+            4.0
+          ],
+          "notes": "Moving branch L with leaves and a small lantern."
+        },
+        {
+          "part_id": "EFR_FaceTree_001_EyeLPivot",
+          "role": "motion_root",
+          "parent_part": "EFR_FaceTree_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            -0.33,
+            0.9546,
+            3.0
+          ],
+          "notes": "Eye L centre; local +Y points out of the trunk."
+        },
+        {
+          "part_id": "EFR_FaceTree_001_EyeL",
+          "role": "visual_root",
+          "parent_part": "EFR_FaceTree_001_EyeLPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            -0.33,
+            0.9546,
+            3.0
+          ],
+          "notes": "Glowing eye L with a dark pupil."
+        },
+        {
+          "part_id": "EFR_FaceTree_001_BranchRPivot",
+          "role": "motion_root",
+          "parent_part": "EFR_FaceTree_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.8,
+            -0.05,
+            4.25
+          ],
+          "notes": "Branch R joint with the trunk."
+        },
+        {
+          "part_id": "EFR_FaceTree_001_BranchR",
+          "role": "visual_root",
+          "parent_part": "EFR_FaceTree_001_BranchRPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.8,
+            -0.05,
+            4.25
+          ],
+          "notes": "Moving branch R with leaves and a small lantern."
+        },
+        {
+          "part_id": "EFR_FaceTree_001_EyeRPivot",
+          "role": "motion_root",
+          "parent_part": "EFR_FaceTree_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.33,
+            0.9546,
+            3.0
+          ],
+          "notes": "Eye R centre; local +Y points out of the trunk."
+        },
+        {
+          "part_id": "EFR_FaceTree_001_EyeR",
+          "role": "visual_root",
+          "parent_part": "EFR_FaceTree_001_EyeRPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.33,
+            0.9546,
+            3.0
+          ],
+          "notes": "Glowing eye R with a dark pupil."
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "EFR_FaceTree_001",
+        "motion_roots": [
+          "EFR_FaceTree_001_BranchLPivot",
+          "EFR_FaceTree_001_EyeLPivot",
+          "EFR_FaceTree_001_BranchRPivot",
+          "EFR_FaceTree_001_EyeRPivot"
+        ],
+        "visual_roots": [
+          "EFR_FaceTree_001_Trunk",
+          "EFR_FaceTree_001_Mouth",
+          "EFR_FaceTree_001_BranchL",
+          "EFR_FaceTree_001_EyeL",
+          "EFR_FaceTree_001_BranchR",
+          "EFR_FaceTree_001_EyeR"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_EFR_BarkFace",
+        "MAT_EFR_FaceGlow",
+        "MAT_EFR_FaceSocket",
+        "MAT_EFR_Iron",
+        "MAT_EFR_LanternGlow",
+        "MAT_EFR_LeafPurple",
+        "MAT_EFR_LeafTeal"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 2458,
+        "vertices": 1317,
+        "materials_count": 7,
+        "objects_count": 11
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Greets visitors arriving over the west bridge; looks south-south-east at the main road.",
+        "future_target": null
+      },
+      "replacement_slot": null,
+      "collider_policy": "separate_fixed_collision",
+      "gimmick_ids": [
+        "G17"
+      ],
+      "motion": [
+        {
+          "part_name": "EFR_FaceTree_001_BranchLPivot",
+          "visual_part": "EFR_FaceTree_001_BranchL",
+          "gimmick_id": "G17",
+          "motion_type": "oscillation",
+          "pivot_local": [
+            -0.8,
+            -0.05,
+            4.0
+          ],
+          "pivot_world": [
+            -24.5171,
+            7.2197,
+            4.0
+          ],
+          "axis": "Y",
+          "axis_frame": "pivot local (Blender)",
+          "axis_world": [
+            0.4695,
+            -0.8829,
+            0.0
+          ],
+          "range": {
+            "min": -8.0,
+            "max": 8.0,
+            "unit": "deg"
+          },
+          "rest_pose": {
+            "position": [
+              -0.8,
+              -0.05,
+              4.0
+            ],
+            "rotation_euler_deg": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "envelope_world": {
+            "min": [
+              -24.8708,
+              6.8821,
+              3.7026
+            ],
+            "max": [
+              -21.0832,
+              9.2894,
+              6.8807
+            ]
+          },
+          "envelope_low_world": null,
+          "notes": "Sway up and down about the joint (pivot-local Y = the tree's front axis)."
+        },
+        {
+          "part_name": "EFR_FaceTree_001_EyeLPivot",
+          "visual_part": "EFR_FaceTree_001_EyeL",
+          "gimmick_id": "G17",
+          "motion_type": "scale_or_glow",
+          "pivot_local": [
+            -0.33,
+            0.9546,
+            3.0
+          ],
+          "pivot_world": [
+            -24.4605,
+            6.1121,
+            3.0
+          ],
+          "axis": "Z",
+          "axis_frame": "pivot local (Blender)",
+          "axis_world": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "range": {
+            "min": 0.1,
+            "max": 1.0,
+            "unit": "ratio"
+          },
+          "rest_pose": {
+            "position": [
+              -0.33,
+              0.9546,
+              3.0
+            ],
+            "rotation_euler_deg": [
+              0.0,
+              0.0,
+              19.0706
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "envelope_world": {
+            "min": [
+              -24.5777,
+              5.988,
+              2.87
+            ],
+            "max": [
+              -24.3433,
+              6.2361,
+              3.13
+            ]
+          },
+          "envelope_low_world": null,
+          "notes": "Blink: scale the pivot's local Z from 1.0 (open) to 0.1 (closed) and back; the eye stays centred."
+        },
+        {
+          "part_name": "EFR_FaceTree_001_BranchRPivot",
+          "visual_part": "EFR_FaceTree_001_BranchR",
+          "gimmick_id": "G17",
+          "motion_type": "oscillation",
+          "pivot_local": [
+            0.8,
+            -0.05,
+            4.25
+          ],
+          "pivot_world": [
+            -25.9298,
+            6.4686,
+            4.25
+          ],
+          "axis": "Y",
+          "axis_frame": "pivot local (Blender)",
+          "axis_world": [
+            0.4695,
+            -0.8829,
+            0.0
+          ],
+          "range": {
+            "min": -8.0,
+            "max": 8.0,
+            "unit": "deg"
+          },
+          "rest_pose": {
+            "position": [
+              0.8,
+              -0.05,
+              4.25
+            ],
+            "rotation_euler_deg": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "envelope_world": {
+            "min": [
+              -29.3104,
+              4.1366,
+              3.9526
+            ],
+            "max": [
+              -25.5618,
+              6.7931,
+              7.1131
+            ]
+          },
+          "envelope_low_world": null,
+          "notes": "Sway up and down about the joint (pivot-local Y = the tree's front axis)."
+        },
+        {
+          "part_name": "EFR_FaceTree_001_EyeRPivot",
+          "visual_part": "EFR_FaceTree_001_EyeR",
+          "gimmick_id": "G17",
+          "motion_type": "scale_or_glow",
+          "pivot_local": [
+            0.33,
+            0.9546,
+            3.0
+          ],
+          "pivot_world": [
+            -25.0432,
+            5.8022,
+            3.0
+          ],
+          "axis": "Z",
+          "axis_frame": "pivot local (Blender)",
+          "axis_world": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "range": {
+            "min": 0.1,
+            "max": 1.0,
+            "unit": "ratio"
+          },
+          "rest_pose": {
+            "position": [
+              0.33,
+              0.9546,
+              3.0
+            ],
+            "rotation_euler_deg": [
+              0.0,
+              0.0,
+              -19.0706
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "envelope_world": {
+            "min": [
+              -25.1964,
+              5.7278,
+              2.87
+            ],
+            "max": [
+              -24.89,
+              5.8648,
+              3.13
+            ]
+          },
+          "envelope_low_world": null,
+          "notes": "Blink: scale the pivot's local Z from 1.0 (open) to 0.1 (closed) and back; the eye stays centred."
+        }
+      ],
+      "attachment_details": [],
+      "instances": [
+        {
+          "name": "EFR_FaceTree_001",
+          "position": [
+            -25.2,
+            6.8,
+            0.0
+          ],
+          "rotation_z_deg": -152.0
+        }
+      ],
+      "shared_meshes": [
+        "EFR_FaceTreeBranchL_Mesh",
+        "EFR_FaceTreeBranchR_Mesh",
+        "EFR_FaceTreeEye_Mesh",
+        "EFR_FaceTreeMouth_Mesh",
+        "EFR_FaceTreeTrunk_Mesh"
+      ],
+      "verification_status": "blender_checked; resonite_unverified"
+    },
+    {
+      "asset_id": "EFR_FaceTree_002",
+      "key": "E_forest",
+      "category": "gimmick",
+      "area_id": "E_forest",
+      "collection": "E_forest",
+      "blend_file": "blender/E_forest/E_forest.blend",
+      "script_file": "modeling/E_forest/build.py",
+      "version": "W06-1",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -36.6,
+        -8.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -34.0
+      ],
+      "forward_axis_local": "+Y",
+      "up_axis": "+Z",
+      "unit": "m",
+      "dimensions_m": {
+        "width": 8.6198,
+        "depth": 5.3786,
+        "height": 9.7519
+      },
+      "bounds_local": {
+        "min": [
+          -4.2975,
+          -3.4399,
+          0.0
+        ],
+        "max": [
+          4.3223,
+          1.9387,
+          9.7519
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "EFR_FaceTree_002",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "EFR_FaceTree_002_Trunk",
+          "role": "visual_root",
+          "parent_part": "EFR_FaceTree_002",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "notes": "Trunk with roots, canopy, brows, nose and dark eye sockets."
+        },
+        {
+          "part_id": "EFR_FaceTree_002_Mouth",
+          "role": "visual_root",
+          "parent_part": "EFR_FaceTree_002",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            -0.0,
+            0.97,
+            2.24
+          ],
+          "notes": "Glowing grin (expression part; may glow or be swapped)."
+        },
+        {
+          "part_id": "EFR_FaceTree_002_BranchLPivot",
+          "role": "motion_root",
+          "parent_part": "EFR_FaceTree_002",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            -0.8,
+            -0.05,
+            4.0
+          ],
+          "notes": "Branch L joint with the trunk."
+        },
+        {
+          "part_id": "EFR_FaceTree_002_BranchL",
+          "role": "visual_root",
+          "parent_part": "EFR_FaceTree_002_BranchLPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            -0.8,
+            -0.05,
+            4.0
+          ],
+          "notes": "Moving branch L with leaves and a small lantern."
+        },
+        {
+          "part_id": "EFR_FaceTree_002_EyeLPivot",
+          "role": "motion_root",
+          "parent_part": "EFR_FaceTree_002",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            -0.33,
+            0.9546,
+            3.0
+          ],
+          "notes": "Eye L centre; local +Y points out of the trunk."
+        },
+        {
+          "part_id": "EFR_FaceTree_002_EyeL",
+          "role": "visual_root",
+          "parent_part": "EFR_FaceTree_002_EyeLPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            -0.33,
+            0.9546,
+            3.0
+          ],
+          "notes": "Glowing eye L with a dark pupil."
+        },
+        {
+          "part_id": "EFR_FaceTree_002_BranchRPivot",
+          "role": "motion_root",
+          "parent_part": "EFR_FaceTree_002",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.8,
+            -0.05,
+            4.25
+          ],
+          "notes": "Branch R joint with the trunk."
+        },
+        {
+          "part_id": "EFR_FaceTree_002_BranchR",
+          "role": "visual_root",
+          "parent_part": "EFR_FaceTree_002_BranchRPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.8,
+            -0.05,
+            4.25
+          ],
+          "notes": "Moving branch R with leaves and a small lantern."
+        },
+        {
+          "part_id": "EFR_FaceTree_002_EyeRPivot",
+          "role": "motion_root",
+          "parent_part": "EFR_FaceTree_002",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.33,
+            0.9546,
+            3.0
+          ],
+          "notes": "Eye R centre; local +Y points out of the trunk."
+        },
+        {
+          "part_id": "EFR_FaceTree_002_EyeR",
+          "role": "visual_root",
+          "parent_part": "EFR_FaceTree_002_EyeRPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.33,
+            0.9546,
+            3.0
+          ],
+          "notes": "Glowing eye R with a dark pupil."
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "EFR_FaceTree_002",
+        "motion_roots": [
+          "EFR_FaceTree_002_BranchLPivot",
+          "EFR_FaceTree_002_EyeLPivot",
+          "EFR_FaceTree_002_BranchRPivot",
+          "EFR_FaceTree_002_EyeRPivot"
+        ],
+        "visual_roots": [
+          "EFR_FaceTree_002_Trunk",
+          "EFR_FaceTree_002_Mouth",
+          "EFR_FaceTree_002_BranchL",
+          "EFR_FaceTree_002_EyeL",
+          "EFR_FaceTree_002_BranchR",
+          "EFR_FaceTree_002_EyeR"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_EFR_BarkFace",
+        "MAT_EFR_FaceGlow",
+        "MAT_EFR_FaceSocket",
+        "MAT_EFR_Iron",
+        "MAT_EFR_LanternGlow",
+        "MAT_EFR_LeafPurple",
+        "MAT_EFR_LeafTeal"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 2458,
+        "vertices": 1317,
+        "materials_count": 7,
+        "objects_count": 11
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Watches the tower forecourt and the south spur from the south-west.",
+        "future_target": null
+      },
+      "replacement_slot": null,
+      "collider_policy": "separate_fixed_collision",
+      "gimmick_ids": [
+        "G17"
+      ],
+      "motion": [
+        {
+          "part_name": "EFR_FaceTree_002_BranchLPivot",
+          "visual_part": "EFR_FaceTree_002_BranchL",
+          "gimmick_id": "G17",
+          "motion_type": "oscillation",
+          "pivot_local": [
+            -0.8,
+            -0.05,
+            4.0
+          ],
+          "pivot_world": [
+            -37.2912,
+            -7.5941,
+            4.0
+          ],
+          "axis": "Y",
+          "axis_frame": "pivot local (Blender)",
+          "axis_world": [
+            0.5592,
+            0.829,
+            0.0
+          ],
+          "range": {
+            "min": -8.0,
+            "max": 8.0,
+            "unit": "deg"
+          },
+          "rest_pose": {
+            "position": [
+              -0.8,
+              -0.05,
+              4.0
+            ],
+            "rotation_euler_deg": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "envelope_world": {
+            "min": [
+              -40.4364,
+              -7.9272,
+              3.7026
+            ],
+            "max": [
+              -36.926,
+              -5.1294,
+              6.8807
+            ]
+          },
+          "envelope_low_world": null,
+          "notes": "Sway up and down about the joint (pivot-local Y = the tree's front axis)."
+        },
+        {
+          "part_name": "EFR_FaceTree_002_EyeLPivot",
+          "visual_part": "EFR_FaceTree_002_EyeL",
+          "gimmick_id": "G17",
+          "motion_type": "scale_or_glow",
+          "pivot_local": [
+            -0.33,
+            0.9546,
+            3.0
+          ],
+          "pivot_world": [
+            -36.3398,
+            -7.0241,
+            3.0
+          ],
+          "axis": "Z",
+          "axis_frame": "pivot local (Blender)",
+          "axis_world": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "range": {
+            "min": 0.1,
+            "max": 1.0,
+            "unit": "ratio"
+          },
+          "rest_pose": {
+            "position": [
+              -0.33,
+              0.9546,
+              3.0
+            ],
+            "rotation_euler_deg": [
+              0.0,
+              0.0,
+              19.0706
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "envelope_world": {
+            "min": [
+              -36.4916,
+              -7.0952,
+              2.87
+            ],
+            "max": [
+              -36.188,
+              -6.9476,
+              3.13
+            ]
+          },
+          "envelope_low_world": null,
+          "notes": "Blink: scale the pivot's local Z from 1.0 (open) to 0.1 (closed) and back; the eye stays centred."
+        },
+        {
+          "part_name": "EFR_FaceTree_002_BranchRPivot",
+          "visual_part": "EFR_FaceTree_002_BranchR",
+          "gimmick_id": "G17",
+          "motion_type": "oscillation",
+          "pivot_local": [
+            0.8,
+            -0.05,
+            4.25
+          ],
+          "pivot_world": [
+            -35.9647,
+            -8.4888,
+            4.25
+          ],
+          "axis": "Y",
+          "axis_frame": "pivot local (Blender)",
+          "axis_world": [
+            0.5592,
+            0.829,
+            0.0
+          ],
+          "range": {
+            "min": -8.0,
+            "max": 8.0,
+            "unit": "deg"
+          },
+          "rest_pose": {
+            "position": [
+              0.8,
+              -0.05,
+              4.25
+            ],
+            "rotation_euler_deg": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "envelope_world": {
+            "min": [
+              -36.3173,
+              -10.8512,
+              3.9526
+            ],
+            "max": [
+              -32.6955,
+              -8.14,
+              7.1131
+            ]
+          },
+          "envelope_low_world": null,
+          "notes": "Sway up and down about the joint (pivot-local Y = the tree's front axis)."
+        },
+        {
+          "part_name": "EFR_FaceTree_002_EyeRPivot",
+          "visual_part": "EFR_FaceTree_002_EyeR",
+          "gimmick_id": "G17",
+          "motion_type": "scale_or_glow",
+          "pivot_local": [
+            0.33,
+            0.9546,
+            3.0
+          ],
+          "pivot_world": [
+            -35.7926,
+            -7.3932,
+            3.0
+          ],
+          "axis": "Z",
+          "axis_frame": "pivot local (Blender)",
+          "axis_world": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "range": {
+            "min": 0.1,
+            "max": 1.0,
+            "unit": "ratio"
+          },
+          "rest_pose": {
+            "position": [
+              0.33,
+              0.9546,
+              3.0
+            ],
+            "rotation_euler_deg": [
+              0.0,
+              0.0,
+              -19.0706
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "envelope_world": {
+            "min": [
+              -35.8989,
+              -7.5259,
+              2.87
+            ],
+            "max": [
+              -35.6864,
+              -7.2604,
+              3.13
+            ]
+          },
+          "envelope_low_world": null,
+          "notes": "Blink: scale the pivot's local Z from 1.0 (open) to 0.1 (closed) and back; the eye stays centred."
+        }
+      ],
+      "attachment_details": [],
+      "instances": [
+        {
+          "name": "EFR_FaceTree_002",
+          "position": [
+            -36.6,
+            -8.0,
+            0.0
+          ],
+          "rotation_z_deg": -34.0
+        }
+      ],
+      "shared_meshes": [
+        "EFR_FaceTreeBranchL_Mesh",
+        "EFR_FaceTreeBranchR_Mesh",
+        "EFR_FaceTreeEye_Mesh",
+        "EFR_FaceTreeMouth_Mesh",
+        "EFR_FaceTreeTrunk_Mesh"
+      ],
+      "verification_status": "blender_checked; resonite_unverified"
+    },
+    {
+      "asset_id": "EFR_TreeOak_001",
+      "key": "E_forest",
+      "category": "vegetation",
+      "area_id": "E_forest",
+      "collection": "E_forest",
+      "blend_file": "blender/E_forest/E_forest.blend",
+      "script_file": "modeling/E_forest/build.py",
+      "version": "W06-1",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -26.5,
+        16.2,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        20.0
+      ],
+      "forward_axis_local": "+Y",
+      "up_axis": "+Z",
+      "unit": "m",
+      "dimensions_m": {
+        "width": 6.1366,
+        "depth": 5.8269,
+        "height": 7.5392
+      },
+      "bounds_local": {
+        "min": [
+          -2.968,
+          -3.0906,
+          0.0
+        ],
+        "max": [
+          3.1686,
+          2.7363,
+          7.5392
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "EFR_TreeOak_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "EFR_TreeOak_001",
+        "motion_roots": [],
+        "visual_roots": [],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_EFR_Bark",
+        "MAT_EFR_LeafTeal"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 864,
+        "vertices": 464,
+        "materials_count": 2,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Reusable broad oak with a teal canopy (canopy bottom ~3.8 m).",
+        "future_target": null
+      },
+      "replacement_slot": null,
+      "collider_policy": "convex_hull",
+      "gimmick_ids": [],
+      "motion": [],
+      "attachment_details": [],
+      "instances": [
+        {
+          "name": "EFR_TreeOak_001",
+          "position": [
+            -26.5,
+            16.2,
+            0.0
+          ],
+          "rotation_z_deg": 20.0
+        },
+        {
+          "name": "EFR_TreeOak_002",
+          "position": [
+            -36.0,
+            16.2,
+            0.0
+          ],
+          "rotation_z_deg": 140.0
+        },
+        {
+          "name": "EFR_TreeOak_003",
+          "position": [
+            -28.0,
+            -16.2,
+            0.0
+          ],
+          "rotation_z_deg": 75.0
+        },
+        {
+          "name": "EFR_TreeOak_004",
+          "position": [
+            -34.6,
+            -16.2,
+            0.0
+          ],
+          "rotation_z_deg": 210.0
+        },
+        {
+          "name": "EFR_TreeOak_005",
+          "position": [
+            -23.8,
+            -8.6,
+            0.0
+          ],
+          "rotation_z_deg": 300.0
+        }
+      ],
+      "shared_meshes": [
+        "EFR_TreeOak_Mesh"
+      ],
+      "verification_status": "blender_checked; resonite_unverified"
+    },
+    {
+      "asset_id": "EFR_TreePine_001",
+      "key": "E_forest",
+      "category": "vegetation",
+      "area_id": "E_forest",
+      "collection": "E_forest",
+      "blend_file": "blender/E_forest/E_forest.blend",
+      "script_file": "modeling/E_forest/build.py",
+      "version": "W06-1",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -45.0,
+        17.6,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "forward_axis_local": "+Y",
+      "up_axis": "+Z",
+      "unit": "m",
+      "dimensions_m": {
+        "width": 3.2882,
+        "depth": 3.4516,
+        "height": 8.6
+      },
+      "bounds_local": {
+        "min": [
+          -1.5941,
+          -1.7437,
+          0.0
+        ],
+        "max": [
+          1.6941,
+          1.7079,
+          8.6
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "EFR_TreePine_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "EFR_TreePine_001",
+        "motion_roots": [],
+        "visual_roots": [],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_EFR_Bark",
+        "MAT_EFR_LeafPine"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 620,
+        "vertices": 324,
+        "materials_count": 2,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Reusable dark spruce with drooping tiers (lowest tier ~1.6 m).",
+        "future_target": null
+      },
+      "replacement_slot": null,
+      "collider_policy": "convex_hull",
+      "gimmick_ids": [],
+      "motion": [],
+      "attachment_details": [],
+      "instances": [
+        {
+          "name": "EFR_TreePine_001",
+          "position": [
+            -45.0,
+            17.6,
+            0.0
+          ],
+          "rotation_z_deg": 0.0
+        },
+        {
+          "name": "EFR_TreePine_002",
+          "position": [
+            -31.0,
+            17.4,
+            0.0
+          ],
+          "rotation_z_deg": 40.0
+        },
+        {
+          "name": "EFR_TreePine_003",
+          "position": [
+            -31.5,
+            -17.4,
+            0.0
+          ],
+          "rotation_z_deg": 95.0
+        },
+        {
+          "name": "EFR_TreePine_004",
+          "position": [
+            -37.8,
+            -17.6,
+            0.0
+          ],
+          "rotation_z_deg": 160.0
+        },
+        {
+          "name": "EFR_TreePine_005",
+          "position": [
+            -22.7,
+            -4.6,
+            0.0
+          ],
+          "rotation_z_deg": 250.0
+        }
+      ],
+      "shared_meshes": [
+        "EFR_TreePine_Mesh"
+      ],
+      "verification_status": "blender_checked; resonite_unverified"
+    },
+    {
+      "asset_id": "EFR_TreeTwist_001",
+      "key": "E_forest",
+      "category": "vegetation",
+      "area_id": "E_forest",
+      "collection": "E_forest",
+      "blend_file": "blender/E_forest/E_forest.blend",
+      "script_file": "modeling/E_forest/build.py",
+      "version": "W06-1",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -39.0,
+        6.6,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        30.0
+      ],
+      "forward_axis_local": "+Y",
+      "up_axis": "+Z",
+      "unit": "m",
+      "dimensions_m": {
+        "width": 3.5121,
+        "depth": 3.0569,
+        "height": 5.9143
+      },
+      "bounds_local": {
+        "min": [
+          -1.9125,
+          -1.5665,
+          0.0
+        ],
+        "max": [
+          1.5996,
+          1.4904,
+          5.9143
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "EFR_TreeTwist_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "EFR_TreeTwist_001",
+        "motion_roots": [],
+        "visual_roots": [],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_EFR_Bark",
+        "MAT_EFR_Iron",
+        "MAT_EFR_LanternGlow",
+        "MAT_EFR_LeafPurple"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 682,
+        "vertices": 371,
+        "materials_count": 4,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Reusable twisted tree with purple leaves and a hanging lantern.",
+        "future_target": null
+      },
+      "replacement_slot": null,
+      "collider_policy": "convex_hull",
+      "gimmick_ids": [],
+      "motion": [],
+      "attachment_details": [],
+      "instances": [
+        {
+          "name": "EFR_TreeTwist_001",
+          "position": [
+            -39.0,
+            6.6,
+            0.0
+          ],
+          "rotation_z_deg": 30.0
+        },
+        {
+          "name": "EFR_TreeTwist_002",
+          "position": [
+            -32.4,
+            -5.6,
+            0.0
+          ],
+          "rotation_z_deg": 200.0
+        },
+        {
+          "name": "EFR_TreeTwist_003",
+          "position": [
+            -24.5,
+            -16.6,
+            0.0
+          ],
+          "rotation_z_deg": 120.0
+        }
+      ],
+      "shared_meshes": [
+        "EFR_TreeTwist_Mesh"
+      ],
+      "verification_status": "blender_checked; resonite_unverified"
+    },
+    {
+      "asset_id": "EFR_Rock_001",
+      "key": "E_forest",
+      "category": "prop",
+      "area_id": "E_forest",
+      "collection": "E_forest",
+      "blend_file": "blender/E_forest/E_forest.blend",
+      "script_file": "modeling/E_forest/build.py",
+      "version": "W06-1",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -21.9,
+        9.6,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        15.0
+      ],
+      "forward_axis_local": "+Y",
+      "up_axis": "+Z",
+      "unit": "m",
+      "dimensions_m": {
+        "width": 1.7513,
+        "depth": 1.2748,
+        "height": 0.8486
+      },
+      "bounds_local": {
+        "min": [
+          -0.7472,
+          -0.5627,
+          0.0
+        ],
+        "max": [
+          1.0041,
+          0.7121,
+          0.8486
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "EFR_Rock_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "EFR_Rock_001",
+        "motion_roots": [],
+        "visual_roots": [],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_EFR_Moss",
+        "MAT_EFR_Stone"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 180,
+        "vertices": 96,
+        "materials_count": 2,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Reusable mossy boulder.",
+        "future_target": null
+      },
+      "replacement_slot": null,
+      "collider_policy": "convex_hull",
+      "gimmick_ids": [],
+      "motion": [],
+      "attachment_details": [],
+      "instances": [
+        {
+          "name": "EFR_Rock_001",
+          "position": [
+            -21.9,
+            9.6,
+            0.0
+          ],
+          "rotation_z_deg": 15.0
+        },
+        {
+          "name": "EFR_Rock_002",
+          "position": [
+            -25.8,
+            -3.4,
+            0.0
+          ],
+          "rotation_z_deg": 250.0
+        },
+        {
+          "name": "EFR_Rock_003",
+          "position": [
+            -37.2,
+            9.6,
+            0.0
+          ],
+          "rotation_z_deg": 70.0
+        }
+      ],
+      "shared_meshes": [
+        "EFR_Rock_Mesh"
+      ],
+      "verification_status": "blender_checked; resonite_unverified"
+    },
+    {
+      "asset_id": "EFR_Bush_001",
+      "key": "E_forest",
+      "category": "vegetation",
+      "area_id": "E_forest",
+      "collection": "E_forest",
+      "blend_file": "blender/E_forest/E_forest.blend",
+      "script_file": "modeling/E_forest/build.py",
+      "version": "W06-1",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -21.6,
+        -10.6,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        130.0
+      ],
+      "forward_axis_local": "+Y",
+      "up_axis": "+Z",
+      "unit": "m",
+      "dimensions_m": {
+        "width": 1.7761,
+        "depth": 1.241,
+        "height": 0.8815
+      },
+      "bounds_local": {
+        "min": [
+          -0.8386,
+          -0.5384,
+          0.0
+        ],
+        "max": [
+          0.9375,
+          0.7026,
+          0.8815
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "EFR_Bush_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "EFR_Bush_001",
+        "motion_roots": [],
+        "visual_roots": [],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_EFR_LeafTeal",
+        "MAT_EFR_Moss"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 240,
+        "vertices": 126,
+        "materials_count": 2,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Reusable low bush.",
+        "future_target": null
+      },
+      "replacement_slot": null,
+      "collider_policy": "none",
+      "gimmick_ids": [],
+      "motion": [],
+      "attachment_details": [],
+      "instances": [
+        {
+          "name": "EFR_Bush_001",
+          "position": [
+            -21.6,
+            -10.6,
+            0.0
+          ],
+          "rotation_z_deg": 130.0
+        },
+        {
+          "name": "EFR_Bush_002",
+          "position": [
+            -21.6,
+            12.8,
+            0.0
+          ],
+          "rotation_z_deg": 200.0
+        },
+        {
+          "name": "EFR_Bush_003",
+          "position": [
+            -41.0,
+            -17.3,
+            0.0
+          ],
+          "rotation_z_deg": 280.0
+        },
+        {
+          "name": "EFR_Bush_004",
+          "position": [
+            -25.6,
+            -16.8,
+            0.0
+          ],
+          "rotation_z_deg": 30.0
+        }
+      ],
+      "shared_meshes": [
+        "EFR_Bush_Mesh"
+      ],
+      "verification_status": "blender_checked; resonite_unverified"
+    },
+    {
+      "asset_id": "EFR_MushroomTall_001",
+      "key": "E_forest",
+      "category": "vegetation",
+      "area_id": "E_forest",
+      "collection": "E_forest",
+      "blend_file": "blender/E_forest/E_forest.blend",
+      "script_file": "modeling/E_forest/build.py",
+      "version": "W06-1",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -36.8,
+        5.6,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "forward_axis_local": "+Y",
+      "up_axis": "+Z",
+      "unit": "m",
+      "dimensions_m": {
+        "width": 2.0,
+        "depth": 2.0,
+        "height": 2.7114
+      },
+      "bounds_local": {
+        "min": [
+          -1.0,
+          -1.0,
+          0.0
+        ],
+        "max": [
+          1.0,
+          1.0,
+          2.7114
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "EFR_MushroomTall_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "EFR_MushroomTall_001_Glow",
+          "role": "attachment_point",
+          "parent_part": "EFR_MushroomTall_001",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            1.9
+          ],
+          "notes": "Glowing gills and spots (G18). Shared material; per-individual values in glow_individuals."
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "EFR_MushroomTall_001",
+        "motion_roots": [],
+        "visual_roots": [],
+        "attachment_points": [
+          "EFR_MushroomTall_001_Glow"
+        ]
+      },
+      "materials": [
+        "MAT_EFR_CapPurple",
+        "MAT_EFR_MushGlow",
+        "MAT_EFR_MushStem"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 664,
+        "vertices": 354,
+        "materials_count": 3,
+        "objects_count": 2
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Reusable tall purple mushroom (cap underside 1.9 m).",
+        "future_target": null
+      },
+      "replacement_slot": null,
+      "collider_policy": "convex_hull",
+      "gimmick_ids": [
+        "G18"
+      ],
+      "motion": [],
+      "attachment_details": [],
+      "instances": [
+        {
+          "name": "EFR_MushroomTall_001",
+          "position": [
+            -36.8,
+            5.6,
+            0.0
+          ],
+          "rotation_z_deg": 0.0
+        },
+        {
+          "name": "EFR_MushroomTall_002",
+          "position": [
+            -41.6,
+            -6.4,
+            0.0
+          ],
+          "rotation_z_deg": 40.0
+        },
+        {
+          "name": "EFR_MushroomTall_003",
+          "position": [
+            -25.8,
+            10.2,
+            0.0
+          ],
+          "rotation_z_deg": 80.0
+        },
+        {
+          "name": "EFR_MushroomTall_004",
+          "position": [
+            -33.0,
+            -9.6,
+            0.0
+          ],
+          "rotation_z_deg": 120.0
+        },
+        {
+          "name": "EFR_MushroomTall_005",
+          "position": [
+            -41.0,
+            16.6,
+            0.0
+          ],
+          "rotation_z_deg": 160.0
+        }
+      ],
+      "shared_meshes": [
+        "EFR_MushroomTallGlow_Mesh",
+        "EFR_MushroomTall_Mesh"
+      ],
+      "verification_status": "blender_checked; resonite_unverified",
+      "glow_individuals": [
+        {
+          "instance": "EFR_MushroomTall_001",
+          "glow_part": "EFR_MushroomTall_001_Glow",
+          "attach_local": [
+            0.0,
+            0.0,
+            1.9
+          ],
+          "period_s": 3.2,
+          "phase_s": 0.0,
+          "intensity_min": 0.35,
+          "intensity_max": 1.0,
+          "attach_world": [
+            -36.8,
+            5.6,
+            1.9
+          ]
+        },
+        {
+          "instance": "EFR_MushroomTall_002",
+          "glow_part": "EFR_MushroomTall_002_Glow",
+          "attach_local": [
+            0.0,
+            0.0,
+            1.9
+          ],
+          "period_s": 4.03,
+          "phase_s": 1.37,
+          "intensity_min": 0.35,
+          "intensity_max": 1.0,
+          "attach_world": [
+            -41.6,
+            -6.4,
+            1.9
+          ]
+        },
+        {
+          "instance": "EFR_MushroomTall_003",
+          "glow_part": "EFR_MushroomTall_003_Glow",
+          "attach_local": [
+            0.0,
+            0.0,
+            1.9
+          ],
+          "period_s": 4.86,
+          "phase_s": 2.74,
+          "intensity_min": 0.35,
+          "intensity_max": 1.0,
+          "attach_world": [
+            -25.8,
+            10.2,
+            1.9
+          ]
+        },
+        {
+          "instance": "EFR_MushroomTall_004",
+          "glow_part": "EFR_MushroomTall_004_Glow",
+          "attach_local": [
+            0.0,
+            0.0,
+            1.9
+          ],
+          "period_s": 5.69,
+          "phase_s": 4.11,
+          "intensity_min": 0.35,
+          "intensity_max": 1.0,
+          "attach_world": [
+            -33.0,
+            -9.6,
+            1.9
+          ]
+        },
+        {
+          "instance": "EFR_MushroomTall_005",
+          "glow_part": "EFR_MushroomTall_005_Glow",
+          "attach_local": [
+            0.0,
+            0.0,
+            1.9
+          ],
+          "period_s": 6.52,
+          "phase_s": 5.48,
+          "intensity_min": 0.35,
+          "intensity_max": 1.0,
+          "attach_world": [
+            -41.0,
+            16.6,
+            1.9
+          ]
+        }
+      ],
+      "shared_materials": {
+        "body": [
+          "MAT_EFR_CapPurple",
+          "MAT_EFR_MushStem"
+        ],
+        "glow": "MAT_EFR_MushGlow"
+      }
+    },
+    {
+      "asset_id": "EFR_MushroomMedium_001",
+      "key": "E_forest",
+      "category": "vegetation",
+      "area_id": "E_forest",
+      "collection": "E_forest",
+      "blend_file": "blender/E_forest/E_forest.blend",
+      "script_file": "modeling/E_forest/build.py",
+      "version": "W06-1",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -27.4,
+        3.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "forward_axis_local": "+Y",
+      "up_axis": "+Z",
+      "unit": "m",
+      "dimensions_m": {
+        "width": 0.9,
+        "depth": 0.9,
+        "height": 1.1673
+      },
+      "bounds_local": {
+        "min": [
+          -0.45,
+          -0.45,
+          0.0
+        ],
+        "max": [
+          0.45,
+          0.45,
+          1.1673
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "EFR_MushroomMedium_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "EFR_MushroomMedium_001_Glow",
+          "role": "attachment_point",
+          "parent_part": "EFR_MushroomMedium_001",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.8
+          ],
+          "notes": "Glowing gills and spots (G18). Shared material; per-individual values in glow_individuals."
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "EFR_MushroomMedium_001",
+        "motion_roots": [],
+        "visual_roots": [],
+        "attachment_points": [
+          "EFR_MushroomMedium_001_Glow"
+        ]
+      },
+      "materials": [
+        "MAT_EFR_CapTeal",
+        "MAT_EFR_MushGlow",
+        "MAT_EFR_MushStem"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 608,
+        "vertices": 324,
+        "materials_count": 3,
+        "objects_count": 2
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Reusable medium teal mushroom.",
+        "future_target": null
+      },
+      "replacement_slot": null,
+      "collider_policy": "none",
+      "gimmick_ids": [
+        "G18"
+      ],
+      "motion": [],
+      "attachment_details": [],
+      "instances": [
+        {
+          "name": "EFR_MushroomMedium_001",
+          "position": [
+            -27.4,
+            3.0,
+            0.0
+          ],
+          "rotation_z_deg": 0.0
+        },
+        {
+          "name": "EFR_MushroomMedium_002",
+          "position": [
+            -34.2,
+            10.8,
+            0.0
+          ],
+          "rotation_z_deg": 50.0
+        },
+        {
+          "name": "EFR_MushroomMedium_003",
+          "position": [
+            -30.4,
+            -9.8,
+            0.0
+          ],
+          "rotation_z_deg": 100.0
+        },
+        {
+          "name": "EFR_MushroomMedium_004",
+          "position": [
+            -46.3,
+            1.6,
+            0.0
+          ],
+          "rotation_z_deg": 150.0
+        },
+        {
+          "name": "EFR_MushroomMedium_005",
+          "position": [
+            -21.4,
+            -6.0,
+            0.0
+          ],
+          "rotation_z_deg": 200.0
+        },
+        {
+          "name": "EFR_MushroomMedium_006",
+          "position": [
+            -38.2,
+            -15.0,
+            0.0
+          ],
+          "rotation_z_deg": 250.0
+        }
+      ],
+      "shared_meshes": [
+        "EFR_MushroomMediumGlow_Mesh",
+        "EFR_MushroomMedium_Mesh"
+      ],
+      "verification_status": "blender_checked; resonite_unverified",
+      "glow_individuals": [
+        {
+          "instance": "EFR_MushroomMedium_001",
+          "glow_part": "EFR_MushroomMedium_001_Glow",
+          "attach_local": [
+            0.0,
+            0.0,
+            0.8
+          ],
+          "period_s": 3.95,
+          "phase_s": 2.9,
+          "intensity_min": 0.35,
+          "intensity_max": 1.0,
+          "attach_world": [
+            -27.4,
+            3.0,
+            0.8
+          ]
+        },
+        {
+          "instance": "EFR_MushroomMedium_002",
+          "glow_part": "EFR_MushroomMedium_002_Glow",
+          "attach_local": [
+            0.0,
+            0.0,
+            0.8
+          ],
+          "period_s": 4.78,
+          "phase_s": 3.44,
+          "intensity_min": 0.35,
+          "intensity_max": 1.0,
+          "attach_world": [
+            -34.2,
+            10.8,
+            0.8
+          ]
+        },
+        {
+          "instance": "EFR_MushroomMedium_003",
+          "glow_part": "EFR_MushroomMedium_003_Glow",
+          "attach_local": [
+            0.0,
+            0.0,
+            0.8
+          ],
+          "period_s": 5.61,
+          "phase_s": 3.98,
+          "intensity_min": 0.35,
+          "intensity_max": 1.0,
+          "attach_world": [
+            -30.4,
+            -9.8,
+            0.8
+          ]
+        }
+      ],
+      "shared_materials": {
+        "body": [
+          "MAT_EFR_CapTeal",
+          "MAT_EFR_MushStem"
+        ],
+        "glow": "MAT_EFR_MushGlow"
+      }
+    },
+    {
+      "asset_id": "EFR_MushroomCluster_001",
+      "key": "E_forest",
+      "category": "vegetation",
+      "area_id": "E_forest",
+      "collection": "E_forest",
+      "blend_file": "blender/E_forest/E_forest.blend",
+      "script_file": "modeling/E_forest/build.py",
+      "version": "W06-1",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -21.6,
+        4.6,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "forward_axis_local": "+Y",
+      "up_axis": "+Z",
+      "unit": "m",
+      "dimensions_m": {
+        "width": 0.58,
+        "depth": 0.46,
+        "height": 0.5003
+      },
+      "bounds_local": {
+        "min": [
+          -0.24,
+          -0.19,
+          0.0
+        ],
+        "max": [
+          0.34,
+          0.27,
+          0.5003
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "EFR_MushroomCluster_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "EFR_MushroomCluster_001_Glow",
+          "role": "attachment_point",
+          "parent_part": "EFR_MushroomCluster_001",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.34
+          ],
+          "notes": "Glowing gills and spots (G18). Shared material; per-individual values in glow_individuals."
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "EFR_MushroomCluster_001",
+        "motion_roots": [],
+        "visual_roots": [],
+        "attachment_points": [
+          "EFR_MushroomCluster_001_Glow"
+        ]
+      },
+      "materials": [
+        "MAT_EFR_CapOrange",
+        "MAT_EFR_MushGlow",
+        "MAT_EFR_MushStem"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 1824,
+        "vertices": 972,
+        "materials_count": 3,
+        "objects_count": 2
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Reusable cluster of three small orange mushrooms.",
+        "future_target": null
+      },
+      "replacement_slot": null,
+      "collider_policy": "none",
+      "gimmick_ids": [
+        "G18"
+      ],
+      "motion": [],
+      "attachment_details": [],
+      "instances": [
+        {
+          "name": "EFR_MushroomCluster_001",
+          "position": [
+            -21.6,
+            4.6,
+            0.0
+          ],
+          "rotation_z_deg": 0.0
+        },
+        {
+          "name": "EFR_MushroomCluster_002",
+          "position": [
+            -33.6,
+            4.6,
+            0.0
+          ],
+          "rotation_z_deg": 45.0
+        },
+        {
+          "name": "EFR_MushroomCluster_003",
+          "position": [
+            -44.4,
+            16.4,
+            0.0
+          ],
+          "rotation_z_deg": 90.0
+        },
+        {
+          "name": "EFR_MushroomCluster_004",
+          "position": [
+            -24.2,
+            -2.8,
+            0.0
+          ],
+          "rotation_z_deg": 135.0
+        },
+        {
+          "name": "EFR_MushroomCluster_005",
+          "position": [
+            -35.6,
+            -10.4,
+            0.0
+          ],
+          "rotation_z_deg": 180.0
+        },
+        {
+          "name": "EFR_MushroomCluster_006",
+          "position": [
+            -46.9,
+            -8.9,
+            0.0
+          ],
+          "rotation_z_deg": 225.0
+        },
+        {
+          "name": "EFR_MushroomCluster_007",
+          "position": [
+            -29.0,
+            11.0,
+            0.0
+          ],
+          "rotation_z_deg": 270.0
+        },
+        {
+          "name": "EFR_MushroomCluster_008",
+          "position": [
+            -33.2,
+            -3.6,
+            0.0
+          ],
+          "rotation_z_deg": 315.0
+        }
+      ],
+      "shared_meshes": [
+        "EFR_MushroomClusterGlow_Mesh",
+        "EFR_MushroomCluster_Mesh"
+      ],
+      "verification_status": "blender_checked; resonite_unverified",
+      "glow_individuals": [
+        {
+          "instance": "EFR_MushroomCluster_001",
+          "glow_part": "EFR_MushroomCluster_001_Glow",
+          "attach_local": [
+            0.0,
+            0.0,
+            0.34
+          ],
+          "period_s": 6.44,
+          "phase_s": 4.52,
+          "intensity_min": 0.35,
+          "intensity_max": 1.0,
+          "attach_world": [
+            -21.6,
+            4.6,
+            0.34
+          ]
+        },
+        {
+          "instance": "EFR_MushroomCluster_002",
+          "glow_part": "EFR_MushroomCluster_002_Glow",
+          "attach_local": [
+            0.0,
+            0.0,
+            0.34
+          ],
+          "period_s": 3.87,
+          "phase_s": 0.72,
+          "intensity_min": 0.35,
+          "intensity_max": 1.0,
+          "attach_world": [
+            -33.6,
+            4.6,
+            0.34
+          ]
+        },
+        {
+          "instance": "EFR_MushroomCluster_004",
+          "glow_part": "EFR_MushroomCluster_004_Glow",
+          "attach_local": [
+            0.0,
+            0.0,
+            0.34
+          ],
+          "period_s": 4.7,
+          "phase_s": 4.3,
+          "intensity_min": 0.35,
+          "intensity_max": 1.0,
+          "attach_world": [
+            -24.2,
+            -2.8,
+            0.34
+          ]
+        },
+        {
+          "instance": "EFR_MushroomCluster_006",
+          "glow_part": "EFR_MushroomCluster_006_Glow",
+          "attach_local": [
+            0.0,
+            0.0,
+            0.34
+          ],
+          "period_s": 5.53,
+          "phase_s": 4.01,
+          "intensity_min": 0.35,
+          "intensity_max": 1.0,
+          "attach_world": [
+            -46.9,
+            -8.9,
+            0.34
+          ]
+        },
+        {
+          "instance": "EFR_MushroomCluster_008",
+          "glow_part": "EFR_MushroomCluster_008_Glow",
+          "attach_local": [
+            0.0,
+            0.0,
+            0.34
+          ],
+          "period_s": 6.36,
+          "phase_s": 3.72,
+          "intensity_min": 0.35,
+          "intensity_max": 1.0,
+          "attach_world": [
+            -33.2,
+            -3.6,
+            0.34
+          ]
+        }
+      ],
+      "shared_materials": {
+        "body": [
+          "MAT_EFR_CapOrange",
+          "MAT_EFR_MushStem"
+        ],
+        "glow": "MAT_EFR_MushGlow"
+      }
+    },
+    {
+      "asset_id": "EFR_MushroomGiant_001",
+      "key": "E_forest",
+      "category": "vegetation",
+      "area_id": "E_forest",
+      "collection": "E_forest",
+      "blend_file": "blender/E_forest/E_forest.blend",
+      "script_file": "modeling/E_forest/build.py",
+      "version": "W06-1",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -43.2,
+        -12.6,
+        0.2
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        15.0
+      ],
+      "forward_axis_local": "+Y",
+      "up_axis": "+Z",
+      "unit": "m",
+      "dimensions_m": {
+        "width": 5.4,
+        "depth": 5.4,
+        "height": 5.2839
+      },
+      "bounds_local": {
+        "min": [
+          -2.7,
+          -2.7,
+          0.0
+        ],
+        "max": [
+          2.7,
+          2.7,
+          5.2839
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "EFR_MushroomGiant_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "EFR_MushroomGiant_001_Glow",
+          "role": "attachment_point",
+          "parent_part": "EFR_MushroomGiant_001",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            3.1
+          ],
+          "notes": "Glowing gills and spots (G18). Shared material; per-individual values in glow_individuals."
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "EFR_MushroomGiant_001",
+        "motion_roots": [],
+        "visual_roots": [],
+        "attachment_points": [
+          "EFR_MushroomGiant_001_Glow"
+        ]
+      },
+      "materials": [
+        "MAT_EFR_CapPurple",
+        "MAT_EFR_MushGlow",
+        "MAT_EFR_MushStem"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 664,
+        "vertices": 354,
+        "materials_count": 3,
+        "objects_count": 2
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Giant purple mushroom that roofs the rest spot (cap underside 3.1 m).",
+        "future_target": null
+      },
+      "replacement_slot": null,
+      "collider_policy": "convex_hull",
+      "gimmick_ids": [
+        "G18"
+      ],
+      "motion": [],
+      "attachment_details": [],
+      "instances": [
+        {
+          "name": "EFR_MushroomGiant_001",
+          "position": [
+            -43.2,
+            -12.6,
+            0.2
+          ],
+          "rotation_z_deg": 15.0
+        }
+      ],
+      "shared_meshes": [
+        "EFR_MushroomGiantGlow_Mesh",
+        "EFR_MushroomGiant_Mesh"
+      ],
+      "verification_status": "blender_checked; resonite_unverified",
+      "glow_individuals": [
+        {
+          "instance": "EFR_MushroomGiant_001",
+          "glow_part": "EFR_MushroomGiant_001_Glow",
+          "attach_local": [
+            0.0,
+            0.0,
+            3.1
+          ],
+          "period_s": 3.79,
+          "phase_s": 2.65,
+          "intensity_min": 0.35,
+          "intensity_max": 1.0,
+          "attach_world": [
+            -43.2,
+            -12.6,
+            3.3
+          ]
+        }
+      ],
+      "shared_materials": {
+        "body": [
+          "MAT_EFR_CapPurple",
+          "MAT_EFR_MushStem"
+        ],
+        "glow": "MAT_EFR_MushGlow"
+      }
+    },
+    {
+      "asset_id": "EFR_BatFlock_001",
+      "key": "E_forest",
+      "category": "gimmick",
+      "area_id": "E_forest",
+      "collection": "E_forest",
+      "blend_file": "blender/E_forest/E_forest.blend",
+      "script_file": "modeling/E_forest/build.py",
+      "version": "W06-1",
+      "origin_policy": "hinge_pivot",
+      "origin_world": [
+        -28.8,
+        -6.5,
+        10.4
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "forward_axis_local": "+Y",
+      "up_axis": "+Z",
+      "unit": "m",
+      "dimensions_m": {
+        "width": 3.3039,
+        "depth": 4.1887,
+        "height": 1.0805
+      },
+      "bounds_local": {
+        "min": [
+          -1.7113,
+          -1.8908,
+          -0.3897
+        ],
+        "max": [
+          1.5926,
+          2.2979,
+          0.6908
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "EFR_BatFlock_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Motion",
+          "role": "motion_root",
+          "parent_part": "EFR_BatFlock_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "notes": "Flock motion centre: circle about local Z within the recorded flight range."
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat01",
+          "role": "motion_root",
+          "parent_part": "EFR_BatFlock_001_Motion",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            1.0798,
+            0.2099,
+            0.0
+          ],
+          "notes": "Individual bob and heading (faces local +Y, the flight direction)."
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat01_Body",
+          "role": "visual_root",
+          "parent_part": "EFR_BatFlock_001_Bat01",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            1.0798,
+            0.2099,
+            0.0
+          ]
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat01_WingLPivot",
+          "role": "motion_root",
+          "parent_part": "EFR_BatFlock_001_Bat01",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.9718,
+            0.1889,
+            0.04
+          ],
+          "notes": "Wing L shoulder."
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat01_WingL",
+          "role": "visual_root",
+          "parent_part": "EFR_BatFlock_001_Bat01_WingLPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.9718,
+            0.1889,
+            0.04
+          ]
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat01_WingRPivot",
+          "role": "motion_root",
+          "parent_part": "EFR_BatFlock_001_Bat01",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            1.1878,
+            0.2309,
+            0.04
+          ],
+          "notes": "Wing R shoulder."
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat01_WingR",
+          "role": "visual_root",
+          "parent_part": "EFR_BatFlock_001_Bat01_WingRPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            1.1878,
+            0.2309,
+            0.04
+          ]
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat02",
+          "role": "motion_root",
+          "parent_part": "EFR_BatFlock_001_Motion",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.2163,
+            1.7618,
+            0.3312
+          ],
+          "notes": "Individual bob and heading (faces local +Y, the flight direction)."
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat02_Body",
+          "role": "visual_root",
+          "parent_part": "EFR_BatFlock_001_Bat02",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.2163,
+            1.7618,
+            0.3312
+          ]
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat02_WingLPivot",
+          "role": "motion_root",
+          "parent_part": "EFR_BatFlock_001_Bat02",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.2029,
+            1.6526,
+            0.3712
+          ],
+          "notes": "Wing L shoulder."
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat02_WingL",
+          "role": "visual_root",
+          "parent_part": "EFR_BatFlock_001_Bat02_WingLPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.2029,
+            1.6526,
+            0.3712
+          ]
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat02_WingRPivot",
+          "role": "motion_root",
+          "parent_part": "EFR_BatFlock_001_Bat02",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.2297,
+            1.8709,
+            0.3712
+          ],
+          "notes": "Wing R shoulder."
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat02_WingR",
+          "role": "visual_root",
+          "parent_part": "EFR_BatFlock_001_Bat02_WingRPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.2297,
+            1.8709,
+            0.3712
+          ]
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat03",
+          "role": "motion_root",
+          "parent_part": "EFR_BatFlock_001_Motion",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            -1.2009,
+            0.56,
+            -0.2142
+          ],
+          "notes": "Individual bob and heading (faces local +Y, the flight direction)."
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat03_Body",
+          "role": "visual_root",
+          "parent_part": "EFR_BatFlock_001_Bat03",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            -1.2009,
+            0.56,
+            -0.2142
+          ]
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat03_WingLPivot",
+          "role": "motion_root",
+          "parent_part": "EFR_BatFlock_001_Bat03",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            -1.1012,
+            0.5135,
+            -0.1742
+          ],
+          "notes": "Wing L shoulder."
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat03_WingL",
+          "role": "visual_root",
+          "parent_part": "EFR_BatFlock_001_Bat03_WingLPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            -1.1012,
+            0.5135,
+            -0.1742
+          ]
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat03_WingRPivot",
+          "role": "motion_root",
+          "parent_part": "EFR_BatFlock_001_Bat03",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            -1.3006,
+            0.6065,
+            -0.1742
+          ],
+          "notes": "Wing R shoulder."
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat03_WingR",
+          "role": "visual_root",
+          "parent_part": "EFR_BatFlock_001_Bat03_WingRPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            -1.3006,
+            0.6065,
+            -0.1742
+          ]
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat04",
+          "role": "motion_root",
+          "parent_part": "EFR_BatFlock_001_Motion",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            -1.364,
+            -1.4627,
+            -0.1927
+          ],
+          "notes": "Individual bob and heading (faces local +Y, the flight direction)."
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat04_Body",
+          "role": "visual_root",
+          "parent_part": "EFR_BatFlock_001_Bat04",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            -1.364,
+            -1.4627,
+            -0.1927
+          ]
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat04_WingLPivot",
+          "role": "motion_root",
+          "parent_part": "EFR_BatFlock_001_Bat04",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            -1.289,
+            -1.3823,
+            -0.1527
+          ],
+          "notes": "Wing L shoulder."
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat04_WingL",
+          "role": "visual_root",
+          "parent_part": "EFR_BatFlock_001_Bat04_WingLPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            -1.289,
+            -1.3823,
+            -0.1527
+          ]
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat04_WingRPivot",
+          "role": "motion_root",
+          "parent_part": "EFR_BatFlock_001_Bat04",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            -1.439,
+            -1.5432,
+            -0.1527
+          ],
+          "notes": "Wing R shoulder."
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat04_WingR",
+          "role": "visual_root",
+          "parent_part": "EFR_BatFlock_001_Bat04_WingRPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            -1.439,
+            -1.5432,
+            -0.1527
+          ]
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat05",
+          "role": "motion_root",
+          "parent_part": "EFR_BatFlock_001_Motion",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.7515,
+            -1.3557,
+            0.3388
+          ],
+          "notes": "Individual bob and heading (faces local +Y, the flight direction)."
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat05_Body",
+          "role": "visual_root",
+          "parent_part": "EFR_BatFlock_001_Bat05",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.7515,
+            -1.3557,
+            0.3388
+          ]
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat05_WingLPivot",
+          "role": "motion_root",
+          "parent_part": "EFR_BatFlock_001_Bat05",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.6981,
+            -1.2595,
+            0.3788
+          ],
+          "notes": "Wing L shoulder."
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat05_WingL",
+          "role": "visual_root",
+          "parent_part": "EFR_BatFlock_001_Bat05_WingLPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.6981,
+            -1.2595,
+            0.3788
+          ]
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat05_WingRPivot",
+          "role": "motion_root",
+          "parent_part": "EFR_BatFlock_001_Bat05",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.8048,
+            -1.4519,
+            0.3788
+          ],
+          "notes": "Wing R shoulder."
+        },
+        {
+          "part_id": "EFR_BatFlock_001_Bat05_WingR",
+          "role": "visual_root",
+          "parent_part": "EFR_BatFlock_001_Bat05_WingRPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.8048,
+            -1.4519,
+            0.3788
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "EFR_BatFlock_001",
+        "motion_roots": [
+          "EFR_BatFlock_001_Motion",
+          "EFR_BatFlock_001_Bat01",
+          "EFR_BatFlock_001_Bat01_WingLPivot",
+          "EFR_BatFlock_001_Bat01_WingRPivot",
+          "EFR_BatFlock_001_Bat02",
+          "EFR_BatFlock_001_Bat02_WingLPivot",
+          "EFR_BatFlock_001_Bat02_WingRPivot",
+          "EFR_BatFlock_001_Bat03",
+          "EFR_BatFlock_001_Bat03_WingLPivot",
+          "EFR_BatFlock_001_Bat03_WingRPivot",
+          "EFR_BatFlock_001_Bat04",
+          "EFR_BatFlock_001_Bat04_WingLPivot",
+          "EFR_BatFlock_001_Bat04_WingRPivot",
+          "EFR_BatFlock_001_Bat05",
+          "EFR_BatFlock_001_Bat05_WingLPivot",
+          "EFR_BatFlock_001_Bat05_WingRPivot"
+        ],
+        "visual_roots": [
+          "EFR_BatFlock_001_Bat01_Body",
+          "EFR_BatFlock_001_Bat01_WingL",
+          "EFR_BatFlock_001_Bat01_WingR",
+          "EFR_BatFlock_001_Bat02_Body",
+          "EFR_BatFlock_001_Bat02_WingL",
+          "EFR_BatFlock_001_Bat02_WingR",
+          "EFR_BatFlock_001_Bat03_Body",
+          "EFR_BatFlock_001_Bat03_WingL",
+          "EFR_BatFlock_001_Bat03_WingR",
+          "EFR_BatFlock_001_Bat04_Body",
+          "EFR_BatFlock_001_Bat04_WingL",
+          "EFR_BatFlock_001_Bat04_WingR",
+          "EFR_BatFlock_001_Bat05_Body",
+          "EFR_BatFlock_001_Bat05_WingL",
+          "EFR_BatFlock_001_Bat05_WingR"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_EFR_BatBody",
+        "MAT_EFR_BatEye",
+        "MAT_EFR_BatWing"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 1880,
+        "vertices": 1040,
+        "materials_count": 3,
+        "objects_count": 32
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Small bat flock; the root is the flight centre (G19).",
+        "future_target": null
+      },
+      "replacement_slot": null,
+      "collider_policy": "none",
+      "gimmick_ids": [
+        "G19"
+      ],
+      "motion": [
+        {
+          "part_name": "EFR_BatFlock_001_Bat01_WingLPivot",
+          "visual_part": "EFR_BatFlock_001_Bat01_WingL",
+          "gimmick_id": "G19",
+          "motion_type": "oscillation",
+          "pivot_local": [
+            0.9718,
+            0.1889,
+            0.04
+          ],
+          "pivot_world": [
+            -27.8282,
+            -6.3111,
+            10.44
+          ],
+          "axis": "Y",
+          "axis_frame": "pivot local (Blender)",
+          "axis_world": [
+            -0.1908,
+            0.9816,
+            0.0
+          ],
+          "range": {
+            "min": -35.0,
+            "max": 35.0,
+            "unit": "deg"
+          },
+          "rest_pose": {
+            "position": [
+              -0.11,
+              0.0,
+              0.04
+            ],
+            "rotation_euler_deg": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "envelope_world": {
+            "min": [
+              -27.8594,
+              -6.4145,
+              10.0642
+            ],
+            "max": [
+              -27.2074,
+              -6.0846,
+              10.8254
+            ]
+          },
+          "envelope_low_world": null,
+          "notes": "Flap about the shoulder (pivot-local Y = the bat's forward axis)."
+        },
+        {
+          "part_name": "EFR_BatFlock_001_Bat01_WingRPivot",
+          "visual_part": "EFR_BatFlock_001_Bat01_WingR",
+          "gimmick_id": "G19",
+          "motion_type": "oscillation",
+          "pivot_local": [
+            1.1878,
+            0.2309,
+            0.04
+          ],
+          "pivot_world": [
+            -27.6122,
+            -6.2691,
+            10.44
+          ],
+          "axis": "Y",
+          "axis_frame": "pivot local (Blender)",
+          "axis_world": [
+            -0.1908,
+            0.9816,
+            0.0
+          ],
+          "range": {
+            "min": -35.0,
+            "max": 35.0,
+            "unit": "deg"
+          },
+          "rest_pose": {
+            "position": [
+              0.11,
+              0.0,
+              0.04
+            ],
+            "rotation_euler_deg": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "envelope_world": {
+            "min": [
+              -28.2561,
+              -6.4527,
+              10.0642
+            ],
+            "max": [
+              -27.595,
+              -6.1427,
+              10.8277
+            ]
+          },
+          "envelope_low_world": null,
+          "notes": "Flap about the shoulder (pivot-local Y = the bat's forward axis)."
+        },
+        {
+          "part_name": "EFR_BatFlock_001_Bat02_WingLPivot",
+          "visual_part": "EFR_BatFlock_001_Bat02_WingL",
+          "gimmick_id": "G19",
+          "motion_type": "oscillation",
+          "pivot_local": [
+            0.2029,
+            1.6526,
+            0.3712
+          ],
+          "pivot_world": [
+            -28.5971,
+            -4.8474,
+            10.7712
+          ],
+          "axis": "Y",
+          "axis_frame": "pivot local (Blender)",
+          "axis_world": [
+            -0.9925,
+            0.1219,
+            0.0
+          ],
+          "range": {
+            "min": -35.0,
+            "max": 35.0,
+            "unit": "deg"
+          },
+          "rest_pose": {
+            "position": [
+              -0.11,
+              0.0,
+              0.04
+            ],
+            "rotation_euler_deg": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "envelope_world": {
+            "min": [
+              -28.7335,
+              -4.8609,
+              10.3954
+            ],
+            "max": [
+              -28.4396,
+              -4.2021,
+              11.1567
+            ]
+          },
+          "envelope_low_world": null,
+          "notes": "Flap about the shoulder (pivot-local Y = the bat's forward axis)."
+        },
+        {
+          "part_name": "EFR_BatFlock_001_Bat02_WingRPivot",
+          "visual_part": "EFR_BatFlock_001_Bat02_WingR",
+          "gimmick_id": "G19",
+          "motion_type": "oscillation",
+          "pivot_local": [
+            0.2297,
+            1.8709,
+            0.3712
+          ],
+          "pivot_world": [
+            -28.5703,
+            -4.6291,
+            10.7712
+          ],
+          "axis": "Y",
+          "axis_frame": "pivot local (Blender)",
+          "axis_world": [
+            -0.9925,
+            0.1219,
+            0.0
+          ],
+          "range": {
+            "min": -35.0,
+            "max": 35.0,
+            "unit": "deg"
+          },
+          "rest_pose": {
+            "position": [
+              0.11,
+              0.0,
+              0.04
+            ],
+            "rotation_euler_deg": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "envelope_world": {
+            "min": [
+              -28.7708,
+              -5.2616,
+              10.3954
+            ],
+            "max": [
+              -28.456,
+              -4.6035,
+              11.159
+            ]
+          },
+          "envelope_low_world": null,
+          "notes": "Flap about the shoulder (pivot-local Y = the bat's forward axis)."
+        },
+        {
+          "part_name": "EFR_BatFlock_001_Bat03_WingLPivot",
+          "visual_part": "EFR_BatFlock_001_Bat03_WingL",
+          "gimmick_id": "G19",
+          "motion_type": "oscillation",
+          "pivot_local": [
+            -1.1012,
+            0.5135,
+            -0.1742
+          ],
+          "pivot_world": [
+            -29.9012,
+            -5.9865,
+            10.2258
+          ],
+          "axis": "Y",
+          "axis_frame": "pivot local (Blender)",
+          "axis_world": [
+            -0.4226,
+            -0.9063,
+            0.0
+          ],
+          "range": {
+            "min": -35.0,
+            "max": 35.0,
+            "unit": "deg"
+          },
+          "rest_pose": {
+            "position": [
+              -0.11,
+              0.0,
+              0.04
+            ],
+            "rotation_euler_deg": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "envelope_world": {
+            "min": [
+              -30.5077,
+              -6.0736,
+              9.8501
+            ],
+            "max": [
+              -29.8717,
+              -5.7049,
+              10.6113
+            ]
+          },
+          "envelope_low_world": null,
+          "notes": "Flap about the shoulder (pivot-local Y = the bat's forward axis)."
+        },
+        {
+          "part_name": "EFR_BatFlock_001_Bat03_WingRPivot",
+          "visual_part": "EFR_BatFlock_001_Bat03_WingR",
+          "gimmick_id": "G19",
+          "motion_type": "oscillation",
+          "pivot_local": [
+            -1.3006,
+            0.6065,
+            -0.1742
+          ],
+          "pivot_world": [
+            -30.1005,
+            -5.8935,
+            10.2258
+          ],
+          "axis": "Y",
+          "axis_frame": "pivot local (Blender)",
+          "axis_world": [
+            -0.4226,
+            -0.9063,
+            0.0
+          ],
+          "range": {
+            "min": -35.0,
+            "max": 35.0,
+            "unit": "deg"
+          },
+          "rest_pose": {
+            "position": [
+              0.11,
+              0.0,
+              0.04
+            ],
+            "rotation_euler_deg": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "envelope_world": {
+            "min": [
+              -30.1493,
+              -6.219,
+              9.8501
+            ],
+            "max": [
+              -29.5407,
+              -5.8319,
+              10.6136
+            ]
+          },
+          "envelope_low_world": null,
+          "notes": "Flap about the shoulder (pivot-local Y = the bat's forward axis)."
+        },
+        {
+          "part_name": "EFR_BatFlock_001_Bat04_WingLPivot",
+          "visual_part": "EFR_BatFlock_001_Bat04_WingL",
+          "gimmick_id": "G19",
+          "motion_type": "oscillation",
+          "pivot_local": [
+            -1.289,
+            -1.3823,
+            -0.1527
+          ],
+          "pivot_world": [
+            -30.089,
+            -7.8823,
+            10.2473
+          ],
+          "axis": "Y",
+          "axis_frame": "pivot local (Blender)",
+          "axis_world": [
+            0.7314,
+            -0.682,
+            0.0
+          ],
+          "range": {
+            "min": -35.0,
+            "max": 35.0,
+            "unit": "deg"
+          },
+          "rest_pose": {
+            "position": [
+              -0.11,
+              0.0,
+              0.04
+            ],
+            "rotation_euler_deg": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "envelope_world": {
+            "min": [
+              -30.5113,
+              -8.3908,
+              9.8715
+            ],
+            "max": [
+              -30.0138,
+              -7.8397,
+              10.6327
+            ]
+          },
+          "envelope_low_world": null,
+          "notes": "Flap about the shoulder (pivot-local Y = the bat's forward axis)."
+        },
+        {
+          "part_name": "EFR_BatFlock_001_Bat04_WingRPivot",
+          "visual_part": "EFR_BatFlock_001_Bat04_WingR",
+          "gimmick_id": "G19",
+          "motion_type": "oscillation",
+          "pivot_local": [
+            -1.439,
+            -1.5432,
+            -0.1527
+          ],
+          "pivot_world": [
+            -30.239,
+            -8.0432,
+            10.2473
+          ],
+          "axis": "Y",
+          "axis_frame": "pivot local (Blender)",
+          "axis_world": [
+            0.7314,
+            -0.682,
+            0.0
+          ],
+          "range": {
+            "min": -35.0,
+            "max": 35.0,
+            "unit": "deg"
+          },
+          "rest_pose": {
+            "position": [
+              0.11,
+              0.0,
+              0.04
+            ],
+            "rotation_euler_deg": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "envelope_world": {
+            "min": [
+              -30.2839,
+              -8.1132,
+              9.8715
+            ],
+            "max": [
+              -29.7566,
+              -7.5948,
+              10.635
+            ]
+          },
+          "envelope_low_world": null,
+          "notes": "Flap about the shoulder (pivot-local Y = the bat's forward axis)."
+        },
+        {
+          "part_name": "EFR_BatFlock_001_Bat05_WingLPivot",
+          "visual_part": "EFR_BatFlock_001_Bat05_WingL",
+          "gimmick_id": "G19",
+          "motion_type": "oscillation",
+          "pivot_local": [
+            0.6981,
+            -1.2595,
+            0.3788
+          ],
+          "pivot_world": [
+            -28.1019,
+            -7.7595,
+            10.7788
+          ],
+          "axis": "Y",
+          "axis_frame": "pivot local (Blender)",
+          "axis_world": [
+            0.8746,
+            0.4848,
+            0.0
+          ],
+          "range": {
+            "min": -35.0,
+            "max": 35.0,
+            "unit": "deg"
+          },
+          "rest_pose": {
+            "position": [
+              -0.11,
+              0.0,
+              0.04
+            ],
+            "rotation_euler_deg": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "envelope_world": {
+            "min": [
+              -28.1533,
+              -8.2975,
+              10.403
+            ],
+            "max": [
+              -27.7412,
+              -7.7035,
+              11.1642
+            ]
+          },
+          "envelope_low_world": null,
+          "notes": "Flap about the shoulder (pivot-local Y = the bat's forward axis)."
+        },
+        {
+          "part_name": "EFR_BatFlock_001_Bat05_WingRPivot",
+          "visual_part": "EFR_BatFlock_001_Bat05_WingR",
+          "gimmick_id": "G19",
+          "motion_type": "oscillation",
+          "pivot_local": [
+            0.8048,
+            -1.4519,
+            0.3788
+          ],
+          "pivot_world": [
+            -27.9952,
+            -7.9519,
+            10.7788
+          ],
+          "axis": "Y",
+          "axis_frame": "pivot local (Blender)",
+          "axis_world": [
+            0.8746,
+            0.4848,
+            0.0
+          ],
+          "range": {
+            "min": -35.0,
+            "max": 35.0,
+            "unit": "deg"
+          },
+          "rest_pose": {
+            "position": [
+              0.11,
+              0.0,
+              0.04
+            ],
+            "rotation_euler_deg": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "envelope_world": {
+            "min": [
+              -28.311,
+              -7.9846,
+              10.403
+            ],
+            "max": [
+              -27.9098,
+              -7.3598,
+              11.1665
+            ]
+          },
+          "envelope_low_world": null,
+          "notes": "Flap about the shoulder (pivot-local Y = the bat's forward axis)."
+        },
+        {
+          "part_name": "EFR_BatFlock_001_Motion",
+          "visual_part": null,
+          "gimmick_id": "G19",
+          "motion_type": "path_follow",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "pivot_world": [
+            -28.8,
+            -6.5,
+            10.4
+          ],
+          "axis": "Z",
+          "axis_frame": "pivot local (Blender)",
+          "axis_world": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "range": {
+            "min": 0.0,
+            "max": 360.0,
+            "unit": "deg"
+          },
+          "rest_pose": {
+            "position": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rotation_euler_deg": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "envelope_world": {
+            "min": [
+              -31.6839,
+              -9.3839,
+              8.6103
+            ],
+            "max": [
+              -25.9161,
+              -3.6161,
+              12.4908
+            ]
+          },
+          "envelope_low_world": null,
+          "notes": "Circle the flock about the flight centre; add +-0.8 m vertical drift."
+        }
+      ],
+      "attachment_details": [],
+      "instances": [
+        {
+          "name": "EFR_BatFlock_001",
+          "position": [
+            -28.8,
+            -6.5,
+            10.4
+          ],
+          "rotation_z_deg": 0.0
+        }
+      ],
+      "shared_meshes": [
+        "EFR_BatBody_Mesh",
+        "EFR_BatWingL_Mesh",
+        "EFR_BatWingR_Mesh"
+      ],
+      "verification_status": "blender_checked; resonite_unverified",
+      "flight_range": {
+        "center_world": [
+          -28.8,
+          -6.5,
+          10.4
+        ],
+        "radius_m": 2.6,
+        "vertical_m": 0.8,
+        "notes": "Keep the flock within this cylinder (P3). Bats circle about the Motion pivot and bob +-0.25 m each."
+      }
+    },
+    {
+      "asset_id": "EFR_WalkNorth_001",
+      "key": "E_forest",
+      "category": "architecture",
+      "area_id": "E_forest",
+      "collection": "E_forest",
+      "blend_file": "blender/E_forest/E_forest.blend",
+      "script_file": "modeling/E_forest/build.py",
+      "version": "W06-1",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -30.8,
+        12.5,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        180.0
+      ],
+      "forward_axis_local": "+Y",
+      "up_axis": "+Z",
+      "unit": "m",
+      "dimensions_m": {
+        "width": 13.6054,
+        "depth": 2.62,
+        "height": 0.8
+      },
+      "bounds_local": {
+        "min": [
+          -6.8054,
+          -1.31,
+          0.0
+        ],
+        "max": [
+          6.8,
+          1.31,
+          0.8
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "EFR_WalkNorth_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "EFR_WalkNorth_001",
+        "motion_roots": [],
+        "visual_roots": [],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_EFR_LanternGlow",
+        "MAT_EFR_Plank",
+        "MAT_EFR_PlankDark"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 868,
+        "vertices": 582,
+        "materials_count": 3,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "North boardwalk from the NW side-bridge landing to the lookout ramp; the pond bridge joins from the south at x = -31.",
+        "future_target": null
+      },
+      "replacement_slot": null,
+      "collider_policy": "box",
+      "gimmick_ids": [],
+      "motion": [],
+      "attachment_details": [],
+      "instances": [
+        {
+          "name": "EFR_WalkNorth_001",
+          "position": [
+            -30.8,
+            12.5,
+            0.0
+          ],
+          "rotation_z_deg": 180.0
+        }
+      ],
+      "shared_meshes": [
+        "EFR_WalkNorth_001_Mesh"
+      ],
+      "verification_status": "blender_checked; resonite_unverified"
+    },
+    {
+      "asset_id": "EFR_WalkWest_001",
+      "key": "E_forest",
+      "category": "architecture",
+      "area_id": "E_forest",
+      "collection": "E_forest",
+      "blend_file": "blender/E_forest/E_forest.blend",
+      "script_file": "modeling/E_forest/build.py",
+      "version": "W06-1",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -44.4,
+        -1.825,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -90.0
+      ],
+      "forward_axis_local": "+Y",
+      "up_axis": "+Z",
+      "unit": "m",
+      "dimensions_m": {
+        "width": 15.65,
+        "depth": 2.62,
+        "height": 0.8
+      },
+      "bounds_local": {
+        "min": [
+          -7.825,
+          -1.31,
+          0.0
+        ],
+        "max": [
+          7.825,
+          1.31,
+          0.8
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "EFR_WalkWest_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "EFR_WalkWest_001",
+        "motion_roots": [],
+        "visual_roots": [],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_EFR_LanternGlow",
+        "MAT_EFR_Plank",
+        "MAT_EFR_PlankDark"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 948,
+        "vertices": 636,
+        "materials_count": 3,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "West boardwalk behind the clock tower, from the lookout's south ramp to the rest spot.",
+        "future_target": null
+      },
+      "replacement_slot": null,
+      "collider_policy": "box",
+      "gimmick_ids": [],
+      "motion": [],
+      "attachment_details": [],
+      "instances": [
+        {
+          "name": "EFR_WalkWest_001",
+          "position": [
+            -44.4,
+            -1.825,
+            0.0
+          ],
+          "rotation_z_deg": -90.0
+        }
+      ],
+      "shared_meshes": [
+        "EFR_WalkWest_001_Mesh"
+      ],
+      "verification_status": "blender_checked; resonite_unverified"
+    },
+    {
+      "asset_id": "EFR_WalkSouth_001",
+      "key": "E_forest",
+      "category": "architecture",
+      "area_id": "E_forest",
+      "collection": "E_forest",
+      "blend_file": "blender/E_forest/E_forest.blend",
+      "script_file": "modeling/E_forest/build.py",
+      "version": "W06-1",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -32.0,
+        -12.5,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "forward_axis_local": "+Y",
+      "up_axis": "+Z",
+      "unit": "m",
+      "dimensions_m": {
+        "width": 16.0054,
+        "depth": 2.62,
+        "height": 0.8
+      },
+      "bounds_local": {
+        "min": [
+          -8.0,
+          -1.31,
+          0.0
+        ],
+        "max": [
+          8.0054,
+          1.31,
+          0.8
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "EFR_WalkSouth_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "EFR_WalkSouth_001",
+        "motion_roots": [],
+        "visual_roots": [],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_EFR_LanternGlow",
+        "MAT_EFR_Plank",
+        "MAT_EFR_PlankDark"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 1000,
+        "vertices": 670,
+        "materials_count": 3,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "South boardwalk from the rest spot to the SW side-bridge landing; the south spur joins from the north at x = -28.",
+        "future_target": null
+      },
+      "replacement_slot": null,
+      "collider_policy": "box",
+      "gimmick_ids": [],
+      "motion": [],
+      "attachment_details": [],
+      "instances": [
+        {
+          "name": "EFR_WalkSouth_001",
+          "position": [
+            -32.0,
+            -12.5,
+            0.0
+          ],
+          "rotation_z_deg": 0.0
+        }
+      ],
+      "shared_meshes": [
+        "EFR_WalkSouth_001_Mesh"
+      ],
+      "verification_status": "blender_checked; resonite_unverified"
+    },
+    {
+      "asset_id": "EFR_WalkSouthSpur_001",
+      "key": "E_forest",
+      "category": "architecture",
+      "area_id": "E_forest",
+      "collection": "E_forest",
+      "blend_file": "blender/E_forest/E_forest.blend",
+      "script_file": "modeling/E_forest/build.py",
+      "version": "W06-1",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -28.0,
+        -6.675,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -90.0
+      ],
+      "forward_axis_local": "+Y",
+      "up_axis": "+Z",
+      "unit": "m",
+      "dimensions_m": {
+        "width": 9.4554,
+        "depth": 2.62,
+        "height": 0.8
+      },
+      "bounds_local": {
+        "min": [
+          -4.7304,
+          -1.31,
+          0.0
+        ],
+        "max": [
+          4.725,
+          1.31,
+          0.8
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "EFR_WalkSouthSpur_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            -0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "EFR_WalkSouthSpur_001",
+        "motion_roots": [],
+        "visual_roots": [],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_EFR_LanternGlow",
+        "MAT_EFR_Plank",
+        "MAT_EFR_PlankDark"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 632,
+        "vertices": 424,
+        "materials_count": 3,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Spur from the main road down to the south boardwalk (closes the south loop).",
+        "future_target": null
+      },
+      "replacement_slot": null,
+      "collider_policy": "box",
+      "gimmick_ids": [],
+      "motion": [],
+      "attachment_details": [],
+      "instances": [
+        {
+          "name": "EFR_WalkSouthSpur_001",
+          "position": [
+            -28.0,
+            -6.675,
+            0.0
+          ],
+          "rotation_z_deg": -90.0
+        }
+      ],
+      "shared_meshes": [
+        "EFR_WalkSouthSpur_001_Mesh"
+      ],
+      "verification_status": "blender_checked; resonite_unverified"
+    },
+    {
+      "asset_id": "EFR_WalkPondSpur_001",
+      "key": "E_forest",
+      "category": "architecture",
+      "area_id": "E_forest",
+      "collection": "E_forest",
+      "blend_file": "blender/E_forest/E_forest.blend",
+      "script_file": "modeling/E_forest/build.py",
+      "version": "W06-1",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -31.0,
+        2.975,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "forward_axis_local": "+Y",
+      "up_axis": "+Z",
+      "unit": "m",
+      "dimensions_m": {
+        "width": 2.0554,
+        "depth": 2.56,
+        "height": 0.72
+      },
+      "bounds_local": {
+        "min": [
+          -1.0304,
+          -1.28,
+          0.0
+        ],
+        "max": [
+          1.025,
+          1.28,
+          0.72
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "EFR_WalkPondSpur_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            -0.0,
+            -0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "EFR_WalkPondSpur_001",
+        "motion_roots": [],
+        "visual_roots": [],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_EFR_LanternGlow",
+        "MAT_EFR_Plank",
+        "MAT_EFR_PlankDark"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 216,
+        "vertices": 144,
+        "materials_count": 3,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Spur from the main road to the pond bridge.",
+        "future_target": null
+      },
+      "replacement_slot": null,
+      "collider_policy": "box",
+      "gimmick_ids": [],
+      "motion": [],
+      "attachment_details": [],
+      "instances": [
+        {
+          "name": "EFR_WalkPondSpur_001",
+          "position": [
+            -31.0,
+            2.975,
+            0.0
+          ],
+          "rotation_z_deg": 90.0
+        }
+      ],
+      "shared_meshes": [
+        "EFR_WalkPondSpur_001_Mesh"
+      ],
+      "verification_status": "blender_checked; resonite_unverified"
+    },
+    {
+      "asset_id": "EFR_PondBridge_001",
+      "key": "E_forest",
+      "category": "architecture",
+      "area_id": "E_forest",
+      "collection": "E_forest",
+      "blend_file": "blender/E_forest/E_forest.blend",
+      "script_file": "modeling/E_forest/build.py",
+      "version": "W06-1",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -31.0,
+        7.7,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "forward_axis_local": "+Y",
+      "up_axis": "+Z",
+      "unit": "m",
+      "dimensions_m": {
+        "width": 7.44,
+        "depth": 2.74,
+        "height": 2.0367
+      },
+      "bounds_local": {
+        "min": [
+          -3.72,
+          -1.37,
+          0.0
+        ],
+        "max": [
+          3.72,
+          1.37,
+          2.0367
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "EFR_PondBridge_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            -0.0,
+            -0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "EFR_PondBridge_001",
+        "motion_roots": [],
+        "visual_roots": [],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_EFR_Iron",
+        "MAT_EFR_LanternGlow",
+        "MAT_EFR_Plank",
+        "MAT_EFR_PlankDark",
+        "MAT_EFR_Rope",
+        "MAT_EFR_Stone"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 1652,
+        "vertices": 1088,
+        "materials_count": 6,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Arched footbridge over the pond with 1.05 m handrails (crest +0.42 m).",
+        "future_target": null
+      },
+      "replacement_slot": null,
+      "collider_policy": "mesh_static",
+      "gimmick_ids": [],
+      "motion": [],
+      "attachment_details": [],
+      "instances": [
+        {
+          "name": "EFR_PondBridge_001",
+          "position": [
+            -31.0,
+            7.7,
+            0.0
+          ],
+          "rotation_z_deg": 90.0
+        }
+      ],
+      "shared_meshes": [
+        "EFR_PondBridge_001_Mesh"
+      ],
+      "verification_status": "blender_checked; resonite_unverified"
+    },
+    {
+      "asset_id": "EFR_Pond_001",
+      "key": "E_forest",
+      "category": "terrain",
+      "area_id": "E_forest",
+      "collection": "E_forest",
+      "blend_file": "blender/E_forest/E_forest.blend",
+      "script_file": "modeling/E_forest/build.py",
+      "version": "W06-1",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -32.0,
+        7.7,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "forward_axis_local": "+Y",
+      "up_axis": "+Z",
+      "unit": "m",
+      "dimensions_m": {
+        "width": 9.3378,
+        "depth": 5.6031,
+        "height": 1.0012
+      },
+      "bounds_local": {
+        "min": [
+          -4.5914,
+          -2.8401,
+          0.0
+        ],
+        "max": [
+          4.7464,
+          2.763,
+          1.0012
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "EFR_Pond_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "EFR_Pond_001_Water",
+          "role": "visual_root",
+          "parent_part": "EFR_Pond_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "notes": "Water surface (separate for shader or ripple effects)."
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "EFR_Pond_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "EFR_Pond_001_Water"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_EFR_Lily",
+        "MAT_EFR_Moss",
+        "MAT_EFR_MushGlow",
+        "MAT_EFR_PlankDark",
+        "MAT_EFR_Stone",
+        "MAT_EFR_Water"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 1524,
+        "vertices": 822,
+        "materials_count": 6,
+        "objects_count": 2
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Shallow pond: water surface 0.07 m above the ground, no drop; stones left out under the bridge.",
+        "future_target": null
+      },
+      "replacement_slot": null,
+      "collider_policy": "box",
+      "gimmick_ids": [],
+      "motion": [],
+      "attachment_details": [],
+      "instances": [
+        {
+          "name": "EFR_Pond_001",
+          "position": [
+            -32.0,
+            7.7,
+            0.0
+          ],
+          "rotation_z_deg": 0.0
+        }
+      ],
+      "shared_meshes": [
+        "EFR_Pond_001_Mesh",
+        "EFR_Pond_001_Water_Mesh"
+      ],
+      "verification_status": "blender_checked; resonite_unverified"
+    },
+    {
+      "asset_id": "EFR_Lookout_001",
+      "key": "E_forest",
+      "category": "architecture",
+      "area_id": "E_forest",
+      "collection": "E_forest",
+      "blend_file": "blender/E_forest/E_forest.blend",
+      "script_file": "modeling/E_forest/build.py",
+      "version": "W06-1",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -44.4,
+        12.5,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "forward_axis_local": "+Y",
+      "up_axis": "+Z",
+      "unit": "m",
+      "dimensions_m": {
+        "width": 9.81,
+        "depth": 9.51,
+        "height": 7.0698
+      },
+      "bounds_local": {
+        "min": [
+          -2.95,
+          -6.56,
+          0.0
+        ],
+        "max": [
+          6.86,
+          2.95,
+          7.0698
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "EFR_Lookout_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "EFR_Lookout_001",
+        "motion_roots": [],
+        "visual_roots": [],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_EFR_Brass",
+        "MAT_EFR_Iron",
+        "MAT_EFR_LanternGlow",
+        "MAT_EFR_Plank",
+        "MAT_EFR_PlankDark",
+        "MAT_EFR_RoofBand",
+        "MAT_EFR_RoofPurple",
+        "MAT_EFR_Stone"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 2032,
+        "vertices": 1268,
+        "materials_count": 8,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Lookout deck (0.75 m) with ramps, 1.05 m railings, witch-hat roof, lantern and telescope.",
+        "future_target": null
+      },
+      "replacement_slot": null,
+      "collider_policy": "mesh_static",
+      "gimmick_ids": [],
+      "motion": [],
+      "attachment_details": [],
+      "instances": [
+        {
+          "name": "EFR_Lookout_001",
+          "position": [
+            -44.4,
+            12.5,
+            0.0
+          ],
+          "rotation_z_deg": 0.0
+        }
+      ],
+      "shared_meshes": [
+        "EFR_Lookout_001_Mesh"
+      ],
+      "verification_status": "blender_checked; resonite_unverified"
+    },
+    {
+      "asset_id": "EFR_RestSpot_001",
+      "key": "E_forest",
+      "category": "architecture",
+      "area_id": "E_forest",
+      "collection": "E_forest",
+      "blend_file": "blender/E_forest/E_forest.blend",
+      "script_file": "modeling/E_forest/build.py",
+      "version": "W06-1",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -43.2,
+        -12.6,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "forward_axis_local": "+Y",
+      "up_axis": "+Z",
+      "unit": "m",
+      "dimensions_m": {
+        "width": 6.6,
+        "depth": 6.6,
+        "height": 0.24
+      },
+      "bounds_local": {
+        "min": [
+          -3.3,
+          -3.3,
+          0.0
+        ],
+        "max": [
+          3.3,
+          3.3,
+          0.24
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "EFR_RestSpot_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "EFR_RestSpot_001",
+        "motion_roots": [],
+        "visual_roots": [],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_EFR_Plank",
+        "MAT_EFR_PlankDark"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 476,
+        "vertices": 264,
+        "materials_count": 2,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Round rest deck (0.20 m) under the giant mushroom.",
+        "future_target": null
+      },
+      "replacement_slot": null,
+      "collider_policy": "box",
+      "gimmick_ids": [],
+      "motion": [],
+      "attachment_details": [],
+      "instances": [
+        {
+          "name": "EFR_RestSpot_001",
+          "position": [
+            -43.2,
+            -12.6,
+            0.0
+          ],
+          "rotation_z_deg": 0.0
+        }
+      ],
+      "shared_meshes": [
+        "EFR_RestSpot_001_Mesh"
+      ],
+      "verification_status": "blender_checked; resonite_unverified"
+    },
+    {
+      "asset_id": "EFR_GatePillar_001",
+      "key": "E_forest",
+      "category": "lighting",
+      "area_id": "E_forest",
+      "collection": "E_forest",
+      "blend_file": "blender/E_forest/E_forest.blend",
+      "script_file": "modeling/E_forest/build.py",
+      "version": "W06-1",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -21.5,
+        2.9,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        180.0
+      ],
+      "forward_axis_local": "+Y",
+      "up_axis": "+Z",
+      "unit": "m",
+      "dimensions_m": {
+        "width": 1.39,
+        "depth": 1.459,
+        "height": 3.0187
+      },
+      "bounds_local": {
+        "min": [
+          -0.65,
+          -0.6293,
+          0.0
+        ],
+        "max": [
+          0.74,
+          0.8297,
+          3.0187
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "EFR_GatePillar_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            -0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "EFR_GatePillar_001",
+        "motion_roots": [],
+        "visual_roots": [],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_EFR_Bark",
+        "MAT_EFR_CapOrange",
+        "MAT_EFR_Iron",
+        "MAT_EFR_LanternGlow",
+        "MAT_EFR_MushStem",
+        "MAT_EFR_Plank"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 1472,
+        "vertices": 776,
+        "materials_count": 6,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Entrance pillar stump with a hanging lantern and a sign (frames the main road).",
+        "future_target": null
+      },
+      "replacement_slot": null,
+      "collider_policy": "convex_hull",
+      "gimmick_ids": [],
+      "motion": [],
+      "attachment_details": [],
+      "instances": [
+        {
+          "name": "EFR_GatePillar_001",
+          "position": [
+            -21.5,
+            2.9,
+            0.0
+          ],
+          "rotation_z_deg": 180.0
+        },
+        {
+          "name": "EFR_GatePillar_002",
+          "position": [
+            -21.5,
+            -2.9,
+            0.0
+          ],
+          "rotation_z_deg": 0.0
+        }
+      ],
+      "shared_meshes": [
+        "EFR_GatePillar_Mesh"
+      ],
+      "verification_status": "blender_checked; resonite_unverified"
+    }
+  ]
+}
