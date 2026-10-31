@@ -1,0 +1,4 @@
+# W09-M06: resoloop blender export のバンドルはコミットしない（report.json だけを残す。docs/conventions.md §8）。
+# --pack-pbr が作る pbr_*.png は上位の .gitignore（exports/**/tex_*.png など）に当たらないので、ここで除く
+bundle/*
+!bundle/report.json

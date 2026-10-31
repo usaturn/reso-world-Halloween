@@ -1,0 +1,164 @@
+{
+  "schema_version": "1.0",
+  "key": "M06",
+  "updated_at": "2026-10-31T13:41:38Z",
+  "assets": [
+    {
+      "asset_id": "M06_GhostTrainEngine_001",
+      "key": "M06",
+      "category": "prop",
+      "area_id": "D_amusement",
+      "collection": "M06",
+      "blend_file": "blender/M06/M06.blend",
+      "script_file": "modeling/M06/build.py",
+      "origin_policy": "hinge_pivot",
+      "origin_world": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "placement_hint": {
+        "position": null,
+        "rotation_z_deg": null,
+        "note": "W05 の周回コースの上。原点を経路に乗せ、+Y を接線方向に向ける"
+      },
+      "forward_local": "+Y",
+      "dimensions_m": {
+        "width": 1.211,
+        "depth": 3.0,
+        "height": 1.875
+      },
+      "bounds_local": {
+        "min": [
+          -0.6048,
+          -1.1251,
+          0.03
+        ],
+        "max": [
+          0.6063,
+          1.875,
+          1.9047
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "M06_GhostTrainEngine_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "M06_GhostTrainEngine_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "M06_GhostTrainEngine_001"
+        ],
+        "attachment_points": []
+      },
+      "coupler_rear": {
+        "local_m": [
+          0.0,
+          -1.125,
+          0.394
+        ],
+        "w05_attachment": "DAM_GhostTrain_001_Att_CouplerRear",
+        "rear_face_local_m": [
+          0.0,
+          -1.0089,
+          0.394
+        ],
+        "note": "形は無い。連結点は W09 の rear_coupler_candidate（後端の張り出しと同じ y、W05 の取付点と同じ）。その高さの後面（梁）は rear_face_local_m なので、連結器の棒を作るならそこから連結点まで。客車側は W05 が合わせる"
+      },
+      "materials": [
+        "MAT_M06_GhostTrainEngine"
+      ],
+      "textures": [
+        "blender/M06/textures/M06_GhostTrainEngine_001_color.png",
+        "blender/M06/textures/M06_GhostTrainEngine_001_metallic.png",
+        "blender/M06/textures/M06_GhostTrainEngine_001_roughness.png"
+      ],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 14804,
+        "vertices": 23376,
+        "materials_count": 1,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "exported",
+        "bundle_dir": "exports/M06/bundle",
+        "apply_plan": "exports/M06/bundle/model.apply.json",
+        "report_file": "exports/M06/bundle/report.json",
+        "parent": "Root/ResoLoop_Test_W09_M06",
+        "flags": [
+          "--collection M06",
+          "--preserve-hierarchy",
+          "--pack-pbr"
+        ],
+        "report": {
+          "triangles": 14804,
+          "vertices": 23833,
+          "materials": 1,
+          "drawSections": 1,
+          "staticOnly": true,
+          "preserveHierarchy": true,
+          "warnings": []
+        },
+        "meshes": [
+          {
+            "name": "M06_GhostTrainEngine_001",
+            "vertices": 23833,
+            "triangles": 14804,
+            "submeshes": 1
+          }
+        ],
+        "textures": [
+          {
+            "name": "M06_GhostTrainEngine_001_color",
+            "width": 1024,
+            "height": 1024,
+            "rgba8MipBytesEstimate": 5592406
+          },
+          {
+            "name": "pbr_mat_material_MAT_M06_GhostTrainEngine_18_fc69bc58",
+            "width": 512,
+            "height": 512,
+            "rgba8MipBytesEstimate": 1398102
+          }
+        ],
+        "validate": {
+          "valid": true,
+          "strict": false,
+          "slots": 6,
+          "components": 5,
+          "references": 7,
+          "issues": []
+        }
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "future_target": null,
+        "replaces_placeholder": {
+          "manifest": "assets/manifest/D_amusement.json",
+          "asset_id": "DAM_GhostTrain_001",
+          "visual_root_part": "DAM_GhostTrain_001_M06_EngineShell",
+          "attachment_point": "DAM_GhostTrain_001_Att_M06_Engine",
+          "keep_separate_parts": [
+            "DAM_GhostTrain_001_CarRoot_001",
+            "DAM_GhostTrain_001_EngineWheelFront",
+            "DAM_GhostTrain_001_EngineWheelRear"
+          ]
+        },
+        "notes": "Meshy の M06 を仕上げた差し替え用の見た目（Spec §6.3 の VisualRoot に入れる静的なモデル）。P2（W08 の後）で W05 の仮モデル DAM_GhostTrain_001_M06_EngineShell（親 DAM_GhostTrain_001_EngineRoot、取付点 DAM_GhostTrain_001_Att_M06_Engine）と差し替え、前後の車輪と客車は W05 の部品を残す。原点は前後の車輪のアーチの中点の真下の接地面（線路の上面、EngineRoot の原点）、正面（進む向き、おばけの顔と排障器）は +Y（Resonite の +Z）。後ろの連結点は [0.0, -1.125, 0.394]（形は無い）。排障器の下端は線路に触れないよう 0.03 m 上げた。発光（前照灯・ランタン・カボチャ）は焼き込まず、コライダーも含めない（P2・P3 で Resonite 側に付ける）"
+      }
+    }
+  ]
+}
