@@ -1,0 +1,2645 @@
+{
+  "schema_version": "1.0",
+  "key": "C_candy",
+  "updated_at": "2026-10-31T12:00:00Z",
+  "assets": [
+    {
+      "asset_id": "CCD_CandyStreetPaving_001",
+      "key": "C_candy",
+      "category": "terrain",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        33.0,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 15.3,
+        "depth": 32.0,
+        "height": 0.14
+      },
+      "bounds_local": {
+        "min": [
+          -13.0,
+          -16.0,
+          0.0
+        ],
+        "max": [
+          2.3,
+          16.0,
+          0.14
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_CandyStreetPaving_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_CandyStreetPaving_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CCD_CandyStreetPaving_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CCD_CandyRuby",
+        "MAT_CCD_ChocolateCobble",
+        "MAT_CCD_FrostingCream",
+        "MAT_CCD_PeppermintTeal",
+        "MAT_CCD_SugarStone"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 548,
+        "vertices": 348,
+        "materials_count": 5,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Candy cobblestone main street (x=20..35.3, width 4.0m), workshop forecourt medallion plaza, and North/South side paths to Conn_C_North_Side and Conn_C_South_Side.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CCD_CandyArch_001",
+      "key": "C_candy",
+      "category": "architecture",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        33.0,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 1.9,
+        "depth": 7.64,
+        "height": 9.5
+      },
+      "bounds_local": {
+        "min": [
+          -0.95,
+          -3.82,
+          0.0
+        ],
+        "max": [
+          0.95,
+          3.82,
+          9.5
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_CandyArch_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_CandyArch_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CCD_CandyArch_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CCD_CandyPumpkin",
+        "MAT_CCD_CandyRuby",
+        "MAT_CCD_FrostingCream",
+        "MAT_CCD_GingerbreadWall",
+        "MAT_CCD_PeppermintTeal",
+        "MAT_CCD_WarmWindowGlow",
+        "MAT_CCD_WitchPlumRoof",
+        "MAT_CCD_WitchTimber"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 1454,
+        "vertices": 829,
+        "materials_count": 8,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Landmark LM_C_CandyArch_001 at [33.0, 0.0, 0.0] (height 9.5m, clear opening width 5.4m, clear height 5.85m) with twisted candy-cane columns, lollipop shoulders, and witch-hat pumpkin spire.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CCD_M04_CandyWorkshopProxy_001",
+      "key": "C_candy",
+      "category": "architecture",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        38.0,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 5.366,
+        "depth": 8.0,
+        "height": 7.628
+      },
+      "bounds_local": {
+        "min": [
+          -2.683,
+          -4.0,
+          0.0
+        ],
+        "max": [
+          2.683,
+          4.0,
+          7.628
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_M04_CandyWorkshopProxy_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_M04_CandyWorkshopProxy_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CCD_M04_CandyWorkshopProxy_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CCD_CandyRuby",
+        "MAT_CCD_ChocolateCobble",
+        "MAT_CCD_FrostingCream",
+        "MAT_CCD_GingerbreadWall",
+        "MAT_CCD_PeppermintTeal",
+        "MAT_CCD_WarmWindowGlow",
+        "MAT_CCD_WitchPlumRoof",
+        "MAT_CCD_WitchTimber"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 410,
+        "vertices": 265,
+        "materials_count": 8,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": true,
+        "modifiable": true,
+        "notes": "Meshy M04 proxy (Witch's Candy Workshop exterior) at [38.0, 0.0, 0.0], rotation_z_deg=90.0 (local +Y front faces -X West toward Candy Street). Local dimensions 8.0 x 5.367 x 7.628 m (world AABB 5.367 x 8.0 x 7.628 m); matches W09 received.json scale=4.2052, yaw_deg=180.0, and relief door/window feature coordinates.",
+        "future_target": "M04_WitchCandyWorkshop_001"
+      }
+    },
+    {
+      "asset_id": "CCD_SweetStall_NorthWest_001",
+      "key": "C_candy",
+      "category": "architecture",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        26.2,
+        5.8,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 3.6,
+        "depth": 2.63,
+        "height": 4.6
+      },
+      "bounds_local": {
+        "min": [
+          -1.8,
+          -1.38,
+          0.0
+        ],
+        "max": [
+          1.8,
+          1.25,
+          4.6
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_SweetStall_NorthWest_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_SweetStall_NorthWest_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CCD_SweetStall_NorthWest_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CCD_CandyRuby",
+        "MAT_CCD_FrostingCream",
+        "MAT_CCD_GingerbreadWall",
+        "MAT_CCD_WarmWindowGlow",
+        "MAT_CCD_WitchPlumRoof",
+        "MAT_CCD_WitchTimber"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 406,
+        "vertices": 241,
+        "materials_count": 6,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "North-West striped awning candy stall facing -Y toward the Candy Street.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CCD_PotionStall_NorthEast_001",
+      "key": "C_candy",
+      "category": "architecture",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        30.6,
+        6.2,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 3.6,
+        "depth": 2.63,
+        "height": 4.8
+      },
+      "bounds_local": {
+        "min": [
+          -1.8,
+          -1.38,
+          0.0
+        ],
+        "max": [
+          1.8,
+          1.25,
+          4.8
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_PotionStall_NorthEast_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_PotionStall_NorthEast_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CCD_PotionStall_NorthEast_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CCD_FrostingCream",
+        "MAT_CCD_GingerbreadWall",
+        "MAT_CCD_PeppermintTeal",
+        "MAT_CCD_PotionEmeraldGlow",
+        "MAT_CCD_WitchPlumRoof",
+        "MAT_CCD_WitchTimber"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 406,
+        "vertices": 241,
+        "materials_count": 6,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "North-East witch potion & confection stall facing -Y toward the Candy Street.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CCD_PastryStall_SouthWest_001",
+      "key": "C_candy",
+      "category": "architecture",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        26.2,
+        -5.8,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 3.6,
+        "depth": 2.63,
+        "height": 4.5
+      },
+      "bounds_local": {
+        "min": [
+          -1.8,
+          -1.25,
+          0.0
+        ],
+        "max": [
+          1.8,
+          1.38,
+          4.5
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_PastryStall_SouthWest_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_PastryStall_SouthWest_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CCD_PastryStall_SouthWest_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CCD_CandyPumpkin",
+        "MAT_CCD_FrostingCream",
+        "MAT_CCD_GingerbreadWall",
+        "MAT_CCD_WarmWindowGlow",
+        "MAT_CCD_WitchPlumRoof",
+        "MAT_CCD_WitchTimber"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 406,
+        "vertices": 241,
+        "materials_count": 6,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "South-West pumpkin-tart & cupcake stall facing +Y toward the Candy Street.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CCD_GumballStall_SouthEast_001",
+      "key": "C_candy",
+      "category": "architecture",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        30.6,
+        -6.2,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 3.6,
+        "depth": 2.63,
+        "height": 4.7
+      },
+      "bounds_local": {
+        "min": [
+          -1.8,
+          -1.25,
+          0.0
+        ],
+        "max": [
+          1.8,
+          1.38,
+          4.7
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_GumballStall_SouthEast_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_GumballStall_SouthEast_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CCD_GumballStall_SouthEast_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CCD_CandyRuby",
+        "MAT_CCD_FrostingCream",
+        "MAT_CCD_GingerbreadWall",
+        "MAT_CCD_PotionMagentaGlow",
+        "MAT_CCD_WitchPlumRoof",
+        "MAT_CCD_WitchTimber"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 406,
+        "vertices": 241,
+        "materials_count": 6,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "South-East syrup & gumball stall facing +Y toward the Candy Street.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CCD_MagicCauldron_001",
+      "key": "C_candy",
+      "category": "gimmick",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        34.4,
+        5.2,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 2.1,
+        "depth": 2.1,
+        "height": 2.14
+      },
+      "bounds_local": {
+        "min": [
+          -1.05,
+          -1.05,
+          0.0
+        ],
+        "max": [
+          1.05,
+          1.05,
+          2.14
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_MagicCauldron_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "CCD_MagicCauldron_001_Body",
+          "role": "static_part",
+          "parent_part": "CCD_MagicCauldron_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "CCD_MagicCauldron_001_Liquid",
+          "role": "static_part",
+          "parent_part": "CCD_MagicCauldron_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            1.12
+          ]
+        },
+        {
+          "part_id": "CCD_MagicCauldron_001_StirRodPivot",
+          "role": "motion_root",
+          "parent_part": "CCD_MagicCauldron_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            1.16
+          ]
+        },
+        {
+          "part_id": "CCD_MagicCauldron_001_StirRod",
+          "role": "visual_root",
+          "parent_part": "CCD_MagicCauldron_001_StirRodPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "CCD_MagicCauldron_001_BubbleAttach",
+          "role": "attachment_point",
+          "parent_part": "CCD_MagicCauldron_001_Liquid",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.14
+          ]
+        },
+        {
+          "part_id": "CCD_MagicCauldron_001_SmokeAttach",
+          "role": "attachment_point",
+          "parent_part": "CCD_MagicCauldron_001",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            1.56
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_MagicCauldron_001",
+        "motion_roots": [
+          "CCD_MagicCauldron_001_StirRodPivot"
+        ],
+        "visual_roots": [
+          "CCD_MagicCauldron_001_Body",
+          "CCD_MagicCauldron_001_Liquid",
+          "CCD_MagicCauldron_001_StirRod"
+        ],
+        "attachment_points": [
+          "CCD_MagicCauldron_001_BubbleAttach",
+          "CCD_MagicCauldron_001_SmokeAttach"
+        ]
+      },
+      "materials": [
+        "MAT_CCD_CandyRuby",
+        "MAT_CCD_CarnivalBrass",
+        "MAT_CCD_CauldronIron",
+        "MAT_CCD_ChocolateCobble",
+        "MAT_CCD_PotionEmeraldGlow",
+        "MAT_CCD_PotionMagentaGlow",
+        "MAT_CCD_StarlightTrailGlow",
+        "MAT_CCD_WarmWindowGlow",
+        "MAT_CCD_WitchTimber"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 738,
+        "vertices": 419,
+        "materials_count": 9,
+        "objects_count": 7
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G09 & I02 Magic Cauldron assembly at [34.4, 5.2, 0.0]: separate vessel body, color-switchable liquid surface (z=1.12m), stirring rod pivot (z=1.16m, +Z continuous 0..360 deg + ±12 deg tilt), and bubble/smoke attachment points.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CCD_CauldronColorControl_001",
+      "key": "C_candy",
+      "category": "gimmick",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        33.0,
+        3.8,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 0.72,
+        "depth": 0.72,
+        "height": 1.28
+      },
+      "bounds_local": {
+        "min": [
+          -0.36,
+          -0.36,
+          0.0
+        ],
+        "max": [
+          0.36,
+          0.36,
+          1.28
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_CauldronColorControl_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "CCD_CauldronColorControl_001_Pedestal",
+          "role": "static_part",
+          "parent_part": "CCD_CauldronColorControl_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "CCD_CauldronColorControl_001_SwitchPivot",
+          "role": "motion_root",
+          "parent_part": "CCD_CauldronColorControl_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            -0.06,
+            1.02
+          ]
+        },
+        {
+          "part_id": "CCD_CauldronColorControl_001_CrystalOrb",
+          "role": "visual_root",
+          "parent_part": "CCD_CauldronColorControl_001_SwitchPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "CCD_CauldronColorControl_001_TouchAttach",
+          "role": "attachment_point",
+          "parent_part": "CCD_CauldronColorControl_001_SwitchPivot",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            -0.14,
+            0.14
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_CauldronColorControl_001",
+        "motion_roots": [
+          "CCD_CauldronColorControl_001_SwitchPivot"
+        ],
+        "visual_roots": [
+          "CCD_CauldronColorControl_001_Pedestal",
+          "CCD_CauldronColorControl_001_CrystalOrb"
+        ],
+        "attachment_points": [
+          "CCD_CauldronColorControl_001_TouchAttach"
+        ]
+      },
+      "materials": [
+        "MAT_CCD_CarnivalBrass",
+        "MAT_CCD_CauldronIron",
+        "MAT_CCD_ChocolateCobble",
+        "MAT_CCD_PotionEmeraldGlow",
+        "MAT_CCD_PotionMagentaGlow",
+        "MAT_CCD_StarlightTrailGlow",
+        "MAT_CCD_WarmWindowGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 252,
+        "vertices": 148,
+        "materials_count": 7,
+        "objects_count": 5
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "I02 Interactive Cauldron Color Control pedestal at [33.0, 3.8, 0.0] facing the forecourt: switches CCD_MagicCauldron_001_Liquid and bubble emission between Emerald, Magenta, and Amber.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CCD_CandyMachine_001",
+      "key": "C_candy",
+      "category": "gimmick",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        34.4,
+        -5.2,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 1.594,
+        "depth": 1.8648,
+        "height": 3.18
+      },
+      "bounds_local": {
+        "min": [
+          -0.784,
+          -0.7248,
+          0.0
+        ],
+        "max": [
+          0.81,
+          1.14,
+          3.18
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_CandyMachine_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "CCD_CandyMachine_001_Body",
+          "role": "static_part",
+          "parent_part": "CCD_CandyMachine_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "CCD_CandyMachine_001_GearMainPivot",
+          "role": "motion_root",
+          "parent_part": "CCD_CandyMachine_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            -0.7,
+            -0.08,
+            1.15
+          ]
+        },
+        {
+          "part_id": "CCD_CandyMachine_001_GearMain",
+          "role": "visual_root",
+          "parent_part": "CCD_CandyMachine_001_GearMainPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "CCD_CandyMachine_001_GearSubPivot",
+          "role": "motion_root",
+          "parent_part": "CCD_CandyMachine_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            -0.7,
+            0.42,
+            1.66
+          ]
+        },
+        {
+          "part_id": "CCD_CandyMachine_001_GearSub",
+          "role": "visual_root",
+          "parent_part": "CCD_CandyMachine_001_GearSubPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "CCD_CandyMachine_001_ExtruderPivot",
+          "role": "motion_root",
+          "parent_part": "CCD_CandyMachine_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.52,
+            1.05
+          ]
+        },
+        {
+          "part_id": "CCD_CandyMachine_001_Extruder",
+          "role": "visual_root",
+          "parent_part": "CCD_CandyMachine_001_ExtruderPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "CCD_CandyMachine_001_Chute",
+          "role": "static_part",
+          "parent_part": "CCD_CandyMachine_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.5,
+            0.42
+          ]
+        },
+        {
+          "part_id": "CCD_CandyMachine_001_OutletAttach",
+          "role": "attachment_point",
+          "parent_part": "CCD_CandyMachine_001_Chute",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.54,
+            0.2
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_CandyMachine_001",
+        "motion_roots": [
+          "CCD_CandyMachine_001_GearMainPivot",
+          "CCD_CandyMachine_001_GearSubPivot",
+          "CCD_CandyMachine_001_ExtruderPivot"
+        ],
+        "visual_roots": [
+          "CCD_CandyMachine_001_Body",
+          "CCD_CandyMachine_001_GearMain",
+          "CCD_CandyMachine_001_GearSub",
+          "CCD_CandyMachine_001_Extruder",
+          "CCD_CandyMachine_001_Chute"
+        ],
+        "attachment_points": [
+          "CCD_CandyMachine_001_OutletAttach"
+        ]
+      },
+      "materials": [
+        "MAT_CCD_CandyRuby",
+        "MAT_CCD_CarnivalBrass",
+        "MAT_CCD_CauldronIron",
+        "MAT_CCD_FrostingCream",
+        "MAT_CCD_PeppermintTeal",
+        "MAT_CCD_PotionMagentaGlow",
+        "MAT_CCD_WarmWindowGlow",
+        "MAT_CCD_WitchPlumRoof"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 616,
+        "vertices": 376,
+        "materials_count": 8,
+        "objects_count": 10
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G10 Mechanical Candy Machine at [34.4, -5.2, 0.0] with separate cabinet/globe body, counter-rotating main & sub gears (X axis), reciprocating candy extruder piston (+Y stroke 0..0.28m), delivery chute, and candy spawn outlet attachment point.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CCD_MagicBroom_001",
+      "key": "C_candy",
+      "category": "gimmick",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "hinge_pivot",
+      "origin_world": [
+        28.5,
+        3.2,
+        0.05
+      ],
+      "dimensions_m": {
+        "width": 0.44,
+        "depth": 0.4184,
+        "height": 1.6867
+      },
+      "bounds_local": {
+        "min": [
+          -0.22,
+          -0.2092,
+          0.0
+        ],
+        "max": [
+          0.22,
+          0.2092,
+          1.6867
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_MagicBroom_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "CCD_MagicBroom_001_BroomMesh",
+          "role": "visual_root",
+          "parent_part": "CCD_MagicBroom_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "CCD_MagicBroom_001_SweepAttach",
+          "role": "attachment_point",
+          "parent_part": "CCD_MagicBroom_001_BroomMesh",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.06
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_MagicBroom_001",
+        "motion_roots": [
+          "CCD_MagicBroom_001"
+        ],
+        "visual_roots": [
+          "CCD_MagicBroom_001_BroomMesh"
+        ],
+        "attachment_points": [
+          "CCD_MagicBroom_001_SweepAttach"
+        ]
+      },
+      "materials": [
+        "MAT_CCD_BroomStraw",
+        "MAT_CCD_CandyRuby",
+        "MAT_CCD_CarnivalBrass",
+        "MAT_CCD_StarlightTrailGlow",
+        "MAT_CCD_WitchTimber"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 166,
+        "vertices": 99,
+        "materials_count": 5,
+        "objects_count": 3
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G12 Self-Sweeping Magic Broom with floor-near pivot at [28.5, 3.2, 0.05] (yaw ±28 deg, pitch ±14 deg, local X slide ±0.45m, outside main walkway).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CCD_M08_FlyingWitchProxy_001",
+      "key": "C_candy",
+      "category": "gimmick",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "hinge_pivot",
+      "origin_world": [
+        43.2,
+        0.0,
+        10.2
+      ],
+      "dimensions_m": {
+        "width": 1.542,
+        "depth": 2.1783,
+        "height": 2.5
+      },
+      "bounds_local": {
+        "min": [
+          -0.637,
+          -1.256,
+          -0.612
+        ],
+        "max": [
+          0.905,
+          0.9223,
+          1.888
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_M08_FlyingWitchProxy_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_M08_FlyingWitchProxy_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CCD_M08_FlyingWitchProxy_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CCD_BroomStraw",
+        "MAT_CCD_CandyRuby",
+        "MAT_CCD_FrostingCream",
+        "MAT_CCD_WarmWindowGlow",
+        "MAT_CCD_WitchPlumRoof",
+        "MAT_CCD_WitchTimber"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 230,
+        "vertices": 137,
+        "materials_count": 6,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": true,
+        "modifiable": true,
+        "notes": "Meshy M08 proxy (Flying Witch on broom) at patrol loop Waypoint 0 [43.2, 0.0, 10.2], rotation=(0,0,0), front_local=+Y, exact dimensions 1.542 x 2.126 x 2.5 m (bounds_local min [-0.637, -1.215, -0.612], max [0.905, 0.912, 1.888]); matches W09 received.json scale=1.3125, yaw_deg=-124.25.",
+        "future_target": "M08_FlyingWitch_001"
+      }
+    },
+    {
+      "asset_id": "CCD_WitchPatrolLoop_001",
+      "key": "C_candy",
+      "category": "sky_boundary",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        33.0,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 18.98,
+        "depth": 19.2424,
+        "height": 1.06
+      },
+      "bounds_local": {
+        "min": [
+          -8.64,
+          -9.6212,
+          9.62
+        ],
+        "max": [
+          10.34,
+          9.6212,
+          10.68
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_WitchPatrolLoop_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "CCD_WitchPatrolLoop_001_GuideRing",
+          "role": "static_part",
+          "parent_part": "CCD_WitchPatrolLoop_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "CCD_WitchPatrolLoop_001_CarrierPivot",
+          "role": "motion_root",
+          "parent_part": "CCD_WitchPatrolLoop_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            10.2,
+            0.0,
+            10.2
+          ]
+        },
+        {
+          "part_id": "CCD_WitchPatrolLoop_001_CarrierAttach",
+          "role": "attachment_point",
+          "parent_part": "CCD_WitchPatrolLoop_001_CarrierPivot",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_WitchPatrolLoop_001",
+        "motion_roots": [
+          "CCD_WitchPatrolLoop_001_CarrierPivot"
+        ],
+        "visual_roots": [
+          "CCD_WitchPatrolLoop_001_GuideRing"
+        ],
+        "attachment_points": [
+          "CCD_WitchPatrolLoop_001_CarrierAttach"
+        ]
+      },
+      "materials": [
+        "MAT_CCD_StarlightTrailGlow",
+        "MAT_CCD_WarmWindowGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 366,
+        "vertices": 235,
+        "materials_count": 2,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G11 Upper-air closed 8-waypoint patrol loop over Area C (x=24.5..43.2, y=-9.5..9.5, z=9.8..10.5m) with starlight guide ribbon, 8 waypoint beacons, and carrier pivot/attachment at [43.2, 0.0, 10.2] for M08_FlyingWitch_001 (>=1.96m vertical clearance above M04 roof).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CCD_StreetLamp_WestNorth_001",
+      "key": "C_candy",
+      "category": "lighting",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        21.8,
+        3.2,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 0.56,
+        "depth": 0.95,
+        "height": 3.42
+      },
+      "bounds_local": {
+        "min": [
+          -0.28,
+          -0.67,
+          0.0
+        ],
+        "max": [
+          0.28,
+          0.28,
+          3.42
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_StreetLamp_WestNorth_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_StreetLamp_WestNorth_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CCD_StreetLamp_WestNorth_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CMN_AmberGlow",
+        "MAT_CMN_PumpkinOrange",
+        "MAT_CMN_WarmStone",
+        "MAT_CMN_WroughtIron"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 436,
+        "vertices": 260,
+        "materials_count": 4,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "West entrance north-side streetlamp illuminating Conn_C_West_Main. (Appended from CMN_StreetLamp_001).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CCD_StreetLamp_WestSouth_001",
+      "key": "C_candy",
+      "category": "lighting",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        21.8,
+        -3.2,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 0.56,
+        "depth": 0.95,
+        "height": 3.42
+      },
+      "bounds_local": {
+        "min": [
+          -0.28,
+          -0.28,
+          0.0
+        ],
+        "max": [
+          0.28,
+          0.67,
+          3.42
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_StreetLamp_WestSouth_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_StreetLamp_WestSouth_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CCD_StreetLamp_WestSouth_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CMN_AmberGlow",
+        "MAT_CMN_PumpkinOrange",
+        "MAT_CMN_WarmStone",
+        "MAT_CMN_WroughtIron"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 436,
+        "vertices": 260,
+        "materials_count": 4,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "West entrance south-side streetlamp illuminating Conn_C_West_Main. (Appended from CMN_StreetLamp_001).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CCD_StreetLamp_MidNorth_001",
+      "key": "C_candy",
+      "category": "lighting",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        28.6,
+        4.1,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 0.56,
+        "depth": 0.95,
+        "height": 3.42
+      },
+      "bounds_local": {
+        "min": [
+          -0.28,
+          -0.67,
+          0.0
+        ],
+        "max": [
+          0.28,
+          0.28,
+          3.42
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_StreetLamp_MidNorth_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_StreetLamp_MidNorth_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CCD_StreetLamp_MidNorth_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CMN_AmberGlow",
+        "MAT_CMN_PumpkinOrange",
+        "MAT_CMN_WarmStone",
+        "MAT_CMN_WroughtIron"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 436,
+        "vertices": 260,
+        "materials_count": 4,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Mid-street north promenade streetlamp between candy stalls. (Appended from CMN_StreetLamp_001).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CCD_StreetLamp_MidSouth_001",
+      "key": "C_candy",
+      "category": "lighting",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        28.6,
+        -4.1,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 0.56,
+        "depth": 0.95,
+        "height": 3.42
+      },
+      "bounds_local": {
+        "min": [
+          -0.28,
+          -0.28,
+          0.0
+        ],
+        "max": [
+          0.28,
+          0.67,
+          3.42
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_StreetLamp_MidSouth_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_StreetLamp_MidSouth_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CCD_StreetLamp_MidSouth_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CMN_AmberGlow",
+        "MAT_CMN_PumpkinOrange",
+        "MAT_CMN_WarmStone",
+        "MAT_CMN_WroughtIron"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 436,
+        "vertices": 260,
+        "materials_count": 4,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Mid-street south promenade streetlamp between candy stalls. (Appended from CMN_StreetLamp_001).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CCD_StreetLamp_PlazaNorth_001",
+      "key": "C_candy",
+      "category": "lighting",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        35.0,
+        7.2,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 0.8081,
+        "depth": 0.8081,
+        "height": 3.42
+      },
+      "bounds_local": {
+        "min": [
+          -0.5281,
+          -0.5281,
+          0.0
+        ],
+        "max": [
+          0.28,
+          0.28,
+          3.42
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_StreetLamp_PlazaNorth_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_StreetLamp_PlazaNorth_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CCD_StreetLamp_PlazaNorth_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CMN_AmberGlow",
+        "MAT_CMN_PumpkinOrange",
+        "MAT_CMN_WarmStone",
+        "MAT_CMN_WroughtIron"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 436,
+        "vertices": 260,
+        "materials_count": 4,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Workshop forecourt north-east streetlamp beside the magic cauldron. (Appended from CMN_StreetLamp_001).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CCD_StreetLamp_PlazaSouth_001",
+      "key": "C_candy",
+      "category": "lighting",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        35.0,
+        -7.2,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 0.8081,
+        "depth": 0.8081,
+        "height": 3.42
+      },
+      "bounds_local": {
+        "min": [
+          -0.5281,
+          -0.28,
+          0.0
+        ],
+        "max": [
+          0.28,
+          0.5281,
+          3.42
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_StreetLamp_PlazaSouth_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_StreetLamp_PlazaSouth_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CCD_StreetLamp_PlazaSouth_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CMN_AmberGlow",
+        "MAT_CMN_PumpkinOrange",
+        "MAT_CMN_WarmStone",
+        "MAT_CMN_WroughtIron"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 436,
+        "vertices": 260,
+        "materials_count": 4,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Workshop forecourt south-east streetlamp beside the candy machine. (Appended from CMN_StreetLamp_001).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CCD_Garland_WestNorth_001",
+      "key": "C_candy",
+      "category": "prop",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        26.2,
+        4.2,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 3.7,
+        "depth": 0.3,
+        "height": 3.2
+      },
+      "bounds_local": {
+        "min": [
+          -1.85,
+          -0.15,
+          0.0
+        ],
+        "max": [
+          1.85,
+          0.15,
+          3.2
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_Garland_WestNorth_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_Garland_WestNorth_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CCD_Garland_WestNorth_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CMN_AmberGlow",
+        "MAT_CMN_FlagGold",
+        "MAT_CMN_FlagPurple",
+        "MAT_CMN_PumpkinOrange",
+        "MAT_CMN_WroughtIron"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 548,
+        "vertices": 346,
+        "materials_count": 5,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Carnival pennant garland along the north candy stall frontage. (Appended from CMN_GarlandFlag_001).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CCD_Garland_WestSouth_001",
+      "key": "C_candy",
+      "category": "prop",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        26.2,
+        -4.2,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 3.7,
+        "depth": 0.3,
+        "height": 3.2
+      },
+      "bounds_local": {
+        "min": [
+          -1.85,
+          -0.15,
+          0.0
+        ],
+        "max": [
+          1.85,
+          0.15,
+          3.2
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_Garland_WestSouth_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_Garland_WestSouth_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CCD_Garland_WestSouth_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CMN_AmberGlow",
+        "MAT_CMN_FlagGold",
+        "MAT_CMN_FlagPurple",
+        "MAT_CMN_PumpkinOrange",
+        "MAT_CMN_WroughtIron"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 548,
+        "vertices": 346,
+        "materials_count": 5,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Carnival pennant garland along the south pastry stall frontage. (Appended from CMN_GarlandFlag_001).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CCD_Bench_NorthSide_001",
+      "key": "C_candy",
+      "category": "prop",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        24.2,
+        8.8,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 0.57,
+        "depth": 1.76,
+        "height": 0.95
+      },
+      "bounds_local": {
+        "min": [
+          -0.28,
+          -0.88,
+          0.0
+        ],
+        "max": [
+          0.29,
+          0.88,
+          0.95
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_Bench_NorthSide_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_Bench_NorthSide_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CCD_Bench_NorthSide_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CMN_PumpkinOrange",
+        "MAT_CMN_WarmWood",
+        "MAT_CMN_WroughtIron"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 296,
+        "vertices": 192,
+        "materials_count": 3,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Visitor rest bench along the east edge of the north side path. (Appended from CMN_Bench_001).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CCD_Bench_SouthSide_001",
+      "key": "C_candy",
+      "category": "prop",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        24.2,
+        -8.8,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 0.57,
+        "depth": 1.76,
+        "height": 0.95
+      },
+      "bounds_local": {
+        "min": [
+          -0.29,
+          -0.88,
+          0.0
+        ],
+        "max": [
+          0.28,
+          0.88,
+          0.95
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_Bench_SouthSide_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_Bench_SouthSide_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CCD_Bench_SouthSide_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CMN_PumpkinOrange",
+        "MAT_CMN_WarmWood",
+        "MAT_CMN_WroughtIron"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 296,
+        "vertices": 192,
+        "materials_count": 3,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Visitor rest bench along the east edge of the south side path. (Appended from CMN_Bench_001).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CCD_Fence_NorthPathEast_001",
+      "key": "C_candy",
+      "category": "architecture",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        24.2,
+        13.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 0.3,
+        "depth": 3.04,
+        "height": 1.15
+      },
+      "bounds_local": {
+        "min": [
+          -0.15,
+          -1.52,
+          0.0
+        ],
+        "max": [
+          0.15,
+          1.52,
+          1.15
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_Fence_NorthPathEast_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_Fence_NorthPathEast_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CCD_Fence_NorthPathEast_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CMN_AmberGlow",
+        "MAT_CMN_PumpkinOrange",
+        "MAT_CMN_WarmStone",
+        "MAT_CMN_WroughtIron"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 332,
+        "vertices": 226,
+        "materials_count": 4,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Decorative wrought-iron fence guiding the north side walkway toward Conn_C_North_Side. (Appended from CMN_Fence_001).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CCD_Fence_SouthPathEast_001",
+      "key": "C_candy",
+      "category": "architecture",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        24.2,
+        -13.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 0.3,
+        "depth": 3.04,
+        "height": 1.15
+      },
+      "bounds_local": {
+        "min": [
+          -0.15,
+          -1.52,
+          0.0
+        ],
+        "max": [
+          0.15,
+          1.52,
+          1.15
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_Fence_SouthPathEast_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_Fence_SouthPathEast_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CCD_Fence_SouthPathEast_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CMN_AmberGlow",
+        "MAT_CMN_PumpkinOrange",
+        "MAT_CMN_WarmStone",
+        "MAT_CMN_WroughtIron"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 332,
+        "vertices": 226,
+        "materials_count": 4,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Decorative wrought-iron fence guiding the south side walkway toward Conn_C_South_Side. (Appended from CMN_Fence_001).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CCD_Lantern_NorthConn_001",
+      "key": "C_candy",
+      "category": "lighting",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        20.35,
+        15.2,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 0.48,
+        "depth": 0.4156,
+        "height": 0.78
+      },
+      "bounds_local": {
+        "min": [
+          -0.24,
+          -0.2078,
+          0.0
+        ],
+        "max": [
+          0.24,
+          0.2078,
+          0.78
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_Lantern_NorthConn_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_Lantern_NorthConn_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CCD_Lantern_NorthConn_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CMN_AmberGlow",
+        "MAT_CMN_WroughtIron"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 112,
+        "vertices": 68,
+        "materials_count": 2,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Ground guide lantern beside Conn_C_North_Side (clear of 2.6m walkway x=20.7..23.3). (Appended from CMN_Lantern_001).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CCD_Lantern_SouthConn_001",
+      "key": "C_candy",
+      "category": "lighting",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        20.35,
+        -15.2,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 0.48,
+        "depth": 0.4156,
+        "height": 0.78
+      },
+      "bounds_local": {
+        "min": [
+          -0.24,
+          -0.2078,
+          0.0
+        ],
+        "max": [
+          0.24,
+          0.2078,
+          0.78
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_Lantern_SouthConn_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_Lantern_SouthConn_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CCD_Lantern_SouthConn_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CMN_AmberGlow",
+        "MAT_CMN_WroughtIron"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 112,
+        "vertices": 68,
+        "materials_count": 2,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Ground guide lantern beside Conn_C_South_Side (clear of 2.6m walkway x=20.7..23.3). (Appended from CMN_Lantern_001).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CCD_Pumpkin_ArchNorth_001",
+      "key": "C_candy",
+      "category": "prop",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        32.2,
+        3.75,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 0.6609,
+        "depth": 0.643,
+        "height": 0.64
+      },
+      "bounds_local": {
+        "min": [
+          -0.3394,
+          -0.3215,
+          0.0
+        ],
+        "max": [
+          0.3215,
+          0.3215,
+          0.64
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_Pumpkin_ArchNorth_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_Pumpkin_ArchNorth_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CCD_Pumpkin_ArchNorth_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CMN_AmberGlow",
+        "MAT_CMN_PumpkinOrange",
+        "MAT_CMN_PumpkinStem"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 260,
+        "vertices": 148,
+        "materials_count": 3,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Jack-o'-Lantern accent at the north plinth of CCD_CandyArch_001. (Appended from CMN_SmallPumpkin_001).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "CCD_Pumpkin_ArchSouth_001",
+      "key": "C_candy",
+      "category": "prop",
+      "area_id": "C_candy",
+      "collection": "C_candy",
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "script_file": "modeling/C_candy/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        32.2,
+        -3.75,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 0.6609,
+        "depth": 0.643,
+        "height": 0.64
+      },
+      "bounds_local": {
+        "min": [
+          -0.3394,
+          -0.3215,
+          0.0
+        ],
+        "max": [
+          0.3215,
+          0.3215,
+          0.64
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "CCD_Pumpkin_ArchSouth_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "CCD_Pumpkin_ArchSouth_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "CCD_Pumpkin_ArchSouth_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_CMN_AmberGlow",
+        "MAT_CMN_PumpkinOrange",
+        "MAT_CMN_PumpkinStem"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 260,
+        "vertices": 148,
+        "materials_count": 3,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Jack-o'-Lantern accent at the south plinth of CCD_CandyArch_001. (Appended from CMN_SmallPumpkin_001).",
+        "future_target": null
+      }
+    }
+  ]
+}

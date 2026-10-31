@@ -1,0 +1,2056 @@
+{
+  "schema_version": "1.0",
+  "area_id": "C_candy",
+  "key": "C_candy",
+  "name": "魔女のキャンディストリート",
+  "area_name": "魔女のキャンディストリート",
+  "theme": "甘いお菓子の街並み、光る大釜とキャンディ製造機、魔女の工房前広場",
+  "updated_at": "2026-10-31T12:00:00Z",
+  "bounds": {
+    "min": [
+      20.0,
+      -20.0,
+      0.0
+    ],
+    "max": [
+      48.0,
+      20.0,
+      14.0
+    ]
+  },
+  "bounds_m": {
+    "bounds_min": [
+      20.0,
+      -20.0,
+      0.0
+    ],
+    "bounds_max": [
+      48.0,
+      20.0,
+      14.0
+    ],
+    "center_m": [
+      33.0,
+      0.0,
+      0.0
+    ],
+    "ground_elevation_m": 0.0
+  },
+  "Anchor": {
+    "anchor_id": "ANC_C_CandyPlazaCenter",
+    "position": [
+      33.0,
+      0.0,
+      0.0
+    ],
+    "dimensions_m": [
+      28.0,
+      40.0,
+      14.0
+    ],
+    "orientation_deg": 180.0,
+    "forward_axis": "-X",
+    "up_axis": "+Z",
+    "role": "Area C central forecourt anchor at [33.0, 0.0, 0.0] beneath LM_C_CandyArch_001, facing -X West (180 deg) toward Central Plaza and framing the Witch Candy Workshop (M04) at [38.0, 0.0, 0.0].",
+    "notes": "Area C central forecourt anchor at [33.0, 0.0, 0.0] beneath LM_C_CandyArch_001, facing -X West toward Central Plaza and framing the Witch Candy Workshop (M04) at [38.0, 0.0, 0.0]."
+  },
+  "Circulation": {
+    "primary_path_id": "Route_East_Candy_Bridge",
+    "min_walk_width_m": 2.6,
+    "entry_points": [
+      [
+        20.0,
+        0.0,
+        0.0
+      ],
+      [
+        22.0,
+        16.0,
+        0.0
+      ],
+      [
+        22.0,
+        -16.0,
+        0.0
+      ]
+    ],
+    "loop_description": "Main 4.0m candy cobblestone boulevard from Conn_C_West_Main [20.0, 0.0, 0.0] through LM_C_CandyArch_001 [33.0, 0.0, 0.0] into the Witch Candy Workshop forecourt, joined by 2.6m side walkways from Conn_C_North_Side [22.0, 16.0, 0.0] and Conn_C_South_Side [22.0, -16.0, 0.0]."
+  },
+  "Framing": {
+    "left_edge": "North candy & potion stalls (CCD_SweetStall_NorthWest_001, CCD_PotionStall_NorthEast_001) and bubbling Magic Cauldron (CCD_MagicCauldron_001)",
+    "right_edge": "South pastry & gumball stalls (CCD_PastryStall_SouthWest_001, CCD_GumballStall_SouthEast_001) and Mechanical Candy Machine (CCD_CandyMachine_001)",
+    "focal_target": "LM_C_CandyArch_001 at [33.0, 0.0, 0.0] framing CCD_M04_CandyWorkshopProxy_001 at [38.0, 0.0, 0.0] and upper-air CCD_M08_FlyingWitchProxy_001 patrol loop",
+    "view_cone_deg": 65.0
+  },
+  "Story_Cluster": [
+    {
+      "cluster_id": "SC_C_CandyBoulevardStalls",
+      "center": [
+        28.4,
+        0.0,
+        0.0
+      ],
+      "radius_m": 7.5,
+      "intent": "Striped candy stalls, carnival garlands, and the self-sweeping magic broom (G12) flanking the main cobblestone promenade.",
+      "asset_ids": [
+        "CCD_SweetStall_NorthWest_001",
+        "CCD_PotionStall_NorthEast_001",
+        "CCD_PastryStall_SouthWest_001",
+        "CCD_GumballStall_SouthEast_001",
+        "CCD_MagicBroom_001"
+      ]
+    },
+    {
+      "cluster_id": "SC_C_CauldronAlchemyCorner",
+      "center": [
+        33.8,
+        4.6,
+        0.0
+      ],
+      "radius_m": 3.2,
+      "intent": "Bubbling magic cauldron (G09) with stirring rod and interactive color-switching crystal lectern (I02).",
+      "asset_ids": [
+        "CCD_MagicCauldron_001",
+        "CCD_CauldronColorControl_001"
+      ]
+    },
+    {
+      "cluster_id": "SC_C_CandyFactoryForecourt",
+      "center": [
+        36.2,
+        -2.4,
+        0.0
+      ],
+      "radius_m": 5.5,
+      "intent": "Landmark Candy Arch (LM_C_CandyArch_001), Witch's Candy Workshop facade (M04), and Mechanical Candy Machine (G10).",
+      "asset_ids": [
+        "CCD_CandyArch_001",
+        "CCD_M04_CandyWorkshopProxy_001",
+        "CCD_CandyMachine_001"
+      ]
+    },
+    {
+      "cluster_id": "SC_C_SkyWitchPatrol",
+      "center": [
+        33.0,
+        0.0,
+        10.2
+      ],
+      "radius_m": 10.5,
+      "intent": "Closed 8-waypoint upper-air witch patrol loop (G11) and Flying Witch on broom (M08) circling above the candy street.",
+      "asset_ids": [
+        "CCD_WitchPatrolLoop_001",
+        "CCD_M08_FlyingWitchProxy_001"
+      ]
+    }
+  ],
+  "Exclusions": [
+    {
+      "zone_id": "EX_C_MainBoulevardWalkway",
+      "bounds": {
+        "min": [
+          20.0,
+          -2.0,
+          0.0
+        ],
+        "max": [
+          35.3,
+          2.0,
+          4.5
+        ]
+      },
+      "reason": "Keep 4.0m main candy street walkway and Conn_C_West_Main approach clear of static obstacles."
+    },
+    {
+      "zone_id": "EX_C_NorthSideWalkway",
+      "bounds": {
+        "min": [
+          20.7,
+          3.4,
+          0.0
+        ],
+        "max": [
+          23.3,
+          16.0,
+          4.0
+        ]
+      },
+      "reason": "Keep 2.6m north side walkway to Conn_C_North_Side clear of static obstacles."
+    },
+    {
+      "zone_id": "EX_C_SouthSideWalkway",
+      "bounds": {
+        "min": [
+          20.7,
+          -16.0,
+          0.0
+        ],
+        "max": [
+          23.3,
+          -3.4,
+          4.0
+        ]
+      },
+      "reason": "Keep 2.6m south side walkway to Conn_C_South_Side clear of static obstacles."
+    },
+    {
+      "zone_id": "EX_C_SkyPatrolCorridor",
+      "bounds": {
+        "min": [
+          23.5,
+          -10.8,
+          9.0
+        ],
+        "max": [
+          44.2,
+          10.8,
+          12.2
+        ]
+      },
+      "reason": "Keep upper-air G11/M08 flying witch patrol corridor clear of tall spires."
+    }
+  ],
+  "Path": [
+    {
+      "path_id": "Path_C_Main_CandyBoulevard",
+      "waypoints": [
+        [
+          20.0,
+          0.0,
+          0.0
+        ],
+        [
+          26.5,
+          0.0,
+          0.0
+        ],
+        [
+          33.0,
+          0.0,
+          0.0
+        ],
+        [
+          35.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "width_m": 4.0,
+      "clear_height_m": 4.5,
+      "connects_to": [
+        "Conn_C_West_Main",
+        "ANC_C_CandyPlazaCenter"
+      ]
+    },
+    {
+      "path_id": "Path_C_North_SideLink",
+      "waypoints": [
+        [
+          22.0,
+          16.0,
+          0.0
+        ],
+        [
+          22.0,
+          3.4,
+          0.0
+        ],
+        [
+          26.5,
+          3.4,
+          0.0
+        ],
+        [
+          33.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "width_m": 2.6,
+      "clear_height_m": 4.0,
+      "connects_to": [
+        "Conn_C_North_Side",
+        "Path_C_Main_CandyBoulevard"
+      ]
+    },
+    {
+      "path_id": "Path_C_South_SideLink",
+      "waypoints": [
+        [
+          22.0,
+          -16.0,
+          0.0
+        ],
+        [
+          22.0,
+          -3.4,
+          0.0
+        ],
+        [
+          26.5,
+          -3.4,
+          0.0
+        ],
+        [
+          33.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "width_m": 2.6,
+      "clear_height_m": 4.0,
+      "connects_to": [
+        "Conn_C_South_Side",
+        "Path_C_Main_CandyBoulevard"
+      ]
+    }
+  ],
+  "Building_Shell": [
+    {
+      "building_id": "BS_C_CandyArch_001",
+      "asset_id": "CCD_CandyArch_001",
+      "position": [
+        33.0,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": [
+        1.9,
+        7.64,
+        9.5
+      ],
+      "entrance_side": "-X",
+      "is_enterable": true,
+      "landmark_id": "LM_C_CandyArch_001",
+      "clear_opening_width_m": 5.4,
+      "clear_opening_height_m": 5.85
+    },
+    {
+      "building_id": "BS_C_CandyWorkshop_001",
+      "asset_id": "CCD_M04_CandyWorkshopProxy_001",
+      "position": [
+        38.0,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "dimensions_m": [
+        5.366,
+        8.0,
+        7.628
+      ],
+      "entrance_side": "-X",
+      "is_enterable": false,
+      "meshy_id": "M04",
+      "replacement_target": "M04_WitchCandyWorkshop_001",
+      "local_dimensions_m": [
+        8.0,
+        5.367,
+        7.628
+      ],
+      "front_local": "+Y",
+      "front_world": "-X"
+    },
+    {
+      "building_id": "BS_C_SweetStall_NW_001",
+      "asset_id": "CCD_SweetStall_NorthWest_001",
+      "position": [
+        26.2,
+        5.8,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": [
+        3.6,
+        2.63,
+        4.6
+      ],
+      "entrance_side": "-Y",
+      "is_enterable": false
+    },
+    {
+      "building_id": "BS_C_PotionStall_NE_001",
+      "asset_id": "CCD_PotionStall_NorthEast_001",
+      "position": [
+        30.6,
+        6.2,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": [
+        3.6,
+        2.63,
+        4.8
+      ],
+      "entrance_side": "-Y",
+      "is_enterable": false
+    },
+    {
+      "building_id": "BS_C_PastryStall_SW_001",
+      "asset_id": "CCD_PastryStall_SouthWest_001",
+      "position": [
+        26.2,
+        -5.8,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": [
+        3.6,
+        2.63,
+        4.5
+      ],
+      "entrance_side": "+Y",
+      "is_enterable": false
+    },
+    {
+      "building_id": "BS_C_GumballStall_SE_001",
+      "asset_id": "CCD_GumballStall_SouthEast_001",
+      "position": [
+        30.6,
+        -6.2,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": [
+        3.6,
+        2.63,
+        4.7
+      ],
+      "entrance_side": "+Y",
+      "is_enterable": false
+    }
+  ],
+  "Hero_or_Gimmick": [
+    {
+      "gimmick_id": "G09",
+      "asset_id": "CCD_MagicCauldron_001",
+      "type": "animation_effect",
+      "position": [
+        34.4,
+        5.2,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pivot_policy": "hinge_pivot",
+      "motion_axis": "+Z",
+      "motion_range": [
+        0.0,
+        360.0
+      ],
+      "clear_radius_m": 1.4,
+      "sub_parts": {
+        "vessel_body": "CCD_MagicCauldron_001_Body",
+        "liquid_surface": "CCD_MagicCauldron_001_Liquid",
+        "stir_rod_pivot": "CCD_MagicCauldron_001_StirRodPivot",
+        "stir_rod_mesh": "CCD_MagicCauldron_001_StirRod",
+        "bubble_emitter_attach": "CCD_MagicCauldron_001_BubbleAttach",
+        "smoke_audio_attach": "CCD_MagicCauldron_001_SmokeAttach"
+      },
+      "rest_pose": {
+        "stir_rod_pivot_local_m": [
+          0.0,
+          0.0,
+          1.16
+        ],
+        "stir_rod_rotation_deg": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "wobble_tilt_deg": [
+          -12.0,
+          12.0
+        ]
+      }
+    },
+    {
+      "gimmick_id": "I02",
+      "asset_id": "CCD_CauldronColorControl_001",
+      "type": "interactive_color_switch",
+      "position": [
+        33.0,
+        3.8,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pivot_policy": "hinge_pivot",
+      "motion_axis": "+Z",
+      "motion_range": [
+        0.0,
+        360.0
+      ],
+      "clear_radius_m": 0.65,
+      "target_gimmick_id": "G09",
+      "target_liquid_object": "CCD_MagicCauldron_001_Liquid",
+      "target_bubble_attach": "CCD_MagicCauldron_001_BubbleAttach",
+      "sub_parts": {
+        "pedestal": "CCD_CauldronColorControl_001_Pedestal",
+        "switch_pivot": "CCD_CauldronColorControl_001_SwitchPivot",
+        "crystal_orb": "CCD_CauldronColorControl_001_CrystalOrb",
+        "touch_attach": "CCD_CauldronColorControl_001_TouchAttach"
+      },
+      "color_presets": [
+        {
+          "name": "EmeraldPotion",
+          "color_hex": "#2EFF88"
+        },
+        {
+          "name": "MagentaElixir",
+          "color_hex": "#F53DC7"
+        },
+        {
+          "name": "AmberPumpkin",
+          "color_hex": "#FFB338"
+        }
+      ]
+    },
+    {
+      "gimmick_id": "G10",
+      "asset_id": "CCD_CandyMachine_001",
+      "type": "mechanical_rotation",
+      "position": [
+        34.4,
+        -5.2,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pivot_policy": "hinge_pivot",
+      "motion_axis": "+X",
+      "motion_range": [
+        0.0,
+        360.0
+      ],
+      "clear_radius_m": 1.35,
+      "sub_parts": {
+        "body": "CCD_CandyMachine_001_Body",
+        "gear_main_pivot": "CCD_CandyMachine_001_GearMainPivot",
+        "gear_main": "CCD_CandyMachine_001_GearMain",
+        "gear_sub_pivot": "CCD_CandyMachine_001_GearSubPivot",
+        "gear_sub": "CCD_CandyMachine_001_GearSub",
+        "extruder_pivot": "CCD_CandyMachine_001_ExtruderPivot",
+        "extruder": "CCD_CandyMachine_001_Extruder",
+        "chute": "CCD_CandyMachine_001_Chute",
+        "outlet_attach": "CCD_CandyMachine_001_OutletAttach"
+      },
+      "motion_channels": {
+        "gear_main": {
+          "pivot": "CCD_CandyMachine_001_GearMainPivot",
+          "axis": "+X",
+          "range_deg": [
+            0.0,
+            360.0
+          ]
+        },
+        "gear_sub": {
+          "pivot": "CCD_CandyMachine_001_GearSubPivot",
+          "axis": "-X",
+          "range_deg": [
+            0.0,
+            -360.0
+          ]
+        },
+        "extruder": {
+          "pivot": "CCD_CandyMachine_001_ExtruderPivot",
+          "axis": "+Y",
+          "stroke_m": [
+            0.0,
+            0.28
+          ]
+        }
+      }
+    },
+    {
+      "gimmick_id": "G12",
+      "asset_id": "CCD_MagicBroom_001",
+      "type": "sweeping_motion",
+      "position": [
+        28.5,
+        3.2,
+        0.05
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pivot_policy": "hinge_pivot",
+      "motion_axis": "+Z",
+      "motion_range": [
+        -28.0,
+        28.0
+      ],
+      "clear_radius_m": 0.75,
+      "sub_parts": {
+        "motion_root": "CCD_MagicBroom_001",
+        "broom_mesh": "CCD_MagicBroom_001_BroomMesh",
+        "sweep_dust_attach": "CCD_MagicBroom_001_SweepAttach"
+      },
+      "motion_channels": {
+        "yaw_deg": [
+          -28.0,
+          28.0
+        ],
+        "pitch_deg": [
+          -14.0,
+          14.0
+        ],
+        "slide_x_m": [
+          -0.45,
+          0.45
+        ]
+      }
+    },
+    {
+      "gimmick_id": "G11",
+      "asset_id": "CCD_WitchPatrolLoop_001",
+      "type": "patrol_loop",
+      "position": [
+        33.0,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pivot_policy": "hinge_pivot",
+      "motion_axis": "+Z",
+      "motion_range": [
+        0.0,
+        360.0
+      ],
+      "clear_radius_m": 10.5,
+      "rider_asset_id": "CCD_M08_FlyingWitchProxy_001",
+      "meshy_replacement_target": "M08_FlyingWitch_001",
+      "meshy_id": "M08",
+      "patrol_loop_closed": true,
+      "patrol_loop_waypoints_m": [
+        [
+          43.2,
+          0.0,
+          10.2
+        ],
+        [
+          39.5,
+          7.5,
+          10.5
+        ],
+        [
+          33.0,
+          9.5,
+          10.4
+        ],
+        [
+          26.5,
+          7.5,
+          10.1
+        ],
+        [
+          24.5,
+          0.0,
+          9.8
+        ],
+        [
+          26.5,
+          -7.5,
+          10.1
+        ],
+        [
+          33.0,
+          -9.5,
+          10.4
+        ],
+        [
+          39.5,
+          -7.5,
+          10.5
+        ]
+      ],
+      "min_altitude_m": 9.8,
+      "max_altitude_m": 10.5,
+      "min_clearance_above_roof_m": 1.96
+    },
+    {
+      "gimmick_id": "M08_Hero",
+      "asset_id": "CCD_M08_FlyingWitchProxy_001",
+      "type": "patrol_rider_proxy",
+      "position": [
+        43.2,
+        0.0,
+        10.2
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pivot_policy": "hinge_pivot",
+      "motion_axis": "+Y",
+      "motion_range": [
+        0.0,
+        360.0
+      ],
+      "clear_radius_m": 1.35,
+      "meshy_id": "M08",
+      "replacement_target": "M08_FlyingWitch_001",
+      "front_local": "+Y",
+      "bounds_local_m": {
+        "min": [
+          -0.637,
+          -1.215,
+          -0.612
+        ],
+        "max": [
+          0.905,
+          0.912,
+          1.888
+        ]
+      },
+      "points_local_m": {
+        "broom_tip": [
+          0.0,
+          0.91,
+          0.214
+        ],
+        "bristle_end_centre": [
+          0.0,
+          -1.043,
+          -0.245
+        ]
+      }
+    },
+    {
+      "gimmick_id": "M04_Hero",
+      "asset_id": "CCD_M04_CandyWorkshopProxy_001",
+      "type": "landmark_building_proxy",
+      "position": [
+        38.0,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "pivot_policy": "ground_center",
+      "motion_axis": "+Z",
+      "motion_range": [
+        0.0,
+        0.0
+      ],
+      "clear_radius_m": 4.2,
+      "meshy_id": "M04",
+      "replacement_target": "M04_WitchCandyWorkshop_001",
+      "front_local": "+Y",
+      "front_world": "-X",
+      "local_dimensions_m": [
+        8.0,
+        5.367,
+        7.628
+      ],
+      "points_local_m": {
+        "door_bottom_centre": [
+          -0.006,
+          2.128,
+          0.116
+        ],
+        "door_top_centre": [
+          -0.006,
+          2.128,
+          2.009
+        ],
+        "bay_window_centre": [
+          2.096,
+          2.506,
+          1.126
+        ],
+        "shop_window_centre": [
+          -2.13,
+          2.632,
+          0.979
+        ],
+        "upper_window_centre": [
+          1.339,
+          2.086,
+          3.312
+        ],
+        "dormer_window_centre": [
+          -2.277,
+          2.002,
+          3.354
+        ]
+      }
+    }
+  ],
+  "Obstacle": [
+    {
+      "obstacle_id": "OBS_C_CauldronSafetyZone",
+      "position": [
+        34.4,
+        5.2,
+        0.0
+      ],
+      "dimensions_m": [
+        2.2,
+        2.2,
+        2.2
+      ],
+      "keep_out_m": 0.4
+    },
+    {
+      "obstacle_id": "OBS_C_CandyMachineSafetyZone",
+      "position": [
+        34.4,
+        -5.2,
+        0.0
+      ],
+      "dimensions_m": [
+        2.0,
+        2.4,
+        3.2
+      ],
+      "keep_out_m": 0.4
+    },
+    {
+      "obstacle_id": "OBS_C_WorkshopFootprintZone",
+      "position": [
+        38.0,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": [
+        5.367,
+        8.0,
+        7.628
+      ],
+      "keep_out_m": 0.3
+    }
+  ],
+  "Light_Anchor": [
+    {
+      "light_id": "LA_C_CandyArchCrown_001",
+      "position": [
+        33.0,
+        0.0,
+        5.6
+      ],
+      "color_hex": "#FFB347",
+      "intensity": 3.5,
+      "range_m": 12.0
+    },
+    {
+      "light_id": "LA_C_CauldronGlow_001",
+      "position": [
+        34.4,
+        5.2,
+        1.35
+      ],
+      "color_hex": "#2EFF88",
+      "intensity": 4.0,
+      "range_m": 8.5
+    },
+    {
+      "light_id": "LA_C_CandyMachineGlow_001",
+      "position": [
+        34.4,
+        -5.2,
+        2.0
+      ],
+      "color_hex": "#FF3EC8",
+      "intensity": 3.2,
+      "range_m": 8.0
+    },
+    {
+      "light_id": "LA_C_WorkshopEntrance_001",
+      "position": [
+        35.4,
+        0.0,
+        2.2
+      ],
+      "color_hex": "#FFC45C",
+      "intensity": 3.0,
+      "range_m": 10.0
+    },
+    {
+      "light_id": "LA_C_PatrolLoopStarlight_001",
+      "position": [
+        33.0,
+        0.0,
+        10.2
+      ],
+      "color_hex": "#6BE0FF",
+      "intensity": 2.5,
+      "range_m": 18.0
+    }
+  ],
+  "Viewpoint": [
+    {
+      "viewpoint_id": "VP_C_WestStreetEntry",
+      "position": [
+        21.2,
+        0.0,
+        1.7
+      ],
+      "look_at": [
+        35.0,
+        0.0,
+        3.8
+      ],
+      "fov_deg": 60.0
+    },
+    {
+      "viewpoint_id": "VP_C_PlazaForecourt",
+      "position": [
+        30.2,
+        -1.8,
+        1.7
+      ],
+      "look_at": [
+        36.5,
+        1.2,
+        2.8
+      ],
+      "fov_deg": 60.0
+    },
+    {
+      "viewpoint_id": "VP_C_SkyPatrolWatch",
+      "position": [
+        28.0,
+        -4.0,
+        1.7
+      ],
+      "look_at": [
+        36.0,
+        2.0,
+        9.8
+      ],
+      "fov_deg": 65.0
+    }
+  ],
+  "Common_Placement": [
+    {
+      "placement_id": "CCD_StreetLamp_WestNorth_001",
+      "common_asset_id": "CMN_StreetLamp_001",
+      "instance_name": "CCD_StreetLamp_WestNorth_001",
+      "position": [
+        21.8,
+        3.2,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        -90.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "role": "West entrance north-side streetlamp illuminating Conn_C_West_Main."
+    },
+    {
+      "placement_id": "CCD_StreetLamp_WestSouth_001",
+      "common_asset_id": "CMN_StreetLamp_001",
+      "instance_name": "CCD_StreetLamp_WestSouth_001",
+      "position": [
+        21.8,
+        -3.2,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "role": "West entrance south-side streetlamp illuminating Conn_C_West_Main."
+    },
+    {
+      "placement_id": "CCD_StreetLamp_MidNorth_001",
+      "common_asset_id": "CMN_StreetLamp_001",
+      "instance_name": "CCD_StreetLamp_MidNorth_001",
+      "position": [
+        28.6,
+        4.1,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        -90.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "role": "Mid-street north promenade streetlamp between candy stalls."
+    },
+    {
+      "placement_id": "CCD_StreetLamp_MidSouth_001",
+      "common_asset_id": "CMN_StreetLamp_001",
+      "instance_name": "CCD_StreetLamp_MidSouth_001",
+      "position": [
+        28.6,
+        -4.1,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "role": "Mid-street south promenade streetlamp between candy stalls."
+    },
+    {
+      "placement_id": "CCD_StreetLamp_PlazaNorth_001",
+      "common_asset_id": "CMN_StreetLamp_001",
+      "instance_name": "CCD_StreetLamp_PlazaNorth_001",
+      "position": [
+        35.0,
+        7.2,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        -135.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -135.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "role": "Workshop forecourt north-east streetlamp beside the magic cauldron."
+    },
+    {
+      "placement_id": "CCD_StreetLamp_PlazaSouth_001",
+      "common_asset_id": "CMN_StreetLamp_001",
+      "instance_name": "CCD_StreetLamp_PlazaSouth_001",
+      "position": [
+        35.0,
+        -7.2,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        135.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        135.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "role": "Workshop forecourt south-east streetlamp beside the candy machine."
+    },
+    {
+      "placement_id": "CCD_Garland_WestNorth_001",
+      "common_asset_id": "CMN_GarlandFlag_001",
+      "instance_name": "CCD_Garland_WestNorth_001",
+      "position": [
+        26.2,
+        4.2,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "role": "Carnival pennant garland along the north candy stall frontage."
+    },
+    {
+      "placement_id": "CCD_Garland_WestSouth_001",
+      "common_asset_id": "CMN_GarlandFlag_001",
+      "instance_name": "CCD_Garland_WestSouth_001",
+      "position": [
+        26.2,
+        -4.2,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "role": "Carnival pennant garland along the south pastry stall frontage."
+    },
+    {
+      "placement_id": "CCD_Bench_NorthSide_001",
+      "common_asset_id": "CMN_Bench_001",
+      "instance_name": "CCD_Bench_NorthSide_001",
+      "position": [
+        24.2,
+        8.8,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        -90.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "role": "Visitor rest bench along the east edge of the north side path."
+    },
+    {
+      "placement_id": "CCD_Bench_SouthSide_001",
+      "common_asset_id": "CMN_Bench_001",
+      "instance_name": "CCD_Bench_SouthSide_001",
+      "position": [
+        24.2,
+        -8.8,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "role": "Visitor rest bench along the east edge of the south side path."
+    },
+    {
+      "placement_id": "CCD_Fence_NorthPathEast_001",
+      "common_asset_id": "CMN_Fence_001",
+      "instance_name": "CCD_Fence_NorthPathEast_001",
+      "position": [
+        24.2,
+        13.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "role": "Decorative wrought-iron fence guiding the north side walkway toward Conn_C_North_Side."
+    },
+    {
+      "placement_id": "CCD_Fence_SouthPathEast_001",
+      "common_asset_id": "CMN_Fence_001",
+      "instance_name": "CCD_Fence_SouthPathEast_001",
+      "position": [
+        24.2,
+        -13.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "role": "Decorative wrought-iron fence guiding the south side walkway toward Conn_C_South_Side."
+    },
+    {
+      "placement_id": "CCD_Lantern_NorthConn_001",
+      "common_asset_id": "CMN_Lantern_001",
+      "instance_name": "CCD_Lantern_NorthConn_001",
+      "position": [
+        20.35,
+        15.2,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "role": "Ground guide lantern beside Conn_C_North_Side (clear of 2.6m walkway x=20.7..23.3)."
+    },
+    {
+      "placement_id": "CCD_Lantern_SouthConn_001",
+      "common_asset_id": "CMN_Lantern_001",
+      "instance_name": "CCD_Lantern_SouthConn_001",
+      "position": [
+        20.35,
+        -15.2,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "role": "Ground guide lantern beside Conn_C_South_Side (clear of 2.6m walkway x=20.7..23.3)."
+    },
+    {
+      "placement_id": "CCD_Pumpkin_ArchNorth_001",
+      "common_asset_id": "CMN_SmallPumpkin_001",
+      "instance_name": "CCD_Pumpkin_ArchNorth_001",
+      "position": [
+        32.2,
+        3.75,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        -60.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -60.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "role": "Jack-o'-Lantern accent at the north plinth of CCD_CandyArch_001."
+    },
+    {
+      "placement_id": "CCD_Pumpkin_ArchSouth_001",
+      "common_asset_id": "CMN_SmallPumpkin_001",
+      "instance_name": "CCD_Pumpkin_ArchSouth_001",
+      "position": [
+        32.2,
+        -3.75,
+        0.0
+      ],
+      "rotation_deg": [
+        0.0,
+        0.0,
+        -120.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -120.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "role": "Jack-o'-Lantern accent at the south plinth of CCD_CandyArch_001."
+    }
+  ],
+  "placements": [
+    {
+      "placement_id": "CCD_Place_CCD_CandyStreetPaving_001",
+      "asset_id": "CCD_CandyStreetPaving_001",
+      "source_key": "C_candy",
+      "category": "terrain",
+      "position": [
+        33.0,
+        0.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 16.0
+    },
+    {
+      "placement_id": "CCD_Place_CCD_CandyArch_001",
+      "asset_id": "CCD_CandyArch_001",
+      "source_key": "C_candy",
+      "category": "architecture",
+      "position": [
+        33.0,
+        0.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 3.82
+    },
+    {
+      "placement_id": "CCD_Place_CCD_M04_CandyWorkshopProxy_001",
+      "asset_id": "CCD_M04_CandyWorkshopProxy_001",
+      "source_key": "C_candy",
+      "category": "architecture",
+      "position": [
+        38.0,
+        0.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 4.0
+    },
+    {
+      "placement_id": "CCD_Place_CCD_SweetStall_NorthWest_001",
+      "asset_id": "CCD_SweetStall_NorthWest_001",
+      "source_key": "C_candy",
+      "category": "architecture",
+      "position": [
+        26.2,
+        5.8,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.8
+    },
+    {
+      "placement_id": "CCD_Place_CCD_PotionStall_NorthEast_001",
+      "asset_id": "CCD_PotionStall_NorthEast_001",
+      "source_key": "C_candy",
+      "category": "architecture",
+      "position": [
+        30.6,
+        6.2,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.8
+    },
+    {
+      "placement_id": "CCD_Place_CCD_PastryStall_SouthWest_001",
+      "asset_id": "CCD_PastryStall_SouthWest_001",
+      "source_key": "C_candy",
+      "category": "architecture",
+      "position": [
+        26.2,
+        -5.8,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.8
+    },
+    {
+      "placement_id": "CCD_Place_CCD_GumballStall_SouthEast_001",
+      "asset_id": "CCD_GumballStall_SouthEast_001",
+      "source_key": "C_candy",
+      "category": "architecture",
+      "position": [
+        30.6,
+        -6.2,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.8
+    },
+    {
+      "placement_id": "CCD_Place_CCD_MagicCauldron_001",
+      "asset_id": "CCD_MagicCauldron_001",
+      "source_key": "C_candy",
+      "category": "gimmick",
+      "position": [
+        34.4,
+        5.2,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.05
+    },
+    {
+      "placement_id": "CCD_Place_CCD_CauldronColorControl_001",
+      "asset_id": "CCD_CauldronColorControl_001",
+      "source_key": "C_candy",
+      "category": "gimmick",
+      "position": [
+        33.0,
+        3.8,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.36
+    },
+    {
+      "placement_id": "CCD_Place_CCD_CandyMachine_001",
+      "asset_id": "CCD_CandyMachine_001",
+      "source_key": "C_candy",
+      "category": "gimmick",
+      "position": [
+        34.4,
+        -5.2,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.932
+    },
+    {
+      "placement_id": "CCD_Place_CCD_MagicBroom_001",
+      "asset_id": "CCD_MagicBroom_001",
+      "source_key": "C_candy",
+      "category": "gimmick",
+      "position": [
+        28.5,
+        3.2,
+        0.05
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "hinge_pivot",
+      "clearance_radius_m": 0.22
+    },
+    {
+      "placement_id": "CCD_Place_CCD_M08_FlyingWitchProxy_001",
+      "asset_id": "CCD_M08_FlyingWitchProxy_001",
+      "source_key": "C_candy",
+      "category": "gimmick",
+      "position": [
+        43.2,
+        0.0,
+        10.2
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "hinge_pivot",
+      "clearance_radius_m": 1.089
+    },
+    {
+      "placement_id": "CCD_Place_CCD_WitchPatrolLoop_001",
+      "asset_id": "CCD_WitchPatrolLoop_001",
+      "source_key": "C_candy",
+      "category": "sky_boundary",
+      "position": [
+        33.0,
+        0.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 9.621
+    },
+    {
+      "placement_id": "CCD_Place_CCD_StreetLamp_WestNorth_001",
+      "asset_id": "CCD_StreetLamp_WestNorth_001",
+      "source_key": "C_candy",
+      "category": "lighting",
+      "position": [
+        21.8,
+        3.2,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.475
+    },
+    {
+      "placement_id": "CCD_Place_CCD_StreetLamp_WestSouth_001",
+      "asset_id": "CCD_StreetLamp_WestSouth_001",
+      "source_key": "C_candy",
+      "category": "lighting",
+      "position": [
+        21.8,
+        -3.2,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.475
+    },
+    {
+      "placement_id": "CCD_Place_CCD_StreetLamp_MidNorth_001",
+      "asset_id": "CCD_StreetLamp_MidNorth_001",
+      "source_key": "C_candy",
+      "category": "lighting",
+      "position": [
+        28.6,
+        4.1,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.475
+    },
+    {
+      "placement_id": "CCD_Place_CCD_StreetLamp_MidSouth_001",
+      "asset_id": "CCD_StreetLamp_MidSouth_001",
+      "source_key": "C_candy",
+      "category": "lighting",
+      "position": [
+        28.6,
+        -4.1,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.475
+    },
+    {
+      "placement_id": "CCD_Place_CCD_StreetLamp_PlazaNorth_001",
+      "asset_id": "CCD_StreetLamp_PlazaNorth_001",
+      "source_key": "C_candy",
+      "category": "lighting",
+      "position": [
+        35.0,
+        7.2,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -135.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.404
+    },
+    {
+      "placement_id": "CCD_Place_CCD_StreetLamp_PlazaSouth_001",
+      "asset_id": "CCD_StreetLamp_PlazaSouth_001",
+      "source_key": "C_candy",
+      "category": "lighting",
+      "position": [
+        35.0,
+        -7.2,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        135.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.404
+    },
+    {
+      "placement_id": "CCD_Place_CCD_Garland_WestNorth_001",
+      "asset_id": "CCD_Garland_WestNorth_001",
+      "source_key": "C_candy",
+      "category": "prop",
+      "position": [
+        26.2,
+        4.2,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.85
+    },
+    {
+      "placement_id": "CCD_Place_CCD_Garland_WestSouth_001",
+      "asset_id": "CCD_Garland_WestSouth_001",
+      "source_key": "C_candy",
+      "category": "prop",
+      "position": [
+        26.2,
+        -4.2,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.85
+    },
+    {
+      "placement_id": "CCD_Place_CCD_Bench_NorthSide_001",
+      "asset_id": "CCD_Bench_NorthSide_001",
+      "source_key": "C_candy",
+      "category": "prop",
+      "position": [
+        24.2,
+        8.8,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.88
+    },
+    {
+      "placement_id": "CCD_Place_CCD_Bench_SouthSide_001",
+      "asset_id": "CCD_Bench_SouthSide_001",
+      "source_key": "C_candy",
+      "category": "prop",
+      "position": [
+        24.2,
+        -8.8,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.88
+    },
+    {
+      "placement_id": "CCD_Place_CCD_Fence_NorthPathEast_001",
+      "asset_id": "CCD_Fence_NorthPathEast_001",
+      "source_key": "C_candy",
+      "category": "architecture",
+      "position": [
+        24.2,
+        13.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.52
+    },
+    {
+      "placement_id": "CCD_Place_CCD_Fence_SouthPathEast_001",
+      "asset_id": "CCD_Fence_SouthPathEast_001",
+      "source_key": "C_candy",
+      "category": "architecture",
+      "position": [
+        24.2,
+        -13.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.52
+    },
+    {
+      "placement_id": "CCD_Place_CCD_Lantern_NorthConn_001",
+      "asset_id": "CCD_Lantern_NorthConn_001",
+      "source_key": "C_candy",
+      "category": "lighting",
+      "position": [
+        20.35,
+        15.2,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.24
+    },
+    {
+      "placement_id": "CCD_Place_CCD_Lantern_SouthConn_001",
+      "asset_id": "CCD_Lantern_SouthConn_001",
+      "source_key": "C_candy",
+      "category": "lighting",
+      "position": [
+        20.35,
+        -15.2,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.24
+    },
+    {
+      "placement_id": "CCD_Place_CCD_Pumpkin_ArchNorth_001",
+      "asset_id": "CCD_Pumpkin_ArchNorth_001",
+      "source_key": "C_candy",
+      "category": "prop",
+      "position": [
+        32.2,
+        3.75,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -60.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.33
+    },
+    {
+      "placement_id": "CCD_Place_CCD_Pumpkin_ArchSouth_001",
+      "asset_id": "CCD_Pumpkin_ArchSouth_001",
+      "source_key": "C_candy",
+      "category": "prop",
+      "position": [
+        32.2,
+        -3.75,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -120.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.33
+    }
+  ]
+}
