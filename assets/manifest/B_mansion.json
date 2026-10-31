@@ -1,0 +1,1710 @@
+{
+  "schema_version": "1.0",
+  "key": "B_mansion",
+  "updated_at": "2026-10-31T12:00:00Z",
+  "assets": [
+    {
+      "asset_id": "BMN_CourtyardGround_001",
+      "key": "B_mansion",
+      "category": "terrain",
+      "area_id": "B_mansion",
+      "collection": "B_mansion",
+      "blend_file": "blender/B_mansion/B_mansion.blend",
+      "script_file": "modeling/B_mansion/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.0,
+        32.0,
+        1.5
+      ],
+      "dimensions_m": {
+        "width": 32.4,
+        "depth": 16.2,
+        "height": 0.42
+      },
+      "bounds_local": {
+        "min": [
+          -16.2,
+          -11.8,
+          0.0
+        ],
+        "max": [
+          16.2,
+          4.4,
+          0.42
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "BMN_CourtyardGround_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "BMN_CourtyardGround_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "BMN_CourtyardGround_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_BMN_CourtyardSlate",
+        "MAT_BMN_GraveyardSoil",
+        "MAT_BMN_MansionWallStone"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 168,
+        "vertices": 112,
+        "materials_count": 3,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Courtyard slate paving, east/west diagonal bridge connector walkways, graveyard soil beds, and gentle 3-step porch approach rising +0.279m (z=1.779m) to M03's front porch.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "BMN_FrontGate_001",
+      "key": "B_mansion",
+      "category": "architecture",
+      "area_id": "B_mansion",
+      "collection": "B_mansion",
+      "blend_file": "blender/B_mansion/B_mansion.blend",
+      "script_file": "modeling/B_mansion/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.0,
+        21.5,
+        1.5
+      ],
+      "dimensions_m": {
+        "width": 9.5,
+        "depth": 0.92,
+        "height": 6.25
+      },
+      "bounds_local": {
+        "min": [
+          -4.75,
+          -0.46,
+          0.0
+        ],
+        "max": [
+          4.75,
+          0.46,
+          6.25
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "BMN_FrontGate_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_FrontGate_001_Arch",
+          "role": "visual_root",
+          "parent_part": "BMN_FrontGate_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_FrontGate_001_HookWest",
+          "role": "attachment_point",
+          "parent_part": "BMN_FrontGate_001",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            -2.35,
+            0.0,
+            3.65
+          ]
+        },
+        {
+          "part_id": "BMN_FrontGate_001_HookEast",
+          "role": "attachment_point",
+          "parent_part": "BMN_FrontGate_001",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            2.35,
+            0.0,
+            3.65
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "BMN_FrontGate_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "BMN_FrontGate_001_Arch"
+        ],
+        "attachment_points": [
+          "BMN_FrontGate_001_HookWest",
+          "BMN_FrontGate_001_HookEast"
+        ]
+      },
+      "materials": [
+        "MAT_BMN_MansionWallStone",
+        "MAT_BMN_WroughtIron",
+        "MAT_BMN_WarmWindowGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 692,
+        "vertices": 426,
+        "materials_count": 3,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Gothic stone & wrought-iron courtyard entrance arch with 5.1m clear road span and hanging lantern attachment hooks.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "BMN_DeadTree_001",
+      "key": "B_mansion",
+      "category": "prop",
+      "area_id": "B_mansion",
+      "collection": "B_mansion",
+      "blend_file": "blender/B_mansion/B_mansion.blend",
+      "script_file": "modeling/B_mansion/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -7.2,
+        26.5,
+        1.5
+      ],
+      "dimensions_m": {
+        "width": 2.888,
+        "depth": 1.8095,
+        "height": 5.1086
+      },
+      "bounds_local": {
+        "min": [
+          -1.378,
+          -0.9279,
+          -0.0
+        ],
+        "max": [
+          1.51,
+          0.8816,
+          5.1086
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "BMN_DeadTree_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_DeadTree_001_Trunk",
+          "role": "visual_root",
+          "parent_part": "BMN_DeadTree_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_DeadTree_001_LanternHook",
+          "role": "attachment_point",
+          "parent_part": "BMN_DeadTree_001",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            1.35,
+            -0.32,
+            3.05
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "BMN_DeadTree_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "BMN_DeadTree_001_Trunk"
+        ],
+        "attachment_points": [
+          "BMN_DeadTree_001_LanternHook"
+        ]
+      },
+      "materials": [
+        "MAT_BMN_DeadTreeBark",
+        "MAT_BMN_WroughtIron",
+        "MAT_BMN_WarmWindowGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 220,
+        "vertices": 130,
+        "materials_count": 3,
+        "objects_count": 3
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Gnarled courtyard dead tree with reaching branches and a preserved branch lantern attachment hook.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "BMN_DeadTree_002",
+      "key": "B_mansion",
+      "category": "prop",
+      "area_id": "B_mansion",
+      "collection": "B_mansion",
+      "blend_file": "blender/B_mansion/B_mansion.blend",
+      "script_file": "modeling/B_mansion/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        7.2,
+        26.5,
+        1.5
+      ],
+      "dimensions_m": {
+        "width": 2.888,
+        "depth": 1.8095,
+        "height": 5.1086
+      },
+      "bounds_local": {
+        "min": [
+          -1.378,
+          -0.9279,
+          -0.0
+        ],
+        "max": [
+          1.51,
+          0.8816,
+          5.1086
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "BMN_DeadTree_002",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_DeadTree_002_Trunk",
+          "role": "visual_root",
+          "parent_part": "BMN_DeadTree_002",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_DeadTree_002_LanternHook",
+          "role": "attachment_point",
+          "parent_part": "BMN_DeadTree_002",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            1.35,
+            -0.32,
+            3.05
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "BMN_DeadTree_002",
+        "motion_roots": [],
+        "visual_roots": [
+          "BMN_DeadTree_002_Trunk"
+        ],
+        "attachment_points": [
+          "BMN_DeadTree_002_LanternHook"
+        ]
+      },
+      "materials": [
+        "MAT_BMN_DeadTreeBark",
+        "MAT_BMN_WroughtIron",
+        "MAT_BMN_WarmWindowGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 220,
+        "vertices": 130,
+        "materials_count": 3,
+        "objects_count": 3
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Gnarled courtyard dead tree with reaching branches and a preserved branch lantern attachment hook.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "BMN_Tombstone_001",
+      "key": "B_mansion",
+      "category": "gimmick",
+      "area_id": "B_mansion",
+      "collection": "B_mansion",
+      "blend_file": "blender/B_mansion/B_mansion.blend",
+      "script_file": "modeling/B_mansion/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -6.2,
+        30.0,
+        1.5
+      ],
+      "dimensions_m": {
+        "width": 1.04,
+        "depth": 0.56,
+        "height": 1.66
+      },
+      "bounds_local": {
+        "min": [
+          -0.52,
+          -0.28,
+          0.0
+        ],
+        "max": [
+          0.52,
+          0.28,
+          1.66
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "BMN_Tombstone_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_Tombstone_001_StaticBase",
+          "role": "static_part",
+          "parent_part": "BMN_Tombstone_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_Tombstone_001_TiltHinge",
+          "role": "motion_root",
+          "parent_part": "BMN_Tombstone_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.18
+          ]
+        },
+        {
+          "part_id": "BMN_Tombstone_001_Slab",
+          "role": "visual_root",
+          "parent_part": "BMN_Tombstone_001_TiltHinge",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "BMN_Tombstone_001",
+        "motion_roots": [
+          "BMN_Tombstone_001_TiltHinge"
+        ],
+        "visual_roots": [
+          "BMN_Tombstone_001_StaticBase",
+          "BMN_Tombstone_001_Slab"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_BMN_TombstoneGranite",
+        "MAT_BMN_EerieVioletGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 72,
+        "vertices": 48,
+        "materials_count": 2,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G07 Tilting Tombstone gimmick with fixed stone base and Y-axis hinge_pivot at z=+0.18m (-18..+18 deg).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "BMN_Tombstone_002",
+      "key": "B_mansion",
+      "category": "gimmick",
+      "area_id": "B_mansion",
+      "collection": "B_mansion",
+      "blend_file": "blender/B_mansion/B_mansion.blend",
+      "script_file": "modeling/B_mansion/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        6.2,
+        30.0,
+        1.5
+      ],
+      "dimensions_m": {
+        "width": 1.04,
+        "depth": 0.56,
+        "height": 1.66
+      },
+      "bounds_local": {
+        "min": [
+          -0.52,
+          -0.28,
+          0.0
+        ],
+        "max": [
+          0.52,
+          0.28,
+          1.66
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "BMN_Tombstone_002",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_Tombstone_002_StaticBase",
+          "role": "static_part",
+          "parent_part": "BMN_Tombstone_002",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_Tombstone_002_TiltHinge",
+          "role": "motion_root",
+          "parent_part": "BMN_Tombstone_002",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.18
+          ]
+        },
+        {
+          "part_id": "BMN_Tombstone_002_Slab",
+          "role": "visual_root",
+          "parent_part": "BMN_Tombstone_002_TiltHinge",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "BMN_Tombstone_002",
+        "motion_roots": [
+          "BMN_Tombstone_002_TiltHinge"
+        ],
+        "visual_roots": [
+          "BMN_Tombstone_002_StaticBase",
+          "BMN_Tombstone_002_Slab"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_BMN_TombstoneGranite",
+        "MAT_BMN_EerieVioletGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 72,
+        "vertices": 48,
+        "materials_count": 2,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G07 Tilting Tombstone gimmick with fixed stone base and Y-axis hinge_pivot at z=+0.18m (-18..+18 deg).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "BMN_Tombstone_003",
+      "key": "B_mansion",
+      "category": "prop",
+      "area_id": "B_mansion",
+      "collection": "B_mansion",
+      "blend_file": "blender/B_mansion/B_mansion.blend",
+      "script_file": "modeling/B_mansion/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -9.5,
+        32.5,
+        1.5
+      ],
+      "dimensions_m": {
+        "width": 0.96,
+        "depth": 0.56,
+        "height": 1.75
+      },
+      "bounds_local": {
+        "min": [
+          -0.48,
+          -0.28,
+          -0.0
+        ],
+        "max": [
+          0.48,
+          0.28,
+          1.75
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "BMN_Tombstone_003",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "BMN_Tombstone_003",
+        "motion_roots": [],
+        "visual_roots": [
+          "BMN_Tombstone_003"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_BMN_TombstoneGranite",
+        "MAT_BMN_EerieVioletGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 30,
+        "vertices": 21,
+        "materials_count": 2,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Static gothic graveyard monument variant (1 object = 1 mesh).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "BMN_Tombstone_004",
+      "key": "B_mansion",
+      "category": "prop",
+      "area_id": "B_mansion",
+      "collection": "B_mansion",
+      "blend_file": "blender/B_mansion/B_mansion.blend",
+      "script_file": "modeling/B_mansion/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        9.5,
+        32.5,
+        1.5
+      ],
+      "dimensions_m": {
+        "width": 0.96,
+        "depth": 0.52,
+        "height": 1.68
+      },
+      "bounds_local": {
+        "min": [
+          -0.48,
+          -0.26,
+          -0.0
+        ],
+        "max": [
+          0.48,
+          0.26,
+          1.68
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "BMN_Tombstone_004",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "BMN_Tombstone_004",
+        "motion_roots": [],
+        "visual_roots": [
+          "BMN_Tombstone_004"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_BMN_TombstoneGranite",
+        "MAT_BMN_EerieVioletGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 76,
+        "vertices": 48,
+        "materials_count": 2,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Static gothic graveyard monument variant (1 object = 1 mesh).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "BMN_MansionPlaceholder_001",
+      "key": "B_mansion",
+      "category": "architecture",
+      "area_id": "B_mansion",
+      "collection": "B_mansion",
+      "blend_file": "blender/B_mansion/B_mansion.blend",
+      "script_file": "modeling/B_mansion/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.0,
+        41.5,
+        1.5
+      ],
+      "dimensions_m": {
+        "width": 15.0,
+        "depth": 10.221,
+        "height": 10.607
+      },
+      "bounds_local": {
+        "min": [
+          -7.5,
+          -5.1105,
+          0.0
+        ],
+        "max": [
+          7.5,
+          5.1105,
+          10.607
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "BMN_MansionPlaceholder_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "BMN_MansionPlaceholder_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "BMN_MansionPlaceholder_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_BMN_MansionWallStone",
+        "MAT_BMN_MansionRoofTile",
+        "MAT_BMN_WarmWindowGlow",
+        "MAT_BMN_WroughtIron"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 314,
+        "vertices": 209,
+        "materials_count": 4,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": true,
+        "modifiable": true,
+        "notes": "P1 architectural placeholder for M03_HauntedMansion_001 matching confirmed W09 dimensions (15.0m x 10.221m x 10.607m), porch floor (z_local=0.279m -> z_world=1.779m), front arcade, and open doorway cutout at world (0.335, 39.95, 1.779).",
+        "future_target": "M03_HauntedMansion_001"
+      }
+    },
+    {
+      "asset_id": "BMN_MansionDoubleDoor_001",
+      "key": "B_mansion",
+      "category": "gimmick",
+      "area_id": "B_mansion",
+      "collection": "B_mansion",
+      "blend_file": "blender/B_mansion/B_mansion.blend",
+      "script_file": "modeling/B_mansion/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.335,
+        39.95,
+        1.779
+      ],
+      "dimensions_m": {
+        "width": 1.92,
+        "depth": 0.32,
+        "height": 2.92
+      },
+      "bounds_local": {
+        "min": [
+          -0.96,
+          -0.16,
+          0.0
+        ],
+        "max": [
+          0.96,
+          0.16,
+          2.92
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "BMN_MansionDoubleDoor_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_MansionDoubleDoor_001_Frame",
+          "role": "static_part",
+          "parent_part": "BMN_MansionDoubleDoor_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_MansionDoubleDoor_001_HingeLeft",
+          "role": "motion_root",
+          "parent_part": "BMN_MansionDoubleDoor_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            -0.809,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_MansionDoubleDoor_001_LeafLeft",
+          "role": "visual_root",
+          "parent_part": "BMN_MansionDoubleDoor_001_HingeLeft",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_MansionDoubleDoor_001_HingeRight",
+          "role": "motion_root",
+          "parent_part": "BMN_MansionDoubleDoor_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.809,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_MansionDoubleDoor_001_LeafRight",
+          "role": "visual_root",
+          "parent_part": "BMN_MansionDoubleDoor_001_HingeRight",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "BMN_MansionDoubleDoor_001",
+        "motion_roots": [
+          "BMN_MansionDoubleDoor_001_HingeLeft",
+          "BMN_MansionDoubleDoor_001_HingeRight"
+        ],
+        "visual_roots": [
+          "BMN_MansionDoubleDoor_001_Frame",
+          "BMN_MansionDoubleDoor_001_LeafLeft",
+          "BMN_MansionDoubleDoor_001_LeafRight"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_BMN_WroughtIron",
+        "MAT_BMN_DarkOakWood",
+        "MAT_BMN_BellBronze"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 132,
+        "vertices": 88,
+        "materials_count": 3,
+        "objects_count": 6
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G06 Haunted Mansion Double Doors (separate from M03 so it survives P2 M03 replacement). Left hinge at (-0.809,0,0) swings +Z 0..+85 deg; Right hinge at (+0.809,0,0) swings -Z -85..0 deg.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "BMN_EntranceHall_001",
+      "key": "B_mansion",
+      "category": "architecture",
+      "area_id": "B_mansion",
+      "collection": "B_mansion",
+      "blend_file": "blender/B_mansion/B_mansion.blend",
+      "script_file": "modeling/B_mansion/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.335,
+        41.8,
+        1.779
+      ],
+      "dimensions_m": {
+        "width": 3.3,
+        "depth": 3.7,
+        "height": 3.88
+      },
+      "bounds_local": {
+        "min": [
+          -1.65,
+          -1.85,
+          -0.06
+        ],
+        "max": [
+          1.65,
+          1.85,
+          3.82
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "BMN_EntranceHall_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_EntranceHall_001_Room",
+          "role": "visual_root",
+          "parent_part": "BMN_EntranceHall_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_EntranceHall_001_ChandelierHook",
+          "role": "attachment_point",
+          "parent_part": "BMN_EntranceHall_001",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            3.45
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "BMN_EntranceHall_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "BMN_EntranceHall_001_Room"
+        ],
+        "attachment_points": [
+          "BMN_EntranceHall_001_ChandelierHook"
+        ]
+      },
+      "materials": [
+        "MAT_BMN_CourtyardSlate",
+        "MAT_BMN_HallVelvetCarpet",
+        "MAT_BMN_DarkOakWood",
+        "MAT_BMN_WarmWindowGlow",
+        "MAT_BMN_WroughtIron"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 132,
+        "vertices": 84,
+        "materials_count": 5,
+        "objects_count": 3
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Gothic entrance hall vestibule behind G06 double doors with red carpet runner and ceiling chandelier attachment point.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "BMN_WindowGhost_001",
+      "key": "B_mansion",
+      "category": "gimmick",
+      "area_id": "B_mansion",
+      "collection": "B_mansion",
+      "blend_file": "blender/B_mansion/B_mansion.blend",
+      "script_file": "modeling/B_mansion/build.py",
+      "origin_policy": "hinge_pivot",
+      "origin_world": [
+        -4.2,
+        37.35,
+        4.8
+      ],
+      "dimensions_m": {
+        "width": 1.24,
+        "depth": 0.7434,
+        "height": 1.6
+      },
+      "bounds_local": {
+        "min": [
+          -0.62,
+          -0.5634,
+          -0.08
+        ],
+        "max": [
+          0.62,
+          0.18,
+          1.52
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "BMN_WindowGhost_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_WindowGhost_001_WindowFrame",
+          "role": "static_part",
+          "parent_part": "BMN_WindowGhost_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_WindowGhost_001_PeekPivot",
+          "role": "motion_root",
+          "parent_part": "BMN_WindowGhost_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            -0.12,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_WindowGhost_001_GhostBody",
+          "role": "visual_root",
+          "parent_part": "BMN_WindowGhost_001_PeekPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "BMN_WindowGhost_001",
+        "motion_roots": [
+          "BMN_WindowGhost_001_PeekPivot"
+        ],
+        "visual_roots": [
+          "BMN_WindowGhost_001_WindowFrame",
+          "BMN_WindowGhost_001_GhostBody"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_BMN_MansionWallStone",
+        "MAT_BMN_GhostCloth",
+        "MAT_BMN_WarmWindowGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 184,
+        "vertices": 112,
+        "materials_count": 3,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G08 Peeking Window Ghost assembly mounted independently on upper facade window so it survives P2 M03 replacement.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "BMN_WindowGhost_002",
+      "key": "B_mansion",
+      "category": "gimmick",
+      "area_id": "B_mansion",
+      "collection": "B_mansion",
+      "blend_file": "blender/B_mansion/B_mansion.blend",
+      "script_file": "modeling/B_mansion/build.py",
+      "origin_policy": "hinge_pivot",
+      "origin_world": [
+        4.2,
+        37.35,
+        4.8
+      ],
+      "dimensions_m": {
+        "width": 1.24,
+        "depth": 0.7434,
+        "height": 1.6
+      },
+      "bounds_local": {
+        "min": [
+          -0.62,
+          -0.5634,
+          -0.08
+        ],
+        "max": [
+          0.62,
+          0.18,
+          1.52
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "BMN_WindowGhost_002",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_WindowGhost_002_WindowFrame",
+          "role": "static_part",
+          "parent_part": "BMN_WindowGhost_002",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_WindowGhost_002_PeekPivot",
+          "role": "motion_root",
+          "parent_part": "BMN_WindowGhost_002",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            -0.12,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_WindowGhost_002_GhostBody",
+          "role": "visual_root",
+          "parent_part": "BMN_WindowGhost_002_PeekPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "BMN_WindowGhost_002",
+        "motion_roots": [
+          "BMN_WindowGhost_002_PeekPivot"
+        ],
+        "visual_roots": [
+          "BMN_WindowGhost_002_WindowFrame",
+          "BMN_WindowGhost_002_GhostBody"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_BMN_MansionWallStone",
+        "MAT_BMN_GhostCloth",
+        "MAT_BMN_WarmWindowGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 184,
+        "vertices": 112,
+        "materials_count": 3,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G08 Peeking Window Ghost assembly mounted independently on upper facade window so it survives P2 M03 replacement.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "BMN_FloatingGhost_001",
+      "key": "B_mansion",
+      "category": "gimmick",
+      "area_id": "B_mansion",
+      "collection": "B_mansion",
+      "blend_file": "blender/B_mansion/B_mansion.blend",
+      "script_file": "modeling/B_mansion/build.py",
+      "origin_policy": "hinge_pivot",
+      "origin_world": [
+        -4.6,
+        28.0,
+        2.6
+      ],
+      "dimensions_m": {
+        "width": 1.1777,
+        "depth": 0.92,
+        "height": 1.47
+      },
+      "bounds_local": {
+        "min": [
+          -0.5477,
+          -0.46,
+          -0.45
+        ],
+        "max": [
+          0.63,
+          0.46,
+          1.02
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "BMN_FloatingGhost_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_FloatingGhost_001_FloatPivot",
+          "role": "motion_root",
+          "parent_part": "BMN_FloatingGhost_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_FloatingGhost_001_GhostBody",
+          "role": "visual_root",
+          "parent_part": "BMN_FloatingGhost_001_FloatPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_FloatingGhost_001_LanternCharm",
+          "role": "attachment_point",
+          "parent_part": "BMN_FloatingGhost_001_FloatPivot",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.52,
+            -0.18,
+            0.1
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "BMN_FloatingGhost_001",
+        "motion_roots": [
+          "BMN_FloatingGhost_001_FloatPivot"
+        ],
+        "visual_roots": [
+          "BMN_FloatingGhost_001_GhostBody"
+        ],
+        "attachment_points": [
+          "BMN_FloatingGhost_001_LanternCharm"
+        ]
+      },
+      "materials": [
+        "MAT_BMN_GhostCloth",
+        "MAT_BMN_MansionRoofTile",
+        "MAT_BMN_WarmWindowGlow",
+        "MAT_BMN_EerieVioletGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 222,
+        "vertices": 129,
+        "materials_count": 4,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G05 Courtyard Floating Ghost with vertical bobbing Z (-0.35..+0.35m) and yaw sway (-20..+20 deg) on FloatPivot.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "BMN_FloatingGhost_002",
+      "key": "B_mansion",
+      "category": "gimmick",
+      "area_id": "B_mansion",
+      "collection": "B_mansion",
+      "blend_file": "blender/B_mansion/B_mansion.blend",
+      "script_file": "modeling/B_mansion/build.py",
+      "origin_policy": "hinge_pivot",
+      "origin_world": [
+        4.6,
+        33.0,
+        2.8
+      ],
+      "dimensions_m": {
+        "width": 1.1777,
+        "depth": 0.92,
+        "height": 1.47
+      },
+      "bounds_local": {
+        "min": [
+          -0.5477,
+          -0.46,
+          -0.45
+        ],
+        "max": [
+          0.63,
+          0.46,
+          1.02
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "BMN_FloatingGhost_002",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_FloatingGhost_002_FloatPivot",
+          "role": "motion_root",
+          "parent_part": "BMN_FloatingGhost_002",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_FloatingGhost_002_GhostBody",
+          "role": "visual_root",
+          "parent_part": "BMN_FloatingGhost_002_FloatPivot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_FloatingGhost_002_LanternCharm",
+          "role": "attachment_point",
+          "parent_part": "BMN_FloatingGhost_002_FloatPivot",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.52,
+            -0.18,
+            0.1
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "BMN_FloatingGhost_002",
+        "motion_roots": [
+          "BMN_FloatingGhost_002_FloatPivot"
+        ],
+        "visual_roots": [
+          "BMN_FloatingGhost_002_GhostBody"
+        ],
+        "attachment_points": [
+          "BMN_FloatingGhost_002_LanternCharm"
+        ]
+      },
+      "materials": [
+        "MAT_BMN_GhostCloth",
+        "MAT_BMN_MansionRoofTile",
+        "MAT_BMN_WarmWindowGlow",
+        "MAT_BMN_EerieVioletGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 222,
+        "vertices": 129,
+        "materials_count": 4,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G05 Courtyard Floating Ghost with vertical bobbing Z (-0.35..+0.35m) and yaw sway (-20..+20 deg) on FloatPivot.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "BMN_MansionBell_001",
+      "key": "B_mansion",
+      "category": "gimmick",
+      "area_id": "B_mansion",
+      "collection": "B_mansion",
+      "blend_file": "blender/B_mansion/B_mansion.blend",
+      "script_file": "modeling/B_mansion/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -3.4,
+        35.8,
+        1.5
+      ],
+      "dimensions_m": {
+        "width": 1.44,
+        "depth": 1.44,
+        "height": 3.25
+      },
+      "bounds_local": {
+        "min": [
+          -0.72,
+          -0.72,
+          0.0
+        ],
+        "max": [
+          0.72,
+          0.72,
+          3.25
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "BMN_MansionBell_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_MansionBell_001_Stand",
+          "role": "static_part",
+          "parent_part": "BMN_MansionBell_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_MansionBell_001_BellHinge",
+          "role": "motion_root",
+          "parent_part": "BMN_MansionBell_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            2.45
+          ]
+        },
+        {
+          "part_id": "BMN_MansionBell_001_BellBody",
+          "role": "visual_root",
+          "parent_part": "BMN_MansionBell_001_BellHinge",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "BMN_MansionBell_001_SoundPoint",
+          "role": "attachment_point",
+          "parent_part": "BMN_MansionBell_001",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            2.15
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "BMN_MansionBell_001",
+        "motion_roots": [
+          "BMN_MansionBell_001_BellHinge"
+        ],
+        "visual_roots": [
+          "BMN_MansionBell_001_Stand",
+          "BMN_MansionBell_001_BellBody"
+        ],
+        "attachment_points": [
+          "BMN_MansionBell_001_SoundPoint"
+        ]
+      },
+      "materials": [
+        "MAT_BMN_MansionWallStone",
+        "MAT_BMN_DarkOakWood",
+        "MAT_BMN_WroughtIron",
+        "MAT_BMN_WarmWindowGlow",
+        "MAT_BMN_BellBronze",
+        "MAT_BMN_EerieVioletGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 192,
+        "vertices": 116,
+        "materials_count": 6,
+        "objects_count": 5
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "I04 Interactive Haunted Mansion Bell stand with X-axis swinging BellHinge (-28..+28 deg) at z=+2.45m and SoundPoint attachment slot.",
+        "future_target": null
+      }
+    }
+  ]
+}

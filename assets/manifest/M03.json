@@ -1,0 +1,135 @@
+{
+  "schema_version": "1.0",
+  "key": "M03",
+  "updated_at": "2026-10-31T13:25:30Z",
+  "assets": [
+    {
+      "asset_id": "M03_HauntedMansion_001",
+      "key": "M03",
+      "category": "architecture",
+      "area_id": "B_mansion",
+      "collection": "M03",
+      "blend_file": "blender/M03/M03.blend",
+      "script_file": "modeling/M03/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 15.0,
+        "depth": 10.221,
+        "height": 10.607
+      },
+      "bounds_local": {
+        "min": [
+          -7.4996,
+          -5.1104,
+          0.0003
+        ],
+        "max": [
+          7.5005,
+          5.1101,
+          10.6072
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "M03_HauntedMansion_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "M03_HauntedMansion_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "M03_HauntedMansion_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_M03_HauntedMansion"
+      ],
+      "textures": [
+        "blender/M03/textures/M03_HauntedMansion_001_color.png",
+        "blender/M03/textures/M03_HauntedMansion_001_metallic.png",
+        "blender/M03/textures/M03_HauntedMansion_001_roughness.png"
+      ],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 29801,
+        "vertices": 57541,
+        "materials_count": 1,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "exported",
+        "bundle_dir": "exports/M03/bundle",
+        "apply_plan": "exports/M03/bundle/model.apply.json",
+        "report_file": "exports/M03/bundle/report.json",
+        "parent": "Root/ResoLoop_Test_W09_M03",
+        "flags": [
+          "--collection M03",
+          "--preserve-hierarchy",
+          "--pack-pbr"
+        ],
+        "report": {
+          "triangles": 29801,
+          "vertices": 58557,
+          "materials": 1,
+          "drawSections": 1,
+          "staticOnly": true,
+          "preserveHierarchy": true,
+          "warnings": [
+            "Textures exceed 2048 px: review visible texel density before import."
+          ]
+        },
+        "meshes": [
+          {
+            "name": "M03_HauntedMansion_001",
+            "vertices": 58557,
+            "triangles": 29801,
+            "submeshes": 1
+          }
+        ],
+        "textures": [
+          {
+            "name": "M03_HauntedMansion_001_color",
+            "width": 4096,
+            "height": 4096,
+            "rgba8MipBytesEstimate": 89478486
+          },
+          {
+            "name": "pbr_mat_material_MAT_M03_HauntedMansion_945a_c0afcbea",
+            "width": 2048,
+            "height": 2048,
+            "rgba8MipBytesEstimate": 22369622
+          }
+        ],
+        "validate": {
+          "valid": true,
+          "strict": false,
+          "slots": 6,
+          "components": 5,
+          "references": 7,
+          "issues": []
+        }
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "future_target": null,
+        "notes": "Finished Meshy visual for the VisualRoot of the B_mansion haunted mansion facade (Spec 6.3); it replaces the W03 placeholder BMN_MansionPlaceholder_001 (W03 #5 names M03_HauntedMansion_001 as its future_meshy_target; the W03 ID is not on main on 2026-10-31) in P2. origin_world is the asset-local origin: the world position is W03's (received.json placement_hint: (0, 41.5, 1.5), rotation_z 180 so the front looks south). Origin = bottom centre (z=0), front = +Y (Resonite +Z). Door opening (local): x -1.5165..0.1015 (width 1.618), z 0.37..2.962 (height 2.592) in the porch's back wall at y 1.5477, centred on the porch's central arch (W09's x was 0.36 m off it) with its bottom on the porch floor (higher than W09's 0.279). Hinge lines (local, W03's double doors): [0.1015, 1.5477, 0.37] up to z 2.962 and [-1.5165, 1.5477, 0.37] up to z 2.962. The opening is a clean cut with no reveal or frame (W03's frame covers the paper-thin edge) and nothing behind it (W03's entrance hall closes the view; the shell's inside is culled). No emission is baked into the albedo; no collider is part of this visual."
+      }
+    }
+  ]
+}
