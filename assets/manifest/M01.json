@@ -1,0 +1,522 @@
+{
+  "schema_version": "1.0",
+  "key": "M01",
+  "updated_at": "2026-10-31T12:46:22Z",
+  "assets": [
+    {
+      "asset_id": "M01_EntranceGate_001",
+      "key": "M01",
+      "category": "architecture",
+      "area_id": "D_amusement",
+      "collection": "M01",
+      "blend_file": "blender/M01/M01.blend",
+      "script_file": "modeling/M01/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "placement_hint": {
+        "position": [
+          0.0,
+          -40.0,
+          0.0
+        ],
+        "rotation_z_deg": 180.0,
+        "note": "正面を南（spawn 側）に向ける。W01 の entrance.gate_position (0,-44,0) は spawn と同じ点で、そこに置くと spawn の clearance 3.0 m に柱（中心から ±2.2 m 以遠、奥行き ±1.31 m）が入るので、spawn から北へ 4 m 離した。最終の位置は W02 が決める"
+      },
+      "forward_local": "+Y",
+      "dimensions_m": {
+        "width": 11.0,
+        "depth": 3.698,
+        "height": 7.739
+      },
+      "bounds_local": {
+        "min": [
+          -5.5,
+          -2.387,
+          -0.0
+        ],
+        "max": [
+          5.5,
+          1.311,
+          7.739
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "M01_EntranceGate_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "M01_GateArch_001",
+          "role": "visual_root",
+          "parent_part": "M01_EntranceGate_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "M01_GateLeafLeft_001",
+          "role": "motion_root",
+          "parent_part": "M01_EntranceGate_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            2.2562,
+            -0.1328,
+            0.0
+          ]
+        },
+        {
+          "part_id": "M01_GateLeafRight_001",
+          "role": "motion_root",
+          "parent_part": "M01_EntranceGate_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            -2.2498,
+            -0.1088,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "M01_EntranceGate_001",
+        "motion_roots": [
+          "M01_GateLeafLeft_001",
+          "M01_GateLeafRight_001"
+        ],
+        "visual_roots": [
+          "M01_GateArch_001",
+          "M01_GateLeafLeft_001",
+          "M01_GateLeafRight_001"
+        ],
+        "attachment_points": []
+      },
+      "leaves": {
+        "M01_GateLeafLeft_001": {
+          "pivot_local": [
+            2.2562,
+            -0.1328,
+            0.0
+          ],
+          "axis": "+Z",
+          "closed_deg": 0.0,
+          "placed_deg": 90.0,
+          "hinge_end_behind_gate_plane_m": 0.21,
+          "binding": {
+            "leaf_point_closed": [
+              1.45,
+              -0.046,
+              0.171
+            ],
+            "arch_surface_x": 2.174,
+            "gap_m": 0.005
+          },
+          "double_sided_faces_added": 2334
+        },
+        "M01_GateLeafRight_001": {
+          "pivot_local": [
+            -2.2498,
+            -0.1088,
+            0.0
+          ],
+          "axis": "+Z",
+          "closed_deg": 0.0,
+          "placed_deg": -90.0,
+          "hinge_end_behind_gate_plane_m": 0.18,
+          "binding": {
+            "leaf_point_closed": [
+              -1.43,
+              -0.027,
+              0.185
+            ],
+            "arch_surface_x": -2.173,
+            "gap_m": 0.005
+          },
+          "double_sided_faces_added": 2490
+        }
+      },
+      "materials": [
+        "MAT_M01_EntranceGate"
+      ],
+      "textures": [
+        "blender/M01/textures/M01_EntranceGate_001_color.png",
+        "blender/M01/textures/M01_EntranceGate_001_metallic.png",
+        "blender/M01/textures/M01_EntranceGate_001_roughness.png"
+      ],
+      "texture_details": {
+        "color": {
+          "file": "textures/M01_EntranceGate_001_color.png",
+          "size": [
+            2048,
+            2048
+          ],
+          "source_size": [
+            4096,
+            4096
+          ]
+        },
+        "metallic": {
+          "file": "textures/M01_EntranceGate_001_metallic.png",
+          "size": [
+            1024,
+            1024
+          ],
+          "source": "Blue channel",
+          "range": [
+            0.0,
+            0.9725
+          ]
+        },
+        "roughness": {
+          "file": "textures/M01_EntranceGate_001_roughness.png",
+          "size": [
+            1024,
+            1024
+          ],
+          "source": "Green channel",
+          "range": [
+            0.0,
+            0.7333
+          ]
+        }
+      },
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 35521,
+        "vertices": 75090,
+        "materials_count": 1,
+        "objects_count": 4,
+        "triangles_by_object": {
+          "M01_GateLeafLeft_001": 4764,
+          "M01_GateLeafRight_001": 5150,
+          "M01_GateArch_001": 25607
+        },
+        "vertices_by_object": {
+          "M01_GateLeafLeft_001": 9988,
+          "M01_GateLeafRight_001": 10596,
+          "M01_GateArch_001": 54506
+        },
+        "source_triangles": 30275,
+        "budget_triangles_max": 30275,
+        "uv_cover": 0.5385,
+        "texels_per_m_at_color": 94.8
+      },
+      "placement_check": {
+        "bounds_m": {
+          "min": [
+            -5.4999,
+            -1.3114,
+            -0.0001
+          ],
+          "max": [
+            5.4999,
+            1.311,
+            7.7392
+          ]
+        },
+        "w09_bounds_m": {
+          "min": [
+            -5.5,
+            -1.311,
+            -0.0
+          ],
+          "max": [
+            5.5,
+            1.311,
+            7.739
+          ]
+        },
+        "difference_m": {
+          "min": [
+            0.0001,
+            -0.0004,
+            -0.0001
+          ],
+          "max": [
+            -0.0001,
+            -0.0,
+            0.0002
+          ]
+        }
+      },
+      "split": {
+        "bisected_faces": {
+          "centre_bar_top": 8,
+          "hinge_left": 6,
+          "hinge_right": 28,
+          "centre": 101
+        },
+        "leaves": {
+          "left": {
+            "faces": 2334,
+            "min": [
+              0.028,
+              -0.166,
+              0.005
+            ],
+            "max": [
+              2.179,
+              0.184,
+              4.2
+            ]
+          },
+          "right": {
+            "faces": 2462,
+            "min": [
+              -2.15,
+              -0.17,
+              0.005
+            ],
+            "max": [
+              0.029,
+              0.175,
+              4.2
+            ]
+          }
+        },
+        "stray_pieces_joined_to_leaves": [
+          {
+            "faces": 4,
+            "to": "right",
+            "min": [
+              -2.165,
+              -0.018,
+              3.18
+            ],
+            "max": [
+              -2.15,
+              0.037,
+              3.224
+            ]
+          },
+          {
+            "faces": 24,
+            "to": "right",
+            "min": [
+              -2.179,
+              -0.057,
+              0.004
+            ],
+            "max": [
+              -2.15,
+              0.062,
+              3.084
+            ]
+          }
+        ],
+        "cut_planes": {
+          "hinge_left_x": 2.207,
+          "hinge_right_x": -2.15,
+          "hinge_below_z": 3.3,
+          "centre_x": 0.0285,
+          "centre_bar_z": 4.2
+        }
+      },
+      "overlaps_after_opening": {
+        "left_leaf_vs_arch": 0,
+        "right_leaf_vs_arch": 0,
+        "left_leaf_vs_right_leaf": 0
+      },
+      "passage": {
+        "walking": {
+          "z_range_m": [
+            0.05,
+            2.5
+          ],
+          "gate_plane": {
+            "width_m": 4.568,
+            "at_y": -0.05,
+            "left_x": 2.213,
+            "right_x": -2.355
+          },
+          "in_front_of_gate_plane": {
+            "width_m": 4.346,
+            "at_y": 0.85,
+            "left_x": 2.172,
+            "right_x": -2.174
+          },
+          "behind_gate_plane_within_arch": {
+            "width_m": 3.909,
+            "at_y": -0.9,
+            "left_x": 1.94,
+            "right_x": -1.97
+          },
+          "behind_arch_along_opened_leaves": {
+            "width_m": 3.974,
+            "at_y": -2.4,
+            "left_x": 1.99,
+            "right_x": -1.984
+          }
+        },
+        "full_height": {
+          "z_range_m": [
+            0.05,
+            3.9
+          ],
+          "gate_plane": {
+            "width_m": 2.813,
+            "at_y": -0.05,
+            "left_x": 1.399,
+            "right_x": -1.414
+          },
+          "in_front_of_gate_plane": {
+            "width_m": 2.897,
+            "at_y": 0.05,
+            "left_x": 1.447,
+            "right_x": -1.451
+          },
+          "behind_gate_plane_within_arch": {
+            "width_m": 2.903,
+            "at_y": -0.1,
+            "left_x": 1.439,
+            "right_x": -1.464
+          },
+          "behind_arch_along_opened_leaves": {
+            "width_m": 3.974,
+            "at_y": -2.4,
+            "left_x": 1.99,
+            "right_x": -1.984
+          }
+        },
+        "height_lowest_over_core_m": 3.54,
+        "height_lowest_over_core_at": [
+          -1.564,
+          0.006,
+          3.54
+        ],
+        "core_half_width_m": 1.8,
+        "height_at_w09_point_m": 4.0,
+        "w09_point_x_m": 1.916,
+        "core_points_between_0.02_and_0.3m": 0
+      },
+      "w09_keep_clear": "通路の幅 4.36 m・高さ 3.97 m（opening_overhang_lowest、垂れ幕とランタンの下端）。主動線 4.0 m より広い",
+      "source": {
+        "row_id": "M01",
+        "copy_path": "/workspaces/reso-world/worlds/reso-world-Halloween-meshy/M01/Meshy_AI_halloween_gate_remesh_1031101832_texture.glb",
+        "sha256": "4761c4a67abb6df874dadd0ec96ca43ff11f10c95f8acd83498f0ef1dcb096f6"
+      },
+      "export_result": {
+        "status": "exported",
+        "bundle_dir": "exports/M01/bundle",
+        "apply_plan": "exports/M01/bundle/model.apply.json",
+        "report_file": "exports/M01/bundle/report.json",
+        "parent": "Root/ResoLoop_Test_W09_M01",
+        "flags": [
+          "--collection M01",
+          "--preserve-hierarchy",
+          "--pack-pbr"
+        ],
+        "report": {
+          "triangles": 35521,
+          "vertices": 76124,
+          "materials": 1,
+          "drawSections": 3,
+          "staticOnly": true,
+          "preserveHierarchy": true,
+          "warnings": []
+        },
+        "meshes": [
+          {
+            "name": "M01_GateArch_001",
+            "vertices": 55238,
+            "triangles": 25607,
+            "submeshes": 1
+          },
+          {
+            "name": "M01_GateLeafLeft_001",
+            "vertices": 10114,
+            "triangles": 4764,
+            "submeshes": 1
+          },
+          {
+            "name": "M01_GateLeafRight_001",
+            "vertices": 10772,
+            "triangles": 5150,
+            "submeshes": 1
+          }
+        ],
+        "textures": [
+          {
+            "name": "M01_EntranceGate_001_color",
+            "width": 2048,
+            "height": 2048,
+            "rgba8MipBytesEstimate": 22369622
+          },
+          {
+            "name": "pbr_mat_material_MAT_M01_EntranceGate_ff76e1_7f53ece2",
+            "width": 1024,
+            "height": 1024,
+            "rgba8MipBytesEstimate": 5592406
+          }
+        ],
+        "validate": {
+          "valid": true,
+          "strict": false,
+          "slots": 9,
+          "components": 9,
+          "references": 13,
+          "issues": []
+        }
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Meshy の M01 を仕上げた差し替え用の見た目（Spec §6.3 の VisualRoot に入れる静的なモデル）。P2（W08 の後）で W02（#4）が作る入口の仮モデルと差し替える。仮モデルの ID は W02 が決める（2026-10-31 時点で未作成）。origin_world はアセットのローカル原点で、ワールドの位置と向きは W02 が決める（W09 の推奨は placement_hint）。原点は接地面の中央（z=0）、正面は +Y（Resonite の +Z）。門扉 2 枚は蝶番を原点にした別オブジェクトで、回転 0 で閉じ、±90° で開いた形（leaves）。発光（ランタン・看板）とコライダーは含めず、P2・P3 で Resonite 側に付ける",
+        "future_target": null,
+        "replaces_placeholder": null
+      },
+      "backface_check": {
+        "method": "Workbench orthographic, culling off vs on",
+        "pixels": 320,
+        "views": {
+          "front": {
+            "object_pixels": 31144,
+            "see_through": 0.00074,
+            "changed": 0.00039
+          },
+          "back": {
+            "object_pixels": 31153,
+            "see_through": 0.00093,
+            "changed": 0.00074
+          },
+          "left": {
+            "object_pixels": 11871,
+            "see_through": 0.0,
+            "changed": 0.00059
+          },
+          "right": {
+            "object_pixels": 11865,
+            "see_through": 0.0,
+            "changed": 0.00034
+          },
+          "top": {
+            "object_pixels": 11477,
+            "see_through": 0.0,
+            "changed": 0.00026
+          },
+          "bottom": {
+            "object_pixels": 11477,
+            "see_through": 0.0,
+            "changed": 0.00035
+          }
+        },
+        "max_see_through": 0.00093,
+        "max_changed": 0.00074,
+        "object": "arch and both opened leaves, joined"
+      }
+    }
+  ]
+}
