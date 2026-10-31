@@ -1,0 +1,1370 @@
+{
+  "schema_version": "1.0",
+  "area_id": "D_amusement",
+  "key": "D_amusement",
+  "name": "Area D — South Trick Amusement & Entrance",
+  "theme": "Festive Halloween pumpkin amusement park with rotating Pumpkin Carousel (G13/G14), Ghost Train flat loop ride (G15), Spinning Pumpkin Cups (G16), and carnival stalls framing the South Entrance Promenade",
+  "bounds": {
+    "min": [
+      -22.0,
+      -48.0,
+      0.0
+    ],
+    "max": [
+      22.0,
+      -20.0,
+      18.0
+    ]
+  },
+  "Anchor": {
+    "anchor_id": "DAM_Carousel_001",
+    "position": [
+      -10.5,
+      -32.0,
+      0.0
+    ],
+    "dimensions_m": [
+      10.4,
+      10.2,
+      9.901
+    ],
+    "orientation_deg": 0.0,
+    "role": "Primary Area D landmark (~10m diameter Pumpkin Carousel on the West court, framing the South Promenade while preserving the central sightline to Area A)"
+  },
+  "Circulation": {
+    "primary_path_id": "Route_South_Entrance_Approach",
+    "min_walk_width_m": 4.0,
+    "entry_points": [
+      [
+        0.0,
+        -44.0,
+        0.0
+      ],
+      [
+        0.0,
+        -20.0,
+        0.0
+      ],
+      [
+        16.0,
+        -22.0,
+        0.0
+      ],
+      [
+        -16.0,
+        -22.0,
+        0.0
+      ]
+    ],
+    "loop_description": "4.0m-wide straight South Promenade along x=0 from South Spawn (y=-44m) to South Causeway Bridge (y=-20m), flanked by West Carousel/Stall court (x in [-18.5, -2.5]) and East Ghost Train/Pumpkin Cups court (x in [2.5, 19.5]), connecting to SE/SW outer loop bridges at (±16, -22, 0)."
+  },
+  "Framing": {
+    "left_edge": "DAM_Carousel_001 (-10.5, -32.0, 0.0) & DAM_CarnivalStall_001 (-8.8, -42.2, 0.0) on West carnival court",
+    "right_edge": "DAM_TicketBooth_001 (4.7, -31.5, 0.0), DAM_GhostTrain_001 (7.5, -31.5, 0.0) & DAM_PumpkinCups_001 (11.5, -42.5, 0.0) on East carnival court",
+    "focal_target": "North along Route_South_Entrance_Approach (x=0.0m) toward Central Pumpkin Tower (A_plaza)",
+    "view_cone_deg": 65.0
+  },
+  "Story_Cluster": [
+    {
+      "cluster_id": "DAM_Cluster_WestCarouselCourt",
+      "center": [
+        -10.0,
+        -34.0,
+        0.0
+      ],
+      "radius_m": 10.5,
+      "intent": "Grand Pumpkin Carousel (G13 turntable, G14 4-phase oscillating seats, M05 CenterCasing & Canopy replacement targets) paired with the Pumpkin Ring-Toss Carnival Stall and spectator benches.",
+      "asset_ids": [
+        "DAM_Carousel_001",
+        "DAM_CarnivalStall_001",
+        "DAM_AmusementPlaza_001"
+      ]
+    },
+    {
+      "cluster_id": "DAM_Cluster_EastTrainStation",
+      "center": [
+        10.5,
+        -31.5,
+        0.0
+      ],
+      "radius_m": 9.5,
+      "intent": "Flat closed-loop Ghost Train ride (G15) with M06 lead engine shell, separated wheel axles, coupled passenger car (~6.0m total consist length), and the adjacent Ticket & Treat Booth.",
+      "asset_ids": [
+        "DAM_TrainTrack_001",
+        "DAM_GhostTrain_001",
+        "DAM_TicketBooth_001"
+      ]
+    },
+    {
+      "cluster_id": "DAM_Cluster_SouthEastPumpkinCups",
+      "center": [
+        11.5,
+        -42.5,
+        0.0
+      ],
+      "radius_m": 5.5,
+      "intent": "Spinning Pumpkin Cups attraction (G16) with main turntable, central witch-hat pumpkin totem, and 3 independently rotating jack-o'-lantern teacups.",
+      "asset_ids": [
+        "DAM_PumpkinCups_001",
+        "DAM_AmusementPlaza_001"
+      ]
+    }
+  ],
+  "Common_Placement": [
+    {
+      "instance_name": "DAM_StreetLamp_001",
+      "common_asset_id": "CMN_StreetLamp_001",
+      "position": [
+        -4.6,
+        -26.5,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "instance_name": "DAM_StreetLamp_002",
+      "common_asset_id": "CMN_StreetLamp_001",
+      "position": [
+        -4.6,
+        -37.8,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "instance_name": "DAM_StreetLamp_003",
+      "common_asset_id": "CMN_StreetLamp_001",
+      "position": [
+        6.2,
+        -25.2,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        180.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "instance_name": "DAM_StreetLamp_004",
+      "common_asset_id": "CMN_StreetLamp_001",
+      "position": [
+        6.8,
+        -40.5,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "instance_name": "DAM_StreetLamp_005",
+      "common_asset_id": "CMN_StreetLamp_001",
+      "position": [
+        -16.2,
+        -28.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -45.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "instance_name": "DAM_StreetLamp_006",
+      "common_asset_id": "CMN_StreetLamp_001",
+      "position": [
+        18.2,
+        -31.5,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        180.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "instance_name": "DAM_GarlandFlag_001",
+      "common_asset_id": "CMN_GarlandFlag_001",
+      "position": [
+        -4.8,
+        -32.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "instance_name": "DAM_GarlandFlag_002",
+      "common_asset_id": "CMN_GarlandFlag_001",
+      "position": [
+        -10.5,
+        -25.5,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "instance_name": "DAM_GarlandFlag_003",
+      "common_asset_id": "CMN_GarlandFlag_001",
+      "position": [
+        11.5,
+        -38.4,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "instance_name": "DAM_Fence_001",
+      "common_asset_id": "CMN_Fence_001",
+      "position": [
+        18.2,
+        -28.8,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "instance_name": "DAM_Fence_002",
+      "common_asset_id": "CMN_Fence_001",
+      "position": [
+        18.2,
+        -34.2,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "instance_name": "DAM_Fence_003",
+      "common_asset_id": "CMN_Fence_001",
+      "position": [
+        -16.8,
+        -32.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "instance_name": "DAM_Bench_001",
+      "common_asset_id": "CMN_Bench_001",
+      "position": [
+        -4.8,
+        -29.2,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "instance_name": "DAM_Bench_002",
+      "common_asset_id": "CMN_Bench_001",
+      "position": [
+        -4.8,
+        -34.8,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "instance_name": "DAM_Bench_003",
+      "common_asset_id": "CMN_Bench_001",
+      "position": [
+        7.4,
+        -42.5,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "instance_name": "DAM_Lantern_001",
+      "common_asset_id": "CMN_Lantern_001",
+      "position": [
+        -5.2,
+        -30.6,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "instance_name": "DAM_Lantern_002",
+      "common_asset_id": "CMN_Lantern_001",
+      "position": [
+        -5.2,
+        -33.4,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "instance_name": "DAM_SmallPumpkin_001",
+      "common_asset_id": "CMN_SmallPumpkin_001",
+      "position": [
+        -6.6,
+        -40.8,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        25.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "instance_name": "DAM_SmallPumpkin_002",
+      "common_asset_id": "CMN_SmallPumpkin_001",
+      "position": [
+        3.5,
+        -29.5,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -40.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "instance_name": "DAM_SmallPumpkin_003",
+      "common_asset_id": "CMN_SmallPumpkin_001",
+      "position": [
+        8.2,
+        -45.2,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        15.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  ],
+  "Hero_or_Gimmick": [
+    {
+      "asset_id": "DAM_Carousel_001",
+      "motion_roots": [
+        "DAM_Carousel_001_TurnRoot",
+        "DAM_Carousel_001_SeatRoot_001",
+        "DAM_Carousel_001_SeatRoot_002",
+        "DAM_Carousel_001_SeatRoot_003",
+        "DAM_Carousel_001_SeatRoot_004"
+      ],
+      "visual_roots": [
+        "DAM_Carousel_001_Base",
+        "DAM_Carousel_001_Floor",
+        "DAM_Carousel_001_Poles",
+        "DAM_Carousel_001_M05_CenterCasing",
+        "DAM_Carousel_001_M05_Canopy",
+        "DAM_Carousel_001_Seat_001",
+        "DAM_Carousel_001_Seat_002",
+        "DAM_Carousel_001_Seat_003",
+        "DAM_Carousel_001_Seat_004"
+      ],
+      "attachment_points": [
+        "DAM_Carousel_001_Att_M05_CenterCasing",
+        "DAM_Carousel_001_Att_M05_Canopy"
+      ],
+      "interaction_notes": "G13: DAM_Carousel_001_TurnRoot at local [0, 0, 0.36] (world [-10.5, -32.0, 0.36]) rotates continuously around +Z (0..360 deg, recommended 18 deg/s). G14: DAM_Carousel_001_SeatRoot_001..004 at r=3.35m, z=1.05m relative to TurnRoot oscillate vertically along +Z by ±0.28m with phase offsets [0, 90, 180, 270] deg. M05 replacement: DAM_Carousel_001_M05_CenterCasing at TurnRoot+[0,0,0.19] (world z=0.55m) and DAM_Carousel_001_M05_Canopy at TurnRoot+[0,0,3.154] (world z=3.514m, +2.964m above CenterCasing origin)."
+    },
+    {
+      "asset_id": "DAM_GhostTrain_001",
+      "motion_roots": [
+        "DAM_GhostTrain_001_EngineRoot",
+        "DAM_GhostTrain_001_CarRoot_001"
+      ],
+      "visual_roots": [
+        "DAM_GhostTrain_001_M06_EngineShell",
+        "DAM_GhostTrain_001_EngineWheelFront",
+        "DAM_GhostTrain_001_EngineWheelRear",
+        "DAM_GhostTrain_001_CarBody_001",
+        "DAM_GhostTrain_001_CarWheelFront_001",
+        "DAM_GhostTrain_001_CarWheelRear_001"
+      ],
+      "attachment_points": [
+        "DAM_GhostTrain_001_Att_M06_Engine",
+        "DAM_GhostTrain_001_Att_CouplerRear",
+        "DAM_GhostTrain_001_Att_Headlamp"
+      ],
+      "interaction_notes": "G15: Train consist (total length 6.00m) follows the flat closed loop on DAM_TrainTrack_001 at constant rail-top elevation z=0.14m. EngineRoot is at rest at world [7.5, -30.5, 0.14] (+Y forward); CarRoot_001 trails by arc distance 2.75m (rest world [7.5, -33.25, 0.14]). Wheels rotate around local +X axle (radius 0.21m engine / 0.20m car). M06 replaces DAM_GhostTrain_001_M06_EngineShell at EngineRoot origin [0,0,0]."
+    },
+    {
+      "asset_id": "DAM_PumpkinCups_001",
+      "motion_roots": [
+        "DAM_PumpkinCups_001_TurnRoot",
+        "DAM_PumpkinCups_001_CupRoot_001",
+        "DAM_PumpkinCups_001_CupRoot_002",
+        "DAM_PumpkinCups_001_CupRoot_003"
+      ],
+      "visual_roots": [
+        "DAM_PumpkinCups_001_Base",
+        "DAM_PumpkinCups_001_Turntable",
+        "DAM_PumpkinCups_001_Cup_001",
+        "DAM_PumpkinCups_001_Cup_002",
+        "DAM_PumpkinCups_001_Cup_003"
+      ],
+      "attachment_points": [
+        "DAM_PumpkinCups_001_Att_CenterTop"
+      ],
+      "interaction_notes": "G16: Main turntable DAM_PumpkinCups_001_TurnRoot at local [0, 0, 0.22] (world [11.5, -42.5, 0.22]) rotates around +Z (0..360 deg, recommended 24 deg/s), while each teacup DAM_PumpkinCups_001_CupRoot_001..003 at r=1.72m counter-rotates around its own local +Z axis (0..360 deg, recommended -60 deg/s)."
+    }
+  ],
+  "gimmick_specs": {
+    "G13_carousel_rotation": {
+      "gimmick_id": "G13",
+      "asset_id": "DAM_Carousel_001",
+      "motion_root": "DAM_Carousel_001_TurnRoot",
+      "pivot_local": [
+        0.0,
+        0.0,
+        0.36
+      ],
+      "pivot_world": [
+        -10.5,
+        -32.0,
+        0.36
+      ],
+      "axis_local": "+Z",
+      "motion_type": "continuous_rotation",
+      "range_deg": [
+        0.0,
+        360.0
+      ],
+      "recommended_speed_deg_per_sec": 18.0,
+      "rest_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "G14_carousel_seats_vertical": {
+      "gimmick_id": "G14",
+      "asset_id": "DAM_Carousel_001",
+      "parent_motion_root": "DAM_Carousel_001_TurnRoot",
+      "axis_local": "+Z",
+      "motion_type": "sinusoidal_translation",
+      "amplitude_m": 0.28,
+      "range_offset_m": [
+        -0.28,
+        0.28
+      ],
+      "recommended_frequency_hz": 0.45,
+      "clearance_note": "Max seat+rider top stays below +2.60m above rotating floor (< +3.00m M05_Canopy ornament limit).",
+      "seats": [
+        {
+          "motion_root": "DAM_Carousel_001_SeatRoot_001",
+          "visual_root": "DAM_Carousel_001_Seat_001",
+          "rest_local_to_turn_root": [
+            3.35,
+            0.0,
+            1.05
+          ],
+          "rest_rotation_euler_deg": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "phase_offset_deg": 0.0
+        },
+        {
+          "motion_root": "DAM_Carousel_001_SeatRoot_002",
+          "visual_root": "DAM_Carousel_001_Seat_002",
+          "rest_local_to_turn_root": [
+            0.0,
+            3.35,
+            1.05
+          ],
+          "rest_rotation_euler_deg": [
+            0.0,
+            0.0,
+            90.0
+          ],
+          "phase_offset_deg": 90.0
+        },
+        {
+          "motion_root": "DAM_Carousel_001_SeatRoot_003",
+          "visual_root": "DAM_Carousel_001_Seat_003",
+          "rest_local_to_turn_root": [
+            -3.35,
+            0.0,
+            1.05
+          ],
+          "rest_rotation_euler_deg": [
+            0.0,
+            0.0,
+            180.0
+          ],
+          "phase_offset_deg": 180.0
+        },
+        {
+          "motion_root": "DAM_Carousel_001_SeatRoot_004",
+          "visual_root": "DAM_Carousel_001_Seat_004",
+          "rest_local_to_turn_root": [
+            0.0,
+            -3.35,
+            1.05
+          ],
+          "rest_rotation_euler_deg": [
+            0.0,
+            0.0,
+            -90.0
+          ],
+          "phase_offset_deg": 270.0
+        }
+      ]
+    },
+    "G15_ghost_train_loop": {
+      "gimmick_id": "G15",
+      "track_asset_id": "DAM_TrainTrack_001",
+      "train_asset_id": "DAM_GhostTrain_001",
+      "loop_guide_part": "DAM_TrainTrack_001_LoopGuide",
+      "track_center_world": [
+        12.0,
+        -31.5,
+        0.0
+      ],
+      "rail_top_z_world_m": 0.14,
+      "loop_shape": "stadium_oval_clockwise",
+      "curve_radius_m": 4.5,
+      "straight_length_m": 4.0,
+      "total_loop_length_m": 36.2743,
+      "recommended_speed_m_per_sec": 2.2,
+      "consist_total_length_m": 6.0,
+      "engine_to_car_arc_offset_m": 2.75,
+      "forward_axis_local": "+Y",
+      "up_axis_local": "+Z",
+      "wheel_spin_axis_local": "+X",
+      "waypoints": [
+        {
+          "index": 0,
+          "distance_m": 0.0,
+          "position_local": [
+            -4.5,
+            -2.0,
+            0.14
+          ],
+          "position_world": [
+            7.5,
+            -33.5,
+            0.14
+          ],
+          "tangent_xy": [
+            0.0,
+            1.0
+          ],
+          "yaw_z_deg": -0.0
+        },
+        {
+          "index": 1,
+          "distance_m": 2.0,
+          "position_local": [
+            -4.5,
+            0.0,
+            0.14
+          ],
+          "position_world": [
+            7.5,
+            -31.5,
+            0.14
+          ],
+          "tangent_xy": [
+            0.0,
+            1.0
+          ],
+          "yaw_z_deg": -0.0
+        },
+        {
+          "index": 2,
+          "distance_m": 4.0,
+          "position_local": [
+            -4.5,
+            2.0,
+            0.14
+          ],
+          "position_world": [
+            7.5,
+            -29.5,
+            0.14
+          ],
+          "tangent_xy": [
+            0.0,
+            1.0
+          ],
+          "yaw_z_deg": -0.0
+        },
+        {
+          "index": 3,
+          "distance_m": 5.7558,
+          "position_local": [
+            -4.1575,
+            3.7221,
+            0.14
+          ],
+          "position_world": [
+            7.8425,
+            -27.7779,
+            0.14
+          ],
+          "tangent_xy": [
+            0.3827,
+            0.9239
+          ],
+          "yaw_z_deg": -22.5
+        },
+        {
+          "index": 4,
+          "distance_m": 7.5116,
+          "position_local": [
+            -3.182,
+            5.182,
+            0.14
+          ],
+          "position_world": [
+            8.818,
+            -26.318,
+            0.14
+          ],
+          "tangent_xy": [
+            0.7071,
+            0.7071
+          ],
+          "yaw_z_deg": -45.0
+        },
+        {
+          "index": 5,
+          "distance_m": 9.2674,
+          "position_local": [
+            -1.7221,
+            6.1575,
+            0.14
+          ],
+          "position_world": [
+            10.2779,
+            -25.3425,
+            0.14
+          ],
+          "tangent_xy": [
+            0.9239,
+            0.3827
+          ],
+          "yaw_z_deg": -67.5
+        },
+        {
+          "index": 6,
+          "distance_m": 11.0233,
+          "position_local": [
+            0.0,
+            6.5,
+            0.14
+          ],
+          "position_world": [
+            12.0,
+            -25.0,
+            0.14
+          ],
+          "tangent_xy": [
+            1.0,
+            -0.0
+          ],
+          "yaw_z_deg": -90.0
+        },
+        {
+          "index": 7,
+          "distance_m": 12.7791,
+          "position_local": [
+            1.7221,
+            6.1575,
+            0.14
+          ],
+          "position_world": [
+            13.7221,
+            -25.3425,
+            0.14
+          ],
+          "tangent_xy": [
+            0.9239,
+            -0.3827
+          ],
+          "yaw_z_deg": -112.5
+        },
+        {
+          "index": 8,
+          "distance_m": 14.5349,
+          "position_local": [
+            3.182,
+            5.182,
+            0.14
+          ],
+          "position_world": [
+            15.182,
+            -26.318,
+            0.14
+          ],
+          "tangent_xy": [
+            0.7071,
+            -0.7071
+          ],
+          "yaw_z_deg": -135.0
+        },
+        {
+          "index": 9,
+          "distance_m": 16.2907,
+          "position_local": [
+            4.1575,
+            3.7221,
+            0.14
+          ],
+          "position_world": [
+            16.1575,
+            -27.7779,
+            0.14
+          ],
+          "tangent_xy": [
+            0.3827,
+            -0.9239
+          ],
+          "yaw_z_deg": -157.5
+        },
+        {
+          "index": 10,
+          "distance_m": 18.0465,
+          "position_local": [
+            4.5,
+            2.0,
+            0.14
+          ],
+          "position_world": [
+            16.5,
+            -29.5,
+            0.14
+          ],
+          "tangent_xy": [
+            0.0,
+            -1.0
+          ],
+          "yaw_z_deg": -180.0
+        },
+        {
+          "index": 11,
+          "distance_m": 20.0465,
+          "position_local": [
+            4.5,
+            0.0,
+            0.14
+          ],
+          "position_world": [
+            16.5,
+            -31.5,
+            0.14
+          ],
+          "tangent_xy": [
+            0.0,
+            -1.0
+          ],
+          "yaw_z_deg": -180.0
+        },
+        {
+          "index": 12,
+          "distance_m": 22.0465,
+          "position_local": [
+            4.5,
+            -2.0,
+            0.14
+          ],
+          "position_world": [
+            16.5,
+            -33.5,
+            0.14
+          ],
+          "tangent_xy": [
+            -0.0,
+            -1.0
+          ],
+          "yaw_z_deg": 180.0
+        },
+        {
+          "index": 13,
+          "distance_m": 23.8023,
+          "position_local": [
+            4.1575,
+            -3.7221,
+            0.14
+          ],
+          "position_world": [
+            16.1575,
+            -35.2221,
+            0.14
+          ],
+          "tangent_xy": [
+            -0.3827,
+            -0.9239
+          ],
+          "yaw_z_deg": 157.5
+        },
+        {
+          "index": 14,
+          "distance_m": 25.5581,
+          "position_local": [
+            3.182,
+            -5.182,
+            0.14
+          ],
+          "position_world": [
+            15.182,
+            -36.682,
+            0.14
+          ],
+          "tangent_xy": [
+            -0.7071,
+            -0.7071
+          ],
+          "yaw_z_deg": 135.0
+        },
+        {
+          "index": 15,
+          "distance_m": 27.3139,
+          "position_local": [
+            1.7221,
+            -6.1575,
+            0.14
+          ],
+          "position_world": [
+            13.7221,
+            -37.6575,
+            0.14
+          ],
+          "tangent_xy": [
+            -0.9239,
+            -0.3827
+          ],
+          "yaw_z_deg": 112.5
+        },
+        {
+          "index": 16,
+          "distance_m": 29.0698,
+          "position_local": [
+            0.0,
+            -6.5,
+            0.14
+          ],
+          "position_world": [
+            12.0,
+            -38.0,
+            0.14
+          ],
+          "tangent_xy": [
+            -1.0,
+            -0.0
+          ],
+          "yaw_z_deg": 90.0
+        },
+        {
+          "index": 17,
+          "distance_m": 30.8256,
+          "position_local": [
+            -1.7221,
+            -6.1575,
+            0.14
+          ],
+          "position_world": [
+            10.2779,
+            -37.6575,
+            0.14
+          ],
+          "tangent_xy": [
+            -0.9239,
+            0.3827
+          ],
+          "yaw_z_deg": 67.5
+        },
+        {
+          "index": 18,
+          "distance_m": 32.5814,
+          "position_local": [
+            -3.182,
+            -5.182,
+            0.14
+          ],
+          "position_world": [
+            8.818,
+            -36.682,
+            0.14
+          ],
+          "tangent_xy": [
+            -0.7071,
+            0.7071
+          ],
+          "yaw_z_deg": 45.0
+        },
+        {
+          "index": 19,
+          "distance_m": 34.3372,
+          "position_local": [
+            -4.1575,
+            -3.7221,
+            0.14
+          ],
+          "position_world": [
+            7.8425,
+            -35.2221,
+            0.14
+          ],
+          "tangent_xy": [
+            -0.3827,
+            0.9239
+          ],
+          "yaw_z_deg": 22.5
+        }
+      ]
+    },
+    "G16_pumpkin_cups_spin": {
+      "gimmick_id": "G16",
+      "asset_id": "DAM_PumpkinCups_001",
+      "main_turntable_root": "DAM_PumpkinCups_001_TurnRoot",
+      "main_pivot_local": [
+        0.0,
+        0.0,
+        0.22
+      ],
+      "main_pivot_world": [
+        11.5,
+        -42.5,
+        0.22
+      ],
+      "main_axis_local": "+Z",
+      "main_range_deg": [
+        0.0,
+        360.0
+      ],
+      "main_recommended_speed_deg_per_sec": 24.0,
+      "cups": [
+        {
+          "motion_root": "DAM_PumpkinCups_001_CupRoot_001",
+          "visual_root": "DAM_PumpkinCups_001_Cup_001",
+          "pivot_local_to_turn_root": [
+            1.4896,
+            0.86,
+            0.1
+          ],
+          "axis_local": "+Z",
+          "range_deg": [
+            0.0,
+            360.0
+          ],
+          "recommended_speed_deg_per_sec": -60.0
+        },
+        {
+          "motion_root": "DAM_PumpkinCups_001_CupRoot_002",
+          "visual_root": "DAM_PumpkinCups_001_Cup_002",
+          "pivot_local_to_turn_root": [
+            -1.4896,
+            0.86,
+            0.1
+          ],
+          "axis_local": "+Z",
+          "range_deg": [
+            0.0,
+            360.0
+          ],
+          "recommended_speed_deg_per_sec": 65.0
+        },
+        {
+          "motion_root": "DAM_PumpkinCups_001_CupRoot_003",
+          "visual_root": "DAM_PumpkinCups_001_Cup_003",
+          "pivot_local_to_turn_root": [
+            -0.0,
+            -1.72,
+            0.1
+          ],
+          "axis_local": "+Z",
+          "range_deg": [
+            0.0,
+            360.0
+          ],
+          "recommended_speed_deg_per_sec": -55.0
+        }
+      ]
+    }
+  },
+  "Exclusions": [
+    {
+      "zone_id": "DAM_Excl_SouthSpawnClearance",
+      "bounds": {
+        "min": [
+          -4.5,
+          -47.0,
+          0.0
+        ],
+        "max": [
+          4.5,
+          -40.0,
+          6.0
+        ]
+      },
+      "reason": "Keep South Entrance Spawn Terrace (y=-44m) and M01 Gate threshold (y=-40m) completely unobstructed."
+    },
+    {
+      "zone_id": "DAM_Excl_CentralPromenadeLOS",
+      "bounds": {
+        "min": [
+          -3.5,
+          -44.0,
+          0.0
+        ],
+        "max": [
+          3.5,
+          -20.0,
+          12.0
+        ]
+      },
+      "reason": "Preserve 4.0m main walkway and sightline corridor (LOS_SouthEntrance_To_CentralPlaza) along x=0."
+    },
+    {
+      "zone_id": "DAM_Excl_EastSideBridgePortal",
+      "bounds": {
+        "min": [
+          13.5,
+          -24.0,
+          0.0
+        ],
+        "max": [
+          18.5,
+          -20.0,
+          4.0
+        ]
+      },
+      "reason": "Keep SE diagonal bridge portal at (16, -22, 0) clear for inter-area loop circulation."
+    },
+    {
+      "zone_id": "DAM_Excl_WestSideBridgePortal",
+      "bounds": {
+        "min": [
+          -18.5,
+          -24.0,
+          0.0
+        ],
+        "max": [
+          -13.5,
+          -20.0,
+          4.0
+        ]
+      },
+      "reason": "Keep SW diagonal bridge portal at (-16, -22, 0) clear for inter-area loop circulation."
+    }
+  ],
+  "placements": [
+    {
+      "placement_id": "DAM_Place_AmusementPlaza_001",
+      "asset_id": "DAM_AmusementPlaza_001",
+      "source_key": "D_amusement",
+      "category": "architecture",
+      "position": [
+        0.0,
+        -33.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.0
+    },
+    {
+      "placement_id": "DAM_Place_Carousel_001",
+      "asset_id": "DAM_Carousel_001",
+      "source_key": "D_amusement",
+      "category": "gimmick",
+      "position": [
+        -10.5,
+        -32.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 5.0
+    },
+    {
+      "placement_id": "DAM_Place_TrainTrack_001",
+      "asset_id": "DAM_TrainTrack_001",
+      "source_key": "D_amusement",
+      "category": "architecture",
+      "position": [
+        12.0,
+        -31.5,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.5
+    },
+    {
+      "placement_id": "DAM_Place_GhostTrain_001",
+      "asset_id": "DAM_GhostTrain_001",
+      "source_key": "D_amusement",
+      "category": "gimmick",
+      "position": [
+        7.5,
+        -31.5,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.5
+    },
+    {
+      "placement_id": "DAM_Place_PumpkinCups_001",
+      "asset_id": "DAM_PumpkinCups_001",
+      "source_key": "D_amusement",
+      "category": "gimmick",
+      "position": [
+        11.5,
+        -42.5,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 3.2
+    },
+    {
+      "placement_id": "DAM_Place_TicketBooth_001",
+      "asset_id": "DAM_TicketBooth_001",
+      "source_key": "D_amusement",
+      "category": "architecture",
+      "position": [
+        4.7,
+        -31.5,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.4
+    },
+    {
+      "placement_id": "DAM_Place_CarnivalStall_001",
+      "asset_id": "DAM_CarnivalStall_001",
+      "source_key": "D_amusement",
+      "category": "architecture",
+      "position": [
+        -8.8,
+        -42.2,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.8
+    }
+  ]
+}
