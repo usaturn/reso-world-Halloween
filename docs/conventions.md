@@ -171,6 +171,7 @@ uv run python tools/check_blend.py --key <key>
 uv run python tools/check_blend.py blender/<key>/<key>.blend
 ```
 - 正常時は終了コード `0`、未解決の外部画像／ライブラリ・負スケール・非一様スケール・shear・`.001` 名や既定名検出時は終了コード `1` を返す。
+- `.blend` に内包した画像（§8 の `pack_images=True`）は、参照パスの先にファイルが無くても失敗にしない（参照パスは `.blend` を作った worktree の絶対パスなので、その worktree を消すと先が無くなる。内包した画像は `.blend` から読めるので困らない）。内包していない画像の参照切れは失敗にする。
 
 ### 7.4 レビュー画像の出力方法
 - `modeling.lib.render.render_review_images(views, ...)` を使用し、Headless 環境で動作する `CYCLES` (`CPU`, 24〜32 samples) で `review/<key>/` 配下に PNG を出力する。

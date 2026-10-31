@@ -187,11 +187,13 @@ def inspect_blender_scene() -> dict[str, Any]:
             continue
         if getattr(img, "source", "") in ("GENERATED", "VIEWER"):
             continue
+        # A packed image is read from the .blend itself, so its filepath may point to a
+        # location that no longer exists (e.g. an absolute path into a removed worktree).
+        if getattr(img, "packed_file", None) is not None:
+            checked_images += 1
+            continue
         raw_path = getattr(img, "filepath", "") or getattr(img, "filepath_raw", "")
         if not raw_path:
-            if getattr(img, "packed_file", None) is not None:
-                checked_images += 1
-                continue
             errors.append(f"[image:{img.name}] External image has empty filepath")
             continue
         abs_path = Path(bpy.path.abspath(raw_path, library=img.library)).resolve()
