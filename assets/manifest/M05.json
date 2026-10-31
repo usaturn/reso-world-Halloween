@@ -1,0 +1,287 @@
+{
+  "schema_version": "1.0",
+  "key": "M05",
+  "updated_at": "2026-10-31T13:14:07Z",
+  "assets": [
+    {
+      "asset_id": "M05_PumpkinCarousel_001",
+      "key": "M05",
+      "category": "gimmick",
+      "area_id": "D_amusement",
+      "collection": "M05",
+      "blend_file": "blender/M05/M05.blend",
+      "script_file": "modeling/M05/build.py",
+      "origin_policy": "hinge_pivot",
+      "origin_world": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "placement_hint": {
+        "position": [
+          -10.0,
+          -32.0,
+          null
+        ],
+        "rotation_z_deg": -90.0,
+        "note": "屋根と同軸。高さは W05 の回転床の上面"
+      },
+      "forward_local": "+Y",
+      "dimensions_m": {
+        "width": 9.314,
+        "depth": 9.512,
+        "height": 9.351
+      },
+      "bounds_local": {
+        "min": [
+          -4.657,
+          -4.748,
+          0.0
+        ],
+        "max": [
+          4.657,
+          4.764,
+          9.351
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "M05_PumpkinCarousel_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "M05_CenterCasing_001",
+          "role": "visual_root",
+          "parent_part": "M05_PumpkinCarousel_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "M05_Canopy_001",
+          "role": "visual_root",
+          "parent_part": "M05_PumpkinCarousel_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            2.964
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "M05_PumpkinCarousel_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "M05_CenterCasing_001",
+          "M05_Canopy_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_M05_CenterCasing",
+        "MAT_M05_Canopy"
+      ],
+      "textures": [
+        "blender/M05/textures/M05_CenterCasing_001_color.png",
+        "blender/M05/textures/M05_CenterCasing_001_metallic.png",
+        "blender/M05/textures/M05_CenterCasing_001_roughness.png",
+        "blender/M05/textures/M05_Canopy_001_color.png",
+        "blender/M05/textures/M05_Canopy_001_metallic.png",
+        "blender/M05/textures/M05_Canopy_001_roughness.png"
+      ],
+      "texture_details": {
+        "M05_CenterCasing_001": {
+          "color": {
+            "file": "blender/M05/textures/M05_CenterCasing_001_color.png",
+            "size": [
+              1024,
+              1024
+            ],
+            "source_size": [
+              4096,
+              4096
+            ]
+          },
+          "metallic": {
+            "file": "blender/M05/textures/M05_CenterCasing_001_metallic.png",
+            "size": [
+              512,
+              512
+            ],
+            "source": "Blue channel",
+            "range": [
+              0.0,
+              0.8314
+            ]
+          },
+          "roughness": {
+            "file": "blender/M05/textures/M05_CenterCasing_001_roughness.png",
+            "size": [
+              512,
+              512
+            ],
+            "source": "Green channel",
+            "range": [
+              0.0,
+              0.6745
+            ]
+          }
+        },
+        "M05_Canopy_001": {
+          "color": {
+            "file": "blender/M05/textures/M05_Canopy_001_color.png",
+            "size": [
+              2048,
+              2048
+            ],
+            "source_size": [
+              4096,
+              4096
+            ]
+          },
+          "metallic": {
+            "file": "blender/M05/textures/M05_Canopy_001_metallic.png",
+            "size": [
+              1024,
+              1024
+            ],
+            "source": "Blue channel",
+            "range": [
+              0.0,
+              0.902
+            ]
+          },
+          "roughness": {
+            "file": "blender/M05/textures/M05_Canopy_001_roughness.png",
+            "size": [
+              1024,
+              1024
+            ],
+            "source": "Green channel",
+            "range": [
+              0.0,
+              0.7882
+            ]
+          }
+        }
+      },
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 74233,
+        "vertices": 98672,
+        "materials_count": 2,
+        "objects_count": 3,
+        "triangles_by_object": {
+          "M05_CenterCasing_001": 32414,
+          "M05_Canopy_001": 41819
+        },
+        "budget_triangles_max": {
+          "M05_CenterCasing_001": 32414,
+          "M05_Canopy_001": 41819
+        }
+      },
+      "source": [
+        {
+          "row_id": "M05_CenterCasing",
+          "copy_path": "/workspaces/reso-world/worlds/reso-world-Halloween-meshy/M05/Meshy_AI_Remeshed_Center_Casin_1031101029_texture.glb",
+          "sha256": "e09ed7554882b3f6ba731b8623478eccee39c172524579f425129997d9a4901e"
+        },
+        {
+          "row_id": "M05_Canopy",
+          "copy_path": "/workspaces/reso-world/worlds/reso-world-Halloween-meshy/M05/Meshy_AI_Remeshed_Canopy_1031101013_texture.glb",
+          "sha256": "a64f345b72f3658abefda6dee3b08a7cebb961b9a0e8a65f64aa40fb93a953d0"
+        }
+      ],
+      "export_result": {
+        "status": "exported",
+        "bundle_dir": "exports/M05/bundle",
+        "apply_plan": "exports/M05/bundle/model.apply.json",
+        "report_file": "exports/M05/bundle/report.json",
+        "parent": "Root/ResoLoop_Test_W09_M05",
+        "flags": [
+          "--collection M05",
+          "--preserve-hierarchy",
+          "--pack-pbr"
+        ],
+        "report": {
+          "triangles": 74233,
+          "vertices": 100194,
+          "materials": 2,
+          "drawSections": 2,
+          "staticOnly": true,
+          "preserveHierarchy": true,
+          "warnings": [
+            "More than 50,000 triangles: review the viewing distance, instances and silhouette budget."
+          ]
+        },
+        "meshes": [
+          {
+            "name": "M05_Canopy_001",
+            "vertices": 62456,
+            "triangles": 41819,
+            "submeshes": 1
+          },
+          {
+            "name": "M05_CenterCasing_001",
+            "vertices": 37738,
+            "triangles": 32414,
+            "submeshes": 1
+          }
+        ],
+        "textures": [
+          {
+            "name": "M05_Canopy_001_color",
+            "width": 2048,
+            "height": 2048,
+            "rgba8MipBytesEstimate": 22369622
+          },
+          {
+            "name": "pbr_mat_material_MAT_M05_Canopy_1ad5775e_fe48c99c",
+            "width": 1024,
+            "height": 1024,
+            "rgba8MipBytesEstimate": 5592406
+          },
+          {
+            "name": "M05_CenterCasing_001_color",
+            "width": 1024,
+            "height": 1024,
+            "rgba8MipBytesEstimate": 5592406
+          },
+          {
+            "name": "pbr_mat_material_MAT_M05_CenterCasing_0dbb79_f16c01a2",
+            "width": 512,
+            "height": 512,
+            "rgba8MipBytesEstimate": 1398102
+          }
+        ],
+        "validate": {
+          "valid": true,
+          "strict": false,
+          "slots": 11,
+          "components": 10,
+          "references": 14,
+          "issues": []
+        }
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "future_target": null,
+        "replaces_placeholder": null,
+        "notes": "Meshy の M05 を仕上げた差し替え用の見た目（Spec §6.3 の VisualRoot に入れる静的なモデル）。P2（W08 の後）で W05（#7）のメリーゴーラウンドの仮モデル（中央の柱と屋根。ID は W05 が決める。2026-10-31 時点で未マージ）と差し替える。アセットの原点は回転軸上の柱の底（回転床の上面に置く）。M05_CenterCasing_001 は原点そのまま、M05_Canopy_001 は同じ軸の 2.964 m 上が原点（ハブの下面）。正面（ジャック・オー・ランタンの顔と柱の紋章）は +Y（Resonite の +Z）。回転・上下動の仕組みは含めず、P3 で W05 の回転床の TurnRoot と一緒に回す。垂れ飾りの最下点は柱の原点から 3.045 m。発光とコライダーは含めない"
+      }
+    }
+  ]
+}
