@@ -1,0 +1,765 @@
+{
+  "schema_version": "1.0",
+  "area_id": "world",
+  "key": "world",
+  "name": "World Base Terrain, Ring Road, Bridges & Perimeter Safety",
+  "theme": "Floating Halloween carnival archipelago with central ring road, 4 cardinal bridges, 4 outer loop bridges, and fall-protection parapets",
+  "bounds": {
+    "min": [
+      -75.0,
+      -75.0,
+      -15.0
+    ],
+    "max": [
+      75.0,
+      75.0,
+      25.0
+    ]
+  },
+  "Anchor": {
+    "anchor_id": "WLD_CentralRingRoad_001",
+    "position": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "dimensions_m": [
+      37.0,
+      37.0,
+      0.12
+    ],
+    "orientation_deg": 0.0,
+    "role": "Central cobblestone plaza disc and 3.5m-wide ring road hub connecting all 5 areas"
+  },
+  "Circulation": {
+    "primary_path_id": "Route_South_Entrance_Approach",
+    "min_walk_width_m": 2.6,
+    "entry_points": [
+      [
+        0.0,
+        -44.0,
+        0.0
+      ],
+      [
+        0.0,
+        14.5,
+        0.0
+      ],
+      [
+        14.5,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -14.5,
+        0.0
+      ],
+      [
+        -14.5,
+        0.0,
+        0.0
+      ]
+    ],
+    "loop_description": "Inner 3.5m-wide Central Ring Road (R=11.0m..14.5m) connected to 4 cardinal 3.8m-4.0m main bridges/roads and an outer 2.6m-wide diagonal bridge loop (NE, SE, SW, NW)."
+  },
+  "Framing": {
+    "left_edge": "WLD_WestIsland_001 & WLD_WestBridge_001 (-X Witch's Forest wing)",
+    "right_edge": "WLD_EastIsland_001 & WLD_EastBridge_001 (+X Candy Market wing)",
+    "focal_target": "Central Plaza hub (0, 0, 0) and North Mansion Plateau (0, 34, 1.5)",
+    "view_cone_deg": 75.0
+  },
+  "Story_Cluster": [
+    {
+      "cluster_id": "WLD_Cluster_SouthEntrancePortal",
+      "center": [
+        0.0,
+        -44.0,
+        0.0
+      ],
+      "radius_m": 6.0,
+      "intent": "Welcome players at the South Entrance terrace with festive garland, benches, and streetlamps leading north toward the plaza.",
+      "asset_ids": [
+        "WLD_SouthPromenade_001",
+        "CMN_GarlandFlag_001",
+        "CMN_StreetLamp_001",
+        "CMN_Bench_001"
+      ]
+    },
+    {
+      "cluster_id": "WLD_Cluster_CardinalBridges",
+      "center": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "radius_m": 22.0,
+      "intent": "Provide safe, step-free, handrail-protected radial bridges from the Central Ring Road to all 4 outer wings.",
+      "asset_ids": [
+        "WLD_CentralRingRoad_001",
+        "WLD_NorthBridge_001",
+        "WLD_EastBridge_001",
+        "WLD_SouthPromenade_001",
+        "WLD_WestBridge_001"
+      ]
+    }
+  ],
+  "Common_Placement": [
+    {
+      "placement_id": "WLD_CP_PortalLamp_North_001",
+      "common_asset_id": "CMN_StreetLamp_001",
+      "instance_name": "WLD_PortalLamp_North_001",
+      "position": [
+        -2.3,
+        14.2,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "North bridge portal streetlamp"
+    },
+    {
+      "placement_id": "WLD_CP_PortalLamp_East_001",
+      "common_asset_id": "CMN_StreetLamp_001",
+      "instance_name": "WLD_PortalLamp_East_001",
+      "position": [
+        14.2,
+        2.3,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -90.0
+      ],
+      "role": "East bridge portal streetlamp"
+    },
+    {
+      "placement_id": "WLD_CP_PortalLamp_South_001",
+      "common_asset_id": "CMN_StreetLamp_001",
+      "instance_name": "WLD_PortalLamp_South_001",
+      "position": [
+        2.3,
+        -14.2,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        180.0
+      ],
+      "role": "South bridge portal streetlamp"
+    },
+    {
+      "placement_id": "WLD_CP_PortalLamp_West_001",
+      "common_asset_id": "CMN_StreetLamp_001",
+      "instance_name": "WLD_PortalLamp_West_001",
+      "position": [
+        -14.2,
+        -2.3,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "role": "West bridge portal streetlamp"
+    },
+    {
+      "placement_id": "WLD_CP_EntranceGarland_South_001",
+      "common_asset_id": "CMN_GarlandFlag_001",
+      "instance_name": "WLD_EntranceGarland_South_001",
+      "position": [
+        0.0,
+        -42.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "South Entrance welcome garland arch over the 4m promenade"
+    },
+    {
+      "placement_id": "WLD_CP_EntranceGarland_Plaza_001",
+      "common_asset_id": "CMN_GarlandFlag_001",
+      "instance_name": "WLD_EntranceGarland_Plaza_001",
+      "position": [
+        0.0,
+        -14.5,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "Central Plaza south threshold garland arch"
+    },
+    {
+      "placement_id": "WLD_CP_WelcomeBench_West_001",
+      "common_asset_id": "CMN_Bench_001",
+      "instance_name": "WLD_WelcomeBench_West_001",
+      "position": [
+        -3.2,
+        -43.5,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "role": "South entrance west rest bench"
+    },
+    {
+      "placement_id": "WLD_CP_WelcomeBench_East_001",
+      "common_asset_id": "CMN_Bench_001",
+      "instance_name": "WLD_WelcomeBench_East_001",
+      "position": [
+        3.2,
+        -43.5,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -90.0
+      ],
+      "role": "South entrance east rest bench"
+    }
+  ],
+  "Hero_or_Gimmick": {
+    "asset_id": "WLD_NorthBridge_001",
+    "motion_roots": [],
+    "visual_roots": [
+      "WLD_NorthBridge_001"
+    ],
+    "attachment_points": [],
+    "interaction_notes": "Static sloped stone arch bridge (0.0m to +1.5m over 5.5m span) with full 1.15m side parapets connecting Area A and Area B."
+  },
+  "Exclusions": [
+    {
+      "zone_id": "WLD_Excl_SouthSpawnCircle",
+      "bounds": {
+        "min": [
+          -3.0,
+          -47.0,
+          0.0
+        ],
+        "max": [
+          3.0,
+          -41.0,
+          3.0
+        ]
+      },
+      "reason": "Keep South Entrance Gate spawn circle unobstructed for arriving players."
+    },
+    {
+      "zone_id": "WLD_Excl_PlazaSouthSpawn",
+      "bounds": {
+        "min": [
+          -3.0,
+          -19.5,
+          0.0
+        ],
+        "max": [
+          3.0,
+          -13.5,
+          3.0
+        ]
+      },
+      "reason": "Keep Central Plaza south arrival apron clear of obstacles."
+    }
+  ],
+  "placements": [
+    {
+      "placement_id": "WLD_Place_CentralIsland_001",
+      "asset_id": "WLD_CentralIsland_001",
+      "source_key": "world",
+      "category": "terrain",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 18.5
+    },
+    {
+      "placement_id": "WLD_Place_NorthPlateau_001",
+      "asset_id": "WLD_NorthPlateau_001",
+      "source_key": "world",
+      "category": "terrain",
+      "position": [
+        0.0,
+        34.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 20.0
+    },
+    {
+      "placement_id": "WLD_Place_EastIsland_001",
+      "asset_id": "WLD_EastIsland_001",
+      "source_key": "world",
+      "category": "terrain",
+      "position": [
+        34.0,
+        0.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 20.0
+    },
+    {
+      "placement_id": "WLD_Place_SouthIsland_001",
+      "asset_id": "WLD_SouthIsland_001",
+      "source_key": "world",
+      "category": "terrain",
+      "position": [
+        0.0,
+        -34.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 22.0
+    },
+    {
+      "placement_id": "WLD_Place_WestIsland_001",
+      "asset_id": "WLD_WestIsland_001",
+      "source_key": "world",
+      "category": "terrain",
+      "position": [
+        -34.0,
+        0.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 20.0
+    },
+    {
+      "placement_id": "WLD_Place_CentralRingRoad_001",
+      "asset_id": "WLD_CentralRingRoad_001",
+      "source_key": "world",
+      "category": "terrain",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 18.0
+    },
+    {
+      "placement_id": "WLD_Place_NorthBridge_001",
+      "asset_id": "WLD_NorthBridge_001",
+      "source_key": "world",
+      "category": "architecture",
+      "position": [
+        0.0,
+        17.25,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 3.5
+    },
+    {
+      "placement_id": "WLD_Place_EastBridge_001",
+      "asset_id": "WLD_EastBridge_001",
+      "source_key": "world",
+      "category": "architecture",
+      "position": [
+        17.25,
+        0.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 3.5
+    },
+    {
+      "placement_id": "WLD_Place_SouthPromenade_001",
+      "asset_id": "WLD_SouthPromenade_001",
+      "source_key": "world",
+      "category": "architecture",
+      "position": [
+        0.0,
+        -30.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 4.0
+    },
+    {
+      "placement_id": "WLD_Place_WestBridge_001",
+      "asset_id": "WLD_WestBridge_001",
+      "source_key": "world",
+      "category": "architecture",
+      "position": [
+        -17.25,
+        0.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 3.5
+    },
+    {
+      "placement_id": "WLD_Place_OuterLoopPaths_001",
+      "asset_id": "WLD_OuterLoopPaths_001",
+      "source_key": "world",
+      "category": "architecture",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 25.0
+    },
+    {
+      "placement_id": "WLD_Place_CliffSafetyWalls_001",
+      "asset_id": "WLD_CliffSafetyWalls_001",
+      "source_key": "world",
+      "category": "architecture",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 48.0
+    },
+    {
+      "placement_id": "WLD_Place_FloatingIslets_001",
+      "asset_id": "WLD_FloatingIslets_001",
+      "source_key": "world",
+      "category": "sky_boundary",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 70.0
+    },
+    {
+      "placement_id": "WLD_Place_PortalLamp_North_001",
+      "asset_id": "CMN_StreetLamp_001",
+      "source_key": "common",
+      "category": "lighting",
+      "position": [
+        -2.3,
+        14.2,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.6
+    },
+    {
+      "placement_id": "WLD_Place_PortalLamp_East_001",
+      "asset_id": "CMN_StreetLamp_001",
+      "source_key": "common",
+      "category": "lighting",
+      "position": [
+        14.2,
+        2.3,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.6
+    },
+    {
+      "placement_id": "WLD_Place_PortalLamp_South_001",
+      "asset_id": "CMN_StreetLamp_001",
+      "source_key": "common",
+      "category": "lighting",
+      "position": [
+        2.3,
+        -14.2,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        180.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.6
+    },
+    {
+      "placement_id": "WLD_Place_PortalLamp_West_001",
+      "asset_id": "CMN_StreetLamp_001",
+      "source_key": "common",
+      "category": "lighting",
+      "position": [
+        -14.2,
+        -2.3,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 0.6
+    },
+    {
+      "placement_id": "WLD_Place_EntranceGarland_South_001",
+      "asset_id": "CMN_GarlandFlag_001",
+      "source_key": "common",
+      "category": "prop",
+      "position": [
+        0.0,
+        -42.0,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 2.0
+    },
+    {
+      "placement_id": "WLD_Place_EntranceGarland_Plaza_001",
+      "asset_id": "CMN_GarlandFlag_001",
+      "source_key": "common",
+      "category": "prop",
+      "position": [
+        0.0,
+        -14.5,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 2.0
+    },
+    {
+      "placement_id": "WLD_Place_WelcomeBench_West_001",
+      "asset_id": "CMN_Bench_001",
+      "source_key": "common",
+      "category": "prop",
+      "position": [
+        -3.2,
+        -43.5,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.0
+    },
+    {
+      "placement_id": "WLD_Place_WelcomeBench_East_001",
+      "asset_id": "CMN_Bench_001",
+      "source_key": "common",
+      "category": "prop",
+      "position": [
+        3.2,
+        -43.5,
+        0.0
+      ],
+      "rotation_euler_deg": [
+        0.0,
+        0.0,
+        -90.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "origin_policy": "ground_center",
+      "clearance_radius_m": 1.0
+    }
+  ]
+}
