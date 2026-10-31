@@ -15,7 +15,8 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 ID_PATTERN = re.compile(r"^[A-Za-z0-9]+(_[A-Za-z0-9]+)+$")
 COLLECTION_NAME_PATTERN = re.compile(
-    r"^(probe|world|common|A_plaza|B_alley|C_park|D_mansion|E_forest|overview|[A-Za-z0-9]+(_[A-Za-z0-9]+)+)$"
+    r"^(probe|world|common|A_plaza|B_mansion|C_candy|D_amusement|E_forest|overview|meshy|M0[1-8]"
+    r"|[A-Za-z0-9]+(_[A-Za-z0-9]+)+)$"
 )
 NUMERIC_SUFFIX_PATTERN = re.compile(r"\.[0-9]{3}$")
 

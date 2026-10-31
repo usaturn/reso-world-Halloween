@@ -15,28 +15,33 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 ID_PATTERN = re.compile(r"^[A-Za-z0-9]+(_[A-Za-z0-9]+)+$")
 NUMERIC_SUFFIX_PATTERN = re.compile(r"\.[0-9]{3}$")
 
+# One key per Meshy asset, `M01`-`M08` (W09-M01 to W09-M08). The shared Meshy intake key `meshy` (W09) is listed below.
+MESHY_ASSET_KEYS = frozenset(f"M{n:02d}" for n in range(1, 9))
+
 VALID_KEYS = frozenset({
     "probe",
     "world",
     "common",
     "A_plaza",
-    "B_alley",
-    "C_park",
-    "D_mansion",
+    "B_mansion",
+    "C_candy",
+    "D_amusement",
     "E_forest",
     "overview",
-})
+    "meshy",
+}) | MESHY_ASSET_KEYS
 
 VALID_AREA_IDS = frozenset({
     "probe",
     "world",
     "common",
     "A_plaza",
-    "B_alley",
-    "C_park",
-    "D_mansion",
+    "B_mansion",
+    "C_candy",
+    "D_amusement",
     "E_forest",
-})
+    "meshy",
+}) | MESHY_ASSET_KEYS
 
 VALID_CATEGORIES = frozenset({
     "probe",

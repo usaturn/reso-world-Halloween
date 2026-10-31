@@ -1,4 +1,4 @@
-"""S-criteria invariant tests for W01 world layout, route connectivity, geometric slopes, and area key mapping.
+"""S-criteria invariant tests for W01 world layout, route connectivity, and geometric slopes.
 
 Why these tests exist (AGENTS.md S-criteria):
 - `tools/check_data.py` validates individual field types and ranges (e.g. `0 <= max_slope_deg <= 30`),
@@ -7,9 +7,9 @@ Why these tests exist (AGENTS.md S-criteria):
   2. Geometric waypoint slope: the actual 3D slope between consecutive route `waypoints` is <= 30 deg
      and has no unbridged vertical step to the connected area elevations.
   3. Spawn containment: `spawn.position` lies inside its declared `spawn.area_id` bounds at walkable elevation.
-  4. Area key mapping consistency: both Issue #1 keys (`A_plaza`, `B_mansion`, `C_candy`, `D_amusement`, `E_forest`)
-     and `check_data.py` schema keys (`A_plaza`, `B_alley`, `C_park`, `D_mansion`, `E_forest`) resolve bijectively
-     to the 5 areas so W02-W07 builders never select the wrong area.
+
+W01A (#12) aligned the area keys with Issue #1 and removed `area_key_mapping`; area IDs are now the Issue keys
+themselves and `tools/check_data.py` rejects the old keys, so the former key mapping test was removed.
 """
 
 from __future__ import annotations
@@ -118,27 +118,3 @@ def test_spawn_lies_inside_declared_south_entrance_area_bounds() -> None:
     assert abs(sz - float(spawn_area["ground_elevation_m"])) <= 0.15, (
         f"Spawn Z={sz} does not lie on area ground elevation {spawn_area['ground_elevation_m']}"
     )
-
-
-def test_area_key_mapping_bijection_for_downstream_areas() -> None:
-    """Ensure W02-W06 builders can look up all 5 areas by either Issue #1 keys or check_data.py VALID_AREA_IDS."""
-    data = _load_world_layout()
-    mapping = data["area_key_mapping"]
-    issue_to_schema = mapping["issue_to_schema_area_id"]
-    schema_to_issue = mapping["schema_to_issue_area_id"]
-
-    expected_issue_keys = {"A_plaza", "B_mansion", "C_candy", "D_amusement", "E_forest"}
-    expected_schema_keys = {"A_plaza", "B_alley", "C_park", "D_mansion", "E_forest"}
-
-    assert set(issue_to_schema.keys()) == expected_issue_keys
-    assert set(issue_to_schema.values()) == expected_schema_keys
-    assert set(schema_to_issue.keys()) == expected_schema_keys
-    assert set(schema_to_issue.values()) == expected_issue_keys
-
-    for ikey, skey in issue_to_schema.items():
-        assert schema_to_issue[skey] == ikey
-
-    areas_by_schema = {area["area_id"]: area for area in data["areas"]}
-    areas_by_issue = {area["issue_key"]: area for area in data["areas"]}
-    assert set(areas_by_schema.keys()) == expected_schema_keys
-    assert set(areas_by_issue.keys()) == expected_issue_keys

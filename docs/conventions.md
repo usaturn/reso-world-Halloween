@@ -18,19 +18,21 @@
 
 ## 2. キー一覧とファイル配置
 
-全作業は以下の 9 キーに分割して管理し、1 タスク＝1 キーの所有範囲で編集する。
+全作業は以下の 18 キー（`M01`〜`M08` の 8 キーは 1 行にまとめた）に分割して管理し、1 タスク＝1 キーの所有範囲で編集する。担当は親 Issue #1 のボード `halloween-p0p1` の子キーである（W01A で揃えた）。
 
 | キー (`key`) | 担当 | ビルダスクリプト | Blender ファイル | レビュー画像 | レイアウト JSON | マニフェスト JSON |
 | --- | --- | --- | --- | --- | --- | --- |
 | `probe` | W00 | `modeling/probe/build.py` | `blender/probe/probe.blend` | `review/probe/*.png` | `modeling/probe/probe_layout.json` | `modeling/probe/probe_manifest.json` |
-| `world` | W01 / W07 | `modeling/world/build.py` | `blender/world/world.blend` | `review/world/*.png` | `layout/world_layout.json` | `assets/manifest/world.json` |
-| `common` | W02 | `modeling/common/build.py` | `blender/common/common.blend` | `review/common/*.png` | （各エリアの `Common_Placement`） | `assets/manifest/common.json` |
-| `A_plaza` | W01 / W03 | `modeling/A_plaza/build.py` | `blender/A_plaza/A_plaza.blend` | `review/A_plaza/*.png` | `layout/areas/A_plaza.json` | `assets/manifest/A_plaza.json` |
-| `B_alley` | W01 / W04 | `modeling/B_alley/build.py` | `blender/B_alley/B_alley.blend` | `review/B_alley/*.png` | `layout/areas/B_alley.json` | `assets/manifest/B_alley.json` |
-| `C_park` | W01 / W05 | `modeling/C_park/build.py` | `blender/C_park/C_park.blend` | `review/C_park/*.png` | `layout/areas/C_park.json` | `assets/manifest/C_park.json` |
-| `D_mansion` | W01 / W06 | `modeling/D_mansion/build.py` | `blender/D_mansion/D_mansion.blend` | `review/D_mansion/*.png` | `layout/areas/D_mansion.json` | `assets/manifest/D_mansion.json` |
-| `E_forest` | W01 / W07 | `modeling/E_forest/build.py` | `blender/E_forest/E_forest.blend` | `review/E_forest/*.png` | `layout/areas/E_forest.json` | `assets/manifest/E_forest.json` |
-| `overview` | W08 | `modeling/overview/build.py` | `blender/overview/overview.blend` | `review/overview/*.png` | `layout/world_layout.json`（参照） | `assets/manifest.json`（統合出力） |
+| `world` | W01 | `modeling/world/build.py` | `blender/world/world.blend` | `review/world/*.png` | `layout/world_layout.json` | `assets/manifest/world.json` |
+| `common` | W01 | `modeling/common/build.py` | `blender/common/common.blend` | `review/common/*.png` | （各エリアの `Common_Placement`） | `assets/manifest/common.json` |
+| `A_plaza` | W02 | `modeling/A_plaza/build.py` | `blender/A_plaza/A_plaza.blend` | `review/A_plaza/*.png` | `layout/areas/A_plaza.json` | `assets/manifest/A_plaza.json` |
+| `B_mansion` | W03 | `modeling/B_mansion/build.py` | `blender/B_mansion/B_mansion.blend` | `review/B_mansion/*.png` | `layout/areas/B_mansion.json` | `assets/manifest/B_mansion.json` |
+| `C_candy` | W04 | `modeling/C_candy/build.py` | `blender/C_candy/C_candy.blend` | `review/C_candy/*.png` | `layout/areas/C_candy.json` | `assets/manifest/C_candy.json` |
+| `D_amusement` | W05 | `modeling/D_amusement/build.py` | `blender/D_amusement/D_amusement.blend` | `review/D_amusement/*.png` | `layout/areas/D_amusement.json` | `assets/manifest/D_amusement.json` |
+| `E_forest` | W06 | `modeling/E_forest/build.py` | `blender/E_forest/E_forest.blend` | `review/E_forest/*.png` | `layout/areas/E_forest.json` | `assets/manifest/E_forest.json` |
+| `overview` | W07 | `modeling/overview/build.py` | `blender/overview/overview.blend` | `review/overview/*.png` | `layout/world_layout.json`（参照） | `assets/manifest.json`（統合出力） |
+| `meshy` | W09 | `modeling/meshy/`（受領した素材の検査と仕上げの共通処理） | （作る場合）`blender/meshy/meshy.blend` | `review/meshy/*.png` | — | —（受領台帳は `assets/meshy/received.json`） |
+| `M01`〜`M08`（`<M>`） | W09-M01〜W09-M08 | `modeling/<M>/build.py` | `blender/<M>/<M>.blend` | `review/<M>/*.png` | — | `assets/manifest/<M>.json` |
 
 ---
 
@@ -48,13 +50,15 @@
    - `world`: `WLD_<AssetName>_<NNN>`
    - `common`: `CMN_<AssetName>_<NNN>`
    - `A_plaza`: `APL_<AssetName>_<NNN>`
-   - `B_alley`: `BAL_<AssetName>_<NNN>`
-   - `C_park`: `CPK_<AssetName>_<NNN>`
-   - `D_mansion`: `DMN_<AssetName>_<NNN>`
+   - `B_mansion`: `BMN_<AssetName>_<NNN>`
+   - `C_candy`: `CCD_<AssetName>_<NNN>`
+   - `D_amusement`: `DAM_<AssetName>_<NNN>`
    - `E_forest`: `EFR_<AssetName>_<NNN>`
+   - `meshy`: `MSH_<AssetName>_<NNN>`
+   - `M01`〜`M08`: キーと同じ接頭辞 `<M>_<AssetName>_<NNN>`（例：`M03_HauntedMansion_001`）
    - マテリアル: `MAT_<Prefix>_<Name>`（例：`MAT_P0_AsymSign`, `MAT_CMN_WarmWood`）
 3. **コレクション名規約**
-   - 各 `.blend` ファイルのルートコレクション名は対象キー名（`probe`, `world`, `common`, `A_plaza`, `B_alley`, `C_park`, `D_mansion`, `E_forest`, `overview`）に一致させる。
+   - 各 `.blend` ファイルのルートコレクション名は対象キー名（`probe`, `world`, `common`, `A_plaza`, `B_mansion`, `C_candy`, `D_amusement`, `E_forest`, `overview`, `meshy`, `M01`〜`M08`）に一致させる。
 
 ---
 
@@ -129,10 +133,10 @@
 
 ## 6. `common`（共通部品）をエリア側で使う方法
 
-W02 が作成する共通部品は、以下のいずれかの方法で各エリア（W03〜W07）から利用する。
+W01 が作成する共通部品は、以下のいずれかの方法で各エリア（W02〜W06）から利用する。
 
 1. **共通ビルダ関数の呼び出し（推奨）**
-   - `modeling/lib/common_parts.py`（および W02 が公開する共通パーツ生成関数）をエリア側の `modeling/<area>/build.py` から import し、エリアのコレクション内にエリア固有プレフィックス付きの名前（例：`APL_LanternPost_001`）で生成する。
+   - `modeling/lib/common_parts.py`（および W01 が公開する共通パーツ生成関数）をエリア側の `modeling/<area>/build.py` から import し、エリアのコレクション内にエリア固有プレフィックス付きの名前（例：`APL_LanternPost_001`）で生成する。
    - エリアの `layout/areas/<area>.json` の `Common_Placement` には、元となった `common_asset_id`（例：`CMN_LanternPost_001`）と配置座標リストを記録する。
 2. **`blender/common/common.blend` からのローカル化コピー**
    - `bpy.data.libraries.load` で `blender/common/common.blend` から対象オブジェクトを取り込む場合は、必ず `make_local()` 等でローカルデータブロック化し、保存後の `.blend` に外部ライブラリ参照（`bpy.data.libraries`）を残さないこと。
