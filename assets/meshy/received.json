@@ -1,0 +1,4641 @@
+{
+  "schema_version": "1.0",
+  "key": "meshy",
+  "confirmed_set": {
+    "issue": 13,
+    "comment_url": "https://github.com/usaturn/reso-world-Halloween/issues/13#issuecomment-6542207249",
+    "confirmed_on": "2026-10-31"
+  },
+  "store": {
+    "root": "/workspaces/reso-world/worlds/reso-world-Halloween-meshy",
+    "checksums": "/workspaces/reso-world/worlds/reso-world-Halloween-meshy/SHA256SUMS",
+    "excluded_from_copy": [
+      "size_over/",
+      "NG/",
+      "*:Zone.Identifier"
+    ],
+    "read_only": true
+  },
+  "conventions": {
+    "source_axes": "measured と decided.origin_source・points_source は GLB の単位（Meshy は最大辺を約 1.9 に正規化）で、Blender の glTF 取り込み後の軸（+Z が上。Meshy の正面 glTF +Z は Blender の -Y）",
+    "placement": "p_local = Rz(yaw_deg) · scale · (p_source − origin_source)。modeling/meshy/metrics.py の placement_matrix。変換はメッシュに適用し、オブジェクトの変換は単位行列・scale 1 のまま（docs/conventions.md §1）",
+    "front_local": "どの素材も、置いた後の正面（動く物は進む向き）を +Y にする。+Y は Resonite の +Z（Slot の前方）。ワールドでの向きは placement_hint.rotation_z_deg（+Y を Z 軸まわりに回した向きが正面になる。0 で北、90 で西、180 で南、-90 で東）",
+    "local_units": "derived と split_and_attach の座標・寸法は、置いた後の素材のローカル座標（m）",
+    "points_source_method": "decided.points_source は、原本の三角形を細かく標本化した点群と、目盛りを重ねた正射影の図（Workbench）から W09 が読んだ値。誤差は原本の単位で ±0.01 程度（置いた後は ±0.01 × scale m）"
+  },
+  "assets": [
+    {
+      "row_id": "M01",
+      "key": "M01",
+      "name_ja": "入場ゲートの装飾アーチ",
+      "finishing_child": "W09-M01 (#14)",
+      "source": {
+        "original_path": "/workspaces/reso-world/tmp/halloween_magical_carnival_concept_art/M01_halloween_entrance_gate_meshy_reference/Meshy_AI_halloween_gate_remesh_1031101832_texture.glb",
+        "copy_path": "/workspaces/reso-world/worlds/reso-world-Halloween-meshy/M01/Meshy_AI_halloween_gate_remesh_1031101832_texture.glb",
+        "sha256": "4761c4a67abb6df874dadd0ec96ca43ff11f10c95f8acd83498f0ef1dcb096f6",
+        "bytes": 41723464,
+        "received_on": "2026-10-31",
+        "attachments_dir": "/workspaces/reso-world/worlds/reso-world-Halloween-meshy/M01",
+        "attachments_copied": 7
+      },
+      "decided": {
+        "scale": 5.809,
+        "yaw_deg": 180.0,
+        "origin_source": [
+          -0.0001,
+          0.0004,
+          -0.6646
+        ],
+        "origin_policy": "ground_center",
+        "origin_note": "外接箱の底面の中央（通路の中心 x=-0.005 とほぼ一致）",
+        "size_basis": "全幅 11.0 m。通路（左右の柱の内側の間）を 4.39 m にして主動線 4.0 m より広くするため、Spec §7 の目安 10 m より 1 m 大きくした",
+        "front_local": "+Y（Blender。Resonite の +Z、Slot の前方）",
+        "front_meaning": "看板の文字が読める面（原本の -Y）",
+        "area_id": "D_amusement",
+        "used_by": [
+          "W02 #4（入口の仮モデルと通路）",
+          "W09-M01 #14（仕上げ）"
+        ],
+        "placement_hint": {
+          "position": [
+            0.0,
+            -40.0,
+            0.0
+          ],
+          "rotation_z_deg": 180.0,
+          "note": "正面を南（spawn 側）に向ける。W01 の entrance.gate_position (0,-44,0) は spawn と同じ点で、そこに置くと spawn の clearance 3.0 m に柱（中心から ±2.2 m 以遠、奥行き ±1.31 m）が入るので、spawn から北へ 4 m 離した。最終の位置は W02 が決める"
+        },
+        "points_source": {
+          "opening_left_ground": [
+            -0.38,
+            0.0,
+            -0.6646
+          ],
+          "opening_right_ground": [
+            0.37,
+            0.0,
+            -0.6646
+          ],
+          "opening_overhang_lowest": [
+            -0.33,
+            0.0,
+            0.0194
+          ],
+          "leaf_top_at_hinge": [
+            -0.33,
+            0.0,
+            -0.1226
+          ],
+          "leaf_top_near_centre": [
+            -0.15,
+            0.0,
+            -0.0226
+          ]
+        }
+      },
+      "budget": {
+        "view": "near",
+        "view_note": "入口で spawn から 4 m、通路を歩いてくぐる",
+        "triangles_max": 30275,
+        "triangles_note": "三角形は削減しない（上限は確定版の数）。どれも 1.5〜4.2 万で、9 ファイルの合計は約 27.3 万。Spec §11 のとおり一律の上限で削らず、削減と焼き直しで UV と色が崩れる危険のほうを避けた",
+        "color_px_max": 2048,
+        "data_px_max": 1024,
+        "texels_per_m_at_color": 94.8,
+        "rule": "画像は、derived.texels_per_m が見る距離の目安（近景 90 px/m 以上、中景 45 以上、遠景 20 以上）に届く 1024/2048/4096 のうち最小。金属・粗さの画像は色の半分（512 以上）"
+      },
+      "split_and_attach": [
+        {
+          "part": "門扉（左右 2 枚）",
+          "measured": "閉じた状態で柱・中央の飾りと一体（1 メッシュ）。左右の柱の内側の間（通路）は原本で x=-0.380〜0.370、置いた後は 4.36 m。門扉は厚さ約 0.03（原本）の 1 層の唐草",
+          "decision": "開いた形で使う。門扉を柱の内側の面（蝶番の線 points_local_m の opening_left_ground・opening_right_ground の鉛直線）で切り離し、それぞれ蝶番を原点にした別のオブジェクトにして、内側（-Y）へ 90° 開いた姿勢で置く。切り離しで形が崩れる場合は、門扉を削除して通路を空ける（W09-M01 が判断し handoff に書く）",
+          "keep_clear": "通路の幅 4.36 m・高さ 3.97 m（opening_overhang_lowest、垂れ幕とランタンの下端）。主動線 4.0 m より広い"
+        },
+        {
+          "part": "看板・ランタン・旗",
+          "measured": "すべて一体",
+          "decision": "分けない。ランタンの発光は P2 以降に発光の画像か光源で付ける（取付位置はランタンの位置を W02 が記録）"
+        }
+      ],
+      "double_sided": {
+        "decision": "門扉（左右 2 枚）だけ両面にする: W09-M01 が門扉の面を複製して裏返す。ほかの部分は片面のまま",
+        "where": "門扉の鉄の唐草（1 層の薄い面）。前後から見て対象の画素の 0.27〜0.32% が透ける（measured.backface_check）",
+        "confirmed_by_user": "2026-10-31（#13 の作業中の会話）。ResoLoop の exporter は doubleSided を保持しない"
+      },
+      "measured": {
+        "tool": "modeling/meshy/intake_inspect.py",
+        "blender": "5.0.1",
+        "measured_on": "2026-10-31",
+        "units": "GLB units (Meshy normalises the longest side to about 1.9); Blender axes after glTF import",
+        "glb": {
+          "meshes": 1,
+          "primitives": 1,
+          "nodes": 1,
+          "triangles": 30275,
+          "materials": [
+            {
+              "name": "BakedMaterial",
+              "doubleSided": true,
+              "alphaMode": "OPAQUE",
+              "baseColorTexture": true,
+              "metallicRoughnessTexture": true,
+              "normalTexture": false,
+              "occlusionTexture": false,
+              "emissiveTexture": false,
+              "emissiveFactor": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "images": [
+            {
+              "name": "texture_0",
+              "mimeType": "image/png"
+            },
+            {
+              "name": "texture_0_metallic_roughness",
+              "mimeType": "image/png"
+            }
+          ],
+          "generator": "Khronos glTF Blender I/O v4.3.47"
+        },
+        "objects_imported": 1,
+        "mesh_objects": 1,
+        "bounds_blender": {
+          "min": [
+            -0.9469,
+            -0.2253,
+            -0.6646
+          ],
+          "max": [
+            0.9467,
+            0.2261,
+            0.6677
+          ],
+          "size": [
+            1.8936,
+            0.4514,
+            1.3323
+          ]
+        },
+        "triangles": 30275,
+        "vertices_imported": 64346,
+        "vertices_welded": 14087,
+        "materials": [
+          {
+            "name": "BakedMaterial",
+            "blend_method": "DITHERED",
+            "use_backface_culling": false
+          }
+        ],
+        "images": [
+          {
+            "name": "texture_0",
+            "size": [
+              4096,
+              4096
+            ],
+            "channels": 4,
+            "colorspace": "sRGB",
+            "format": "PNG",
+            "used_by": [
+              "Base Color"
+            ],
+            "alpha_min": 1.0
+          },
+          {
+            "name": "texture_0_metallic_roughness",
+            "size": [
+              4096,
+              4096
+            ],
+            "channels": 4,
+            "colorspace": "Non-Color",
+            "format": "PNG",
+            "used_by": [
+              "Metallic",
+              "Roughness"
+            ]
+          }
+        ],
+        "uv": {
+          "layers": 1,
+          "area_sum": 0.5385,
+          "corners_in_unit_square": 1.0
+        },
+        "topology": {
+          "boundary_edges": 377,
+          "boundary_loops": 215,
+          "nonmanifold_edges": 773,
+          "wire_edges": 0,
+          "components": 3,
+          "largest_component_triangle_share": 0.9836,
+          "pieces_after_largest": [
+            {
+              "rank": 1,
+              "triangles": 399,
+              "center": [
+                0.6791,
+                0.0005,
+                0.0116
+              ],
+              "size": [
+                0.0823,
+                0.1369,
+                0.1185
+              ],
+              "gap_to_other_pieces": 0.00228,
+              "floating": false
+            },
+            {
+              "rank": 2,
+              "triangles": 98,
+              "center": [
+                0.4189,
+                0.0001,
+                0.3781
+              ],
+              "size": [
+                0.0848,
+                0.0286,
+                0.1594
+              ],
+              "gap_to_other_pieces": 0.01547,
+              "floating": true
+            }
+          ],
+          "pieces_not_detailed": 0,
+          "floating_pieces": 1,
+          "floating_threshold": 0.00947,
+          "components_inside_out": 0,
+          "faces_inconsistent": 226
+        },
+        "outline_20": [
+          [
+            -0.9469,
+            0.9467,
+            -0.2253,
+            0.2261
+          ],
+          [
+            -0.9331,
+            0.9322,
+            -0.2066,
+            0.2065
+          ],
+          [
+            -0.9103,
+            0.9095,
+            -0.2003,
+            0.1948
+          ],
+          [
+            -0.8974,
+            0.8981,
+            -0.2132,
+            0.2133
+          ],
+          [
+            -0.9185,
+            0.918,
+            -0.2125,
+            0.2125
+          ],
+          [
+            -0.8221,
+            0.8328,
+            -0.1922,
+            0.1909
+          ],
+          [
+            -0.852,
+            0.9034,
+            -0.176,
+            0.1695
+          ],
+          [
+            -0.9302,
+            0.9322,
+            -0.1372,
+            0.1376
+          ],
+          [
+            -0.9019,
+            0.9004,
+            -0.1494,
+            0.15
+          ],
+          [
+            -0.7076,
+            0.7067,
+            -0.1226,
+            0.1323
+          ],
+          [
+            -0.7486,
+            0.7441,
+            -0.1128,
+            0.1122
+          ],
+          [
+            -0.7749,
+            0.7736,
+            -0.1348,
+            0.1336
+          ],
+          [
+            -0.7873,
+            0.7876,
+            -0.1417,
+            0.1418
+          ],
+          [
+            -0.7833,
+            0.7822,
+            -0.1191,
+            0.1194
+          ],
+          [
+            -0.777,
+            0.7668,
+            -0.0798,
+            0.0806
+          ],
+          [
+            -0.7239,
+            0.7248,
+            -0.0943,
+            0.0943
+          ],
+          [
+            -0.5816,
+            0.5777,
+            -0.0772,
+            0.0762
+          ],
+          [
+            -0.5522,
+            0.7285,
+            -0.1093,
+            0.11
+          ],
+          [
+            -0.5435,
+            0.7361,
+            -0.0484,
+            0.0505
+          ],
+          [
+            -0.54,
+            0.5864,
+            -0.0297,
+            0.0318
+          ]
+        ],
+        "openings": {
+          "pixel": 0.00394,
+          "front_x": {
+            "0.05": [],
+            "0.10": [
+              [
+                -0.1737,
+                -0.1382
+              ]
+            ],
+            "0.20": [],
+            "0.30": [],
+            "0.40": [
+              [
+                -0.8759,
+                -0.6826
+              ],
+              [
+                0.6903,
+                0.8757
+              ]
+            ],
+            "0.50": [
+              [
+                -0.3788,
+                -0.296
+              ],
+              [
+                -0.2368,
+                -0.0829
+              ],
+              [
+                0.0867,
+                0.2445
+              ],
+              [
+                0.2997,
+                0.3826
+              ]
+            ],
+            "0.60": [
+              [
+                -0.0948,
+                -0.004
+              ],
+              [
+                0.0117,
+                0.1104
+              ]
+            ],
+            "0.70": []
+          },
+          "side_y": {
+            "0.05": [],
+            "0.10": [],
+            "0.20": [],
+            "0.30": [],
+            "0.40": [
+              [
+                -0.1188,
+                -0.0912
+              ],
+              [
+                0.0943,
+                0.1219
+              ]
+            ],
+            "0.50": [
+              [
+                -0.1227,
+                -0.0912
+              ],
+              [
+                0.0982,
+                0.1258
+              ]
+            ],
+            "0.60": [],
+            "0.70": []
+          }
+        },
+        "backface_check": {
+          "method": "Workbench orthographic, culling off vs on",
+          "pixels": 320,
+          "views": {
+            "front": {
+              "object_pixels": 39058,
+              "see_through": 0.00317,
+              "changed": 0.00184
+            },
+            "back": {
+              "object_pixels": 39056,
+              "see_through": 0.00269,
+              "changed": 0.00146
+            },
+            "left": {
+              "object_pixels": 8579,
+              "see_through": 0.0,
+              "changed": 0.0
+            },
+            "right": {
+              "object_pixels": 8573,
+              "see_through": 0.0,
+              "changed": 0.00117
+            },
+            "top": {
+              "object_pixels": 10986,
+              "see_through": 9e-05,
+              "changed": 0.00018
+            },
+            "bottom": {
+              "object_pixels": 10983,
+              "see_through": 9e-05,
+              "changed": 0.0
+            }
+          },
+          "max_see_through": 0.00317,
+          "max_changed": 0.00184
+        }
+      },
+      "derived": {
+        "tool": "modeling/meshy/intake_inspect.py",
+        "dimensions_m": {
+          "width_x": 11.0,
+          "depth_y": 2.622,
+          "height_z": 7.739
+        },
+        "bounds_local_m": {
+          "min": [
+            -5.5,
+            -1.311,
+            -0.0
+          ],
+          "max": [
+            5.5,
+            1.311,
+            7.739
+          ]
+        },
+        "points_local_m": {
+          "opening_left_ground": [
+            2.207,
+            0.002,
+            0.0
+          ],
+          "opening_right_ground": [
+            -2.15,
+            0.002,
+            0.0
+          ],
+          "opening_overhang_lowest": [
+            1.916,
+            0.002,
+            3.973
+          ],
+          "leaf_top_at_hinge": [
+            1.916,
+            0.002,
+            3.148
+          ],
+          "leaf_top_near_centre": [
+            0.871,
+            0.002,
+            3.729
+          ]
+        },
+        "surface_area_m2": 251.2,
+        "texels_per_m": {
+          "1024": 47.4,
+          "2048": 94.8,
+          "4096": 189.6
+        }
+      }
+    },
+    {
+      "row_id": "M02",
+      "key": "M02",
+      "name_ja": "帽子付きの巨大ジャック・オー・ランタン",
+      "finishing_child": "W09-M02 (#15)",
+      "source": {
+        "original_path": "/workspaces/reso-world/tmp/halloween_magical_carnival_concept_art/M02_Giant_JackOLantern_Meshy_References/Meshy_AI_Jack_O_Lantern_30k_1031101938_texture.glb",
+        "copy_path": "/workspaces/reso-world/worlds/reso-world-Halloween-meshy/M02/Meshy_AI_Jack_O_Lantern_30k_1031101938_texture.glb",
+        "sha256": "f29fed6487e0f213833dde25ceef98f7153a3687d7970437ae0c56e9839874ba",
+        "bytes": 29435212,
+        "received_on": "2026-10-31",
+        "attachments_dir": "/workspaces/reso-world/worlds/reso-world-Halloween-meshy/M02",
+        "attachments_copied": 13
+      },
+      "decided": {
+        "scale": 3.2593,
+        "yaw_deg": 180.0,
+        "origin_source": [
+          -0.0005,
+          -0.0191,
+          -0.9209
+        ],
+        "origin_policy": "ground_center",
+        "origin_note": "外接箱の底面の中央（底は平ら）",
+        "size_basis": "全高 6.0 m（Spec §7 の目安どおり）",
+        "front_local": "+Y（Blender。Resonite の +Z、Slot の前方）",
+        "front_meaning": "顔の面（原本の -Y）。帽子の先は正面から見て右（原本の +X、置いた後の -X）に巻く",
+        "area_id": "A_plaza",
+        "used_by": [
+          "W02 #4（噴水の上の仮モデル、I03 の操作位置）",
+          "W09-M02 #15（仕上げ）"
+        ],
+        "placement_hint": {
+          "position": [
+            0.0,
+            0.0,
+            null
+          ],
+          "rotation_z_deg": 180.0,
+          "note": "広場の中心の噴水の器の上（高さは W02 の器で決まる）。顔を南（入口からの主動線）に向ける。W01 の landmark LM_A_PumpkinTower_001 の height_m 12 は器を含む塔の想定で、この素材の高さではない"
+        },
+        "points_source": {
+          "eye_left_centre_front": [
+            -0.31,
+            -0.84,
+            -0.21
+          ],
+          "eye_right_centre_front": [
+            0.31,
+            -0.84,
+            -0.21
+          ],
+          "mouth_centre_front": [
+            0.0,
+            -0.88,
+            -0.5
+          ],
+          "interior_back_wall": [
+            0.0,
+            0.72,
+            -0.62
+          ],
+          "hat_brim_bottom_front": [
+            0.0,
+            -0.72,
+            0.0
+          ]
+        }
+      },
+      "budget": {
+        "view": "near",
+        "view_note": "広場の中心の主役。I03 で近づく",
+        "triangles_max": 30792,
+        "triangles_note": "三角形は削減しない（上限は確定版の数）。どれも 1.5〜4.2 万で、9 ファイルの合計は約 27.3 万。Spec §11 のとおり一律の上限で削らず、削減と焼き直しで UV と色が崩れる危険のほうを避けた",
+        "color_px_max": 2048,
+        "data_px_max": 1024,
+        "texels_per_m_at_color": 111.1,
+        "rule": "画像は、derived.texels_per_m が見る距離の目安（近景 90 px/m 以上、中景 45 以上、遠景 20 以上）に届く 1024/2048/4096 のうち最小。金属・粗さの画像は色の半分（512 以上）"
+      },
+      "split_and_attach": [
+        {
+          "part": "帽子",
+          "measured": "本体と 1 つの塊でつながっている（components 1）。浮いていない",
+          "decision": "分けない（Spec §7 の反応は全体の小さな揺れ。帽子だけを動かす予定が無い）"
+        },
+        {
+          "part": "顔（目・鼻・口）",
+          "measured": "顔の穴は空洞の内部まで抜けている（原本で前面 y≈-0.85 から奥の内壁 y≈+0.72 まで、置いた後は約 5.1 m）。内側の面は内向きで、裏面を消しても穴から内壁が見える。背面に顔は無い",
+          "decision": "形はそのまま。I03 の『目の発光』は内部の中央（interior_back_wall の手前）に光源か発光の板を置く。目の位置は eye_left_centre_front・eye_right_centre_front"
+        },
+        {
+          "part": "I03 の操作位置",
+          "measured": "本体の下端は器の上になるので手が届かない見込み",
+          "decision": "本体に触れさせず、顔の正面（+Y）の器の外に別の操作用の物を置く（W02）。反応の基準点は mouth_centre_front"
+        }
+      ],
+      "double_sided": {
+        "decision": "片面のまま（両面の処理をしない）",
+        "where": "裏面を消して透ける画素は最大 0.00%（measured.backface_check）",
+        "confirmed_by_user": "2026-10-31（#13 の作業中の会話）。ResoLoop の exporter は doubleSided を保持しない"
+      },
+      "measured": {
+        "tool": "modeling/meshy/intake_inspect.py",
+        "blender": "5.0.1",
+        "measured_on": "2026-10-31",
+        "units": "GLB units (Meshy normalises the longest side to about 1.9); Blender axes after glTF import",
+        "glb": {
+          "meshes": 1,
+          "primitives": 1,
+          "nodes": 1,
+          "triangles": 30792,
+          "materials": [
+            {
+              "name": "BakedMaterial",
+              "doubleSided": true,
+              "alphaMode": "OPAQUE",
+              "baseColorTexture": true,
+              "metallicRoughnessTexture": true,
+              "normalTexture": false,
+              "occlusionTexture": false,
+              "emissiveTexture": false,
+              "emissiveFactor": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "images": [
+            {
+              "name": "texture_0",
+              "mimeType": "image/png"
+            },
+            {
+              "name": "texture_0_metallic_roughness",
+              "mimeType": "image/png"
+            }
+          ],
+          "generator": "Khronos glTF Blender I/O v4.3.47"
+        },
+        "objects_imported": 1,
+        "mesh_objects": 1,
+        "bounds_blender": {
+          "min": [
+            -0.952,
+            -0.9196,
+            -0.9209
+          ],
+          "max": [
+            0.9511,
+            0.8814,
+            0.92
+          ],
+          "size": [
+            1.903,
+            1.801,
+            1.8409
+          ]
+        },
+        "triangles": 30792,
+        "vertices_imported": 26786,
+        "vertices_welded": 15399,
+        "materials": [
+          {
+            "name": "BakedMaterial",
+            "blend_method": "DITHERED",
+            "use_backface_culling": false
+          }
+        ],
+        "images": [
+          {
+            "name": "texture_0",
+            "size": [
+              4096,
+              4096
+            ],
+            "channels": 4,
+            "colorspace": "sRGB",
+            "format": "PNG",
+            "used_by": [
+              "Base Color"
+            ],
+            "alpha_min": 1.0
+          },
+          {
+            "name": "texture_0_metallic_roughness",
+            "size": [
+              4096,
+              4096
+            ],
+            "channels": 4,
+            "colorspace": "Non-Color",
+            "format": "PNG",
+            "used_by": [
+              "Metallic",
+              "Roughness"
+            ]
+          }
+        ],
+        "uv": {
+          "layers": 1,
+          "area_sum": 0.6504,
+          "corners_in_unit_square": 1.0
+        },
+        "topology": {
+          "boundary_edges": 53,
+          "boundary_loops": 26,
+          "nonmanifold_edges": 33,
+          "wire_edges": 0,
+          "components": 1,
+          "largest_component_triangle_share": 1.0,
+          "pieces_after_largest": [],
+          "pieces_not_detailed": 0,
+          "floating_pieces": 0,
+          "floating_threshold": 0.00952,
+          "components_inside_out": 0,
+          "faces_inconsistent": 29
+        },
+        "outline_20": [
+          [
+            -0.76,
+            0.729,
+            -0.7708,
+            0.7381
+          ],
+          [
+            -0.8498,
+            0.8174,
+            -0.8521,
+            0.8135
+          ],
+          [
+            -0.8911,
+            0.8622,
+            -0.8747,
+            0.859
+          ],
+          [
+            -0.9247,
+            0.8806,
+            -0.8854,
+            0.876
+          ],
+          [
+            -0.9311,
+            0.8844,
+            -0.9196,
+            0.8814
+          ],
+          [
+            -0.9308,
+            0.8823,
+            -0.9194,
+            0.8806
+          ],
+          [
+            -0.9123,
+            0.8697,
+            -0.9069,
+            0.8644
+          ],
+          [
+            -0.8879,
+            0.8347,
+            -0.8815,
+            0.8393
+          ],
+          [
+            -0.8467,
+            0.9119,
+            -0.8451,
+            0.7864
+          ],
+          [
+            -0.9291,
+            0.8964,
+            -0.7856,
+            0.8565
+          ],
+          [
+            -0.952,
+            0.7438,
+            -0.717,
+            0.8043
+          ],
+          [
+            -0.941,
+            0.5353,
+            -0.7054,
+            0.5775
+          ],
+          [
+            -0.8826,
+            0.4995,
+            -0.5347,
+            0.4699
+          ],
+          [
+            -0.339,
+            0.9179,
+            -0.4363,
+            0.41
+          ],
+          [
+            -0.2779,
+            0.9511,
+            -0.3814,
+            0.3955
+          ],
+          [
+            -0.19,
+            0.9492,
+            -0.2742,
+            0.368
+          ],
+          [
+            -0.1163,
+            0.9145,
+            -0.2355,
+            0.3439
+          ],
+          [
+            -0.0325,
+            0.8806,
+            -0.1404,
+            0.324
+          ],
+          [
+            0.0436,
+            0.8055,
+            -0.0932,
+            0.3256
+          ],
+          [
+            0.1882,
+            0.6618,
+            -0.018,
+            0.2924
+          ]
+        ],
+        "openings": {
+          "pixel": 0.00396,
+          "front_x": {
+            "0.05": [],
+            "0.10": [],
+            "0.20": [],
+            "0.30": [],
+            "0.40": [],
+            "0.50": [],
+            "0.60": [],
+            "0.70": [
+              [
+                0.4555,
+                0.7449
+              ]
+            ]
+          },
+          "side_y": {
+            "0.05": [],
+            "0.10": [],
+            "0.20": [],
+            "0.30": [],
+            "0.40": [],
+            "0.50": [],
+            "0.60": [],
+            "0.70": []
+          }
+        },
+        "backface_check": {
+          "method": "Workbench orthographic, culling off vs on",
+          "pixels": 320,
+          "views": {
+            "front": {
+              "object_pixels": 61575,
+              "see_through": 0.0,
+              "changed": 2e-05
+            },
+            "back": {
+              "object_pixels": 61575,
+              "see_through": 0.0,
+              "changed": 0.0001
+            },
+            "left": {
+              "object_pixels": 56067,
+              "see_through": 0.0,
+              "changed": 2e-05
+            },
+            "right": {
+              "object_pixels": 56073,
+              "see_through": 0.0,
+              "changed": 7e-05
+            },
+            "top": {
+              "object_pixels": 67435,
+              "see_through": 0.0,
+              "changed": 3e-05
+            },
+            "bottom": {
+              "object_pixels": 67437,
+              "see_through": 0.0,
+              "changed": 0.0
+            }
+          },
+          "max_see_through": 0.0,
+          "max_changed": 0.0001
+        }
+      },
+      "derived": {
+        "tool": "modeling/meshy/intake_inspect.py",
+        "dimensions_m": {
+          "width_x": 6.202,
+          "depth_y": 5.87,
+          "height_z": 6.0
+        },
+        "bounds_local_m": {
+          "min": [
+            -3.101,
+            -2.935,
+            0.0
+          ],
+          "max": [
+            3.101,
+            2.935,
+            6.0
+          ]
+        },
+        "points_local_m": {
+          "eye_left_centre_front": [
+            1.009,
+            2.676,
+            2.317
+          ],
+          "eye_right_centre_front": [
+            -1.012,
+            2.676,
+            2.317
+          ],
+          "mouth_centre_front": [
+            -0.002,
+            2.806,
+            1.372
+          ],
+          "interior_back_wall": [
+            -0.002,
+            -2.409,
+            0.981
+          ],
+          "hat_brim_bottom_front": [
+            -0.002,
+            2.284,
+            3.001
+          ]
+        },
+        "surface_area_m2": 221.1,
+        "texels_per_m": {
+          "1024": 55.5,
+          "2048": 111.1,
+          "4096": 222.2
+        }
+      }
+    },
+    {
+      "row_id": "M03",
+      "key": "M03",
+      "name_ja": "幽霊屋敷の外観",
+      "finishing_child": "W09-M03 (#16)",
+      "source": {
+        "original_path": "/workspaces/reso-world/tmp/halloween_magical_carnival_concept_art/M03_Haunted_Mansion_Meshy_References/Meshy_AI_Haunted_Mansion_Remes_1031102356_texture.glb",
+        "copy_path": "/workspaces/reso-world/worlds/reso-world-Halloween-meshy/M03/Meshy_AI_Haunted_Mansion_Remes_1031102356_texture.glb",
+        "sha256": "ae0d14577906f921128648b1d4f161de1627fcdef6b0e9042d6266ff3e54f950",
+        "bytes": 30288416,
+        "received_on": "2026-10-31",
+        "attachments_dir": "/workspaces/reso-world/worlds/reso-world-Halloween-meshy/M03",
+        "attachments_copied": 11
+      },
+      "decided": {
+        "scale": 7.8927,
+        "yaw_deg": 180.0,
+        "origin_source": [
+          0.0001,
+          0.0064,
+          -0.6753
+        ],
+        "origin_policy": "ground_center",
+        "origin_note": "外接箱の底面の中央",
+        "size_basis": "全幅 15.0 m（Spec §7 の目安どおり）。中央のアーチの内幅は 1.93 m、扉の開口は 1.62 m × 2.68 m になる",
+        "front_local": "+Y（Blender。Resonite の +Z、Slot の前方）",
+        "front_meaning": "ポーチ（アーケード）のある面（原本の -Y）",
+        "area_id": "B_mansion",
+        "used_by": [
+          "W03 #5（仮モデル、左右の扉）",
+          "W09-M03 #16（仕上げと入口の開口）"
+        ],
+        "placement_hint": {
+          "position": [
+            0.0,
+            41.5,
+            1.5
+          ],
+          "rotation_z_deg": 180.0,
+          "note": "北の主動線の終点 (0,34,1.5) の奥に、正面を南（広場）に向けて置く。前面のポーチは y=31.4 付近になる。B の境界 y 20〜48 に収まる"
+        },
+        "points_source": {
+          "porch_arch_left_ground": [
+            -0.08,
+            -0.51,
+            -0.64
+          ],
+          "porch_arch_right_ground": [
+            0.165,
+            -0.51,
+            -0.64
+          ],
+          "porch_arch_spring": [
+            0.0425,
+            -0.51,
+            -0.39
+          ],
+          "porch_arch_apex": [
+            0.0425,
+            -0.51,
+            -0.15
+          ],
+          "door_opening_left_bottom": [
+            -0.06,
+            -0.19,
+            -0.64
+          ],
+          "door_opening_right_top": [
+            0.145,
+            -0.19,
+            -0.3
+          ],
+          "porch_floor_centre": [
+            0.0425,
+            -0.35,
+            -0.64
+          ]
+        }
+      },
+      "budget": {
+        "view": "near",
+        "view_note": "ポーチまで歩いて近づく。外面が 730 m² と広く、2048 では 55 px/m にしかならない",
+        "triangles_max": 29783,
+        "triangles_note": "三角形は削減しない（上限は確定版の数）。どれも 1.5〜4.2 万で、9 ファイルの合計は約 27.3 万。Spec §11 のとおり一律の上限で削らず、削減と焼き直しで UV と色が崩れる危険のほうを避けた",
+        "color_px_max": 4096,
+        "data_px_max": 2048,
+        "texels_per_m_at_color": 109.4,
+        "rule": "画像は、derived.texels_per_m が見る距離の目安（近景 90 px/m 以上、中景 45 以上、遠景 20 以上）に届く 1024/2048/4096 のうち最小。金属・粗さの画像は色の半分（512 以上）"
+      },
+      "split_and_attach": [
+        {
+          "part": "入口",
+          "measured": "前に張り出した 3 連のアーケード（柱の前面 y=4.08、床 0.28 m の段）。奥の壁（y=1.55）は平らで、扉も開口も無い（塞がっている）",
+          "decision": "奥の壁に扉の開口を空ける: door_opening_left_bottom〜door_opening_right_top（幅 1.62 m・高さ 2.68 m、中央のアーチの内幅 1.93 m の内側）。蝶番は開口の左右の縁の鉛直線（x=0.474 と x=-1.144、y=1.55）。左右の扉は W03 が別の部品で作る。建物の内部は作らない（開口の奥は W03 の玄関ホール）",
+          "keep_clear": "ポーチの床の段 0.28 m は W03 がスロープか階段でつなぐ"
+        },
+        {
+          "part": "窓",
+          "measured": "窓は形の浮き彫りと画像。開口ではない",
+          "decision": "分けない。G08 の顔出しのおばけは W03 が窓の前に別の部品で置く"
+        }
+      ],
+      "double_sided": {
+        "decision": "片面のまま（両面の処理をしない）",
+        "where": "裏面を消して透ける画素は最大 0.01%（measured.backface_check）",
+        "confirmed_by_user": "2026-10-31（#13 の作業中の会話）。ResoLoop の exporter は doubleSided を保持しない"
+      },
+      "measured": {
+        "tool": "modeling/meshy/intake_inspect.py",
+        "blender": "5.0.1",
+        "measured_on": "2026-10-31",
+        "units": "GLB units (Meshy normalises the longest side to about 1.9); Blender axes after glTF import",
+        "glb": {
+          "meshes": 1,
+          "primitives": 1,
+          "nodes": 1,
+          "triangles": 29783,
+          "materials": [
+            {
+              "name": "BakedMaterial",
+              "doubleSided": true,
+              "alphaMode": "OPAQUE",
+              "baseColorTexture": true,
+              "metallicRoughnessTexture": true,
+              "normalTexture": false,
+              "occlusionTexture": false,
+              "emissiveTexture": false,
+              "emissiveFactor": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "images": [
+            {
+              "name": "texture_0",
+              "mimeType": "image/png"
+            },
+            {
+              "name": "texture_0_metallic_roughness",
+              "mimeType": "image/png"
+            }
+          ],
+          "generator": "Khronos glTF Blender I/O v4.3.47"
+        },
+        "objects_imported": 1,
+        "mesh_objects": 1,
+        "bounds_blender": {
+          "min": [
+            -0.9502,
+            -0.6411,
+            -0.6753
+          ],
+          "max": [
+            0.9503,
+            0.6539,
+            0.6686
+          ],
+          "size": [
+            1.9005,
+            1.2949,
+            1.3439
+          ]
+        },
+        "triangles": 29783,
+        "vertices_imported": 57519,
+        "vertices_welded": 14481,
+        "materials": [
+          {
+            "name": "BakedMaterial",
+            "blend_method": "DITHERED",
+            "use_backface_culling": false
+          }
+        ],
+        "images": [
+          {
+            "name": "texture_0",
+            "size": [
+              4096,
+              4096
+            ],
+            "channels": 4,
+            "colorspace": "sRGB",
+            "format": "PNG",
+            "used_by": [
+              "Base Color"
+            ],
+            "alpha_min": 1.0
+          },
+          {
+            "name": "texture_0_metallic_roughness",
+            "size": [
+              4096,
+              4096
+            ],
+            "channels": 4,
+            "colorspace": "Non-Color",
+            "format": "PNG",
+            "used_by": [
+              "Metallic",
+              "Roughness"
+            ]
+          }
+        ],
+        "uv": {
+          "layers": 1,
+          "area_sum": 0.5201,
+          "corners_in_unit_square": 1.0
+        },
+        "topology": {
+          "boundary_edges": 142,
+          "boundary_loops": 76,
+          "nonmanifold_edges": 183,
+          "wire_edges": 0,
+          "components": 6,
+          "largest_component_triangle_share": 0.9894,
+          "pieces_after_largest": [
+            {
+              "rank": 1,
+              "triangles": 165,
+              "center": [
+                0.845,
+                -0.1999,
+                0.0653
+              ],
+              "size": [
+                0.1969,
+                0.3813,
+                0.4684
+              ],
+              "gap_to_other_pieces": 0.00453,
+              "floating": false
+            },
+            {
+              "rank": 2,
+              "triangles": 112,
+              "center": [
+                -0.1545,
+                -0.1817,
+                -0.0595
+              ],
+              "size": [
+                0.0182,
+                0.2575,
+                0.1926
+              ],
+              "gap_to_other_pieces": 0.00899,
+              "floating": false
+            },
+            {
+              "rank": 3,
+              "triangles": 34,
+              "center": [
+                0.3254,
+                0.2919,
+                -0.4578
+              ],
+              "size": [
+                0.0112,
+                0.0086,
+                0.3335
+              ],
+              "gap_to_other_pieces": 0.00597,
+              "floating": false
+            },
+            {
+              "rank": 4,
+              "triangles": 4,
+              "center": [
+                -0.631,
+                -0.0411,
+                -0.5556
+              ],
+              "size": [
+                0.0028,
+                0.0127,
+                0.005
+              ],
+              "gap_to_other_pieces": 0.00933,
+              "floating": false
+            },
+            {
+              "rank": 5,
+              "triangles": 1,
+              "center": [
+                -0.8513,
+                0.1462,
+                -0.3064
+              ],
+              "size": [
+                0.0132,
+                0.0063,
+                0.0024
+              ],
+              "gap_to_other_pieces": 0.00702,
+              "floating": false
+            }
+          ],
+          "pieces_not_detailed": 0,
+          "floating_pieces": 0,
+          "floating_threshold": 0.0095,
+          "components_inside_out": 3,
+          "faces_inconsistent": 341
+        },
+        "outline_20": [
+          [
+            -0.8892,
+            0.8802,
+            -0.6034,
+            0.6099
+          ],
+          [
+            -0.865,
+            0.8747,
+            -0.5711,
+            0.6031
+          ],
+          [
+            -0.8647,
+            0.864,
+            -0.5894,
+            0.5984
+          ],
+          [
+            -0.8687,
+            0.8591,
+            -0.5682,
+            0.5882
+          ],
+          [
+            -0.924,
+            0.8619,
+            -0.5787,
+            0.5923
+          ],
+          [
+            -0.9502,
+            0.9372,
+            -0.5794,
+            0.5973
+          ],
+          [
+            -0.9226,
+            0.942,
+            -0.6411,
+            0.6362
+          ],
+          [
+            -0.876,
+            0.9503,
+            -0.6232,
+            0.6539
+          ],
+          [
+            -0.8574,
+            0.9078,
+            -0.5803,
+            0.6036
+          ],
+          [
+            -0.8526,
+            0.8628,
+            -0.5806,
+            0.5933
+          ],
+          [
+            -0.65,
+            0.8262,
+            -0.4798,
+            0.355
+          ],
+          [
+            -0.6503,
+            0.8043,
+            -0.4792,
+            0.3928
+          ],
+          [
+            -0.6489,
+            0.7917,
+            -0.4792,
+            0.3923
+          ],
+          [
+            -0.6783,
+            0.7766,
+            -0.4907,
+            0.3928
+          ],
+          [
+            -0.6065,
+            0.7683,
+            -0.4864,
+            0.1596
+          ],
+          [
+            -0.5804,
+            0.7397,
+            -0.4851,
+            0.1688
+          ],
+          [
+            -0.5508,
+            0.737,
+            -0.4478,
+            0.1685
+          ],
+          [
+            -0.5308,
+            0.4136,
+            -0.335,
+            0.1558
+          ],
+          [
+            -0.5308,
+            -0.4789,
+            -0.3334,
+            -0.2822
+          ],
+          [
+            -0.5153,
+            -0.4936,
+            -0.3189,
+            -0.2962
+          ]
+        ],
+        "openings": {
+          "pixel": 0.00396,
+          "front_x": {
+            "0.05": [],
+            "0.10": [],
+            "0.20": [],
+            "0.30": [],
+            "0.40": [],
+            "0.50": [],
+            "0.60": [],
+            "0.70": [
+              [
+                -0.3682,
+                -0.3088
+              ]
+            ]
+          },
+          "side_y": {
+            "0.05": [],
+            "0.10": [],
+            "0.20": [],
+            "0.30": [],
+            "0.40": [],
+            "0.50": [],
+            "0.60": [],
+            "0.70": []
+          }
+        },
+        "backface_check": {
+          "method": "Workbench orthographic, culling off vs on",
+          "pixels": 320,
+          "views": {
+            "front": {
+              "object_pixels": 43319,
+              "see_through": 0.0,
+              "changed": 0.00021
+            },
+            "back": {
+              "object_pixels": 43335,
+              "see_through": 0.00014,
+              "changed": 0.00058
+            },
+            "left": {
+              "object_pixels": 27882,
+              "see_through": 0.0,
+              "changed": 0.00022
+            },
+            "right": {
+              "object_pixels": 27873,
+              "see_through": 7e-05,
+              "changed": 0.00025
+            },
+            "top": {
+              "object_pixels": 44918,
+              "see_through": 0.0,
+              "changed": 2e-05
+            },
+            "bottom": {
+              "object_pixels": 44921,
+              "see_through": 0.0,
+              "changed": 0.00116
+            }
+          },
+          "max_see_through": 0.00014,
+          "max_changed": 0.00116
+        }
+      },
+      "derived": {
+        "tool": "modeling/meshy/intake_inspect.py",
+        "dimensions_m": {
+          "width_x": 15.0,
+          "depth_y": 10.221,
+          "height_z": 10.607
+        },
+        "bounds_local_m": {
+          "min": [
+            -7.5,
+            -5.11,
+            0.0
+          ],
+          "max": [
+            7.5,
+            5.11,
+            10.607
+          ]
+        },
+        "points_local_m": {
+          "porch_arch_left_ground": [
+            0.632,
+            4.076,
+            0.279
+          ],
+          "porch_arch_right_ground": [
+            -1.302,
+            4.076,
+            0.279
+          ],
+          "porch_arch_spring": [
+            -0.335,
+            4.076,
+            2.252
+          ],
+          "porch_arch_apex": [
+            -0.335,
+            4.076,
+            4.146
+          ],
+          "door_opening_left_bottom": [
+            0.474,
+            1.55,
+            0.279
+          ],
+          "door_opening_right_top": [
+            -1.144,
+            1.55,
+            2.962
+          ],
+          "porch_floor_centre": [
+            -0.335,
+            2.813,
+            0.279
+          ]
+        },
+        "surface_area_m2": 729.6,
+        "texels_per_m": {
+          "1024": 27.3,
+          "2048": 54.7,
+          "4096": 109.4
+        }
+      }
+    },
+    {
+      "row_id": "M04",
+      "key": "M04",
+      "name_ja": "魔女のお菓子工房の外観",
+      "finishing_child": "W09-M04 (#17)",
+      "source": {
+        "original_path": "/workspaces/reso-world/tmp/halloween_magical_carnival_concept_art/M04_WitchCandyWorkshop_Meshy_References/Meshy_AI_Witch_Candy_Workshop__1031101205_texture.glb",
+        "copy_path": "/workspaces/reso-world/worlds/reso-world-Halloween-meshy/M04/Meshy_AI_Witch_Candy_Workshop__1031101205_texture.glb",
+        "sha256": "cb83239e1d9e8ad515b34d2a1356fd3e53255071d91defc46d7e1755f8030430",
+        "bytes": 29629588,
+        "received_on": "2026-10-31",
+        "attachments_dir": "/workspaces/reso-world/worlds/reso-world-Halloween-meshy/M04",
+        "attachments_copied": 10
+      },
+      "decided": {
+        "scale": 4.2052,
+        "yaw_deg": 180.0,
+        "origin_source": [
+          -0.0015,
+          0.006,
+          -0.9077
+        ],
+        "origin_policy": "ground_center",
+        "origin_note": "外接箱の底面の中央",
+        "size_basis": "全幅 8.0 m（Spec §7 の目安どおり）。見せかけの扉は 0.84 m × 1.89 m",
+        "front_local": "+Y（Blender。Resonite の +Z、Slot の前方）",
+        "front_meaning": "扉と出窓のある面（原本の -Y）",
+        "area_id": "C_candy",
+        "used_by": [
+          "W04 #6（仮モデル）",
+          "W09-M04 #17（仕上げ）"
+        ],
+        "placement_hint": {
+          "position": [
+            38.0,
+            0.0,
+            0.0
+          ],
+          "rotation_z_deg": 90.0,
+          "note": "東の主動線の終点 (33,0,0) の奥に、正面を西（広場）に向けて置く。C の境界 x 20〜48 に収まる"
+        },
+        "points_source": {
+          "door_bottom_centre": [
+            0.0,
+            -0.5,
+            -0.88
+          ],
+          "door_top_centre": [
+            0.0,
+            -0.5,
+            -0.43
+          ],
+          "bay_window_centre": [
+            -0.5,
+            -0.59,
+            -0.64
+          ],
+          "shop_window_centre": [
+            0.505,
+            -0.62,
+            -0.675
+          ],
+          "upper_window_centre": [
+            -0.32,
+            -0.49,
+            -0.12
+          ],
+          "dormer_window_centre": [
+            0.54,
+            -0.47,
+            -0.11
+          ]
+        }
+      },
+      "budget": {
+        "view": "near",
+        "view_note": "正面の扉と窓の前まで歩く",
+        "triangles_max": 30702,
+        "triangles_note": "三角形は削減しない（上限は確定版の数）。どれも 1.5〜4.2 万で、9 ファイルの合計は約 27.3 万。Spec §11 のとおり一律の上限で削らず、削減と焼き直しで UV と色が崩れる危険のほうを避けた",
+        "color_px_max": 2048,
+        "data_px_max": 1024,
+        "texels_per_m_at_color": 97.4,
+        "rule": "画像は、derived.texels_per_m が見る距離の目安（近景 90 px/m 以上、中景 45 以上、遠景 20 以上）に届く 1024/2048/4096 のうち最小。金属・粗さの画像は色の半分（512 以上）"
+      },
+      "split_and_attach": [
+        {
+          "part": "扉",
+          "measured": "見せかけ（壁の浮き彫りと画像）。door_bottom_centre〜door_top_centre、幅 0.84 m・高さ 1.89 m",
+          "decision": "動かさない・開けない"
+        },
+        {
+          "part": "窓",
+          "measured": "出窓・店の窓・2 階の窓・屋根窓はどれも浮き彫りと画像で、窓だけの面は分かれていない",
+          "decision": "形は分けない。窓の発光は、仕上げ（W09-M04）で窓の領域だけを塗った発光の画像で行う。位置は bay_window_centre・shop_window_centre・upper_window_centre・dormer_window_centre"
+        }
+      ],
+      "double_sided": {
+        "decision": "片面のまま（両面の処理をしない）",
+        "where": "裏面を消して透ける画素は最大 0.00%（measured.backface_check）",
+        "confirmed_by_user": "2026-10-31（#13 の作業中の会話）。ResoLoop の exporter は doubleSided を保持しない"
+      },
+      "measured": {
+        "tool": "modeling/meshy/intake_inspect.py",
+        "blender": "5.0.1",
+        "measured_on": "2026-10-31",
+        "units": "GLB units (Meshy normalises the longest side to about 1.9); Blender axes after glTF import",
+        "glb": {
+          "meshes": 1,
+          "primitives": 1,
+          "nodes": 1,
+          "triangles": 30702,
+          "materials": [
+            {
+              "name": "BakedMaterial",
+              "doubleSided": true,
+              "alphaMode": "OPAQUE",
+              "baseColorTexture": true,
+              "metallicRoughnessTexture": true,
+              "normalTexture": false,
+              "occlusionTexture": false,
+              "emissiveTexture": false,
+              "emissiveFactor": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "images": [
+            {
+              "name": "texture_0",
+              "mimeType": "image/png"
+            },
+            {
+              "name": "texture_0_metallic_roughness",
+              "mimeType": "image/png"
+            }
+          ],
+          "generator": "Khronos glTF Blender I/O v4.3.47"
+        },
+        "objects_imported": 1,
+        "mesh_objects": 1,
+        "bounds_blender": {
+          "min": [
+            -0.9527,
+            -0.6321,
+            -0.9077
+          ],
+          "max": [
+            0.9498,
+            0.6441,
+            0.9062
+          ],
+          "size": [
+            1.9024,
+            1.2762,
+            1.8139
+          ]
+        },
+        "triangles": 30702,
+        "vertices_imported": 49176,
+        "vertices_welded": 15281,
+        "materials": [
+          {
+            "name": "BakedMaterial",
+            "blend_method": "DITHERED",
+            "use_backface_culling": false
+          }
+        ],
+        "images": [
+          {
+            "name": "texture_0",
+            "size": [
+              4096,
+              4096
+            ],
+            "channels": 4,
+            "colorspace": "sRGB",
+            "format": "PNG",
+            "used_by": [
+              "Base Color"
+            ],
+            "alpha_min": 1.0
+          },
+          {
+            "name": "texture_0_metallic_roughness",
+            "size": [
+              4096,
+              4096
+            ],
+            "channels": 4,
+            "colorspace": "Non-Color",
+            "format": "PNG",
+            "used_by": [
+              "Metallic",
+              "Roughness"
+            ]
+          }
+        ],
+        "uv": {
+          "layers": 1,
+          "area_sum": 0.6071,
+          "corners_in_unit_square": 1.0
+        },
+        "topology": {
+          "boundary_edges": 205,
+          "boundary_loops": 98,
+          "nonmanifold_edges": 161,
+          "wire_edges": 0,
+          "components": 4,
+          "largest_component_triangle_share": 0.9911,
+          "pieces_after_largest": [
+            {
+              "rank": 1,
+              "triangles": 140,
+              "center": [
+                0.0021,
+                -0.4711,
+                -0.6565
+              ],
+              "size": [
+                0.183,
+                0.014,
+                0.4283
+              ],
+              "gap_to_other_pieces": 0.00489,
+              "floating": false
+            },
+            {
+              "rank": 2,
+              "triangles": 132,
+              "center": [
+                -0.6162,
+                -0.2214,
+                0.1008
+              ],
+              "size": [
+                0.3254,
+                0.2513,
+                0.1923
+              ],
+              "gap_to_other_pieces": 0.00992,
+              "floating": true
+            },
+            {
+              "rank": 3,
+              "triangles": 1,
+              "center": [
+                -0.6053,
+                -0.1021,
+                0.1319
+              ],
+              "size": [
+                0.0208,
+                0.0145,
+                0.0177
+              ],
+              "gap_to_other_pieces": 0.00827,
+              "floating": false
+            }
+          ],
+          "pieces_not_detailed": 0,
+          "floating_pieces": 1,
+          "floating_threshold": 0.00951,
+          "components_inside_out": 2,
+          "faces_inconsistent": 338
+        },
+        "outline_20": [
+          [
+            -0.8778,
+            0.8756,
+            -0.5882,
+            0.5499
+          ],
+          [
+            -0.8724,
+            0.8661,
+            -0.6071,
+            0.5566
+          ],
+          [
+            -0.8381,
+            0.8672,
+            -0.5899,
+            0.5568
+          ],
+          [
+            -0.8433,
+            0.8667,
+            -0.626,
+            0.5552
+          ],
+          [
+            -0.8798,
+            0.8665,
+            -0.6253,
+            0.5552
+          ],
+          [
+            -0.8823,
+            0.9424,
+            -0.6321,
+            0.6316
+          ],
+          [
+            -0.8362,
+            0.9494,
+            -0.6296,
+            0.6416
+          ],
+          [
+            -0.8866,
+            0.9498,
+            -0.6192,
+            0.6441
+          ],
+          [
+            -0.9422,
+            0.8951,
+            -0.6023,
+            0.5713
+          ],
+          [
+            -0.9441,
+            0.8656,
+            -0.6061,
+            0.5288
+          ],
+          [
+            -0.9527,
+            0.8481,
+            -0.6113,
+            0.4567
+          ],
+          [
+            -0.6871,
+            0.8384,
+            -0.5944,
+            0.3926
+          ],
+          [
+            -0.6032,
+            0.8301,
+            -0.4209,
+            0.3583
+          ],
+          [
+            -0.5674,
+            0.7618,
+            -0.3642,
+            0.3421
+          ],
+          [
+            -0.525,
+            0.7836,
+            -0.3335,
+            0.3098
+          ],
+          [
+            -0.4696,
+            0.7814,
+            -0.1483,
+            0.2911
+          ],
+          [
+            -0.4145,
+            0.7361,
+            -0.0679,
+            0.4117
+          ],
+          [
+            -0.3467,
+            0.1171,
+            -0.025,
+            0.446
+          ],
+          [
+            -0.2935,
+            0.117,
+            0.0473,
+            0.4424
+          ],
+          [
+            -0.207,
+            0.0486,
+            0.1557,
+            0.3897
+          ]
+        ],
+        "openings": {
+          "pixel": 0.00396,
+          "front_x": {
+            "0.05": [],
+            "0.10": [],
+            "0.20": [],
+            "0.30": [],
+            "0.40": [
+              [
+                -0.8734,
+                -0.8258
+              ]
+            ],
+            "0.50": [],
+            "0.60": [],
+            "0.70": [
+              [
+                0.0382,
+                0.597
+              ]
+            ]
+          },
+          "side_y": {
+            "0.05": [],
+            "0.10": [],
+            "0.20": [],
+            "0.30": [],
+            "0.40": [],
+            "0.50": [],
+            "0.60": [],
+            "0.70": []
+          }
+        },
+        "backface_check": {
+          "method": "Workbench orthographic, culling off vs on",
+          "pixels": 320,
+          "views": {
+            "front": {
+              "object_pixels": 58635,
+              "see_through": 0.0,
+              "changed": 0.00063
+            },
+            "back": {
+              "object_pixels": 58634,
+              "see_through": 0.0,
+              "changed": 2e-05
+            },
+            "left": {
+              "object_pixels": 40086,
+              "see_through": 0.0,
+              "changed": 0.0
+            },
+            "right": {
+              "object_pixels": 40082,
+              "see_through": 0.0,
+              "changed": 0.0001
+            },
+            "top": {
+              "object_pixels": 55523,
+              "see_through": 0.0,
+              "changed": 0.0002
+            },
+            "bottom": {
+              "object_pixels": 55524,
+              "see_through": 0.0,
+              "changed": 2e-05
+            }
+          },
+          "max_see_through": 0.0,
+          "max_changed": 0.00063
+        }
+      },
+      "derived": {
+        "tool": "modeling/meshy/intake_inspect.py",
+        "dimensions_m": {
+          "width_x": 8.0,
+          "depth_y": 5.367,
+          "height_z": 7.628
+        },
+        "bounds_local_m": {
+          "min": [
+            -4.0,
+            -2.683,
+            -0.0
+          ],
+          "max": [
+            4.0,
+            2.683,
+            7.628
+          ]
+        },
+        "points_local_m": {
+          "door_bottom_centre": [
+            -0.006,
+            2.128,
+            0.116
+          ],
+          "door_top_centre": [
+            -0.006,
+            2.128,
+            2.009
+          ],
+          "bay_window_centre": [
+            2.096,
+            2.506,
+            1.126
+          ],
+          "shop_window_centre": [
+            -2.13,
+            2.632,
+            0.979
+          ],
+          "upper_window_centre": [
+            1.339,
+            2.086,
+            3.312
+          ],
+          "dormer_window_centre": [
+            -2.277,
+            2.002,
+            3.354
+          ]
+        },
+        "surface_area_m2": 268.6,
+        "texels_per_m": {
+          "1024": 48.7,
+          "2048": 97.4,
+          "4096": 194.7
+        }
+      }
+    },
+    {
+      "row_id": "M05_Canopy",
+      "key": "M05",
+      "name_ja": "メリーゴーラウンドの屋根",
+      "finishing_child": "W09-M05 (#18)",
+      "source": {
+        "original_path": "/workspaces/reso-world/tmp/halloween_magical_carnival_concept_art/M05_pumpkin_carousel_meshy/Meshy_AI_Remeshed_Canopy_1031101013_texture.glb",
+        "copy_path": "/workspaces/reso-world/worlds/reso-world-Halloween-meshy/M05/Meshy_AI_Remeshed_Canopy_1031101013_texture.glb",
+        "sha256": "a64f345b72f3658abefda6dee3b08a7cebb961b9a0e8a65f64aa40fb93a953d0",
+        "bytes": 34402040,
+        "received_on": "2026-10-31",
+        "attachments_dir": "/workspaces/reso-world/worlds/reso-world-Halloween-meshy/M05",
+        "attachments_copied": 15
+      },
+      "decided": {
+        "scale": 5.0,
+        "yaw_deg": 180.0,
+        "origin_source": [
+          0.0,
+          0.002,
+          -0.6399
+        ],
+        "origin_policy": "hinge_pivot",
+        "origin_note": "回転軸（縁の飾り帯の円の中心、外接箱の中心と 0.002 以内）の上で、屋根の最下点（中央のハブの下面）の高さ",
+        "size_basis": "縁の飾り帯の直径を 9.2 m にした（Spec §7・パックの README の目安）。飾りを含む外寸は 9.31 m",
+        "front_local": "+Y（Blender。Resonite の +Z、Slot の前方）",
+        "front_meaning": "ジャック・オー・ランタンの顔の面（原本の -Y）。回転するので向きは基準姿勢の定義",
+        "area_id": "D_amusement",
+        "used_by": [
+          "W05 #7（装飾外装の仮モデル、回転床・座席の高さ）",
+          "W09-M05 #18（仕上げ）"
+        ],
+        "placement_hint": {
+          "position": [
+            -10.0,
+            -32.0,
+            null
+          ],
+          "rotation_z_deg": -90.0,
+          "note": "南の主動線（x=0、幅 4 m）を塞がないよう西に寄せた例。中央の柱と同軸で、屋根の原点を柱の原点の 2.96 m 上に置く（下の split_and_attach）。最終の位置は W05 が決める"
+        },
+        "points_source": {
+          "hub_rim_front": [
+            0.0,
+            -0.333,
+            -0.6399
+          ],
+          "fringe_ring_front": [
+            0.0,
+            -0.918,
+            -0.42
+          ]
+        }
+      },
+      "budget": {
+        "view": "near",
+        "view_note": "乗っている人が裏面を 1〜3 m の距離で見上げる",
+        "triangles_max": 41819,
+        "triangles_note": "三角形は削減しない（上限は確定版の数）。どれも 1.5〜4.2 万で、9 ファイルの合計は約 27.3 万。Spec §11 のとおり一律の上限で削らず、削減と焼き直しで UV と色が崩れる危険のほうを避けた",
+        "color_px_max": 2048,
+        "data_px_max": 1024,
+        "texels_per_m_at_color": 90.4,
+        "rule": "画像は、derived.texels_per_m が見る距離の目安（近景 90 px/m 以上、中景 45 以上、遠景 20 以上）に届く 1024/2048/4096 のうち最小。金属・粗さの画像は色の半分（512 以上）"
+      },
+      "split_and_attach": [
+        {
+          "part": "屋根と中央の柱の関係",
+          "measured": "屋根の裏は閉じていて、中央に半径 1.68 m のハブがある。柱の天板の上面は柱の原点の 2.96 m 上で、その上に軸の飾り（茎）が 3.40 m まで出る",
+          "decision": "2 つは同じ鉛直の軸に置く。屋根の原点（ハブの下面の軸上）を、柱の原点の真上 2.964 m（M05_CenterCasing の cap_top_on_axis）に合わせる。茎は屋根の中に隠れる。屋根の全体の高さは柱の原点から 9.35 m"
+        },
+        {
+          "part": "垂れ飾り",
+          "measured": "縁の飾り帯の円（半径 4.60 m）の下に垂れる飾りの最下点は、半径 3.3〜3.5 m で屋根の原点の 0.08 m 上（柱の原点から約 3.04 m）",
+          "decision": "W05 は座席・乗る人の頭がこの高さに届かないようにする（回転床の上面が柱の原点と同じなら、約 3.0 m 未満）"
+        }
+      ],
+      "double_sided": {
+        "decision": "片面のまま（両面の処理をしない）",
+        "where": "裏面を消して透ける画素は最大 0.00%（measured.backface_check）",
+        "confirmed_by_user": "2026-10-31（#13 の作業中の会話）。ResoLoop の exporter は doubleSided を保持しない"
+      },
+      "measured": {
+        "tool": "modeling/meshy/intake_inspect.py",
+        "blender": "5.0.1",
+        "measured_on": "2026-10-31",
+        "units": "GLB units (Meshy normalises the longest side to about 1.9); Blender axes after glTF import",
+        "glb": {
+          "meshes": 1,
+          "primitives": 1,
+          "nodes": 1,
+          "triangles": 41819,
+          "materials": [
+            {
+              "name": "BakedMaterial",
+              "doubleSided": true,
+              "alphaMode": "OPAQUE",
+              "baseColorTexture": true,
+              "metallicRoughnessTexture": true,
+              "normalTexture": false,
+              "occlusionTexture": false,
+              "emissiveTexture": false,
+              "emissiveFactor": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "images": [
+            {
+              "name": "texture_0",
+              "mimeType": "image/png"
+            },
+            {
+              "name": "texture_0_metallic_roughness",
+              "mimeType": "image/png"
+            }
+          ],
+          "generator": "Khronos glTF Blender I/O v4.3.47"
+        },
+        "objects_imported": 1,
+        "mesh_objects": 1,
+        "bounds_blender": {
+          "min": [
+            -0.9313,
+            -0.9509,
+            -0.6399
+          ],
+          "max": [
+            0.9315,
+            0.9515,
+            0.6375
+          ],
+          "size": [
+            1.8628,
+            1.9024,
+            1.2774
+          ]
+        },
+        "triangles": 41819,
+        "vertices_imported": 61396,
+        "vertices_welded": 20617,
+        "materials": [
+          {
+            "name": "BakedMaterial",
+            "blend_method": "DITHERED",
+            "use_backface_culling": false
+          }
+        ],
+        "images": [
+          {
+            "name": "texture_0",
+            "size": [
+              4096,
+              4096
+            ],
+            "channels": 4,
+            "colorspace": "sRGB",
+            "format": "PNG",
+            "used_by": [
+              "Base Color"
+            ],
+            "alpha_min": 1.0
+          },
+          {
+            "name": "texture_0_metallic_roughness",
+            "size": [
+              4096,
+              4096
+            ],
+            "channels": 4,
+            "colorspace": "Non-Color",
+            "format": "PNG",
+            "used_by": [
+              "Metallic",
+              "Roughness"
+            ]
+          }
+        ],
+        "uv": {
+          "layers": 1,
+          "area_sum": 0.5964,
+          "corners_in_unit_square": 1.0
+        },
+        "topology": {
+          "boundary_edges": 72,
+          "boundary_loops": 39,
+          "nonmanifold_edges": 79,
+          "wire_edges": 0,
+          "components": 2,
+          "largest_component_triangle_share": 0.9946,
+          "pieces_after_largest": [
+            {
+              "rank": 1,
+              "triangles": 224,
+              "center": [
+                0.196,
+                -0.2576,
+                0.3935
+              ],
+              "size": [
+                0.2032,
+                0.1733,
+                0.2143
+              ],
+              "gap_to_other_pieces": 0.03123,
+              "floating": true
+            }
+          ],
+          "pieces_not_detailed": 0,
+          "floating_pieces": 1,
+          "floating_threshold": 0.00951,
+          "components_inside_out": 0,
+          "faces_inconsistent": 15477
+        },
+        "outline_20": [
+          [
+            -0.6109,
+            0.6114,
+            -0.6509,
+            0.6537
+          ],
+          [
+            -0.8805,
+            0.8776,
+            -0.8841,
+            0.8823
+          ],
+          [
+            -0.8736,
+            0.8732,
+            -0.8734,
+            0.8755
+          ],
+          [
+            -0.9253,
+            0.925,
+            -0.937,
+            0.937
+          ],
+          [
+            -0.9253,
+            0.9245,
+            -0.9329,
+            0.9394
+          ],
+          [
+            -0.9313,
+            0.9315,
+            -0.9509,
+            0.9515
+          ],
+          [
+            -0.9263,
+            0.9292,
+            -0.9405,
+            0.9418
+          ],
+          [
+            -0.9117,
+            0.9102,
+            -0.9394,
+            0.9409
+          ],
+          [
+            -0.8337,
+            0.8265,
+            -0.8492,
+            0.8368
+          ],
+          [
+            -0.8038,
+            0.7968,
+            -0.819,
+            0.8134
+          ],
+          [
+            -0.7638,
+            0.7654,
+            -0.7684,
+            0.7754
+          ],
+          [
+            -0.6983,
+            0.6986,
+            -0.7213,
+            0.7293
+          ],
+          [
+            -0.6537,
+            0.653,
+            -0.6793,
+            0.6303
+          ],
+          [
+            -0.5544,
+            0.5592,
+            -0.4056,
+            0.5203
+          ],
+          [
+            -0.3297,
+            0.3112,
+            -0.4107,
+            0.363
+          ],
+          [
+            -0.1087,
+            0.2455,
+            -0.3149,
+            0.1236
+          ],
+          [
+            -0.0939,
+            0.2975,
+            -0.3443,
+            0.0873
+          ],
+          [
+            -0.0424,
+            0.2271,
+            -0.2819,
+            0.0474
+          ],
+          [
+            -0.0197,
+            0.2662,
+            -0.2831,
+            0.0153
+          ],
+          [
+            0.0153,
+            0.2534,
+            -0.2819,
+            -0.0149
+          ]
+        ],
+        "openings": {
+          "pixel": 0.00396,
+          "front_x": {
+            "0.05": [
+              [
+                -0.5865,
+                -0.4121
+              ],
+              [
+                -0.3765,
+                -0.3289
+              ],
+              [
+                0.333,
+                0.3805
+              ],
+              [
+                0.4162,
+                0.5866
+              ]
+            ],
+            "0.10": [
+              [
+                -0.8402,
+                -0.6182
+              ],
+              [
+                -0.5786,
+                -0.5231
+              ],
+              [
+                -0.4716,
+                -0.4161
+              ],
+              [
+                -0.3725,
+                -0.3368
+              ],
+              [
+                0.3409,
+                0.3766
+              ],
+              [
+                0.4202,
+                0.4836
+              ],
+              [
+                0.5232,
+                0.5787
+              ],
+              [
+                0.6223,
+                0.8482
+              ]
+            ],
+            "0.20": [],
+            "0.30": [],
+            "0.40": [],
+            "0.50": [],
+            "0.60": [],
+            "0.70": []
+          },
+          "side_y": {
+            "0.05": [
+              [
+                -0.6259,
+                -0.5268
+              ],
+              [
+                -0.4951,
+                -0.3683
+              ],
+              [
+                0.361,
+                0.4997
+              ],
+              [
+                0.5314,
+                0.6305
+              ]
+            ],
+            "0.10": [
+              [
+                -0.8439,
+                -0.7329
+              ],
+              [
+                -0.7131,
+                -0.6576
+              ],
+              [
+                -0.6219,
+                -0.5347
+              ],
+              [
+                -0.4911,
+                -0.3722
+              ],
+              [
+                0.365,
+                0.4957
+              ],
+              [
+                0.5354,
+                0.6265
+              ],
+              [
+                0.6622,
+                0.7217
+              ],
+              [
+                0.7454,
+                0.8485
+              ]
+            ],
+            "0.20": [],
+            "0.30": [
+              [
+                -0.8914,
+                -0.8359
+              ],
+              [
+                0.8564,
+                0.896
+              ]
+            ],
+            "0.40": [],
+            "0.50": [],
+            "0.60": [],
+            "0.70": []
+          }
+        },
+        "backface_check": {
+          "method": "Workbench orthographic, culling off vs on",
+          "pixels": 320,
+          "views": {
+            "front": {
+              "object_pixels": 35482,
+              "see_through": 0.0,
+              "changed": 0.0
+            },
+            "back": {
+              "object_pixels": 35481,
+              "see_through": 0.0,
+              "changed": 0.0
+            },
+            "left": {
+              "object_pixels": 35502,
+              "see_through": 0.0,
+              "changed": 0.0
+            },
+            "right": {
+              "object_pixels": 35499,
+              "see_through": 0.0,
+              "changed": 0.0
+            },
+            "top": {
+              "object_pixels": 68275,
+              "see_through": 0.0,
+              "changed": 1e-05
+            },
+            "bottom": {
+              "object_pixels": 68272,
+              "see_through": 0.0,
+              "changed": 7e-05
+            }
+          },
+          "max_see_through": 0.0,
+          "max_changed": 7e-05
+        }
+      },
+      "derived": {
+        "tool": "modeling/meshy/intake_inspect.py",
+        "dimensions_m": {
+          "width_x": 9.314,
+          "depth_y": 9.512,
+          "height_z": 6.387
+        },
+        "bounds_local_m": {
+          "min": [
+            -4.657,
+            -4.748,
+            -0.0
+          ],
+          "max": [
+            4.657,
+            4.764,
+            6.387
+          ]
+        },
+        "points_local_m": {
+          "hub_rim_front": [
+            0.0,
+            1.675,
+            0.0
+          ],
+          "fringe_ring_front": [
+            0.0,
+            4.6,
+            1.099
+          ]
+        },
+        "surface_area_m2": 305.8,
+        "texels_per_m": {
+          "1024": 45.2,
+          "2048": 90.4,
+          "4096": 180.9
+        }
+      }
+    },
+    {
+      "row_id": "M05_CenterCasing",
+      "key": "M05",
+      "name_ja": "メリーゴーラウンドの中央の柱",
+      "finishing_child": "W09-M05 (#18)",
+      "source": {
+        "original_path": "/workspaces/reso-world/tmp/halloween_magical_carnival_concept_art/M05_pumpkin_carousel_meshy/Meshy_AI_Remeshed_Center_Casin_1031101029_texture.glb",
+        "copy_path": "/workspaces/reso-world/worlds/reso-world-Halloween-meshy/M05/Meshy_AI_Remeshed_Center_Casin_1031101029_texture.glb",
+        "sha256": "e09ed7554882b3f6ba731b8623478eccee39c172524579f425129997d9a4901e",
+        "bytes": 26275308,
+        "received_on": "2026-10-31",
+        "attachments_dir": "/workspaces/reso-world/worlds/reso-world-Halloween-meshy/M05",
+        "attachments_copied": 15
+      },
+      "decided": {
+        "scale": 1.7877,
+        "yaw_deg": 180.0,
+        "origin_source": [
+          -0.005,
+          0.006,
+          -0.9521
+        ],
+        "origin_policy": "hinge_pivot",
+        "origin_note": "回転軸（底の輪の円の中心）の上で、底面の高さ。胴は上へ向かって原本で 0.03 ほど +Y に傾いている",
+        "size_basis": "全高 3.4 m（Spec の目安）。原本の縦横比のまま縮尺したので、胴の直径は 1.65 m、底の輪は 1.85 m（目安の φ1.2 m より太い）",
+        "front_local": "+Y（Blender。Resonite の +Z、Slot の前方）",
+        "front_meaning": "カボチャの紋章のある面（原本の -Y）",
+        "area_id": "D_amusement",
+        "used_by": [
+          "W05 #7",
+          "W09-M05 #18"
+        ],
+        "placement_hint": {
+          "position": [
+            -10.0,
+            -32.0,
+            null
+          ],
+          "rotation_z_deg": -90.0,
+          "note": "屋根と同軸。高さは W05 の回転床の上面"
+        },
+        "points_source": {
+          "cap_top_on_axis": [
+            -0.005,
+            0.006,
+            0.706
+          ],
+          "stem_top": [
+            -0.005,
+            0.006,
+            0.9498
+          ],
+          "body_front_mid": [
+            0.0,
+            -0.46,
+            0.0
+          ]
+        }
+      },
+      "budget": {
+        "view": "near",
+        "view_note": "座席のすぐ内側",
+        "triangles_max": 32414,
+        "triangles_note": "三角形は削減しない（上限は確定版の数）。どれも 1.5〜4.2 万で、9 ファイルの合計は約 27.3 万。Spec §11 のとおり一律の上限で削らず、削減と焼き直しで UV と色が崩れる危険のほうを避けた",
+        "color_px_max": 1024,
+        "data_px_max": 512,
+        "texels_per_m_at_color": 156.1,
+        "rule": "画像は、derived.texels_per_m が見る距離の目安（近景 90 px/m 以上、中景 45 以上、遠景 20 以上）に届く 1024/2048/4096 のうち最小。金属・粗さの画像は色の半分（512 以上）"
+      },
+      "split_and_attach": [
+        {
+          "part": "柱",
+          "measured": "1 つの塊。正面（カボチャの紋章）以外は無地。胴の直径 1.65 m、底の輪 1.85 m",
+          "decision": "分けない。原点は回転軸の底。回すかどうかは W05 が決める"
+        }
+      ],
+      "double_sided": {
+        "decision": "片面のまま（両面の処理をしない）",
+        "where": "裏面を消して透ける画素は最大 0.00%（measured.backface_check）",
+        "confirmed_by_user": "2026-10-31（#13 の作業中の会話）。ResoLoop の exporter は doubleSided を保持しない"
+      },
+      "measured": {
+        "tool": "modeling/meshy/intake_inspect.py",
+        "blender": "5.0.1",
+        "measured_on": "2026-10-31",
+        "units": "GLB units (Meshy normalises the longest side to about 1.9); Blender axes after glTF import",
+        "glb": {
+          "meshes": 1,
+          "primitives": 1,
+          "nodes": 1,
+          "triangles": 32414,
+          "materials": [
+            {
+              "name": "BakedMaterial",
+              "doubleSided": true,
+              "alphaMode": "OPAQUE",
+              "baseColorTexture": true,
+              "metallicRoughnessTexture": true,
+              "normalTexture": false,
+              "occlusionTexture": false,
+              "emissiveTexture": false,
+              "emissiveFactor": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "images": [
+            {
+              "name": "texture_0",
+              "mimeType": "image/png"
+            },
+            {
+              "name": "texture_0_metallic_roughness",
+              "mimeType": "image/png"
+            }
+          ],
+          "generator": "Khronos glTF Blender I/O v4.3.47"
+        },
+        "objects_imported": 1,
+        "mesh_objects": 1,
+        "bounds_blender": {
+          "min": [
+            -0.5135,
+            -0.5335,
+            -0.9521
+          ],
+          "max": [
+            0.5274,
+            0.5332,
+            0.9498
+          ],
+          "size": [
+            1.0409,
+            1.0666,
+            1.9019
+          ]
+        },
+        "triangles": 32414,
+        "vertices_imported": 37276,
+        "vertices_welded": 16201,
+        "materials": [
+          {
+            "name": "BakedMaterial",
+            "blend_method": "DITHERED",
+            "use_backface_culling": false
+          }
+        ],
+        "images": [
+          {
+            "name": "texture_0",
+            "size": [
+              4096,
+              4096
+            ],
+            "channels": 4,
+            "colorspace": "sRGB",
+            "format": "PNG",
+            "used_by": [
+              "Base Color"
+            ],
+            "alpha_min": 1.0
+          },
+          {
+            "name": "texture_0_metallic_roughness",
+            "size": [
+              4096,
+              4096
+            ],
+            "channels": 4,
+            "colorspace": "Non-Color",
+            "format": "PNG",
+            "used_by": [
+              "Metallic",
+              "Roughness"
+            ]
+          }
+        ],
+        "uv": {
+          "layers": 1,
+          "area_sum": 0.6095,
+          "corners_in_unit_square": 1.0
+        },
+        "topology": {
+          "boundary_edges": 273,
+          "boundary_loops": 108,
+          "nonmanifold_edges": 172,
+          "wire_edges": 0,
+          "components": 1,
+          "largest_component_triangle_share": 1.0,
+          "pieces_after_largest": [],
+          "pieces_not_detailed": 0,
+          "floating_pieces": 0,
+          "floating_threshold": 0.00951,
+          "components_inside_out": 0,
+          "faces_inconsistent": 146
+        },
+        "outline_20": [
+          [
+            -0.5135,
+            0.5012,
+            -0.5171,
+            0.5286
+          ],
+          [
+            -0.4626,
+            0.4986,
+            -0.5211,
+            0.4536
+          ],
+          [
+            -0.4432,
+            0.4876,
+            -0.4586,
+            0.4605
+          ],
+          [
+            -0.4442,
+            0.488,
+            -0.4538,
+            0.4646
+          ],
+          [
+            -0.4455,
+            0.4849,
+            -0.4696,
+            0.4711
+          ],
+          [
+            -0.4468,
+            0.4878,
+            -0.4691,
+            0.4744
+          ],
+          [
+            -0.4497,
+            0.4847,
+            -0.4448,
+            0.479
+          ],
+          [
+            -0.4526,
+            0.4884,
+            -0.4449,
+            0.4847
+          ],
+          [
+            -0.4566,
+            0.4995,
+            -0.4449,
+            0.4889
+          ],
+          [
+            -0.4565,
+            0.4979,
+            -0.444,
+            0.4967
+          ],
+          [
+            -0.4592,
+            0.4857,
+            -0.4453,
+            0.4954
+          ],
+          [
+            -0.4575,
+            0.4826,
+            -0.4462,
+            0.5045
+          ],
+          [
+            -0.459,
+            0.4823,
+            -0.4451,
+            0.5091
+          ],
+          [
+            -0.4581,
+            0.4862,
+            -0.4477,
+            0.5143
+          ],
+          [
+            -0.4584,
+            0.501,
+            -0.4468,
+            0.518
+          ],
+          [
+            -0.4634,
+            0.5074,
+            -0.5097,
+            0.5269
+          ],
+          [
+            -0.4816,
+            0.5274,
+            -0.5335,
+            0.5332
+          ],
+          [
+            -0.5033,
+            0.5026,
+            -0.5029,
+            0.5312
+          ],
+          [
+            -0.191,
+            0.1818,
+            -0.0559,
+            0.0533
+          ],
+          [
+            -0.169,
+            0.1763,
+            -0.0351,
+            0.0386
+          ]
+        ],
+        "openings": {
+          "pixel": 0.00396,
+          "front_x": {
+            "0.05": [],
+            "0.10": [],
+            "0.20": [],
+            "0.30": [],
+            "0.40": [],
+            "0.50": [],
+            "0.60": [],
+            "0.70": []
+          },
+          "side_y": {
+            "0.05": [],
+            "0.10": [],
+            "0.20": [],
+            "0.30": [],
+            "0.40": [],
+            "0.50": [],
+            "0.60": [],
+            "0.70": []
+          }
+        },
+        "backface_check": {
+          "method": "Workbench orthographic, culling off vs on",
+          "pixels": 320,
+          "views": {
+            "front": {
+              "object_pixels": 40703,
+              "see_through": 0.0,
+              "changed": 0.00015
+            },
+            "back": {
+              "object_pixels": 40709,
+              "see_through": 0.0,
+              "changed": 5e-05
+            },
+            "left": {
+              "object_pixels": 40437,
+              "see_through": 0.0,
+              "changed": 2e-05
+            },
+            "right": {
+              "object_pixels": 40436,
+              "see_through": 0.0,
+              "changed": 7e-05
+            },
+            "top": {
+              "object_pixels": 22323,
+              "see_through": 0.0,
+              "changed": 0.0
+            },
+            "bottom": {
+              "object_pixels": 22322,
+              "see_through": 0.0,
+              "changed": 0.0
+            }
+          },
+          "max_see_through": 0.0,
+          "max_changed": 0.00015
+        }
+      },
+      "derived": {
+        "tool": "modeling/meshy/intake_inspect.py",
+        "dimensions_m": {
+          "width_x": 1.861,
+          "depth_y": 1.907,
+          "height_z": 3.4
+        },
+        "bounds_local_m": {
+          "min": [
+            -0.952,
+            -0.942,
+            0.0
+          ],
+          "max": [
+            0.909,
+            0.964,
+            3.4
+          ]
+        },
+        "points_local_m": {
+          "cap_top_on_axis": [
+            0.0,
+            0.0,
+            2.964
+          ],
+          "stem_top": [
+            0.0,
+            0.0,
+            3.4
+          ],
+          "body_front_mid": [
+            -0.009,
+            0.833,
+            1.702
+          ]
+        },
+        "surface_area_m2": 26.2,
+        "texels_per_m": {
+          "1024": 156.1,
+          "2048": 312.3,
+          "4096": 624.5
+        }
+      }
+    },
+    {
+      "row_id": "M06",
+      "key": "M06",
+      "name_ja": "おばけ列車の先頭車外装",
+      "finishing_child": "W09-M06 (#19)",
+      "source": {
+        "original_path": "/workspaces/reso-world/tmp/halloween_magical_carnival_concept_art/M06_ghost_train_all_files/Meshy_AI_Ghost_Train_Engine_Sh_1031100326_texture.glb",
+        "copy_path": "/workspaces/reso-world/worlds/reso-world-Halloween-meshy/M06/Meshy_AI_Ghost_Train_Engine_Sh_1031100326_texture.glb",
+        "sha256": "0957863f3b03c1137769208b1762aa5ac743300827807364cee88c3d464e75fd",
+        "bytes": 27074752,
+        "received_on": "2026-10-31",
+        "attachments_dir": "/workspaces/reso-world/worlds/reso-world-Halloween-meshy/M06",
+        "attachments_copied": 11
+      },
+      "decided": {
+        "scale": 1.5772,
+        "yaw_deg": -90.0,
+        "origin_source": [
+          0.2375,
+          0.0,
+          -0.597
+        ],
+        "origin_policy": "hinge_pivot",
+        "origin_note": "移動の基準: 前後の車輪のアーチ（車輪の覆い）の中心の中点の真下の接地面。左右の中央",
+        "size_basis": "全長 3.0 m（Spec の目安）。幅 1.21 m、高さ 1.90 m",
+        "front_local": "+Y（Blender。Resonite の +Z、Slot の前方）",
+        "front_meaning": "進む向き（排障器とおばけの顔のある先端。原本の -X）",
+        "area_id": "D_amusement",
+        "used_by": [
+          "W05 #7（先頭車の移動基準・客車・線路）",
+          "W09-M06 #19（仕上げ）"
+        ],
+        "placement_hint": {
+          "position": null,
+          "rotation_z_deg": null,
+          "note": "W05 の周回コースの上。原点を経路に乗せ、+Y を接線方向に向ける"
+        },
+        "points_source": {
+          "front_wheel_arch_top": [
+            -0.025,
+            0.0,
+            -0.324
+          ],
+          "rear_wheel_arch_top": [
+            0.5,
+            0.0,
+            -0.322
+          ],
+          "cowcatcher_tip_ground": [
+            -0.951,
+            0.0,
+            -0.597
+          ],
+          "rear_coupler_candidate": [
+            0.951,
+            0.0,
+            -0.347
+          ]
+        }
+      },
+      "budget": {
+        "view": "near",
+        "view_note": "線路の脇・客車から近くで見る",
+        "triangles_max": 14807,
+        "triangles_note": "三角形は削減しない（上限は確定版の数）。どれも 1.5〜4.2 万で、9 ファイルの合計は約 27.3 万。Spec §11 のとおり一律の上限で削らず、削減と焼き直しで UV と色が崩れる危険のほうを避けた",
+        "color_px_max": 1024,
+        "data_px_max": 512,
+        "texels_per_m_at_color": 160.9,
+        "rule": "画像は、derived.texels_per_m が見る距離の目安（近景 90 px/m 以上、中景 45 以上、遠景 20 以上）に届く 1024/2048/4096 のうち最小。金属・粗さの画像は色の半分（512 以上）"
+      },
+      "split_and_attach": [
+        {
+          "part": "車輪",
+          "measured": "車輪の形は無い。車体の下は前後 2 つのアーチ（車輪の覆い、頂部は接地面から 0.43 m、置いた後の y=+0.41 と -0.41）で、その下は空いている。前寄りに先輪の台（接地面から 0.12 m）",
+          "decision": "車輪は一体ではないので、要るなら W05 か W09-M06 が別の部品で各アーチの下に作る（Spec §6.2 の『必要なら車輪』）"
+        },
+        {
+          "part": "連結器",
+          "measured": "形は無い。後端（y=-1.125）の中央",
+          "decision": "客車との連結点の候補は rear_coupler_candidate（後端の中央、接地面から 0.39 m）。W05 が客車側と合わせる"
+        },
+        {
+          "part": "排障器",
+          "measured": "先端の排障器だけが接地面（z=0）まで下がる。ほかの下端は 0.16 m 以上",
+          "decision": "W05 は線路の上面を原点の高さ（z=0）に合わせ、排障器が線路と重ならない経路（線路の間を通る）にする。重なるなら W09-M06 が排障器の下端を少し上げる"
+        },
+        {
+          "part": "客車・線路",
+          "measured": "入っていない",
+          "decision": "W05 が作る"
+        }
+      ],
+      "double_sided": {
+        "decision": "片面のまま（両面の処理をしない）",
+        "where": "裏面を消して透ける画素は最大 0.05%（measured.backface_check）",
+        "confirmed_by_user": "2026-10-31（#13 の作業中の会話）。ResoLoop の exporter は doubleSided を保持しない"
+      },
+      "measured": {
+        "tool": "modeling/meshy/intake_inspect.py",
+        "blender": "5.0.1",
+        "measured_on": "2026-10-31",
+        "units": "GLB units (Meshy normalises the longest side to about 1.9); Blender axes after glTF import",
+        "glb": {
+          "meshes": 1,
+          "primitives": 1,
+          "nodes": 1,
+          "triangles": 14807,
+          "materials": [
+            {
+              "name": "BakedMaterial",
+              "doubleSided": true,
+              "alphaMode": "OPAQUE",
+              "baseColorTexture": true,
+              "metallicRoughnessTexture": true,
+              "normalTexture": false,
+              "occlusionTexture": false,
+              "emissiveTexture": false,
+              "emissiveFactor": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "images": [
+            {
+              "name": "texture_0",
+              "mimeType": "image/png"
+            },
+            {
+              "name": "texture_0_metallic_roughness",
+              "mimeType": "image/png"
+            }
+          ],
+          "generator": "Khronos glTF Blender I/O v4.3.47"
+        },
+        "objects_imported": 1,
+        "mesh_objects": 1,
+        "bounds_blender": {
+          "min": [
+            -0.9513,
+            -0.3835,
+            -0.597
+          ],
+          "max": [
+            0.9508,
+            0.3844,
+            0.6107
+          ],
+          "size": [
+            1.9021,
+            0.7679,
+            1.2077
+          ]
+        },
+        "triangles": 14807,
+        "vertices_imported": 23385,
+        "vertices_welded": 7369,
+        "materials": [
+          {
+            "name": "BakedMaterial",
+            "blend_method": "DITHERED",
+            "use_backface_culling": false
+          }
+        ],
+        "images": [
+          {
+            "name": "texture_0",
+            "size": [
+              4096,
+              4096
+            ],
+            "channels": 4,
+            "colorspace": "sRGB",
+            "format": "PNG",
+            "used_by": [
+              "Base Color"
+            ],
+            "alpha_min": 1.0
+          },
+          {
+            "name": "texture_0_metallic_roughness",
+            "size": [
+              4096,
+              4096
+            ],
+            "channels": 4,
+            "colorspace": "Non-Color",
+            "format": "PNG",
+            "used_by": [
+              "Metallic",
+              "Roughness"
+            ]
+          }
+        ],
+        "uv": {
+          "layers": 1,
+          "area_sum": 0.535,
+          "corners_in_unit_square": 1.0
+        },
+        "topology": {
+          "boundary_edges": 53,
+          "boundary_loops": 24,
+          "nonmanifold_edges": 24,
+          "wire_edges": 0,
+          "components": 3,
+          "largest_component_triangle_share": 0.9998,
+          "pieces_after_largest": [
+            {
+              "rank": 1,
+              "triangles": 2,
+              "center": [
+                -0.0271,
+                -0.2436,
+                -0.2361
+              ],
+              "size": [
+                0.0797,
+                0.0028,
+                0.0015
+              ],
+              "gap_to_other_pieces": 0.0371,
+              "floating": true
+            },
+            {
+              "rank": 2,
+              "triangles": 1,
+              "center": [
+                0.4973,
+                0.2484,
+                0.0066
+              ],
+              "size": [
+                0.0025,
+                0.0051,
+                0.0347
+              ],
+              "gap_to_other_pieces": 0.01397,
+              "floating": true
+            }
+          ],
+          "pieces_not_detailed": 0,
+          "floating_pieces": 2,
+          "floating_threshold": 0.00951,
+          "components_inside_out": 1,
+          "faces_inconsistent": 21
+        },
+        "outline_20": [
+          [
+            -0.9513,
+            -0.6616,
+            -0.3377,
+            0.3374
+          ],
+          [
+            -0.8299,
+            0.8418,
+            -0.36,
+            0.36
+          ],
+          [
+            -0.819,
+            0.8363,
+            -0.3809,
+            0.3823
+          ],
+          [
+            -0.7515,
+            0.876,
+            -0.372,
+            0.3743
+          ],
+          [
+            -0.7592,
+            0.8906,
+            -0.3716,
+            0.3726
+          ],
+          [
+            -0.709,
+            0.9508,
+            -0.3835,
+            0.3844
+          ],
+          [
+            -0.7106,
+            0.8928,
+            -0.3698,
+            0.3844
+          ],
+          [
+            -0.7077,
+            0.8868,
+            -0.3315,
+            0.3468
+          ],
+          [
+            -0.7026,
+            0.8559,
+            -0.3163,
+            0.3182
+          ],
+          [
+            -0.6986,
+            0.8727,
+            -0.3149,
+            0.314
+          ],
+          [
+            -0.6909,
+            0.8412,
+            -0.3331,
+            0.3353
+          ],
+          [
+            -0.6787,
+            0.8778,
+            -0.3413,
+            0.3413
+          ],
+          [
+            -0.6558,
+            0.9107,
+            -0.329,
+            0.2945
+          ],
+          [
+            -0.5972,
+            0.9114,
+            -0.3526,
+            0.3531
+          ],
+          [
+            -0.563,
+            0.9104,
+            -0.3178,
+            0.32
+          ],
+          [
+            -0.5659,
+            0.9305,
+            -0.3246,
+            0.3248
+          ],
+          [
+            -0.5662,
+            0.9341,
+            -0.3134,
+            0.3122
+          ],
+          [
+            -0.5182,
+            0.9311,
+            -0.2843,
+            0.2856
+          ],
+          [
+            -0.3697,
+            0.9215,
+            -0.2107,
+            0.2132
+          ],
+          [
+            -0.3687,
+            0.6648,
+            -0.1703,
+            0.1716
+          ]
+        ],
+        "openings": {
+          "pixel": 0.00396,
+          "front_x": {
+            "0.05": [],
+            "0.10": [
+              [
+                -0.2301,
+                0.2058
+              ],
+              [
+                0.297,
+                0.7606
+              ]
+            ],
+            "0.20": [
+              [
+                -0.1389,
+                0.1107
+              ],
+              [
+                0.3921,
+                0.6655
+              ]
+            ],
+            "0.30": [],
+            "0.40": [],
+            "0.50": [
+              [
+                0.61,
+                0.7725
+              ]
+            ],
+            "0.60": [
+              [
+                0.717,
+                0.7725
+              ]
+            ],
+            "0.70": [
+              [
+                -0.4599,
+                -0.3054
+              ],
+              [
+                -0.135,
+                0.0315
+              ],
+              [
+                0.1821,
+                0.3485
+              ],
+              [
+                0.5506,
+                0.6219
+              ],
+              [
+                0.7091,
+                0.7606
+              ]
+            ]
+          },
+          "side_y": {
+            "0.05": [
+              [
+                -0.2012,
+                -0.1893
+              ],
+              [
+                -0.1338,
+                -0.114
+              ],
+              [
+                -0.0585,
+                -0.0268
+              ],
+              [
+                0.0326,
+                0.0643
+              ],
+              [
+                0.1198,
+                0.1356
+              ]
+            ],
+            "0.10": [],
+            "0.20": [
+              [
+                -0.2765,
+                -0.2646
+              ]
+            ],
+            "0.30": [],
+            "0.40": [],
+            "0.50": [],
+            "0.60": [
+              [
+                -0.2369,
+                -0.2091
+              ],
+              [
+                0.2109,
+                0.2426
+              ]
+            ],
+            "0.70": [
+              [
+                -0.2369,
+                -0.2091
+              ],
+              [
+                0.2109,
+                0.2426
+              ]
+            ]
+          }
+        },
+        "backface_check": {
+          "method": "Workbench orthographic, culling off vs on",
+          "pixels": 320,
+          "views": {
+            "front": {
+              "object_pixels": 33353,
+              "see_through": 0.0,
+              "changed": 0.00357
+            },
+            "back": {
+              "object_pixels": 33361,
+              "see_through": 0.0,
+              "changed": 6e-05
+            },
+            "left": {
+              "object_pixels": 18722,
+              "see_through": 0.0,
+              "changed": 0.0
+            },
+            "right": {
+              "object_pixels": 18717,
+              "see_through": 0.0,
+              "changed": 5e-05
+            },
+            "top": {
+              "object_pixels": 29658,
+              "see_through": 0.0,
+              "changed": 7e-05
+            },
+            "bottom": {
+              "object_pixels": 29659,
+              "see_through": 0.00047,
+              "changed": 0.00047
+            }
+          },
+          "max_see_through": 0.00047,
+          "max_changed": 0.00357
+        }
+      },
+      "derived": {
+        "tool": "modeling/meshy/intake_inspect.py",
+        "dimensions_m": {
+          "width_x": 1.211,
+          "depth_y": 3.0,
+          "height_z": 1.905
+        },
+        "bounds_local_m": {
+          "min": [
+            -0.605,
+            -1.125,
+            -0.0
+          ],
+          "max": [
+            0.606,
+            1.875,
+            1.905
+          ]
+        },
+        "points_local_m": {
+          "front_wheel_arch_top": [
+            -0.0,
+            0.414,
+            0.431
+          ],
+          "rear_wheel_arch_top": [
+            0.0,
+            -0.414,
+            0.434
+          ],
+          "cowcatcher_tip_ground": [
+            -0.0,
+            1.875,
+            0.0
+          ],
+          "rear_coupler_candidate": [
+            0.0,
+            -1.125,
+            0.394
+          ]
+        },
+        "surface_area_m2": 21.7,
+        "texels_per_m": {
+          "1024": 160.9,
+          "2048": 321.9,
+          "4096": 643.8
+        }
+      }
+    },
+    {
+      "row_id": "M07",
+      "key": "M07",
+      "name_ja": "魔法の時計塔",
+      "finishing_child": "W09-M07 (#20)",
+      "source": {
+        "original_path": "/workspaces/reso-world/tmp/halloween_magical_carnival_concept_art/M07_magical_clock_tower_meshy_agent/Meshy_AI_M07_MagicalClockTower_1031093103_texture.glb",
+        "copy_path": "/workspaces/reso-world/worlds/reso-world-Halloween-meshy/M07/Meshy_AI_M07_MagicalClockTower_1031093103_texture.glb",
+        "sha256": "6e9e279d0d9c3f69f76bcc0c1e784d47ed5005d2a2ca51a22ac03eaeb34c0a39",
+        "bytes": 30890180,
+        "received_on": "2026-10-31",
+        "attachments_dir": "/workspaces/reso-world/worlds/reso-world-Halloween-meshy/M07",
+        "attachments_copied": 17
+      },
+      "decided": {
+        "scale": 7.3828,
+        "yaw_deg": 180.0,
+        "origin_source": [
+          0.0001,
+          -0.0147,
+          -0.9464
+        ],
+        "origin_policy": "ground_center",
+        "origin_note": "外接箱の底面の中央（岩の台座の底）",
+        "size_basis": "全高 14.0 m（Spec の目安どおり）。台座は 8.24 m × 7.58 m、文字盤の外径 2.29 m",
+        "front_local": "+Y（Blender。Resonite の +Z、Slot の前方）",
+        "front_meaning": "文字盤と階段の入口のある面（原本の -Y）",
+        "area_id": "E_forest",
+        "used_by": [
+          "W06 #8（仮モデル、文字盤・針・鐘）",
+          "W09-M07 #20（仕上げ）"
+        ],
+        "placement_hint": {
+          "position": [
+            -38.5,
+            0.0,
+            0.0
+          ],
+          "rotation_z_deg": -90.0,
+          "note": "西の主動線の終点 (-33,0,0) の奥に、正面を東（広場）に向けて置く。E の境界 x -48〜-20 に収まる"
+        },
+        "points_source": {
+          "dial_centre_face": [
+            0.0,
+            -0.064,
+            0.15
+          ],
+          "dial_rim_top_front": [
+            0.0,
+            -0.09,
+            0.305
+          ],
+          "dial_rim_right_front": [
+            0.155,
+            -0.09,
+            0.15
+          ]
+        }
+      },
+      "budget": {
+        "view": "mid",
+        "view_note": "塔の大部分は 5〜14 m の高さにあり、近づけるのは台座だけ",
+        "triangles_max": 30633,
+        "triangles_note": "三角形は削減しない（上限は確定版の数）。どれも 1.5〜4.2 万で、9 ファイルの合計は約 27.3 万。Spec §11 のとおり一律の上限で削らず、削減と焼き直しで UV と色が崩れる危険のほうを避けた",
+        "color_px_max": 2048,
+        "data_px_max": 1024,
+        "texels_per_m_at_color": 81.3,
+        "rule": "画像は、derived.texels_per_m が見る距離の目安（近景 90 px/m 以上、中景 45 以上、遠景 20 以上）に届く 1024/2048/4096 のうち最小。金属・粗さの画像は色の半分（512 以上）"
+      },
+      "split_and_attach": [
+        {
+          "part": "文字盤と針",
+          "measured": "文字盤（クリーム色の面とローマ数字）は塔と一体。針は形にも画像にも無く、中心に小さな軸受けだけがある。面は正面（+Y）を向く鉛直の面",
+          "decision": "針（時針・分針）は W06 が別の部品で、dial_centre_face を回転軸（+Y 方向の軸）にして作る。文字盤は分けなくてよい（外径 2.29 m、中心の高さ 8.10 m）"
+        },
+        {
+          "part": "周回する輪と球",
+          "measured": "塔の中腹を斜めに巻く細い輪と球が一体",
+          "decision": "分けない（Spec の時計の制御の対象外）"
+        }
+      ],
+      "double_sided": {
+        "decision": "片面のまま（両面の処理をしない）",
+        "where": "裏面を消して透ける画素は最大 0.00%（measured.backface_check）",
+        "confirmed_by_user": "2026-10-31（#13 の作業中の会話）。ResoLoop の exporter は doubleSided を保持しない"
+      },
+      "measured": {
+        "tool": "modeling/meshy/intake_inspect.py",
+        "blender": "5.0.1",
+        "measured_on": "2026-10-31",
+        "units": "GLB units (Meshy normalises the longest side to about 1.9); Blender axes after glTF import",
+        "glb": {
+          "meshes": 1,
+          "primitives": 1,
+          "nodes": 1,
+          "triangles": 30633,
+          "materials": [
+            {
+              "name": "BakedMaterial",
+              "doubleSided": true,
+              "alphaMode": "OPAQUE",
+              "baseColorTexture": true,
+              "metallicRoughnessTexture": true,
+              "normalTexture": false,
+              "occlusionTexture": false,
+              "emissiveTexture": false,
+              "emissiveFactor": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "images": [
+            {
+              "name": "texture_0",
+              "mimeType": "image/png"
+            },
+            {
+              "name": "texture_0_metallic_roughness",
+              "mimeType": "image/png"
+            }
+          ],
+          "generator": "Khronos glTF Blender I/O v4.3.47"
+        },
+        "objects_imported": 1,
+        "mesh_objects": 1,
+        "bounds_blender": {
+          "min": [
+            -0.5579,
+            -0.5279,
+            -0.9464
+          ],
+          "max": [
+            0.558,
+            0.4986,
+            0.9499
+          ],
+          "size": [
+            1.1159,
+            1.0265,
+            1.8963
+          ]
+        },
+        "triangles": 30633,
+        "vertices_imported": 58305,
+        "vertices_welded": 15058,
+        "materials": [
+          {
+            "name": "BakedMaterial",
+            "blend_method": "DITHERED",
+            "use_backface_culling": false
+          }
+        ],
+        "images": [
+          {
+            "name": "texture_0",
+            "size": [
+              4096,
+              4096
+            ],
+            "channels": 4,
+            "colorspace": "sRGB",
+            "format": "PNG",
+            "used_by": [
+              "Base Color"
+            ],
+            "alpha_min": 1.0
+          },
+          {
+            "name": "texture_0_metallic_roughness",
+            "size": [
+              4096,
+              4096
+            ],
+            "channels": 4,
+            "colorspace": "Non-Color",
+            "format": "PNG",
+            "used_by": [
+              "Metallic",
+              "Roughness"
+            ]
+          }
+        ],
+        "uv": {
+          "layers": 1,
+          "area_sum": 0.5562,
+          "corners_in_unit_square": 1.0
+        },
+        "topology": {
+          "boundary_edges": 76,
+          "boundary_loops": 38,
+          "nonmanifold_edges": 86,
+          "wire_edges": 0,
+          "components": 2,
+          "largest_component_triangle_share": 0.9957,
+          "pieces_after_largest": [
+            {
+              "rank": 1,
+              "triangles": 133,
+              "center": [
+                -0.4037,
+                0.004,
+                -0.327
+              ],
+              "size": [
+                0.0688,
+                0.0694,
+                0.1064
+              ],
+              "gap_to_other_pieces": 0.00141,
+              "floating": false
+            }
+          ],
+          "pieces_not_detailed": 0,
+          "floating_pieces": 0,
+          "floating_threshold": 0.00948,
+          "components_inside_out": 0,
+          "faces_inconsistent": 46
+        },
+        "outline_20": [
+          [
+            -0.5579,
+            0.558,
+            -0.5279,
+            0.4986
+          ],
+          [
+            -0.521,
+            0.528,
+            -0.4423,
+            0.4339
+          ],
+          [
+            -0.4989,
+            0.4957,
+            -0.319,
+            0.3512
+          ],
+          [
+            -0.4791,
+            0.4461,
+            -0.1441,
+            0.3208
+          ],
+          [
+            -0.4614,
+            0.4482,
+            -0.1578,
+            0.3034
+          ],
+          [
+            -0.4033,
+            0.4224,
+            -0.1421,
+            0.2637
+          ],
+          [
+            -0.4381,
+            0.2867,
+            -0.1206,
+            0.19
+          ],
+          [
+            -0.5092,
+            0.3881,
+            -0.2537,
+            0.1898
+          ],
+          [
+            -0.5513,
+            0.4003,
+            -0.3562,
+            0.4039
+          ],
+          [
+            -0.3709,
+            0.3794,
+            -0.2916,
+            0.4371
+          ],
+          [
+            -0.2553,
+            0.4679,
+            -0.1392,
+            0.4829
+          ],
+          [
+            -0.28,
+            0.4987,
+            -0.0698,
+            0.4497
+          ],
+          [
+            -0.2861,
+            0.2588,
+            -0.0905,
+            0.2525
+          ],
+          [
+            -0.2945,
+            0.264,
+            -0.1247,
+            0.2564
+          ],
+          [
+            -0.2517,
+            0.2392,
+            -0.1019,
+            0.2351
+          ],
+          [
+            -0.2202,
+            0.209,
+            -0.106,
+            0.2066
+          ],
+          [
+            -0.1129,
+            0.1452,
+            -0.0263,
+            0.1982
+          ],
+          [
+            -0.053,
+            0.0972,
+            0.0305,
+            0.1353
+          ],
+          [
+            -0.0268,
+            0.0216,
+            0.0534,
+            0.1553
+          ],
+          [
+            -0.0096,
+            0.0102,
+            0.0711,
+            0.1902
+          ]
+        ],
+        "openings": {
+          "pixel": 0.00395,
+          "front_x": {
+            "0.05": [],
+            "0.10": [
+              [
+                0.4535,
+                0.4811
+              ]
+            ],
+            "0.20": [
+              [
+                0.3547,
+                0.3824
+              ]
+            ],
+            "0.30": [
+              [
+                -0.392,
+                -0.226
+              ],
+              [
+                -0.1786,
+                -0.1589
+              ],
+              [
+                0.1611,
+                0.2362
+              ]
+            ],
+            "0.40": [
+              [
+                -0.2774,
+                -0.226
+              ],
+              [
+                -0.2102,
+                -0.1905
+              ],
+              [
+                0.1572,
+                0.3468
+              ]
+            ],
+            "0.50": [
+              [
+                0.169,
+                0.1888
+              ],
+              [
+                0.1967,
+                0.2401
+              ]
+            ],
+            "0.60": [],
+            "0.70": []
+          },
+          "side_y": {
+            "0.05": [],
+            "0.10": [],
+            "0.20": [],
+            "0.30": [
+              [
+                -0.1092,
+                -0.0657
+              ]
+            ],
+            "0.40": [
+              [
+                -0.2474,
+                -0.2198
+              ],
+              [
+                -0.0617,
+                -0.0262
+              ]
+            ],
+            "0.50": [
+              [
+                -0.1289,
+                -0.0815
+              ],
+              [
+                0.2069,
+                0.3373
+              ]
+            ],
+            "0.60": [],
+            "0.70": []
+          }
+        },
+        "backface_check": {
+          "method": "Workbench orthographic, culling off vs on",
+          "pixels": 320,
+          "views": {
+            "front": {
+              "object_pixels": 24372,
+              "see_through": 0.0,
+              "changed": 0.0009
+            },
+            "back": {
+              "object_pixels": 24370,
+              "see_through": 0.0,
+              "changed": 0.00336
+            },
+            "left": {
+              "object_pixels": 16897,
+              "see_through": 0.0,
+              "changed": 0.0
+            },
+            "right": {
+              "object_pixels": 16890,
+              "see_through": 0.0,
+              "changed": 0.0
+            },
+            "top": {
+              "object_pixels": 20260,
+              "see_through": 0.0,
+              "changed": 0.00044
+            },
+            "bottom": {
+              "object_pixels": 20255,
+              "see_through": 0.0,
+              "changed": 0.0
+            }
+          },
+          "max_see_through": 0.0,
+          "max_changed": 0.00336
+        }
+      },
+      "derived": {
+        "tool": "modeling/meshy/intake_inspect.py",
+        "dimensions_m": {
+          "width_x": 8.239,
+          "depth_y": 7.578,
+          "height_z": 14.0
+        },
+        "bounds_local_m": {
+          "min": [
+            -4.119,
+            -3.789,
+            -0.0
+          ],
+          "max": [
+            4.12,
+            3.789,
+            14.0
+          ]
+        },
+        "points_local_m": {
+          "dial_centre_face": [
+            0.001,
+            0.364,
+            8.095
+          ],
+          "dial_rim_top_front": [
+            0.001,
+            0.556,
+            9.239
+          ],
+          "dial_rim_right_front": [
+            -1.144,
+            0.556,
+            8.095
+          ]
+        },
+        "surface_area_m2": 352.8,
+        "texels_per_m": {
+          "1024": 40.7,
+          "2048": 81.3,
+          "4096": 162.6
+        }
+      }
+    },
+    {
+      "row_id": "M08",
+      "key": "M08",
+      "name_ja": "ほうきに乗った魔女",
+      "finishing_child": "W09-M08 (#21)",
+      "source": {
+        "original_path": "/workspaces/reso-world/tmp/halloween_magical_carnival_concept_art/M08_flying_witch_meshy_agent_pack/Meshy_AI_M08_Witch_Remeshed_30_1031095331_texture.glb",
+        "copy_path": "/workspaces/reso-world/worlds/reso-world-Halloween-meshy/M08/Meshy_AI_M08_Witch_Remeshed_30_1031095331_texture.glb",
+        "sha256": "afa4b611bba02e3a42b62550dbc5d61695c2a0a387d8ac6180b9fc3a31190bce",
+        "bytes": 24032988,
+        "received_on": "2026-10-31",
+        "attachments_dir": "/workspaces/reso-world/worlds/reso-world-Halloween-meshy/M08",
+        "attachments_copied": 16
+      },
+      "decided": {
+        "scale": 1.3125,
+        "yaw_deg": -124.25,
+        "origin_source": [
+          -0.048,
+          -0.13,
+          -0.488
+        ],
+        "origin_policy": "hinge_pivot",
+        "origin_note": "飛行の動作中心: ほうきの軸（穂の中心と柄の先を結ぶ線）の上で、外接箱の中心に最も近い点（座る位置の下）",
+        "size_basis": "全高 2.5 m（Spec の目安 2〜2.5 m の上限。上空を飛ぶので見やすさを優先）。ほうきの長さは約 2.0 m",
+        "front_local": "+Y（Blender。Resonite の +Z、Slot の前方）",
+        "front_meaning": "ほうきの進む向き（柄の先）。原本では水平に -145.75°（-X と -Y の間）、柄の先が 13° 上がる。yaw で水平の向きだけを +Y に合わせ、上がりは姿勢として残す",
+        "area_id": "C_candy",
+        "used_by": [
+          "W04 #6（仮モデルと上空の巡回経路）",
+          "W09-M08 #21（仕上げ）"
+        ],
+        "placement_hint": {
+          "position": null,
+          "rotation_z_deg": null,
+          "note": "W04 の巡回経路の上（G11）。原点を経路に乗せ、+Y を接線方向に向ける。下の derived の外接箱で、経路の高さと建物との間隔を決める"
+        },
+        "points_source": {
+          "broom_tip": [
+            -0.621,
+            -0.52,
+            -0.325
+          ],
+          "bristle_end_centre": [
+            0.609,
+            0.317,
+            -0.675
+          ]
+        }
+      },
+      "budget": {
+        "view": "far",
+        "view_note": "上空を飛ぶ（経路の高さは 10 m 以上の見込み）",
+        "triangles_max": 31130,
+        "triangles_note": "三角形は削減しない（上限は確定版の数）。どれも 1.5〜4.2 万で、9 ファイルの合計は約 27.3 万。Spec §11 のとおり一律の上限で削らず、削減と焼き直しで UV と色が崩れる危険のほうを避けた",
+        "color_px_max": 1024,
+        "data_px_max": 512,
+        "texels_per_m_at_color": 182.2,
+        "rule": "画像は、derived.texels_per_m が見る距離の目安（近景 90 px/m 以上、中景 45 以上、遠景 20 以上）に届く 1024/2048/4096 のうち最小。金属・粗さの画像は色の半分（512 以上）"
+      },
+      "split_and_attach": [
+        {
+          "part": "魔女・ほうき・猫",
+          "measured": "1 つの塊（components 1）。リグは無い",
+          "decision": "分けない。飛行は全体を動かす（G11）"
+        },
+        {
+          "part": "飛行の動作中心",
+          "measured": "ほうきの軸の上、外接箱の中心に最も近い点を原点にした。外接箱は原点から下へ 0.61 m、上へ 1.89 m、前（+Y）へ 0.91 m、後ろへ 1.22 m",
+          "decision": "W04 は巡回経路をこの原点の軌跡として記録し、建物（M04 の高さ 7.63 m）より 0.61 m + 余裕 1 m 以上上を通す"
+        }
+      ],
+      "double_sided": {
+        "decision": "片面のまま（両面の処理をしない）",
+        "where": "裏面を消して透ける画素は最大 0.00%（measured.backface_check）",
+        "confirmed_by_user": "2026-10-31（#13 の作業中の会話）。ResoLoop の exporter は doubleSided を保持しない"
+      },
+      "measured": {
+        "tool": "modeling/meshy/intake_inspect.py",
+        "blender": "5.0.1",
+        "measured_on": "2026-10-31",
+        "units": "GLB units (Meshy normalises the longest side to about 1.9); Blender axes after glTF import",
+        "glb": {
+          "meshes": 1,
+          "primitives": 1,
+          "nodes": 1,
+          "triangles": 31130,
+          "materials": [
+            {
+              "name": "BakedMaterial",
+              "doubleSided": true,
+              "alphaMode": "OPAQUE",
+              "baseColorTexture": true,
+              "metallicRoughnessTexture": true,
+              "normalTexture": false,
+              "occlusionTexture": false,
+              "emissiveTexture": false,
+              "emissiveFactor": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "images": [
+            {
+              "name": "texture_0",
+              "mimeType": "image/png"
+            },
+            {
+              "name": "texture_0_metallic_roughness",
+              "mimeType": "image/png"
+            }
+          ],
+          "generator": "Khronos glTF Blender I/O v4.3.47"
+        },
+        "objects_imported": 1,
+        "mesh_objects": 1,
+        "bounds_blender": {
+          "min": [
+            -0.6853,
+            -0.5757,
+            -0.9542
+          ],
+          "max": [
+            0.6899,
+            0.5747,
+            0.9506
+          ],
+          "size": [
+            1.3753,
+            1.1505,
+            1.9048
+          ]
+        },
+        "triangles": 31130,
+        "vertices_imported": 42030,
+        "vertices_welded": 15503,
+        "materials": [
+          {
+            "name": "BakedMaterial",
+            "blend_method": "DITHERED",
+            "use_backface_culling": false
+          }
+        ],
+        "images": [
+          {
+            "name": "texture_0",
+            "size": [
+              4096,
+              4096
+            ],
+            "channels": 4,
+            "colorspace": "sRGB",
+            "format": "PNG",
+            "used_by": [
+              "Base Color"
+            ],
+            "alpha_min": 1.0
+          },
+          {
+            "name": "texture_0_metallic_roughness",
+            "size": [
+              4096,
+              4096
+            ],
+            "channels": 4,
+            "colorspace": "Non-Color",
+            "format": "PNG",
+            "used_by": [
+              "Metallic",
+              "Roughness"
+            ]
+          }
+        ],
+        "uv": {
+          "layers": 1,
+          "area_sum": 0.6149,
+          "corners_in_unit_square": 1.0
+        },
+        "topology": {
+          "boundary_edges": 62,
+          "boundary_loops": 31,
+          "nonmanifold_edges": 50,
+          "wire_edges": 0,
+          "components": 1,
+          "largest_component_triangle_share": 1.0,
+          "pieces_after_largest": [],
+          "pieces_not_detailed": 0,
+          "floating_pieces": 0,
+          "floating_threshold": 0.00952,
+          "components_inside_out": 0,
+          "faces_inconsistent": 44
+        },
+        "outline_20": [
+          [
+            -0.0188,
+            0.6433,
+            -0.2491,
+            0.5035
+          ],
+          [
+            -0.1097,
+            0.686,
+            -0.2456,
+            0.5441
+          ],
+          [
+            -0.1259,
+            0.6899,
+            -0.2912,
+            0.5371
+          ],
+          [
+            -0.2108,
+            0.6676,
+            -0.2883,
+            0.5002
+          ],
+          [
+            -0.4,
+            0.5248,
+            -0.4053,
+            0.4059
+          ],
+          [
+            -0.5558,
+            0.663,
+            -0.5215,
+            0.3218
+          ],
+          [
+            -0.6207,
+            0.6714,
+            -0.5757,
+            0.3062
+          ],
+          [
+            -0.6058,
+            0.6682,
+            -0.5571,
+            0.2152
+          ],
+          [
+            -0.3599,
+            0.5919,
+            -0.3679,
+            0.384
+          ],
+          [
+            -0.4353,
+            0.6514,
+            -0.2682,
+            0.393
+          ],
+          [
+            -0.4177,
+            0.6827,
+            -0.2335,
+            0.3801
+          ],
+          [
+            -0.5649,
+            0.6722,
+            -0.2452,
+            0.5747
+          ],
+          [
+            -0.6693,
+            0.5297,
+            -0.2921,
+            0.5669
+          ],
+          [
+            -0.6853,
+            0.6214,
+            -0.5073,
+            0.3779
+          ],
+          [
+            -0.6693,
+            0.6325,
+            -0.5669,
+            0.2941
+          ],
+          [
+            -0.5292,
+            0.24,
+            -0.5718,
+            0.2844
+          ],
+          [
+            -0.4,
+            0.2336,
+            -0.5372,
+            0.294
+          ],
+          [
+            -0.1843,
+            0.5044,
+            -0.1735,
+            0.4761
+          ],
+          [
+            -0.1123,
+            0.4984,
+            -0.0094,
+            0.4634
+          ],
+          [
+            -0.0369,
+            0.1485,
+            0.0964,
+            0.3087
+          ]
+        ],
+        "openings": {
+          "pixel": 0.00397,
+          "front_x": {
+            "0.05": [
+              [
+                0.1163,
+                0.283
+              ]
+            ],
+            "0.10": [
+              [
+                0.1361,
+                0.1679
+              ]
+            ],
+            "0.20": [
+              [
+                0.2076,
+                0.2314
+              ],
+              [
+                0.3107,
+                0.3703
+              ]
+            ],
+            "0.30": [],
+            "0.40": [],
+            "0.50": [],
+            "0.60": [
+              [
+                0.406,
+                0.4814
+              ]
+            ],
+            "0.70": []
+          },
+          "side_y": {
+            "0.05": [
+              [
+                -0.1194,
+                0.1664
+              ]
+            ],
+            "0.10": [
+              [
+                -0.0837,
+                -0.0162
+              ]
+            ],
+            "0.20": [
+              [
+                -0.2186,
+                -0.1908
+              ],
+              [
+                0.0989,
+                0.1187
+              ],
+              [
+                0.1981,
+                0.2418
+              ]
+            ],
+            "0.30": [],
+            "0.40": [
+              [
+                0.1425,
+                0.1743
+              ]
+            ],
+            "0.50": [],
+            "0.60": [],
+            "0.70": []
+          }
+        },
+        "backface_check": {
+          "method": "Workbench orthographic, culling off vs on",
+          "pixels": 320,
+          "views": {
+            "front": {
+              "object_pixels": 38175,
+              "see_through": 0.0,
+              "changed": 0.0
+            },
+            "back": {
+              "object_pixels": 38176,
+              "see_through": 0.0,
+              "changed": 3e-05
+            },
+            "left": {
+              "object_pixels": 29553,
+              "see_through": 0.0,
+              "changed": 0.0
+            },
+            "right": {
+              "object_pixels": 29546,
+              "see_through": 0.0,
+              "changed": 0.0
+            },
+            "top": {
+              "object_pixels": 32225,
+              "see_through": 0.0,
+              "changed": 0.0
+            },
+            "bottom": {
+              "object_pixels": 32226,
+              "see_through": 0.0,
+              "changed": 0.0
+            }
+          },
+          "max_see_through": 0.0,
+          "max_changed": 3e-05
+        }
+      },
+      "derived": {
+        "tool": "modeling/meshy/intake_inspect.py",
+        "dimensions_m": {
+          "width_x": 1.542,
+          "depth_y": 2.126,
+          "height_z": 2.5
+        },
+        "bounds_local_m": {
+          "min": [
+            -0.637,
+            -1.215,
+            -0.612
+          ],
+          "max": [
+            0.905,
+            0.912,
+            1.888
+          ]
+        },
+        "points_local_m": {
+          "broom_tip": [
+            0.0,
+            0.91,
+            0.214
+          ],
+          "bristle_end_centre": [
+            -0.0,
+            -1.043,
+            -0.245
+          ]
+        },
+        "surface_area_m2": 19.4,
+        "texels_per_m": {
+          "1024": 182.2,
+          "2048": 364.4,
+          "4096": 728.8
+        }
+      }
+    }
+  ]
+}
