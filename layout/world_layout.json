@@ -632,7 +632,7 @@
       "issue_key": "E_forest",
       "area_code": "E",
       "w_issue": "W06 (#8)",
-      "name": "西・魔女の森と魔法工房 (Witch's Forest & Potion Workshop)",
+      "name": "西・魔法の森と時計塔 (Enchanted Forest & Clock Tower)",
       "direction": "west",
       "center": [
         -33.0,
@@ -948,7 +948,7 @@
         [
           19.0,
           19.0,
-          0.75
+          1.5
         ],
         [
           22.0,
@@ -956,7 +956,7 @@
           0.0
         ]
       ],
-      "max_slope_deg": 10.1,
+      "max_slope_deg": 19.5,
       "has_handrail": true,
       "step_free_or_slope": true,
       "notes": "2.6m-wide North-East sloped side bridge connecting Area B plateau (z=1.5m) down to Area C (z=0.0m) with continuous 1.10m safety handrails."
@@ -1035,7 +1035,7 @@
         [
           -19.0,
           19.0,
-          0.75
+          1.5
         ],
         [
           -16.0,
@@ -1043,7 +1043,7 @@
           1.5
         ]
       ],
-      "max_slope_deg": 10.1,
+      "max_slope_deg": 19.5,
       "has_handrail": true,
       "step_free_or_slope": true,
       "notes": "2.6m-wide North-West sloped side bridge connecting Area E (z=0.0m) up to Area B plateau (z=1.5m) with continuous 1.10m safety handrails."
@@ -1058,7 +1058,7 @@
         0.0,
         0.0
       ],
-      "height_m": 12.0,
+      "height_m": 7.6,
       "visible_from_areas": [
         "A_plaza",
         "B_mansion",
@@ -1069,7 +1069,7 @@
       "target_point": [
         0.0,
         0.0,
-        7.5
+        4.6
       ]
     },
     {
@@ -1077,10 +1077,10 @@
       "area_id": "B_mansion",
       "position": [
         0.0,
-        36.0,
+        41.5,
         1.5
       ],
-      "height_m": 20.0,
+      "height_m": 10.607,
       "visible_from_areas": [
         "A_plaza",
         "B_mansion",
@@ -1089,8 +1089,8 @@
       ],
       "target_point": [
         0.0,
-        36.0,
-        12.0
+        41.5,
+        6.8
       ]
     },
     {
@@ -1118,11 +1118,11 @@
       "landmark_id": "LM_D_CarouselGate_001",
       "area_id": "D_amusement",
       "position": [
-        0.0,
-        -33.0,
+        -10.5,
+        -32.0,
         0.0
       ],
-      "height_m": 12.0,
+      "height_m": 9.901,
       "visible_from_areas": [
         "A_plaza",
         "D_amusement",
@@ -1130,20 +1130,20 @@
         "E_forest"
       ],
       "target_point": [
-        0.0,
-        -33.0,
-        6.5
+        -10.5,
+        -32.0,
+        5.0
       ]
     },
     {
-      "landmark_id": "LM_E_WitchWorkshop_001",
+      "landmark_id": "LM_E_ClockTower_001",
       "area_id": "E_forest",
       "position": [
-        -35.0,
+        -38.5,
         0.0,
         0.0
       ],
-      "height_m": 11.5,
+      "height_m": 14.0,
       "visible_from_areas": [
         "A_plaza",
         "E_forest",
@@ -1151,9 +1151,9 @@
         "D_amusement"
       ],
       "target_point": [
-        -35.0,
+        -38.5,
         0.0,
-        6.0
+        8.0
       ]
     }
   ],

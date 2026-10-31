@@ -1,0 +1,16 @@
+{
+  "command": "resoloop validate exports/p1/B_mansion-20261031T142609Z/model.apply.json --json",
+  "exit": 0,
+  "result": {
+    "ok": true,
+    "data": {
+      "valid": true,
+      "schemaVersion": "1",
+      "slots": 87,
+      "components": 109,
+      "references": 202,
+      "strict": false,
+      "issues": []
+    }
+  }
+}

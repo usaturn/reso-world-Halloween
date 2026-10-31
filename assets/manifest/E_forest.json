@@ -73,9 +73,9 @@
           "parent_part": "EFR_ClockTower_001",
           "origin_policy": "attachment_point",
           "pivot_local": [
-            0.001,
+            0.0015,
             0.364,
-            8.095
+            8.032
           ],
           "notes": "Dial placeholder centred on the clock axis. M07 has its own dial: hide or remove this object when M07 is in."
         },
@@ -85,9 +85,9 @@
           "parent_part": "EFR_ClockTower_001",
           "origin_policy": "hinge_pivot",
           "pivot_local": [
-            0.001,
+            0.0015,
             0.419,
-            8.095
+            8.032
           ],
           "notes": "Hour hand rotation axis = clock axis."
         },
@@ -97,9 +97,9 @@
           "parent_part": "EFR_ClockTower_001_HourHandPivot",
           "origin_policy": "hinge_pivot",
           "pivot_local": [
-            0.001,
+            0.0015,
             0.419,
-            8.095
+            8.032
           ]
         },
         {
@@ -108,9 +108,9 @@
           "parent_part": "EFR_ClockTower_001",
           "origin_policy": "hinge_pivot",
           "pivot_local": [
-            0.001,
+            0.0015,
             0.459,
-            8.095
+            8.032
           ],
           "notes": "Minute hand rotation axis = clock axis."
         },
@@ -120,9 +120,9 @@
           "parent_part": "EFR_ClockTower_001_MinuteHandPivot",
           "origin_policy": "hinge_pivot",
           "pivot_local": [
-            0.001,
+            0.0015,
             0.459,
-            8.095
+            8.032
           ]
         },
         {
@@ -143,7 +143,7 @@
           "parent_part": "EFR_ClockTower_001",
           "origin_policy": "hinge_pivot",
           "pivot_local": [
-            0.001,
+            0.0015,
             1.45,
             10.95
           ],
@@ -155,7 +155,7 @@
           "parent_part": "EFR_ClockTower_001_BellPivot",
           "origin_policy": "hinge_pivot",
           "pivot_local": [
-            0.001,
+            0.0015,
             1.45,
             10.95
           ]
@@ -235,9 +235,9 @@
         "forward_axis": "+Y",
         "origin": "ground_center (W09 decided.origin_source; M07 placed with scale 7.3828, yaw 180)",
         "dial_centre_local": [
-          0.001,
+          0.0015,
           0.364,
-          8.095
+          8.032
         ],
         "dial_outer_diameter_m": 2.288,
         "keep_separate_parts": [
@@ -282,14 +282,14 @@
           "gimmick_id": "G20",
           "motion_type": "rotation",
           "pivot_local": [
-            0.001,
+            0.0015,
             0.419,
-            8.095
+            8.032
           ],
           "pivot_world": [
             -38.081,
-            -0.001,
-            8.095
+            -0.0015,
+            8.032
           ],
           "axis": "-Y",
           "axis_frame": "pivot local (Blender)",
@@ -305,9 +305,9 @@
           },
           "rest_pose": {
             "position": [
-              0.001,
+              0.0015,
               0.419,
-              8.095
+              8.032
             ],
             "rotation_euler_deg": [
               0.0,
@@ -323,13 +323,13 @@
           "envelope_world": {
             "min": [
               -38.081,
-              -0.621,
-              7.475
+              -0.6215,
+              7.412
             ],
             "max": [
               -38.051,
-              0.619,
-              8.715
+              0.6185,
+              8.652
             ]
           },
           "envelope_low_world": null,
@@ -341,14 +341,14 @@
           "gimmick_id": "G20",
           "motion_type": "rotation",
           "pivot_local": [
-            0.001,
+            0.0015,
             0.459,
-            8.095
+            8.032
           ],
           "pivot_world": [
             -38.041,
-            -0.001,
-            8.095
+            -0.0015,
+            8.032
           ],
           "axis": "-Y",
           "axis_frame": "pivot local (Blender)",
@@ -364,9 +364,9 @@
           },
           "rest_pose": {
             "position": [
-              0.001,
+              0.0015,
               0.459,
-              8.095
+              8.032
             ],
             "rotation_euler_deg": [
               0.0,
@@ -382,13 +382,13 @@
           "envelope_world": {
             "min": [
               -38.047,
-              -0.931,
-              7.165
+              -0.9315,
+              7.102
             ],
             "max": [
               -38.011,
-              0.929,
-              9.025
+              0.9285,
+              8.962
             ]
           },
           "envelope_low_world": null,
@@ -400,13 +400,13 @@
           "gimmick_id": "G20",
           "motion_type": "oscillation",
           "pivot_local": [
-            0.001,
+            0.0015,
             1.45,
             10.95
           ],
           "pivot_world": [
             -37.05,
-            -0.001,
+            -0.0015,
             10.95
           ],
           "axis": "X",
@@ -423,7 +423,7 @@
           },
           "rest_pose": {
             "position": [
-              0.001,
+              0.0015,
               1.45,
               10.95
             ],
@@ -441,12 +441,12 @@
           "envelope_world": {
             "min": [
               -37.6502,
-              -0.361,
+              -0.3615,
               10.202
             ],
             "max": [
               -36.4498,
-              0.359,
+              0.3585,
               11.0025
             ]
           },
@@ -459,14 +459,14 @@
           "name": "EFR_ClockTower_001_HourHandPivot",
           "purpose": "Clock axis (hands, chime sound source).",
           "local_position": [
-            0.001,
+            0.0015,
             0.419,
-            8.095
+            8.032
           ],
           "world_position": [
             -38.081,
-            -0.001,
-            8.095
+            -0.0015,
+            8.032
           ],
           "gimmick_or_interaction_id": "G20"
         },
@@ -474,13 +474,13 @@
           "name": "EFR_ClockTower_001_BellPivot",
           "purpose": "Bell ring sound and sparkle effect.",
           "local_position": [
-            0.001,
+            0.0015,
             1.45,
             10.95
           ],
           "world_position": [
             -37.05,
-            -0.001,
+            -0.0015,
             10.95
           ],
           "gimmick_or_interaction_id": "G20"

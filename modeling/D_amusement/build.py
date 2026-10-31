@@ -207,7 +207,7 @@ def _make_manifest_entry(
 
     for obj in subtree:
         role, origin_pol = _classify_part_role(obj, root_obj, motion_set, attach_set)
-        if obj.type == "MESH":
+        if obj.type == "MESH" and obj.name not in attach_set:  # W07: attachment sockets are meshes, not visuals
             visual_roots.append(obj.name)
         parts.append(
             {

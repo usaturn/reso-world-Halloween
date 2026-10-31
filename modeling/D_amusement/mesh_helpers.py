@@ -323,6 +323,25 @@ def create_empty_node(
     return obj
 
 
+def create_attachment_socket(
+    name: str,
+    collection: bpy.types.Collection,
+    material: bpy.types.Material,
+    location: tuple[float, float, float] = (0.0, 0.0, 0.0),
+    parent: bpy.types.Object | None = None,
+    radius: float = 0.04,
+) -> bpy.types.Object:
+    """Create a small octagonal socket MESH for an attachment point (W07, Issue #9).
+
+    `resoloop blender export --preserve-hierarchy` leaves out Empties with no mesh below them, so attachment points
+    made as plain Empties never reached the bundle (docs/conventions.md §4.2). The origin is the attachment point.
+    """
+    bm = bmesh.new()
+    uv_layer = bm.loops.layers.uv.new("UVMap")
+    add_frustum_z(bm, uv_layer, (0.0, 0.0), -radius, radius, radius, radius * 0.7, segments=8, material_index=0)
+    return finalize_mesh_obj(name, bm, collection, [material], location=location, parent=parent)
+
+
 def finalize_mesh_obj(
     name: str,
     bm: bmesh.types.BMesh,

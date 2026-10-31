@@ -17,7 +17,9 @@ from modeling.E_forest.geo import MeshBuilder, Wobble
 # W09 decided values (placed local, metres).
 M07_DIMENSIONS = (8.239, 7.578, 14.0)
 M07_BOUNDS = {"min": (-4.119, -3.789, 0.0), "max": (4.12, 3.789, 14.0)}
-DIAL_CENTRE = (0.001, 0.364, 8.095)  # dial_centre_face: clock axis on the dial face, axis along +Y
+# W07 (Issue #9): x and z follow the dial centre measured on the finished M07 (handoff/W09-M07.md, review/M07/checks.json
+# `dial`); W09's dial_centre_face (0.001, 0.364, 8.095) sat 6.3 cm high. y stays on the W06 dial face.
+DIAL_CENTRE = (0.0015, 0.364, 8.032)  # clock axis on the dial face, axis along +Y
 DIAL_OUTER_R = 1.144  # 2.29 m outer diameter (rim front at y 0.556)
 DIAL_RIM_FRONT_Y = 0.556
 HOUR_HAND_PIVOT = (DIAL_CENTRE[0], DIAL_CENTRE[1] + 0.055, DIAL_CENTRE[2])
@@ -147,7 +149,8 @@ def _hand(P: dict, outline: list[tuple[float, float]], tail_orb: bool) -> MeshBu
     mark = mb.mark()
     mb.prism(outline, -0.022, 0.0, P["hand_iron"])
     mb.transform_since(mark, RX_PLATE)
-    mb.lathe([(0.0, 0.0), (0.06, 0.0), (0.06, 0.03), (0.0, 0.03)], P["gold"], segments=10, matrix=RX_TO_FRONT)
+    # Hub radius 0.10 m (was 0.06) hides M07's own hand bearing, 3.5 cm above the dial centre (handoff/W09-M07.md).
+    mb.lathe([(0.0, 0.0), (0.10, 0.0), (0.10, 0.03), (0.0, 0.03)], P["gold"], segments=10, matrix=RX_TO_FRONT)
     if tail_orb:
         mb.blob((0.0, 0.011, -0.25), (0.07, 0.02, 0.07), P["gold"], subdiv=1, noise=0.0, seed=0)
     return mb
