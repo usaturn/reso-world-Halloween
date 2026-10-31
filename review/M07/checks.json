@@ -1,0 +1,494 @@
+{
+  "triangles": 30633,
+  "vertices": 58305,
+  "bounds_m": {
+    "min": [
+      -4.119,
+      -3.7892,
+      -0.0002
+    ],
+    "max": [
+      4.1196,
+      3.789,
+      14.0
+    ]
+  },
+  "bounds_expected_m": {
+    "min": [
+      -4.119,
+      -3.789,
+      -0.0
+    ],
+    "max": [
+      4.12,
+      3.789,
+      14.0
+    ]
+  },
+  "bounds_max_abs_diff_m": 0.0004,
+  "dimensions_m": {
+    "width_x": 8.239,
+    "depth_y": 7.578,
+    "height_z": 14.0
+  },
+  "dimensions_expected_m": {
+    "width_x": 8.239,
+    "depth_y": 7.578,
+    "height_z": 14.0
+  },
+  "origin": {
+    "policy": "ground_center",
+    "min_z": -0.0002,
+    "box_centre_xy": [
+      0.0003,
+      -0.0001
+    ]
+  },
+  "object_transform_identity": true,
+  "uv_cover": 0.5562,
+  "uv_corners_in_unit_square": 1.0,
+  "surface_area_m2": 352.8,
+  "texels_per_m_at_color": 81.3,
+  "topology_welded": {
+    "boundary_edges": 76,
+    "boundary_loops": 38,
+    "nonmanifold_edges": 86,
+    "wire_edges": 0,
+    "components": 2,
+    "largest_component_triangle_share": 0.9957,
+    "pieces_after_largest": [
+      {
+        "rank": 1,
+        "triangles": 133,
+        "center": [
+          2.9813,
+          -0.1378,
+          4.5731
+        ],
+        "size": [
+          0.5076,
+          0.5127,
+          0.7854
+        ],
+        "gap_to_other_pieces": 0.01039,
+        "floating": false
+      }
+    ],
+    "pieces_not_detailed": 0,
+    "floating_pieces": 0,
+    "floating_threshold": 0.07,
+    "components_inside_out": 0,
+    "faces_inconsistent": 49
+  },
+  "dial": {
+    "method": "rays from +Y travelling -Y on the finished mesh. Face plane: least squares over the inner disc (r 0.12..0.5 m, 1 cm grid). Centre: on 120 radial lines the first radius where the surface rises 0.006 m above the face plane (the step up to the numerals ring), circle fit leaving out points over 0.01 m off. Outer edge: the first radius where the first hit falls 0.08 m behind the face plane, median per 60° sector around the centre; the diameter is the +X and -X sectors (a sill continues the dial's front below it)",
+    "centre_local_m": [
+      0.0015,
+      0.3539,
+      8.032
+    ],
+    "outer_diameter_m": 2.308,
+    "inner_ring_fit": {
+      "lines": 120,
+      "edge_points": 115,
+      "kept": 81,
+      "radius_m": 0.6031,
+      "rms_kept_m": 0.0044,
+      "max_abs_kept_m": 0.0095
+    },
+    "outer_edge": {
+      "lines_with_edge": 118,
+      "sectors": {
+        "+X": {
+          "lines": 21,
+          "median_r_m": 1.149
+        },
+        "top": {
+          "lines": 21,
+          "median_r_m": 1.171
+        },
+        "-X": {
+          "lines": 21,
+          "median_r_m": 1.159
+        },
+        "bottom": {
+          "lines": 19,
+          "median_r_m": 1.167
+        }
+      },
+      "vertical_diameter_m": 2.338
+    },
+    "face_normal_local": [
+      -0.00082,
+      1.0,
+      -0.00157
+    ],
+    "face_tilt_from_plus_y_deg": 0.102,
+    "face_plane_y_at_centre_m": 0.3539,
+    "inner_disc_relief": {
+      "points": 7397,
+      "max_abs_residual_m": 0.0022,
+      "share_over_limit": 0.0,
+      "limit_m": 0.005
+    },
+    "hub": {
+      "points_2mm": 2492,
+      "centre_xz_m": [
+        0.0049,
+        8.0668
+      ],
+      "equivalent_radius_m": 0.0563,
+      "front_y_m": 0.4062,
+      "offset_from_centre_xz_m": [
+        0.0034,
+        0.0347
+      ]
+    },
+    "numerals_ring": {
+      "r_m": [
+        0.55,
+        1.0
+      ],
+      "max_front_y_m": 0.3778,
+      "max_raise_m": 0.0239
+    },
+    "rim": {
+      "r_m": [
+        1.0,
+        1.144
+      ],
+      "max_front_y_m": 0.3793,
+      "max_raise_m": 0.027
+    },
+    "max_front_y_within_dial_m": 0.4052,
+    "inner_disc_colour": {
+      "samples": 2808,
+      "median_rgb": [
+        0.976,
+        0.824,
+        0.529
+      ],
+      "differ_threshold": 0.15,
+      "share_differs": 0.0007,
+      "radial_lines": 72,
+      "max_share_on_one_line": 0.0256,
+      "line_of_max_deg": 55.0
+    },
+    "w09": {
+      "dial_centre_face": [
+        0.001,
+        0.364,
+        8.095
+      ],
+      "outer_diameter_m": 2.29,
+      "centre_diff_m": [
+        0.0005,
+        -0.0101,
+        -0.063
+      ],
+      "rim_top_front": [
+        0.001,
+        0.556,
+        9.239
+      ]
+    },
+    "w06": {
+      "manifest": "assets/manifest/E_forest.json",
+      "hour_hand_pivot": [
+        0.001,
+        0.419,
+        8.095
+      ],
+      "minute_hand_pivot": [
+        0.001,
+        0.459,
+        8.095
+      ],
+      "axis_offset_xz_m": [
+        -0.0005,
+        0.063
+      ],
+      "axis_offset_m": 0.063,
+      "hour_pivot_in_front_of_dial_face_m": 0.0651,
+      "hour_pivot_in_front_of_max_dial_y_m": 0.0138,
+      "minute_pivot_in_front_of_max_dial_y_m": 0.0538,
+      "placeholder_dial_outer_diameter_m": 2.288,
+      "bell_pivot": [
+        0.001,
+        1.45,
+        10.95
+      ],
+      "m07_front_y_behind_bell_m": {
+        "x_m": [
+          -0.249,
+          0.251
+        ],
+        "z_m": [
+          10.5,
+          11.5
+        ],
+        "min": -0.184,
+        "max": 0.672
+      }
+    }
+  },
+  "row_id": "M07",
+  "object": "M07_ClockTower_001",
+  "source": {
+    "copy_path": "/workspaces/reso-world/worlds/reso-world-Halloween-meshy/M07/Meshy_AI_M07_MagicalClockTower_1031093103_texture.glb",
+    "sha256": "6e9e279d0d9c3f69f76bcc0c1e784d47ed5005d2a2ca51a22ac03eaeb34c0a39",
+    "copy_sha256_ok": true,
+    "original_path": "/workspaces/reso-world/tmp/halloween_magical_carnival_concept_art/M07_magical_clock_tower_meshy_agent/Meshy_AI_M07_MagicalClockTower_1031093103_texture.glb",
+    "original_sha256_ok": true
+  },
+  "budget": {
+    "view": "mid",
+    "view_note": "塔の大部分は 5〜14 m の高さにあり、近づけるのは台座だけ",
+    "triangles_max": 30633,
+    "triangles_note": "三角形は削減しない（上限は確定版の数）。どれも 1.5〜4.2 万で、9 ファイルの合計は約 27.3 万。Spec §11 のとおり一律の上限で削らず、削減と焼き直しで UV と色が崩れる危険のほうを避けた",
+    "color_px_max": 2048,
+    "data_px_max": 1024,
+    "texels_per_m_at_color": 81.3,
+    "rule": "画像は、derived.texels_per_m が見る距離の目安（近景 90 px/m 以上、中景 45 以上、遠景 20 以上）に届く 1024/2048/4096 のうち最小。金属・粗さの画像は色の半分（512 以上）"
+  },
+  "textures": {
+    "color": {
+      "file": "blender/M07/textures/M07_ClockTower_001_color.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "source_size": [
+        4096,
+        4096
+      ]
+    },
+    "metallic": {
+      "file": "blender/M07/textures/M07_ClockTower_001_metallic.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "source": "Blue channel",
+      "range": [
+        0.0,
+        1.0
+      ]
+    },
+    "roughness": {
+      "file": "blender/M07/textures/M07_ClockTower_001_roughness.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "source": "Green channel",
+      "range": [
+        0.0,
+        1.0
+      ]
+    }
+  },
+  "uv_texel_share_1024": 0.6362,
+  "backface_check": {
+    "method": "Workbench orthographic, culling off vs on",
+    "pixels": 320,
+    "views": {
+      "front": {
+        "object_pixels": 24369,
+        "see_through": 0.0,
+        "changed": 0.00283
+      },
+      "back": {
+        "object_pixels": 24372,
+        "see_through": 0.0,
+        "changed": 0.00078
+      },
+      "left": {
+        "object_pixels": 16891,
+        "see_through": 0.0,
+        "changed": 0.0
+      },
+      "right": {
+        "object_pixels": 16897,
+        "see_through": 0.0,
+        "changed": 0.0
+      },
+      "top": {
+        "object_pixels": 20260,
+        "see_through": 0.0,
+        "changed": 0.0002
+      },
+      "bottom": {
+        "object_pixels": 20263,
+        "see_through": 0.0,
+        "changed": 0.0
+      }
+    },
+    "max_see_through": 0.0,
+    "max_changed": 0.00283,
+    "view_camera_side": {
+      "back": "+Y (front, dial)",
+      "front": "-Y (back)",
+      "right": "+X",
+      "left": "-X",
+      "top": "+Z (top)",
+      "bottom": "-Z (bottom)"
+    }
+  },
+  "blend_counts": {
+    "objects": 1,
+    "meshes": 1,
+    "materials": 1,
+    "images": 4,
+    "collections": 1
+  },
+  "blender": "5.0.1",
+  "review_images": [
+    "review/M07/M07_views.png",
+    "review/M07/M07_dial_textured.png",
+    "review/M07/M07_dial_shape.png",
+    "review/M07/M07_compare_source.png",
+    "review/M07/M07_uv_layout.png",
+    "review/M07/M07_backface_culled.png"
+  ],
+  "dial_cameras": [
+    {
+      "image": "review/M07/M07_dial_textured.png",
+      "tiles": [
+        "Cycles, front",
+        "Workbench FLAT texture, orthographic, marks"
+      ],
+      "front": {
+        "location": [
+          0.0015,
+          4.520566666666666,
+          8.032
+        ],
+        "target": [
+          0.0015,
+          0.3539,
+          8.032
+        ],
+        "lens_mm": 50.0
+      },
+      "orthographic": {
+        "location": [
+          0.0015,
+          6.3539,
+          8.032
+        ],
+        "target": [
+          0.0015,
+          0.3539,
+          8.032
+        ],
+        "ortho_scale": 3.0
+      }
+    },
+    {
+      "image": "review/M07/M07_dial_shape.png",
+      "tiles": [
+        "Workbench SINGLE + cavity, front",
+        "Workbench SINGLE + cavity, grazing"
+      ],
+      "front": {
+        "location": [
+          0.0015,
+          4.520566666666666,
+          8.032
+        ],
+        "target": [
+          0.0015,
+          0.3539,
+          8.032
+        ],
+        "lens_mm": 50.0
+      },
+      "grazing": {
+        "location": [
+          2.6015,
+          2.3539,
+          8.932
+        ],
+        "target": [
+          0.0015,
+          0.3539,
+          8.032
+        ],
+        "lens_mm": 50.0
+      }
+    }
+  ],
+  "closeups": [
+    {
+      "name": "dial",
+      "camera": [
+        1.3,
+        6.0,
+        8.8
+      ],
+      "target": [
+        0.0,
+        0.35,
+        8.1
+      ],
+      "lens_mm": 50.0
+    },
+    {
+      "name": "entrance",
+      "camera": [
+        1.8,
+        10.0,
+        3.2
+      ],
+      "target": [
+        0.0,
+        2.0,
+        2.0
+      ],
+      "lens_mm": 35.0
+    },
+    {
+      "name": "orbit_ring",
+      "camera": [
+        6.5,
+        6.5,
+        9.0
+      ],
+      "target": [
+        1.5,
+        0.5,
+        7.6
+      ],
+      "lens_mm": 35.0
+    },
+    {
+      "name": "spire",
+      "camera": [
+        3.5,
+        8.0,
+        14.0
+      ],
+      "target": [
+        0.0,
+        0.0,
+        12.0
+      ],
+      "lens_mm": 35.0
+    },
+    {
+      "name": "rock_base",
+      "camera": [
+        7.5,
+        7.0,
+        2.2
+      ],
+      "target": [
+        3.0,
+        2.5,
+        0.8
+      ],
+      "lens_mm": 35.0
+    }
+  ]
+}

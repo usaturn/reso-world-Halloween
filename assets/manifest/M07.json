@@ -1,0 +1,175 @@
+{
+  "schema_version": "1.0",
+  "key": "M07",
+  "updated_at": "2026-10-31T13:12:45Z",
+  "assets": [
+    {
+      "asset_id": "M07_ClockTower_001",
+      "key": "M07",
+      "category": "prop",
+      "area_id": "E_forest",
+      "collection": "M07",
+      "blend_file": "blender/M07/M07.blend",
+      "script_file": "modeling/M07/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "placement_hint": {
+        "position": [
+          -38.5,
+          0.0,
+          0.0
+        ],
+        "rotation_z_deg": -90.0,
+        "note": "西の主動線の終点 (-33,0,0) の奥に、正面を東（広場）に向けて置く。E の境界 x -48〜-20 に収まる"
+      },
+      "forward_local": "+Y",
+      "dimensions_m": {
+        "width": 8.239,
+        "depth": 7.578,
+        "height": 14.0
+      },
+      "bounds_local": {
+        "min": [
+          -4.119,
+          -3.7892,
+          -0.0002
+        ],
+        "max": [
+          4.1196,
+          3.789,
+          14.0
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "M07_ClockTower_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "M07_ClockTower_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "M07_ClockTower_001"
+        ],
+        "attachment_points": []
+      },
+      "dial": {
+        "centre_local_m": [
+          0.0015,
+          0.3539,
+          8.032
+        ],
+        "outer_diameter_m": 2.308,
+        "face_normal_local": [
+          -0.00082,
+          1.0,
+          -0.00157
+        ],
+        "hands": "none (W06 parts)",
+        "source": "review/M07/checks.json dial"
+      },
+      "materials": [
+        "MAT_M07_ClockTower"
+      ],
+      "textures": [
+        "blender/M07/textures/M07_ClockTower_001_color.png",
+        "blender/M07/textures/M07_ClockTower_001_metallic.png",
+        "blender/M07/textures/M07_ClockTower_001_roughness.png"
+      ],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 30633,
+        "vertices": 58305,
+        "materials_count": 1,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "exported",
+        "bundle_dir": "exports/M07/bundle",
+        "apply_plan": "exports/M07/bundle/model.apply.json",
+        "report_file": "exports/M07/bundle/report.json",
+        "parent": "Root/ResoLoop_Test_W09_M07",
+        "flags": [
+          "--collection M07",
+          "--preserve-hierarchy",
+          "--pack-pbr"
+        ],
+        "report": {
+          "triangles": 30633,
+          "vertices": 59288,
+          "materials": 1,
+          "drawSections": 1,
+          "staticOnly": true,
+          "preserveHierarchy": true,
+          "warnings": []
+        },
+        "meshes": [
+          {
+            "name": "M07_ClockTower_001",
+            "vertices": 59288,
+            "triangles": 30633,
+            "submeshes": 1
+          }
+        ],
+        "textures": [
+          {
+            "name": "M07_ClockTower_001_color",
+            "width": 2048,
+            "height": 2048,
+            "rgba8MipBytesEstimate": 22369622
+          },
+          {
+            "name": "pbr_mat_material_MAT_M07_ClockTower_f3f34237_9a8d0f66",
+            "width": 1024,
+            "height": 1024,
+            "rgba8MipBytesEstimate": 5592406
+          }
+        ],
+        "validate": {
+          "valid": true,
+          "strict": false,
+          "slots": 6,
+          "components": 5,
+          "references": 7,
+          "issues": []
+        }
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "future_target": null,
+        "replaces_placeholder": {
+          "manifest": "assets/manifest/E_forest.json",
+          "asset_id": "EFR_ClockTower_001",
+          "visual_root_part": "EFR_ClockTower_001_Body",
+          "hide_on_replacement": [
+            "EFR_ClockTower_001_Dial"
+          ],
+          "keep_separate_parts": [
+            "EFR_ClockTower_001_HourHandPivot",
+            "EFR_ClockTower_001_HourHand",
+            "EFR_ClockTower_001_MinuteHandPivot",
+            "EFR_ClockTower_001_MinuteHand",
+            "EFR_ClockTower_001_BellBracket",
+            "EFR_ClockTower_001_BellPivot",
+            "EFR_ClockTower_001_Bell"
+          ]
+        },
+        "notes": "Meshy の M07 を仕上げた差し替え用の見た目（Spec §6.3 の VisualRoot に入れる静的なモデル）。P2（W08 の後）で W06 の仮モデル EFR_ClockTower_001 の本体（replaces_placeholder.visual_root_part）だけと差し替え、仮の文字盤は隠し、針・鐘・腕木は W06 の部品を残す。origin_world はアセットのローカル原点で、ワールドの位置と向きは W06 の配置（W09 の推奨 placement_hint: [-38.5, 0.0, 0.0]、Z -90.0°）。原点は岩の台座の底面の中央（z=0）、正面（文字盤と階段）は +Y（Resonite の +Z）。文字盤の中心は [0.0015, 0.3539, 8.032]、外径 2.308 m、面の法線 [-0.00082, 1.0, -0.00157]（針は形にも画像にも無い）。発光（窓・ランタン）は焼き込まず、コライダーも含めない（P2・P3 で Resonite 側に付ける）"
+      }
+    }
+  ]
+}
