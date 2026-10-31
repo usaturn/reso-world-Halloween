@@ -8,6 +8,8 @@
 - **W01（P1）**: `assets/manifest/world.json` と `assets/manifest/common.json` を作成する。
 - **W02〜W06（P1）**: それぞれ `assets/manifest/<key>.json`（`A_plaza`, `B_mansion`, `C_candy`, `D_amusement`, `E_forest`）を作成する。
 - **W07（P1 統合）**: 各キーのマニフェストを検査し、必要に応じて `assets/manifest.json` に統合する。
+- **W09（Meshy 素材の受領）**: キー `meshy`。受領台帳は `assets/meshy/` に置き、`assets/manifest/` には作らない。
+- **W09-M01〜W09-M08（Meshy 素材の仕上げ）**: それぞれ `assets/manifest/<key>.json`（`M01`〜`M08`）を作成する。
 
 ## Spec §6.4 との対応項目
 
@@ -16,7 +18,7 @@
 | Spec §6.4 の項目 | JSON フィールド | 内容・制約 |
 |---|---|---|
 | ID | `id` | `A_Pumpkin_001` 等の安定英数字 ID（`^[A-Za-z0-9]+(_[A-Za-z0-9]+)+$`、`.001` 禁止、全キー横断で一意） |
-| 地区 | `area` | `"P0"`, `"W"`, `"CMN"`, `"A"`, `"B"`, `"C"`, `"D"`, `"E"`, `"OVW"` |
+| 地区 | `area` | `"P0"`, `"W"`, `"CMN"`, `"A"`, `"B"`, `"C"`, `"D"`, `"E"`, `"OVW"`, `"MSH"`, `"M01"`〜`"M08"` |
 | 制作者・出典 | `author_source` | `author`, `source_type` (`blender_procedural` / `meshy_proxy` / `meshy_final` / `common_linked`), `meshy_id` (`"M01"`〜`"M08"` または `null`) |
 | ファイルと版 | `file_and_version` | `blend_file`, `script_file`, `collection`, `version` |
 | 仮モデルか完成素材か | `stage_status` | `"proxy"`（Meshy 仮モデル等）, `"final"`（Blender 本造形）, `"verification_probe"`（P0 検証用） |

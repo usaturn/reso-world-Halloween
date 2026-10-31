@@ -31,12 +31,21 @@
         "C_candy",
         "D_amusement",
         "E_forest",
-        "overview"
+        "overview",
+        "meshy",
+        "M01",
+        "M02",
+        "M03",
+        "M04",
+        "M05",
+        "M06",
+        "M07",
+        "M08"
       ]
     },
     "area_code": {
       "type": "string",
-      "enum": ["P0", "W", "CMN", "A", "B", "C", "D", "E", "OVW"]
+      "enum": ["P0", "W", "CMN", "A", "B", "C", "D", "E", "OVW", "MSH", "M01", "M02", "M03", "M04", "M05", "M06", "M07", "M08"]
     },
     "center": { "$ref": "#/$defs/vec3" },
     "bounds_min": { "$ref": "#/$defs/vec3" },

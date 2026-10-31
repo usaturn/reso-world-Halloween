@@ -95,7 +95,7 @@
     "description": "South grand entrance gate at (0, -44, 0) facing +Y toward the Central Pumpkin Tower across Area D."
   },
   "spawn": {
-    "area_id": "D_mansion",
+    "area_id": "D_amusement",
     "position": [
       0.0,
       -44.0,
@@ -111,7 +111,7 @@
   "spawn_candidates": [
     {
       "spawn_id": "Spawn_South_Entrance_Gate",
-      "area_id": "D_mansion",
+      "area_id": "D_amusement",
       "issue_key": "D_amusement",
       "position": [
         0.0,
@@ -146,71 +146,6 @@
       "notes": "South ring road of the Central Pumpkin Plaza facing +Y toward the Pumpkin Tower landmark."
     }
   ],
-  "area_key_mapping": {
-    "notes": "tools/check_data.py (owned by W00) validates area_id/key against VALID_AREA_IDS={'A_plaza','B_alley','C_park','D_mansion','E_forest'}. Both the Issue keys and check_data keys are mapped here for W02-W07.",
-    "issue_to_schema_area_id": {
-      "A_plaza": "A_plaza",
-      "B_mansion": "B_alley",
-      "C_candy": "C_park",
-      "D_amusement": "D_mansion",
-      "E_forest": "E_forest"
-    },
-    "schema_to_issue_area_id": {
-      "A_plaza": "A_plaza",
-      "B_alley": "B_mansion",
-      "C_park": "C_candy",
-      "D_mansion": "D_amusement",
-      "E_forest": "E_forest"
-    },
-    "A_plaza": {
-      "area_code": "A",
-      "check_data_key": "A_plaza",
-      "issue_key": "A_plaza",
-      "w_issue": "W02 (#4)"
-    },
-    "B_mansion": {
-      "area_code": "B",
-      "check_data_key": "B_alley",
-      "issue_key": "B_mansion",
-      "w_issue": "W03 (#5)"
-    },
-    "B_alley": {
-      "area_code": "B",
-      "check_data_key": "B_alley",
-      "issue_key": "B_mansion",
-      "w_issue": "W03 (#5)"
-    },
-    "C_candy": {
-      "area_code": "C",
-      "check_data_key": "C_park",
-      "issue_key": "C_candy",
-      "w_issue": "W04 (#6)"
-    },
-    "C_park": {
-      "area_code": "C",
-      "check_data_key": "C_park",
-      "issue_key": "C_candy",
-      "w_issue": "W04 (#6)"
-    },
-    "D_amusement": {
-      "area_code": "D",
-      "check_data_key": "D_mansion",
-      "issue_key": "D_amusement",
-      "w_issue": "W05 (#7)"
-    },
-    "D_mansion": {
-      "area_code": "D",
-      "check_data_key": "D_mansion",
-      "issue_key": "D_amusement",
-      "w_issue": "W05 (#7)"
-    },
-    "E_forest": {
-      "area_code": "E",
-      "check_data_key": "E_forest",
-      "issue_key": "E_forest",
-      "w_issue": "W06 (#8)"
-    }
-  },
   "areas": [
     {
       "area_id": "A_plaza",
@@ -249,16 +184,16 @@
       ],
       "ground_elevation_m": 0.0,
       "connections": [
-        "B_alley",
-        "C_park",
-        "D_mansion",
+        "B_mansion",
+        "C_candy",
+        "D_amusement",
         "E_forest"
       ],
       "connection_points": [
         {
           "id": "Conn_A_North",
           "target_area": "B_mansion",
-          "target_area_id": "B_alley",
+          "target_area_id": "B_mansion",
           "position": [
             0.0,
             14.5,
@@ -269,7 +204,7 @@
         {
           "id": "Conn_A_East",
           "target_area": "C_candy",
-          "target_area_id": "C_park",
+          "target_area_id": "C_candy",
           "position": [
             14.5,
             0.0,
@@ -280,7 +215,7 @@
         {
           "id": "Conn_A_South",
           "target_area": "D_amusement",
-          "target_area_id": "D_mansion",
+          "target_area_id": "D_amusement",
           "position": [
             0.0,
             -14.5,
@@ -344,8 +279,8 @@
       ]
     },
     {
-      "area_id": "B_alley",
-      "key": "B_alley",
+      "area_id": "B_mansion",
+      "key": "B_mansion",
       "issue_key": "B_mansion",
       "area_code": "B",
       "w_issue": "W03 (#5)",
@@ -381,7 +316,7 @@
       "ground_elevation_m": 1.5,
       "connections": [
         "A_plaza",
-        "C_park",
+        "C_candy",
         "E_forest"
       ],
       "connection_points": [
@@ -399,7 +334,7 @@
         {
           "id": "Conn_B_East_Side",
           "target_area": "C_candy",
-          "target_area_id": "C_park",
+          "target_area_id": "C_candy",
           "position": [
             16.0,
             22.0,
@@ -453,8 +388,8 @@
       ]
     },
     {
-      "area_id": "C_park",
-      "key": "C_park",
+      "area_id": "C_candy",
+      "key": "C_candy",
       "issue_key": "C_candy",
       "area_code": "C",
       "w_issue": "W04 (#6)",
@@ -490,8 +425,8 @@
       "ground_elevation_m": 0.0,
       "connections": [
         "A_plaza",
-        "B_alley",
-        "D_mansion"
+        "B_mansion",
+        "D_amusement"
       ],
       "connection_points": [
         {
@@ -508,7 +443,7 @@
         {
           "id": "Conn_C_North_Side",
           "target_area": "B_mansion",
-          "target_area_id": "B_alley",
+          "target_area_id": "B_mansion",
           "position": [
             22.0,
             16.0,
@@ -519,7 +454,7 @@
         {
           "id": "Conn_C_South_Side",
           "target_area": "D_amusement",
-          "target_area_id": "D_mansion",
+          "target_area_id": "D_amusement",
           "position": [
             22.0,
             -16.0,
@@ -562,8 +497,8 @@
       ]
     },
     {
-      "area_id": "D_mansion",
-      "key": "D_mansion",
+      "area_id": "D_amusement",
+      "key": "D_amusement",
       "issue_key": "D_amusement",
       "area_code": "D",
       "w_issue": "W05 (#7)",
@@ -599,7 +534,7 @@
       "ground_elevation_m": 0.0,
       "connections": [
         "A_plaza",
-        "C_park",
+        "C_candy",
         "E_forest"
       ],
       "connection_points": [
@@ -617,7 +552,7 @@
         {
           "id": "Conn_D_South_Spawn",
           "target_area": "D_amusement",
-          "target_area_id": "D_mansion",
+          "target_area_id": "D_amusement",
           "position": [
             0.0,
             -44.0,
@@ -628,7 +563,7 @@
         {
           "id": "Conn_D_East_Side",
           "target_area": "C_candy",
-          "target_area_id": "C_park",
+          "target_area_id": "C_candy",
           "position": [
             16.0,
             -22.0,
@@ -729,8 +664,8 @@
       "ground_elevation_m": 0.0,
       "connections": [
         "A_plaza",
-        "B_alley",
-        "D_mansion"
+        "B_mansion",
+        "D_amusement"
       ],
       "connection_points": [
         {
@@ -747,7 +682,7 @@
         {
           "id": "Conn_E_North_Side",
           "target_area": "B_mansion",
-          "target_area_id": "B_alley",
+          "target_area_id": "B_mansion",
           "position": [
             -22.0,
             16.0,
@@ -758,7 +693,7 @@
         {
           "id": "Conn_E_South_Side",
           "target_area": "D_amusement",
-          "target_area_id": "D_mansion",
+          "target_area_id": "D_amusement",
           "position": [
             -22.0,
             -16.0,
@@ -864,7 +799,7 @@
     {
       "route_id": "Route_South_Entrance_Approach",
       "id": "Route_South_Entrance_Approach",
-      "from_area": "D_mansion",
+      "from_area": "D_amusement",
       "to_area": "A_plaza",
       "kind": "main_road",
       "width_m": 4.0,
@@ -899,7 +834,7 @@
       "route_id": "Route_North_Mansion_Bridge",
       "id": "Route_North_Mansion_Bridge",
       "from_area": "A_plaza",
-      "to_area": "B_alley",
+      "to_area": "B_mansion",
       "kind": "main_road",
       "width_m": 4.0,
       "waypoints": [
@@ -933,7 +868,7 @@
       "route_id": "Route_East_Candy_Bridge",
       "id": "Route_East_Candy_Bridge",
       "from_area": "A_plaza",
-      "to_area": "C_park",
+      "to_area": "C_candy",
       "kind": "main_road",
       "width_m": 4.0,
       "waypoints": [
@@ -1000,8 +935,8 @@
     {
       "route_id": "Route_NE_Side_Bridge",
       "id": "Route_NE_Side_Bridge",
-      "from_area": "B_alley",
-      "to_area": "C_park",
+      "from_area": "B_mansion",
+      "to_area": "C_candy",
       "kind": "bridge",
       "width_m": 2.6,
       "waypoints": [
@@ -1029,8 +964,8 @@
     {
       "route_id": "Route_SE_Side_Bridge",
       "id": "Route_SE_Side_Bridge",
-      "from_area": "C_park",
-      "to_area": "D_mansion",
+      "from_area": "C_candy",
+      "to_area": "D_amusement",
       "kind": "bridge",
       "width_m": 2.6,
       "waypoints": [
@@ -1058,7 +993,7 @@
     {
       "route_id": "Route_SW_Side_Bridge",
       "id": "Route_SW_Side_Bridge",
-      "from_area": "D_mansion",
+      "from_area": "D_amusement",
       "to_area": "E_forest",
       "kind": "bridge",
       "width_m": 2.6,
@@ -1088,7 +1023,7 @@
       "route_id": "Route_NW_Side_Bridge",
       "id": "Route_NW_Side_Bridge",
       "from_area": "E_forest",
-      "to_area": "B_alley",
+      "to_area": "B_mansion",
       "kind": "bridge",
       "width_m": 2.6,
       "waypoints": [
@@ -1126,9 +1061,9 @@
       "height_m": 12.0,
       "visible_from_areas": [
         "A_plaza",
-        "B_alley",
-        "C_park",
-        "D_mansion",
+        "B_mansion",
+        "C_candy",
+        "D_amusement",
         "E_forest"
       ],
       "target_point": [
@@ -1139,7 +1074,7 @@
     },
     {
       "landmark_id": "LM_B_HauntedMansion_001",
-      "area_id": "B_alley",
+      "area_id": "B_mansion",
       "position": [
         0.0,
         36.0,
@@ -1148,8 +1083,8 @@
       "height_m": 20.0,
       "visible_from_areas": [
         "A_plaza",
-        "B_alley",
-        "C_park",
+        "B_mansion",
+        "C_candy",
         "E_forest"
       ],
       "target_point": [
@@ -1160,7 +1095,7 @@
     },
     {
       "landmark_id": "LM_C_CandyArch_001",
-      "area_id": "C_park",
+      "area_id": "C_candy",
       "position": [
         33.0,
         0.0,
@@ -1169,9 +1104,9 @@
       "height_m": 9.5,
       "visible_from_areas": [
         "A_plaza",
-        "C_park",
-        "B_alley",
-        "D_mansion"
+        "C_candy",
+        "B_mansion",
+        "D_amusement"
       ],
       "target_point": [
         33.0,
@@ -1181,7 +1116,7 @@
     },
     {
       "landmark_id": "LM_D_CarouselGate_001",
-      "area_id": "D_mansion",
+      "area_id": "D_amusement",
       "position": [
         0.0,
         -33.0,
@@ -1190,8 +1125,8 @@
       "height_m": 12.0,
       "visible_from_areas": [
         "A_plaza",
-        "D_mansion",
-        "C_park",
+        "D_amusement",
+        "C_candy",
         "E_forest"
       ],
       "target_point": [
@@ -1212,8 +1147,8 @@
       "visible_from_areas": [
         "A_plaza",
         "E_forest",
-        "B_alley",
-        "D_mansion"
+        "B_mansion",
+        "D_amusement"
       ],
       "target_point": [
         -35.0,
@@ -1225,7 +1160,7 @@
   "line_of_sight": [
     {
       "los_id": "LOS_SouthEntrance_To_CentralPlaza",
-      "from_area": "D_mansion",
+      "from_area": "D_amusement",
       "from_point": [
         0.0,
         -44.0,
@@ -1248,7 +1183,7 @@
         12.0,
         1.7
       ],
-      "to_area": "B_alley",
+      "to_area": "B_mansion",
       "to_point": [
         0.0,
         36.0,
@@ -1265,7 +1200,7 @@
         0.0,
         1.7
       ],
-      "to_area": "C_park",
+      "to_area": "C_candy",
       "to_point": [
         33.0,
         0.0,

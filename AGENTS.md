@@ -24,7 +24,7 @@ Use `resoloop` as the only mutation interface for Resonite content in this proje
   - `.blend` の検査: `uv run python tools/check_blend.py`（キー指定は `--key <key>`）
 - 再生成コマンド（W00 で定義）: `resoloop blender run modeling/<key>/build.py --json`
 - ワールド: reso-world-Halloween（Halloween Magical Carnival）
-  - 所有キー: `probe`（W00）、`world`・`common`（W01）、`A_plaza`（W02）、`B_mansion`（W03）、`C_candy`（W04）、`D_amusement`（W05）、`E_forest`（W06）、`overview`（W07）
+  - 所有キー: `probe`（W00）、`world`・`common`（W01）、`A_plaza`（W02）、`B_mansion`（W03）、`C_candy`（W04）、`D_amusement`（W05）、`E_forest`（W06）、`overview`（W07）、`meshy`（W09）、`M01`〜`M08`（W09-M01〜W09-M08）。接頭辞は `docs/conventions.md` §3（W01A で `BMN`・`CCD`・`DAM`・`MSH`・`M01`〜`M08` に揃えた）
   - 詳細な座標・命名・ディレクトリ規約は `docs/conventions.md`、環境情報は `docs/environment.md` を参照
 - state ファイル: `flux/resoloop.flux.json` の `worldState`（`.resoloop/state/reso_world_halloween.json`）を既定とする。P0 小規模検証では `.resoloop/state/p0_probe_test.json` を使い、テスト用の `ResoLoop_Test_P0_Probe` スロット配下のみを操作する
 - リポジトリ: `usaturn/reso-world-Halloween`（公開、remote は `origin`、統合の基準は `main`）。公開なので、秘密情報と利用者の個人情報をコミットしない
