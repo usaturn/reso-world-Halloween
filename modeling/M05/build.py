@@ -63,6 +63,8 @@ SCRIPT_REL = "modeling/M05/build.py"
 FRINGE_MIN_RADIUS = 2.0
 GAP_GRID_STEP = 0.05
 CAP_DEPTH = 0.05  # casing vertices this close below the roof base belong to the cap the hub sits on
+# W05's placeholders this asset replaces in P2 (``assets/manifest/D_amusement.json``, ``handoff/W05.md`` 7.3).
+PLACEHOLDERS = {NAMES[CASING]: "DAM_Carousel_001_M05_CenterCasing", NAMES[CANOPY]: "DAM_Carousel_001_M05_Canopy"}
 
 
 def rel(path: Path) -> str:
@@ -499,10 +501,11 @@ def manifest(rows: dict, checks: dict, textures: dict, materials: dict) -> dict:
                 "is_placeholder": False,
                 "modifiable": True,
                 "future_target": None,
-                "replaces_placeholder": None,
+                "replaces_placeholder": dict(PLACEHOLDERS),
                 "notes": (
                     "Meshy の M05 を仕上げた差し替え用の見た目（Spec §6.3 の VisualRoot に入れる静的なモデル）。"
-                    "P2（W08 の後）で W05（#7）のメリーゴーラウンドの仮モデル（中央の柱と屋根。ID は W05 が決める。2026-10-31 時点で未マージ）と差し替える。"
+                    "P2（W08 の後）で W05（#7）のメリーゴーラウンド DAM_Carousel_001 の仮モデルと差し替える（対応は replaces_placeholder。"
+                    "W05 の取付点は TurnRoot の下の DAM_Carousel_001_Att_M05_CenterCasing（z 0.19）と DAM_Carousel_001_Att_M05_Canopy（z 3.154））。"
                     f"アセットの原点は回転軸上の柱の底（回転床の上面に置く）。{casing} は原点そのまま、{canopy} は同じ軸の {base_z} m 上が原点（ハブの下面）。"
                     "正面（ジャック・オー・ランタンの顔と柱の紋章）は +Y（Resonite の +Z）。回転・上下動の仕組みは含めず、P3 で W05 の回転床の TurnRoot と一緒に回す。"
                     f"垂れ飾りの最下点は柱の原点から {fringe['lowest_z_above_casing_origin_m']} m。発光とコライダーは含めない"
