@@ -1,0 +1,3960 @@
+{
+  "schema_version": "1.0",
+  "key": "A_plaza",
+  "updated_at": "2026-10-31T12:00:00Z",
+  "assets": [
+    {
+      "asset_id": "APL_PlazaPaving_001",
+      "key": "A_plaza",
+      "category": "architecture",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 35.0,
+        "depth": 35.0,
+        "height": 0.52
+      },
+      "bounds_local": {
+        "min": [
+          -17.5,
+          -17.5,
+          0.0
+        ],
+        "max": [
+          17.5,
+          17.5,
+          0.52
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_PlazaPaving_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_PlazaPaving_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "APL_PlazaPaving_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_APL_PlazaStone",
+        "MAT_APL_PlazaMosaic",
+        "MAT_APL_PlazaBrass",
+        "MAT_APL_FountainStone",
+        "MAT_APL_PlanterFoliage"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 1564,
+        "vertices": 814,
+        "materials_count": 5,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Central plaza cobblestone disc, brass arcane rings, 4 cardinal mosaic walkways, and 4 diagonal flowerbed planters.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "APL_Fountain_001",
+      "key": "A_plaza",
+      "category": "gimmick",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 8.4,
+        "depth": 8.4,
+        "height": 1.6
+      },
+      "bounds_local": {
+        "min": [
+          -4.2,
+          -4.2,
+          0.0
+        ],
+        "max": [
+          4.2,
+          4.2,
+          1.6
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_Fountain_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_Fountain_001_Basin",
+          "role": "static_part",
+          "parent_part": "APL_Fountain_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_Fountain_001_Water",
+          "role": "motion_root",
+          "parent_part": "APL_Fountain_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_Fountain_001_WaterAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_Fountain_001_Basin",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            1.55
+          ]
+        },
+        {
+          "part_id": "APL_Fountain_001_LightAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_Fountain_001_Basin",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            -2.5,
+            0.65
+          ]
+        },
+        {
+          "part_id": "APL_Fountain_001_SoundAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_Fountain_001_Basin",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            1.1
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_Fountain_001",
+        "motion_roots": [
+          "APL_Fountain_001_Water"
+        ],
+        "visual_roots": [
+          "APL_Fountain_001_Basin",
+          "APL_Fountain_001_Water"
+        ],
+        "attachment_points": [
+          "APL_Fountain_001_WaterAttach",
+          "APL_Fountain_001_LightAttach",
+          "APL_Fountain_001_SoundAttach"
+        ]
+      },
+      "materials": [
+        "MAT_APL_FountainStone",
+        "MAT_APL_PlazaBrass",
+        "MAT_APL_JackOrange",
+        "MAT_APL_MagicWater",
+        "MAT_APL_LanternGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 1864,
+        "vertices": 974,
+        "materials_count": 5,
+        "objects_count": 6
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G03 central tiered fountain with separated static stone basin/pedestal, animated water veil mesh, and water/light/sound attachment points.",
+        "future_target": null
+      },
+      "motion": {
+        "gimmick_id": "G03",
+        "type": "tiered_fountain_water_and_glow",
+        "water_mesh_part": "APL_Fountain_001_Water",
+        "pedestal_top_z_m": 1.6,
+        "outer_diameter_m": 8.4
+      }
+    },
+    {
+      "asset_id": "APL_GiantJackProxy_001",
+      "key": "A_plaza",
+      "category": "gimmick",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.0,
+        0.0,
+        1.6
+      ],
+      "dimensions_m": {
+        "width": 6.202,
+        "depth": 5.87,
+        "height": 6.0
+      },
+      "bounds_local": {
+        "min": [
+          -3.101,
+          -2.935,
+          0.0
+        ],
+        "max": [
+          3.101,
+          2.935,
+          6.0
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_GiantJackProxy_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_GiantJackProxy_001_Body",
+          "role": "static_part",
+          "parent_part": "APL_GiantJackProxy_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_GiantJackProxy_001_EyeLightAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_GiantJackProxy_001_Body",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            -2.676,
+            2.317
+          ]
+        },
+        {
+          "part_id": "APL_GiantJackProxy_001_MouthReactionAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_GiantJackProxy_001_Body",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            -2.806,
+            1.372
+          ]
+        },
+        {
+          "part_id": "APL_GiantJackProxy_001_InteriorLightAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_GiantJackProxy_001_Body",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            2.409,
+            0.981
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_GiantJackProxy_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "APL_GiantJackProxy_001_Body"
+        ],
+        "attachment_points": [
+          "APL_GiantJackProxy_001_EyeLightAttach",
+          "APL_GiantJackProxy_001_MouthReactionAttach",
+          "APL_GiantJackProxy_001_InteriorLightAttach"
+        ]
+      },
+      "materials": [
+        "MAT_APL_JackOrange",
+        "MAT_APL_JackGlow",
+        "MAT_APL_WitchHat",
+        "MAT_APL_PlazaBrass",
+        "MAT_APL_CandyGold",
+        "MAT_APL_LanternGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 932,
+        "vertices": 508,
+        "materials_count": 6,
+        "objects_count": 5
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": true,
+        "modifiable": true,
+        "notes": "M02 Giant Jack-o'-Lantern with witch hat placeholder/proxy mounted on the G03 fountain pedestal at (0, 0, 1.60), matching W09 dimensions (6.202m x 5.87m x 6.0m, top z=7.60m).",
+        "future_target": "M02_GiantJack",
+        "replacement_slot": {
+          "meshy_id": "M02",
+          "target_asset_id": "MSH_GiantJack_001",
+          "origin_policy": "ground_center",
+          "origin_world": [
+            0.0,
+            0.0,
+            1.6
+          ],
+          "front_world": "-Y",
+          "raw_glb_rotation_z_deg": 180.0,
+          "dimensions_m": {
+            "width": 6.202,
+            "depth": 5.87,
+            "height": 6.0
+          }
+        }
+      },
+      "motion": {
+        "meshy_slot": "M02",
+        "interaction_id": "I03",
+        "type": "landmark_reaction_socket_target",
+        "trigger_source_asset": "APL_JackInteractionPedestal_001",
+        "eye_light_socket": "APL_GiantJackProxy_001_EyeLightAttach",
+        "mouth_reaction_socket": "APL_GiantJackProxy_001_MouthReactionAttach",
+        "interior_light_socket": "APL_GiantJackProxy_001_InteriorLightAttach"
+      }
+    },
+    {
+      "asset_id": "APL_JackInteractionPedestal_001",
+      "key": "A_plaza",
+      "category": "gimmick",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.0,
+        -4.65,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 0.96,
+        "depth": 0.96,
+        "height": 1.17
+      },
+      "bounds_local": {
+        "min": [
+          -0.48,
+          -0.48,
+          0.0
+        ],
+        "max": [
+          0.48,
+          0.48,
+          1.17
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_JackInteractionPedestal_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_JackInteractionPedestal_001_Base",
+          "role": "static_part",
+          "parent_part": "APL_JackInteractionPedestal_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_JackInteractionPedestal_001_OrbButton",
+          "role": "motion_root",
+          "parent_part": "APL_JackInteractionPedestal_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            -0.06,
+            0.96
+          ]
+        },
+        {
+          "part_id": "APL_JackInteractionPedestal_001_EffectAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_JackInteractionPedestal_001_OrbButton",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.18
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_JackInteractionPedestal_001",
+        "motion_roots": [
+          "APL_JackInteractionPedestal_001_OrbButton"
+        ],
+        "visual_roots": [
+          "APL_JackInteractionPedestal_001_Base",
+          "APL_JackInteractionPedestal_001_OrbButton"
+        ],
+        "attachment_points": [
+          "APL_JackInteractionPedestal_001_EffectAttach"
+        ]
+      },
+      "materials": [
+        "MAT_APL_FountainStone",
+        "MAT_APL_PlazaBrass",
+        "MAT_APL_JackGlow",
+        "MAT_APL_MagicWater"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 156,
+        "vertices": 88,
+        "materials_count": 4,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "I03 reachable player interaction pedestal outside south fountain basin, linked to Giant Jack eye and mouth reaction attachment points.",
+        "future_target": null
+      },
+      "motion": {
+        "interaction_id": "I03",
+        "type": "button_press_and_remote_reaction",
+        "press_axis_local": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "press_stroke_m": 0.05,
+        "linked_targets": [
+          "APL_GiantJackProxy_001_EyeLightAttach",
+          "APL_GiantJackProxy_001_MouthReactionAttach"
+        ]
+      }
+    },
+    {
+      "asset_id": "APL_DancingPumpkin_001",
+      "key": "A_plaza",
+      "category": "gimmick",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -2.72,
+        -3.89,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 1.0584,
+        "depth": 1.0584,
+        "height": 1.1
+      },
+      "bounds_local": {
+        "min": [
+          -0.5292,
+          -0.5292,
+          0.0
+        ],
+        "max": [
+          0.5292,
+          0.5292,
+          1.1
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_DancingPumpkin_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_DancingPumpkin_001_Pedestal",
+          "role": "static_part",
+          "parent_part": "APL_DancingPumpkin_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_DancingPumpkin_001_Body",
+          "role": "motion_root",
+          "parent_part": "APL_DancingPumpkin_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.24
+          ]
+        },
+        {
+          "part_id": "APL_DancingPumpkin_001_GlowAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_DancingPumpkin_001_Body",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            -0.22,
+            0.26
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_DancingPumpkin_001",
+        "motion_roots": [
+          "APL_DancingPumpkin_001_Body"
+        ],
+        "visual_roots": [
+          "APL_DancingPumpkin_001_Pedestal",
+          "APL_DancingPumpkin_001_Body"
+        ],
+        "attachment_points": [
+          "APL_DancingPumpkin_001_GlowAttach"
+        ]
+      },
+      "materials": [
+        "MAT_APL_FountainStone",
+        "MAT_APL_PlazaBrass",
+        "MAT_APL_JackOrange",
+        "MAT_APL_JackGlow",
+        "MAT_APL_WitchHat"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 444,
+        "vertices": 244,
+        "materials_count": 5,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G01 independent dancing pumpkin (APL_DancingPumpkin_001) on stone rim pedestal with separated motion_root body and glow attachment.",
+        "future_target": null
+      },
+      "motion": {
+        "gimmick_id": "G01",
+        "type": "vertical_bounce_and_tilt",
+        "rest_pose_local": [
+          0.0,
+          0.0,
+          0.24
+        ],
+        "bounce_z_range_m": [
+          -0.02,
+          0.18
+        ],
+        "tilt_roll_deg_range": [
+          -12.0,
+          12.0
+        ],
+        "phase_deg": 0.0,
+        "envelope_radius_m": 0.55,
+        "walkway_clearance_verified": true
+      }
+    },
+    {
+      "asset_id": "APL_DancingPumpkin_002",
+      "key": "A_plaza",
+      "category": "gimmick",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        2.72,
+        -3.89,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 1.0584,
+        "depth": 1.0584,
+        "height": 1.1
+      },
+      "bounds_local": {
+        "min": [
+          -0.5292,
+          -0.5292,
+          0.0
+        ],
+        "max": [
+          0.5292,
+          0.5292,
+          1.1
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_DancingPumpkin_002",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_DancingPumpkin_002_Pedestal",
+          "role": "static_part",
+          "parent_part": "APL_DancingPumpkin_002",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_DancingPumpkin_002_Body",
+          "role": "motion_root",
+          "parent_part": "APL_DancingPumpkin_002",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.24
+          ]
+        },
+        {
+          "part_id": "APL_DancingPumpkin_002_GlowAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_DancingPumpkin_002_Body",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            -0.22,
+            0.26
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_DancingPumpkin_002",
+        "motion_roots": [
+          "APL_DancingPumpkin_002_Body"
+        ],
+        "visual_roots": [
+          "APL_DancingPumpkin_002_Pedestal",
+          "APL_DancingPumpkin_002_Body"
+        ],
+        "attachment_points": [
+          "APL_DancingPumpkin_002_GlowAttach"
+        ]
+      },
+      "materials": [
+        "MAT_APL_FountainStone",
+        "MAT_APL_PlazaBrass",
+        "MAT_APL_JackOrange",
+        "MAT_APL_JackGlow",
+        "MAT_APL_WitchHat"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 444,
+        "vertices": 244,
+        "materials_count": 5,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G01 independent dancing pumpkin (APL_DancingPumpkin_002) on stone rim pedestal with separated motion_root body and glow attachment.",
+        "future_target": null
+      },
+      "motion": {
+        "gimmick_id": "G01",
+        "type": "vertical_bounce_and_tilt",
+        "rest_pose_local": [
+          0.0,
+          0.0,
+          0.24
+        ],
+        "bounce_z_range_m": [
+          -0.02,
+          0.18
+        ],
+        "tilt_roll_deg_range": [
+          -12.0,
+          12.0
+        ],
+        "phase_deg": 60.0,
+        "envelope_radius_m": 0.55,
+        "walkway_clearance_verified": true
+      }
+    },
+    {
+      "asset_id": "APL_DancingPumpkin_003",
+      "key": "A_plaza",
+      "category": "gimmick",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        4.59,
+        -1.23,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 0.9308,
+        "depth": 0.9308,
+        "height": 1.1
+      },
+      "bounds_local": {
+        "min": [
+          -0.4654,
+          -0.4654,
+          0.0
+        ],
+        "max": [
+          0.4654,
+          0.4654,
+          1.1
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_DancingPumpkin_003",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_DancingPumpkin_003_Pedestal",
+          "role": "static_part",
+          "parent_part": "APL_DancingPumpkin_003",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_DancingPumpkin_003_Body",
+          "role": "motion_root",
+          "parent_part": "APL_DancingPumpkin_003",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.24
+          ]
+        },
+        {
+          "part_id": "APL_DancingPumpkin_003_GlowAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_DancingPumpkin_003_Body",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            -0.22,
+            0.26
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_DancingPumpkin_003",
+        "motion_roots": [
+          "APL_DancingPumpkin_003_Body"
+        ],
+        "visual_roots": [
+          "APL_DancingPumpkin_003_Pedestal",
+          "APL_DancingPumpkin_003_Body"
+        ],
+        "attachment_points": [
+          "APL_DancingPumpkin_003_GlowAttach"
+        ]
+      },
+      "materials": [
+        "MAT_APL_FountainStone",
+        "MAT_APL_PlazaBrass",
+        "MAT_APL_JackOrange",
+        "MAT_APL_JackGlow",
+        "MAT_APL_WitchHat"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 444,
+        "vertices": 244,
+        "materials_count": 5,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G01 independent dancing pumpkin (APL_DancingPumpkin_003) on stone rim pedestal with separated motion_root body and glow attachment.",
+        "future_target": null
+      },
+      "motion": {
+        "gimmick_id": "G01",
+        "type": "vertical_bounce_and_tilt",
+        "rest_pose_local": [
+          0.0,
+          0.0,
+          0.24
+        ],
+        "bounce_z_range_m": [
+          -0.02,
+          0.18
+        ],
+        "tilt_roll_deg_range": [
+          -12.0,
+          12.0
+        ],
+        "phase_deg": 120.0,
+        "envelope_radius_m": 0.55,
+        "walkway_clearance_verified": true
+      }
+    },
+    {
+      "asset_id": "APL_DancingPumpkin_004",
+      "key": "A_plaza",
+      "category": "gimmick",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -4.59,
+        -1.23,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 0.9308,
+        "depth": 0.9308,
+        "height": 1.1
+      },
+      "bounds_local": {
+        "min": [
+          -0.4654,
+          -0.4654,
+          0.0
+        ],
+        "max": [
+          0.4654,
+          0.4654,
+          1.1
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_DancingPumpkin_004",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_DancingPumpkin_004_Pedestal",
+          "role": "static_part",
+          "parent_part": "APL_DancingPumpkin_004",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_DancingPumpkin_004_Body",
+          "role": "motion_root",
+          "parent_part": "APL_DancingPumpkin_004",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.24
+          ]
+        },
+        {
+          "part_id": "APL_DancingPumpkin_004_GlowAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_DancingPumpkin_004_Body",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            -0.22,
+            0.26
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_DancingPumpkin_004",
+        "motion_roots": [
+          "APL_DancingPumpkin_004_Body"
+        ],
+        "visual_roots": [
+          "APL_DancingPumpkin_004_Pedestal",
+          "APL_DancingPumpkin_004_Body"
+        ],
+        "attachment_points": [
+          "APL_DancingPumpkin_004_GlowAttach"
+        ]
+      },
+      "materials": [
+        "MAT_APL_FountainStone",
+        "MAT_APL_PlazaBrass",
+        "MAT_APL_JackOrange",
+        "MAT_APL_JackGlow",
+        "MAT_APL_WitchHat"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 444,
+        "vertices": 244,
+        "materials_count": 5,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G01 independent dancing pumpkin (APL_DancingPumpkin_004) on stone rim pedestal with separated motion_root body and glow attachment.",
+        "future_target": null
+      },
+      "motion": {
+        "gimmick_id": "G01",
+        "type": "vertical_bounce_and_tilt",
+        "rest_pose_local": [
+          0.0,
+          0.0,
+          0.24
+        ],
+        "bounce_z_range_m": [
+          -0.02,
+          0.18
+        ],
+        "tilt_roll_deg_range": [
+          -12.0,
+          12.0
+        ],
+        "phase_deg": 180.0,
+        "envelope_radius_m": 0.55,
+        "walkway_clearance_verified": true
+      }
+    },
+    {
+      "asset_id": "APL_DancingPumpkin_005",
+      "key": "A_plaza",
+      "category": "gimmick",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        3.36,
+        3.36,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 1.0748,
+        "depth": 1.0748,
+        "height": 1.1
+      },
+      "bounds_local": {
+        "min": [
+          -0.5374,
+          -0.5374,
+          0.0
+        ],
+        "max": [
+          0.5374,
+          0.5374,
+          1.1
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_DancingPumpkin_005",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_DancingPumpkin_005_Pedestal",
+          "role": "static_part",
+          "parent_part": "APL_DancingPumpkin_005",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_DancingPumpkin_005_Body",
+          "role": "motion_root",
+          "parent_part": "APL_DancingPumpkin_005",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.24
+          ]
+        },
+        {
+          "part_id": "APL_DancingPumpkin_005_GlowAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_DancingPumpkin_005_Body",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            -0.22,
+            0.26
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_DancingPumpkin_005",
+        "motion_roots": [
+          "APL_DancingPumpkin_005_Body"
+        ],
+        "visual_roots": [
+          "APL_DancingPumpkin_005_Pedestal",
+          "APL_DancingPumpkin_005_Body"
+        ],
+        "attachment_points": [
+          "APL_DancingPumpkin_005_GlowAttach"
+        ]
+      },
+      "materials": [
+        "MAT_APL_FountainStone",
+        "MAT_APL_PlazaBrass",
+        "MAT_APL_JackOrange",
+        "MAT_APL_JackGlow",
+        "MAT_APL_WitchHat"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 444,
+        "vertices": 244,
+        "materials_count": 5,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G01 independent dancing pumpkin (APL_DancingPumpkin_005) on stone rim pedestal with separated motion_root body and glow attachment.",
+        "future_target": null
+      },
+      "motion": {
+        "gimmick_id": "G01",
+        "type": "vertical_bounce_and_tilt",
+        "rest_pose_local": [
+          0.0,
+          0.0,
+          0.24
+        ],
+        "bounce_z_range_m": [
+          -0.02,
+          0.18
+        ],
+        "tilt_roll_deg_range": [
+          -12.0,
+          12.0
+        ],
+        "phase_deg": 240.0,
+        "envelope_radius_m": 0.55,
+        "walkway_clearance_verified": true
+      }
+    },
+    {
+      "asset_id": "APL_DancingPumpkin_006",
+      "key": "A_plaza",
+      "category": "gimmick",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -3.36,
+        3.36,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 1.0748,
+        "depth": 1.0748,
+        "height": 1.1
+      },
+      "bounds_local": {
+        "min": [
+          -0.5374,
+          -0.5374,
+          0.0
+        ],
+        "max": [
+          0.5374,
+          0.5374,
+          1.1
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_DancingPumpkin_006",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_DancingPumpkin_006_Pedestal",
+          "role": "static_part",
+          "parent_part": "APL_DancingPumpkin_006",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_DancingPumpkin_006_Body",
+          "role": "motion_root",
+          "parent_part": "APL_DancingPumpkin_006",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.24
+          ]
+        },
+        {
+          "part_id": "APL_DancingPumpkin_006_GlowAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_DancingPumpkin_006_Body",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            -0.22,
+            0.26
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_DancingPumpkin_006",
+        "motion_roots": [
+          "APL_DancingPumpkin_006_Body"
+        ],
+        "visual_roots": [
+          "APL_DancingPumpkin_006_Pedestal",
+          "APL_DancingPumpkin_006_Body"
+        ],
+        "attachment_points": [
+          "APL_DancingPumpkin_006_GlowAttach"
+        ]
+      },
+      "materials": [
+        "MAT_APL_FountainStone",
+        "MAT_APL_PlazaBrass",
+        "MAT_APL_JackOrange",
+        "MAT_APL_JackGlow",
+        "MAT_APL_WitchHat"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 444,
+        "vertices": 244,
+        "materials_count": 5,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G01 independent dancing pumpkin (APL_DancingPumpkin_006) on stone rim pedestal with separated motion_root body and glow attachment.",
+        "future_target": null
+      },
+      "motion": {
+        "gimmick_id": "G01",
+        "type": "vertical_bounce_and_tilt",
+        "rest_pose_local": [
+          0.0,
+          0.0,
+          0.24
+        ],
+        "bounce_z_range_m": [
+          -0.02,
+          0.18
+        ],
+        "tilt_roll_deg_range": [
+          -12.0,
+          12.0
+        ],
+        "phase_deg": 300.0,
+        "envelope_radius_m": 0.55,
+        "walkway_clearance_verified": true
+      }
+    },
+    {
+      "asset_id": "APL_FloatingCandy_001",
+      "key": "A_plaza",
+      "category": "gimmick",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "hinge_pivot",
+      "origin_world": [
+        -2.4,
+        -2.4,
+        2.45
+      ],
+      "dimensions_m": {
+        "width": 0.8622,
+        "depth": 0.8622,
+        "height": 1.0
+      },
+      "bounds_local": {
+        "min": [
+          -0.4311,
+          -0.4311,
+          -0.55
+        ],
+        "max": [
+          0.4311,
+          0.4311,
+          0.45
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_FloatingCandy_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_FloatingCandy_001_OrbitHub",
+          "role": "motion_root",
+          "parent_part": "APL_FloatingCandy_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_FloatingCandy_001_CandyBody",
+          "role": "visual_root",
+          "parent_part": "APL_FloatingCandy_001_OrbitHub",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_FloatingCandy_001_SparkleAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_FloatingCandy_001_CandyBody",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.32
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_FloatingCandy_001",
+        "motion_roots": [
+          "APL_FloatingCandy_001_OrbitHub"
+        ],
+        "visual_roots": [
+          "APL_FloatingCandy_001_CandyBody"
+        ],
+        "attachment_points": [
+          "APL_FloatingCandy_001_SparkleAttach"
+        ]
+      },
+      "materials": [
+        "MAT_APL_CandyMagenta",
+        "MAT_APL_CandyGold",
+        "MAT_APL_PlazaBrass"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 152,
+        "vertices": 86,
+        "materials_count": 3,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G02 floating candy (APL_FloatingCandy_001, style=swirl_lollipop) with hover/orbit motion_root and sparkle attachment.",
+        "future_target": null
+      },
+      "motion": {
+        "gimmick_id": "G02",
+        "type": "hover_bob_and_orbit",
+        "motion_center_world": [
+          0.0,
+          0.0,
+          2.5
+        ],
+        "orbit_radius_m": 3.4,
+        "orbit_angle_deg": 225.0,
+        "bob_z_range_m": [
+          -0.25,
+          0.25
+        ],
+        "safe_z_world_range_m": [
+          2.0,
+          3.1
+        ],
+        "sightline_clearance_verified": true
+      }
+    },
+    {
+      "asset_id": "APL_FloatingCandy_002",
+      "key": "A_plaza",
+      "category": "gimmick",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "hinge_pivot",
+      "origin_world": [
+        2.4,
+        -2.4,
+        2.45
+      ],
+      "dimensions_m": {
+        "width": 1.1562,
+        "depth": 1.1562,
+        "height": 0.59
+      },
+      "bounds_local": {
+        "min": [
+          -0.5781,
+          -0.5781,
+          -0.24
+        ],
+        "max": [
+          0.5781,
+          0.5781,
+          0.35
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_FloatingCandy_002",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_FloatingCandy_002_OrbitHub",
+          "role": "motion_root",
+          "parent_part": "APL_FloatingCandy_002",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_FloatingCandy_002_CandyBody",
+          "role": "visual_root",
+          "parent_part": "APL_FloatingCandy_002_OrbitHub",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_FloatingCandy_002_SparkleAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_FloatingCandy_002_CandyBody",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.32
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_FloatingCandy_002",
+        "motion_roots": [
+          "APL_FloatingCandy_002_OrbitHub"
+        ],
+        "visual_roots": [
+          "APL_FloatingCandy_002_CandyBody"
+        ],
+        "attachment_points": [
+          "APL_FloatingCandy_002_SparkleAttach"
+        ]
+      },
+      "materials": [
+        "MAT_APL_CandyMagenta",
+        "MAT_APL_CandyGold",
+        "MAT_APL_PlazaBrass"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 112,
+        "vertices": 64,
+        "materials_count": 3,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G02 floating candy (APL_FloatingCandy_002, style=wrapped_star) with hover/orbit motion_root and sparkle attachment.",
+        "future_target": null
+      },
+      "motion": {
+        "gimmick_id": "G02",
+        "type": "hover_bob_and_orbit",
+        "motion_center_world": [
+          0.0,
+          0.0,
+          2.5
+        ],
+        "orbit_radius_m": 3.4,
+        "orbit_angle_deg": 315.0,
+        "bob_z_range_m": [
+          -0.25,
+          0.25
+        ],
+        "safe_z_world_range_m": [
+          2.0,
+          3.1
+        ],
+        "sightline_clearance_verified": true
+      }
+    },
+    {
+      "asset_id": "APL_FloatingCandy_003",
+      "key": "A_plaza",
+      "category": "gimmick",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "hinge_pivot",
+      "origin_world": [
+        2.4,
+        2.4,
+        2.55
+      ],
+      "dimensions_m": {
+        "width": 0.8622,
+        "depth": 0.8622,
+        "height": 1.0
+      },
+      "bounds_local": {
+        "min": [
+          -0.4311,
+          -0.4311,
+          -0.55
+        ],
+        "max": [
+          0.4311,
+          0.4311,
+          0.45
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_FloatingCandy_003",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_FloatingCandy_003_OrbitHub",
+          "role": "motion_root",
+          "parent_part": "APL_FloatingCandy_003",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_FloatingCandy_003_CandyBody",
+          "role": "visual_root",
+          "parent_part": "APL_FloatingCandy_003_OrbitHub",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_FloatingCandy_003_SparkleAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_FloatingCandy_003_CandyBody",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.32
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_FloatingCandy_003",
+        "motion_roots": [
+          "APL_FloatingCandy_003_OrbitHub"
+        ],
+        "visual_roots": [
+          "APL_FloatingCandy_003_CandyBody"
+        ],
+        "attachment_points": [
+          "APL_FloatingCandy_003_SparkleAttach"
+        ]
+      },
+      "materials": [
+        "MAT_APL_CandyMagenta",
+        "MAT_APL_CandyGold",
+        "MAT_APL_PlazaBrass"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 152,
+        "vertices": 86,
+        "materials_count": 3,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G02 floating candy (APL_FloatingCandy_003, style=swirl_lollipop) with hover/orbit motion_root and sparkle attachment.",
+        "future_target": null
+      },
+      "motion": {
+        "gimmick_id": "G02",
+        "type": "hover_bob_and_orbit",
+        "motion_center_world": [
+          0.0,
+          0.0,
+          2.5
+        ],
+        "orbit_radius_m": 3.4,
+        "orbit_angle_deg": 45.0,
+        "bob_z_range_m": [
+          -0.25,
+          0.25
+        ],
+        "safe_z_world_range_m": [
+          2.0,
+          3.1
+        ],
+        "sightline_clearance_verified": true
+      }
+    },
+    {
+      "asset_id": "APL_FloatingCandy_004",
+      "key": "A_plaza",
+      "category": "gimmick",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "hinge_pivot",
+      "origin_world": [
+        -2.4,
+        2.4,
+        2.55
+      ],
+      "dimensions_m": {
+        "width": 1.1562,
+        "depth": 1.1562,
+        "height": 0.59
+      },
+      "bounds_local": {
+        "min": [
+          -0.5781,
+          -0.5781,
+          -0.24
+        ],
+        "max": [
+          0.5781,
+          0.5781,
+          0.35
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_FloatingCandy_004",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_FloatingCandy_004_OrbitHub",
+          "role": "motion_root",
+          "parent_part": "APL_FloatingCandy_004",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_FloatingCandy_004_CandyBody",
+          "role": "visual_root",
+          "parent_part": "APL_FloatingCandy_004_OrbitHub",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_FloatingCandy_004_SparkleAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_FloatingCandy_004_CandyBody",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.32
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_FloatingCandy_004",
+        "motion_roots": [
+          "APL_FloatingCandy_004_OrbitHub"
+        ],
+        "visual_roots": [
+          "APL_FloatingCandy_004_CandyBody"
+        ],
+        "attachment_points": [
+          "APL_FloatingCandy_004_SparkleAttach"
+        ]
+      },
+      "materials": [
+        "MAT_APL_CandyMagenta",
+        "MAT_APL_CandyGold",
+        "MAT_APL_PlazaBrass"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 112,
+        "vertices": 64,
+        "materials_count": 3,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G02 floating candy (APL_FloatingCandy_004, style=wrapped_star) with hover/orbit motion_root and sparkle attachment.",
+        "future_target": null
+      },
+      "motion": {
+        "gimmick_id": "G02",
+        "type": "hover_bob_and_orbit",
+        "motion_center_world": [
+          0.0,
+          0.0,
+          2.5
+        ],
+        "orbit_radius_m": 3.4,
+        "orbit_angle_deg": 135.0,
+        "bob_z_range_m": [
+          -0.25,
+          0.25
+        ],
+        "safe_z_world_range_m": [
+          2.0,
+          3.1
+        ],
+        "sightline_clearance_verified": true
+      }
+    },
+    {
+      "asset_id": "APL_SeqLantern_001",
+      "key": "A_plaza",
+      "category": "lighting",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -3.75,
+        -9.05,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 1.0452,
+        "depth": 1.0452,
+        "height": 2.85
+      },
+      "bounds_local": {
+        "min": [
+          -0.5226,
+          -0.5226,
+          0.0
+        ],
+        "max": [
+          0.5226,
+          0.5226,
+          2.85
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_SeqLantern_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_SeqLantern_001_Pillar",
+          "role": "static_part",
+          "parent_part": "APL_SeqLantern_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_SeqLantern_001_LanternHead",
+          "role": "motion_root",
+          "parent_part": "APL_SeqLantern_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            2.05
+          ]
+        },
+        {
+          "part_id": "APL_SeqLantern_001_LightAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_SeqLantern_001_LanternHead",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.3
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_SeqLantern_001",
+        "motion_roots": [
+          "APL_SeqLantern_001_LanternHead"
+        ],
+        "visual_roots": [
+          "APL_SeqLantern_001_Pillar",
+          "APL_SeqLantern_001_LanternHead"
+        ],
+        "attachment_points": [
+          "APL_SeqLantern_001_LightAttach"
+        ]
+      },
+      "materials": [
+        "MAT_APL_FountainStone",
+        "MAT_APL_GateIron",
+        "MAT_APL_PlazaBrass",
+        "MAT_APL_LanternGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 192,
+        "vertices": 108,
+        "materials_count": 4,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G04 sequential-lighting plaza lantern #1 (SW_SouthLeft) at R=9.80m with light attachment point.",
+        "future_target": null
+      },
+      "motion": {
+        "gimmick_id": "G04",
+        "type": "sequential_lantern_chase",
+        "sequence_group": "G04_Plaza_Ring_Chase",
+        "sequence_index": 1,
+        "sequence_total": 8,
+        "sector": "SW_SouthLeft",
+        "light_point_local": [
+          0.0,
+          0.0,
+          2.35
+        ]
+      }
+    },
+    {
+      "asset_id": "APL_SeqLantern_002",
+      "key": "A_plaza",
+      "category": "lighting",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        3.75,
+        -9.05,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 1.0452,
+        "depth": 1.0452,
+        "height": 2.85
+      },
+      "bounds_local": {
+        "min": [
+          -0.5226,
+          -0.5226,
+          0.0
+        ],
+        "max": [
+          0.5226,
+          0.5226,
+          2.85
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_SeqLantern_002",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_SeqLantern_002_Pillar",
+          "role": "static_part",
+          "parent_part": "APL_SeqLantern_002",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_SeqLantern_002_LanternHead",
+          "role": "motion_root",
+          "parent_part": "APL_SeqLantern_002",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            2.05
+          ]
+        },
+        {
+          "part_id": "APL_SeqLantern_002_LightAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_SeqLantern_002_LanternHead",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.3
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_SeqLantern_002",
+        "motion_roots": [
+          "APL_SeqLantern_002_LanternHead"
+        ],
+        "visual_roots": [
+          "APL_SeqLantern_002_Pillar",
+          "APL_SeqLantern_002_LanternHead"
+        ],
+        "attachment_points": [
+          "APL_SeqLantern_002_LightAttach"
+        ]
+      },
+      "materials": [
+        "MAT_APL_FountainStone",
+        "MAT_APL_GateIron",
+        "MAT_APL_PlazaBrass",
+        "MAT_APL_LanternGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 192,
+        "vertices": 108,
+        "materials_count": 4,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G04 sequential-lighting plaza lantern #2 (SE_SouthRight) at R=9.80m with light attachment point.",
+        "future_target": null
+      },
+      "motion": {
+        "gimmick_id": "G04",
+        "type": "sequential_lantern_chase",
+        "sequence_group": "G04_Plaza_Ring_Chase",
+        "sequence_index": 2,
+        "sequence_total": 8,
+        "sector": "SE_SouthRight",
+        "light_point_local": [
+          0.0,
+          0.0,
+          2.35
+        ]
+      }
+    },
+    {
+      "asset_id": "APL_SeqLantern_003",
+      "key": "A_plaza",
+      "category": "lighting",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        9.05,
+        -3.75,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 1.0452,
+        "depth": 1.0452,
+        "height": 2.85
+      },
+      "bounds_local": {
+        "min": [
+          -0.5226,
+          -0.5226,
+          0.0
+        ],
+        "max": [
+          0.5226,
+          0.5226,
+          2.85
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_SeqLantern_003",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_SeqLantern_003_Pillar",
+          "role": "static_part",
+          "parent_part": "APL_SeqLantern_003",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_SeqLantern_003_LanternHead",
+          "role": "motion_root",
+          "parent_part": "APL_SeqLantern_003",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            2.05
+          ]
+        },
+        {
+          "part_id": "APL_SeqLantern_003_LightAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_SeqLantern_003_LanternHead",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.3
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_SeqLantern_003",
+        "motion_roots": [
+          "APL_SeqLantern_003_LanternHead"
+        ],
+        "visual_roots": [
+          "APL_SeqLantern_003_Pillar",
+          "APL_SeqLantern_003_LanternHead"
+        ],
+        "attachment_points": [
+          "APL_SeqLantern_003_LightAttach"
+        ]
+      },
+      "materials": [
+        "MAT_APL_FountainStone",
+        "MAT_APL_GateIron",
+        "MAT_APL_PlazaBrass",
+        "MAT_APL_LanternGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 192,
+        "vertices": 108,
+        "materials_count": 4,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G04 sequential-lighting plaza lantern #3 (SE_EastRight) at R=9.80m with light attachment point.",
+        "future_target": null
+      },
+      "motion": {
+        "gimmick_id": "G04",
+        "type": "sequential_lantern_chase",
+        "sequence_group": "G04_Plaza_Ring_Chase",
+        "sequence_index": 3,
+        "sequence_total": 8,
+        "sector": "SE_EastRight",
+        "light_point_local": [
+          0.0,
+          0.0,
+          2.35
+        ]
+      }
+    },
+    {
+      "asset_id": "APL_SeqLantern_004",
+      "key": "A_plaza",
+      "category": "lighting",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        9.05,
+        3.75,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 1.0452,
+        "depth": 1.0452,
+        "height": 2.85
+      },
+      "bounds_local": {
+        "min": [
+          -0.5226,
+          -0.5226,
+          0.0
+        ],
+        "max": [
+          0.5226,
+          0.5226,
+          2.85
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_SeqLantern_004",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_SeqLantern_004_Pillar",
+          "role": "static_part",
+          "parent_part": "APL_SeqLantern_004",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_SeqLantern_004_LanternHead",
+          "role": "motion_root",
+          "parent_part": "APL_SeqLantern_004",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            2.05
+          ]
+        },
+        {
+          "part_id": "APL_SeqLantern_004_LightAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_SeqLantern_004_LanternHead",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.3
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_SeqLantern_004",
+        "motion_roots": [
+          "APL_SeqLantern_004_LanternHead"
+        ],
+        "visual_roots": [
+          "APL_SeqLantern_004_Pillar",
+          "APL_SeqLantern_004_LanternHead"
+        ],
+        "attachment_points": [
+          "APL_SeqLantern_004_LightAttach"
+        ]
+      },
+      "materials": [
+        "MAT_APL_FountainStone",
+        "MAT_APL_GateIron",
+        "MAT_APL_PlazaBrass",
+        "MAT_APL_LanternGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 192,
+        "vertices": 108,
+        "materials_count": 4,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G04 sequential-lighting plaza lantern #4 (NE_EastLeft) at R=9.80m with light attachment point.",
+        "future_target": null
+      },
+      "motion": {
+        "gimmick_id": "G04",
+        "type": "sequential_lantern_chase",
+        "sequence_group": "G04_Plaza_Ring_Chase",
+        "sequence_index": 4,
+        "sequence_total": 8,
+        "sector": "NE_EastLeft",
+        "light_point_local": [
+          0.0,
+          0.0,
+          2.35
+        ]
+      }
+    },
+    {
+      "asset_id": "APL_SeqLantern_005",
+      "key": "A_plaza",
+      "category": "lighting",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        3.75,
+        9.05,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 1.0452,
+        "depth": 1.0452,
+        "height": 2.85
+      },
+      "bounds_local": {
+        "min": [
+          -0.5226,
+          -0.5226,
+          0.0
+        ],
+        "max": [
+          0.5226,
+          0.5226,
+          2.85
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_SeqLantern_005",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_SeqLantern_005_Pillar",
+          "role": "static_part",
+          "parent_part": "APL_SeqLantern_005",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_SeqLantern_005_LanternHead",
+          "role": "motion_root",
+          "parent_part": "APL_SeqLantern_005",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            2.05
+          ]
+        },
+        {
+          "part_id": "APL_SeqLantern_005_LightAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_SeqLantern_005_LanternHead",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.3
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_SeqLantern_005",
+        "motion_roots": [
+          "APL_SeqLantern_005_LanternHead"
+        ],
+        "visual_roots": [
+          "APL_SeqLantern_005_Pillar",
+          "APL_SeqLantern_005_LanternHead"
+        ],
+        "attachment_points": [
+          "APL_SeqLantern_005_LightAttach"
+        ]
+      },
+      "materials": [
+        "MAT_APL_FountainStone",
+        "MAT_APL_GateIron",
+        "MAT_APL_PlazaBrass",
+        "MAT_APL_LanternGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 192,
+        "vertices": 108,
+        "materials_count": 4,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G04 sequential-lighting plaza lantern #5 (NE_NorthRight) at R=9.80m with light attachment point.",
+        "future_target": null
+      },
+      "motion": {
+        "gimmick_id": "G04",
+        "type": "sequential_lantern_chase",
+        "sequence_group": "G04_Plaza_Ring_Chase",
+        "sequence_index": 5,
+        "sequence_total": 8,
+        "sector": "NE_NorthRight",
+        "light_point_local": [
+          0.0,
+          0.0,
+          2.35
+        ]
+      }
+    },
+    {
+      "asset_id": "APL_SeqLantern_006",
+      "key": "A_plaza",
+      "category": "lighting",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -3.75,
+        9.05,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 1.0452,
+        "depth": 1.0452,
+        "height": 2.85
+      },
+      "bounds_local": {
+        "min": [
+          -0.5226,
+          -0.5226,
+          0.0
+        ],
+        "max": [
+          0.5226,
+          0.5226,
+          2.85
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_SeqLantern_006",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_SeqLantern_006_Pillar",
+          "role": "static_part",
+          "parent_part": "APL_SeqLantern_006",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_SeqLantern_006_LanternHead",
+          "role": "motion_root",
+          "parent_part": "APL_SeqLantern_006",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            2.05
+          ]
+        },
+        {
+          "part_id": "APL_SeqLantern_006_LightAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_SeqLantern_006_LanternHead",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.3
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_SeqLantern_006",
+        "motion_roots": [
+          "APL_SeqLantern_006_LanternHead"
+        ],
+        "visual_roots": [
+          "APL_SeqLantern_006_Pillar",
+          "APL_SeqLantern_006_LanternHead"
+        ],
+        "attachment_points": [
+          "APL_SeqLantern_006_LightAttach"
+        ]
+      },
+      "materials": [
+        "MAT_APL_FountainStone",
+        "MAT_APL_GateIron",
+        "MAT_APL_PlazaBrass",
+        "MAT_APL_LanternGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 192,
+        "vertices": 108,
+        "materials_count": 4,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G04 sequential-lighting plaza lantern #6 (NW_NorthLeft) at R=9.80m with light attachment point.",
+        "future_target": null
+      },
+      "motion": {
+        "gimmick_id": "G04",
+        "type": "sequential_lantern_chase",
+        "sequence_group": "G04_Plaza_Ring_Chase",
+        "sequence_index": 6,
+        "sequence_total": 8,
+        "sector": "NW_NorthLeft",
+        "light_point_local": [
+          0.0,
+          0.0,
+          2.35
+        ]
+      }
+    },
+    {
+      "asset_id": "APL_SeqLantern_007",
+      "key": "A_plaza",
+      "category": "lighting",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -9.05,
+        3.75,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 1.0452,
+        "depth": 1.0452,
+        "height": 2.85
+      },
+      "bounds_local": {
+        "min": [
+          -0.5226,
+          -0.5226,
+          0.0
+        ],
+        "max": [
+          0.5226,
+          0.5226,
+          2.85
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_SeqLantern_007",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_SeqLantern_007_Pillar",
+          "role": "static_part",
+          "parent_part": "APL_SeqLantern_007",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_SeqLantern_007_LanternHead",
+          "role": "motion_root",
+          "parent_part": "APL_SeqLantern_007",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            2.05
+          ]
+        },
+        {
+          "part_id": "APL_SeqLantern_007_LightAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_SeqLantern_007_LanternHead",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.3
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_SeqLantern_007",
+        "motion_roots": [
+          "APL_SeqLantern_007_LanternHead"
+        ],
+        "visual_roots": [
+          "APL_SeqLantern_007_Pillar",
+          "APL_SeqLantern_007_LanternHead"
+        ],
+        "attachment_points": [
+          "APL_SeqLantern_007_LightAttach"
+        ]
+      },
+      "materials": [
+        "MAT_APL_FountainStone",
+        "MAT_APL_GateIron",
+        "MAT_APL_PlazaBrass",
+        "MAT_APL_LanternGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 192,
+        "vertices": 108,
+        "materials_count": 4,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G04 sequential-lighting plaza lantern #7 (NW_WestRight) at R=9.80m with light attachment point.",
+        "future_target": null
+      },
+      "motion": {
+        "gimmick_id": "G04",
+        "type": "sequential_lantern_chase",
+        "sequence_group": "G04_Plaza_Ring_Chase",
+        "sequence_index": 7,
+        "sequence_total": 8,
+        "sector": "NW_WestRight",
+        "light_point_local": [
+          0.0,
+          0.0,
+          2.35
+        ]
+      }
+    },
+    {
+      "asset_id": "APL_SeqLantern_008",
+      "key": "A_plaza",
+      "category": "lighting",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -9.05,
+        -3.75,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 1.0452,
+        "depth": 1.0452,
+        "height": 2.85
+      },
+      "bounds_local": {
+        "min": [
+          -0.5226,
+          -0.5226,
+          0.0
+        ],
+        "max": [
+          0.5226,
+          0.5226,
+          2.85
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_SeqLantern_008",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_SeqLantern_008_Pillar",
+          "role": "static_part",
+          "parent_part": "APL_SeqLantern_008",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_SeqLantern_008_LanternHead",
+          "role": "motion_root",
+          "parent_part": "APL_SeqLantern_008",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            2.05
+          ]
+        },
+        {
+          "part_id": "APL_SeqLantern_008_LightAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_SeqLantern_008_LanternHead",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.3
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_SeqLantern_008",
+        "motion_roots": [
+          "APL_SeqLantern_008_LanternHead"
+        ],
+        "visual_roots": [
+          "APL_SeqLantern_008_Pillar",
+          "APL_SeqLantern_008_LanternHead"
+        ],
+        "attachment_points": [
+          "APL_SeqLantern_008_LightAttach"
+        ]
+      },
+      "materials": [
+        "MAT_APL_FountainStone",
+        "MAT_APL_GateIron",
+        "MAT_APL_PlazaBrass",
+        "MAT_APL_LanternGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 192,
+        "vertices": 108,
+        "materials_count": 4,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G04 sequential-lighting plaza lantern #8 (SW_WestLeft) at R=9.80m with light attachment point.",
+        "future_target": null
+      },
+      "motion": {
+        "gimmick_id": "G04",
+        "type": "sequential_lantern_chase",
+        "sequence_group": "G04_Plaza_Ring_Chase",
+        "sequence_index": 8,
+        "sequence_total": 8,
+        "sector": "SW_WestLeft",
+        "light_point_local": [
+          0.0,
+          0.0,
+          2.35
+        ]
+      }
+    },
+    {
+      "asset_id": "APL_TrickOrTreatStand_001",
+      "key": "A_plaza",
+      "category": "gimmick",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -4.8,
+        -6.2,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 1.278,
+        "depth": 1.2288,
+        "height": 1.85
+      },
+      "bounds_local": {
+        "min": [
+          -0.639,
+          -0.6144,
+          0.0
+        ],
+        "max": [
+          0.639,
+          0.6144,
+          1.85
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_TrickOrTreatStand_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_TrickOrTreatStand_001_Stand",
+          "role": "static_part",
+          "parent_part": "APL_TrickOrTreatStand_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_TrickOrTreatStand_001_Button",
+          "role": "motion_root",
+          "parent_part": "APL_TrickOrTreatStand_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            -0.18,
+            0.94
+          ]
+        },
+        {
+          "part_id": "APL_TrickOrTreatStand_001_CandyPopAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_TrickOrTreatStand_001_Stand",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.12,
+            1.36
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_TrickOrTreatStand_001",
+        "motion_roots": [
+          "APL_TrickOrTreatStand_001_Button"
+        ],
+        "visual_roots": [
+          "APL_TrickOrTreatStand_001_Stand",
+          "APL_TrickOrTreatStand_001_Button"
+        ],
+        "attachment_points": [
+          "APL_TrickOrTreatStand_001_CandyPopAttach"
+        ]
+      },
+      "materials": [
+        "MAT_APL_FountainStone",
+        "MAT_APL_WitchHat",
+        "MAT_APL_JackOrange",
+        "MAT_APL_PlazaBrass",
+        "MAT_APL_CandyMagenta",
+        "MAT_APL_CandyGold"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 152,
+        "vertices": 92,
+        "materials_count": 6,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "I01 Trick-or-Treat interactive stand with separated button motion_root and candy/pumpkin pop-up attachment point.",
+        "future_target": null
+      },
+      "motion": {
+        "interaction_id": "I01",
+        "type": "button_press_candy_popup",
+        "press_axis_local": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "press_stroke_m": 0.05,
+        "spawn_attachment": "APL_TrickOrTreatStand_001_CandyPopAttach"
+      }
+    },
+    {
+      "asset_id": "APL_FireworksSwitch_001",
+      "key": "A_plaza",
+      "category": "gimmick",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        4.8,
+        -6.2,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 1.2452,
+        "depth": 1.206,
+        "height": 1.72
+      },
+      "bounds_local": {
+        "min": [
+          -0.6226,
+          -0.603,
+          0.0
+        ],
+        "max": [
+          0.6226,
+          0.603,
+          1.72
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_FireworksSwitch_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_FireworksSwitch_001_Pedestal",
+          "role": "static_part",
+          "parent_part": "APL_FireworksSwitch_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_FireworksSwitch_001_Lever",
+          "role": "motion_root",
+          "parent_part": "APL_FireworksSwitch_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            -0.14,
+            0.92
+          ]
+        },
+        {
+          "part_id": "APL_FireworksSwitch_001_LaunchSignalAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_FireworksSwitch_001_Pedestal",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.14,
+            1.68
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_FireworksSwitch_001",
+        "motion_roots": [
+          "APL_FireworksSwitch_001_Lever"
+        ],
+        "visual_roots": [
+          "APL_FireworksSwitch_001_Pedestal",
+          "APL_FireworksSwitch_001_Lever"
+        ],
+        "attachment_points": [
+          "APL_FireworksSwitch_001_LaunchSignalAttach"
+        ]
+      },
+      "materials": [
+        "MAT_APL_FountainStone",
+        "MAT_APL_GateIron",
+        "MAT_APL_PlazaBrass",
+        "MAT_APL_CandyMagenta",
+        "MAT_APL_JackGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 240,
+        "vertices": 138,
+        "materials_count": 5,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "I05 Fireworks launch switch stand with separated lever motion_root and sky fireworks trigger attachment point.",
+        "future_target": null
+      },
+      "motion": {
+        "interaction_id": "I05",
+        "type": "lever_pull_fireworks_trigger",
+        "hinge_axis_local": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "angle_range_deg": [
+          -25.0,
+          25.0
+        ],
+        "linked_targets": [
+          "APL_PeriodicShowRig_001_FireworksLaunchAttach",
+          "APL_PeriodicShowRig_001_FireworksBurstAttach"
+        ]
+      }
+    },
+    {
+      "asset_id": "APL_PhotoArch_001",
+      "key": "A_plaza",
+      "category": "architecture",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        11.2,
+        -11.2,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 5.2326,
+        "depth": 5.2326,
+        "height": 3.65
+      },
+      "bounds_local": {
+        "min": [
+          -2.6163,
+          -2.6163,
+          0.0
+        ],
+        "max": [
+          2.6163,
+          2.6163,
+          3.65
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_PhotoArch_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_PhotoArch_001_ArchStage",
+          "role": "static_part",
+          "parent_part": "APL_PhotoArch_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_PhotoArch_001_StandMarker",
+          "role": "attachment_point",
+          "parent_part": "APL_PhotoArch_001_ArchStage",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.2
+          ]
+        },
+        {
+          "part_id": "APL_PhotoArch_001_SpotLightAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_PhotoArch_001_ArchStage",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            -1.1,
+            2.85
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_PhotoArch_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "APL_PhotoArch_001_ArchStage"
+        ],
+        "attachment_points": [
+          "APL_PhotoArch_001_StandMarker",
+          "APL_PhotoArch_001_SpotLightAttach"
+        ]
+      },
+      "materials": [
+        "MAT_APL_FountainStone",
+        "MAT_APL_GateIron",
+        "MAT_APL_PlazaBrass",
+        "MAT_APL_JackOrange",
+        "MAT_APL_LanternGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 384,
+        "vertices": 218,
+        "materials_count": 5,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Dedicated SE plaza photo spot stage & crescent-moon pumpkin arch outside all 4 cardinal sightlines, framing the central fountain and Giant Jack.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "APL_PeriodicShowRig_001",
+      "key": "A_plaza",
+      "category": "gimmick",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 27.44,
+        "depth": 25.02,
+        "height": 14.54
+      },
+      "bounds_local": {
+        "min": [
+          -13.72,
+          -8.72,
+          0.0
+        ],
+        "max": [
+          13.72,
+          16.3,
+          14.54
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_PeriodicShowRig_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_PeriodicShowRig_001_Pylons",
+          "role": "static_part",
+          "parent_part": "APL_PeriodicShowRig_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_PeriodicShowRig_001_GhostOrbitAttach_N",
+          "role": "attachment_point",
+          "parent_part": "APL_PeriodicShowRig_001_Pylons",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            3.8,
+            4.8
+          ]
+        },
+        {
+          "part_id": "APL_PeriodicShowRig_001_GhostOrbitAttach_E",
+          "role": "attachment_point",
+          "parent_part": "APL_PeriodicShowRig_001_Pylons",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            3.8,
+            0.0,
+            4.8
+          ]
+        },
+        {
+          "part_id": "APL_PeriodicShowRig_001_GhostOrbitAttach_S",
+          "role": "attachment_point",
+          "parent_part": "APL_PeriodicShowRig_001_Pylons",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            -3.8,
+            4.8
+          ]
+        },
+        {
+          "part_id": "APL_PeriodicShowRig_001_GhostOrbitAttach_W",
+          "role": "attachment_point",
+          "parent_part": "APL_PeriodicShowRig_001_Pylons",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            -3.8,
+            0.0,
+            4.8
+          ]
+        },
+        {
+          "part_id": "APL_PeriodicShowRig_001_ShowLightAttach_NE",
+          "role": "attachment_point",
+          "parent_part": "APL_PeriodicShowRig_001_Pylons",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            13.2,
+            8.2,
+            3.95
+          ]
+        },
+        {
+          "part_id": "APL_PeriodicShowRig_001_ShowLightAttach_NW",
+          "role": "attachment_point",
+          "parent_part": "APL_PeriodicShowRig_001_Pylons",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            -13.2,
+            8.2,
+            3.95
+          ]
+        },
+        {
+          "part_id": "APL_PeriodicShowRig_001_ShowLightAttach_SE",
+          "role": "attachment_point",
+          "parent_part": "APL_PeriodicShowRig_001_Pylons",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            13.2,
+            -8.2,
+            3.95
+          ]
+        },
+        {
+          "part_id": "APL_PeriodicShowRig_001_ShowLightAttach_SW",
+          "role": "attachment_point",
+          "parent_part": "APL_PeriodicShowRig_001_Pylons",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            -13.2,
+            -8.2,
+            3.95
+          ]
+        },
+        {
+          "part_id": "APL_PeriodicShowRig_001_FireworksLaunchAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_PeriodicShowRig_001_Pylons",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            -3.2,
+            15.8,
+            1.25
+          ]
+        },
+        {
+          "part_id": "APL_PeriodicShowRig_001_FireworksBurstAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_PeriodicShowRig_001_Pylons",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            14.5
+          ]
+        },
+        {
+          "part_id": "APL_PeriodicShowRig_001_HappyHalloweenBannerAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_PeriodicShowRig_001_Pylons",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            11.2
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_PeriodicShowRig_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "APL_PeriodicShowRig_001_Pylons"
+        ],
+        "attachment_points": [
+          "APL_PeriodicShowRig_001_GhostOrbitAttach_N",
+          "APL_PeriodicShowRig_001_GhostOrbitAttach_E",
+          "APL_PeriodicShowRig_001_GhostOrbitAttach_S",
+          "APL_PeriodicShowRig_001_GhostOrbitAttach_W",
+          "APL_PeriodicShowRig_001_ShowLightAttach_NE",
+          "APL_PeriodicShowRig_001_ShowLightAttach_NW",
+          "APL_PeriodicShowRig_001_ShowLightAttach_SE",
+          "APL_PeriodicShowRig_001_ShowLightAttach_SW",
+          "APL_PeriodicShowRig_001_FireworksLaunchAttach",
+          "APL_PeriodicShowRig_001_FireworksBurstAttach",
+          "APL_PeriodicShowRig_001_HappyHalloweenBannerAttach"
+        ]
+      },
+      "materials": [
+        "MAT_APL_FountainStone",
+        "MAT_APL_GateIron",
+        "MAT_APL_PlazaBrass",
+        "MAT_APL_MagicWater",
+        "MAT_APL_LanternGlow",
+        "MAT_APL_JackGlow",
+        "MAT_APL_CandyGold"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 916,
+        "vertices": 516,
+        "materials_count": 7,
+        "objects_count": 13
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Periodic plaza show rig (Spec 9.2) with 4 diagonal bastion projector pylons and attachment sockets for ghosts, show lights, fireworks, and HAPPY HALLOWEEN overhead sky banner.",
+        "future_target": null
+      },
+      "motion": {
+        "show_id": "Spec_9_2_Periodic_Plaza_Show",
+        "type": "periodic_show_attachment_rig",
+        "ghost_orbit_attachments": [
+          "APL_PeriodicShowRig_001_GhostOrbitAttach_N",
+          "APL_PeriodicShowRig_001_GhostOrbitAttach_E",
+          "APL_PeriodicShowRig_001_GhostOrbitAttach_S",
+          "APL_PeriodicShowRig_001_GhostOrbitAttach_W"
+        ],
+        "show_light_attachments": [
+          "APL_PeriodicShowRig_001_ShowLightAttach_NE",
+          "APL_PeriodicShowRig_001_ShowLightAttach_NW",
+          "APL_PeriodicShowRig_001_ShowLightAttach_SE",
+          "APL_PeriodicShowRig_001_ShowLightAttach_SW"
+        ],
+        "fireworks_launch_attachment": "APL_PeriodicShowRig_001_FireworksLaunchAttach",
+        "fireworks_burst_attachment": "APL_PeriodicShowRig_001_FireworksBurstAttach",
+        "happy_halloween_banner_attachment": "APL_PeriodicShowRig_001_HappyHalloweenBannerAttach"
+      }
+    },
+    {
+      "asset_id": "APL_EntranceGateProxy_001",
+      "key": "A_plaza",
+      "category": "architecture",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.0,
+        -40.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 11.0,
+        "depth": 2.622,
+        "height": 7.739
+      },
+      "bounds_local": {
+        "min": [
+          -5.5,
+          -1.311,
+          0.0
+        ],
+        "max": [
+          5.5,
+          1.311,
+          7.739
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_EntranceGateProxy_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_EntranceGateProxy_001_Arch",
+          "role": "static_part",
+          "parent_part": "APL_EntranceGateProxy_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_EntranceGateProxy_001_DoorLeft",
+          "role": "motion_root",
+          "parent_part": "APL_EntranceGateProxy_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            -2.18,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_EntranceGateProxy_001_DoorRight",
+          "role": "motion_root",
+          "parent_part": "APL_EntranceGateProxy_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            2.18,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_EntranceGateProxy_001_LanternAttachLeft",
+          "role": "attachment_point",
+          "parent_part": "APL_EntranceGateProxy_001_Arch",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            -2.45,
+            -0.65,
+            3.6
+          ]
+        },
+        {
+          "part_id": "APL_EntranceGateProxy_001_LanternAttachRight",
+          "role": "attachment_point",
+          "parent_part": "APL_EntranceGateProxy_001_Arch",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            2.45,
+            -0.65,
+            3.6
+          ]
+        },
+        {
+          "part_id": "APL_EntranceGateProxy_001_BannerAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_EntranceGateProxy_001_Arch",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            -0.65,
+            5.8
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_EntranceGateProxy_001",
+        "motion_roots": [
+          "APL_EntranceGateProxy_001_DoorLeft",
+          "APL_EntranceGateProxy_001_DoorRight"
+        ],
+        "visual_roots": [
+          "APL_EntranceGateProxy_001_Arch",
+          "APL_EntranceGateProxy_001_DoorLeft",
+          "APL_EntranceGateProxy_001_DoorRight"
+        ],
+        "attachment_points": [
+          "APL_EntranceGateProxy_001_LanternAttachLeft",
+          "APL_EntranceGateProxy_001_LanternAttachRight",
+          "APL_EntranceGateProxy_001_BannerAttach"
+        ]
+      },
+      "materials": [
+        "MAT_APL_FountainStone",
+        "MAT_APL_GateIron",
+        "MAT_APL_PlazaBrass",
+        "MAT_APL_JackOrange",
+        "MAT_APL_LanternGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 496,
+        "vertices": 290,
+        "materials_count": 5,
+        "objects_count": 7
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": true,
+        "modifiable": true,
+        "notes": "M01 entrance gate arch placeholder/proxy at W09-verified threshold (0, -40, 0), matching W09 dimensions (11.0m x 2.622m x 7.739m) and clear opening (4.36m x 3.973m).",
+        "future_target": "M01_EntranceGate",
+        "replacement_slot": {
+          "meshy_id": "M01",
+          "target_asset_id": "MSH_EntranceGate_001",
+          "origin_policy": "ground_center",
+          "origin_world": [
+            0.0,
+            -40.0,
+            0.0
+          ],
+          "front_world": "-Y",
+          "raw_glb_rotation_z_deg": 180.0,
+          "dimensions_m": {
+            "width": 11.0,
+            "depth": 2.622,
+            "height": 7.739
+          },
+          "clear_opening_m": {
+            "width": 4.36,
+            "height": 3.973
+          }
+        }
+      },
+      "motion": {
+        "meshy_slot": "M01",
+        "type": "double_hinged_gate_doors",
+        "clear_opening_width_m": 4.36,
+        "clear_opening_height_m": 3.973,
+        "door_left_hinge_local": [
+          -2.18,
+          0.0,
+          0.0
+        ],
+        "door_right_hinge_local": [
+          2.18,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "asset_id": "APL_EntranceApproach_001",
+      "key": "A_plaza",
+      "category": "architecture",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.0,
+        -30.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 11.2,
+        "depth": 32.95,
+        "height": 0.072
+      },
+      "bounds_local": {
+        "min": [
+          -5.6,
+          -17.2,
+          0.0
+        ],
+        "max": [
+          5.6,
+          15.75,
+          0.072
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_EntranceApproach_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_EntranceApproach_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "APL_EntranceApproach_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_APL_PlazaStone",
+        "MAT_APL_PlazaMosaic",
+        "MAT_APL_PlazaBrass"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 400,
+        "vertices": 212,
+        "materials_count": 3,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "South Entrance spawn compass medallion at (0, -44, 0), M01 gate threshold apron at (0, -40, 0), and ceremonial promenade inlay leading to the Central Plaza.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "APL_EntranceGuideSign_001",
+      "key": "A_plaza",
+      "category": "prop",
+      "area_id": "A_plaza",
+      "collection": "A_plaza",
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "script_file": "modeling/A_plaza/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        2.85,
+        -37.2,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 1.6684,
+        "depth": 1.6008,
+        "height": 2.75
+      },
+      "bounds_local": {
+        "min": [
+          -0.8342,
+          -0.8004,
+          0.0
+        ],
+        "max": [
+          0.8342,
+          0.8004,
+          2.75
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "APL_EntranceGuideSign_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_EntranceGuideSign_001_SignPost",
+          "role": "static_part",
+          "parent_part": "APL_EntranceGuideSign_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "APL_EntranceGuideSign_001_LightAttach",
+          "role": "attachment_point",
+          "parent_part": "APL_EntranceGuideSign_001_SignPost",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            -0.15,
+            -0.22,
+            2.25
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "APL_EntranceGuideSign_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "APL_EntranceGuideSign_001_SignPost"
+        ],
+        "attachment_points": [
+          "APL_EntranceGuideSign_001_LightAttach"
+        ]
+      },
+      "materials": [
+        "MAT_APL_FountainStone",
+        "MAT_APL_GateIron",
+        "MAT_APL_PlazaBrass",
+        "MAT_APL_WitchHat",
+        "MAT_APL_JackOrange",
+        "MAT_APL_LanternGlow"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 172,
+        "vertices": 100,
+        "materials_count": 6,
+        "objects_count": 3
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "South entrance welcome & 5-area directional signpost placed at (2.85, -37.2, 0.0) outside the 4.0m promenade and sightline.",
+        "future_target": null
+      }
+    }
+  ]
+}
