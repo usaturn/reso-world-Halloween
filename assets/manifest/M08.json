@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0",
+  "key": "M08",
+  "updated_at": "2026-10-31T13:34:39Z",
+  "assets": [
+    {
+      "asset_id": "M08_FlyingWitch_001",
+      "key": "M08",
+      "category": "prop",
+      "area_id": "C_candy",
+      "collection": "M08",
+      "blend_file": "blender/M08/M08.blend",
+      "script_file": "modeling/M08/build.py",
+      "origin_policy": "hinge_pivot",
+      "origin_world": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 1.542,
+        "depth": 2.126,
+        "height": 2.5
+      },
+      "bounds_local": {
+        "min": [
+          -0.6368,
+          -1.2147,
+          -0.6119
+        ],
+        "max": [
+          0.9049,
+          0.9116,
+          1.8882
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "M08_FlyingWitch_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "M08_FlyingWitch_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "M08_FlyingWitch_001"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_M08_FlyingWitch"
+      ],
+      "textures": [
+        "blender/M08/textures/M08_FlyingWitch_001_color.png",
+        "blender/M08/textures/M08_FlyingWitch_001_metallic.png",
+        "blender/M08/textures/M08_FlyingWitch_001_roughness.png"
+      ],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 31130,
+        "vertices": 42030,
+        "materials_count": 1,
+        "objects_count": 1
+      },
+      "export_result": {
+        "status": "exported",
+        "bundle_dir": "exports/M08/bundle",
+        "apply_plan": "exports/M08/bundle/model.apply.json",
+        "report_file": "exports/M08/bundle/report.json",
+        "parent": "Root/ResoLoop_Test_W09_M08",
+        "flags": [
+          "--collection M08",
+          "--preserve-hierarchy",
+          "--pack-pbr"
+        ],
+        "report": {
+          "triangles": 31130,
+          "vertices": 42750,
+          "materials": 1,
+          "drawSections": 1,
+          "staticOnly": true,
+          "preserveHierarchy": true,
+          "warnings": []
+        },
+        "meshes": [
+          {
+            "name": "M08_FlyingWitch_001",
+            "vertices": 42750,
+            "triangles": 31130,
+            "submeshes": 1
+          }
+        ],
+        "textures": [
+          {
+            "name": "M08_FlyingWitch_001_color",
+            "width": 1024,
+            "height": 1024,
+            "rgba8MipBytesEstimate": 5592406
+          },
+          {
+            "name": "pbr_mat_material_MAT_M08_FlyingWitch_e90b9ec_409b614c",
+            "width": 512,
+            "height": 512,
+            "rgba8MipBytesEstimate": 1398102
+          }
+        ],
+        "validate": {
+          "valid": true,
+          "strict": false,
+          "slots": 6,
+          "components": 5,
+          "references": 7,
+          "issues": []
+        }
+      },
+      "flight": {
+        "origin": "flight centre: on W09's broom axis (bristle end centre -> broom tip), the point nearest the bounding-box centre (below the seat)",
+        "front": "+Y = the broom tip, the direction of travel (Resonite +Z)",
+        "broom_axis_w09": {
+          "bristle_end_centre": [
+            -0.0,
+            -1.043,
+            -0.245
+          ],
+          "broom_tip": [
+            0.0,
+            0.91,
+            0.214
+          ],
+          "pitch_deg": 13.23
+        },
+        "extent_from_origin_m": {
+          "down": 0.612,
+          "up": 1.888,
+          "front_plus_y": 0.912,
+          "back": 1.215,
+          "plus_x": 0.905,
+          "minus_x": 0.637
+        }
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "future_target": null,
+        "replaces_placeholder": {
+          "manifest": "assets/manifest/C_candy.json",
+          "asset_id": "CCD_M08_FlyingWitchProxy_001",
+          "status": "named by W04 #6 (in progress; not on main on 2026-10-31). Confirm against main in P2."
+        },
+        "notes": "Finished Meshy visual for the VisualRoot of the flying witch (Spec 6.3) on the G11 patrol loop above C_candy; it replaces W04's rider placeholder in P2 (after W08). One static piece (witch, broom, cat bag), no rig. origin_world is the asset-local origin: the flight centre on the broom axis; put it on the patrol path and point +Y (Resonite +Z) along the path tangent. The broom tip rises 13.23 deg (W09 axis); keep it as the pose. Trails, glow and motion are Resonite-side (G11). No emission is baked into the albedo; no collider is part of this visual."
+      }
+    }
+  ]
+}
