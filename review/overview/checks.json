@@ -322,16 +322,13 @@
         -44.0,
         0.0
       ],
-      "clearance_radius_m": 3.0,
-      "samples": 113,
-      "floor": 111,
+      "clearance_radius_m": 2.8,
+      "samples": 97,
+      "floor": 97,
       "gap": 0,
-      "obstacle": 2,
+      "obstacle": 0,
       "low_headroom": 0,
-      "by_object": {
-        "obstacle:WLD_WelcomeBench_East_001": 1,
-        "obstacle:WLD_WelcomeBench_West_001": 1
-      }
+      "by_object": {}
     },
     "Spawn_South_Entrance_Gate": {
       "position": [
@@ -339,16 +336,13 @@
         -44.0,
         0.0
       ],
-      "clearance_radius_m": 3.5,
-      "samples": 149,
-      "floor": 143,
+      "clearance_radius_m": 2.8,
+      "samples": 97,
+      "floor": 97,
       "gap": 0,
-      "obstacle": 6,
+      "obstacle": 0,
       "low_headroom": 0,
-      "by_object": {
-        "obstacle:WLD_WelcomeBench_East_001": 3,
-        "obstacle:WLD_WelcomeBench_West_001": 3
-      }
+      "by_object": {}
     },
     "Spawn_Plaza_South_Ring": {
       "position": [

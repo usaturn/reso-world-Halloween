@@ -67,7 +67,8 @@ def build_world_layout_dict() -> dict[str, Any]:
             "area_id": "D_amusement",
             "position": [0.0, -44.0, 0.0],
             "forward": [0.0, 1.0, 0.0],
-            "clearance_radius_m": 3.0,
+            # W08: 3.0 -> 2.8. Welcome benches (x +-3.2, y -43.5) leave 2.86 m free (docs/p2-static-integration.md 5).
+            "clearance_radius_m": 2.8,
         },
         "spawn_candidates": [
             {
@@ -76,7 +77,7 @@ def build_world_layout_dict() -> dict[str, Any]:
                 "issue_key": "D_amusement",
                 "position": [0.0, -44.0, 0.0],
                 "forward": [0.0, 1.0, 0.0],
-                "clearance_radius_m": 3.5,
+                "clearance_radius_m": 2.8,  # W08: 3.5 -> 2.8 (same reason as "spawn")
                 "role": "primary_world_entrance",
                 "notes": "South-most main arrival terrace looking straight north (+Y) through the Trick Amusement promenade to Central Pumpkin Plaza.",
             },

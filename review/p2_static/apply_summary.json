@@ -1,0 +1,474 @@
+{
+  "note": "W08 (Issue #41) の diff・apply の数。ResoniteLink の ID・接続先は含めない。手順は docs/p2-static-integration.md 7 章",
+  "root": {
+    "declaration": "content/main.json",
+    "state": "<親の checkout>/.resoloop/state/p2_root.json",
+    "diff_1": {
+      "creates": 29,
+      "updates": 0,
+      "renames": 0,
+      "deletes": 0,
+      "noOps": 0
+    },
+    "apply_1": {
+      "slotsCreated": 12,
+      "slotsUpdated": 0,
+      "slotsDeleted": 0,
+      "componentsAdded": 17,
+      "componentsUpdated": 0,
+      "componentsDeleted": 0,
+      "assetsImported": 0,
+      "assetsUnchanged": 0
+    },
+    "diff_sky_tune": {
+      "creates": 0,
+      "updates": 1,
+      "renames": 0,
+      "deletes": 0,
+      "noOps": 28
+    },
+    "apply_sky_tune": {
+      "slotsCreated": 0,
+      "slotsUpdated": 0,
+      "slotsDeleted": 0,
+      "componentsAdded": 0,
+      "componentsUpdated": 1,
+      "componentsDeleted": 0,
+      "assetsImported": 0,
+      "assetsUnchanged": 0
+    },
+    "diff_2": {
+      "creates": 0,
+      "updates": 0,
+      "renames": 0,
+      "deletes": 0,
+      "noOps": 29
+    },
+    "apply_2": {
+      "slotsCreated": 0,
+      "slotsUpdated": 0,
+      "slotsDeleted": 0,
+      "componentsAdded": 0,
+      "componentsUpdated": 0,
+      "componentsDeleted": 0,
+      "assetsImported": 0,
+      "assetsUnchanged": 0
+    }
+  },
+  "keys": {
+    "world": {
+      "state": "<親の checkout>/.resoloop/state/p2_world.json",
+      "bundle_first": "exports/p2_static/world-20261031T153958Z",
+      "bundle_reexport": "exports/p2_static/world-20261031T155217Z",
+      "diff_1": {
+        "creates": 184,
+        "updates": 0,
+        "renames": 0,
+        "deletes": 0,
+        "noOps": 0
+      },
+      "apply_1": {
+        "slotsCreated": 40,
+        "slotsUpdated": 0,
+        "slotsDeleted": 0,
+        "componentsAdded": 123,
+        "componentsUpdated": 0,
+        "componentsDeleted": 0,
+        "assetsImported": 21,
+        "assetsUnchanged": 0
+      },
+      "diff_2": {
+        "creates": 0,
+        "updates": 0,
+        "renames": 0,
+        "deletes": 0,
+        "noOps": 184
+      },
+      "apply_2": {
+        "slotsCreated": 0,
+        "slotsUpdated": 0,
+        "slotsDeleted": 0,
+        "componentsAdded": 0,
+        "componentsUpdated": 0,
+        "componentsDeleted": 0,
+        "assetsImported": 0,
+        "assetsUnchanged": 21
+      },
+      "diff_after_reexport": {
+        "creates": 0,
+        "updates": 0,
+        "renames": 0,
+        "deletes": 0,
+        "noOps": 184
+      },
+      "apply_after_reexport": {
+        "slotsCreated": 0,
+        "slotsUpdated": 0,
+        "slotsDeleted": 0,
+        "componentsAdded": 0,
+        "componentsUpdated": 0,
+        "componentsDeleted": 0,
+        "assetsImported": 0,
+        "assetsUnchanged": 21
+      }
+    },
+    "A_plaza": {
+      "state": "<親の checkout>/.resoloop/state/p2_A_plaza.json",
+      "bundle_first": "exports/p2_static/A_plaza-20261031T153958Z",
+      "bundle_reexport": "exports/p2_static/A_plaza-20261031T155217Z",
+      "diff_1": {
+        "creates": 655,
+        "updates": 0,
+        "renames": 0,
+        "deletes": 0,
+        "noOps": 0
+      },
+      "apply_1": {
+        "slotsCreated": 166,
+        "slotsUpdated": 0,
+        "slotsDeleted": 0,
+        "componentsAdded": 379,
+        "componentsUpdated": 0,
+        "componentsDeleted": 0,
+        "assetsImported": 110,
+        "assetsUnchanged": 0
+      },
+      "diff_2": {
+        "creates": 0,
+        "updates": 0,
+        "renames": 0,
+        "deletes": 0,
+        "noOps": 655
+      },
+      "apply_2": {
+        "slotsCreated": 0,
+        "slotsUpdated": 0,
+        "slotsDeleted": 0,
+        "componentsAdded": 0,
+        "componentsUpdated": 0,
+        "componentsDeleted": 0,
+        "assetsImported": 0,
+        "assetsUnchanged": 110
+      },
+      "diff_after_reexport": {
+        "creates": 0,
+        "updates": 0,
+        "renames": 0,
+        "deletes": 0,
+        "noOps": 655
+      },
+      "apply_after_reexport": {
+        "slotsCreated": 0,
+        "slotsUpdated": 0,
+        "slotsDeleted": 0,
+        "componentsAdded": 0,
+        "componentsUpdated": 0,
+        "componentsDeleted": 0,
+        "assetsImported": 0,
+        "assetsUnchanged": 110
+      }
+    },
+    "B_mansion": {
+      "state": "<親の checkout>/.resoloop/state/p2_B_mansion.json",
+      "bundle_first": "exports/p2_static/B_mansion-20261031T153958Z",
+      "bundle_reexport": "exports/p2_static/B_mansion-20261031T155217Z",
+      "diff_1": {
+        "creates": 333,
+        "updates": 0,
+        "renames": 0,
+        "deletes": 0,
+        "noOps": 0
+      },
+      "apply_1": {
+        "slotsCreated": 88,
+        "slotsUpdated": 0,
+        "slotsDeleted": 0,
+        "componentsAdded": 200,
+        "componentsUpdated": 0,
+        "componentsDeleted": 0,
+        "assetsImported": 45,
+        "assetsUnchanged": 0
+      },
+      "diff_2": {
+        "creates": 0,
+        "updates": 0,
+        "renames": 0,
+        "deletes": 0,
+        "noOps": 333
+      },
+      "apply_2": {
+        "slotsCreated": 0,
+        "slotsUpdated": 0,
+        "slotsDeleted": 0,
+        "componentsAdded": 0,
+        "componentsUpdated": 0,
+        "componentsDeleted": 0,
+        "assetsImported": 0,
+        "assetsUnchanged": 45
+      },
+      "diff_after_reexport": {
+        "creates": 0,
+        "updates": 0,
+        "renames": 0,
+        "deletes": 0,
+        "noOps": 333
+      },
+      "apply_after_reexport": {
+        "slotsCreated": 0,
+        "slotsUpdated": 0,
+        "slotsDeleted": 0,
+        "componentsAdded": 0,
+        "componentsUpdated": 0,
+        "componentsDeleted": 0,
+        "assetsImported": 0,
+        "assetsUnchanged": 45
+      }
+    },
+    "C_candy": {
+      "state": "<親の checkout>/.resoloop/state/p2_C_candy.json",
+      "bundle_first": "exports/p2_static/C_candy-20261031T153958Z",
+      "bundle_reexport": "exports/p2_static/C_candy-20261031T155217Z",
+      "diff_1": {
+        "creates": 318,
+        "updates": 0,
+        "renames": 0,
+        "deletes": 0,
+        "noOps": 0
+      },
+      "apply_1": {
+        "slotsCreated": 80,
+        "slotsUpdated": 0,
+        "slotsDeleted": 0,
+        "componentsAdded": 196,
+        "componentsUpdated": 0,
+        "componentsDeleted": 0,
+        "assetsImported": 42,
+        "assetsUnchanged": 0
+      },
+      "diff_2": {
+        "creates": 0,
+        "updates": 0,
+        "renames": 0,
+        "deletes": 0,
+        "noOps": 318
+      },
+      "apply_2": {
+        "slotsCreated": 0,
+        "slotsUpdated": 0,
+        "slotsDeleted": 0,
+        "componentsAdded": 0,
+        "componentsUpdated": 0,
+        "componentsDeleted": 0,
+        "assetsImported": 0,
+        "assetsUnchanged": 42
+      },
+      "diff_after_reexport": {
+        "creates": 0,
+        "updates": 0,
+        "renames": 0,
+        "deletes": 0,
+        "noOps": 318
+      },
+      "apply_after_reexport": {
+        "slotsCreated": 0,
+        "slotsUpdated": 0,
+        "slotsDeleted": 0,
+        "componentsAdded": 0,
+        "componentsUpdated": 0,
+        "componentsDeleted": 0,
+        "assetsImported": 0,
+        "assetsUnchanged": 42
+      }
+    },
+    "D_amusement": {
+      "state": "<親の checkout>/.resoloop/state/p2_D_amusement.json",
+      "bundle_first": "exports/p2_static/D_amusement-20261031T153958Z",
+      "bundle_reexport": "exports/p2_static/D_amusement-20261031T155217Z",
+      "diff_1": {
+        "creates": 378,
+        "updates": 0,
+        "renames": 0,
+        "deletes": 0,
+        "noOps": 0
+      },
+      "apply_1": {
+        "slotsCreated": 98,
+        "slotsUpdated": 0,
+        "slotsDeleted": 0,
+        "componentsAdded": 222,
+        "componentsUpdated": 0,
+        "componentsDeleted": 0,
+        "assetsImported": 58,
+        "assetsUnchanged": 0
+      },
+      "diff_2": {
+        "creates": 0,
+        "updates": 0,
+        "renames": 0,
+        "deletes": 0,
+        "noOps": 378
+      },
+      "apply_2": {
+        "slotsCreated": 0,
+        "slotsUpdated": 0,
+        "slotsDeleted": 0,
+        "componentsAdded": 0,
+        "componentsUpdated": 0,
+        "componentsDeleted": 0,
+        "assetsImported": 0,
+        "assetsUnchanged": 58
+      },
+      "diff_after_reexport": {
+        "creates": 0,
+        "updates": 0,
+        "renames": 0,
+        "deletes": 0,
+        "noOps": 378
+      },
+      "apply_after_reexport": {
+        "slotsCreated": 0,
+        "slotsUpdated": 0,
+        "slotsDeleted": 0,
+        "componentsAdded": 0,
+        "componentsUpdated": 0,
+        "componentsDeleted": 0,
+        "assetsImported": 0,
+        "assetsUnchanged": 58
+      }
+    },
+    "E_forest": {
+      "state": "<親の checkout>/.resoloop/state/p2_E_forest.json",
+      "bundle_first": "exports/p2_static/E_forest-20261031T153958Z",
+      "bundle_reexport": "exports/p2_static/E_forest-20261031T155217Z",
+      "diff_1": {
+        "creates": 780,
+        "updates": 0,
+        "renames": 0,
+        "deletes": 0,
+        "noOps": 0
+      },
+      "apply_1": {
+        "slotsCreated": 190,
+        "slotsUpdated": 0,
+        "slotsDeleted": 0,
+        "componentsAdded": 475,
+        "componentsUpdated": 0,
+        "componentsDeleted": 0,
+        "assetsImported": 115,
+        "assetsUnchanged": 0
+      },
+      "diff_2": {
+        "creates": 0,
+        "updates": 0,
+        "renames": 0,
+        "deletes": 0,
+        "noOps": 780
+      },
+      "apply_2": {
+        "slotsCreated": 0,
+        "slotsUpdated": 0,
+        "slotsDeleted": 0,
+        "componentsAdded": 0,
+        "componentsUpdated": 0,
+        "componentsDeleted": 0,
+        "assetsImported": 0,
+        "assetsUnchanged": 115
+      },
+      "diff_after_reexport": {
+        "creates": 0,
+        "updates": 0,
+        "renames": 0,
+        "deletes": 0,
+        "noOps": 780
+      },
+      "apply_after_reexport": {
+        "slotsCreated": 0,
+        "slotsUpdated": 0,
+        "slotsDeleted": 0,
+        "componentsAdded": 0,
+        "componentsUpdated": 0,
+        "componentsDeleted": 0,
+        "assetsImported": 0,
+        "assetsUnchanged": 115
+      }
+    }
+  },
+  "defaults_disabled": {
+    "Ground": {
+      "diff": {
+        "creates": 0,
+        "updates": 1,
+        "renames": 0,
+        "deletes": 0,
+        "noOps": 5
+      },
+      "apply": {
+        "slotsCreated": 0,
+        "slotsUpdated": 1,
+        "slotsDeleted": 0,
+        "componentsAdded": 0,
+        "componentsUpdated": 0,
+        "componentsDeleted": 0,
+        "assetsImported": 0,
+        "assetsUnchanged": 0
+      }
+    },
+    "SpawnArea": {
+      "diff": {
+        "creates": 0,
+        "updates": 1,
+        "renames": 0,
+        "deletes": 0,
+        "noOps": 13
+      },
+      "apply": {
+        "slotsCreated": 0,
+        "slotsUpdated": 1,
+        "slotsDeleted": 0,
+        "componentsAdded": 0,
+        "componentsUpdated": 0,
+        "componentsDeleted": 0,
+        "assetsImported": 0,
+        "assetsUnchanged": 0
+      }
+    },
+    "Light": {
+      "diff": {
+        "creates": 0,
+        "updates": 1,
+        "renames": 0,
+        "deletes": 0,
+        "noOps": 1
+      },
+      "apply": {
+        "slotsCreated": 0,
+        "slotsUpdated": 1,
+        "slotsDeleted": 0,
+        "componentsAdded": 0,
+        "componentsUpdated": 0,
+        "componentsDeleted": 0,
+        "assetsImported": 0,
+        "assetsUnchanged": 0
+      }
+    },
+    "Skybox": {
+      "diff": {
+        "creates": 0,
+        "updates": 1,
+        "renames": 0,
+        "deletes": 0,
+        "noOps": 8
+      },
+      "apply": {
+        "slotsCreated": 0,
+        "slotsUpdated": 1,
+        "slotsDeleted": 0,
+        "componentsAdded": 0,
+        "componentsUpdated": 0,
+        "componentsDeleted": 0,
+        "assetsImported": 0,
+        "assetsUnchanged": 0
+      }
+    }
+  }
+}

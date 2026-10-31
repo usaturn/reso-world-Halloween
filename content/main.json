@@ -1,16 +1,22 @@
 {
   "schemaVersion": "1",
   "ownership": {
-    "key": "reso_world_halloween"
+    "key": "halloween_magical_carnival"
   },
   "slot": {
     "key": "root",
-    "name": "ResoLoop_Test_reso_world_Halloween",
+    "name": "HalloweenMagicalCarnival",
     "parent": "Root",
     "position": [
       0,
-      1.5,
-      2
+      0,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0,
+      1
     ],
     "scale": [
       1,
@@ -20,40 +26,589 @@
   },
   "components": [
     {
-      "type": "FrooxEngine.Grabbable",
-      "fields": {
-        "Scalable": true
-      }
+      "key": "root_object",
+      "type": "FrooxEngine.ObjectRoot"
+    }
+  ],
+  "children": [
+    {
+      "slot": {
+        "key": "environment",
+        "name": "Environment",
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      "children": [
+        {
+          "slot": {
+            "key": "night_sky",
+            "name": "NightSky",
+            "position": [
+              0,
+              0,
+              0
+            ]
+          },
+          "components": [
+            {
+              "key": "sky_material",
+              "type": "FrooxEngine.ProceduralSkyMaterial",
+              "fields": {
+                "SunQuality": "HighQuality",
+                "SunSize": 0.03,
+                "Sun": "$component:moon_light",
+                "AtmosphereThickness": 0.6,
+                "SkyTint": [
+                  0.62,
+                  0.3,
+                  0.6,
+                  1.0
+                ],
+                "GroundColor": [
+                  0.07,
+                  0.05,
+                  0.11,
+                  1.0
+                ],
+                "Exposure": 0.35
+              }
+            },
+            {
+              "key": "skybox",
+              "type": "FrooxEngine.Skybox",
+              "fields": {
+                "Material": "$component:sky_material"
+              }
+            },
+            {
+              "key": "sky_probe",
+              "type": "FrooxEngine.ReflectionProbe",
+              "fields": {
+                "ProbeType": "OnChanges",
+                "Importance": 1,
+                "BoxSize": [
+                  1000000,
+                  1000000,
+                  1000000
+                ],
+                "ChangesSources": [
+                  "$component:sky_material"
+                ],
+                "Resolution": 64,
+                "HDR": true,
+                "ClearFlags": "Skybox",
+                "SkyboxOnly": true
+              }
+            },
+            {
+              "key": "sky_probe_sh",
+              "type": "FrooxEngine.ReflectionProbeSH2",
+              "fields": {
+                "Probe": "$component:sky_probe",
+                "Order0Scale": 1.5,
+                "Order1Scale": 0.5,
+                "Order2Scale": 0.5
+              }
+            },
+            {
+              "key": "ambient",
+              "type": "FrooxEngine.AmbientLightSH2"
+            },
+            {
+              "key": "ambient_copy",
+              "type": "[FrooxEngine]FrooxEngine.ValueCopy<[Elements.Core]Elements.Core.SphericalHarmonicsL2<colorX>>",
+              "fields": {
+                "Source": "$member:sky_probe_sh.AmbientLight",
+                "Target": "$member:ambient.AmbientLight"
+              }
+            }
+          ]
+        },
+        {
+          "slot": {
+            "key": "moon",
+            "name": "MoonLight",
+            "position": [
+              0,
+              30,
+              0
+            ],
+            "rotation": [
+              0.070466,
+              -0.923106,
+              0.317851,
+              0.204648
+            ]
+          },
+          "components": [
+            {
+              "key": "moon_light",
+              "type": "FrooxEngine.Light",
+              "fields": {
+                "LightType": "Directional",
+                "Intensity": 0.45,
+                "Color": [
+                  0.72,
+                  0.74,
+                  1.0,
+                  1.0
+                ],
+                "ShadowType": "Soft",
+                "ShadowStrength": 0.8
+              }
+            }
+          ]
+        },
+        {
+          "slot": {
+            "key": "key_lights",
+            "name": "KeyLights",
+            "position": [
+              0,
+              0,
+              0
+            ]
+          },
+          "children": [
+            {
+              "slot": {
+                "key": "light_plaza",
+                "name": "PlazaPumpkinLight",
+                "position": [
+                  0.0,
+                  9.5,
+                  0.0
+                ]
+              },
+              "components": [
+                {
+                  "key": "light_plaza_light",
+                  "type": "FrooxEngine.Light",
+                  "fields": {
+                    "LightType": "Point",
+                    "Intensity": 1.6,
+                    "Color": [
+                      1.0,
+                      0.62,
+                      0.28,
+                      1.0
+                    ],
+                    "ShadowType": "None",
+                    "Range": 20.0
+                  }
+                }
+              ]
+            },
+            {
+              "slot": {
+                "key": "light_entrance",
+                "name": "SouthEntranceLight",
+                "position": [
+                  0.0,
+                  5.0,
+                  -42.5
+                ]
+              },
+              "components": [
+                {
+                  "key": "light_entrance_light",
+                  "type": "FrooxEngine.Light",
+                  "fields": {
+                    "LightType": "Point",
+                    "Intensity": 1.4,
+                    "Color": [
+                      1.0,
+                      0.7,
+                      0.35,
+                      1.0
+                    ],
+                    "ShadowType": "None",
+                    "Range": 12.0
+                  }
+                }
+              ]
+            },
+            {
+              "slot": {
+                "key": "light_mansion",
+                "name": "MansionPorchLight",
+                "position": [
+                  0.7,
+                  4.6,
+                  34.5
+                ]
+              },
+              "components": [
+                {
+                  "key": "light_mansion_light",
+                  "type": "FrooxEngine.Light",
+                  "fields": {
+                    "LightType": "Point",
+                    "Intensity": 1.4,
+                    "Color": [
+                      0.62,
+                      0.45,
+                      1.0,
+                      1.0
+                    ],
+                    "ShadowType": "None",
+                    "Range": 13.0
+                  }
+                }
+              ]
+            },
+            {
+              "slot": {
+                "key": "light_candy_arch",
+                "name": "CandyArchLight",
+                "position": [
+                  33.0,
+                  5.6,
+                  0.0
+                ]
+              },
+              "components": [
+                {
+                  "key": "light_candy_arch_light",
+                  "type": "FrooxEngine.Light",
+                  "fields": {
+                    "LightType": "Point",
+                    "Intensity": 1.5,
+                    "Color": [
+                      1.0,
+                      0.7,
+                      0.28,
+                      1.0
+                    ],
+                    "ShadowType": "None",
+                    "Range": 12.0
+                  }
+                }
+              ]
+            },
+            {
+              "slot": {
+                "key": "light_carousel",
+                "name": "CarouselLight",
+                "position": [
+                  -10.5,
+                  7.0,
+                  -32.0
+                ]
+              },
+              "components": [
+                {
+                  "key": "light_carousel_light",
+                  "type": "FrooxEngine.Light",
+                  "fields": {
+                    "LightType": "Point",
+                    "Intensity": 1.5,
+                    "Color": [
+                      1.0,
+                      0.55,
+                      0.3,
+                      1.0
+                    ],
+                    "ShadowType": "None",
+                    "Range": 13.0
+                  }
+                }
+              ]
+            },
+            {
+              "slot": {
+                "key": "light_clock_tower",
+                "name": "ClockTowerLight",
+                "position": [
+                  -35.0,
+                  6.5,
+                  0.0
+                ]
+              },
+              "components": [
+                {
+                  "key": "light_clock_tower_light",
+                  "type": "FrooxEngine.Light",
+                  "fields": {
+                    "LightType": "Point",
+                    "Intensity": 1.3,
+                    "Color": [
+                      0.55,
+                      1.0,
+                      0.65,
+                      1.0
+                    ],
+                    "ShadowType": "None",
+                    "Range": 14.0
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slot": {
+        "key": "spawn",
+        "name": "SouthEntranceSpawn",
+        "position": [
+          0.0,
+          0.08,
+          -44.0
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "components": [
+        {
+          "key": "spawn_points",
+          "type": "FrooxEngine.CirclePointGenerator",
+          "fields": {
+            "Radius": 2.0
+          }
+        },
+        {
+          "key": "spawn_area",
+          "type": "FrooxEngine.CommonSpawnArea",
+          "fields": {
+            "SpawnPointGenerator": "$component:spawn_points",
+            "OrientUser": true
+          }
+        }
+      ]
     }
   ],
   "cameras": {
-    "main": {
+    "overview_south": {
       "position": [
         0,
-        2.5,
-        -6
+        48,
+        -92
       ],
       "target": [
         0,
-        1.5,
-        2
+        0,
+        -4
       ],
       "fieldOfView": 60,
-      "width": 1280,
-      "height": 720,
-      "output": null,
+      "width": 1600,
+      "height": 900,
       "representative": true
+    },
+    "overview_northwest": {
+      "position": [
+        -72,
+        46,
+        72
+      ],
+      "target": [
+        0,
+        0,
+        0
+      ],
+      "fieldOfView": 60,
+      "width": 1600,
+      "height": 900
+    },
+    "spawn_view": {
+      "position": [
+        0,
+        1.7,
+        -44
+      ],
+      "target": [
+        0,
+        2.2,
+        0
+      ],
+      "fieldOfView": 70,
+      "width": 1600,
+      "height": 900
+    },
+    "entrance_gate": {
+      "position": [
+        0,
+        3.0,
+        -53
+      ],
+      "target": [
+        0,
+        3.0,
+        -40
+      ],
+      "fieldOfView": 70,
+      "width": 1600,
+      "height": 900
+    },
+    "area_A_plaza": {
+      "position": [
+        0,
+        11,
+        -24
+      ],
+      "target": [
+        0,
+        2,
+        0
+      ],
+      "fieldOfView": 65,
+      "width": 1600,
+      "height": 900
+    },
+    "area_B_mansion": {
+      "position": [
+        0,
+        9,
+        16
+      ],
+      "target": [
+        0,
+        4,
+        40
+      ],
+      "fieldOfView": 65,
+      "width": 1600,
+      "height": 900
+    },
+    "area_C_candy": {
+      "position": [
+        16,
+        9,
+        -14
+      ],
+      "target": [
+        36,
+        2,
+        0
+      ],
+      "fieldOfView": 65,
+      "width": 1600,
+      "height": 900
+    },
+    "area_D_amusement": {
+      "position": [
+        14,
+        11,
+        -52
+      ],
+      "target": [
+        -2,
+        1,
+        -32
+      ],
+      "fieldOfView": 65,
+      "width": 1600,
+      "height": 900
+    },
+    "area_E_forest": {
+      "position": [
+        -16,
+        10,
+        14
+      ],
+      "target": [
+        -36,
+        4,
+        0
+      ],
+      "fieldOfView": 65,
+      "width": 1600,
+      "height": 900
+    },
+    "bridge_NE": {
+      "position": [
+        30,
+        5,
+        8
+      ],
+      "target": [
+        19,
+        1,
+        19
+      ],
+      "fieldOfView": 65,
+      "width": 1600,
+      "height": 900
+    },
+    "bridge_NW": {
+      "position": [
+        -30,
+        5,
+        8
+      ],
+      "target": [
+        -19,
+        1,
+        19
+      ],
+      "fieldOfView": 65,
+      "width": 1600,
+      "height": 900
     }
   },
   "tests": [
     {
-      "name": "root-exists",
+      "name": "w08-root-structure",
       "assertions": [
         {
           "target": "$slot:root",
           "exists": true
+        },
+        {
+          "target": "$slot:spawn",
+          "exists": true
+        },
+        {
+          "target": "$component:spawn_area",
+          "exists": true
+        },
+        {
+          "target": "$component:skybox",
+          "exists": true
+        },
+        {
+          "target": "$component:moon_light",
+          "exists": true
         }
       ]
+    },
+    {
+      "name": "w08-activate-night-sky",
+      "assertions": [
+        {
+          "target": "$component:skybox",
+          "exists": true
+        }
+      ],
+      "probe": {
+        "kind": "method",
+        "target": "$component:skybox",
+        "method": "SetActive",
+        "safe": true
+      }
+    },
+    {
+      "name": "w08-activate-night-ambient",
+      "assertions": [
+        {
+          "target": "$component:ambient",
+          "exists": true
+        }
+      ],
+      "probe": {
+        "kind": "method",
+        "target": "$component:ambient",
+        "method": "SetActive",
+        "safe": true
+      }
     }
   ]
 }

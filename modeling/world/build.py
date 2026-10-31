@@ -710,7 +710,7 @@ def build_west_bridge(
     bm = bmesh.new()
     uv_layer = bm.loops.layers.uv.new("UVMap")
 
-    # Origin at (-17.25, 0.0, 0.0) -> bridge span local x=-3.0..+3.0 (world x=-20.25..-14.25), plus forest road to local x=-25.0
+    # Origin at (-17.25, 0.0, 0.0) -> bridge span local x=-3.0..+3.0 (world x=-20.25..-14.25), plus forest road to local x=-17.461 (W08)
     # Slot 0: bridge_timber, Slot 1: cliff_rock, Slot 2: parapet_iron, Slot 3: beacon_glow
     _add_box(bm, uv_layer, (-3.0, -1.9, -0.28), (3.0, 1.9, 0.06), material_index=0)
     _add_box(bm, uv_layer, (-2.6, -1.7, -1.8), (-1.4, 1.7, -0.28), material_index=1)
@@ -720,8 +720,10 @@ def build_west_bridge(
     _add_handrail_span(bm, uv_layer, (-3.0, -1.78, 0.04), (3.0, -1.78, 0.04), 0, 2, 3)
     _add_handrail_span(bm, uv_layer, (-3.0, 1.78, 0.04), (3.0, 1.78, 0.04), 0, 2, 3)
 
-    # Main forest timber/stone road across Area E (local x=-25.0..-3.0, width=3.8m)
-    _add_box(bm, uv_layer, (-25.0, -1.9, 0.0), (-3.0, 1.9, 0.05), material_index=0)
+    # Main forest timber/stone road across Area E (local x=-17.461..-3.0, width=3.8m).
+    # W08: the road ends at world x=-34.711, the east face of the clock tower (EFR_ClockTower_001_Body), instead of
+    # running on to x=-42.25 under the tower, so the walking colliders of the road and the tower do not overlap.
+    _add_box(bm, uv_layer, (-17.461, -1.9, 0.0), (-3.0, 1.9, 0.05), material_index=0)
 
     bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
     bm.to_mesh(mesh)

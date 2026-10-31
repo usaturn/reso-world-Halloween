@@ -33,6 +33,7 @@
 | `overview` | W07 | `modeling/overview/build.py` | `blender/overview/overview.blend` | `review/overview/*.png` | `layout/world_layout.json`（参照） | `assets/manifest.json`（統合出力） |
 | `meshy` | W09 | `modeling/meshy/`（受領した素材の検査と仕上げの共通処理） | （作る場合）`blender/meshy/meshy.blend` | `review/meshy/*.png` | — | —（受領台帳は `assets/meshy/received.json`） |
 | `M01`〜`M08`（`<M>`） | W09-M01〜W09-M08 | `modeling/<M>/build.py` | `blender/<M>/<M>.blend` | `review/<M>/*.png` | — | `assets/manifest/<M>.json` |
+| `p2_static` | W08 | `modeling/p2_static/`（`content/main.json` の生成・P2 の export と当たり判定・実測の検査） | — | `review/p2_static/*.jpg` | — | —（`content/main.json`、`exports/p2_static/`） |
 
 ---
 
@@ -192,6 +193,12 @@ resoloop blender export blender/<key>/<key>.blend \
 - `--parent` は apply する Slot。Resonite に apply しない確認用の export では、`Root/ResoLoop_Test_<担当>_<key>` のような試験用のパスを渡し、apply の前に、ライブのワールドで確かめた Slot を `--parent` にして新しい出力先へ export し直す。
 - 金属・粗さの画像を持つ素材（Meshy の仕上げなど）は `--pack-pbr` を付ける。`--pack-pbr` が作る `pbr_*.png` は §8 の除外の規則に当たらないので、その出力先の `.gitignore` で除く（`exports/M01/.gitignore` など）。
 - 出力をオフラインで確かめるときは `resoloop validate <出力先>/model.apply.json --json`（`--strict` を付けない。`--strict` はライブの Reflection と照合する）。
+
+### 7.6 P2 の export と apply（W08）
+
+- export: `uv run python modeling/p2_static/export_p2.py --url <URL>`。確かめた `Root/HalloweenMagicalCarnival` を `--parent` にして新しい `exports/p2_static/<key>-<UTC>/` へ出し、歩行用の当たり判定を足した `p2.apply.json` を作る。apply するのは `model.apply.json` ではなく `p2.apply.json`
+- apply: キーごとに `resoloop diff <出力先>/p2.apply.json --state <親の checkout>/.resoloop/state/p2_<key>.json --brief --report <新しいファイル> --json` で対象を確かめてから `resoloop apply`。apply の前に W08 の root のスナップショットを `resoloop import` で親の checkout のプロジェクトの `tmp/` に取る。詳細は `docs/p2-static-integration.md` 7 章
+- コミットするのは `exports/p2_static/<key>-<UTC>/` の `report.json`・`validate.json`・`colliders.json`（バンドル本体は §8 のとおり除く）
 
 ---
 
