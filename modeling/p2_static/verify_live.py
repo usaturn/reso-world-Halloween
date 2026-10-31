@@ -56,21 +56,49 @@ def _vec(d: dict, keys: str) -> tuple:
     return tuple(float(d[k]) for k in keys)
 
 
-def world_transforms(node: dict, parent=((0.0, 0.0, 0.0), (0.0, 0.0, 0.0, 1.0), (1.0, 1.0, 1.0)), path=()):
-    """(パスの名前のタプル, 世界の位置, 世界の回転, ノード) を順に返す。"""
-    ppos, prot, pscl = parent
-    lpos = _vec(node["position"], "xyz")
-    lrot = _vec(node["rotation"], "xyzw")
-    lscl = _vec(node["scale"], "xyz")
-    scaled = (lpos[0] * pscl[0], lpos[1] * pscl[1], lpos[2] * pscl[2])
-    r = qrot(prot, scaled)
-    wpos = (ppos[0] + r[0], ppos[1] + r[1], ppos[2] + r[2])
-    wrot = qmul(prot, lrot)
-    wscl = (pscl[0] * lscl[0], pscl[1] * lscl[1], pscl[2] * lscl[2])
+def to_world(chain: list[dict], point) -> tuple[float, float, float]:
+    """chain（root からその Slot までのノード）のローカルの変換（拡縮 → 回転 → 位置）を内側から順にかける。"""
+    p = tuple(float(c) for c in point)
+    for node in reversed(chain):
+        scl = _vec(node["scale"], "xyz")
+        rot = _vec(node["rotation"], "xyzw")
+        pos = _vec(node["position"], "xyz")
+        r = qrot(rot, (p[0] * scl[0], p[1] * scl[1], p[2] * scl[2]))
+        p = (pos[0] + r[0], pos[1] + r[1], pos[2] + r[2])
+    return p
+
+
+def world_transforms(node: dict, chain: tuple = (), path: tuple = ()):
+    """(パスの名前のタプル, 世界の位置, 世界の回転, ノード) を順に返す。位置は祖先の拡縮・回転を含めて求める。"""
+    here_chain = chain + (node,)
+    wrot = (0.0, 0.0, 0.0, 1.0)
+    for n in here_chain:
+        wrot = qmul(wrot, _vec(n["rotation"], "xyzw"))
     here = path + (node["name"],)
-    yield here, wpos, wrot, node
+    yield here, to_world(list(here_chain), (0.0, 0.0, 0.0)), wrot, node
     for child in node.get("children") or []:
-        yield from world_transforms(child, (wpos, wrot, wscl), here)
+        yield from world_transforms(child, here_chain, here)
+
+
+def chain_for(root: dict, path: tuple[str, ...]) -> list[dict]:
+    """root から path（名前のタプル。先頭は root の名前）をたどったノードの列。"""
+    chain = [root]
+    for name in path[1:]:
+        chain.append(next(c for c in chain[-1].get("children") or [] if c["name"] == name))
+    return chain
+
+
+def mesh_bounds_world(chain: list[dict], vertices: list[dict]) -> tuple[list[float], list[float]]:
+    """メッシュの頂点（ローカル）を chain の変換で世界に置いた外接箱。"""
+    lo = [math.inf] * 3
+    hi = [-math.inf] * 3
+    for v in vertices:
+        p = v["position"]
+        w = to_world(chain, (p["x"], p["y"], p["z"]))
+        for i in range(3):
+            lo[i] = min(lo[i], w[i])
+            hi[i] = max(hi[i], w[i])
+    return lo, hi
 
 
 def count_nodes(node: dict) -> tuple[int, int]:
@@ -279,8 +307,8 @@ def run_checks(live: dict) -> dict:
             result["problems"].append(f"dimension {name}: {row['error']}")
             dims.append(row)
             continue
-        _, wpos, wrot, node = hits[0]
-        lo, hi = live_mesh_bounds(key, name, wpos, wrot)
+        hit_path = hits[0][0]
+        lo, hi = live_mesh_bounds(key, name, chain_for(root, hit_path))
         row["bounds_min"] = [round(v, 4) for v in lo]
         row["bounds_max"] = [round(v, 4) for v in hi]
         i = "xyz".index(axis[0])
@@ -310,7 +338,7 @@ DIMENSION_CHECKS = [
 ]
 
 
-def live_mesh_bounds(key: str, name: str, wpos, wrot) -> tuple[list[float], list[float]]:
+def live_mesh_bounds(key: str, name: str, chain: list[dict]) -> tuple[list[float], list[float]]:
     bundle = latest_bundle(key)
     doc = json.loads((bundle / "p2.apply.json").read_text(encoding="utf-8"))
     src = None
@@ -329,16 +357,7 @@ def live_mesh_bounds(key: str, name: str, wpos, wrot) -> tuple[list[float], list
     if src is None:
         raise SystemExit(f"{name}: no StaticMesh in {bundle}")
     mesh = json.loads((bundle / src).read_text(encoding="utf-8"))
-    lo = [math.inf] * 3
-    hi = [-math.inf] * 3
-    for v in mesh["vertices"]:
-        p = v["position"]
-        w = qrot(wrot, (p["x"], p["y"], p["z"]))
-        for i in range(3):
-            c = wpos[i] + w[i]
-            lo[i] = min(lo[i], c)
-            hi[i] = max(hi[i], c)
-    return lo, hi
+    return mesh_bounds_world(chain, mesh["vertices"])
 
 
 def main(argv: list[str] | None = None) -> int:
