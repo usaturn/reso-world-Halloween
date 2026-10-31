@@ -1,0 +1,43 @@
+{
+  "root_slot": {
+    "name": "M02",
+    "key": "root",
+    "parent": "Root/HalloweenMagicalCarnival/A_plaza/APL_GiantJackProxy_001/APL_GiantJackProxy_001_Body",
+    "position": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "rotation": [
+      0.0,
+      -1.0,
+      0.0,
+      0.0
+    ],
+    "scale": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "children": [
+    "M02_GiantPumpkin_001",
+    "Blender_Providers"
+  ],
+  "assets": [
+    "mesh_M02_GiantPumpkin_001_83f463be",
+    "pbr_mat_material_MAT_M02_GiantPumpkin_c7cfe6_6912602f",
+    "tex_M02_GiantPumpkin_001_color_color_b18a6e05"
+  ],
+  "district": "A_plaza",
+  "placeholder": "APL_GiantJackProxy_001",
+  "visual_root": "APL_GiantJackProxy_001_Body",
+  "visual_root_path": "Root/HalloweenMagicalCarnival/A_plaza/APL_GiantJackProxy_001/APL_GiantJackProxy_001_Body",
+  "asset_id": "M02_GiantPumpkin_001",
+  "rotation_z_deg": 180.0,
+  "position_local": [
+    0.0,
+    0.0,
+    0.0
+  ]
+}

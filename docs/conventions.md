@@ -18,7 +18,7 @@
 
 ## 2. キー一覧とファイル配置
 
-全作業は以下の 18 キー（`M01`〜`M08` の 8 キーは 1 行にまとめた）に分割して管理し、1 タスク＝1 キーの所有範囲で編集する。担当は親 Issue #1 のボード `halloween-p0p1` の子キーである（W01A で揃えた）。
+全作業は以下の 19 キー（`M01`〜`M08` の 8 キーは 1 行にまとめた）に分割して管理し、1 タスク＝1 キーの所有範囲で編集する。担当は親 Issue #1 のボード `halloween-p0p1` の子キーである（W01A で揃えた）。
 
 | キー (`key`) | 担当 | ビルダスクリプト | Blender ファイル | レビュー画像 | レイアウト JSON | マニフェスト JSON |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -34,6 +34,7 @@
 | `meshy` | W09 | `modeling/meshy/`（受領した素材の検査と仕上げの共通処理） | （作る場合）`blender/meshy/meshy.blend` | `review/meshy/*.png` | — | —（受領台帳は `assets/meshy/received.json`） |
 | `M01`〜`M08`（`<M>`） | W09-M01〜W09-M08 | `modeling/<M>/build.py` | `blender/<M>/<M>.blend` | `review/<M>/*.png` | — | `assets/manifest/<M>.json` |
 | `p2_static` | W08 | `modeling/p2_static/`（`content/main.json` の生成・P2 の export と当たり判定・実測の検査） | — | `review/p2_static/*.jpg` | — | —（`content/main.json`、`exports/p2_static/`） |
+| `p2_meshy` | W09R | `modeling/p2_meshy/`（Meshy の仕上げた素材への差し替えの設定・宣言の作成・実測の検査） | —（`blender/<M>/<M>.blend` を使う） | `review/p2_meshy/*.jpg` | — | —（`exports/p2_meshy/`） |
 
 ---
 
@@ -199,6 +200,7 @@ resoloop blender export blender/<key>/<key>.blend \
 - export: `uv run python modeling/p2_static/export_p2.py --url <URL>`。確かめた `Root/HalloweenMagicalCarnival` を `--parent` にして新しい `exports/p2_static/<key>-<UTC>/` へ出し、歩行用の当たり判定を足した `p2.apply.json` を作る。apply するのは `model.apply.json` ではなく `p2.apply.json`
 - apply: キーごとに `resoloop diff <出力先>/p2.apply.json --state <親の checkout>/.resoloop/state/p2_<key>.json --brief --report <新しいファイル> --json` で対象を確かめてから `resoloop apply`。apply の前に W08 の root のスナップショットを `resoloop import` で親の checkout のプロジェクトの `tmp/` に取る。詳細は `docs/p2-static-integration.md` 7 章
 - コミットするのは `exports/p2_static/<key>-<UTC>/` の `report.json`・`validate.json`・`colliders.json`（バンドル本体は §8 のとおり除く）
+- Meshy の仕上げた素材への差し替え（W09R）: 仕上げた素材は `uv run python modeling/p2_meshy/export_meshy.py --url <URL> --meshy <M>` で、仮モデルの見た目の Slot の子に置く別の宣言（`exports/p2_meshy/<M>-<UTC>/p2m.apply.json`、state は `p2m_<M>.json`）にする。差し替えた仮モデルの描画は `export_p2.py` が地区の `p2.apply.json` で止める（`modeling/p2_meshy/replacements.py` の `REPLACEMENTS`）。apply は `--texture-transfer data`。コミットするのは `exports/p2_meshy/<M>-<UTC>/` の `report.json`・`validate.json`・`placement.json` と、地区の出力先の `replacements.json`。詳細は `docs/p2-meshy-replacement.md`
 
 ---
 

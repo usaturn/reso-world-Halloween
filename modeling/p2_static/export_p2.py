@@ -27,6 +27,7 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
+from modeling.p2_meshy import replacements  # noqa: E402
 from modeling.p2_static import colliders  # noqa: E402
 
 KEYS = ["world", "A_plaza", "B_mansion", "C_candy", "D_amusement", "E_forest"]
@@ -79,6 +80,11 @@ def export_key(key: str, stamp: str, url: str) -> dict:
     result["model"] = validate_both(f"{out_rel}/model.apply.json", url)
     summary = colliders.compose(out / "model.apply.json", out / "p2.apply.json", key)
     (out / "colliders.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    # W09R: Meshy の仕上げた素材に差し替えた仮モデルの描画を止める（modeling/p2_meshy/replacements.py）
+    hidden = replacements.hide_in_file(out / "p2.apply.json", key)
+    if hidden:
+        (out / "replacements.json").write_text(json.dumps(hidden, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        result["hidden_placeholders"] = hidden
     result["p2"] = validate_both(f"{out_rel}/p2.apply.json", url)
     result["colliders"] = summary["counts"]
     (out / "validate.json").write_text(
