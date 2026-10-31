@@ -1,0 +1,378 @@
+{
+  "triangles": 30792,
+  "vertices": 26786,
+  "bounds_m": {
+    "min": [
+      -3.1014,
+      -2.935,
+      0.0001
+    ],
+    "max": [
+      3.1011,
+      2.9351,
+      6.0001
+    ]
+  },
+  "bounds_expected_m": {
+    "min": [
+      -3.101,
+      -2.935,
+      0.0
+    ],
+    "max": [
+      3.101,
+      2.935,
+      6.0
+    ]
+  },
+  "bounds_max_abs_diff_m": 0.0004,
+  "dimensions_m": {
+    "width_x": 6.202,
+    "depth_y": 5.87,
+    "height_z": 6.0
+  },
+  "origin": {
+    "policy": "ground_center",
+    "min_z": 0.0001,
+    "box_centre_xy": [
+      -0.0002,
+      0.0001
+    ]
+  },
+  "object_transform_identity": true,
+  "uv_cover": 0.6504,
+  "uv_corners_in_unit_square": 1.0,
+  "surface_area_m2": 221.1,
+  "texels_per_m_at_color": 111.1,
+  "face_openings": {
+    "eye_left_centre_front": {
+      "point": [
+        1.009,
+        2.676,
+        2.317
+      ],
+      "first_hit_from_front_y": -2.196,
+      "depth_from_point_m": 4.872,
+      "first_hit_faces_viewer": true,
+      "first_hit_from_back_y": -2.536,
+      "back_hit_depth_m": 0.399,
+      "front_opening_z_spans_at_x": [
+        [
+          0.97,
+          1.11
+        ],
+        [
+          1.17,
+          1.41
+        ],
+        [
+          2.17,
+          2.57
+        ]
+      ]
+    },
+    "eye_right_centre_front": {
+      "point": [
+        -1.012,
+        2.676,
+        2.317
+      ],
+      "first_hit_from_front_y": -2.145,
+      "depth_from_point_m": 4.821,
+      "first_hit_faces_viewer": true,
+      "first_hit_from_back_y": -2.518,
+      "back_hit_depth_m": 0.417,
+      "front_opening_z_spans_at_x": [
+        [
+          1.09,
+          1.49
+        ],
+        [
+          2.13,
+          2.45
+        ]
+      ]
+    },
+    "mouth_centre_front": {
+      "point": [
+        -0.002,
+        2.806,
+        1.372
+      ],
+      "first_hit_from_front_y": 2.9,
+      "depth_from_point_m": -0.094,
+      "first_hit_faces_viewer": true,
+      "first_hit_from_back_y": -2.89,
+      "back_hit_depth_m": 0.045,
+      "front_opening_z_spans_at_x": [
+        [
+          0.75,
+          1.31
+        ],
+        [
+          1.63,
+          1.87
+        ]
+      ]
+    }
+  },
+  "ray_grid": {
+    "front": {
+      "rays": 11470,
+      "hits": 10231,
+      "deep_hits": 1083,
+      "deep_hits_front_facing": 1083,
+      "deepest_first_hit_m": 5.544,
+      "deep_threshold_m": 3.522,
+      "deep_hit_location_span_m": {
+        "min": [
+          -2.84,
+          -2.61,
+          0.74
+        ],
+        "max": [
+          2.96,
+          -0.61,
+          2.94
+        ]
+      }
+    },
+    "back": {
+      "rays": 11470,
+      "hits": 10231,
+      "deep_hits": 15,
+      "deep_hits_front_facing": 15,
+      "deepest_first_hit_m": 3.921,
+      "deep_threshold_m": 3.522,
+      "deep_hit_location_span_m": {
+        "min": [
+          -2.88,
+          0.6,
+          2.78
+        ],
+        "max": [
+          -2.56,
+          0.99,
+          2.94
+        ]
+      }
+    },
+    "right": {
+      "rays": 10878,
+      "hits": 10030,
+      "deep_hits": 41,
+      "deep_hits_front_facing": 41,
+      "deepest_first_hit_m": 4.674,
+      "deep_threshold_m": 3.721,
+      "deep_hit_location_span_m": {
+        "min": [
+          -1.57,
+          -2.83,
+          2.7
+        ],
+        "max": [
+          -0.75,
+          -2.35,
+          2.86
+        ]
+      }
+    },
+    "left": {
+      "rays": 10878,
+      "hits": 10030,
+      "deep_hits": 0,
+      "deep_hits_front_facing": 0,
+      "deepest_first_hit_m": 3.695,
+      "deep_threshold_m": 3.721
+    }
+  },
+  "topology_welded": {
+    "boundary_edges": 53,
+    "boundary_loops": 26,
+    "nonmanifold_edges": 33,
+    "wire_edges": 0,
+    "components": 1,
+    "largest_component_triangle_share": 1.0,
+    "pieces_after_largest": [],
+    "pieces_not_detailed": 0,
+    "floating_pieces": 0,
+    "floating_threshold": 0.03101,
+    "components_inside_out": 0,
+    "faces_inconsistent": 30
+  },
+  "row_id": "M02",
+  "object": "M02_GiantPumpkin_001",
+  "source": {
+    "copy_path": "/workspaces/reso-world/worlds/reso-world-Halloween-meshy/M02/Meshy_AI_Jack_O_Lantern_30k_1031101938_texture.glb",
+    "sha256": "f29fed6487e0f213833dde25ceef98f7153a3687d7970437ae0c56e9839874ba",
+    "copy_sha256_ok": true,
+    "original_path": "/workspaces/reso-world/tmp/halloween_magical_carnival_concept_art/M02_Giant_JackOLantern_Meshy_References/Meshy_AI_Jack_O_Lantern_30k_1031101938_texture.glb",
+    "original_sha256_ok": true
+  },
+  "budget": {
+    "view": "near",
+    "view_note": "広場の中心の主役。I03 で近づく",
+    "triangles_max": 30792,
+    "triangles_note": "三角形は削減しない（上限は確定版の数）。どれも 1.5〜4.2 万で、9 ファイルの合計は約 27.3 万。Spec §11 のとおり一律の上限で削らず、削減と焼き直しで UV と色が崩れる危険のほうを避けた",
+    "color_px_max": 2048,
+    "data_px_max": 1024,
+    "texels_per_m_at_color": 111.1,
+    "rule": "画像は、derived.texels_per_m が見る距離の目安（近景 90 px/m 以上、中景 45 以上、遠景 20 以上）に届く 1024/2048/4096 のうち最小。金属・粗さの画像は色の半分（512 以上）"
+  },
+  "textures": {
+    "color": {
+      "file": "blender/M02/textures/M02_GiantPumpkin_001_color.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "source_size": [
+        4096,
+        4096
+      ]
+    },
+    "metallic": {
+      "file": "blender/M02/textures/M02_GiantPumpkin_001_metallic.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "source": "Blue channel",
+      "range": [
+        0.0,
+        0.898
+      ]
+    },
+    "roughness": {
+      "file": "blender/M02/textures/M02_GiantPumpkin_001_roughness.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "source": "Green channel",
+      "range": [
+        0.0,
+        0.8745
+      ]
+    }
+  },
+  "uv_texel_share_1024": 0.6908,
+  "backface_check": {
+    "method": "Workbench orthographic, culling off vs on",
+    "pixels": 320,
+    "views": {
+      "front": {
+        "object_pixels": 61575,
+        "see_through": 0.0,
+        "changed": 0.0001
+      },
+      "back": {
+        "object_pixels": 61575,
+        "see_through": 0.0,
+        "changed": 3e-05
+      },
+      "left": {
+        "object_pixels": 56073,
+        "see_through": 0.0,
+        "changed": 9e-05
+      },
+      "right": {
+        "object_pixels": 56067,
+        "see_through": 0.0,
+        "changed": 2e-05
+      },
+      "top": {
+        "object_pixels": 67431,
+        "see_through": 0.0,
+        "changed": 0.0001
+      },
+      "bottom": {
+        "object_pixels": 67432,
+        "see_through": 0.0,
+        "changed": 0.0
+      }
+    },
+    "max_see_through": 0.0,
+    "max_changed": 0.0001,
+    "view_camera_side": {
+      "back": "+Y (face)",
+      "front": "-Y (back)",
+      "right": "+X",
+      "left": "-X",
+      "top": "+Z (top)",
+      "bottom": "-Z (bottom)"
+    }
+  },
+  "blend_counts": {
+    "objects": 1,
+    "meshes": 1,
+    "materials": 1,
+    "images": 4,
+    "collections": 1
+  },
+  "blender": "5.0.1",
+  "review_images": [
+    "review/M02/M02_views.png",
+    "review/M02/M02_compare_source.png",
+    "review/M02/M02_uv_layout.png",
+    "review/M02/M02_backface_culled.png"
+  ],
+  "closeups": [
+    {
+      "name": "face",
+      "camera": [
+        0.9,
+        7.6,
+        2.6
+      ],
+      "target": [
+        0.0,
+        2.6,
+        1.9
+      ],
+      "lens_mm": 35.0
+    },
+    {
+      "name": "eye_left",
+      "camera": [
+        1.6,
+        4.7,
+        2.7
+      ],
+      "target": [
+        1.0,
+        2.6,
+        2.3
+      ],
+      "lens_mm": 50.0
+    },
+    {
+      "name": "hat",
+      "camera": [
+        -3.6,
+        6.4,
+        6.4
+      ],
+      "target": [
+        -0.4,
+        0.6,
+        4.6
+      ],
+      "lens_mm": 35.0
+    },
+    {
+      "name": "side_skin",
+      "camera": [
+        5.4,
+        1.2,
+        2.2
+      ],
+      "target": [
+        2.9,
+        0.4,
+        1.8
+      ],
+      "lens_mm": 50.0
+    }
+  ]
+}
