@@ -1,0 +1,504 @@
+{
+  "triangles": 30702,
+  "vertices": 49176,
+  "bounds_m": {
+    "min": [
+      -4.0003,
+      -2.6833,
+      -0.0001
+    ],
+    "max": [
+      3.9998,
+      2.6834,
+      7.6278
+    ]
+  },
+  "bounds_expected_m": {
+    "min": [
+      -4.0,
+      -2.683,
+      -0.0
+    ],
+    "max": [
+      4.0,
+      2.683,
+      7.628
+    ]
+  },
+  "bounds_max_abs_diff_m": 0.0004,
+  "dimensions_m": {
+    "width_x": 8.0,
+    "depth_y": 5.367,
+    "height_z": 7.628
+  },
+  "origin": {
+    "policy": "ground_center",
+    "min_z": -0.0001,
+    "box_centre_xy": [
+      -0.0002,
+      0.0
+    ]
+  },
+  "object_transform_identity": true,
+  "uv_cover": 0.6071,
+  "uv_corners_in_unit_square": 1.0,
+  "surface_area_m2": 268.6,
+  "texels_per_m_at_color": 97.4,
+  "texels_per_m_at_emission": 48.7,
+  "w09_window_points": {
+    "bay_window_centre": {
+      "point": [
+        2.096,
+        2.506,
+        1.126
+      ],
+      "pane": "front_bay_centre",
+      "inside_outline": true
+    },
+    "shop_window_centre": {
+      "point": [
+        -2.13,
+        2.632,
+        0.979
+      ],
+      "pane": "front_shop",
+      "inside_outline": true
+    },
+    "upper_window_centre": {
+      "point": [
+        1.339,
+        2.086,
+        3.312
+      ],
+      "pane": "front_upper_main",
+      "inside_outline": true
+    },
+    "dormer_window_centre": {
+      "point": [
+        -2.277,
+        2.002,
+        3.354
+      ],
+      "pane": "front_dormer",
+      "inside_outline": true
+    }
+  },
+  "topology_welded": {
+    "boundary_edges": 205,
+    "boundary_loops": 98,
+    "nonmanifold_edges": 161,
+    "wire_edges": 0,
+    "components": 4,
+    "largest_component_triangle_share": 0.9911,
+    "pieces_after_largest": [
+      {
+        "rank": 1,
+        "triangles": 140,
+        "center": [
+          -0.0152,
+          2.0063,
+          1.0562
+        ],
+        "size": [
+          0.7695,
+          0.0588,
+          1.801
+        ],
+        "gap_to_other_pieces": 0.02058,
+        "floating": false
+      },
+      {
+        "rank": 2,
+        "triangles": 132,
+        "center": [
+          2.5851,
+          0.9564,
+          4.2411
+        ],
+        "size": [
+          1.3685,
+          1.0568,
+          0.8084
+        ],
+        "gap_to_other_pieces": 0.04173,
+        "floating": true
+      },
+      {
+        "rank": 3,
+        "triangles": 1,
+        "center": [
+          2.5392,
+          0.4545,
+          4.3719
+        ],
+        "size": [
+          0.0874,
+          0.0612,
+          0.0742
+        ],
+        "gap_to_other_pieces": 0.03477,
+        "floating": false
+      }
+    ],
+    "pieces_not_detailed": 0,
+    "floating_pieces": 1,
+    "floating_threshold": 0.04,
+    "components_inside_out": 3,
+    "faces_inconsistent": 333
+  },
+  "row_id": "M04",
+  "object": "M04_WitchCandyWorkshop_001",
+  "source": {
+    "copy_path": "/workspaces/reso-world/worlds/reso-world-Halloween-meshy/M04/Meshy_AI_Witch_Candy_Workshop__1031101205_texture.glb",
+    "sha256": "cb83239e1d9e8ad515b34d2a1356fd3e53255071d91defc46d7e1755f8030430",
+    "copy_sha256_ok": true,
+    "original_path": "/workspaces/reso-world/tmp/halloween_magical_carnival_concept_art/M04_WitchCandyWorkshop_Meshy_References/Meshy_AI_Witch_Candy_Workshop__1031101205_texture.glb",
+    "original_sha256_ok": true
+  },
+  "budget": {
+    "view": "near",
+    "view_note": "正面の扉と窓の前まで歩く",
+    "triangles_max": 30702,
+    "triangles_note": "三角形は削減しない（上限は確定版の数）。どれも 1.5〜4.2 万で、9 ファイルの合計は約 27.3 万。Spec §11 のとおり一律の上限で削らず、削減と焼き直しで UV と色が崩れる危険のほうを避けた",
+    "color_px_max": 2048,
+    "data_px_max": 1024,
+    "texels_per_m_at_color": 97.4,
+    "rule": "画像は、derived.texels_per_m が見る距離の目安（近景 90 px/m 以上、中景 45 以上、遠景 20 以上）に届く 1024/2048/4096 のうち最小。金属・粗さの画像は色の半分（512 以上）"
+  },
+  "textures": {
+    "color": {
+      "file": "blender/M04/textures/M04_WitchCandyWorkshop_001_color.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "source_size": [
+        4096,
+        4096
+      ]
+    },
+    "metallic": {
+      "file": "blender/M04/textures/M04_WitchCandyWorkshop_001_metallic.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "source": "Blue channel",
+      "range": [
+        0.0,
+        1.0
+      ]
+    },
+    "roughness": {
+      "file": "blender/M04/textures/M04_WitchCandyWorkshop_001_roughness.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "source": "Green channel",
+      "range": [
+        0.0,
+        0.9804
+      ]
+    },
+    "emission": {
+      "file": "blender/M04/textures/M04_WitchCandyWorkshop_001_emission.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "strength": 1.0,
+      "source": "window panes painted by modeling/M04/build.py (WINDOWS)"
+    }
+  },
+  "window_glow": {
+    "texels_glowing": 26620,
+    "texel_share": 0.02539,
+    "mean_weight_on_painted": 0.938,
+    "panes": {
+      "front_bay_left": {
+        "side": "front",
+        "triangles_near": 92,
+        "samples_inside_outline": 11890,
+        "samples_visible": 4036,
+        "texels": 1244
+      },
+      "front_bay_centre": {
+        "side": "front",
+        "triangles_near": 133,
+        "samples_inside_outline": 11789,
+        "samples_visible": 9784,
+        "texels": 2915
+      },
+      "front_bay_right": {
+        "side": "front",
+        "triangles_near": 148,
+        "samples_inside_outline": 7902,
+        "samples_visible": 6147,
+        "texels": 1839
+      },
+      "front_shop": {
+        "side": "front",
+        "triangles_near": 80,
+        "samples_inside_outline": 7105,
+        "samples_visible": 6345,
+        "texels": 1751
+      },
+      "front_upper_a": {
+        "side": "front",
+        "triangles_near": 129,
+        "samples_inside_outline": 3628,
+        "samples_visible": 3092,
+        "texels": 927
+      },
+      "front_upper_main": {
+        "side": "front",
+        "triangles_near": 139,
+        "samples_inside_outline": 7279,
+        "samples_visible": 5668,
+        "texels": 1667
+      },
+      "front_upper_b": {
+        "side": "front",
+        "triangles_near": 150,
+        "samples_inside_outline": 3557,
+        "samples_visible": 2983,
+        "texels": 899
+      },
+      "front_dormer": {
+        "side": "front",
+        "triangles_near": 143,
+        "samples_inside_outline": 7555,
+        "samples_visible": 7258,
+        "texels": 2069
+      },
+      "back_left": {
+        "side": "back",
+        "triangles_near": 143,
+        "samples_inside_outline": 3745,
+        "samples_visible": 3461,
+        "texels": 1042
+      },
+      "back_right": {
+        "side": "back",
+        "triangles_near": 56,
+        "samples_inside_outline": 1511,
+        "samples_visible": 1363,
+        "texels": 392
+      },
+      "right_bay_1": {
+        "side": "right",
+        "triangles_near": 127,
+        "samples_inside_outline": 5406,
+        "samples_visible": 4003,
+        "texels": 1284
+      },
+      "right_bay_2": {
+        "side": "right",
+        "triangles_near": 86,
+        "samples_inside_outline": 4431,
+        "samples_visible": 3815,
+        "texels": 1131
+      },
+      "right_bay_3": {
+        "side": "right",
+        "triangles_near": 121,
+        "samples_inside_outline": 15245,
+        "samples_visible": 12498,
+        "texels": 3509
+      },
+      "right_bay_4": {
+        "side": "right",
+        "triangles_near": 78,
+        "samples_inside_outline": 9484,
+        "samples_visible": 6557,
+        "texels": 1843
+      },
+      "right_upper_a": {
+        "side": "right",
+        "triangles_near": 142,
+        "samples_inside_outline": 6857,
+        "samples_visible": 6138,
+        "texels": 1680
+      },
+      "right_upper_b": {
+        "side": "right",
+        "triangles_near": 93,
+        "samples_inside_outline": 2469,
+        "samples_visible": 1456,
+        "texels": 451
+      },
+      "left_side": {
+        "side": "left",
+        "triangles_near": 143,
+        "samples_inside_outline": 11064,
+        "samples_visible": 9403,
+        "texels": 2723
+      }
+    }
+  },
+  "uv_texel_share_1024": 0.672,
+  "backface_check": {
+    "method": "Workbench orthographic, culling off vs on",
+    "pixels": 320,
+    "views": {
+      "front": {
+        "object_pixels": 58634,
+        "see_through": 0.0,
+        "changed": 2e-05
+      },
+      "back": {
+        "object_pixels": 58635,
+        "see_through": 0.0,
+        "changed": 0.00017
+      },
+      "left": {
+        "object_pixels": 40082,
+        "see_through": 0.0,
+        "changed": 7e-05
+      },
+      "right": {
+        "object_pixels": 40086,
+        "see_through": 0.0,
+        "changed": 0.0
+      },
+      "top": {
+        "object_pixels": 55534,
+        "see_through": 0.0,
+        "changed": 0.00022
+      },
+      "bottom": {
+        "object_pixels": 55525,
+        "see_through": 0.0,
+        "changed": 2e-05
+      }
+    },
+    "max_see_through": 0.0,
+    "max_changed": 0.00022,
+    "view_camera_side": {
+      "back": "+Y (front)",
+      "front": "-Y (back)",
+      "right": "+X",
+      "left": "-X",
+      "top": "+Z (top)",
+      "bottom": "-Z (bottom)"
+    }
+  },
+  "blend_counts": {
+    "objects": 1,
+    "meshes": 1,
+    "materials": 1,
+    "images": 5,
+    "collections": 1
+  },
+  "blender": "5.0.1",
+  "review_images": [
+    "review/M04/M04_views.png",
+    "review/M04/M04_compare_source.png",
+    "review/M04/M04_night_glow.png",
+    "review/M04/M04_night_closeups.png",
+    "review/M04/M04_emission_uv.png",
+    "review/M04/M04_uv_layout.png",
+    "review/M04/M04_backface_culled.png"
+  ],
+  "closeups": [
+    {
+      "name": "door",
+      "camera": [
+        0.5,
+        6.6,
+        1.4
+      ],
+      "target": [
+        0.0,
+        2.1,
+        1.1
+      ],
+      "lens_mm": 40.0
+    },
+    {
+      "name": "bay_window",
+      "camera": [
+        2.6,
+        5.0,
+        1.4
+      ],
+      "target": [
+        2.1,
+        2.4,
+        1.2
+      ],
+      "lens_mm": 40.0
+    },
+    {
+      "name": "upper_windows",
+      "camera": [
+        1.0,
+        5.6,
+        3.4
+      ],
+      "target": [
+        1.2,
+        1.9,
+        3.2
+      ],
+      "lens_mm": 40.0
+    },
+    {
+      "name": "dormer_shop",
+      "camera": [
+        -2.4,
+        6.4,
+        2.4
+      ],
+      "target": [
+        -2.3,
+        2.2,
+        2.2
+      ],
+      "lens_mm": 30.0
+    },
+    {
+      "name": "hat",
+      "camera": [
+        1.5,
+        9.0,
+        7.6
+      ],
+      "target": [
+        0.6,
+        0.5,
+        5.4
+      ],
+      "lens_mm": 35.0
+    },
+    {
+      "name": "right_bay",
+      "camera": [
+        6.8,
+        0.9,
+        1.6
+      ],
+      "target": [
+        3.2,
+        0.8,
+        1.3
+      ],
+      "lens_mm": 35.0
+    },
+    {
+      "name": "back_windows",
+      "camera": [
+        0.0,
+        -8.0,
+        1.8
+      ],
+      "target": [
+        0.0,
+        -2.6,
+        1.3
+      ],
+      "lens_mm": 30.0
+    }
+  ]
+}
