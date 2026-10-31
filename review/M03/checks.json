@@ -1,0 +1,564 @@
+{
+  "triangles": 29801,
+  "vertices": 57541,
+  "bounds_m": {
+    "min": [
+      -7.4996,
+      -5.1104,
+      0.0003
+    ],
+    "max": [
+      7.5005,
+      5.1101,
+      10.6072
+    ]
+  },
+  "bounds_expected_m": {
+    "min": [
+      -7.5,
+      -5.11,
+      0.0
+    ],
+    "max": [
+      7.5,
+      5.11,
+      10.607
+    ]
+  },
+  "bounds_max_abs_diff_m": 0.0005,
+  "dimensions_m": {
+    "width_x": 15.0,
+    "depth_y": 10.221,
+    "height_z": 10.607
+  },
+  "dimensions_expected_m": {
+    "width_x": 15.0,
+    "depth_y": 10.221,
+    "height_z": 10.607
+  },
+  "origin": {
+    "policy": "ground_center",
+    "min_z": 0.0003,
+    "box_centre_xy": [
+      0.0004,
+      -0.0001
+    ]
+  },
+  "object_transform_identity": true,
+  "uv_cover": 0.5181,
+  "uv_corners_in_unit_square": 1.0,
+  "surface_area_m2": 725.4,
+  "texels_per_m_at_color": 109.5,
+  "topology_welded": {
+    "boundary_edges": 168,
+    "boundary_loops": 79,
+    "nonmanifold_edges": 183,
+    "wire_edges": 0,
+    "components": 6,
+    "largest_component_triangle_share": 0.9894,
+    "pieces_after_largest": [
+      {
+        "rank": 1,
+        "triangles": 165,
+        "center": [
+          -6.6683,
+          1.6284,
+          5.8452
+        ],
+        "size": [
+          1.5541,
+          3.0099,
+          3.6973
+        ],
+        "gap_to_other_pieces": 0.03577,
+        "floating": false
+      },
+      {
+        "rank": 2,
+        "triangles": 112,
+        "center": [
+          1.2203,
+          1.4846,
+          4.8603
+        ],
+        "size": [
+          0.1433,
+          2.0321,
+          1.5204
+        ],
+        "gap_to_other_pieces": 0.07092,
+        "floating": false
+      },
+      {
+        "rank": 3,
+        "triangles": 34,
+        "center": [
+          -2.5674,
+          -2.2534,
+          1.7168
+        ],
+        "size": [
+          0.0883,
+          0.0679,
+          2.6322
+        ],
+        "gap_to_other_pieces": 0.04714,
+        "floating": false
+      },
+      {
+        "rank": 4,
+        "triangles": 4,
+        "center": [
+          4.9807,
+          0.3746,
+          0.9444
+        ],
+        "size": [
+          0.0221,
+          0.1004,
+          0.0395
+        ],
+        "gap_to_other_pieces": 0.07365,
+        "floating": false
+      },
+      {
+        "rank": 5,
+        "triangles": 1,
+        "center": [
+          6.7198,
+          -1.1036,
+          2.9118
+        ],
+        "size": [
+          0.1043,
+          0.0497,
+          0.0191
+        ],
+        "gap_to_other_pieces": 0.05544,
+        "floating": false
+      }
+    ],
+    "pieces_not_detailed": 0,
+    "floating_pieces": 0,
+    "floating_threshold": 0.075,
+    "components_inside_out": 4,
+    "faces_inconsistent": 337
+  },
+  "triangle_budget": {
+    "triangles_max_w09": 29783,
+    "triangles": 29801,
+    "over_budget": 18,
+    "added_by_door_opening": 18,
+    "decision": "accepted by the user on 2026-10-31 (#16): W09's limit is the source count (no reduction), the opening adds triangles where the bisect splits the wall faces, and nothing else is reduced to make up for it"
+  },
+  "row_id": "M03",
+  "object": "M03_HauntedMansion_001",
+  "source": {
+    "copy_path": "/workspaces/reso-world/worlds/reso-world-Halloween-meshy/M03/Meshy_AI_Haunted_Mansion_Remes_1031102356_texture.glb",
+    "sha256": "ae0d14577906f921128648b1d4f161de1627fcdef6b0e9042d6266ff3e54f950",
+    "copy_sha256_ok": true,
+    "original_path": "/workspaces/reso-world/tmp/halloween_magical_carnival_concept_art/M03_Haunted_Mansion_Meshy_References/Meshy_AI_Haunted_Mansion_Remes_1031102356_texture.glb",
+    "original_sha256_ok": true
+  },
+  "budget": {
+    "view": "near",
+    "view_note": "ポーチまで歩いて近づく。外面が 730 m² と広く、2048 では 55 px/m にしかならない",
+    "triangles_max": 29783,
+    "triangles_note": "三角形は削減しない（上限は確定版の数）。どれも 1.5〜4.2 万で、9 ファイルの合計は約 27.3 万。Spec §11 のとおり一律の上限で削らず、削減と焼き直しで UV と色が崩れる危険のほうを避けた",
+    "color_px_max": 4096,
+    "data_px_max": 2048,
+    "texels_per_m_at_color": 109.4,
+    "rule": "画像は、derived.texels_per_m が見る距離の目安（近景 90 px/m 以上、中景 45 以上、遠景 20 以上）に届く 1024/2048/4096 のうち最小。金属・粗さの画像は色の半分（512 以上）"
+  },
+  "textures": {
+    "color": {
+      "file": "blender/M03/textures/M03_HauntedMansion_001_color.png",
+      "size": [
+        4096,
+        4096
+      ],
+      "source_size": [
+        4096,
+        4096
+      ]
+    },
+    "metallic": {
+      "file": "blender/M03/textures/M03_HauntedMansion_001_metallic.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "source": "Blue channel",
+      "range": [
+        0.0,
+        0.3882
+      ]
+    },
+    "roughness": {
+      "file": "blender/M03/textures/M03_HauntedMansion_001_roughness.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "source": "Green channel",
+      "range": [
+        0.0,
+        0.9922
+      ]
+    }
+  },
+  "door_opening": {
+    "target_w09": {
+      "x_min": -1.144,
+      "x_max": 0.474,
+      "z_bottom_w09": 0.279,
+      "z_top": 2.962,
+      "wall_y": 1.55
+    },
+    "target_cut": {
+      "x_min": -1.5165,
+      "x_max": 0.1015,
+      "z_bottom_w09": 0.279,
+      "z_top": 2.962,
+      "wall_y": 1.55
+    },
+    "wall_faces_touching_opening_before": 8,
+    "faces_bisected": {
+      "x_min": 6,
+      "x_max": 2,
+      "z_top": 8
+    },
+    "faces_deleted": 8,
+    "area_deleted_m2": 4.1938,
+    "deleted_faces_bounds": {
+      "min": [
+        -1.5165,
+        1.5421,
+        0.37
+      ],
+      "max": [
+        0.1015,
+        1.5504,
+        2.962
+      ]
+    },
+    "ngons_triangulated": 8,
+    "degenerate_triangles_after": 0,
+    "triangles_before": 29783,
+    "triangles_after": 29801,
+    "opening_local_m": {
+      "x_min": -1.5165,
+      "x_max": 0.1015,
+      "z_bottom": 0.37,
+      "z_top": 2.962,
+      "wall_y": 1.5477,
+      "width": 1.618,
+      "height": 2.592,
+      "centre_x": -0.7075
+    },
+    "central_arch": {
+      "ray_origin_y": 6.0,
+      "scan_step_m": 0.005,
+      "clear_span_by_z": {
+        "0.8": [
+          -1.39,
+          -0.025
+        ],
+        "1.2": [
+          -1.415,
+          0.01
+        ],
+        "1.6": [
+          -1.42,
+          0.015
+        ],
+        "2.0": [
+          -1.425,
+          0.025
+        ]
+      },
+      "clear_span": [
+        -1.39,
+        -0.025
+      ],
+      "clear_width": 1.365,
+      "centre_x": -0.7075
+    },
+    "hinge_behind_column_m": 0.1265,
+    "w09_difference": {
+      "centre_x_m": -0.3725,
+      "z_bottom_m": 0.091,
+      "height_m": -0.091,
+      "note": "width, top and wall plane are W09's. The opening is centred on the porch's central arch (measured; W09's x put the opening 0.36 m off the arch, behind the next column) and its bottom is the wall's bottom edge on the porch floor (W09 read 0.279): both chosen by the user on 2026-10-31"
+    },
+    "threshold_floor_z_in_front": [
+      0.3701,
+      0.3701,
+      0.3701,
+      0.3701,
+      0.3701,
+      0.3701,
+      0.3701,
+      0.3701,
+      0.3701
+    ],
+    "porch_ceiling_z_above_centre": 3.2261,
+    "wall_y_beside_opening": [
+      1.5494,
+      1.5502,
+      1.546,
+      1.5473,
+      1.5481,
+      1.5451
+    ],
+    "measured_edges": {
+      "x_at_mid_height": [
+        -1.5145,
+        0.1015
+      ],
+      "x_at_0.5m_above_bottom": [
+        -1.5145,
+        0.1015
+      ],
+      "x_at_0.2m_below_top": [
+        -1.5145,
+        0.1015
+      ],
+      "top_z_at_centre": 2.96,
+      "top_z_at_hinges": [
+        2.96,
+        2.96
+      ],
+      "wall_top_z_above_hinges": [
+        3.122,
+        3.114
+      ]
+    },
+    "rays_inside": {
+      "count": 442,
+      "blocked": []
+    },
+    "rays_outside_ring": {
+      "count": 69,
+      "open": []
+    },
+    "hinges": {
+      "left_viewed_from_front_plus_x": {
+        "local_bottom": [
+          0.1015,
+          1.5477,
+          0.37
+        ],
+        "local_top": [
+          0.1015,
+          1.5477,
+          2.962
+        ],
+        "world_bottom_at_placement_hint": [
+          -0.1015,
+          39.9523,
+          1.87
+        ],
+        "world_top_at_placement_hint": [
+          -0.1015,
+          39.9523,
+          4.462
+        ]
+      },
+      "right_viewed_from_front_minus_x": {
+        "local_bottom": [
+          -1.5165,
+          1.5477,
+          0.37
+        ],
+        "local_top": [
+          -1.5165,
+          1.5477,
+          2.962
+        ],
+        "world_bottom_at_placement_hint": [
+          1.5165,
+          39.9523,
+          1.87
+        ],
+        "world_top_at_placement_hint": [
+          1.5165,
+          39.9523,
+          4.462
+        ]
+      }
+    },
+    "placement_hint": {
+      "position": [
+        0.0,
+        41.5,
+        1.5
+      ],
+      "rotation_z_deg": 180.0,
+      "note": "北の主動線の終点 (0,34,1.5) の奥に、正面を南（広場）に向けて置く。前面のポーチは y=31.4 付近になる。B の境界 y 20〜48 に収まる"
+    }
+  },
+  "double_sided": "片面のまま（両面の処理をしない）",
+  "blend_counts": {
+    "objects": 1,
+    "meshes": 1,
+    "materials": 1,
+    "images": 4,
+    "collections": 1
+  },
+  "blender": "5.0.1",
+  "uv_texel_share_1024": 0.6057,
+  "backface_check": {
+    "method": "Workbench orthographic, culling off vs on",
+    "pixels": 640,
+    "views": {
+      "front": {
+        "object_pixels": 172758,
+        "see_through": 0.0001,
+        "changed": 0.00028
+      },
+      "back": {
+        "object_pixels": 172757,
+        "see_through": 0.03319,
+        "changed": 0.00042
+      },
+      "left": {
+        "object_pixels": 111122,
+        "see_through": 4e-05,
+        "changed": 0.00042
+      },
+      "right": {
+        "object_pixels": 111140,
+        "see_through": 0.0,
+        "changed": 0.00037
+      },
+      "top": {
+        "object_pixels": 179680,
+        "see_through": 2e-05,
+        "changed": 9e-05
+      },
+      "bottom": {
+        "object_pixels": 179676,
+        "see_through": 0.0,
+        "changed": 0.00086
+      }
+    },
+    "max_see_through": 0.03319,
+    "max_changed": 0.00086,
+    "view_camera_side": {
+      "back": "+Y (front)",
+      "front": "-Y (back)",
+      "right": "+X",
+      "left": "-X",
+      "top": "+Z (top)",
+      "bottom": "-Z (bottom)"
+    },
+    "front_see_through_location": {
+      "view": "back (camera at +Y, the front)",
+      "pixel_m": 0.0246,
+      "see_through_pixels": 5733,
+      "inside_opening": 5728,
+      "outside_opening": 5,
+      "opening_area_pixels": 6924.8,
+      "inside_bounds_m": {
+        "x": [
+          -1.513,
+          0.013
+        ],
+        "z": [
+          0.394,
+          2.954
+        ]
+      },
+      "outside_bounds_m": {
+        "x": [
+          -4.589,
+          6.83
+        ],
+        "z": [
+          1.797,
+          7.974
+        ]
+      }
+    }
+  },
+  "review_images": [
+    "review/M03/M03_views.png",
+    "review/M03/M03_compare_source.png",
+    "review/M03/M03_door_opening.png",
+    "review/M03/M03_uv_layout.png",
+    "review/M03/M03_backface_culled.png"
+  ],
+  "closeups": [
+    {
+      "name": "porch",
+      "camera": [
+        0.5,
+        10.5,
+        2.2
+      ],
+      "target": [
+        -0.7,
+        1.55,
+        1.8
+      ],
+      "lens_mm": 35.0
+    },
+    {
+      "name": "porch_columns",
+      "camera": [
+        2.2,
+        6.6,
+        1.4
+      ],
+      "target": [
+        -0.7,
+        4.0,
+        1.5
+      ],
+      "lens_mm": 28.0
+    },
+    {
+      "name": "tower",
+      "camera": [
+        6.8,
+        10.5,
+        7.2
+      ],
+      "target": [
+        4.3,
+        3.0,
+        6.4
+      ],
+      "lens_mm": 50.0
+    },
+    {
+      "name": "bay_window",
+      "camera": [
+        -3.6,
+        9.5,
+        2.8
+      ],
+      "target": [
+        -4.5,
+        3.0,
+        2.4
+      ],
+      "lens_mm": 40.0
+    },
+    {
+      "name": "gable",
+      "camera": [
+        1.2,
+        12.5,
+        8.2
+      ],
+      "target": [
+        -0.3,
+        2.0,
+        6.6
+      ],
+      "lens_mm": 50.0
+    }
+  ]
+}
