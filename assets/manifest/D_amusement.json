@@ -1,0 +1,1173 @@
+{
+  "schema_version": "1.0",
+  "key": "D_amusement",
+  "updated_at": "2026-10-31T21:45:00Z",
+  "assets": [
+    {
+      "asset_id": "DAM_AmusementPlaza_001",
+      "key": "D_amusement",
+      "category": "architecture",
+      "area_id": "D_amusement",
+      "collection": "D_amusement",
+      "blend_file": "blender/D_amusement/D_amusement.blend",
+      "script_file": "modeling/D_amusement/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        0.0,
+        -33.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 35.05,
+        "depth": 26.75,
+        "height": 0.13
+      },
+      "bounds_local": {
+        "min": [
+          -16.85,
+          -13.75,
+          0.0
+        ],
+        "max": [
+          18.2,
+          13.0,
+          0.13
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "DAM_AmusementPlaza_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            -33.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "DAM_AmusementPlaza_001_EastCourt",
+          "role": "visual_root",
+          "parent_part": "DAM_AmusementPlaza_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "DAM_AmusementPlaza_001_Promenade",
+          "role": "visual_root",
+          "parent_part": "DAM_AmusementPlaza_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "DAM_AmusementPlaza_001_WestCourt",
+          "role": "visual_root",
+          "parent_part": "DAM_AmusementPlaza_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "DAM_AmusementPlaza_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "DAM_AmusementPlaza_001_EastCourt",
+          "DAM_AmusementPlaza_001_Promenade",
+          "DAM_AmusementPlaza_001_WestCourt"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_DAM_AmberGlow",
+        "MAT_DAM_CarnivalGold",
+        "MAT_DAM_CarnivalPurple",
+        "MAT_DAM_PlazaStone",
+        "MAT_DAM_PumpkinOrange"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 648,
+        "vertices": 384,
+        "materials_count": 5,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "South Amusement Promenade paving, golden curbs, West Carousel court, and East Ghost Train / Pumpkin Cups court.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "DAM_Carousel_001",
+      "key": "D_amusement",
+      "category": "gimmick",
+      "area_id": "D_amusement",
+      "collection": "D_amusement",
+      "blend_file": "blender/D_amusement/D_amusement.blend",
+      "script_file": "modeling/D_amusement/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -10.5,
+        -32.0,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 10.75,
+        "depth": 10.4,
+        "height": 9.901
+      },
+      "bounds_local": {
+        "min": [
+          -5.2,
+          -5.2,
+          0.0
+        ],
+        "max": [
+          5.55,
+          5.2,
+          9.901
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "DAM_Carousel_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            -10.5,
+            -32.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "DAM_Carousel_001_Base",
+          "role": "visual_root",
+          "parent_part": "DAM_Carousel_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "DAM_Carousel_001_TurnRoot",
+          "role": "motion_root",
+          "parent_part": "DAM_Carousel_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.36
+          ]
+        },
+        {
+          "part_id": "DAM_Carousel_001_Att_M05_Canopy",
+          "role": "attachment_point",
+          "parent_part": "DAM_Carousel_001_TurnRoot",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            3.154
+          ]
+        },
+        {
+          "part_id": "DAM_Carousel_001_Att_M05_CenterCasing",
+          "role": "attachment_point",
+          "parent_part": "DAM_Carousel_001_TurnRoot",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.19
+          ]
+        },
+        {
+          "part_id": "DAM_Carousel_001_Floor",
+          "role": "visual_root",
+          "parent_part": "DAM_Carousel_001_TurnRoot",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "DAM_Carousel_001_M05_Canopy",
+          "role": "visual_root",
+          "parent_part": "DAM_Carousel_001_TurnRoot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            3.154
+          ]
+        },
+        {
+          "part_id": "DAM_Carousel_001_M05_CenterCasing",
+          "role": "visual_root",
+          "parent_part": "DAM_Carousel_001_TurnRoot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.19
+          ]
+        },
+        {
+          "part_id": "DAM_Carousel_001_Poles",
+          "role": "visual_root",
+          "parent_part": "DAM_Carousel_001_TurnRoot",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "DAM_Carousel_001_SeatRoot_001",
+          "role": "motion_root",
+          "parent_part": "DAM_Carousel_001_TurnRoot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            3.35,
+            0.0,
+            1.05
+          ]
+        },
+        {
+          "part_id": "DAM_Carousel_001_Seat_001",
+          "role": "visual_root",
+          "parent_part": "DAM_Carousel_001_SeatRoot_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "DAM_Carousel_001_SeatRoot_002",
+          "role": "motion_root",
+          "parent_part": "DAM_Carousel_001_TurnRoot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            3.35,
+            1.05
+          ]
+        },
+        {
+          "part_id": "DAM_Carousel_001_Seat_002",
+          "role": "visual_root",
+          "parent_part": "DAM_Carousel_001_SeatRoot_002",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "DAM_Carousel_001_SeatRoot_003",
+          "role": "motion_root",
+          "parent_part": "DAM_Carousel_001_TurnRoot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            -3.35,
+            0.0,
+            1.05
+          ]
+        },
+        {
+          "part_id": "DAM_Carousel_001_Seat_003",
+          "role": "visual_root",
+          "parent_part": "DAM_Carousel_001_SeatRoot_003",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "DAM_Carousel_001_SeatRoot_004",
+          "role": "motion_root",
+          "parent_part": "DAM_Carousel_001_TurnRoot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            -3.35,
+            1.05
+          ]
+        },
+        {
+          "part_id": "DAM_Carousel_001_Seat_004",
+          "role": "visual_root",
+          "parent_part": "DAM_Carousel_001_SeatRoot_004",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "DAM_Carousel_001",
+        "motion_roots": [
+          "DAM_Carousel_001_TurnRoot",
+          "DAM_Carousel_001_SeatRoot_001",
+          "DAM_Carousel_001_SeatRoot_002",
+          "DAM_Carousel_001_SeatRoot_003",
+          "DAM_Carousel_001_SeatRoot_004"
+        ],
+        "visual_roots": [
+          "DAM_Carousel_001_Base",
+          "DAM_Carousel_001_Floor",
+          "DAM_Carousel_001_M05_Canopy",
+          "DAM_Carousel_001_M05_CenterCasing",
+          "DAM_Carousel_001_Poles",
+          "DAM_Carousel_001_Seat_001",
+          "DAM_Carousel_001_Seat_002",
+          "DAM_Carousel_001_Seat_003",
+          "DAM_Carousel_001_Seat_004"
+        ],
+        "attachment_points": [
+          "DAM_Carousel_001_Att_M05_CenterCasing",
+          "DAM_Carousel_001_Att_M05_Canopy"
+        ]
+      },
+      "materials": [
+        "MAT_DAM_AmberGlow",
+        "MAT_DAM_CarnivalCream",
+        "MAT_DAM_CarnivalGold",
+        "MAT_DAM_CarnivalPurple",
+        "MAT_DAM_IronSteel",
+        "MAT_DAM_PumpkinDarkRib",
+        "MAT_DAM_PumpkinOrange",
+        "MAT_DAM_PumpkinStem",
+        "MAT_DAM_WarmWood"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 3404,
+        "vertices": 1864,
+        "materials_count": 9,
+        "objects_count": 17
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": true,
+        "modifiable": true,
+        "notes": "G13/G14 Pumpkin Carousel (~10m diameter). M05 replaces DAM_Carousel_001_M05_CenterCasing (1.861x1.907x3.400m at TurnRoot+[0,0,0.19], world z=0.55m) and DAM_Carousel_001_M05_Canopy (9.314x9.512x6.387m at TurnRoot+[0,0,3.154], world z=3.514m). Base, TurnRoot, Floor, Poles, and SeatRoot_001..004 remain from W05.",
+        "future_target": "M05_CenterCasing"
+      }
+    },
+    {
+      "asset_id": "DAM_TrainTrack_001",
+      "key": "D_amusement",
+      "category": "architecture",
+      "area_id": "D_amusement",
+      "collection": "D_amusement",
+      "blend_file": "blender/D_amusement/D_amusement.blend",
+      "script_file": "modeling/D_amusement/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        12.0,
+        -31.5,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 10.24,
+        "depth": 14.24,
+        "height": 0.14
+      },
+      "bounds_local": {
+        "min": [
+          -5.12,
+          -7.12,
+          0.0
+        ],
+        "max": [
+          5.12,
+          7.12,
+          0.14
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "DAM_TrainTrack_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            12.0,
+            -31.5,
+            0.0
+          ]
+        },
+        {
+          "part_id": "DAM_TrainTrack_001_LoopGuide",
+          "role": "visual_root",
+          "parent_part": "DAM_TrainTrack_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "DAM_TrainTrack_001_Rails",
+          "role": "visual_root",
+          "parent_part": "DAM_TrainTrack_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "DAM_TrainTrack_001_Sleepers",
+          "role": "visual_root",
+          "parent_part": "DAM_TrainTrack_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "DAM_TrainTrack_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "DAM_TrainTrack_001_LoopGuide",
+          "DAM_TrainTrack_001_Rails",
+          "DAM_TrainTrack_001_Sleepers"
+        ],
+        "attachment_points": []
+      },
+      "materials": [
+        "MAT_DAM_AmberGlow",
+        "MAT_DAM_CarnivalGold",
+        "MAT_DAM_IronSteel",
+        "MAT_DAM_WarmWood"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 1344,
+        "vertices": 896,
+        "materials_count": 4,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G15 flat closed-loop stadium track (center (12.0, -31.5, 0.0), curve radius 4.5m, straight 4.0m, rail top z=0.14m, gauge 0.76m) with Sleepers, Rails, and LoopGuide.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "DAM_GhostTrain_001",
+      "key": "D_amusement",
+      "category": "gimmick",
+      "area_id": "D_amusement",
+      "collection": "D_amusement",
+      "blend_file": "blender/D_amusement/D_amusement.blend",
+      "script_file": "modeling/D_amusement/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        7.5,
+        -31.5,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 1.36,
+        "depth": 6.011,
+        "height": 1.905
+      },
+      "bounds_local": {
+        "min": [
+          -0.68,
+          -3.136,
+          0.14
+        ],
+        "max": [
+          0.68,
+          2.875,
+          2.045
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "DAM_GhostTrain_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            7.5,
+            -31.5,
+            0.0
+          ]
+        },
+        {
+          "part_id": "DAM_GhostTrain_001_CarRoot_001",
+          "role": "motion_root",
+          "parent_part": "DAM_GhostTrain_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            -1.75,
+            0.14
+          ]
+        },
+        {
+          "part_id": "DAM_GhostTrain_001_CarBody_001",
+          "role": "visual_root",
+          "parent_part": "DAM_GhostTrain_001_CarRoot_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "DAM_GhostTrain_001_CarWheelFront_001",
+          "role": "visual_root",
+          "parent_part": "DAM_GhostTrain_001_CarRoot_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.68,
+            0.2
+          ]
+        },
+        {
+          "part_id": "DAM_GhostTrain_001_CarWheelRear_001",
+          "role": "visual_root",
+          "parent_part": "DAM_GhostTrain_001_CarRoot_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            -0.78,
+            0.2
+          ]
+        },
+        {
+          "part_id": "DAM_GhostTrain_001_EngineRoot",
+          "role": "motion_root",
+          "parent_part": "DAM_GhostTrain_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            1.0,
+            0.14
+          ]
+        },
+        {
+          "part_id": "DAM_GhostTrain_001_Att_CouplerRear",
+          "role": "attachment_point",
+          "parent_part": "DAM_GhostTrain_001_EngineRoot",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            -1.125,
+            0.394
+          ]
+        },
+        {
+          "part_id": "DAM_GhostTrain_001_Att_Headlamp",
+          "role": "attachment_point",
+          "parent_part": "DAM_GhostTrain_001_EngineRoot",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            1.233,
+            1.498
+          ]
+        },
+        {
+          "part_id": "DAM_GhostTrain_001_Att_M06_Engine",
+          "role": "attachment_point",
+          "parent_part": "DAM_GhostTrain_001_EngineRoot",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "DAM_GhostTrain_001_EngineWheelFront",
+          "role": "visual_root",
+          "parent_part": "DAM_GhostTrain_001_EngineRoot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.414,
+            0.21
+          ]
+        },
+        {
+          "part_id": "DAM_GhostTrain_001_EngineWheelRear",
+          "role": "visual_root",
+          "parent_part": "DAM_GhostTrain_001_EngineRoot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            -0.414,
+            0.21
+          ]
+        },
+        {
+          "part_id": "DAM_GhostTrain_001_M06_EngineShell",
+          "role": "visual_root",
+          "parent_part": "DAM_GhostTrain_001_EngineRoot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "DAM_GhostTrain_001",
+        "motion_roots": [
+          "DAM_GhostTrain_001_EngineRoot",
+          "DAM_GhostTrain_001_CarRoot_001"
+        ],
+        "visual_roots": [
+          "DAM_GhostTrain_001_CarBody_001",
+          "DAM_GhostTrain_001_CarWheelFront_001",
+          "DAM_GhostTrain_001_CarWheelRear_001",
+          "DAM_GhostTrain_001_EngineWheelFront",
+          "DAM_GhostTrain_001_EngineWheelRear",
+          "DAM_GhostTrain_001_M06_EngineShell"
+        ],
+        "attachment_points": [
+          "DAM_GhostTrain_001_Att_M06_Engine",
+          "DAM_GhostTrain_001_Att_CouplerRear",
+          "DAM_GhostTrain_001_Att_Headlamp"
+        ]
+      },
+      "materials": [
+        "MAT_DAM_AmberGlow",
+        "MAT_DAM_CarnivalGold",
+        "MAT_DAM_CarnivalPurple",
+        "MAT_DAM_GhostWhite",
+        "MAT_DAM_IronSteel",
+        "MAT_DAM_PumpkinOrange",
+        "MAT_DAM_WarmWood",
+        "MAT_DAM_WitchHatBlack"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 988,
+        "vertices": 548,
+        "materials_count": 8,
+        "objects_count": 12
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": true,
+        "modifiable": true,
+        "notes": "G15 Ghost Train 2-car consist (total length 6.00m). M06 replaces DAM_GhostTrain_001_M06_EngineShell (1.211x3.000x1.905m at EngineRoot origin [0,0,0], world [7.5,-30.5,0.14], +Y forward). EngineWheelFront/Rear (y=±0.414, z=0.21, r=0.21m) and CarRoot_001 (2.75m behind) remain from W05.",
+        "future_target": "M06_GhostTrainEngine"
+      }
+    },
+    {
+      "asset_id": "DAM_PumpkinCups_001",
+      "key": "D_amusement",
+      "category": "gimmick",
+      "area_id": "D_amusement",
+      "collection": "D_amusement",
+      "blend_file": "blender/D_amusement/D_amusement.blend",
+      "script_file": "modeling/D_amusement/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        11.5,
+        -42.5,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 6.5,
+        "depth": 6.5,
+        "height": 2.37
+      },
+      "bounds_local": {
+        "min": [
+          -3.25,
+          -3.25,
+          0.0
+        ],
+        "max": [
+          3.25,
+          3.25,
+          2.37
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "DAM_PumpkinCups_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            11.5,
+            -42.5,
+            0.0
+          ]
+        },
+        {
+          "part_id": "DAM_PumpkinCups_001_Base",
+          "role": "visual_root",
+          "parent_part": "DAM_PumpkinCups_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "DAM_PumpkinCups_001_TurnRoot",
+          "role": "motion_root",
+          "parent_part": "DAM_PumpkinCups_001",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.22
+          ]
+        },
+        {
+          "part_id": "DAM_PumpkinCups_001_Att_CenterTop",
+          "role": "attachment_point",
+          "parent_part": "DAM_PumpkinCups_001_TurnRoot",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            0.0,
+            2.15
+          ]
+        },
+        {
+          "part_id": "DAM_PumpkinCups_001_CupRoot_001",
+          "role": "motion_root",
+          "parent_part": "DAM_PumpkinCups_001_TurnRoot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            1.4896,
+            0.86,
+            0.1
+          ]
+        },
+        {
+          "part_id": "DAM_PumpkinCups_001_Cup_001",
+          "role": "visual_root",
+          "parent_part": "DAM_PumpkinCups_001_CupRoot_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "DAM_PumpkinCups_001_CupRoot_002",
+          "role": "motion_root",
+          "parent_part": "DAM_PumpkinCups_001_TurnRoot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            -1.4896,
+            0.86,
+            0.1
+          ]
+        },
+        {
+          "part_id": "DAM_PumpkinCups_001_Cup_002",
+          "role": "visual_root",
+          "parent_part": "DAM_PumpkinCups_001_CupRoot_002",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "DAM_PumpkinCups_001_CupRoot_003",
+          "role": "motion_root",
+          "parent_part": "DAM_PumpkinCups_001_TurnRoot",
+          "origin_policy": "hinge_pivot",
+          "pivot_local": [
+            -0.0,
+            -1.72,
+            0.1
+          ]
+        },
+        {
+          "part_id": "DAM_PumpkinCups_001_Cup_003",
+          "role": "visual_root",
+          "parent_part": "DAM_PumpkinCups_001_CupRoot_003",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "part_id": "DAM_PumpkinCups_001_Turntable",
+          "role": "visual_root",
+          "parent_part": "DAM_PumpkinCups_001_TurnRoot",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "DAM_PumpkinCups_001",
+        "motion_roots": [
+          "DAM_PumpkinCups_001_TurnRoot",
+          "DAM_PumpkinCups_001_CupRoot_001",
+          "DAM_PumpkinCups_001_CupRoot_002",
+          "DAM_PumpkinCups_001_CupRoot_003"
+        ],
+        "visual_roots": [
+          "DAM_PumpkinCups_001_Base",
+          "DAM_PumpkinCups_001_Cup_001",
+          "DAM_PumpkinCups_001_Cup_002",
+          "DAM_PumpkinCups_001_Cup_003",
+          "DAM_PumpkinCups_001_Turntable"
+        ],
+        "attachment_points": [
+          "DAM_PumpkinCups_001_Att_CenterTop"
+        ]
+      },
+      "materials": [
+        "MAT_DAM_AmberGlow",
+        "MAT_DAM_CarnivalGold",
+        "MAT_DAM_CarnivalPurple",
+        "MAT_DAM_PumpkinDarkRib",
+        "MAT_DAM_PumpkinOrange",
+        "MAT_DAM_PumpkinStem",
+        "MAT_DAM_WitchHatBlack"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 1376,
+        "vertices": 728,
+        "materials_count": 7,
+        "objects_count": 11
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "G16 Spinning Pumpkin Cups attraction: main turntable TurnRoot (+Z 0..360 deg) and 3 counter-rotating pumpkin teacups CupRoot_001..003 at r=1.72m (+Z 0..360 deg).",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "DAM_TicketBooth_001",
+      "key": "D_amusement",
+      "category": "architecture",
+      "area_id": "D_amusement",
+      "collection": "D_amusement",
+      "blend_file": "blender/D_amusement/D_amusement.blend",
+      "script_file": "modeling/D_amusement/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        4.7,
+        -31.5,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 2.76,
+        "depth": 2.76,
+        "height": 3.65
+      },
+      "bounds_local": {
+        "min": [
+          -1.38,
+          -1.38,
+          0.0
+        ],
+        "max": [
+          1.38,
+          1.38,
+          3.65
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "DAM_TicketBooth_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            4.7,
+            -31.5,
+            0.0
+          ]
+        },
+        {
+          "part_id": "DAM_TicketBooth_001_Att_Lantern",
+          "role": "attachment_point",
+          "parent_part": "DAM_TicketBooth_001",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            -1.18,
+            0.65,
+            2.15
+          ]
+        },
+        {
+          "part_id": "DAM_TicketBooth_001_Att_Sign",
+          "role": "attachment_point",
+          "parent_part": "DAM_TicketBooth_001",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            -1.1,
+            0.0,
+            2.4
+          ]
+        },
+        {
+          "part_id": "DAM_TicketBooth_001_Body",
+          "role": "visual_root",
+          "parent_part": "DAM_TicketBooth_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "DAM_TicketBooth_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "DAM_TicketBooth_001_Body"
+        ],
+        "attachment_points": [
+          "DAM_TicketBooth_001_Att_Sign",
+          "DAM_TicketBooth_001_Att_Lantern"
+        ]
+      },
+      "materials": [
+        "MAT_DAM_AmberGlow",
+        "MAT_DAM_CarnivalGold",
+        "MAT_DAM_CarnivalPurple",
+        "MAT_DAM_PumpkinOrange",
+        "MAT_DAM_WarmWood",
+        "MAT_DAM_WitchHatBlack"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 176,
+        "vertices": 100,
+        "materials_count": 6,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Whimsical pumpkin-roofed Ticket & Treat Booth facing West toward the South Promenade next to the Ghost Train boarding platform.",
+        "future_target": null
+      }
+    },
+    {
+      "asset_id": "DAM_CarnivalStall_001",
+      "key": "D_amusement",
+      "category": "architecture",
+      "area_id": "D_amusement",
+      "collection": "D_amusement",
+      "blend_file": "blender/D_amusement/D_amusement.blend",
+      "script_file": "modeling/D_amusement/build.py",
+      "origin_policy": "ground_center",
+      "origin_world": [
+        -8.8,
+        -42.2,
+        0.0
+      ],
+      "dimensions_m": {
+        "width": 3.76,
+        "depth": 2.57,
+        "height": 3.15
+      },
+      "bounds_local": {
+        "min": [
+          -1.88,
+          -1.25,
+          0.0
+        ],
+        "max": [
+          1.88,
+          1.32,
+          3.15
+        ]
+      },
+      "parts": [
+        {
+          "part_id": "DAM_CarnivalStall_001",
+          "role": "asset_root",
+          "parent_part": null,
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            -8.8,
+            -42.2,
+            0.0
+          ]
+        },
+        {
+          "part_id": "DAM_CarnivalStall_001_Att_Lantern",
+          "role": "attachment_point",
+          "parent_part": "DAM_CarnivalStall_001",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            1.75,
+            1.15,
+            2.2
+          ]
+        },
+        {
+          "part_id": "DAM_CarnivalStall_001_Att_Sign",
+          "role": "attachment_point",
+          "parent_part": "DAM_CarnivalStall_001",
+          "origin_policy": "attachment_point",
+          "pivot_local": [
+            0.0,
+            1.32,
+            2.75
+          ]
+        },
+        {
+          "part_id": "DAM_CarnivalStall_001_Body",
+          "role": "visual_root",
+          "parent_part": "DAM_CarnivalStall_001",
+          "origin_policy": "ground_center",
+          "pivot_local": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "hierarchy": {
+        "asset_root": "DAM_CarnivalStall_001",
+        "motion_roots": [],
+        "visual_roots": [
+          "DAM_CarnivalStall_001_Body"
+        ],
+        "attachment_points": [
+          "DAM_CarnivalStall_001_Att_Sign",
+          "DAM_CarnivalStall_001_Att_Lantern"
+        ]
+      },
+      "materials": [
+        "MAT_DAM_AmberGlow",
+        "MAT_DAM_CarnivalCream",
+        "MAT_DAM_CarnivalGold",
+        "MAT_DAM_CarnivalPurple",
+        "MAT_DAM_PumpkinOrange",
+        "MAT_DAM_WarmWood"
+      ],
+      "textures": [],
+      "metrics": {
+        "measured": true,
+        "measurement_source": "blender_scene",
+        "triangles": 264,
+        "vertices": 160,
+        "materials_count": 6,
+        "objects_count": 4
+      },
+      "export_result": {
+        "status": "unexported",
+        "bundle_dir": null,
+        "apply_plan": null,
+        "report_file": null
+      },
+      "replacement": {
+        "is_placeholder": false,
+        "modifiable": true,
+        "notes": "Festive Pumpkin Ring-Toss & Candy Carnival Stall on the South-West court with sign and lantern attachment points.",
+        "future_target": null
+      }
+    }
+  ]
+}
