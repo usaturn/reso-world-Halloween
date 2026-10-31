@@ -5,7 +5,8 @@ Guards tested (preventing silent false-positive acceptance of broken data/scenes
    dangling `asset_id` / `parent_part` references, falsified unmeasured metrics (`measured: false` with numbers),
    and non-existent referenced files on disk.
 2. `check_blend.py`: accepts valid `blender/probe/probe.blend` and orthogonal uniform transforms; rejects
-   `.001` / default names, negative scale, non-uniform scale, shear matrices, and missing external image files.
+   `.001` / default names, negative scale, non-uniform scale, shear matrices, and missing external image files
+   that are not packed (packed images such as the one in `probe.blend` are accepted even if their path is gone).
 """
 
 from __future__ import annotations
