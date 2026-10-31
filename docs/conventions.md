@@ -160,6 +160,7 @@ uv run python tools/check_data.py
 uv run python tools/check_data.py --key <key>
 ```
 - 正常時は終了コード `0`、スキーマ不一致・ID 重複・参照切れ・未計測メトリクスの数値偽装・ファイル欠損時は終了コード `1` を返す。
+- `.blend` とテクスチャはコミットしないので（§8）、新しい checkout では、アセット一覧が参照する `.blend`・画像が無く、終了コード `1`（`blend_file does not exist on disk`）になる。先に各キーの §7.1 を実行してから検査する（全キーの順序は `docs/p1-handoff.md`）。生成物を作らずにデータの形だけを確かめるときは `--no-file-check` を付ける。
 
 ### 7.3 `.blend` 検査コマンド
 ```bash
@@ -180,11 +181,17 @@ uv run python tools/check_blend.py blender/<key>/<key>.blend
 ### 7.5 `resoloop blender export` コマンド
 ```bash
 resoloop blender export blender/<key>/<key>.blend \
-  --output exports/<key>/bundle \
-  --root-path Root/<RootSlotName> \
+  --output <新しい出力先> \
+  --parent <Slot> \
+  --collection <key> \
   --preserve-hierarchy \
   --json
 ```
+- 導入済みの resoloop 0.2.0 では `--parent` が必須で、W00 の版の `--root-path` は `OPTION_REQUIRED: --parent is required.` で止まる（W09 と W07 で確認。2026-10-31 に W07 が直した）。
+- `--output` は存在しないディレクトリにする。P1 の地区ごとの出力は `exports/p1/<key>-<UTC 時刻>/`（`modeling/overview/export_p1.py`）。
+- `--parent` は apply する Slot。Resonite に apply しない確認用の export では、`Root/ResoLoop_Test_<担当>_<key>` のような試験用のパスを渡し、apply の前に、ライブのワールドで確かめた Slot を `--parent` にして新しい出力先へ export し直す。
+- 金属・粗さの画像を持つ素材（Meshy の仕上げなど）は `--pack-pbr` を付ける。`--pack-pbr` が作る `pbr_*.png` は §8 の除外の規則に当たらないので、その出力先の `.gitignore` で除く（`exports/M01/.gitignore` など）。
+- 出力をオフラインで確かめるときは `resoloop validate <出力先>/model.apply.json --json`（`--strict` を付けない。`--strict` はライブの Reflection と照合する）。
 
 ---
 

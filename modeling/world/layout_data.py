@@ -214,7 +214,7 @@ def build_world_layout_dict() -> dict[str, Any]:
                 "issue_key": "E_forest",
                 "area_code": "E",
                 "w_issue": "W06 (#8)",
-                "name": "西・魔女の森と魔法工房 (Witch's Forest & Potion Workshop)",
+                "name": "西・魔法の森と時計塔 (Enchanted Forest & Clock Tower)",
                 "direction": "west",
                 "center": [-33.0, 0.0, 0.0],
                 "bounds": {
@@ -342,10 +342,12 @@ def build_world_layout_dict() -> dict[str, Any]:
                 "width_m": 2.6,
                 "waypoints": [
                     [16.0, 22.0, 1.5],
-                    [19.0, 19.0, 0.75],
+                    [19.0, 19.0, 1.5],
                     [22.0, 16.0, 0.0],
                 ],
-                "max_slope_deg": 10.1,
+                # W07 (Issue #9): level landing from the plateau to (19, 19), then the ramp (deck 16.6 deg; the
+                # waypoint polyline gives 19.5 deg because (22, 16) lies 0.7 m inside the ramp foot). Was 0.75 / 10.1.
+                "max_slope_deg": 19.5,
                 "has_handrail": True,
                 "step_free_or_slope": True,
                 "notes": "2.6m-wide North-East sloped side bridge connecting Area B plateau (z=1.5m) down to Area C (z=0.0m) with continuous 1.10m safety handrails.",
@@ -393,10 +395,11 @@ def build_world_layout_dict() -> dict[str, Any]:
                 "width_m": 2.6,
                 "waypoints": [
                     [-22.0, 16.0, 0.0],
-                    [-19.0, 19.0, 0.75],
+                    [-19.0, 19.0, 1.5],
                     [-16.0, 22.0, 1.5],
                 ],
-                "max_slope_deg": 10.1,
+                # W07 (Issue #9): ramp to (-19, 19), then a level landing onto the plateau. Was 0.75 / 10.1.
+                "max_slope_deg": 19.5,
                 "has_handrail": True,
                 "step_free_or_slope": True,
                 "notes": "2.6m-wide North-West sloped side bridge connecting Area E (z=0.0m) up to Area B plateau (z=1.5m) with continuous 1.10m safety handrails.",
@@ -404,20 +407,22 @@ def build_world_layout_dict() -> dict[str, Any]:
         ],
         "landmarks": [
             {
+                # W07 (Issue #9): heights and positions follow what W02-W06 built (review/overview/checks.json
+                # `landmarks`); the planned values are kept in docs/p1-handoff.md. Was height 12.0, target z 7.5.
                 "landmark_id": "LM_A_PumpkinTower_001",
                 "area_id": "A_plaza",
                 "position": [0.0, 0.0, 0.0],
-                "height_m": 12.0,
+                "height_m": 7.6,
                 "visible_from_areas": ["A_plaza", "B_mansion", "C_candy", "D_amusement", "E_forest"],
-                "target_point": [0.0, 0.0, 7.5],
+                "target_point": [0.0, 0.0, 4.6],
             },
             {
                 "landmark_id": "LM_B_HauntedMansion_001",
                 "area_id": "B_mansion",
-                "position": [0.0, 36.0, 1.5],
-                "height_m": 20.0,
+                "position": [0.0, 41.5, 1.5],
+                "height_m": 10.607,
                 "visible_from_areas": ["A_plaza", "B_mansion", "C_candy", "E_forest"],
-                "target_point": [0.0, 36.0, 12.0],
+                "target_point": [0.0, 41.5, 6.8],
             },
             {
                 "landmark_id": "LM_C_CandyArch_001",
@@ -430,18 +435,19 @@ def build_world_layout_dict() -> dict[str, Any]:
             {
                 "landmark_id": "LM_D_CarouselGate_001",
                 "area_id": "D_amusement",
-                "position": [0.0, -33.0, 0.0],
-                "height_m": 12.0,
+                "position": [-10.5, -32.0, 0.0],
+                "height_m": 9.901,
                 "visible_from_areas": ["A_plaza", "D_amusement", "C_candy", "E_forest"],
-                "target_point": [0.0, -33.0, 6.5],
+                "target_point": [-10.5, -32.0, 5.0],
             },
             {
-                "landmark_id": "LM_E_WitchWorkshop_001",
+                # W07: was LM_E_WitchWorkshop_001 at (-35, 0, 0), height 11.5. The E landmark is the M07 clock tower.
+                "landmark_id": "LM_E_ClockTower_001",
                 "area_id": "E_forest",
-                "position": [-35.0, 0.0, 0.0],
-                "height_m": 11.5,
+                "position": [-38.5, 0.0, 0.0],
+                "height_m": 14.0,
                 "visible_from_areas": ["A_plaza", "E_forest", "B_mansion", "D_amusement"],
-                "target_point": [-35.0, 0.0, 6.0],
+                "target_point": [-38.5, 0.0, 8.0],
             },
         ],
         "line_of_sight": [

@@ -27,6 +27,7 @@ from modeling.D_amusement.mesh_helpers import (
     add_cylinder_y,
     add_frustum_z,
     add_oriented_beam,
+    create_attachment_socket,
     create_empty_node,
     finalize_mesh_obj,
 )
@@ -121,7 +122,7 @@ def build_carousel(
         add_frustum_z(bm_poles, uv_poles, (px, py), 3.08, 3.25, 0.09, 0.14, segments=10, material_index=4)
     finalize_mesh_obj("DAM_Carousel_001_Poles", bm_poles, collection, mat_list, parent=turn_root)
 
-    create_empty_node("DAM_Carousel_001_Att_M05_CenterCasing", collection, location=(0.0, 0.0, 0.19), parent=turn_root, display_size=0.45)
+    create_attachment_socket("DAM_Carousel_001_Att_M05_CenterCasing", collection, mats["carnival_gold"], location=(0.0, 0.0, 0.19), parent=turn_root)
     bm_casing = bmesh.new()
     uv_casing = bm_casing.loops.layers.uv.new("UVMap")
     add_frustum_z(bm_casing, uv_casing, (0.0, 0.0), 0.0, 0.48, 0.91, 0.84, segments=16, material_index=3, top_material_index=4)
@@ -133,7 +134,7 @@ def build_carousel(
     add_frustum_z(bm_casing, uv_casing, (0.0, 0.0), 2.964, 3.400, 0.62, 0.56, segments=12, material_index=7)
     finalize_mesh_obj("DAM_Carousel_001_M05_CenterCasing", bm_casing, collection, mat_list, location=(0.0, 0.0, 0.19), parent=turn_root)
 
-    create_empty_node("DAM_Carousel_001_Att_M05_Canopy", collection, location=(0.0, 0.0, 3.154), parent=turn_root, display_size=0.45)
+    create_attachment_socket("DAM_Carousel_001_Att_M05_Canopy", collection, mats["carnival_gold"], location=(0.0, 0.0, 3.154), parent=turn_root)
     bm_canopy = bmesh.new()
     uv_canopy = bm_canopy.loops.layers.uv.new("UVMap")
     add_annulus_z(bm_canopy, uv_canopy, 3.95, 4.657, 0.0, 0.52, segments=24, material_index=3, ry_scale=1.02)
@@ -250,9 +251,9 @@ def build_ghost_train(
 
     # EngineRoot sits on the West straight rail top at local (0.0, 1.0, 0.14) -> world (7.5, -30.5, 0.14), +Y forward
     engine_root = create_empty_node("DAM_GhostTrain_001_EngineRoot", collection, location=(0.0, 1.0, 0.14), parent=root, display_size=0.5)
-    create_empty_node("DAM_GhostTrain_001_Att_M06_Engine", collection, location=(0.0, 0.0, 0.0), parent=engine_root, display_size=0.35)
-    create_empty_node("DAM_GhostTrain_001_Att_CouplerRear", collection, location=(0.0, -1.125, 0.394), parent=engine_root, display_size=0.3)
-    create_empty_node("DAM_GhostTrain_001_Att_Headlamp", collection, location=(0.0, 1.233, 1.498), parent=engine_root, display_size=0.3)
+    create_attachment_socket("DAM_GhostTrain_001_Att_M06_Engine", collection, mats["carnival_gold"], location=(0.0, 0.0, 0.0), parent=engine_root)
+    create_attachment_socket("DAM_GhostTrain_001_Att_CouplerRear", collection, mats["carnival_gold"], location=(0.0, -1.125, 0.394), parent=engine_root)
+    create_attachment_socket("DAM_GhostTrain_001_Att_Headlamp", collection, mats["carnival_gold"], location=(0.0, 1.233, 1.498), parent=engine_root)
 
     # M06_EngineShell: matches W09 M06 bounds [-0.605, -1.125, 0.0] .. [0.606, 1.875, 1.905] (1.211 x 3.000 x 1.905 m)
     bm_eng = bmesh.new()
@@ -329,7 +330,7 @@ def build_pumpkin_cups(
     add_frustum_z(bm_tt, uv_tt, (0.0, 0.0), 1.15, 1.38, 0.72, 0.30, segments=14, material_index=5, top_material_index=4)
     add_frustum_z(bm_tt, uv_tt, (0.0, 0.0), 1.38, 2.15, 0.30, 0.05, segments=12, material_index=5, top_material_index=6)
     finalize_mesh_obj("DAM_PumpkinCups_001_Turntable", bm_tt, collection, mat_list, parent=turn_root)
-    create_empty_node("DAM_PumpkinCups_001_Att_CenterTop", collection, location=(0.0, 0.0, 2.15), parent=turn_root, display_size=0.35)
+    create_attachment_socket("DAM_PumpkinCups_001_Att_CenterTop", collection, mats["carnival_gold"], location=(0.0, 0.0, 2.15), parent=turn_root)
 
     for idx, deg in enumerate((30.0, 150.0, 270.0), start=1):
         rad = math.radians(deg)
@@ -378,8 +379,8 @@ def build_ticket_booth(
     add_frustum_z(bm, uv, (0.0, 0.0), 2.25, 2.95, 1.38, 0.52, segments=12, material_index=3, top_material_index=4)
     add_frustum_z(bm, uv, (0.0, 0.0), 2.95, 3.65, 0.52, 0.06, segments=10, material_index=4, top_material_index=2)
     finalize_mesh_obj("DAM_TicketBooth_001_Body", bm, collection, mat_list, parent=root)
-    create_empty_node("DAM_TicketBooth_001_Att_Sign", collection, location=(-1.10, 0.0, 2.40), parent=root, display_size=0.3)
-    create_empty_node("DAM_TicketBooth_001_Att_Lantern", collection, location=(-1.18, 0.65, 2.15), parent=root, display_size=0.3)
+    create_attachment_socket("DAM_TicketBooth_001_Att_Sign", collection, mats["carnival_gold"], location=(-1.10, 0.0, 2.40), parent=root)
+    create_attachment_socket("DAM_TicketBooth_001_Att_Lantern", collection, mats["carnival_gold"], location=(-1.18, 0.65, 2.15), parent=root)
     return root
 
 
@@ -411,6 +412,6 @@ def build_carnival_stall(
     for px in (-1.0, -0.35, 0.35, 1.0):
         add_frustum_z(bm, uv, (px, 0.85), 1.16, 1.48, 0.20, 0.15, segments=10, material_index=3, top_material_index=5)
     finalize_mesh_obj("DAM_CarnivalStall_001_Body", bm, collection, mat_list, parent=root)
-    create_empty_node("DAM_CarnivalStall_001_Att_Sign", collection, location=(0.0, 1.32, 2.75), parent=root, display_size=0.3)
-    create_empty_node("DAM_CarnivalStall_001_Att_Lantern", collection, location=(1.75, 1.15, 2.20), parent=root, display_size=0.3)
+    create_attachment_socket("DAM_CarnivalStall_001_Att_Sign", collection, mats["carnival_gold"], location=(0.0, 1.32, 2.75), parent=root)
+    create_attachment_socket("DAM_CarnivalStall_001_Att_Lantern", collection, mats["carnival_gold"], location=(1.75, 1.15, 2.20), parent=root)
     return root

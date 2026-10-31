@@ -1,0 +1,16 @@
+{
+  "command": "resoloop validate exports/p1/D_amusement-20261031T142609Z/model.apply.json --json",
+  "exit": 0,
+  "result": {
+    "ok": true,
+    "data": {
+      "valid": true,
+      "schemaVersion": "1",
+      "slots": 98,
+      "components": 136,
+      "references": 310,
+      "strict": false,
+      "issues": []
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "command": "resoloop validate exports/p1/E_forest-20261031T141428Z/model.apply.json --json",
+  "exit": 0,
+  "result": {
+    "ok": true,
+    "data": {
+      "valid": true,
+      "schemaVersion": "1",
+      "slots": 189,
+      "components": 271,
+      "references": 515,
+      "strict": false,
+      "issues": []
+    }
+  }
+}

@@ -397,12 +397,14 @@ def build_candy_street_paving(
     # 4. North Side Path to Conn_C_North_Side ([22.0, 16.0, 0.0], w=2.6m)
     # World x=20.7..23.3 -> local x=-12.3..-9.7, y=2.2..16.0
     _add_box(bm, uv_layer, (-12.3, 2.2, 0.0), (-9.7, 16.0, 0.035), material_index=1)
-    _add_box(bm, uv_layer, (-10.2, 2.2, 0.0), (-8.4, 4.5, 0.035), material_index=1)
+    # W07 (Issue #9): the connector now spans only the gap (x -9.7..-8.8). It was x -10.2..-8.4 and lay on the side
+    # path and the stall promenade at the same height (0.035), so the faces fought for the same pixels.
+    _add_box(bm, uv_layer, (-9.7, 2.2, 0.0), (-8.8, 4.5, 0.035), material_index=1)
 
     # 5. South Side Path to Conn_C_South_Side ([22.0, -16.0, 0.0], w=2.6m)
     # World x=20.7..23.3 -> local x=-12.3..-9.7, y=-16.0..-2.2
     _add_box(bm, uv_layer, (-12.3, -16.0, 0.0), (-9.7, -2.2, 0.035), material_index=1)
-    _add_box(bm, uv_layer, (-10.2, -4.5, 0.0), (-8.4, -2.2, 0.035), material_index=1)
+    _add_box(bm, uv_layer, (-9.7, -4.5, 0.0), (-8.8, -2.2, 0.035), material_index=1)  # W07: see the north connector
 
     # 6. Candy-striped curbstones along outer street edges (outside the 4.0m main corridor y=-2.0..2.0)
     for idx in range(8):

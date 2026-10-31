@@ -748,15 +748,21 @@ def build_outer_loop_paths(
     uv_layer = bm.loops.layers.uv.new("UVMap")
 
     # Slot 0: bridge_timber, Slot 1: cliff_rock, Slot 2: parapet_iron
+    # W07 (Issue #9): the NE/NW bridges used to rise in one straight ramp to (+-15.5, 22.5, 1.5), so their decks met
+    # the north plateau's edge (y = 20) at z 0.78..1.2 and left a 0.3..0.7 m wall across the bridge. The ramp now
+    # reaches z 1.5 at (+-19.0, 19.0), where the deck's inner edge first touches y = 20, and runs level onto the
+    # plateau from there (ramp 16.6 deg). See docs/p1-handoff.md.
     diagonal_spans = [
-        # NE: Area B (16, 22, 1.5) <-> Area C (22, 16, 0.0)
-        ((15.5, 22.5, 1.50), (22.5, 15.5, 0.02)),
+        # NE: Area B (16, 22, 1.5) <-> Area C (22, 16, 0.0): level landing + ramp
+        ((15.5, 22.5, 1.50), (19.0, 19.0, 1.50)),
+        ((19.0, 19.0, 1.50), (22.5, 15.5, 0.02)),
         # SE: Area C (22, -16, 0.0) <-> Area D (16, -22, 0.0)
         ((22.5, -15.5, 0.02), (15.5, -22.5, 0.02)),
         # SW: Area D (-16, -22, 0.0) <-> Area E (-22, -16, 0.0)
         ((-15.5, -22.5, 0.02), (-22.5, -15.5, 0.02)),
-        # NW: Area E (-22, 16, 0.0) <-> Area B (-16, 22, 1.5)
-        ((-22.5, 15.5, 0.02), (-15.5, 22.5, 1.50)),
+        # NW: Area E (-22, 16, 0.0) <-> Area B (-16, 22, 1.5): ramp + level landing
+        ((-22.5, 15.5, 0.02), (-19.0, 19.0, 1.50)),
+        ((-19.0, 19.0, 1.50), (-15.5, 22.5, 1.50)),
     ]
 
     deck_width = 2.8  # walkable clear width 2.6m between side rails

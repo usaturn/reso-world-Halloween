@@ -166,7 +166,9 @@ def build_plaza_paving(
     # Slot 0: plaza_stone, Slot 1: plaza_mosaic, Slot 2: plaza_brass, Slot 3: fountain_stone, Slot 4: planter_foliage
     # 1. Outer island plaza base disc (R=17.5m, z=0.00..0.04m) and inner ring road border (R=10.75..14.25m, z=0.04..0.06m)
     add_frustum_z(bm, uv, (0.0, 0.0), 0.0, 0.04, 17.5, 17.5, segments=32, material_index=0)
-    add_annulus_sector_z(bm, uv, 10.75, 14.25, 0.04, 0.06, 0.0, 360.0, steps=36, material_index=1)
+    # W07 (Issue #9): top 0.063 (was 0.06). At 0.06 it lay exactly on W01's ring road (WLD_CentralRingRoad_001, top
+    # z 0.06), so the two faces fought for the same pixels. 0.063 also stays under the cardinal carpets (0.065).
+    add_annulus_sector_z(bm, uv, 10.75, 14.25, 0.04, 0.063, 0.0, 360.0, steps=36, material_index=1)
     # Brass inlay rings framing the fountain promenade (R=5.2m..5.45m and R=10.55m..10.75m, z=0.04..0.068m)
     add_annulus_sector_z(bm, uv, 5.20, 5.45, 0.04, 0.068, 0.0, 360.0, steps=32, material_index=2)
     add_annulus_sector_z(bm, uv, 10.55, 10.75, 0.04, 0.068, 0.0, 360.0, steps=36, material_index=2)

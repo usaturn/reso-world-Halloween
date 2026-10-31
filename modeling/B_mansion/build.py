@@ -313,7 +313,9 @@ def build_courtyard_ground(
     uv = bm.loops.layers.uv.new("UVMap")
     # Origin is (0.0, 32.0, 1.5)
     # 1. Central courtyard slate terrace (world x=-5.2..5.2, y=20.2..36.4, local y=-11.8..+4.4)
-    _add_box(bm, uv, (-5.2, -11.8, 0.0), (5.2, 4.4, 0.06), material_index=0)
+    # W07 (Issue #9): top 0.065 (was 0.06). At 0.06 (world z 1.56) it lay exactly on W01's North Mansion Avenue
+    # (WLD_NorthBridge_001, world z 1.50..1.56), so the two faces fought for the same pixels.
+    _add_box(bm, uv, (-5.2, -11.8, 0.0), (5.2, 4.4, 0.065), material_index=0)
     # 2. East & West diagonal bridge connector paths (world y=21.2..29.5, x=-16.2..+16.2)
     _add_box(bm, uv, (-16.2, -10.8, 0.0), (-5.2, -7.8, 0.05), material_index=0)
     _add_box(bm, uv, (5.2, -10.8, 0.0), (16.2, -7.8, 0.05), material_index=0)

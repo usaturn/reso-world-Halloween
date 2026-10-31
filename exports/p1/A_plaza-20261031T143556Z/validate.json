@@ -1,0 +1,16 @@
+{
+  "command": "resoloop validate exports/p1/A_plaza-20261031T143556Z/model.apply.json --json",
+  "exit": 0,
+  "result": {
+    "ok": true,
+    "data": {
+      "valid": true,
+      "schemaVersion": "1",
+      "slots": 164,
+      "components": 241,
+      "references": 460,
+      "strict": false,
+      "issues": []
+    }
+  }
+}

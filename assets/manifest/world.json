@@ -852,8 +852,8 @@
       "metrics": {
         "measured": true,
         "measurement_source": "blender_scene",
-        "triangles": 912,
-        "vertices": 608,
+        "triangles": 1176,
+        "vertices": 784,
         "materials_count": 3,
         "objects_count": 1
       },

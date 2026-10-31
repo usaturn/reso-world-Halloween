@@ -379,8 +379,8 @@
       "metrics": {
         "measured": true,
         "measurement_source": "blender_scene",
-        "triangles": 3404,
-        "vertices": 1864,
+        "triangles": 3460,
+        "vertices": 1896,
         "materials_count": 9,
         "objects_count": 17
       },
@@ -529,13 +529,13 @@
       "dimensions_m": {
         "width": 1.36,
         "depth": 6.011,
-        "height": 1.905
+        "height": 1.945
       },
       "bounds_local": {
         "min": [
           -0.68,
           -3.136,
-          0.14
+          0.1
         ],
         "max": [
           0.68,
@@ -711,8 +711,8 @@
       "metrics": {
         "measured": true,
         "measurement_source": "blender_scene",
-        "triangles": 988,
-        "vertices": 548,
+        "triangles": 1072,
+        "vertices": 596,
         "materials_count": 8,
         "objects_count": 12
       },
@@ -746,7 +746,7 @@
       "dimensions_m": {
         "width": 6.5,
         "depth": 6.5,
-        "height": 2.37
+        "height": 2.41
       },
       "bounds_local": {
         "min": [
@@ -757,7 +757,7 @@
         "max": [
           3.25,
           3.25,
-          2.37
+          2.41
         ]
       },
       "parts": [
@@ -915,8 +915,8 @@
       "metrics": {
         "measured": true,
         "measurement_source": "blender_scene",
-        "triangles": 1376,
-        "vertices": 728,
+        "triangles": 1404,
+        "vertices": 744,
         "materials_count": 7,
         "objects_count": 11
       },
@@ -1033,8 +1033,8 @@
       "metrics": {
         "measured": true,
         "measurement_source": "blender_scene",
-        "triangles": 176,
-        "vertices": 100,
+        "triangles": 232,
+        "vertices": 132,
         "materials_count": 6,
         "objects_count": 4
       },
@@ -1067,7 +1067,7 @@
       ],
       "dimensions_m": {
         "width": 3.76,
-        "depth": 2.57,
+        "depth": 2.61,
         "height": 3.15
       },
       "bounds_local": {
@@ -1078,7 +1078,7 @@
         ],
         "max": [
           1.88,
-          1.32,
+          1.36,
           3.15
         ]
       },
@@ -1151,8 +1151,8 @@
       "metrics": {
         "measured": true,
         "measurement_source": "blender_scene",
-        "triangles": 264,
-        "vertices": 160,
+        "triangles": 320,
+        "vertices": 192,
         "materials_count": 6,
         "objects_count": 4
       },

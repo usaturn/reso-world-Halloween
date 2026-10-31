@@ -1,0 +1,2135 @@
+{
+  "key": "overview",
+  "script": "modeling/overview/build.py",
+  "blend_file": "blender/overview/overview.blend",
+  "sources": {
+    "world": {
+      "blend_file": "blender/world/world.blend",
+      "objects": 21,
+      "objects_all_objects": 21,
+      "renamed_by_collision": []
+    },
+    "A_plaza": {
+      "blend_file": "blender/A_plaza/A_plaza.blend",
+      "objects": 141,
+      "objects_all_objects": 141,
+      "renamed_by_collision": []
+    },
+    "B_mansion": {
+      "blend_file": "blender/B_mansion/B_mansion.blend",
+      "objects": 66,
+      "objects_all_objects": 66,
+      "renamed_by_collision": []
+    },
+    "C_candy": {
+      "blend_file": "blender/C_candy/C_candy.blend",
+      "objects": 53,
+      "objects_all_objects": 53,
+      "renamed_by_collision": []
+    },
+    "D_amusement": {
+      "blend_file": "blender/D_amusement/D_amusement.blend",
+      "objects": 76,
+      "objects_all_objects": 76,
+      "renamed_by_collision": []
+    },
+    "E_forest": {
+      "blend_file": "blender/E_forest/E_forest.blend",
+      "objects": 146,
+      "objects_all_objects": 146,
+      "renamed_by_collision": []
+    }
+  },
+  "merged_duplicates": {
+    "materials": {
+      "merged": [
+        "MAT_CMN_AmberGlow@A_plaza",
+        "MAT_CMN_FlagGold@A_plaza",
+        "MAT_CMN_FlagPurple@A_plaza",
+        "MAT_CMN_PumpkinOrange@A_plaza",
+        "MAT_CMN_WarmStone@A_plaza",
+        "MAT_CMN_WarmWood@A_plaza",
+        "MAT_CMN_WroughtIron@A_plaza",
+        "MAT_CMN_AmberGlow@B_mansion",
+        "MAT_CMN_PumpkinOrange@B_mansion",
+        "MAT_CMN_PumpkinStem@B_mansion",
+        "MAT_CMN_WarmStone@B_mansion",
+        "MAT_CMN_WarmWood@B_mansion",
+        "MAT_CMN_WroughtIron@B_mansion",
+        "MAT_CMN_AmberGlow@C_candy",
+        "MAT_CMN_FlagGold@C_candy",
+        "MAT_CMN_FlagPurple@C_candy",
+        "MAT_CMN_PumpkinOrange@C_candy",
+        "MAT_CMN_PumpkinStem@C_candy",
+        "MAT_CMN_WarmStone@C_candy",
+        "MAT_CMN_WarmWood@C_candy",
+        "MAT_CMN_WroughtIron@C_candy",
+        "MAT_CMN_AmberGlow@D_amusement",
+        "MAT_CMN_FlagGold@D_amusement",
+        "MAT_CMN_FlagPurple@D_amusement",
+        "MAT_CMN_PumpkinOrange@D_amusement",
+        "MAT_CMN_PumpkinStem@D_amusement",
+        "MAT_CMN_WarmStone@D_amusement",
+        "MAT_CMN_WarmWood@D_amusement",
+        "MAT_CMN_WroughtIron@D_amusement",
+        "MAT_CMN_AmberGlow@E_forest",
+        "MAT_CMN_PumpkinOrange@E_forest",
+        "MAT_CMN_PumpkinStem@E_forest",
+        "MAT_CMN_WarmStone@E_forest",
+        "MAT_CMN_WarmWood@E_forest",
+        "MAT_CMN_WroughtIron@E_forest"
+      ]
+    },
+    "meshes": {
+      "merged": [
+        "SharedMesh_CMN_Bench_001@A_plaza",
+        "SharedMesh_CMN_GarlandFlag_001@A_plaza",
+        "SharedMesh_CMN_StreetLamp_001@A_plaza",
+        "SharedMesh_CMN_Bench_001@B_mansion",
+        "SharedMesh_CMN_Fence_001@B_mansion",
+        "SharedMesh_CMN_Lantern_001@B_mansion",
+        "SharedMesh_CMN_SmallPumpkin_001@B_mansion",
+        "SharedMesh_CMN_StreetLamp_001@B_mansion",
+        "SharedMesh_CMN_Bench_001@C_candy",
+        "SharedMesh_CMN_Fence_001@C_candy",
+        "SharedMesh_CMN_GarlandFlag_001@C_candy",
+        "SharedMesh_CMN_Lantern_001@C_candy",
+        "SharedMesh_CMN_SmallPumpkin_001@C_candy",
+        "SharedMesh_CMN_StreetLamp_001@C_candy",
+        "SharedMesh_CMN_Bench_001@D_amusement",
+        "SharedMesh_CMN_Fence_001@D_amusement",
+        "SharedMesh_CMN_GarlandFlag_001@D_amusement",
+        "SharedMesh_CMN_Lantern_001@D_amusement",
+        "SharedMesh_CMN_SmallPumpkin_001@D_amusement",
+        "SharedMesh_CMN_StreetLamp_001@D_amusement",
+        "SharedMesh_CMN_Bench_001@E_forest",
+        "SharedMesh_CMN_Lantern_001@E_forest",
+        "SharedMesh_CMN_SmallPumpkin_001@E_forest",
+        "SharedMesh_CMN_StreetLamp_001@E_forest"
+      ]
+    },
+    "library_records_removed": 6
+  },
+  "objects": 503,
+  "meshes": 245,
+  "materials": 107,
+  "images": 0,
+  "libraries": [],
+  "routes": {
+    "Route_Central_Ring_Road": {
+      "kind": "ring_road",
+      "width_m": 3.5,
+      "required_clear_width_m": 3.0,
+      "samples": 264,
+      "floor": 264,
+      "gap": 0,
+      "obstacle": 0,
+      "low_headroom": 0,
+      "step": 0,
+      "narrow": 0,
+      "min_clear_width_at_1m": {
+        "width_m": 4.145,
+        "at": [
+          10.885,
+          4.51,
+          0.0
+        ],
+        "limited_by": "APL_SeqLantern_004_Pillar"
+      },
+      "problems": []
+    },
+    "Route_South_Entrance_Approach": {
+      "kind": "main_road",
+      "width_m": 4.0,
+      "required_clear_width_m": 3.0,
+      "samples": 99,
+      "floor": 99,
+      "gap": 0,
+      "obstacle": 0,
+      "low_headroom": 0,
+      "step": 0,
+      "narrow": 0,
+      "min_clear_width_at_1m": {
+        "width_m": 3.298,
+        "at": [
+          0.0,
+          -42.0,
+          0.0
+        ],
+        "limited_by": "WLD_EntranceGarland_South_001"
+      },
+      "problems": []
+    },
+    "Route_North_Mansion_Bridge": {
+      "kind": "main_road",
+      "width_m": 4.0,
+      "required_clear_width_m": 3.0,
+      "samples": 69,
+      "floor": 69,
+      "gap": 0,
+      "obstacle": 0,
+      "low_headroom": 0,
+      "step": 0,
+      "narrow": 0,
+      "min_clear_width_at_1m": {
+        "width_m": 3.298,
+        "at": [
+          0.0,
+          14.5,
+          0.0
+        ],
+        "limited_by": "APL_PortalGarland_North_001"
+      },
+      "problems": []
+    },
+    "Route_East_Candy_Bridge": {
+      "kind": "main_road",
+      "width_m": 4.0,
+      "required_clear_width_m": 3.0,
+      "samples": 66,
+      "floor": 66,
+      "gap": 0,
+      "obstacle": 0,
+      "low_headroom": 0,
+      "step": 0,
+      "narrow": 0,
+      "min_clear_width_at_1m": {
+        "width_m": 3.298,
+        "at": [
+          14.5,
+          0.0,
+          0.0
+        ],
+        "limited_by": "APL_PortalGarland_East_001"
+      },
+      "problems": []
+    },
+    "Route_West_Forest_Bridge": {
+      "kind": "main_road",
+      "width_m": 3.8,
+      "required_clear_width_m": 3.0,
+      "samples": 66,
+      "floor": 66,
+      "gap": 0,
+      "obstacle": 0,
+      "low_headroom": 0,
+      "step": 0,
+      "narrow": 0,
+      "min_clear_width_at_1m": {
+        "width_m": 3.298,
+        "at": [
+          -14.5,
+          0.0,
+          0.0
+        ],
+        "limited_by": "APL_PortalGarland_West_001"
+      },
+      "problems": []
+    },
+    "Route_NE_Side_Bridge": {
+      "kind": "bridge",
+      "width_m": 2.6,
+      "required_clear_width_m": 2.0,
+      "samples": 36,
+      "floor": 36,
+      "gap": 0,
+      "obstacle": 0,
+      "low_headroom": 0,
+      "step": 0,
+      "narrow": 0,
+      "min_clear_width_at_1m": {
+        "width_m": 2.249,
+        "at": [
+          19.0,
+          19.0,
+          1.5
+        ],
+        "limited_by": "WLD_OuterLoopPaths_001"
+      },
+      "problems": []
+    },
+    "Route_SE_Side_Bridge": {
+      "kind": "bridge",
+      "width_m": 2.6,
+      "required_clear_width_m": 2.0,
+      "samples": 36,
+      "floor": 36,
+      "gap": 0,
+      "obstacle": 0,
+      "low_headroom": 0,
+      "step": 0,
+      "narrow": 0,
+      "min_clear_width_at_1m": {
+        "width_m": 2.38,
+        "at": [
+          22.0,
+          -16.0,
+          0.0
+        ],
+        "limited_by": "WLD_OuterLoopPaths_001"
+      },
+      "problems": []
+    },
+    "Route_SW_Side_Bridge": {
+      "kind": "bridge",
+      "width_m": 2.6,
+      "required_clear_width_m": 2.0,
+      "samples": 36,
+      "floor": 36,
+      "gap": 0,
+      "obstacle": 0,
+      "low_headroom": 0,
+      "step": 0,
+      "narrow": 0,
+      "min_clear_width_at_1m": {
+        "width_m": 2.38,
+        "at": [
+          -16.0,
+          -22.0,
+          0.0
+        ],
+        "limited_by": "WLD_OuterLoopPaths_001"
+      },
+      "problems": []
+    },
+    "Route_NW_Side_Bridge": {
+      "kind": "bridge",
+      "width_m": 2.6,
+      "required_clear_width_m": 2.0,
+      "samples": 36,
+      "floor": 36,
+      "gap": 0,
+      "obstacle": 0,
+      "low_headroom": 0,
+      "step": 0,
+      "narrow": 0,
+      "min_clear_width_at_1m": {
+        "width_m": 2.249,
+        "at": [
+          -19.0,
+          19.0,
+          1.5
+        ],
+        "limited_by": "WLD_OuterLoopPaths_001"
+      },
+      "problems": []
+    }
+  },
+  "spawns": {
+    "spawn": {
+      "position": [
+        0.0,
+        -44.0,
+        0.0
+      ],
+      "clearance_radius_m": 3.0,
+      "samples": 113,
+      "floor": 111,
+      "gap": 0,
+      "obstacle": 2,
+      "low_headroom": 0,
+      "by_object": {
+        "obstacle:WLD_WelcomeBench_East_001": 1,
+        "obstacle:WLD_WelcomeBench_West_001": 1
+      }
+    },
+    "Spawn_South_Entrance_Gate": {
+      "position": [
+        0.0,
+        -44.0,
+        0.0
+      ],
+      "clearance_radius_m": 3.5,
+      "samples": 149,
+      "floor": 143,
+      "gap": 0,
+      "obstacle": 6,
+      "low_headroom": 0,
+      "by_object": {
+        "obstacle:WLD_WelcomeBench_East_001": 3,
+        "obstacle:WLD_WelcomeBench_West_001": 3
+      }
+    },
+    "Spawn_Plaza_South_Ring": {
+      "position": [
+        0.0,
+        -12.75,
+        0.0
+      ],
+      "clearance_radius_m": 3.0,
+      "samples": 113,
+      "floor": 113,
+      "gap": 0,
+      "obstacle": 0,
+      "low_headroom": 0,
+      "by_object": {}
+    }
+  },
+  "placeholders": {
+    "M01": {
+      "placeholder": "APL_EntranceGateProxy_001",
+      "frame_origin_world": [
+        0.0,
+        -40.0,
+        0.0
+      ],
+      "placement_hint_position": [
+        0.0,
+        -40.0,
+        0.0
+      ],
+      "bounds_local": {
+        "min": [
+          -5.5,
+          -1.311,
+          0.0
+        ],
+        "max": [
+          5.5,
+          1.311,
+          7.739
+        ]
+      },
+      "received_bounds_local": {
+        "min": [
+          -5.5,
+          -1.311,
+          -0.0
+        ],
+        "max": [
+          5.5,
+          1.311,
+          7.739
+        ]
+      },
+      "dimensions_m": [
+        11.0,
+        2.622,
+        7.739
+      ],
+      "received_dimensions_m": [
+        11.0,
+        2.622,
+        7.739
+      ],
+      "max_bound_diff_m": 0.0,
+      "modelled_facing_local": "not determined by the bounds (symmetric in x and y); see the area handoff",
+      "front_world": null,
+      "placement_hint_front": "south(-Y)",
+      "front_matches_hint": null,
+      "origin_diff_to_hint_m": 0.0
+    },
+    "M02": {
+      "placeholder": "APL_GiantJackProxy_001",
+      "frame_origin_world": [
+        0.0,
+        0.0,
+        1.6
+      ],
+      "placement_hint_position": [
+        0.0,
+        0.0,
+        null
+      ],
+      "bounds_local": {
+        "min": [
+          -3.101,
+          -2.935,
+          0.0
+        ],
+        "max": [
+          3.101,
+          2.935,
+          6.0
+        ]
+      },
+      "received_bounds_local": {
+        "min": [
+          -3.101,
+          -2.935,
+          0.0
+        ],
+        "max": [
+          3.101,
+          2.935,
+          6.0
+        ]
+      },
+      "dimensions_m": [
+        6.202,
+        5.87,
+        6.0
+      ],
+      "received_dimensions_m": [
+        6.202,
+        5.87,
+        6.0
+      ],
+      "max_bound_diff_m": 0.0,
+      "modelled_facing_local": "not determined by the bounds (symmetric in x and y); see the area handoff",
+      "front_world": null,
+      "placement_hint_front": "south(-Y)",
+      "front_matches_hint": null,
+      "origin_diff_to_hint_m": 0.0
+    },
+    "M03": {
+      "placeholder": "BMN_MansionPlaceholder_001",
+      "frame_origin_world": [
+        0.0,
+        41.5,
+        1.5
+      ],
+      "placement_hint_position": [
+        0.0,
+        41.5,
+        1.5
+      ],
+      "bounds_local": {
+        "min": [
+          -7.5,
+          -5.111,
+          0.0
+        ],
+        "max": [
+          7.5,
+          5.111,
+          10.607
+        ]
+      },
+      "received_bounds_local": {
+        "min": [
+          -7.5,
+          -5.11,
+          0.0
+        ],
+        "max": [
+          7.5,
+          5.11,
+          10.607
+        ]
+      },
+      "dimensions_m": [
+        15.0,
+        10.221,
+        10.607
+      ],
+      "received_dimensions_m": [
+        15.0,
+        10.22,
+        10.607
+      ],
+      "max_bound_diff_m": 0.0005,
+      "modelled_facing_local": "not determined by the bounds (symmetric in x and y); see the area handoff",
+      "front_world": null,
+      "placement_hint_front": "south(-Y)",
+      "front_matches_hint": null,
+      "origin_diff_to_hint_m": 0.0
+    },
+    "M04": {
+      "placeholder": "CCD_M04_CandyWorkshopProxy_001",
+      "frame_origin_world": [
+        38.0,
+        0.0,
+        0.0
+      ],
+      "placement_hint_position": [
+        38.0,
+        0.0,
+        0.0
+      ],
+      "bounds_local": {
+        "min": [
+          -4.0,
+          -2.683,
+          0.0
+        ],
+        "max": [
+          4.0,
+          2.683,
+          7.628
+        ]
+      },
+      "received_bounds_local": {
+        "min": [
+          -4.0,
+          -2.683,
+          -0.0
+        ],
+        "max": [
+          4.0,
+          2.683,
+          7.628
+        ]
+      },
+      "dimensions_m": [
+        8.0,
+        5.366,
+        7.628
+      ],
+      "received_dimensions_m": [
+        8.0,
+        5.366,
+        7.628
+      ],
+      "max_bound_diff_m": 0.0,
+      "modelled_facing_local": "not determined by the bounds (symmetric in x and y); see the area handoff",
+      "front_world": null,
+      "placement_hint_front": "west(-X)",
+      "front_matches_hint": null,
+      "origin_diff_to_hint_m": 0.0
+    },
+    "M05_CenterCasing": {
+      "placeholder": "DAM_Carousel_001_M05_CenterCasing",
+      "frame_origin_world": [
+        -10.5,
+        -32.0,
+        0.55
+      ],
+      "placement_hint_position": [
+        -10.0,
+        -32.0,
+        null
+      ],
+      "bounds_local": {
+        "min": [
+          -0.93,
+          -0.93,
+          0.0
+        ],
+        "max": [
+          0.93,
+          0.93,
+          3.4
+        ]
+      },
+      "received_bounds_local": {
+        "min": [
+          -0.952,
+          -0.942,
+          0.0
+        ],
+        "max": [
+          0.909,
+          0.964,
+          3.4
+        ]
+      },
+      "dimensions_m": [
+        1.86,
+        1.86,
+        3.4
+      ],
+      "received_dimensions_m": [
+        1.861,
+        1.906,
+        3.4
+      ],
+      "max_bound_diff_m": 0.034,
+      "modelled_facing_local": "not determined by the bounds (symmetric in x and y); see the area handoff",
+      "front_world": null,
+      "placement_hint_front": "east(+X)",
+      "front_matches_hint": null,
+      "origin_diff_to_hint_m": 0.5
+    },
+    "M05_Canopy": {
+      "placeholder": "DAM_Carousel_001_M05_Canopy",
+      "frame_origin_world": [
+        -10.5,
+        -32.0,
+        3.514
+      ],
+      "placement_hint_position": [
+        -10.0,
+        -32.0,
+        null
+      ],
+      "bounds_local": {
+        "min": [
+          -4.66,
+          -4.75,
+          0.0
+        ],
+        "max": [
+          4.66,
+          4.75,
+          6.387
+        ]
+      },
+      "received_bounds_local": {
+        "min": [
+          -4.657,
+          -4.748,
+          -0.0
+        ],
+        "max": [
+          4.657,
+          4.764,
+          6.387
+        ]
+      },
+      "dimensions_m": [
+        9.32,
+        9.5,
+        6.387
+      ],
+      "received_dimensions_m": [
+        9.314,
+        9.512,
+        6.387
+      ],
+      "max_bound_diff_m": 0.0139,
+      "modelled_facing_local": "not determined by the bounds (symmetric in x and y); see the area handoff",
+      "front_world": null,
+      "placement_hint_front": "east(+X)",
+      "front_matches_hint": null,
+      "origin_diff_to_hint_m": 0.5
+    },
+    "M06": {
+      "placeholder": "DAM_GhostTrain_001_M06_EngineShell",
+      "frame_origin_world": [
+        7.5,
+        -30.5,
+        0.14
+      ],
+      "placement_hint_position": null,
+      "bounds_local": {
+        "min": [
+          -0.605,
+          -1.24,
+          0.06
+        ],
+        "max": [
+          0.606,
+          1.875,
+          1.905
+        ]
+      },
+      "received_bounds_local": {
+        "min": [
+          -0.605,
+          -1.125,
+          -0.0
+        ],
+        "max": [
+          0.606,
+          1.875,
+          1.905
+        ]
+      },
+      "dimensions_m": [
+        1.211,
+        3.115,
+        1.845
+      ],
+      "received_dimensions_m": [
+        1.211,
+        3.0,
+        1.905
+      ],
+      "max_bound_diff_m": 0.115,
+      "modelled_facing_local": "+Y",
+      "front_world": "north(+Y)",
+      "placement_hint_front": null,
+      "front_matches_hint": null
+    },
+    "M07": {
+      "placeholder": "EFR_ClockTower_001_Body",
+      "frame_origin_world": [
+        -38.5,
+        0.0,
+        0.0
+      ],
+      "placement_hint_position": [
+        -38.5,
+        0.0,
+        0.0
+      ],
+      "bounds_local": {
+        "min": [
+          -4.119,
+          -3.789,
+          0.0
+        ],
+        "max": [
+          4.12,
+          3.789,
+          14.0
+        ]
+      },
+      "received_bounds_local": {
+        "min": [
+          -4.119,
+          -3.789,
+          -0.0
+        ],
+        "max": [
+          4.12,
+          3.789,
+          14.0
+        ]
+      },
+      "dimensions_m": [
+        8.239,
+        7.578,
+        14.0
+      ],
+      "received_dimensions_m": [
+        8.239,
+        7.578,
+        14.0
+      ],
+      "max_bound_diff_m": 0.0,
+      "modelled_facing_local": "not determined by the bounds (symmetric in x and y); see the area handoff",
+      "front_world": null,
+      "placement_hint_front": "east(+X)",
+      "front_matches_hint": null,
+      "origin_diff_to_hint_m": 0.0
+    },
+    "M08": {
+      "placeholder": "CCD_M08_FlyingWitchProxy_001",
+      "frame_origin_world": [
+        43.2,
+        0.0,
+        10.2
+      ],
+      "placement_hint_position": null,
+      "bounds_local": {
+        "min": [
+          -0.637,
+          -1.256,
+          -0.612
+        ],
+        "max": [
+          0.905,
+          0.922,
+          1.888
+        ]
+      },
+      "received_bounds_local": {
+        "min": [
+          -0.637,
+          -1.215,
+          -0.612
+        ],
+        "max": [
+          0.905,
+          0.912,
+          1.888
+        ]
+      },
+      "dimensions_m": [
+        1.542,
+        2.178,
+        2.5
+      ],
+      "received_dimensions_m": [
+        1.542,
+        2.127,
+        2.5
+      ],
+      "max_bound_diff_m": 0.041,
+      "modelled_facing_local": "+Y",
+      "front_world": "north(+Y)",
+      "placement_hint_front": null,
+      "front_matches_hint": null
+    }
+  },
+  "motion": {
+    "A_plaza": {
+      "motion_roots": 24,
+      "missing": [],
+      "without_mesh": [],
+      "pivot_mismatch": [],
+      "range_not_found": [
+        "APL_Fountain_001_Water",
+        "APL_SeqLantern_001_LanternHead",
+        "APL_SeqLantern_002_LanternHead",
+        "APL_SeqLantern_003_LanternHead",
+        "APL_SeqLantern_004_LanternHead",
+        "APL_SeqLantern_005_LanternHead",
+        "APL_SeqLantern_006_LanternHead",
+        "APL_SeqLantern_007_LanternHead",
+        "APL_SeqLantern_008_LanternHead",
+        "APL_EntranceGateProxy_001_DoorLeft",
+        "APL_EntranceGateProxy_001_DoorRight"
+      ]
+    },
+    "B_mansion": {
+      "motion_roots": 9,
+      "missing": [],
+      "without_mesh": [],
+      "pivot_mismatch": [],
+      "range_not_found": []
+    },
+    "C_candy": {
+      "motion_roots": 7,
+      "missing": [],
+      "without_mesh": [],
+      "pivot_mismatch": [],
+      "range_not_found": []
+    },
+    "D_amusement": {
+      "motion_roots": 11,
+      "missing": [],
+      "without_mesh": [],
+      "pivot_mismatch": [],
+      "range_not_found": []
+    },
+    "E_forest": {
+      "motion_roots": 27,
+      "missing": [],
+      "without_mesh": [],
+      "pivot_mismatch": [],
+      "range_not_found": []
+    }
+  },
+  "motion_parts": {
+    "A_plaza": [
+      {
+        "asset_id": "APL_Fountain_001",
+        "motion_root": "APL_Fountain_001_Water",
+        "object_type": "MESH",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": false,
+        "range_recorded_under": null
+      },
+      {
+        "asset_id": "APL_JackInteractionPedestal_001",
+        "motion_root": "APL_JackInteractionPedestal_001_OrbButton",
+        "object_type": "MESH",
+        "mesh_objects_moved": 2,
+        "pivot_world": [
+          0.0,
+          -4.71,
+          0.96
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "APL_JackInteractionPedestal_001"
+      },
+      {
+        "asset_id": "APL_DancingPumpkin_001",
+        "motion_root": "APL_DancingPumpkin_001_Body",
+        "object_type": "MESH",
+        "mesh_objects_moved": 2,
+        "pivot_world": [
+          -2.72,
+          -3.89,
+          0.24
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "APL_DancingPumpkin_001"
+      },
+      {
+        "asset_id": "APL_DancingPumpkin_002",
+        "motion_root": "APL_DancingPumpkin_002_Body",
+        "object_type": "MESH",
+        "mesh_objects_moved": 2,
+        "pivot_world": [
+          2.72,
+          -3.89,
+          0.24
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "APL_DancingPumpkin_002"
+      },
+      {
+        "asset_id": "APL_DancingPumpkin_003",
+        "motion_root": "APL_DancingPumpkin_003_Body",
+        "object_type": "MESH",
+        "mesh_objects_moved": 2,
+        "pivot_world": [
+          4.59,
+          -1.23,
+          0.24
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "APL_DancingPumpkin_003"
+      },
+      {
+        "asset_id": "APL_DancingPumpkin_004",
+        "motion_root": "APL_DancingPumpkin_004_Body",
+        "object_type": "MESH",
+        "mesh_objects_moved": 2,
+        "pivot_world": [
+          -4.59,
+          -1.23,
+          0.24
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "APL_DancingPumpkin_004"
+      },
+      {
+        "asset_id": "APL_DancingPumpkin_005",
+        "motion_root": "APL_DancingPumpkin_005_Body",
+        "object_type": "MESH",
+        "mesh_objects_moved": 2,
+        "pivot_world": [
+          3.36,
+          3.36,
+          0.24
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "APL_DancingPumpkin_005"
+      },
+      {
+        "asset_id": "APL_DancingPumpkin_006",
+        "motion_root": "APL_DancingPumpkin_006_Body",
+        "object_type": "MESH",
+        "mesh_objects_moved": 2,
+        "pivot_world": [
+          -3.36,
+          3.36,
+          0.24
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "APL_DancingPumpkin_006"
+      },
+      {
+        "asset_id": "APL_FloatingCandy_001",
+        "motion_root": "APL_FloatingCandy_001_OrbitHub",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 2,
+        "pivot_world": [
+          -2.4,
+          -2.4,
+          2.45
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "APL_FloatingCandy_001"
+      },
+      {
+        "asset_id": "APL_FloatingCandy_002",
+        "motion_root": "APL_FloatingCandy_002_OrbitHub",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 2,
+        "pivot_world": [
+          2.4,
+          -2.4,
+          2.45
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "APL_FloatingCandy_002"
+      },
+      {
+        "asset_id": "APL_FloatingCandy_003",
+        "motion_root": "APL_FloatingCandy_003_OrbitHub",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 2,
+        "pivot_world": [
+          2.4,
+          2.4,
+          2.55
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "APL_FloatingCandy_003"
+      },
+      {
+        "asset_id": "APL_FloatingCandy_004",
+        "motion_root": "APL_FloatingCandy_004_OrbitHub",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 2,
+        "pivot_world": [
+          -2.4,
+          2.4,
+          2.55
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "APL_FloatingCandy_004"
+      },
+      {
+        "asset_id": "APL_SeqLantern_001",
+        "motion_root": "APL_SeqLantern_001_LanternHead",
+        "object_type": "MESH",
+        "mesh_objects_moved": 2,
+        "pivot_world": [
+          -3.75,
+          -9.05,
+          2.05
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": false,
+        "range_recorded_under": null
+      },
+      {
+        "asset_id": "APL_SeqLantern_002",
+        "motion_root": "APL_SeqLantern_002_LanternHead",
+        "object_type": "MESH",
+        "mesh_objects_moved": 2,
+        "pivot_world": [
+          3.75,
+          -9.05,
+          2.05
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": false,
+        "range_recorded_under": null
+      },
+      {
+        "asset_id": "APL_SeqLantern_003",
+        "motion_root": "APL_SeqLantern_003_LanternHead",
+        "object_type": "MESH",
+        "mesh_objects_moved": 2,
+        "pivot_world": [
+          9.05,
+          -3.75,
+          2.05
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": false,
+        "range_recorded_under": null
+      },
+      {
+        "asset_id": "APL_SeqLantern_004",
+        "motion_root": "APL_SeqLantern_004_LanternHead",
+        "object_type": "MESH",
+        "mesh_objects_moved": 2,
+        "pivot_world": [
+          9.05,
+          3.75,
+          2.05
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": false,
+        "range_recorded_under": null
+      },
+      {
+        "asset_id": "APL_SeqLantern_005",
+        "motion_root": "APL_SeqLantern_005_LanternHead",
+        "object_type": "MESH",
+        "mesh_objects_moved": 2,
+        "pivot_world": [
+          3.75,
+          9.05,
+          2.05
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": false,
+        "range_recorded_under": null
+      },
+      {
+        "asset_id": "APL_SeqLantern_006",
+        "motion_root": "APL_SeqLantern_006_LanternHead",
+        "object_type": "MESH",
+        "mesh_objects_moved": 2,
+        "pivot_world": [
+          -3.75,
+          9.05,
+          2.05
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": false,
+        "range_recorded_under": null
+      },
+      {
+        "asset_id": "APL_SeqLantern_007",
+        "motion_root": "APL_SeqLantern_007_LanternHead",
+        "object_type": "MESH",
+        "mesh_objects_moved": 2,
+        "pivot_world": [
+          -9.05,
+          3.75,
+          2.05
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": false,
+        "range_recorded_under": null
+      },
+      {
+        "asset_id": "APL_SeqLantern_008",
+        "motion_root": "APL_SeqLantern_008_LanternHead",
+        "object_type": "MESH",
+        "mesh_objects_moved": 2,
+        "pivot_world": [
+          -9.05,
+          -3.75,
+          2.05
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": false,
+        "range_recorded_under": null
+      },
+      {
+        "asset_id": "APL_TrickOrTreatStand_001",
+        "motion_root": "APL_TrickOrTreatStand_001_Button",
+        "object_type": "MESH",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -4.697,
+          -6.347,
+          0.94
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "APL_TrickOrTreatStand_001"
+      },
+      {
+        "asset_id": "APL_FireworksSwitch_001",
+        "motion_root": "APL_FireworksSwitch_001_Lever",
+        "object_type": "MESH",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          4.72,
+          -6.315,
+          0.92
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "APL_FireworksSwitch_001"
+      },
+      {
+        "asset_id": "APL_EntranceGateProxy_001",
+        "motion_root": "APL_EntranceGateProxy_001_DoorLeft",
+        "object_type": "MESH",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -2.18,
+          -40.0,
+          0.0
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": false,
+        "range_recorded_under": null
+      },
+      {
+        "asset_id": "APL_EntranceGateProxy_001",
+        "motion_root": "APL_EntranceGateProxy_001_DoorRight",
+        "object_type": "MESH",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          2.18,
+          -40.0,
+          0.0
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": false,
+        "range_recorded_under": null
+      }
+    ],
+    "B_mansion": [
+      {
+        "asset_id": "BMN_Tombstone_001",
+        "motion_root": "BMN_Tombstone_001_TiltHinge",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -6.2,
+          30.0,
+          1.68
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "BMN_Tombstone_001_TiltHinge"
+      },
+      {
+        "asset_id": "BMN_Tombstone_002",
+        "motion_root": "BMN_Tombstone_002_TiltHinge",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          6.2,
+          30.0,
+          1.68
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "BMN_Tombstone_002_TiltHinge"
+      },
+      {
+        "asset_id": "BMN_MansionDoubleDoor_001",
+        "motion_root": "BMN_MansionDoubleDoor_001_HingeLeft",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -0.474,
+          39.95,
+          1.779
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "BMN_MansionDoubleDoor_001_HingeLeft"
+      },
+      {
+        "asset_id": "BMN_MansionDoubleDoor_001",
+        "motion_root": "BMN_MansionDoubleDoor_001_HingeRight",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          1.144,
+          39.95,
+          1.779
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "BMN_MansionDoubleDoor_001"
+      },
+      {
+        "asset_id": "BMN_WindowGhost_001",
+        "motion_root": "BMN_WindowGhost_001_PeekPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -4.2,
+          37.23,
+          4.8
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "BMN_WindowGhost_001_PeekPivot"
+      },
+      {
+        "asset_id": "BMN_WindowGhost_002",
+        "motion_root": "BMN_WindowGhost_002_PeekPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          4.2,
+          37.23,
+          4.8
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "BMN_WindowGhost_002_PeekPivot"
+      },
+      {
+        "asset_id": "BMN_FloatingGhost_001",
+        "motion_root": "BMN_FloatingGhost_001_FloatPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 2,
+        "pivot_world": [
+          -4.6,
+          28.0,
+          2.6
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "BMN_FloatingGhost_001_FloatPivot"
+      },
+      {
+        "asset_id": "BMN_FloatingGhost_002",
+        "motion_root": "BMN_FloatingGhost_002_FloatPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 2,
+        "pivot_world": [
+          4.6,
+          33.0,
+          2.8
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "BMN_FloatingGhost_002_FloatPivot"
+      },
+      {
+        "asset_id": "BMN_MansionBell_001",
+        "motion_root": "BMN_MansionBell_001_BellHinge",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -3.4,
+          35.8,
+          3.95
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "BMN_MansionBell_001_BellHinge"
+      }
+    ],
+    "C_candy": [
+      {
+        "asset_id": "CCD_MagicCauldron_001",
+        "motion_root": "CCD_MagicCauldron_001_StirRodPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          34.4,
+          5.2,
+          1.16
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "CCD_MagicCauldron_001"
+      },
+      {
+        "asset_id": "CCD_CauldronColorControl_001",
+        "motion_root": "CCD_CauldronColorControl_001_SwitchPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 2,
+        "pivot_world": [
+          33.0,
+          3.74,
+          1.02
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "CCD_CauldronColorControl_001"
+      },
+      {
+        "asset_id": "CCD_CandyMachine_001",
+        "motion_root": "CCD_CandyMachine_001_GearMainPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          33.7,
+          -5.28,
+          1.15
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "CCD_CandyMachine_001"
+      },
+      {
+        "asset_id": "CCD_CandyMachine_001",
+        "motion_root": "CCD_CandyMachine_001_GearSubPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          33.7,
+          -4.78,
+          1.66
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "CCD_CandyMachine_001"
+      },
+      {
+        "asset_id": "CCD_CandyMachine_001",
+        "motion_root": "CCD_CandyMachine_001_ExtruderPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          34.4,
+          -4.68,
+          1.05
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "CCD_CandyMachine_001"
+      },
+      {
+        "asset_id": "CCD_MagicBroom_001",
+        "motion_root": "CCD_MagicBroom_001",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 2,
+        "pivot_world": [
+          28.5,
+          3.2,
+          0.05
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "CCD_MagicBroom_001"
+      },
+      {
+        "asset_id": "CCD_WitchPatrolLoop_001",
+        "motion_root": "CCD_WitchPatrolLoop_001_CarrierPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          43.2,
+          0.0,
+          10.2
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "CCD_WitchPatrolLoop_001"
+      }
+    ],
+    "D_amusement": [
+      {
+        "asset_id": "DAM_Carousel_001",
+        "motion_root": "DAM_Carousel_001_TurnRoot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 10,
+        "pivot_world": [
+          -10.5,
+          -32.0,
+          0.36
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "DAM_Carousel_001_TurnRoot"
+      },
+      {
+        "asset_id": "DAM_Carousel_001",
+        "motion_root": "DAM_Carousel_001_SeatRoot_001",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -7.15,
+          -32.0,
+          1.41
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "DAM_Carousel_001"
+      },
+      {
+        "asset_id": "DAM_Carousel_001",
+        "motion_root": "DAM_Carousel_001_SeatRoot_002",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -10.5,
+          -28.65,
+          1.41
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "DAM_Carousel_001"
+      },
+      {
+        "asset_id": "DAM_Carousel_001",
+        "motion_root": "DAM_Carousel_001_SeatRoot_003",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -13.85,
+          -32.0,
+          1.41
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "DAM_Carousel_001"
+      },
+      {
+        "asset_id": "DAM_Carousel_001",
+        "motion_root": "DAM_Carousel_001_SeatRoot_004",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -10.5,
+          -35.35,
+          1.41
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "DAM_Carousel_001"
+      },
+      {
+        "asset_id": "DAM_GhostTrain_001",
+        "motion_root": "DAM_GhostTrain_001_EngineRoot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 6,
+        "pivot_world": [
+          7.5,
+          -30.5,
+          0.14
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "DAM_GhostTrain_001"
+      },
+      {
+        "asset_id": "DAM_GhostTrain_001",
+        "motion_root": "DAM_GhostTrain_001_CarRoot_001",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 3,
+        "pivot_world": [
+          7.5,
+          -33.25,
+          0.14
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "DAM_GhostTrain_001"
+      },
+      {
+        "asset_id": "DAM_PumpkinCups_001",
+        "motion_root": "DAM_PumpkinCups_001_TurnRoot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 5,
+        "pivot_world": [
+          11.5,
+          -42.5,
+          0.22
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "DAM_PumpkinCups_001_TurnRoot"
+      },
+      {
+        "asset_id": "DAM_PumpkinCups_001",
+        "motion_root": "DAM_PumpkinCups_001_CupRoot_001",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          12.99,
+          -41.64,
+          0.32
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "DAM_PumpkinCups_001"
+      },
+      {
+        "asset_id": "DAM_PumpkinCups_001",
+        "motion_root": "DAM_PumpkinCups_001_CupRoot_002",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          10.01,
+          -41.64,
+          0.32
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "DAM_PumpkinCups_001"
+      },
+      {
+        "asset_id": "DAM_PumpkinCups_001",
+        "motion_root": "DAM_PumpkinCups_001_CupRoot_003",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          11.5,
+          -44.22,
+          0.32
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "DAM_PumpkinCups_001"
+      }
+    ],
+    "E_forest": [
+      {
+        "asset_id": "EFR_ClockTower_001",
+        "motion_root": "EFR_ClockTower_001_HourHandPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -38.081,
+          -0.002,
+          8.032
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "EFR_ClockTower_001_HourHandPivot"
+      },
+      {
+        "asset_id": "EFR_ClockTower_001",
+        "motion_root": "EFR_ClockTower_001_MinuteHandPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -38.041,
+          -0.002,
+          8.032
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "EFR_ClockTower_001_MinuteHandPivot"
+      },
+      {
+        "asset_id": "EFR_ClockTower_001",
+        "motion_root": "EFR_ClockTower_001_BellPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -37.05,
+          -0.002,
+          10.95
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "EFR_ClockTower_001_BellPivot"
+      },
+      {
+        "asset_id": "EFR_FaceTree_001",
+        "motion_root": "EFR_FaceTree_001_BranchLPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -24.517,
+          7.22,
+          4.0
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "EFR_FaceTree_001_BranchLPivot"
+      },
+      {
+        "asset_id": "EFR_FaceTree_001",
+        "motion_root": "EFR_FaceTree_001_EyeLPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -24.46,
+          6.112,
+          3.0
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "EFR_FaceTree_001_EyeLPivot"
+      },
+      {
+        "asset_id": "EFR_FaceTree_001",
+        "motion_root": "EFR_FaceTree_001_BranchRPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -25.93,
+          6.469,
+          4.25
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "EFR_FaceTree_001_BranchRPivot"
+      },
+      {
+        "asset_id": "EFR_FaceTree_001",
+        "motion_root": "EFR_FaceTree_001_EyeRPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -25.043,
+          5.802,
+          3.0
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "EFR_FaceTree_001_EyeRPivot"
+      },
+      {
+        "asset_id": "EFR_FaceTree_002",
+        "motion_root": "EFR_FaceTree_002_BranchLPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -37.291,
+          -7.594,
+          4.0
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "EFR_FaceTree_002_BranchLPivot"
+      },
+      {
+        "asset_id": "EFR_FaceTree_002",
+        "motion_root": "EFR_FaceTree_002_EyeLPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -36.34,
+          -7.024,
+          3.0
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "EFR_FaceTree_002_EyeLPivot"
+      },
+      {
+        "asset_id": "EFR_FaceTree_002",
+        "motion_root": "EFR_FaceTree_002_BranchRPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -35.965,
+          -8.489,
+          4.25
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "EFR_FaceTree_002_BranchRPivot"
+      },
+      {
+        "asset_id": "EFR_FaceTree_002",
+        "motion_root": "EFR_FaceTree_002_EyeRPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -35.793,
+          -7.393,
+          3.0
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "EFR_FaceTree_002_EyeRPivot"
+      },
+      {
+        "asset_id": "EFR_BatFlock_001",
+        "motion_root": "EFR_BatFlock_001_Motion",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 15,
+        "pivot_world": [
+          -28.8,
+          -6.5,
+          10.4
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "EFR_BatFlock_001"
+      },
+      {
+        "asset_id": "EFR_BatFlock_001",
+        "motion_root": "EFR_BatFlock_001_Bat01",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 3,
+        "pivot_world": [
+          -27.72,
+          -6.29,
+          10.4
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "EFR_BatFlock_001"
+      },
+      {
+        "asset_id": "EFR_BatFlock_001",
+        "motion_root": "EFR_BatFlock_001_Bat01_WingLPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -27.828,
+          -6.311,
+          10.44
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "EFR_BatFlock_001"
+      },
+      {
+        "asset_id": "EFR_BatFlock_001",
+        "motion_root": "EFR_BatFlock_001_Bat01_WingRPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -27.612,
+          -6.269,
+          10.44
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "EFR_BatFlock_001"
+      },
+      {
+        "asset_id": "EFR_BatFlock_001",
+        "motion_root": "EFR_BatFlock_001_Bat02",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 3,
+        "pivot_world": [
+          -28.584,
+          -4.738,
+          10.731
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "EFR_BatFlock_001"
+      },
+      {
+        "asset_id": "EFR_BatFlock_001",
+        "motion_root": "EFR_BatFlock_001_Bat02_WingLPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -28.597,
+          -4.847,
+          10.771
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "EFR_BatFlock_001"
+      },
+      {
+        "asset_id": "EFR_BatFlock_001",
+        "motion_root": "EFR_BatFlock_001_Bat02_WingRPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -28.57,
+          -4.629,
+          10.771
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "EFR_BatFlock_001"
+      },
+      {
+        "asset_id": "EFR_BatFlock_001",
+        "motion_root": "EFR_BatFlock_001_Bat03",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 3,
+        "pivot_world": [
+          -30.001,
+          -5.94,
+          10.186
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "EFR_BatFlock_001"
+      },
+      {
+        "asset_id": "EFR_BatFlock_001",
+        "motion_root": "EFR_BatFlock_001_Bat03_WingLPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -29.901,
+          -5.987,
+          10.226
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "EFR_BatFlock_001"
+      },
+      {
+        "asset_id": "EFR_BatFlock_001",
+        "motion_root": "EFR_BatFlock_001_Bat03_WingRPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -30.101,
+          -5.894,
+          10.226
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "EFR_BatFlock_001"
+      },
+      {
+        "asset_id": "EFR_BatFlock_001",
+        "motion_root": "EFR_BatFlock_001_Bat04",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 3,
+        "pivot_world": [
+          -30.164,
+          -7.963,
+          10.207
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "EFR_BatFlock_001"
+      },
+      {
+        "asset_id": "EFR_BatFlock_001",
+        "motion_root": "EFR_BatFlock_001_Bat04_WingLPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -30.089,
+          -7.882,
+          10.247
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "EFR_BatFlock_001"
+      },
+      {
+        "asset_id": "EFR_BatFlock_001",
+        "motion_root": "EFR_BatFlock_001_Bat04_WingRPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -30.239,
+          -8.043,
+          10.247
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "EFR_BatFlock_001"
+      },
+      {
+        "asset_id": "EFR_BatFlock_001",
+        "motion_root": "EFR_BatFlock_001_Bat05",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 3,
+        "pivot_world": [
+          -28.049,
+          -7.856,
+          10.739
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "EFR_BatFlock_001"
+      },
+      {
+        "asset_id": "EFR_BatFlock_001",
+        "motion_root": "EFR_BatFlock_001_Bat05_WingLPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -28.102,
+          -7.759,
+          10.779
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "EFR_BatFlock_001"
+      },
+      {
+        "asset_id": "EFR_BatFlock_001",
+        "motion_root": "EFR_BatFlock_001_Bat05_WingRPivot",
+        "object_type": "EMPTY",
+        "mesh_objects_moved": 1,
+        "pivot_world": [
+          -27.995,
+          -7.952,
+          10.779
+        ],
+        "pivot_local_matches_manifest": true,
+        "range_recorded": true,
+        "range_recorded_under": "EFR_BatFlock_001"
+      }
+    ]
+  },
+  "landmarks": {
+    "LM_A_PumpkinTower_001": {
+      "planned_position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "planned_height_m": 7.6,
+      "built_asset": "APL_GiantJackProxy_001",
+      "built_origin": [
+        0.0,
+        0.0,
+        1.6
+      ],
+      "built_bbox_centre_xy": [
+        0.0,
+        0.0
+      ],
+      "built_top_z": 7.6,
+      "built_height_above_ground_m": 7.6,
+      "xy_offset_m": 0.0
+    },
+    "LM_B_HauntedMansion_001": {
+      "planned_position": [
+        0.0,
+        41.5,
+        1.5
+      ],
+      "planned_height_m": 10.607,
+      "built_asset": "BMN_MansionPlaceholder_001",
+      "built_origin": [
+        0.0,
+        41.5,
+        1.5
+      ],
+      "built_bbox_centre_xy": [
+        0.0,
+        41.5
+      ],
+      "built_top_z": 12.107,
+      "built_height_above_ground_m": 10.607,
+      "xy_offset_m": 0.0
+    },
+    "LM_C_CandyArch_001": {
+      "planned_position": [
+        33.0,
+        0.0,
+        0.0
+      ],
+      "planned_height_m": 9.5,
+      "built_asset": "CCD_CandyArch_001",
+      "built_origin": [
+        33.0,
+        0.0,
+        0.0
+      ],
+      "built_bbox_centre_xy": [
+        33.0,
+        0.0
+      ],
+      "built_top_z": 9.5,
+      "built_height_above_ground_m": 9.5,
+      "xy_offset_m": 0.0
+    },
+    "LM_D_CarouselGate_001": {
+      "planned_position": [
+        -10.5,
+        -32.0,
+        0.0
+      ],
+      "planned_height_m": 9.901,
+      "built_asset": "DAM_Carousel_001",
+      "built_origin": [
+        -10.5,
+        -32.0,
+        0.0
+      ],
+      "built_bbox_centre_xy": [
+        -10.325,
+        -32.0
+      ],
+      "built_top_z": 9.901,
+      "built_height_above_ground_m": 9.901,
+      "xy_offset_m": 0.175
+    },
+    "LM_E_ClockTower_001": {
+      "planned_position": [
+        -38.5,
+        0.0,
+        0.0
+      ],
+      "planned_height_m": 14.0,
+      "built_asset": "EFR_ClockTower_001",
+      "built_origin": [
+        -38.5,
+        0.0,
+        0.0
+      ],
+      "built_bbox_centre_xy": [
+        -38.5,
+        -0.0
+      ],
+      "built_top_z": 14.0,
+      "built_height_above_ground_m": 14.0,
+      "xy_offset_m": 0.0
+    }
+  },
+  "coplanar_tops_between_keys": [],
+  "integrated_manifest": {
+    "assets": 124,
+    "exported_keys": [
+      "A_plaza",
+      "B_mansion",
+      "C_candy",
+      "D_amusement",
+      "E_forest",
+      "world"
+    ]
+  },
+  "review_images": [
+    "review/overview/01_world_aerial_from_south.png",
+    "review/overview/02_world_aerial_from_northwest.png",
+    "review/overview/03_spawn_to_plaza.png",
+    "review/overview/04_route_samples_plan.png",
+    "review/overview/14_side_bridge_NE_landing.png",
+    "review/overview/15_side_bridge_NW_landing.png",
+    "review/overview/05_area_A_plaza.png",
+    "review/overview/06_area_B_mansion.png",
+    "review/overview/07_area_C_candy.png",
+    "review/overview/08_area_D_amusement.png",
+    "review/overview/09_area_E_forest.png",
+    "review/overview/10_parts_A_fountain_pumpkins.png",
+    "review/overview/11_parts_B_doors_windows_bell.png",
+    "review/overview/12_parts_C_cauldron_machine.png",
+    "review/overview/13_parts_D_carousel_train_cups.png",
+    "review/overview/20_placeholder_M01.png",
+    "review/overview/20_placeholder_M02.png",
+    "review/overview/20_placeholder_M03.png",
+    "review/overview/20_placeholder_M04.png",
+    "review/overview/20_placeholder_M05_CenterCasing.png",
+    "review/overview/20_placeholder_M05_Canopy.png",
+    "review/overview/20_placeholder_M06.png",
+    "review/overview/20_placeholder_M07.png",
+    "review/overview/20_placeholder_M08.png"
+  ]
+}

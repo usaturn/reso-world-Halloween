@@ -1,0 +1,16 @@
+{
+  "command": "resoloop validate exports/p1/C_candy-20261031T143556Z/model.apply.json --json",
+  "exit": 0,
+  "result": {
+    "ok": true,
+    "data": {
+      "valid": true,
+      "schemaVersion": "1",
+      "slots": 79,
+      "components": 108,
+      "references": 235,
+      "strict": false,
+      "issues": []
+    }
+  }
+}
