@@ -1,0 +1,156 @@
+{
+  "problems": [],
+  "G01_frozen_spread_1.0": {
+    "params": {
+      "G01Intensity": 1.0,
+      "G01Frequency": 0.0,
+      "G01PhaseSpread": 1.0
+    },
+    "pumpkins": [
+      {
+        "asset_id": "APL_DancingPumpkin_001",
+        "phase_deg": 0.0,
+        "lift_m": 0.08,
+        "expected_lift_m": 0.08,
+        "tilt_deg": 0.0,
+        "expected_tilt_deg": 0.0
+      },
+      {
+        "asset_id": "APL_DancingPumpkin_002",
+        "phase_deg": 60.0,
+        "lift_m": 0.1666,
+        "expected_lift_m": 0.1666,
+        "tilt_deg": 6.0,
+        "expected_tilt_deg": 6.0
+      },
+      {
+        "asset_id": "APL_DancingPumpkin_003",
+        "phase_deg": 120.0,
+        "lift_m": 0.1666,
+        "expected_lift_m": 0.1666,
+        "tilt_deg": 10.3923,
+        "expected_tilt_deg": 10.3923
+      },
+      {
+        "asset_id": "APL_DancingPumpkin_004",
+        "phase_deg": 180.0,
+        "lift_m": 0.08,
+        "expected_lift_m": 0.08,
+        "tilt_deg": 12.0,
+        "expected_tilt_deg": 12.0
+      },
+      {
+        "asset_id": "APL_DancingPumpkin_005",
+        "phase_deg": 240.0,
+        "lift_m": -0.0066,
+        "expected_lift_m": -0.0066,
+        "tilt_deg": 10.3923,
+        "expected_tilt_deg": 10.3923
+      },
+      {
+        "asset_id": "APL_DancingPumpkin_006",
+        "phase_deg": 300.0,
+        "lift_m": -0.0066,
+        "expected_lift_m": -0.0066,
+        "tilt_deg": 6.0,
+        "expected_tilt_deg": 6.0
+      }
+    ],
+    "problems": []
+  },
+  "G01_frozen_spread_0.0": {
+    "params": {
+      "G01Intensity": 1.0,
+      "G01Frequency": 0.0,
+      "G01PhaseSpread": 0.0
+    },
+    "pumpkins": [
+      {
+        "asset_id": "APL_DancingPumpkin_001",
+        "phase_deg": 0.0,
+        "lift_m": 0.08,
+        "expected_lift_m": 0.08,
+        "tilt_deg": 0.0,
+        "expected_tilt_deg": 0.0
+      },
+      {
+        "asset_id": "APL_DancingPumpkin_002",
+        "phase_deg": 60.0,
+        "lift_m": 0.08,
+        "expected_lift_m": 0.08,
+        "tilt_deg": 0.0,
+        "expected_tilt_deg": 0.0
+      },
+      {
+        "asset_id": "APL_DancingPumpkin_003",
+        "phase_deg": 120.0,
+        "lift_m": 0.08,
+        "expected_lift_m": 0.08,
+        "tilt_deg": 0.0,
+        "expected_tilt_deg": 0.0
+      },
+      {
+        "asset_id": "APL_DancingPumpkin_004",
+        "phase_deg": 180.0,
+        "lift_m": 0.08,
+        "expected_lift_m": 0.08,
+        "tilt_deg": 0.0,
+        "expected_tilt_deg": 0.0
+      },
+      {
+        "asset_id": "APL_DancingPumpkin_005",
+        "phase_deg": 240.0,
+        "lift_m": 0.08,
+        "expected_lift_m": 0.08,
+        "tilt_deg": 0.0,
+        "expected_tilt_deg": 0.0
+      },
+      {
+        "asset_id": "APL_DancingPumpkin_006",
+        "phase_deg": 300.0,
+        "lift_m": 0.08,
+        "expected_lift_m": 0.08,
+        "tilt_deg": 0.0,
+        "expected_tilt_deg": 0.0
+      }
+    ],
+    "problems": []
+  },
+  "G01Intensity_0.5": {
+    "lift_range_m": [
+      -0.01,
+      0.09
+    ],
+    "tilt_abs_max_deg": 5.997,
+    "problems": []
+  },
+  "G01Intensity_0.0": {
+    "lift_range_m": [
+      0.0,
+      0.0
+    ],
+    "tilt_abs_max_deg": 0.0,
+    "problems": []
+  },
+  "G01_restored": {
+    "G01Intensity": 1.0,
+    "G01Frequency": 0.8,
+    "G01PhaseSpread": 1.0
+  },
+  "G13_half_speed_deg_per_s": 8.986,
+  "G13_speed_restored": {
+    "x": 0,
+    "y": -18,
+    "z": 0
+  },
+  "G13_spinner_time_base": {
+    "paused_s": 8.0,
+    "angle_after_deg": 37.44,
+    "predicted_by_clock_deg": 35.83,
+    "error_deg": 1.61,
+    "lag_if_accumulating_deg": 143.6,
+    "follows_world_time": true
+  },
+  "G13_spinner_enabled_restored": true,
+  "ok": true
+}

@@ -1,0 +1,1445 @@
+{
+  "windows": [
+    {
+      "started_at": "2026-11-01T09:23:32Z",
+      "params": {
+        "G01Intensity": 1.0,
+        "G01Frequency": 0.8,
+        "G01PhaseSpread": 1.0
+      },
+      "spinner": {
+        "component": "p3_spinner_object_DAM_Carousel_001_TurnRoot_53401a13",
+        "speed": {
+          "x": 0,
+          "y": -18,
+          "z": 0
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "target_is_turn_root_rotation": true,
+        "enabled": true,
+        "expected_speed": [
+          0.0,
+          -18.0,
+          0.0
+        ]
+      },
+      "g13": {
+        "samples": [
+          {
+            "t": 1793525037.549,
+            "yaw_deg": 34.935,
+            "off_axis": 0.0
+          },
+          {
+            "t": 1793525039.67,
+            "yaw_deg": 69.43,
+            "off_axis": 0.0
+          },
+          {
+            "t": 1793525041.612,
+            "yaw_deg": 104.289,
+            "off_axis": 0.0
+          },
+          {
+            "t": 1793525043.599,
+            "yaw_deg": 140.91,
+            "off_axis": 0.0
+          },
+          {
+            "t": 1793525045.886,
+            "yaw_deg": -175.027,
+            "off_axis": 0.0
+          },
+          {
+            "t": 1793525048.649,
+            "yaw_deg": -120.417,
+            "off_axis": 0.0
+          },
+          {
+            "t": 1793525051.484,
+            "yaw_deg": -71.01,
+            "off_axis": 0.0
+          },
+          {
+            "t": 1793525054.182,
+            "yaw_deg": -22.947,
+            "off_axis": 0.0
+          },
+          {
+            "t": 1793525056.888,
+            "yaw_deg": 26.627,
+            "off_axis": 0.0
+          },
+          {
+            "t": 1793525059.336,
+            "yaw_deg": 65.291,
+            "off_axis": 0.0
+          },
+          {
+            "t": 1793525061.511,
+            "yaw_deg": 104.906,
+            "off_axis": 0.0
+          },
+          {
+            "t": 1793525063.907,
+            "yaw_deg": 151.374,
+            "off_axis": 0.0
+          },
+          {
+            "t": 1793525066.163,
+            "yaw_deg": -173.823,
+            "off_axis": 0.0
+          }
+        ],
+        "fitted_speed_deg_per_s": 18.053,
+        "expected_deg_per_s": 18.0,
+        "direction": "counterclockwise_from_above",
+        "max_off_axis": 0.0,
+        "max_sample_gap_s": 2.835
+      },
+      "g01": {
+        "samples": [
+          {
+            "pumpkins": [
+              {
+                "asset_id": "APL_DancingPumpkin_001",
+                "lift_m": 0.0622,
+                "tilt_deg": -10.938,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_002",
+                "lift_m": 0.0186,
+                "tilt_deg": 0.072,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_003",
+                "lift_m": 0.1797,
+                "tilt_deg": 10.545,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_004",
+                "lift_m": 0.0272,
+                "tilt_deg": 10.354,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_005",
+                "lift_m": 0.0292,
+                "tilt_deg": 0.151,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_006",
+                "lift_m": 0.1799,
+                "tilt_deg": -10.163,
+                "horizontal_m": 0.0
+              }
+            ],
+            "problems": [],
+            "t": 1793525068.498
+          },
+          {
+            "pumpkins": [
+              {
+                "asset_id": "APL_DancingPumpkin_001",
+                "lift_m": 0.0377,
+                "tilt_deg": 10.222,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_002",
+                "lift_m": 0.0406,
+                "tilt_deg": -1.089,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_003",
+                "lift_m": 0.1746,
+                "tilt_deg": -11.759,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_004",
+                "lift_m": -0.0199,
+                "tilt_deg": -4.809,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_005",
+                "lift_m": 0.1524,
+                "tilt_deg": 7.705,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_006",
+                "lift_m": 0.0913,
+                "tilt_deg": 11.663,
+                "horizontal_m": 0.0
+              }
+            ],
+            "problems": [],
+            "t": 1793525072.411
+          },
+          {
+            "pumpkins": [
+              {
+                "asset_id": "APL_DancingPumpkin_001",
+                "lift_m": -0.0056,
+                "tilt_deg": -2.121,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_002",
+                "lift_m": 0.1777,
+                "tilt_deg": 9.928,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_003",
+                "lift_m": 0.0373,
+                "tilt_deg": 10.338,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_004",
+                "lift_m": 0.0711,
+                "tilt_deg": -3.312,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_005",
+                "lift_m": 0.1676,
+                "tilt_deg": -11.526,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_006",
+                "lift_m": -0.0032,
+                "tilt_deg": -8.481,
+                "horizontal_m": 0.0
+              }
+            ],
+            "problems": [],
+            "t": 1793525076.429
+          },
+          {
+            "pumpkins": [
+              {
+                "asset_id": "APL_DancingPumpkin_001",
+                "lift_m": 0.0864,
+                "tilt_deg": -4.296,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_002",
+                "lift_m": 0.1502,
+                "tilt_deg": -11.89,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_003",
+                "lift_m": -0.0178,
+                "tilt_deg": -7.154,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_004",
+                "lift_m": 0.1073,
+                "tilt_deg": 4.519,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_005",
+                "lift_m": 0.1471,
+                "tilt_deg": 11.994,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_006",
+                "lift_m": -0.0197,
+                "tilt_deg": 5.947,
+                "horizontal_m": 0.0
+              }
+            ],
+            "problems": [],
+            "t": 1793525080.352
+          },
+          {
+            "pumpkins": [
+              {
+                "asset_id": "APL_DancingPumpkin_001",
+                "lift_m": 0.1743,
+                "tilt_deg": 11.53,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_002",
+                "lift_m": -0.0114,
+                "tilt_deg": 7.731,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_003",
+                "lift_m": 0.1032,
+                "tilt_deg": -4.781,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_004",
+                "lift_m": 0.1372,
+                "tilt_deg": -11.986,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_005",
+                "lift_m": -0.0192,
+                "tilt_deg": -6.749,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_006",
+                "lift_m": 0.1065,
+                "tilt_deg": 5.001,
+                "horizontal_m": 0.0
+              }
+            ],
+            "problems": [],
+            "t": 1793525084.342
+          },
+          {
+            "pumpkins": [
+              {
+                "asset_id": "APL_DancingPumpkin_001",
+                "lift_m": 0.1331,
+                "tilt_deg": -11.983,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_002",
+                "lift_m": -0.0186,
+                "tilt_deg": -4.753,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_003",
+                "lift_m": 0.1637,
+                "tilt_deg": 8.507,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_004",
+                "lift_m": 0.073,
+                "tilt_deg": 11.093,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_005",
+                "lift_m": 0.01,
+                "tilt_deg": 1.129,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_006",
+                "lift_m": 0.1793,
+                "tilt_deg": -10.2,
+                "horizontal_m": 0.0
+              }
+            ],
+            "problems": [],
+            "t": 1793525088.387
+          },
+          {
+            "pumpkins": [
+              {
+                "asset_id": "APL_DancingPumpkin_001",
+                "lift_m": 0.0372,
+                "tilt_deg": 10.194,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_002",
+                "lift_m": 0.0419,
+                "tilt_deg": -1.135,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_003",
+                "lift_m": 0.1786,
+                "tilt_deg": -10.845,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_004",
+                "lift_m": 0.0195,
+                "tilt_deg": -10.063,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_005",
+                "lift_m": 0.038,
+                "tilt_deg": 0.381,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_006",
+                "lift_m": 0.1799,
+                "tilt_deg": 10.46,
+                "horizontal_m": 0.0
+              }
+            ],
+            "problems": [],
+            "t": 1793525092.262
+          },
+          {
+            "pumpkins": [
+              {
+                "asset_id": "APL_DancingPumpkin_001",
+                "lift_m": 0.0098,
+                "tilt_deg": -8.993,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_002",
+                "lift_m": 0.0833,
+                "tilt_deg": 3.144,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_003",
+                "lift_m": 0.1673,
+                "tilt_deg": 11.527,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_004",
+                "lift_m": -0.0083,
+                "tilt_deg": 8.098,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_005",
+                "lift_m": 0.0952,
+                "tilt_deg": -3.895,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_006",
+                "lift_m": 0.1547,
+                "tilt_deg": -11.814,
+                "horizontal_m": 0.0
+              }
+            ],
+            "problems": [],
+            "t": 1793525096.088
+          }
+        ],
+        "summary": {
+          "APL_DancingPumpkin_001": {
+            "lift_min_m": -0.0056,
+            "lift_max_m": 0.1743,
+            "tilt_min_deg": -11.983,
+            "tilt_max_deg": 11.53
+          },
+          "APL_DancingPumpkin_002": {
+            "lift_min_m": -0.0186,
+            "lift_max_m": 0.1777,
+            "tilt_min_deg": -11.89,
+            "tilt_max_deg": 9.928
+          },
+          "APL_DancingPumpkin_003": {
+            "lift_min_m": -0.0178,
+            "lift_max_m": 0.1797,
+            "tilt_min_deg": -11.759,
+            "tilt_max_deg": 11.527
+          },
+          "APL_DancingPumpkin_004": {
+            "lift_min_m": -0.0199,
+            "lift_max_m": 0.1372,
+            "tilt_min_deg": -11.986,
+            "tilt_max_deg": 11.093
+          },
+          "APL_DancingPumpkin_005": {
+            "lift_min_m": -0.0192,
+            "lift_max_m": 0.1676,
+            "tilt_min_deg": -11.526,
+            "tilt_max_deg": 11.994
+          },
+          "APL_DancingPumpkin_006": {
+            "lift_min_m": -0.0197,
+            "lift_max_m": 0.1799,
+            "tilt_min_deg": -11.814,
+            "tilt_max_deg": 11.663
+          }
+        }
+      },
+      "problems": [],
+      "structure_start": {
+        "rows": [
+          {
+            "slot": "DAM_Carousel_001_TurnRoot",
+            "position_error_m": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_Att_M05_Canopy",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_Att_M05_CenterCasing",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_Floor",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_M05_Canopy",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_M05_CenterCasing",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_Poles",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_SeatRoot_001",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_SeatRoot_002",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_SeatRoot_003",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_SeatRoot_004",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_001/APL_DancingPumpkin_001_GlowAttach",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_001/APL_DancingPumpkin_001_Pedestal",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_002/APL_DancingPumpkin_002_GlowAttach",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_002/APL_DancingPumpkin_002_Pedestal",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_003/APL_DancingPumpkin_003_GlowAttach",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_003/APL_DancingPumpkin_003_Pedestal",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_004/APL_DancingPumpkin_004_GlowAttach",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_004/APL_DancingPumpkin_004_Pedestal",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_005/APL_DancingPumpkin_005_GlowAttach",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_005/APL_DancingPumpkin_005_Pedestal",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_006/APL_DancingPumpkin_006_GlowAttach",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_006/APL_DancingPumpkin_006_Pedestal",
+            "local_error": 0.0
+          }
+        ],
+        "problems": []
+      },
+      "relay_targets_ok": true,
+      "structure_end": {
+        "rows": [
+          {
+            "slot": "DAM_Carousel_001_TurnRoot",
+            "position_error_m": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_Att_M05_Canopy",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_Att_M05_CenterCasing",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_Floor",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_M05_Canopy",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_M05_CenterCasing",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_Poles",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_SeatRoot_001",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_SeatRoot_002",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_SeatRoot_003",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_SeatRoot_004",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_001/APL_DancingPumpkin_001_GlowAttach",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_001/APL_DancingPumpkin_001_Pedestal",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_002/APL_DancingPumpkin_002_GlowAttach",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_002/APL_DancingPumpkin_002_Pedestal",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_003/APL_DancingPumpkin_003_GlowAttach",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_003/APL_DancingPumpkin_003_Pedestal",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_004/APL_DancingPumpkin_004_GlowAttach",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_004/APL_DancingPumpkin_004_Pedestal",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_005/APL_DancingPumpkin_005_GlowAttach",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_005/APL_DancingPumpkin_005_Pedestal",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_006/APL_DancingPumpkin_006_GlowAttach",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_006/APL_DancingPumpkin_006_Pedestal",
+            "local_error": 0.0
+          }
+        ],
+        "problems": []
+      },
+      "ok": true
+    },
+    {
+      "started_at": "2026-11-01T09:30:05Z",
+      "params": {
+        "G01Intensity": 1.0,
+        "G01Frequency": 0.8,
+        "G01PhaseSpread": 1.0
+      },
+      "spinner": {
+        "component": "p3_spinner_object_DAM_Carousel_001_TurnRoot_53401a13",
+        "speed": {
+          "x": 0,
+          "y": -18,
+          "z": 0
+        },
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "target_is_turn_root_rotation": true,
+        "enabled": true,
+        "expected_speed": [
+          0.0,
+          -18.0,
+          0.0
+        ]
+      },
+      "g13": {
+        "samples": [
+          {
+            "t": 1793525423.532,
+            "yaw_deg": 138.552,
+            "off_axis": 0.0
+          },
+          {
+            "t": 1793525425.345,
+            "yaw_deg": 169.941,
+            "off_axis": 0.0
+          },
+          {
+            "t": 1793525427.134,
+            "yaw_deg": -157.047,
+            "off_axis": 0.0
+          },
+          {
+            "t": 1793525428.952,
+            "yaw_deg": -124.622,
+            "off_axis": 0.0
+          },
+          {
+            "t": 1793525430.813,
+            "yaw_deg": -90.435,
+            "off_axis": 0.0
+          },
+          {
+            "t": 1793525432.681,
+            "yaw_deg": -57.45,
+            "off_axis": 0.0
+          },
+          {
+            "t": 1793525434.494,
+            "yaw_deg": -25.305,
+            "off_axis": 0.0
+          },
+          {
+            "t": 1793525436.328,
+            "yaw_deg": 8.63,
+            "off_axis": 0.0
+          },
+          {
+            "t": 1793525438.202,
+            "yaw_deg": 42.733,
+            "off_axis": 0.0
+          },
+          {
+            "t": 1793525440.033,
+            "yaw_deg": 74.599,
+            "off_axis": 0.0
+          },
+          {
+            "t": 1793525441.818,
+            "yaw_deg": 106.967,
+            "off_axis": 0.0
+          },
+          {
+            "t": 1793525443.613,
+            "yaw_deg": 139.056,
+            "off_axis": 0.0
+          },
+          {
+            "t": 1793525445.377,
+            "yaw_deg": 170.558,
+            "off_axis": 0.0
+          },
+          {
+            "t": 1793525447.21,
+            "yaw_deg": -154.695,
+            "off_axis": 0.0
+          },
+          {
+            "t": 1793525449.088,
+            "yaw_deg": -121.935,
+            "off_axis": 0.0
+          },
+          {
+            "t": 1793525451.034,
+            "yaw_deg": -84.978,
+            "off_axis": 0.0
+          },
+          {
+            "t": 1793525453.073,
+            "yaw_deg": -48.693,
+            "off_axis": 0.0
+          }
+        ],
+        "fitted_speed_deg_per_s": 18.037,
+        "expected_deg_per_s": 18.0,
+        "direction": "counterclockwise_from_above",
+        "max_off_axis": 0.0,
+        "max_sample_gap_s": 2.039
+      },
+      "g01": {
+        "samples": [
+          {
+            "pumpkins": [
+              {
+                "asset_id": "APL_DancingPumpkin_001",
+                "lift_m": 0.1715,
+                "tilt_deg": -11.515,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_002",
+                "lift_m": -0.0112,
+                "tilt_deg": -8.125,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_003",
+                "lift_m": 0.0954,
+                "tilt_deg": 4.287,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_004",
+                "lift_m": 0.156,
+                "tilt_deg": 11.805,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_005",
+                "lift_m": -0.0156,
+                "tilt_deg": 7.174,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_006",
+                "lift_m": 0.1065,
+                "tilt_deg": -5.466,
+                "horizontal_m": 0.0
+              }
+            ],
+            "problems": [],
+            "t": 1793525455.628
+          },
+          {
+            "pumpkins": [
+              {
+                "asset_id": "APL_DancingPumpkin_001",
+                "lift_m": 0.0374,
+                "tilt_deg": 10.183,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_002",
+                "lift_m": 0.0485,
+                "tilt_deg": -1.669,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_003",
+                "lift_m": 0.1632,
+                "tilt_deg": -11.644,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_004",
+                "lift_m": -0.0112,
+                "tilt_deg": -6.452,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_005",
+                "lift_m": 0.1259,
+                "tilt_deg": 6.097,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_006",
+                "lift_m": 0.1376,
+                "tilt_deg": 11.999,
+                "horizontal_m": 0.0
+              }
+            ],
+            "problems": [],
+            "t": 1793525459.773
+          },
+          {
+            "pumpkins": [
+              {
+                "asset_id": "APL_DancingPumpkin_001",
+                "lift_m": 0.0298,
+                "tilt_deg": 0.848,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_002",
+                "lift_m": 0.1731,
+                "tilt_deg": 11.449,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_003",
+                "lift_m": -0.0093,
+                "tilt_deg": 7.928,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_004",
+                "lift_m": 0.0986,
+                "tilt_deg": -4.516,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_005",
+                "lift_m": 0.1407,
+                "tilt_deg": -11.966,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_006",
+                "lift_m": -0.02,
+                "tilt_deg": -5.69,
+                "horizontal_m": 0.0
+              }
+            ],
+            "problems": [],
+            "t": 1793525463.958
+          },
+          {
+            "pumpkins": [
+              {
+                "asset_id": "APL_DancingPumpkin_001",
+                "lift_m": -0.0192,
+                "tilt_deg": -4.531,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_002",
+                "lift_m": 0.1557,
+                "tilt_deg": 7.941,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_003",
+                "lift_m": 0.0692,
+                "tilt_deg": 11.446,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_004",
+                "lift_m": -0.0032,
+                "tilt_deg": 2.849,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_005",
+                "lift_m": 0.1676,
+                "tilt_deg": -8.507,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_006",
+                "lift_m": 0.0652,
+                "tilt_deg": -11.203,
+                "horizontal_m": 0.0
+              }
+            ],
+            "problems": [],
+            "t": 1793525468.393
+          },
+          {
+            "pumpkins": [
+              {
+                "asset_id": "APL_DancingPumpkin_001",
+                "lift_m": 0.1267,
+                "tilt_deg": -6.533,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_002",
+                "lift_m": 0.1069,
+                "tilt_deg": -11.849,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_003",
+                "lift_m": -0.0129,
+                "tilt_deg": -3.58,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_004",
+                "lift_m": 0.1696,
+                "tilt_deg": 9.074,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_005",
+                "lift_m": 0.0522,
+                "tilt_deg": 11.101,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_006",
+                "lift_m": 0.0073,
+                "tilt_deg": 1.316,
+                "horizontal_m": 0.0
+              }
+            ],
+            "problems": [],
+            "t": 1793525472.836
+          },
+          {
+            "pumpkins": [
+              {
+                "asset_id": "APL_DancingPumpkin_001",
+                "lift_m": 0.1527,
+                "tilt_deg": 11.974,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_002",
+                "lift_m": -0.0197,
+                "tilt_deg": 6.089,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_003",
+                "lift_m": 0.1407,
+                "tilt_deg": -6.965,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_004",
+                "lift_m": 0.1063,
+                "tilt_deg": -11.852,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_005",
+                "lift_m": -0.0129,
+                "tilt_deg": -3.575,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_006",
+                "lift_m": 0.166,
+                "tilt_deg": 8.664,
+                "horizontal_m": 0.0
+              }
+            ],
+            "problems": [],
+            "t": 1793525476.991
+          },
+          {
+            "pumpkins": [
+              {
+                "asset_id": "APL_DancingPumpkin_001",
+                "lift_m": -0.0183,
+                "tilt_deg": -5.845,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_002",
+                "lift_m": 0.1375,
+                "tilt_deg": 6.763,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_003",
+                "lift_m": 0.1099,
+                "tilt_deg": 11.886,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_004",
+                "lift_m": -0.0144,
+                "tilt_deg": 3.797,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_005",
+                "lift_m": 0.1747,
+                "tilt_deg": -9.218,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_006",
+                "lift_m": 0.065,
+                "tilt_deg": -11.187,
+                "horizontal_m": 0.0
+              }
+            ],
+            "problems": [],
+            "t": 1793525481.155
+          },
+          {
+            "pumpkins": [
+              {
+                "asset_id": "APL_DancingPumpkin_001",
+                "lift_m": 0.1269,
+                "tilt_deg": -6.573,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_002",
+                "lift_m": 0.1053,
+                "tilt_deg": -11.908,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_003",
+                "lift_m": -0.0174,
+                "tilt_deg": -4.456,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_004",
+                "lift_m": 0.1562,
+                "tilt_deg": 11.232,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_005",
+                "lift_m": 0.003,
+                "tilt_deg": 8.96,
+                "horizontal_m": 0.0
+              },
+              {
+                "asset_id": "APL_DancingPumpkin_006",
+                "lift_m": 0.0684,
+                "tilt_deg": -2.709,
+                "horizontal_m": 0.0
+              }
+            ],
+            "problems": [],
+            "t": 1793525485.42
+          }
+        ],
+        "summary": {
+          "APL_DancingPumpkin_001": {
+            "lift_min_m": -0.0192,
+            "lift_max_m": 0.1715,
+            "tilt_min_deg": -11.515,
+            "tilt_max_deg": 11.974
+          },
+          "APL_DancingPumpkin_002": {
+            "lift_min_m": -0.0197,
+            "lift_max_m": 0.1731,
+            "tilt_min_deg": -11.908,
+            "tilt_max_deg": 11.449
+          },
+          "APL_DancingPumpkin_003": {
+            "lift_min_m": -0.0174,
+            "lift_max_m": 0.1632,
+            "tilt_min_deg": -11.644,
+            "tilt_max_deg": 11.886
+          },
+          "APL_DancingPumpkin_004": {
+            "lift_min_m": -0.0144,
+            "lift_max_m": 0.1696,
+            "tilt_min_deg": -11.852,
+            "tilt_max_deg": 11.805
+          },
+          "APL_DancingPumpkin_005": {
+            "lift_min_m": -0.0156,
+            "lift_max_m": 0.1747,
+            "tilt_min_deg": -11.966,
+            "tilt_max_deg": 11.101
+          },
+          "APL_DancingPumpkin_006": {
+            "lift_min_m": -0.02,
+            "lift_max_m": 0.166,
+            "tilt_min_deg": -11.203,
+            "tilt_max_deg": 11.999
+          }
+        }
+      },
+      "problems": [],
+      "structure_start": {
+        "rows": [
+          {
+            "slot": "DAM_Carousel_001_TurnRoot",
+            "position_error_m": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_Att_M05_Canopy",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_Att_M05_CenterCasing",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_Floor",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_M05_Canopy",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_M05_CenterCasing",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_Poles",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_SeatRoot_001",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_SeatRoot_002",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_SeatRoot_003",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_SeatRoot_004",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_001/APL_DancingPumpkin_001_GlowAttach",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_001/APL_DancingPumpkin_001_Pedestal",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_002/APL_DancingPumpkin_002_GlowAttach",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_002/APL_DancingPumpkin_002_Pedestal",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_003/APL_DancingPumpkin_003_GlowAttach",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_003/APL_DancingPumpkin_003_Pedestal",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_004/APL_DancingPumpkin_004_GlowAttach",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_004/APL_DancingPumpkin_004_Pedestal",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_005/APL_DancingPumpkin_005_GlowAttach",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_005/APL_DancingPumpkin_005_Pedestal",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_006/APL_DancingPumpkin_006_GlowAttach",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_006/APL_DancingPumpkin_006_Pedestal",
+            "local_error": 0.0
+          }
+        ],
+        "problems": []
+      },
+      "relay_targets_ok": true,
+      "structure_end": {
+        "rows": [
+          {
+            "slot": "DAM_Carousel_001_TurnRoot",
+            "position_error_m": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_Att_M05_Canopy",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_Att_M05_CenterCasing",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_Floor",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_M05_Canopy",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_M05_CenterCasing",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_Poles",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_SeatRoot_001",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_SeatRoot_002",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_SeatRoot_003",
+            "local_error": 0.0
+          },
+          {
+            "slot": "DAM_Carousel_001_TurnRoot/DAM_Carousel_001_SeatRoot_004",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_001/APL_DancingPumpkin_001_GlowAttach",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_001/APL_DancingPumpkin_001_Pedestal",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_002/APL_DancingPumpkin_002_GlowAttach",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_002/APL_DancingPumpkin_002_Pedestal",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_003/APL_DancingPumpkin_003_GlowAttach",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_003/APL_DancingPumpkin_003_Pedestal",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_004/APL_DancingPumpkin_004_GlowAttach",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_004/APL_DancingPumpkin_004_Pedestal",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_005/APL_DancingPumpkin_005_GlowAttach",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_005/APL_DancingPumpkin_005_Pedestal",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_006/APL_DancingPumpkin_006_GlowAttach",
+            "local_error": 0.0
+          },
+          {
+            "slot": "APL_DancingPumpkin_006/APL_DancingPumpkin_006_Pedestal",
+            "local_error": 0.0
+          }
+        ],
+        "problems": []
+      },
+      "ok": true
+    }
+  ],
+  "gap_s": 300.0,
+  "envelopes": {
+    "G01": [
+      {
+        "asset_id": "APL_DancingPumpkin_001",
+        "moving_radius_m": 0.4276,
+        "pedestal_radius_m": 0.38,
+        "w02_envelope_radius_m": 0.55,
+        "within_w02_envelope": true
+      },
+      {
+        "asset_id": "APL_DancingPumpkin_002",
+        "moving_radius_m": 0.4276,
+        "pedestal_radius_m": 0.38,
+        "w02_envelope_radius_m": 0.55,
+        "within_w02_envelope": true
+      },
+      {
+        "asset_id": "APL_DancingPumpkin_003",
+        "moving_radius_m": 0.4276,
+        "pedestal_radius_m": 0.38,
+        "w02_envelope_radius_m": 0.55,
+        "within_w02_envelope": true
+      },
+      {
+        "asset_id": "APL_DancingPumpkin_004",
+        "moving_radius_m": 0.4276,
+        "pedestal_radius_m": 0.38,
+        "w02_envelope_radius_m": 0.55,
+        "within_w02_envelope": true
+      },
+      {
+        "asset_id": "APL_DancingPumpkin_005",
+        "moving_radius_m": 0.4276,
+        "pedestal_radius_m": 0.38,
+        "w02_envelope_radius_m": 0.55,
+        "within_w02_envelope": true
+      },
+      {
+        "asset_id": "APL_DancingPumpkin_006",
+        "moving_radius_m": 0.4276,
+        "pedestal_radius_m": 0.38,
+        "w02_envelope_radius_m": 0.55,
+        "within_w02_envelope": true
+      }
+    ],
+    "G13": {
+      "swept_radius_all_m": 4.8598,
+      "swept_radius_below_head_m": 4.68,
+      "head_height_above_turn_root_m": 2.2,
+      "base_radius_m": 5.689,
+      "base_offset_from_axis_m": 0.0,
+      "low_parts_within_base": true
+    }
+  },
+  "tolerances": {
+    "speed": 0.05,
+    "lift_m": 0.002,
+    "tilt_deg": 0.2,
+    "horizontal_m": 0.001,
+    "frozen_lift_m": 0.0005,
+    "frozen_tilt_deg": 0.05,
+    "local": 0.0001
+  },
+  "ok": true
+}

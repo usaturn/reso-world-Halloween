@@ -1,0 +1,116 @@
+[
+  {
+    "slot": "A_plaza/APL_DancingPumpkin_001/APL_DancingPumpkin_001_Body",
+    "managedFields": [
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        -2.384185791015625e-07,
+        0.23999999463558197,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    }
+  },
+  {
+    "slot": "A_plaza/APL_DancingPumpkin_002/APL_DancingPumpkin_002_Body",
+    "managedFields": [
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        2.384185791015625e-07,
+        0.23999999463558197,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    }
+  },
+  {
+    "slot": "A_plaza/APL_DancingPumpkin_003/APL_DancingPumpkin_003_Body",
+    "managedFields": [
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        0.0,
+        0.23999999463558197,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    }
+  },
+  {
+    "slot": "A_plaza/APL_DancingPumpkin_004/APL_DancingPumpkin_004_Body",
+    "managedFields": [
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        0.0,
+        0.23999999463558197,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    }
+  },
+  {
+    "slot": "A_plaza/APL_DancingPumpkin_005/APL_DancingPumpkin_005_Body",
+    "managedFields": [
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        0.0,
+        0.23999999463558197,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    }
+  },
+  {
+    "slot": "A_plaza/APL_DancingPumpkin_006/APL_DancingPumpkin_006_Body",
+    "managedFields": [
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        0.0,
+        0.23999999463558197,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    }
+  }
+]

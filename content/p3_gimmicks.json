@@ -1,0 +1,163 @@
+{
+  "schemaVersion": "1",
+  "ownership": {
+    "key": "hmc_p3"
+  },
+  "slot": {
+    "key": "p3_root",
+    "name": "P3_Gimmicks",
+    "parent": "Root/HalloweenMagicalCarnival",
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ]
+  },
+  "components": [
+    {
+      "key": "p3_space",
+      "type": "FrooxEngine.DynamicVariableSpace",
+      "fields": {
+        "SpaceName": "HMC_P3",
+        "OnlyDirectBinding": false
+      }
+    },
+    {
+      "key": "g01_amp",
+      "type": "[FrooxEngine]FrooxEngine.DynamicValueVariable<float>",
+      "fields": {
+        "VariableName": "HMC_P3/G01Intensity"
+      },
+      "identityFields": [
+        "VariableName"
+      ],
+      "initialFields": {
+        "Value": 1.0
+      }
+    },
+    {
+      "key": "g01_freq",
+      "type": "[FrooxEngine]FrooxEngine.DynamicValueVariable<float>",
+      "fields": {
+        "VariableName": "HMC_P3/G01Frequency"
+      },
+      "identityFields": [
+        "VariableName"
+      ],
+      "initialFields": {
+        "Value": 0.8
+      }
+    },
+    {
+      "key": "g01_phase",
+      "type": "[FrooxEngine]FrooxEngine.DynamicValueVariable<float>",
+      "fields": {
+        "VariableName": "HMC_P3/G01PhaseSpread"
+      },
+      "identityFields": [
+        "VariableName"
+      ],
+      "initialFields": {
+        "Value": 1.0
+      }
+    }
+  ],
+  "children": [
+    {
+      "slot": {
+        "key": "p3_g01_dance",
+        "name": "G01_Dance",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    }
+  ],
+  "cameras": {
+    "g13_carousel": {
+      "position": [
+        4.0,
+        6.0,
+        -32.0
+      ],
+      "target": [
+        -10.5,
+        2.5,
+        -32.0
+      ],
+      "fieldOfView": 50,
+      "width": 1600,
+      "height": 900,
+      "representative": true
+    },
+    "g13_carousel_top": {
+      "position": [
+        2.0,
+        17.0,
+        -42.0
+      ],
+      "target": [
+        -10.5,
+        2.0,
+        -32.0
+      ],
+      "fieldOfView": 50,
+      "width": 1600,
+      "height": 900
+    },
+    "g01_ring": {
+      "position": [
+        0.0,
+        2.6,
+        -12.0
+      ],
+      "target": [
+        0.0,
+        0.6,
+        -1.0
+      ],
+      "fieldOfView": 32,
+      "width": 1600,
+      "height": 900
+    },
+    "g01_close": {
+      "position": [
+        0.0,
+        1.3,
+        -8.0
+      ],
+      "target": [
+        0.0,
+        0.75,
+        -3.89
+      ],
+      "fieldOfView": 50,
+      "width": 1600,
+      "height": 900
+    }
+  }
+}

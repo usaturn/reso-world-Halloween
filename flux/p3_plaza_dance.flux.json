@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "1",
+  "projectDirectory": ".",
+  "parent": "Root/HalloweenMagicalCarnival/P3_Gimmicks/G01_Dance",
+  "worldState": "../.resoloop/state/p2_A_plaza.json",
+  "deployState": "../.resoloop/flux-state/p3_plaza_dance.json",
+  "modules": [
+    {
+      "name": "p3-plaza-dance",
+      "source": "P3PlazaDance.pg",
+      "module": "P3PlazaDance",
+      "bindings": {
+        "B1Position": {
+          "target": "$member:p3_g01_position_object_APL_DancingPumpkin_001_Body_03e2e07e.Value",
+          "mode": "drive"
+        },
+        "B1Rotation": {
+          "target": "$member:p3_g01_rotation_object_APL_DancingPumpkin_001_Body_03e2e07e.Value",
+          "mode": "drive"
+        },
+        "B2Position": {
+          "target": "$member:p3_g01_position_object_APL_DancingPumpkin_002_Body_5d184b43.Value",
+          "mode": "drive"
+        },
+        "B2Rotation": {
+          "target": "$member:p3_g01_rotation_object_APL_DancingPumpkin_002_Body_5d184b43.Value",
+          "mode": "drive"
+        },
+        "B3Position": {
+          "target": "$member:p3_g01_position_object_APL_DancingPumpkin_003_Body_7861c989.Value",
+          "mode": "drive"
+        },
+        "B3Rotation": {
+          "target": "$member:p3_g01_rotation_object_APL_DancingPumpkin_003_Body_7861c989.Value",
+          "mode": "drive"
+        },
+        "B4Position": {
+          "target": "$member:p3_g01_position_object_APL_DancingPumpkin_004_Body_4c9fcd98.Value",
+          "mode": "drive"
+        },
+        "B4Rotation": {
+          "target": "$member:p3_g01_rotation_object_APL_DancingPumpkin_004_Body_4c9fcd98.Value",
+          "mode": "drive"
+        },
+        "B5Position": {
+          "target": "$member:p3_g01_position_object_APL_DancingPumpkin_005_Body_355eedbb.Value",
+          "mode": "drive"
+        },
+        "B5Rotation": {
+          "target": "$member:p3_g01_rotation_object_APL_DancingPumpkin_005_Body_355eedbb.Value",
+          "mode": "drive"
+        },
+        "B6Position": {
+          "target": "$member:p3_g01_position_object_APL_DancingPumpkin_006_Body_f7ad3fc6.Value",
+          "mode": "drive"
+        },
+        "B6Rotation": {
+          "target": "$member:p3_g01_rotation_object_APL_DancingPumpkin_006_Body_f7ad3fc6.Value",
+          "mode": "drive"
+        }
+      }
+    }
+  ]
+}
