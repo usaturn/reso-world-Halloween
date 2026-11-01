@@ -1,0 +1,47 @@
+{
+  "root_slot": {
+    "name": "M03",
+    "key": "root",
+    "parent": "Root/HalloweenMagicalCarnival/B_mansion/BMN_MansionPlaceholder_001",
+    "position": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "rotation": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "scale": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "children": [
+    "M03_HauntedMansion_001",
+    "Blender_Providers"
+  ],
+  "assets": [
+    "mesh_M03_HauntedMansion_001_569cf747",
+    "pbr_mat_material_MAT_M03_HauntedMansion_945a_c0afcbea",
+    "tex_M03_HauntedMansion_001_color_color_5b281576"
+  ],
+  "moving_parts": [],
+  "colliders": [
+    "M03_HauntedMansion_001"
+  ],
+  "district": "B_mansion",
+  "placeholder": "BMN_MansionPlaceholder_001",
+  "visual_root": "BMN_MansionPlaceholder_001",
+  "visual_root_path": "Root/HalloweenMagicalCarnival/B_mansion/BMN_MansionPlaceholder_001",
+  "asset_id": "M03_HauntedMansion_001",
+  "rotation_z_deg": 0.0,
+  "position_local": [
+    0.0,
+    0.0,
+    0.0
+  ]
+}

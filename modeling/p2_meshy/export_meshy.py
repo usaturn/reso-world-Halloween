@@ -8,6 +8,8 @@
     バンドルの root Slot に、visual_root のローカルでの置き方（replacements.py の rotation_z_deg・position_local を
     Resonite の軸に直した値）を書いた p2m.apply.json を作る（model.apply.json は変えない）
     resoloop validate p2m.apply.json --json と --strict --url <URL> --json
+REPLACEMENTS の collision が "finished" の素材（M03）は、素材のメッシュの Slot に MeshCollider（W08 と同じ Static・
+CharacterCollider・DualSided）を付ける（地区の宣言で仮モデルの FixedCollision を止めるのは replacements.py）。
 結果は <出力先>/validate.json と <出力先>/placement.json に書く（どちらもコミットする。バンドル本体と画像はコミットしない）。
 apply は行わない（docs/p2-meshy-replacement.md の手順で、diff を確かめてから --texture-transfer data で行う）。
 """
@@ -26,6 +28,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from modeling.p2_meshy.replacements import REPLACEMENTS, moving_part_poses, resonite_quat_from_blender_z  # noqa: E402
+from modeling.p2_static.colliders import COLLIDER_FIELDS  # noqa: E402
 from modeling.p2_static.export_p2 import run, validate_both  # noqa: E402
 
 
@@ -127,6 +130,24 @@ def _is_identity_slot(slot: dict) -> bool:
     return all(abs(a - b) < 1e-6 for a, b in zip([*pos, *rot, *scl], [0, 0, 0, 0, 0, 0, 1, 1, 1, 1]))
 
 
+def add_mesh_colliders(node: dict, chain: tuple[str, ...] = ()) -> list[str]:
+    """node とその子孫のうち StaticMesh を持つ Slot に、そのメッシュを参照する MeshCollider を足す（node をその場で変える）。
+    足した Slot の名前のパスを返す。"""
+    here = chain + (node["slot"]["name"],)
+    added = []
+    mesh = next((c for c in node.get("components", []) if c.get("type") == "FrooxEngine.StaticMesh"), None)
+    if mesh is not None:
+        node.setdefault("components", []).append({
+            "key": f"collider_{mesh['key'].removeprefix('mesh_')}",
+            "type": "FrooxEngine.MeshCollider",
+            "fields": {"Mesh": f"$component:{mesh['key']}", **COLLIDER_FIELDS},
+        })
+        added.append("/".join(here))
+    for child in node.get("children", []):
+        added.extend(add_mesh_colliders(child, here))
+    return added
+
+
 def compose(model_path: Path, out_path: Path, rep: dict, meshy_id: str | None = None) -> dict:
     doc = json.loads(model_path.read_text(encoding="utf-8"))
     out = copy.deepcopy(doc)
@@ -157,6 +178,13 @@ def compose(model_path: Path, out_path: Path, rep: dict, meshy_id: str | None = 
                               "motion_root_repose": {k: pose[k] for k in ("motion_root", "hinge_blender", "motion_root_position", "motion_root_rotation", "motion_root_rotation_z_deg", "closed_rotation_z_deg")}})
         used = _asset_refs([c.get("fields", {}) for c in _all_components({"components": out.get("components", []), "children": out["children"]})])
         out["assets"] = {k: v for k, v in out["assets"].items() if k in used}
+    colliders: list[str] = []
+    if rep.get("collision") == "finished":
+        # 当たり判定は素材のメッシュ（W09R-B の M03。docs/p2-meshy-replacement.md 14 章）
+        asset = next(c for c in out["children"] if c["slot"]["name"] == rep["asset_id"])
+        colliders = add_mesh_colliders(asset)
+        if not colliders:
+            raise ValueError(f"{rep['asset_id']}: no StaticMesh to collide with")
     for light in rep.get("lights", []):
         key = slot_key(light["name"])
         out.setdefault("children", []).append({
@@ -182,6 +210,7 @@ def compose(model_path: Path, out_path: Path, rep: dict, meshy_id: str | None = 
         "children": names,
         "assets": sorted(out.get("assets", {})),
         "moving_parts": parts_out,
+        "colliders": colliders,
     }
 
 

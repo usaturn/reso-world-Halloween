@@ -1,6 +1,6 @@
 # P2 Meshy 素材の差し替え（W09R、Issue #44）
 
-仮モデルを Meshy の仕上げた素材に差し替える方式と、最初の素材 M02 巨大ジャック・オー・ランタンの差し替えの記録。残りの 7 素材の子は、この文書の 2・4 章の手順と `handoff/W09R.md` を使う。後続の子の記録は 12 章から（W09R-C #46 の M04・M08 は 12 章、W09R-A #47 の M01 は 13 章）。
+仮モデルを Meshy の仕上げた素材に差し替える方式と、最初の素材 M02 巨大ジャック・オー・ランタンの差し替えの記録。残りの 7 素材の子は、この文書の 2・4 章の手順と `handoff/W09R.md` を使う。後続の子の記録は 12 章から（W09R-C #46 の M04・M08 は 12 章、W09R-A #47 の M01 は 13 章、W09R-B #48 の M03 は 14 章）。
 
 - 担当: Claude Code（Opus 5.5）、2026-10-31（UTC）。apply したのはこのセッションだけ
 - 着手前の確認事項: W08 #41 の回答（issuecomment-6545243021）をそのまま使う（2026-10-31 の利用者の決定）
@@ -68,6 +68,7 @@ resoloop capture <p2m.apply.json> --camera <名前> --output review/p2_meshy/<�
 - `resoloop capture` は `<名前>.scene.json` も書く。作業ツリーの絶対パスを含むのでコミットしない
 - `verify_live.py` は `REPLACEMENTS` のすべての素材のバンドル（`exports/p2_meshy/<M>-*/p2m.apply.json` とメッシュ）を読む。バンドルはコミットしないので、新しい worktree では、前の子が Git の外の `/workspaces/reso-world/worlds/reso-world-Halloween-meshy/p2_bundles/<M>-<UTC>/` に控えた物（`SHA256SUMS` で確かめる）を、同じ名前の出力先へ写してから実行する（W09R-C で追加。12.4）
 - 可動部品を持つ素材（M01 の門扉。W09R-A で追加、13.2）は、1 素材で宣言が複数になる。素材の宣言 `p2m.apply.json`（state `p2m_<M>.json`）と、部品ごとの `p2m_<部品>.apply.json`（state `p2m_<M>_<部品>.json`。M01 は `DoorLeft`・`DoorRight`）を、上と同じ形で diff・apply する（素材の宣言を先に。資産は `--texture-transfer data`）
+- 当たり判定を素材のメッシュで作る素材（M03。W09R-B で追加、14.2）は、`REPLACEMENTS` の `collision: "finished"`。`export_meshy.py` が素材のメッシュに `MeshCollider` を付け、`export_p2.py` で地区を export し直すと、仮モデルの `<visual_root>_FixedCollision` の `MeshCollider` が `Enabled = false` になる（Slot は残す）。手順は上と同じ
 - コミットするのは `exports/p2_meshy/<M>-<UTC>/` の `report.json`・`validate.json`・`placement.json`（`exports/p2_meshy/.gitignore`）、地区の出力先の `report.json`・`validate.json`・`colliders.json`・`replacements.json`、`review/p2_meshy/` の撮影と `live_checks.json`
 
 ## 5. M02 の差し替えの結果
@@ -148,7 +149,7 @@ ID・部品名・可動部品は変えていない。`APL_GiantJackProxy_001` �
 - 差し替えで増えた物: 三角形 30,792（仮モデル 932 は描画を止めた）、画像 2（約 28 MB の見積もり）、点光源 1（影なし）
 - 低下の原因（素材・画像・光源のどれか、測定の揺れか）は切り分けていない（未確認。P4 で通常時・ショー時と比べる）
 
-## 8. 全素材の状態（Spec §12「P2」の 3 つ目、2026-10-31。M04・M08 の行は 2026-11-01 に W09R-C が、M01 の行は同日に W09R-A が更新）
+## 8. 全素材の状態（Spec §12「P2」の 3 つ目、2026-10-31。M04・M08 の行は 2026-11-01 に W09R-C が、M01 の行は同日に W09R-A が、M03 の行は同日に W09R-B が更新）
 
 受領は W09 #13（`assets/meshy/received.json`、PR #26）。どの素材も未着ではない。採用しない物は、利用者が作り直す前の版（各ディレクトリの `size_over/`）と、M07 の `NG/`（針が塔に溶接されていた）だけで、確定版で置き換えた。
 
@@ -156,7 +157,7 @@ ID・部品名・可動部品は変えていない。`APL_GiantJackProxy_001` �
 |---|---|---|---|---|---|
 | M01 入場ゲート | 済（約 3.0 万三角形） | 済（W09-M01 #14・PR #29。門扉を切り離し両面化） | **済（W09R-A #47。門扉は仮モデルの門扉の Slot の下に別の宣言）** | **Resonite で実測・撮影・利用者の実機**（13 章） | 採用 |
 | M02 巨大ジャック・オー・ランタン | 済（約 3.1 万） | 済（W09-M02 #15・PR #27） | **済（この子）** | **Resonite で実測・撮影・利用者の実機**（5 章） | 採用 |
-| M03 幽霊屋敷の外観 | 済（約 3.0 万） | 済（W09-M03 #16・PR #35。入口の開口） | 未（`BMN_MansionPlaceholder_001`） | Blender・export・validate まで | 採用 |
+| M03 幽霊屋敷の外観 | 済（約 3.0 万） | 済（W09-M03 #16・PR #35。入口の開口） | **済（W09R-B #48。当たり判定は M03 のメッシュ。W03 の扉・ホールを開口へ動かし、階段を外した）** | **Resonite で実測・撮影・利用者の実機**（14 章） | 採用 |
 | M04 魔女のお菓子工房の外観 | 済（約 3.1 万） | 済（W09-M04 #17・PR #39。窓の発光） | **済（W09R-C #46）** | **Resonite で実測・撮影・利用者の実機**（12 章） | 採用 |
 | M05 メリーゴーラウンドの屋根 | 済（約 4.2 万） | 済（W09-M05 #18・PR #34） | 未（`DAM_Carousel_001_M05_Canopy`） | Blender・export・validate まで | 採用 |
 | M05 メリーゴーラウンドの中央の柱 | 済（約 3.2 万） | 済（同上） | 未（`DAM_Carousel_001_M05_CenterCasing`） | Blender・export・validate まで | 採用 |
@@ -197,7 +198,7 @@ ID・部品名・可動部品は変えていない。`APL_GiantJackProxy_001` �
 - VR での見え方、二人以上
 - 負荷の低下（60 → ときどき 54 fps）の原因（7 章）
 - 帽子の色の照明による変化の調整（5.4。後続）
-- `docs/p1-handoff.md` 8 章の 1〜3・6〜8（残りの素材の子）。4（入口の門扉の可動範囲）は W09R-A が門扉の Slot の基準姿勢を決めた（13.2）
+- `docs/p1-handoff.md` 8 章の 2・3・6〜8（残りの素材の子）。4（入口の門扉の可動範囲）は W09R-A が門扉の Slot の基準姿勢を決めた（13.2）。1（M03 の扉・玄関ホール）は W09R-B が対応した（14.2。階段は外した）
 
 ## 12. W09R-C（#46）: C 東の M04 お菓子工房・M08 ほうきに乗った魔女
 
@@ -421,3 +422,138 @@ ID・部品名・可動部品は変えていない。`APL_GiantJackProxy_001` �
 
 - GPT のレビューへの対応の後に、エージェントの依頼で利用者が Resonite で 1 回保存した（2026-11-01、04:52Z より前）。保存の後は apply していない
 - 保存の後に読み取りだけで確かめた（04:52:25Z〜）: 全 13 宣言（`content/main.json`・6 キー・M02・M04・M08・M01 の 3 つ）の diff が変更 0。M01 の 3 つの宣言の資産は「source hash and imported URL match state」で、URL はまだ `local://`（ワールドを開き直していない。W09R-C と同じく、開き直すと `resdb:///` に移り、次の diff は no-op と判定する。12.1）
+
+## 14. W09R-B（#48）: B 北の M03 幽霊屋敷の外観
+
+- 担当: Claude Code（Opus 5.5）、2026-11-01（UTC）。apply したのはこのセッションだけ。着手前の確認事項は W08 #41 の回答（#48 の本文）
+- 版: Resonite 2026.10.29.1239、ResoniteLink 0.13.1.0、resoloop 0.2.0、Blender 5.0.1（W09R〜W09R-A と同じ）
+- スナップショットと diff・apply の報告は親の checkout の `tmp/w09r-b/`（Git の対象外）
+- 閉じた子の所有ファイルのうち、W03 の `B_mansion`（扉・玄関ホール・中庭の地面）を最小限だけ直した（14.3）。W09-M03 の `M03`、W08 の `modeling/p2_static/` は変えていない
+
+### 14.1 保存の後の最初の diff
+
+- 着手時のスナップショット（`tmp/w09r-b/01_snapshot_before_20261101T051038Z`）は W08 の root の下が Slot 715・Component 1,652 で、W09R-A の完了時と同じ（利用者が手で変えた所は無い）
+- 最初の diff（05:15:17〜05:15:45Z、何も変える前。M03 の行を足す前の `REPLACEMENTS` で 6 キーを export した宣言 `exports/p2_static/<key>-20261101T051336Z`）: 全 13 宣言（`content/main.json`・6 キー・M02・M04・M08・M01 の 3 つ）が変更 0（no-op 29・184・655・333・318・378・780・17・18・19・16・15・15）。資産の作り直し・重複は無い
+- 資産の判定: world・B・D・E・M02 は「asset URL was migrated to resdb by a world save」（開き直しの後の保存で `resdb:///` に移っていた）。A・C・M01・M04・M08 は「source hash and imported URL match state」（W09R-A の保存の後、開き直していないので `local://` のまま）
+
+### 14.2 決めたこと
+
+M03 の仕上げた形を Blender で測り直し（ポーチの床の高さ、断面、正面の端。`modeling/M03/build.py` が作る `.blend` に対するレイと断面）、本文（と `docs/p1-handoff.md` 8 章の 1）の前提と違う 2 点を利用者に確かめた（#48 のコメント）。
+
+| 項目 | 決めたこと | 理由 |
+|---|---|---|
+| ポーチへの上がり方（**利用者の決定**、2026-11-01） | W03 の 3 段の階段（上端 z 1.779、y 34.8〜36.39）と両脇の石を外し、中庭の石畳（上面 z 1.565）を M03 の段の前まで（x -1.1〜2.5、y 36.4〜37.12）延ばす。石畳から M03 自身の段（上面 z 1.68、+0.115 m）とポーチの床（z 1.870、+0.19 m）で上がる | M03 のポーチの床は奥の壁（y 39.95）から y 37.30 までで、その前に M03 自身の段が 1 つ（前端 y 37.03〜37.06、x -1.0〜2.4）ある。仮モデルの前端（y 36.39）とは 0.67 m 離れていて、間は W01 の台地（z 1.5）。本文の「階段の上端を z 1.870 にする」は M03 の床が仮モデルの前端まで来ている前提の値で、そのとおりにすると階段を 1.870 まで上がってから 0.37 m 下の台地に降りる |
+| 当たり判定（**利用者の決定**、2026-11-01） | M03 のメッシュ（29,801 三角形）に `MeshCollider`（W08 と同じ `Static`・`CharacterCollider`・`DualSided`）を付ける。仮モデルの `BMN_MansionPlaceholder_001_FixedCollision` は Slot と `StaticMesh` を残し、`MeshCollider` を `Enabled = false` にする（`REPLACEMENTS` の `collision: "finished"`） | 仮モデル（314 三角形）は M03 と形が大きく違う: 中央のアーチの通路（M03 の柱の間 x 0.025〜1.39）に見えない柱（x 1.06〜1.54）が 0.33 m はみ出し、左のアーチもふさぐ。ポーチの床は 9.1 cm 低い。正面の張り出しの前に、高さ 0.28 m の見えない台座が 0.35〜2.5 m はみ出す（左の張り出しと玄関の間の奥まった所では 2.5 m）。M02・M04・M01 と違い、近くを歩いて触れる建物なので、形の一致を優先した。仮モデルの形を箱で M03 に合わせる案は、張り出しの斜めの面などを近似しきれない |
+| 扉・玄関ホール | 本文どおり、W03 の `BMN_MansionDoubleDoor_001`・`BMN_EntranceHall_001` を x +0.3725 m・z +0.091 m 動かし、扉の高さを 2.683 → 2.592 m にする（枠のまぐさの下端 = 開口の上端 z 4.462）。幅・y・ID・部品名・階層・可動範囲は変えない | 開口は W09-M03 が中央のアーチに合わせて切った（`review/M03/checks.json` の `door_opening`）。枠の縦材（x ±0.809〜±0.94、y ±0.14）とまぐさが M03 の片面の壁（y 39.952）をまたいで切り口を覆い、ホール（奥行き 3.7 m、幅 3.3 m、天井 z 5.69）が開口の奥を塞ぐ。新しいホールの箱の中に M03 の頂点は無い（M03 の外へ突き出さない） |
+| 仮モデルの形 | 変えない（P1 の開口・台座・柱のまま）。Resonite では描画も当たり判定も止めている | 差し替えの後は Slot と ID を残すだけの物。B の Blender の画像（`review/B_mansion/02_mansion_facade_and_doors.png`）では、動かした扉に仮モデルの壁と柱が重なって見える（アセット一覧の notes に書いた）。仮モデルに戻すときは、B の扉・ホール・中庭の地面もこの子の前に戻す |
+| 墓地の縁石（利用者の歩行の報告の後、利用者の指示「推奨の判断で進めて」） | W03 の墓地の土の区画（x ±5.4〜±14、y 24.5〜35.8、高さ 0.08 m）の手前と奥の縁石 4 本（長さ 8.6 m、幅 0.25 m、高さ 0.2 m）を外す | 利用者の歩行（14.8）で「屋敷の周りの庭に謎の四角い棒が四本横たわっていて段差がある」。区画の 2 辺だけにある縁石で、北東・北西の橋から中庭へ歩くと手前の縁石（y 24.5）をまたぐ。中庭の地面のメッシュ（この子で既に変えている Component）の中の変更なので、diff の対象は増えない |
+| 中庭の石畳の南端（同） | 石畳の始まりを y 20.2 → 20.25 にする（北の橋の床が平らに終わる所） | 石畳が橋の斜めの床（上面 z 約 1.52）の上から始まり、4 cm の段になっていた。20.25 からは W01 の道（z 1.56）の上なので 0.5 cm |
+| 北の橋の支え（同） | 直さない（W01 の所有。要望として記録） | 利用者の「橋に謎の段」の主な原因は、W01 の `WLD_NorthBridge_001` の橋の下の支えの箱（ローカル y 1.6〜2.8・上端 z 1.3、世界 y 18.85〜20.05）が、斜めの床を y 18.85〜19.2 で最大 10 cm 突き抜けていること（`b_north_bridge_end`）。本文は B 以外の地区の宣言の diff を 0 にすると決めているので、この子では直さない（`handoff/W09R-B.md` 6.2） |
+
+可動部品（Spec §6.1）の旧 → 新（`layout/areas/B_mansion.json` の `G06`。Blender の世界の座標）:
+
+| 部品 | 旧（P1） | 新 | 変えない物 |
+|---|---|---|---|
+| `BMN_MansionDoubleDoor_001`（アセットの root） | (0.335, 39.95, 1.779) | (0.7075, 39.95, 1.870) | 回転 0、ID・階層 |
+| `BMN_MansionDoubleDoor_001_HingeLeft`（`motion_root`） | (-0.474, 39.95, 1.779) | (-0.1015, 39.95, 1.870)（M03 の蝶番の線、正面から見て左） | `pivot_local` (-0.809, 0, 0)、Z 軸 0〜+85°（内開き）、基準姿勢 0（閉） |
+| `BMN_MansionDoubleDoor_001_HingeRight`（`motion_root`） | (1.144, 39.95, 1.779) | (1.5165, 39.95, 1.870) | `pivot_local` (0.809, 0, 0)、Z 軸 -85〜0°、基準姿勢 0（閉） |
+| `BMN_EntranceHall_001`（アセットの root） | (0.335, 41.80, 1.779) | (0.7075, 41.80, 1.870) | 取付位置 `_ChandelierHook` は root のローカル (0, 0, 3.45) のまま（世界では x +0.3725・z +0.091） |
+| 扉の葉の高さ・枠 | 葉 2.66 m、縦材 2.75 m、まぐさ z 2.683〜2.92 | 葉 2.569 m、縦材 2.659 m、まぐさ z 2.592〜2.829（`DOOR_HEIGHT` から） | 幅 0.802 m・厚み、金具の位置 |
+
+### 14.3 直した閉じた子のファイル（W03 の `B_mansion`）
+
+| ファイル | 変更（旧 → 新） | 理由 |
+|---|---|---|
+| `modeling/B_mansion/layout_data.py` | 定数 `DOOR_ORIGIN`・`HALL_ORIGIN`・`DOOR_HEIGHT`・`DOOR_HALF_WIDTH`・`PORCH_FLOOR_Z` を足し、扉・ホールの配置、`m03_alignment`（ポーチの床 1.779 → 1.870、開口の中心 0.335 → 0.7075、高さ 2.683 → 2.592）、`G06` の `pivot_world`、除外範囲 `Excl_B_DoorSwingAndPorch`（x -1.35〜1.85 → -0.9775〜2.2225、下端 1.779 → 1.870）、説明の文をこれで書く | 14.2 |
+| `modeling/B_mansion/build.py` | `build_courtyard_ground` の 3 段の階段と両脇の石（5 つの箱）を、石畳の延長（1 つの箱、x -1.1〜2.5・ローカル y 4.4〜5.12・上面 0.065）に替えた。利用者の歩行の後に、墓地の縁石 4 本を外し、石畳の南端をローカル y -11.8 → -11.75 にした（使わなくなった材質 `MAT_BMN_MansionStone` を中庭の地面から外した）。`build_mansion_double_door`・`build_entrance_hall` の位置と扉の高さを定数から作る。確認画像 02 のカメラの x を扉に合わせた。仮モデルのアセット一覧の notes に差し替えの後の扱いを足した | 14.2 |
+| `layout/areas/B_mansion.json`・`assets/manifest/B_mansion.json`・`review/B_mansion/*.png` | 上の 2 つから作り直した（中庭の地面は 168 → 72 三角形、外接箱の奥行き 16.2 → 16.87 m・高さ 0.42 → 0.08 m。扉の高さ 2.92 → 2.829 m） | 生成物 |
+
+- `uv run python tools/check_data.py --key B_mansion`・`tools/check_blend.py --key B_mansion` が 0。B を 2 回ビルドしても数は同じ（W03 と同じ）
+- 他の子の記録で値が古くなった物（直していない。`handoff/W09R-B.md` 6.2 の要望）: `handoff/W03.md` 6 章（扉・ホール・階段の値）、W07 の `review/overview/checks.json`（`motion_parts` の G06 の蝶番。W08 の `modeling/p2_static/verify_live.py` はこの値と比べるので、G06 の 2 行は 0.37 m ずれて失敗する）と `assets/manifest.json`、`docs/p1-handoff.md` 8 章の 1（この子で対応済み）
+
+### 14.4 実装（`modeling/p2_meshy/`）
+
+- `replacements.py`: M03 の行（`visual_root` は仮モデルのアセットの root `BMN_MansionPlaceholder_001`、回転 0 = `placement_hint` 180 − 仮モデルの root 180）。新しい項目 `collision: "finished"` と `entrance`（検査用）。`disable_fixed_collisions` が地区の宣言の `<visual_root>_FixedCollision`（visual_root の兄弟）の `MeshCollider` を `Enabled = false` にする（`hide_in_file` から呼ぶので、W08 の `export_p2.py` は変えていない。止めた行は `replacements.json` に書く）
+- `export_meshy.py`: `collision: "finished"` の素材は、素材のメッシュの Slot に `MeshCollider` を足す（`add_mesh_colliders`。`placement.json` の `colliders`）
+- `verify_live.py`:
+  - `collision: "finished"`: 仮モデルの `FixedCollision` が残っていて `MeshCollider.Enabled` が false、素材のすべてのメッシュの Slot に有効・`Static`・`CharacterCollider`・`Offset` 0 の `MeshCollider` があり同じ Slot の `StaticMesh` を参照する、素材のバンドルの中のそれ以外の Slot に当たり判定が無い
+  - `entrance`: 地区の扉の蝶番の Slot の原点が M03 の開口の蝶番の線の下端と 1 cm 以内で、蝶番の Slot の前方が建物の奥を向く（閉じた扉が壁の面にある）。玄関ホールの原点が開口の中心の床から 1.85 m 奥と 1 cm 以内で、前方が建物の奥を向く。扉とホールのアセットの root から下のすべての Slot と祖先の拡縮が 1。期待値は `review/M03/checks.json` の `door_opening`（W09-M03 の実測）とデータの原点・向きから求め、B の配置データから求めない（B の値の誤りを、同じ値で合格にしないため）
+- テスト: `tests/test_p2_meshy_verify.py` に 8 件（うち 4 件は 14.9 の GPT のレビューで足した）、`tests/test_p2_meshy_replacements.py` に 1 件（どれも S。`handoff/W09R-B.md` 9 章）。それぞれ守りを外すと、そのテストだけが失敗することを確かめた（変異ごとに `PYTHONPYCACHEPREFIX` を分けた）
+
+### 14.5 export と validate
+
+| 出力先 | 内容 | validate（オフライン・`--strict`） |
+|---|---|---|
+| `exports/p2_meshy/M03-20261101T052520Z` | M03（`--parent` は `BMN_MansionPlaceholder_001`、`--preserve-hierarchy --pack-pbr`）。`M03_HauntedMansion_001` に `MeshCollider` | issues 0 |
+| `exports/p2_static/B_mansion-20261101T052512Z` | 扉・ホール・中庭の地面を直し、仮モデルの描画と `FixedCollision` の当たり判定を止めた B（最初に apply した版） | issues 0 |
+| `exports/p2_static/B_mansion-20261101T060018Z` | 上に加えて、墓地の縁石を外し、石畳の南端をずらした B（利用者の歩行の後に apply した版） | issues 0 |
+| `exports/p2_static/<key>-20261101T051336Z`（6 キー） | 14.1 の確認に使った world・A〜E（M03 の行と B の修正の前） | issues 0 |
+
+- M03: 三角形 29,801、頂点 58,557、材質 1、描画の区切り 1、画像 2（色 4096×4096、詰めた PBR 2048×2048。RGBA8 とミップの見積もり 合計 約 112 MB）。警告 1（「Textures exceed 2048 px」。W09 が近景の 109.5 px/m のために決めた色 4096 の結果）
+- 後続の子のために、apply した M03 のバンドルを Git の外の `/workspaces/reso-world/worlds/reso-world-Halloween-meshy/p2_bundles/M03-20261101T052520Z`（`SHA256SUMS`、42 MB）に控えた。新しい worktree で `verify_live.py` を実行するときは、ほかの素材と同じく同じ名前の出力先へ写す
+
+### 14.6 diff と apply
+
+| 時刻（UTC） | 宣言 | diff | apply |
+|---|---|---|---|
+| 05:26:00 | M03（最初） | 作成 16（資産 3、Slot 6、Component 7。すべて `BMN_MansionPlaceholder_001` の下。Component は `StaticMesh`・`MeshRenderer`・`MeshCollider`・`AI_GeneratedContent`・画像 2・材質） | — |
+| 05:26:02 | B | 作成 4（扉の枠・葉 2 枚・中庭の地面のメッシュの資産）、更新 8（扉とホールの Slot の位置 2、`StaticMesh.URL` 4、仮モデルの `MeshRenderer.Enabled`、`FixedCollision` の `MeshCollider.Enabled`）。削除 0 | — |
+| 05:26:12〜05:26:45 | M03 → B | — | M03: Slot 6・Component 7・資産 3 を作成。B: Slot の更新 2・Component の更新 6・資産の取り込み 4 |
+| 05:27:01〜05:27:05 | M03・B の 2 回目 | — | 書き込み 0（資産は変更なし 3・45） |
+| 05:27:09〜05:27:42 | 全 14 宣言（`content/main.json`・6 キー・M02・M04・M08・M01 の 3 つ・M03） | すべて変更 0（M03 は no-op 16、B は 333） | — |
+| 06:00:31〜06:00:36 | B（縁石・石畳の南端。14.2） | 作成 1（中庭の地面のメッシュの資産）、更新 1（中庭の地面の `MeshRenderer` の作り直し。材質の一覧が 3 → 2 に減り、ResoniteLink は一覧の要素を消せないので resoloop が Component を消して作り直す。ほかに参照している物は無い） | Component の追加 1・更新 1（`StaticMesh.URL`）・削除 1、資産の取り込み 1。Slot は変わらない |
+| 06:00:51〜06:01:18 | B の 2 回目の apply と、全 14 宣言の diff | すべて変更 0 | 書き込み 0 |
+| 06:01:45 | M03（撮影のカメラ 2 つを足して `--recompose`） | 変更 0（no-op 16。カメラはワールドに書かない） | — |
+
+- `--prune` は使っていない。削除・名前の変更は 0。作り直しは、中庭の地面の `MeshRenderer` の 1 つだけ（上の表）。diff の対象は M03 の `visual_root` の下と資産、B の扉・ホール・中庭の地面・仮モデルの描画と当たり判定だけ（ほかの地区・`content/main.json`・前の素材の宣言は 0）
+- apply の前のスナップショット: `tmp/w09r-b/01_snapshot_before_*`（W08 の root 全体。最初の diff の後、apply まで書き込みは無い）、`10_snapshot_B_before_curbs_*`（B の root。縁石を外す前）
+
+### 14.7 実測（`review/p2_meshy/live_checks.json`、05:27:50Z）
+
+| 検査 | 結果 |
+|---|---|
+| `visual_root` の世界の原点 | (0, 1.5, 41.5)。W07 の `frame_origin_world` と差 0.0 m |
+| 外接箱 | x -7.5005〜7.4996、高さ 1.5003〜12.1072、z 36.3899〜46.6104（15.0001 × 10.6069 × 10.2206 m）。アセット一覧の `bounds_local` を 180° で置いた値との差 0.0 m |
+| 正面と鏡像 | (0, 0, -1)（南の中庭。`placement_hint` から）。祖先の拡縮はすべて正 |
+| 描画 | 仮モデルの `MeshRenderer.Enabled` が false。M03 は有効で、色の画像を持つ `PBS_Metallic` を参照 |
+| 入口 | `_HingeLeft` (-0.1015, 1.87, 39.95)・`_HingeRight` (1.5165, 1.87, 39.95)。M03 の蝶番の線（Resonite の z 39.9523）との差 2.3 mm、閉じた扉は壁の面にある（蝶番の前方が建物の奥を向く）。`BMN_EntranceHall_001` (0.7075, 1.87, 41.8)、開口の中心の 1.85 m 奥との差 2.3 mm（W03 の扉の面 y 39.95 と M03 の壁 39.9523 の差）で、前方は建物の奥。扉とホールの Slot の拡縮はすべて 1 |
+| 当たり判定 | `BMN_MansionPlaceholder_001_FixedCollision` は残っていて `MeshCollider.Enabled` が false。`M03_HauntedMansion_001` の `MeshCollider` が有効・`Static`・`CharacterCollider`・`Offset` 0・同じ Slot の `StaticMesh` を参照。素材の中のほかの Slot に当たり判定は無い |
+| 数 | B の Slot 94・Component 207（W08 の実測 88・200 に M03 の 6・7 を足した値と一致）。W08 の root の下は Slot 721・Component 1,659（着手時の 715・1,652 から +6・+7） |
+
+- M01・M02・M04・M08 の検査と A・C の数も合格のまま。ID・部品名は変えていない（扉とホールは位置と扉の高さだけ）。仮モデルに取付位置は無い
+
+### 14.8 撮影と実機の確認
+
+撮影（`review/p2_meshy/`、1600×900）: `m03_front`（中庭から正面）、`m03_front_close`（ポーチと扉）、`m03_entrance`（段の前から開口と扉の枠）、`m03_door_edge_left`・`m03_door_edge_right`（開口の西・東の縁）、`m03_porch_steps`（石畳から M03 の段への上がり口）、`m03_oblique_se`・`m03_oblique_sw`（斜め上）、`m03_back`（北）、`area_B_mansion`（W08 と同じ B の全景）、`overview_south`（W08 と同じ全景。M03 の差し替えの後に撮り直した）、`b_graveyard_west`（縁石を外した墓地の区画）、`b_north_bridge_end`（北の橋の終わりと石畳の南端。手前に W01 の橋の支えの段が写る）。どれも利用者の歩行の後の B の直し（14.2）の後に撮り直した（06:0xZ）
+
+- 黒い面・反転・透け・ちらつきは見つからない。ポーチは南を向き、扉の枠が開口の切り口を覆い、扉の合わせ目（1.4 cm）から奥のホールの明かりが見える。石畳の延長は M03 の段の前で止まり、段の下に隙間は無い
+- 扉を開いたときの開口の奥（Resonite では扉を閉じたまま。P3 で開く）は Blender で確かめた: B の `.blend` に M03 を置き（回転 180°）、扉を ±85°（可動範囲の端）に開き、ポーチの 5 つの視点から開口の内側の格子（19 × 29）を通るレイ 2,755 本の最初の当たりは、玄関ホールの部屋 1,837・扉の葉 827・枠 36・シャンデリアの取付位置 55 で、M03 の内側の面と、何にも当たらないレイは 0 だった（保存しない一時的なスクリプト）
+- 石畳の延長の東西の端と、石畳の北の端（y 36.4。仮モデルの台座が隠していた所）には、W01 の台地（z 1.5）との 6.5 cm の段が見える（`m03_porch_steps`）。中庭の石畳のほかの縁と同じ形で、歩行の妨げにはならない
+- W03 の窓のおばけ（G08、`BMN_WindowGhost_001`・`_002`、(±4.2, 37.35, 4.8)）の窓枠は、仮モデルの窓に合わせた物で、M03 の窓と合わず手前に浮いて見え、東の枠は張り出しの屋根に刺さる（`m03_front`・`m03_oblique_se`）。窓の顔出しは P3 の範囲なので変えていない（`handoff/W09R-B.md` 6.2 の要望）
+- 利用者の実機（2026-11-01、05:50Z ごろ、デスクトップ）: 中庭の石畳から M03 の段・ポーチ・アーチ・扉の前を歩き、「基本的に問題ありません」（引っかかる所・すり抜ける所・開口のまわりの見た目の報告なし）。ほかに 2 件の報告「橋に謎の段がある」「屋敷の周りの庭に謎の四角い棒が四本横たわっていて段差がある」があり、B の中の 2 つ（墓地の縁石、石畳の南端の 4 cm）を直し、W01 の北の橋の支えの段は要望として記録した（14.2）。直した後に利用者が歩き直して「問題なし」（06:05Z ごろ）
+- 負荷（利用者の測定、W08 と同じ端末）: 屋敷の近くで 60 fps（W08 の基準と同じ）
+- 増えた物: 三角形 29,801（仮モデルの 314 三角形は描画を止めた）、画像 2（約 112 MB の見積もり）、`MeshCollider` 1（29,801 三角形。仮モデルの 314 三角形の当たり判定は止めた）、光源 0
+
+### 14.9 GPT のレビュー（確認事項 7）
+
+- 起動: `codex exec --sandbox read-only -C <worktree> -o <出力> "<依頼文>" < /dev/null`（codex-cli 0.166.0、モデル gpt-6-astra）。対象は PR #53 の `d8b5112`。Resonite には接続させず、checkout も変更させていない。観点は、宣言の正しさ、B の修正、実測の検査の拡張、記録の正確さ、テストの採用基準の 5 つ
+- 結果: Major 2 件・Minor 1 件・Info 1 件。宣言の正しさ（対象の取り違えなし、宣言の再生成は控えたバンドルと一致）、B の修正（値は記録と開口に整合、ID・階層は維持）、期待値の独立性、記録の数値は指摘なし。全文は PR #53 のコメント
+
+| # | 重大度 | 指摘 | 採否 | 対応 |
+|---|---|---|---|---|
+| 1 | Major | 入口の検査は蝶番とホールの原点しか見ないので、扉の縦の拡縮 0.5（扉・枠が半分の高さ）や、ホールの 180° の回転（奥の壁が入口をふさぐ）でも合格する | 採用 | 検査が誤った状態を成功と報告する経路のため。扉とホールのアセットの root から下のすべての Slot と祖先の拡縮が 1 であること、ホールの前方が建物の奥を向くことを確かめる。テスト 2 件 |
+| 2 | Major | M03 の `MeshCollider.Offset` だけを (0.5, 0, 0) にすると、見た目から 50 cm ずれた当たり判定が合格する | 採用 | 同じ理由。`Offset` が 0 であることを確かめる。テスト 1 件 |
+| 3 | Minor | 扉の面の向きの検査は位置の検査と重複しない（蝶番の Slot を +85° 回しても原点は動かない）のに、引き継ぎで D としてテストを書いていない | 採用 | 分類の誤り。向きの検査を「平行」から「建物の奥を向く」に強め（180° の回転も見つける）、テスト 1 件。`handoff/W09R-B.md` 9 章の分類を直した |
+| 4 | Info | 8 章の表の M03 の行は「利用者の実機」を含むが、14.8 と引き継ぎは確認待ち | 予定どおり | 利用者の実機の確認の結果を 14.8 と引き継ぎに書いて揃えた |
+
+- 1〜3 は、それぞれ守りを外すとそのテストだけが失敗することを確かめた。直した検査で実際のワールドを観察し直し、すべて合格した（`review/p2_meshy/live_checks.json`。扉とホールの前方は建物の奥、拡縮はすべて 1、`Offset` 0）。ワールドへの書き込みは無い
+
+### 14.10 保存（確認事項 4）
+
+- 利用者の歩行と直しの後に、エージェントの依頼で利用者が Resonite で 1 回保存した（2026-11-01、06:07Z より前）。保存の後は apply していない
+- 保存の後に読み取りだけで確かめた（06:07:21〜06:07:55Z）: 全 14 宣言（`content/main.json`・6 キー・M02・M04・M08・M01 の 3 つ・M03）の diff が変更 0。M03 と B の資産は「source hash and imported URL match state」で、URL はまだ `local://`（ワールドを開き直していない。開き直すと `resdb:///` に移り、次の diff は no-op と判定する。12.1）
+
+### 14.11 Resonite で未確認の項目
+
+- 再読込の後に M03 の画像と当たり判定が保たれるか（P4）
+- 扉を開いたときの開口の奥の Resonite での見え方（P3。Blender のレイでは塞がっている。14.8）、VR、二人以上

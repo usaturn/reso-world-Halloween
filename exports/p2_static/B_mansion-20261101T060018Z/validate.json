@@ -1,0 +1,36 @@
+{
+  "commands": [
+    "resoloop validate exports/p2_static/B_mansion-20261101T060018Z/model.apply.json --json",
+    "resoloop validate exports/p2_static/B_mansion-20261101T060018Z/model.apply.json --strict --url <URL> --json",
+    "resoloop validate exports/p2_static/B_mansion-20261101T060018Z/p2.apply.json --json",
+    "resoloop validate exports/p2_static/B_mansion-20261101T060018Z/p2.apply.json --strict --url <URL> --json"
+  ],
+  "model": {
+    "offline": {
+      "exit": 0,
+      "valid": true,
+      "issues": [],
+      "error_code": null
+    },
+    "strict": {
+      "exit": 0,
+      "valid": true,
+      "issues": [],
+      "error_code": null
+    }
+  },
+  "p2": {
+    "offline": {
+      "exit": 0,
+      "valid": true,
+      "issues": [],
+      "error_code": null
+    },
+    "strict": {
+      "exit": 0,
+      "valid": true,
+      "issues": [],
+      "error_code": null
+    }
+  }
+}

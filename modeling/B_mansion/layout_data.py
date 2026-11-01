@@ -4,6 +4,16 @@ from __future__ import annotations
 
 from typing import Any
 
+# Entrance of the finished M03 (W09R-B, Issue #48). The P1 values were W09's first reading of M03 (opening centre
+# x 0.335, porch floor z 1.779, height 2.683). W09-M03 cut the opening on the central arch (centre x 0.7075, hinge
+# lines x -0.1015 / 1.5165, y 39.952, z 1.870..4.462; review/M03/checks.json door_opening), so the double door and
+# the entrance hall moved x +0.3725 m and z +0.091 m and the door is 2.592 m high (docs/p1-handoff.md 8. item 1).
+DOOR_ORIGIN = (0.7075, 39.95, 1.870)
+HALL_ORIGIN = (0.7075, 41.8, 1.870)
+DOOR_HEIGHT = 2.592
+DOOR_HALF_WIDTH = 0.809
+PORCH_FLOOR_Z = 1.870
+
 
 COMMON_PLACEMENTS: list[dict[str, Any]] = [
     {
@@ -226,7 +236,7 @@ BMN_ASSET_PLACEMENTS: list[dict[str, Any]] = [
         "asset_id": "BMN_MansionDoubleDoor_001",
         "source_key": "B_mansion",
         "category": "gimmick",
-        "position": [0.335, 39.95, 1.779],
+        "position": list(DOOR_ORIGIN),
         "rotation_euler_deg": [0.0, 0.0, 0.0],
         "scale": [1.0, 1.0, 1.0],
         "origin_policy": "ground_center",
@@ -237,7 +247,7 @@ BMN_ASSET_PLACEMENTS: list[dict[str, Any]] = [
         "asset_id": "BMN_EntranceHall_001",
         "source_key": "B_mansion",
         "category": "architecture",
-        "position": [0.335, 41.8, 1.779],
+        "position": list(HALL_ORIGIN),
         "rotation_euler_deg": [0.0, 0.0, 0.0],
         "scale": [1.0, 1.0, 1.0],
         "origin_policy": "ground_center",
@@ -340,7 +350,8 @@ def build_b_mansion_area_layout_dict() -> dict[str, Any]:
             "role": (
                 "North visual anchor of the Halloween world; Gothic haunted mansion placeholder "
                 "matching W09 M03_HauntedMansion_001 confirmed dimensions (15.0m x 10.221m x 10.607m), "
-                "3-bay front arcade porch (z=1.779m), and door opening at world (0.335, 39.95, 1.779)."
+                "3-bay front arcade porch; the finished M03's porch floor is z=1.870m and its door opening is centred "
+                "at world (0.7075, 39.95, 1.870) (W09R-B)."
             ),
         },
         "Circulation": {
@@ -354,8 +365,8 @@ def build_b_mansion_area_layout_dict() -> dict[str, Any]:
             "loop_description": (
                 "Visitors enter from the 4.0m North Bridge threshold at (0, 20, 1.5), pass beneath "
                 "BMN_FrontGate_001 (5.2m clear span), walk along the 4.0m central slate courtyard avenue "
-                "to the gentle porch steps at y=35.6..37.424 (slope 7.2 deg, rising +0.279m to z=1.779m), "
-                "cross the front porch arcade, and pass through BMN_MansionDoubleDoor_001 (G06, 1.618m wide) "
+                "to the paving run-out at y=36.4..37.12, climb the finished M03's own porch steps (z 1.68, then the "
+                "porch floor 1.870m), cross the front porch arcade, and pass through BMN_MansionDoubleDoor_001 (G06, 1.618m wide) "
                 "into BMN_EntranceHall_001. Side 2.8m walkways link Ent_B_East (16, 22, 1.5) and "
                 "Ent_B_West (-16, 22, 1.5) to the central courtyard at y=28.0m."
             ),
@@ -363,7 +374,7 @@ def build_b_mansion_area_layout_dict() -> dict[str, Any]:
         "Framing": {
             "left_edge": "BMN_DeadTree_001 at (-7.2, 26.5, 1.5) and West iron fence wing",
             "right_edge": "BMN_DeadTree_002 at (7.2, 26.5, 1.5) and East iron fence wing",
-            "focal_target": "BMN_MansionPlaceholder_001 central gothic porch arch and BMN_MansionDoubleDoor_001 at (0.335, 39.95, 1.779)",
+            "focal_target": "M03_HauntedMansion_001 central gothic porch arch and BMN_MansionDoubleDoor_001 at (0.7075, 39.95, 1.870)",
             "view_cone_deg": 55.0,
         },
         "Story_Cluster": [
@@ -406,7 +417,7 @@ def build_b_mansion_area_layout_dict() -> dict[str, Any]:
             },
             {
                 "cluster_id": "Cluster_B_MansionFacadeAndHall",
-                "center": [0.0, 40.5, 1.779],
+                "center": [0.0, 40.5, PORCH_FLOOR_Z],
                 "radius_m": 8.5,
                 "intent": "Haunted Mansion facade (M03 placeholder), hinged double entrance doors (G06), warm gothic entrance hall interior, and peeking window ghosts (G08)",
                 "asset_ids": [
@@ -426,11 +437,11 @@ def build_b_mansion_area_layout_dict() -> dict[str, Any]:
                 "m03_origin_world": [0.0, 41.5, 1.5],
                 "m03_rotation_euler_deg": [0.0, 0.0, 180.0],
                 "m03_dimensions_m": {"width": 15.0, "depth": 10.221, "height": 10.607},
-                "porch_floor_world_z": 1.779,
-                "porch_arch_centre_world": [0.335, 37.424, 1.779],
-                "door_opening_centre_world": [0.335, 39.95, 1.779],
+                "porch_floor_world_z": PORCH_FLOOR_Z,
+                "porch_arch_centre_world": [DOOR_ORIGIN[0], 37.424, PORCH_FLOOR_Z],
+                "door_opening_centre_world": list(DOOR_ORIGIN),
                 "door_opening_width_m": 1.618,
-                "door_opening_height_m": 2.683,
+                "door_opening_height_m": DOOR_HEIGHT,
             },
             "gimmicks": {
                 "G05": {
@@ -470,7 +481,7 @@ def build_b_mansion_area_layout_dict() -> dict[str, Any]:
                         {
                             "asset_id": "BMN_MansionDoubleDoor_001",
                             "part_id": "BMN_MansionDoubleDoor_001_HingeLeft",
-                            "pivot_world": [-0.474, 39.95, 1.779],
+                            "pivot_world": [round(DOOR_ORIGIN[0] - DOOR_HALF_WIDTH, 4), DOOR_ORIGIN[1], DOOR_ORIGIN[2]],
                             "pivot_local": [-0.809, 0.0, 0.0],
                             "motion_type": "hinge_rotation",
                             "rotation_axis": "Z",
@@ -480,7 +491,7 @@ def build_b_mansion_area_layout_dict() -> dict[str, Any]:
                         {
                             "asset_id": "BMN_MansionDoubleDoor_001",
                             "part_id": "BMN_MansionDoubleDoor_001_HingeRight",
-                            "pivot_world": [1.144, 39.95, 1.779],
+                            "pivot_world": [round(DOOR_ORIGIN[0] + DOOR_HALF_WIDTH, 4), DOOR_ORIGIN[1], DOOR_ORIGIN[2]],
                             "pivot_local": [0.809, 0.0, 0.0],
                             "motion_type": "hinge_rotation",
                             "rotation_axis": "Z",
@@ -578,7 +589,7 @@ def build_b_mansion_area_layout_dict() -> dict[str, Any]:
             {
                 "zone_id": "Excl_B_DoorSwingAndPorch",
                 "shape": "box",
-                "bounds": {"min": [-1.35, 37.4, 1.779], "max": [1.85, 41.2, 4.6]},
+                "bounds": {"min": [-0.9775, 37.4, PORCH_FLOOR_Z], "max": [2.2225, 41.2, 4.6]},
                 "reason": "Protects porch arcade passage and G06 double door inward swing arc into BMN_EntranceHall_001",
             },
             {

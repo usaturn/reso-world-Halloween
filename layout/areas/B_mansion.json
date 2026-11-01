@@ -29,7 +29,7 @@
       10.607
     ],
     "orientation_deg": 180.0,
-    "role": "North visual anchor of the Halloween world; Gothic haunted mansion placeholder matching W09 M03_HauntedMansion_001 confirmed dimensions (15.0m x 10.221m x 10.607m), 3-bay front arcade porch (z=1.779m), and door opening at world (0.335, 39.95, 1.779)."
+    "role": "North visual anchor of the Halloween world; Gothic haunted mansion placeholder matching W09 M03_HauntedMansion_001 confirmed dimensions (15.0m x 10.221m x 10.607m), 3-bay front arcade porch; the finished M03's porch floor is z=1.870m and its door opening is centred at world (0.7075, 39.95, 1.870) (W09R-B)."
   },
   "Circulation": {
     "primary_path_id": "Route_North_Mansion_Bridge",
@@ -51,12 +51,12 @@
         1.5
       ]
     ],
-    "loop_description": "Visitors enter from the 4.0m North Bridge threshold at (0, 20, 1.5), pass beneath BMN_FrontGate_001 (5.2m clear span), walk along the 4.0m central slate courtyard avenue to the gentle porch steps at y=35.6..37.424 (slope 7.2 deg, rising +0.279m to z=1.779m), cross the front porch arcade, and pass through BMN_MansionDoubleDoor_001 (G06, 1.618m wide) into BMN_EntranceHall_001. Side 2.8m walkways link Ent_B_East (16, 22, 1.5) and Ent_B_West (-16, 22, 1.5) to the central courtyard at y=28.0m."
+    "loop_description": "Visitors enter from the 4.0m North Bridge threshold at (0, 20, 1.5), pass beneath BMN_FrontGate_001 (5.2m clear span), walk along the 4.0m central slate courtyard avenue to the paving run-out at y=36.4..37.12, climb the finished M03's own porch steps (z 1.68, then the porch floor 1.870m), cross the front porch arcade, and pass through BMN_MansionDoubleDoor_001 (G06, 1.618m wide) into BMN_EntranceHall_001. Side 2.8m walkways link Ent_B_East (16, 22, 1.5) and Ent_B_West (-16, 22, 1.5) to the central courtyard at y=28.0m."
   },
   "Framing": {
     "left_edge": "BMN_DeadTree_001 at (-7.2, 26.5, 1.5) and West iron fence wing",
     "right_edge": "BMN_DeadTree_002 at (7.2, 26.5, 1.5) and East iron fence wing",
-    "focal_target": "BMN_MansionPlaceholder_001 central gothic porch arch and BMN_MansionDoubleDoor_001 at (0.335, 39.95, 1.779)",
+    "focal_target": "M03_HauntedMansion_001 central gothic porch arch and BMN_MansionDoubleDoor_001 at (0.7075, 39.95, 1.870)",
     "view_cone_deg": 55.0
   },
   "Story_Cluster": [
@@ -114,7 +114,7 @@
       "center": [
         0.0,
         40.5,
-        1.779
+        1.87
       ],
       "radius_m": 8.5,
       "intent": "Haunted Mansion facade (M03 placeholder), hinged double entrance doors (G06), warm gothic entrance hall interior, and peeking window ghosts (G08)",
@@ -372,19 +372,19 @@
         "depth": 10.221,
         "height": 10.607
       },
-      "porch_floor_world_z": 1.779,
+      "porch_floor_world_z": 1.87,
       "porch_arch_centre_world": [
-        0.335,
+        0.7075,
         37.424,
-        1.779
+        1.87
       ],
       "door_opening_centre_world": [
-        0.335,
+        0.7075,
         39.95,
-        1.779
+        1.87
       ],
       "door_opening_width_m": 1.618,
-      "door_opening_height_m": 2.683
+      "door_opening_height_m": 2.592
     },
     "gimmicks": {
       "G05": {
@@ -458,9 +458,9 @@
             "asset_id": "BMN_MansionDoubleDoor_001",
             "part_id": "BMN_MansionDoubleDoor_001_HingeLeft",
             "pivot_world": [
-              -0.474,
+              -0.1015,
               39.95,
-              1.779
+              1.87
             ],
             "pivot_local": [
               -0.809,
@@ -483,9 +483,9 @@
             "asset_id": "BMN_MansionDoubleDoor_001",
             "part_id": "BMN_MansionDoubleDoor_001_HingeRight",
             "pivot_world": [
-              1.144,
+              1.5165,
               39.95,
-              1.779
+              1.87
             ],
             "pivot_local": [
               0.809,
@@ -701,12 +701,12 @@
       "shape": "box",
       "bounds": {
         "min": [
-          -1.35,
+          -0.9775,
           37.4,
-          1.779
+          1.87
         ],
         "max": [
-          1.85,
+          2.2225,
           41.2,
           4.6
         ]
@@ -950,9 +950,9 @@
       "source_key": "B_mansion",
       "category": "gimmick",
       "position": [
-        0.335,
+        0.7075,
         39.95,
-        1.779
+        1.87
       ],
       "rotation_euler_deg": [
         0.0,
@@ -973,9 +973,9 @@
       "source_key": "B_mansion",
       "category": "architecture",
       "position": [
-        0.335,
+        0.7075,
         41.8,
-        1.779
+        1.87
       ],
       "rotation_euler_deg": [
         0.0,

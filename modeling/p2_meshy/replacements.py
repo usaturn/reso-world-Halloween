@@ -11,6 +11,9 @@
 - 可動部品を持つ素材（W09R-A の M01 の門扉。docs/p2-meshy-replacement.md 13 章）: 行の moving_parts に書いた素材の子は、
   素材の宣言とは別の宣言で、仮モデルの可動部品の Slot（motion_root）の下に置く（1 つの宣言は 1 つの親の下にしか置けない）。
   地区の宣言では、その motion_root を素材の蝶番の位置・開いた角度に置き直す（repose_motion_roots。Slot は作り直さない）
+- 当たり判定を素材のメッシュで作る素材（W09R-B の M03。collision が "finished"。docs/p2-meshy-replacement.md 14 章）:
+  素材の宣言で、素材のメッシュの Slot に MeshCollider を付け（export_meshy.py）、地区の宣言では仮モデルの形の
+  <visual_root>_FixedCollision の MeshCollider を Enabled = false にする（disable_fixed_collisions。Slot は消さない）
 """
 
 from __future__ import annotations
@@ -108,6 +111,53 @@ REPLACEMENTS: dict[str, dict] = {
             "m02_eyes_low": ([0, 1.9, -6.5], [0, 3.8, -2.7], 55),  # 器の縁の近くの下から（利用者の要望の確認）
             "m02_eyes_low_side": ([3.0, 1.9, -5.5], [0.3, 3.6, -2.6], 55),
             "area_A_plaza": ([0, 11, -24], [0, 2, 0], 65),  # W08 と同じ
+            "overview_south": ([0, 48, -92], [0, 0, -4], 60),  # W08 と同じ
+        },
+    },
+    # W09R-B（#48）: B 北・おばけ屋敷
+    "M03": {
+        "district": "B_mansion",
+        "placeholder": "BMN_MansionPlaceholder_001",
+        # 仮モデルはアセットの root がそのまま見た目（W03 の hierarchy.visual_roots）。当たり判定は B の root の下の兄弟
+        "visual_root": "BMN_MansionPlaceholder_001",
+        "visual_root_path": f"{P2_ROOT}/B_mansion/BMN_MansionPlaceholder_001",
+        "hide": ["BMN_MansionPlaceholder_001"],
+        "blend": "blender/M03/M03.blend",
+        "asset_id": "M03_HauntedMansion_001",
+        "rotation_z_deg": 0.0,  # placement_hint 180 - 仮モデルの root 180（ポーチを南の中庭へ）
+        "position_local": [0.0, 0.0, 0.0],  # 底面の中央 = 仮モデルの原点（台地の上面 z 1.5）
+        # 当たり判定は M03 のメッシュ（2026-11-01 の利用者の決定）。仮モデルの形は M03 と大きく違う（中央のアーチの通路に
+        # 見えない柱が 0.33 m はみ出す、ポーチの床が 9.1 cm 低い、正面の張り出しの前に高さ 0.28 m の見えない台座）。
+        # 仮モデルの FixedCollision の MeshCollider は Enabled = false にし、Slot は残す
+        "collision": "finished",
+        # 入口（verify_live.py の検査）: W03 の扉の蝶番の Slot を、M03 の開口の蝶番の線（review/M03/checks.json の
+        # door_opening.hinges）に、玄関ホールの原点を開口の中心の床から hall_depth_m 奥に置いたか。名前の左右は W03 の世界
+        # （Left が x の小さい側）で、M03 のローカル（正面 +Y）の左右とは逆
+        "entrance": {
+            "hinges": {
+                "BMN_MansionDoubleDoor_001_HingeLeft": "left_viewed_from_front_plus_x",
+                "BMN_MansionDoubleDoor_001_HingeRight": "right_viewed_from_front_minus_x",
+            },
+            "hall": "BMN_EntranceHall_001",
+            "hall_depth_m": 1.85,  # W03 の玄関ホールの原点は扉の面の 1.85 m 奥（modeling/B_mansion/build.py の build_entrance_hall）
+        },
+        # M03 の底の中央は (0, 1.5, 41.5)、幅 15 m・奥行き 10.2 m・高さ 10.6 m、正面（ポーチ）は南（-Z）。開口の中心は
+        # (0.7075, 1.87, 39.95)。南の門は z 21.5、中庭の枯れ木は x ±7.2・z 26.5
+        "cameras": {
+            "m03_front": ([0, 5.5, 25.5], [0, 5.2, 41.5], 60),
+            "m03_front_close": ([0.7, 2.6, 33.0], [0.7, 3.2, 40], 60),
+            "m03_entrance": ([0.7, 3.4, 36.6], [0.7, 3.1, 40], 70),  # ポーチの段の前から開口と扉の枠
+            "m03_door_edge_left": ([-1.0, 2.8, 38.4], [0.2, 3.2, 40], 60),  # 開口の西の縁（枠と壁の切り口）
+            "m03_door_edge_right": ([2.4, 2.8, 38.4], [1.2, 3.2, 40], 60),
+            "m03_porch_steps": ([3.5, 2.6, 34.2], [0.7, 1.7, 37.3], 60),  # 中庭の石畳から M03 の段への上がり口
+            "m03_oblique_se": ([11, 9, 28], [0, 4.5, 41.5], 55),
+            "m03_oblique_sw": ([-11, 9, 28], [0, 4.5, 41.5], 55),
+            "m03_back": ([0, 9, 56], [0, 4.5, 41.5], 55),
+            # 利用者の歩行（2026-11-01）の後に直した所: 墓地の区画（縁石を外した）と、北の橋の終わり（石畳の始まり。
+            # 手前に W01 の橋の支えが床を突き抜けた段が写る）
+            "b_graveyard_west": ([-3, 2.2, 22], [-9.5, 1.4, 30], 60),
+            "b_north_bridge_end": ([1.2, 2.4, 16.0], [0, 1.4, 21.5], 60),
+            "area_B_mansion": ([0, 9, 16], [0, 4, 40], 65),  # W08 と同じ
             "overview_south": ([0, 48, -92], [0, 0, -4], 60),  # W08 と同じ
         },
     },
@@ -319,11 +369,43 @@ def repose_motion_roots(doc: dict, key: str) -> list[dict]:
     return rows
 
 
+def disable_fixed_collisions(doc: dict, key: str) -> list[dict]:
+    """collision が "finished" の素材について、地区の宣言 doc の中の <visual_root>_FixedCollision の MeshCollider を
+    Enabled = false にする（doc をその場で変える。Slot と StaticMesh は残す）。
+
+    FixedCollision は visual_root と同じ親の兄弟（W08 の colliders.compose）。見つからない・MeshCollider が無いときは止める
+    （黙って何もしないと、仮モデルの形の見えない当たり判定と素材の当たり判定が重なって残る）。
+    """
+    rows: list[dict] = []
+    for meshy_id, rep in for_district(key).items():
+        if rep.get("collision") != "finished":
+            continue
+        fixed_name = f"{rep['visual_root']}_FixedCollision"
+        names = {rep["visual_root"], fixed_name}
+        hits: dict[str, tuple[list[str], dict]] = {}
+        _find_children_named(doc, [doc["slot"]["name"]], names, hits)
+        missing = names - set(hits)
+        if missing:
+            raise ValueError(f"{meshy_id}: Slot not found in the {key} declaration: {sorted(missing)}")
+        chain, node = hits[fixed_name]
+        if chain[:-1] != hits[rep["visual_root"]][0][:-1]:
+            raise ValueError(f"{meshy_id}: {fixed_name} is not a sibling of {rep['visual_root']}")
+        colliders = [c for c in node.get("components", []) if c.get("type") == "FrooxEngine.MeshCollider"]
+        if not colliders:
+            raise ValueError(f"{meshy_id}: {fixed_name} has no MeshCollider")
+        for comp in colliders:
+            comp.setdefault("fields", {})["Enabled"] = False
+            rows.append({"meshy_id": meshy_id, "slot": "/".join(chain), "component": comp["key"], "Enabled": False,
+                         "reason": "collision is the finished asset's own mesh"})
+    return rows
+
+
 def hide_in_file(p2_path: Path, key: str) -> list[dict]:
-    """p2.apply.json を読み、hide_placeholders と repose_motion_roots を適用して書き戻す（対象が無いキーではファイルを変えない）。"""
+    """p2.apply.json を読み、hide_placeholders・repose_motion_roots・disable_fixed_collisions を適用して書き戻す
+    （対象が無いキーではファイルを変えない）。"""
     if not for_district(key):
         return []
     doc = json.loads(p2_path.read_text(encoding="utf-8"))
-    rows = hide_placeholders(doc, key) + repose_motion_roots(doc, key)
+    rows = hide_placeholders(doc, key) + repose_motion_roots(doc, key) + disable_fixed_collisions(doc, key)
     p2_path.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return rows

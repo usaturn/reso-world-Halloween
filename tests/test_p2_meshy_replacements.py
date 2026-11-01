@@ -52,3 +52,28 @@ def test_hide_target_outside_the_replacement_range_is_refused(monkeypatch: pytes
     monkeypatch.setattr(replacements, "REPLACEMENTS", {"MX": rep})
     with pytest.raises(ValueError, match="outside the replacement range"):
         replacements.hide_placeholders(district(), "D")
+
+
+def test_only_the_replacements_fixed_collision_is_disabled(monkeypatch: pytest.MonkeyPatch) -> None:
+    # W09R-B (S): for collision="finished" the district declaration disables the placeholder's FixedCollision collider.
+    # If another collider were disabled (the district's ground, a neighbour's FixedCollision), visitors would fall or walk
+    # through it with no error, because the live check only looks at the replaced placeholder.
+    def with_collider(n: dict) -> dict:
+        name = n["slot"]["name"]
+        n["components"].append({"key": f"collider_{name}", "type": "FrooxEngine.MeshCollider", "fields": {"Mesh": f"$component:mesh_{name}"}})
+        return n
+
+    # the visual root is the placeholder asset itself and W08 put its FixedCollision next to it (M03 in B_mansion)
+    doc = {"slot": {"name": "D", "key": "root"}, "components": [], "children": [
+        node("Proxy"), with_collider(node("Proxy_FixedCollision", renderer=False)),
+        with_collider(node("Ground")), with_collider(node("Other_FixedCollision", renderer=False))]}
+    rep = {"district": "D", "visual_root": "Proxy", "hide": ["Proxy"], "collision": "finished"}
+    monkeypatch.setattr(replacements, "REPLACEMENTS", {"MX": rep})
+    rows = replacements.disable_fixed_collisions(doc, "D")
+    assert [r["slot"] for r in rows] == ["D/Proxy_FixedCollision"]
+    fields = {n["slot"]["name"]: next(c["fields"] for c in n["components"] if c["type"] == "FrooxEngine.MeshCollider")
+              for n in doc["children"][1:]}
+    assert fields["Proxy_FixedCollision"]["Enabled"] is False
+    assert "Enabled" not in fields["Ground"] and "Enabled" not in fields["Other_FixedCollision"]
+    rep["collision"] = True
+    assert replacements.disable_fixed_collisions(doc, "D") == []  # replacements that keep the placeholder shape: untouched

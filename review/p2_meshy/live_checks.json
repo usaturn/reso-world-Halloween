@@ -2,8 +2,8 @@
   "root": "Root/HalloweenMagicalCarnival",
   "tolerance_m": 0.01,
   "root_live": {
-    "slots": 715,
-    "components": 1652
+    "slots": 721,
+    "components": 1659
   },
   "replacements": [
     {
@@ -421,6 +421,144 @@
       "problems": []
     },
     {
+      "meshy_id": "M03",
+      "visual_root": "Root/HalloweenMagicalCarnival/B_mansion/BMN_MansionPlaceholder_001",
+      "bundle": "exports/p2_meshy/M03-20261101T052520Z",
+      "front_source": "received.json placement_hint.rotation_z_deg",
+      "visual_root_world": {
+        "live": [
+          0.0,
+          1.5,
+          41.5
+        ],
+        "expected": [
+          0.0,
+          1.5,
+          41.5
+        ],
+        "diff_m": 0.0
+      },
+      "bounds_world": {
+        "live": {
+          "min": [
+            -7.5005,
+            1.5003,
+            36.3899
+          ],
+          "max": [
+            7.4996,
+            12.1072,
+            46.6104
+          ]
+        },
+        "expected": {
+          "min": [
+            -7.5005,
+            1.5003,
+            36.3899
+          ],
+          "max": [
+            7.4996,
+            12.1072,
+            46.6104
+          ]
+        },
+        "size_live": [
+          15.0001,
+          10.6069,
+          10.2206
+        ],
+        "max_diff_m": 0.0
+      },
+      "front": {
+        "live": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "expected": [
+          -0.0,
+          0.0,
+          -1.0
+        ],
+        "diff": 0.0
+      },
+      "renderers_enabled": {
+        "BMN_MansionPlaceholder_001": false,
+        "M03_HauntedMansion_001": true
+      },
+      "attachment_points": [],
+      "entrance": {
+        "hinges": [
+          {
+            "slot": "BMN_MansionDoubleDoor_001_HingeLeft",
+            "live_world": [
+              -0.1015,
+              1.87,
+              39.95
+            ],
+            "expected": [
+              -0.1015,
+              1.87,
+              39.9523
+            ],
+            "diff_m": 0.0023,
+            "facing_inward": 1.0
+          },
+          {
+            "slot": "BMN_MansionDoubleDoor_001_HingeRight",
+            "live_world": [
+              1.5165,
+              1.87,
+              39.95
+            ],
+            "expected": [
+              1.5165,
+              1.87,
+              39.9523
+            ],
+            "diff_m": 0.0023,
+            "facing_inward": 1.0
+          }
+        ],
+        "hall": {
+          "slot": "BMN_EntranceHall_001",
+          "live_world": [
+            0.7075,
+            1.87,
+            41.8
+          ],
+          "expected": [
+            0.7075,
+            1.87,
+            41.8023
+          ],
+          "diff_m": 0.0023,
+          "facing_inward": 1.0
+        },
+        "non_unit_scale": []
+      },
+      "colliders_under_finished_asset": [
+        "M03_HauntedMansion_001"
+      ],
+      "colliders_under_moving_parts": [],
+      "fixed_collision": {
+        "slot": "BMN_MansionPlaceholder_001_FixedCollision",
+        "exists": true,
+        "collider_enabled": false
+      },
+      "finished_colliders": [
+        {
+          "slot": "M03_HauntedMansion_001",
+          "collider_enabled": true,
+          "static_character_collider": true,
+          "uses_own_static_mesh": true,
+          "zero_offset": true
+        }
+      ],
+      "problems": []
+    },
+    {
       "meshy_id": "M04",
       "visual_root": "Root/HalloweenMagicalCarnival/C_candy/CCD_M04_CandyWorkshopProxy_001",
       "bundle": "exports/p2_meshy/M04-20261101T022427Z",
@@ -593,6 +731,20 @@
       "replacements": [
         "M01",
         "M02"
+      ],
+      "ok": true
+    },
+    "B_mansion": {
+      "live": [
+        94,
+        207
+      ],
+      "expected": [
+        94,
+        207
+      ],
+      "replacements": [
+        "M03"
       ],
       "ok": true
     },
