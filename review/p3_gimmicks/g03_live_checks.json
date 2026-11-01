@@ -1,0 +1,212 @@
+{
+  "tool": "modeling/p3_gimmicks/verify_g03.py",
+  "export": "A_plaza-20261101T105131Z",
+  "e0_linear": [
+    0.5039999887943268,
+    0.9899999952316278,
+    1.763999987602233
+  ],
+  "e1_linear": [
+    1.2,
+    0.4,
+    2.0
+  ],
+  "shared_renderers": [
+    "renderer_APL_Fountain_001_WaterAttach_62d4190f",
+    "renderer_APL_JackInteractionPedestal_001_EffectAt_41209d26",
+    "renderer_APL_PeriodicShowRig_001_GhostOrbitAttach_98292de3",
+    "renderer_APL_PeriodicShowRig_001_GhostOrbitAttach_bbb11745",
+    "renderer_APL_PeriodicShowRig_001_GhostOrbitAttach_d616afdb",
+    "renderer_APL_PeriodicShowRig_001_GhostOrbitAttach_ff5a370c",
+    "renderer_APL_PeriodicShowRig_001_Pylons_aca847fe"
+  ],
+  "material": "p3_g03_wm",
+  "source_material": "mat_material_MAT_APL_MagicWater_f767b0c9",
+  "windows": [
+    {
+      "started_utc": "2026-11-01T11:01:41Z",
+      "params": {
+        "G03Intensity": 1.0,
+        "G03Frequency": 0.2,
+        "G03Swing": 1.0
+      },
+      "structure": {
+        "materials": {
+          "renderer_APL_Fountain_001_Water_60ea084e": [
+            "p3_g03_wm"
+          ],
+          "renderer_APL_Fountain_001_WaterAttach_62d4190f": [
+            "mat_material_MAT_APL_MagicWater_f767b0c9"
+          ],
+          "renderer_APL_JackInteractionPedestal_001_EffectAt_41209d26": [
+            "mat_material_MAT_APL_MagicWater_f767b0c9"
+          ],
+          "renderer_APL_PeriodicShowRig_001_GhostOrbitAttach_98292de3": [
+            "mat_material_MAT_APL_MagicWater_f767b0c9"
+          ],
+          "renderer_APL_PeriodicShowRig_001_GhostOrbitAttach_bbb11745": [
+            "mat_material_MAT_APL_MagicWater_f767b0c9"
+          ],
+          "renderer_APL_PeriodicShowRig_001_GhostOrbitAttach_d616afdb": [
+            "mat_material_MAT_APL_MagicWater_f767b0c9"
+          ],
+          "renderer_APL_PeriodicShowRig_001_GhostOrbitAttach_ff5a370c": [
+            "mat_material_MAT_APL_MagicWater_f767b0c9"
+          ],
+          "renderer_APL_PeriodicShowRig_001_Pylons_aca847fe": [
+            "other",
+            "other",
+            "other",
+            "mat_material_MAT_APL_MagicWater_f767b0c9"
+          ]
+        },
+        "fields": {
+          "mat_material_MAT_APL_MagicWater_f767b0c9": {
+            "AlbedoColor": {
+              "r": 0.61803144,
+              "g": 0.80946815,
+              "b": 0.98220706,
+              "a": 1,
+              "profile": "sRGB"
+            },
+            "Metallic": 0.1,
+            "Smoothness": 0.84000003,
+            "EmissiveColor": {
+              "r": 0.7379854,
+              "g": 0.9955913,
+              "b": 1.281473,
+              "a": 1,
+              "profile": "sRGB"
+            }
+          },
+          "p3_g03_wm": {
+            "AlbedoColor": {
+              "r": 0.61803144,
+              "g": 0.80946815,
+              "b": 0.98220706,
+              "a": 1,
+              "profile": "sRGB"
+            },
+            "Metallic": 0.1,
+            "Smoothness": 0.84000003,
+            "Enabled": true
+          }
+        }
+      },
+      "modules": {
+        "G01_Dance": [
+          "P3PlazaDance"
+        ],
+        "G03_Fountain": [
+          "P3FountainGlow"
+        ]
+      },
+      "g03": {
+        "samples": 22,
+        "max_residual": 1.3367838835876e-07,
+        "theta_speed_rad_per_s": 1.25694155815701,
+        "expected_rad_per_s": 1.2566370614359172,
+        "pulse_min": 0.5015577104314004,
+        "pulse_max": 1.4971812578016646,
+        "luminance_min": 0.3617540285,
+        "luminance_max": 1.358493193518
+      },
+      "problems": []
+    },
+    {
+      "started_utc": "2026-11-01T11:07:19Z",
+      "params": {
+        "G03Intensity": 1.0,
+        "G03Frequency": 0.2,
+        "G03Swing": 1.0
+      },
+      "structure": {
+        "materials": {
+          "renderer_APL_Fountain_001_Water_60ea084e": [
+            "p3_g03_wm"
+          ],
+          "renderer_APL_Fountain_001_WaterAttach_62d4190f": [
+            "mat_material_MAT_APL_MagicWater_f767b0c9"
+          ],
+          "renderer_APL_JackInteractionPedestal_001_EffectAt_41209d26": [
+            "mat_material_MAT_APL_MagicWater_f767b0c9"
+          ],
+          "renderer_APL_PeriodicShowRig_001_GhostOrbitAttach_98292de3": [
+            "mat_material_MAT_APL_MagicWater_f767b0c9"
+          ],
+          "renderer_APL_PeriodicShowRig_001_GhostOrbitAttach_bbb11745": [
+            "mat_material_MAT_APL_MagicWater_f767b0c9"
+          ],
+          "renderer_APL_PeriodicShowRig_001_GhostOrbitAttach_d616afdb": [
+            "mat_material_MAT_APL_MagicWater_f767b0c9"
+          ],
+          "renderer_APL_PeriodicShowRig_001_GhostOrbitAttach_ff5a370c": [
+            "mat_material_MAT_APL_MagicWater_f767b0c9"
+          ],
+          "renderer_APL_PeriodicShowRig_001_Pylons_aca847fe": [
+            "other",
+            "other",
+            "other",
+            "mat_material_MAT_APL_MagicWater_f767b0c9"
+          ]
+        },
+        "fields": {
+          "mat_material_MAT_APL_MagicWater_f767b0c9": {
+            "AlbedoColor": {
+              "r": 0.61803144,
+              "g": 0.80946815,
+              "b": 0.98220706,
+              "a": 1,
+              "profile": "sRGB"
+            },
+            "Metallic": 0.1,
+            "Smoothness": 0.84000003,
+            "EmissiveColor": {
+              "r": 0.7379854,
+              "g": 0.9955913,
+              "b": 1.281473,
+              "a": 1,
+              "profile": "sRGB"
+            }
+          },
+          "p3_g03_wm": {
+            "AlbedoColor": {
+              "r": 0.61803144,
+              "g": 0.80946815,
+              "b": 0.98220706,
+              "a": 1,
+              "profile": "sRGB"
+            },
+            "Metallic": 0.1,
+            "Smoothness": 0.84000003,
+            "Enabled": true
+          }
+        }
+      },
+      "modules": {
+        "G01_Dance": [
+          "P3PlazaDance"
+        ],
+        "G03_Fountain": [
+          "P3FountainGlow"
+        ]
+      },
+      "g03": {
+        "samples": 21,
+        "max_residual": 2.10180757687084e-07,
+        "theta_speed_rad_per_s": 1.2559343223702482,
+        "expected_rad_per_s": 1.2566370614359172,
+        "pulse_min": 0.5026117458616265,
+        "pulse_max": 1.498212979961414,
+        "luminance_min": 0.381847801004,
+        "luminance_max": 1.2833731000159998
+      },
+      "problems": []
+    }
+  ],
+  "speeds_rad_per_s": [
+    1.25694155815701,
+    1.2559343223702482
+  ],
+  "ok": true
+}

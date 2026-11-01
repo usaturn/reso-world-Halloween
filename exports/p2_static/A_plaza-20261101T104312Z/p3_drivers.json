@@ -1,0 +1,140 @@
+[
+  {
+    "slot": "A_plaza/APL_DancingPumpkin_001/APL_DancingPumpkin_001_Body",
+    "managedFields": [
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        -2.384185791015625e-07,
+        0.23999999463558197,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "relays": [
+      "p3_g01_position_object_APL_DancingPumpkin_001_Body_03e2e07e",
+      "p3_g01_rotation_object_APL_DancingPumpkin_001_Body_03e2e07e"
+    ]
+  },
+  {
+    "slot": "A_plaza/APL_DancingPumpkin_002/APL_DancingPumpkin_002_Body",
+    "managedFields": [
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        2.384185791015625e-07,
+        0.23999999463558197,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "relays": [
+      "p3_g01_position_object_APL_DancingPumpkin_002_Body_5d184b43",
+      "p3_g01_rotation_object_APL_DancingPumpkin_002_Body_5d184b43"
+    ]
+  },
+  {
+    "slot": "A_plaza/APL_DancingPumpkin_003/APL_DancingPumpkin_003_Body",
+    "managedFields": [
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        0.0,
+        0.23999999463558197,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "relays": [
+      "p3_g01_position_object_APL_DancingPumpkin_003_Body_7861c989",
+      "p3_g01_rotation_object_APL_DancingPumpkin_003_Body_7861c989"
+    ]
+  },
+  {
+    "slot": "A_plaza/APL_DancingPumpkin_004/APL_DancingPumpkin_004_Body",
+    "managedFields": [
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        0.0,
+        0.23999999463558197,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "relays": [
+      "p3_g01_position_object_APL_DancingPumpkin_004_Body_4c9fcd98",
+      "p3_g01_rotation_object_APL_DancingPumpkin_004_Body_4c9fcd98"
+    ]
+  },
+  {
+    "slot": "A_plaza/APL_DancingPumpkin_005/APL_DancingPumpkin_005_Body",
+    "managedFields": [
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        0.0,
+        0.23999999463558197,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "relays": [
+      "p3_g01_position_object_APL_DancingPumpkin_005_Body_355eedbb",
+      "p3_g01_rotation_object_APL_DancingPumpkin_005_Body_355eedbb"
+    ]
+  },
+  {
+    "slot": "A_plaza/APL_DancingPumpkin_006/APL_DancingPumpkin_006_Body",
+    "managedFields": [
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        0.0,
+        0.23999999463558197,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "relays": [
+      "p3_g01_position_object_APL_DancingPumpkin_006_Body_f7ad3fc6",
+      "p3_g01_rotation_object_APL_DancingPumpkin_006_Body_f7ad3fc6"
+    ]
+  }
+]

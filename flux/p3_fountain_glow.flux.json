@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1",
+  "projectDirectory": ".",
+  "parent": "Root/HalloweenMagicalCarnival/P3_Gimmicks/G03_Fountain",
+  "worldState": "../.resoloop/state/p2_A_plaza.json",
+  "deployState": "../.resoloop/flux-state/p3_fountain_glow.json",
+  "modules": [
+    {
+      "name": "p3-fountain-glow",
+      "source": "P3FountainGlow.pg",
+      "module": "P3FountainGlow",
+      "bindings": {
+        "WaterEmissive": {
+          "target": "$member:p3_g03_wm.EmissiveColor",
+          "mode": "drive"
+        }
+      }
+    }
+  ]
+}

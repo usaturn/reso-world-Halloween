@@ -2,6 +2,7 @@
 
 実行（プロジェクトのディレクトリ。content/p3_gimmicks.json と A の地区の宣言を apply した後）:
     uv run python modeling/p3_gimmicks/deploy_flux.py --url ws://localhost:<PORT>/ --report <Git の外の JSON>
+    # W10-A（G03）: --manifest flux/p3_fountain_glow.flux.json（既定は G01 の flux/p3_plaza_dance.flux.json）
 
 - マニフェストの worldState・deployState は、親の checkout から見た相対パス（flux/ から ../.resoloop/...）。worktree から
   配備するときも state を親の checkout に置くため（プロジェクトの AGENTS.md）、--state-dir の絶対パスに直した一時の
@@ -34,9 +35,9 @@ def managed_data_default() -> Path | None:
     return versions[-1] if versions else None
 
 
-def resolved_manifest(resoloop_dir: Path) -> dict:
-    doc = json.loads(MANIFEST.read_text(encoding="utf-8"))
-    flux_dir = MANIFEST.parent
+def resolved_manifest(resoloop_dir: Path, manifest: Path = MANIFEST) -> dict:
+    doc = json.loads(manifest.read_text(encoding="utf-8"))
+    flux_dir = manifest.parent
     for field in ("worldState", "deployState"):
         rel = Path(doc[field])
         if rel.parts[:2] != ("..", ".resoloop"):
@@ -54,17 +55,21 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--report", type=Path, required=True, help="deploy-manifest の出力の保存先（Git の外。新しいファイル）")
     ap.add_argument("--resoloop-dir", type=Path, default=DEFAULT_STATE_DIR, help="state・flux-state を置く .resoloop")
     ap.add_argument("--managed-data", type=Path, default=managed_data_default())
+    ap.add_argument("--manifest", type=Path, default=MANIFEST, help="配備するマニフェスト（flux/ の下）")
     ap.add_argument("--validate-only", action="store_true")
     args = ap.parse_args(argv)
     if args.report.exists():
         raise SystemExit(f"{args.report} already exists")
     if args.managed_data is None or not args.managed_data.is_dir():
         raise SystemExit("managed data is not found; pass --managed-data")
-    doc = resolved_manifest(args.resoloop_dir)
+    manifest_path = args.manifest.resolve()
+    if manifest_path.parent != MANIFEST.parent:
+        raise SystemExit(f"{args.manifest} is not under {MANIFEST.parent}")
+    doc = resolved_manifest(args.resoloop_dir, manifest_path)
     Path(doc["deployState"]).parent.mkdir(parents=True, exist_ok=True)
     env = {**os.environ, "RESONITE_MANAGED_DATA_PATH": str(args.managed_data)}
     with tempfile.TemporaryDirectory(prefix="p3-flux-") as tmp:
-        manifest = Path(tmp) / MANIFEST.name
+        manifest = Path(tmp) / manifest_path.name
         manifest.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         steps = [["resoloop", "flux", "validate-manifest", str(manifest), "--json"]]
         if not args.validate_only:

@@ -1,0 +1,256 @@
+{
+  "key": "C_candy",
+  "source": "model.apply.json",
+  "output": "p2.apply.json",
+  "collider_fields": {
+    "Type": "Static",
+    "CharacterCollider": true,
+    "Sidedness": "DualSided"
+  },
+  "counts": {
+    "mesh": 26,
+    "fixed_collision": 1,
+    "none": 15,
+    "mesh_slots": 42,
+    "object_roots": 30
+  },
+  "objects": [
+    {
+      "slot": "C_candy/CCD_Bench_NorthSide_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "C_candy/CCD_Bench_NorthSide_001"
+    },
+    {
+      "slot": "C_candy/CCD_Bench_SouthSide_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "C_candy/CCD_Bench_SouthSide_001"
+    },
+    {
+      "slot": "C_candy/CCD_CandyArch_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "C_candy/CCD_CandyArch_001"
+    },
+    {
+      "slot": "C_candy/CCD_CandyMachine_001/CCD_CandyMachine_001_Body",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "C_candy/CCD_CandyMachine_001/CCD_CandyMachine_001_Body"
+    },
+    {
+      "slot": "C_candy/CCD_CandyMachine_001/CCD_CandyMachine_001_Chute",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "C_candy/CCD_CandyMachine_001/CCD_CandyMachine_001_Chute"
+    },
+    {
+      "slot": "C_candy/CCD_CandyMachine_001/CCD_CandyMachine_001_Chute/CCD_CandyMachine_001_OutletAttach",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "C_candy/CCD_CandyMachine_001/CCD_CandyMachine_001_ExtruderPivot/CCD_CandyMachine_001_Extruder",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "C_candy/CCD_CandyMachine_001/CCD_CandyMachine_001_GearMainPivot/CCD_CandyMachine_001_GearMain",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "C_candy/CCD_CandyMachine_001/CCD_CandyMachine_001_GearSubPivot/CCD_CandyMachine_001_GearSub",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "C_candy/CCD_CandyStreetPaving_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "C_candy/CCD_CandyStreetPaving_001"
+    },
+    {
+      "slot": "C_candy/CCD_CauldronColorControl_001/CCD_CauldronColorControl_001_Pedestal",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "C_candy/CCD_CauldronColorControl_001/CCD_CauldronColorControl_001_Pedestal"
+    },
+    {
+      "slot": "C_candy/CCD_CauldronColorControl_001/CCD_CauldronColorControl_001_SwitchPivot/CCD_CauldronColorControl_001_CrystalOrb",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "C_candy/CCD_CauldronColorControl_001/CCD_CauldronColorControl_001_SwitchPivot/CCD_CauldronColorControl_001_TouchAttach",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "C_candy/CCD_Fence_NorthPathEast_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "C_candy/CCD_Fence_NorthPathEast_001"
+    },
+    {
+      "slot": "C_candy/CCD_Fence_SouthPathEast_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "C_candy/CCD_Fence_SouthPathEast_001"
+    },
+    {
+      "slot": "C_candy/CCD_Garland_WestNorth_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "C_candy/CCD_Garland_WestNorth_001"
+    },
+    {
+      "slot": "C_candy/CCD_Garland_WestSouth_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "C_candy/CCD_Garland_WestSouth_001"
+    },
+    {
+      "slot": "C_candy/CCD_GumballStall_SouthEast_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "C_candy/CCD_GumballStall_SouthEast_001"
+    },
+    {
+      "slot": "C_candy/CCD_Lantern_NorthConn_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "C_candy/CCD_Lantern_NorthConn_001"
+    },
+    {
+      "slot": "C_candy/CCD_Lantern_SouthConn_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "C_candy/CCD_Lantern_SouthConn_001"
+    },
+    {
+      "slot": "C_candy/CCD_M04_CandyWorkshopProxy_001",
+      "policy": "fixed_collision",
+      "reason": "Meshy の仮モデル M04 の静的な部分。差し替えの範囲の外の兄弟 Slot に置く",
+      "collider_slot": "C_candy/CCD_M04_CandyWorkshopProxy_001_FixedCollision"
+    },
+    {
+      "slot": "C_candy/CCD_M08_FlyingWitchProxy_001",
+      "policy": "none",
+      "reason": "M08 の仮モデル。空中を飛ぶ物で、P3 で動く"
+    },
+    {
+      "slot": "C_candy/CCD_MagicBroom_001/CCD_MagicBroom_001_BroomMesh",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "C_candy/CCD_MagicBroom_001/CCD_MagicBroom_001_BroomMesh/CCD_MagicBroom_001_SweepAttach",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "C_candy/CCD_MagicCauldron_001/CCD_MagicCauldron_001_Body",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "C_candy/CCD_MagicCauldron_001/CCD_MagicCauldron_001_Body"
+    },
+    {
+      "slot": "C_candy/CCD_MagicCauldron_001/CCD_MagicCauldron_001_Liquid",
+      "policy": "none",
+      "reason": "大釜の液面。器（Body）に当たり判定がある"
+    },
+    {
+      "slot": "C_candy/CCD_MagicCauldron_001/CCD_MagicCauldron_001_Liquid/CCD_MagicCauldron_001_BubbleAttach",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "C_candy/CCD_MagicCauldron_001/CCD_MagicCauldron_001_SmokeAttach",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "C_candy/CCD_MagicCauldron_001/CCD_MagicCauldron_001_StirRodPivot/CCD_MagicCauldron_001_StirRod",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "C_candy/CCD_PastryStall_SouthWest_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "C_candy/CCD_PastryStall_SouthWest_001"
+    },
+    {
+      "slot": "C_candy/CCD_PotionStall_NorthEast_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "C_candy/CCD_PotionStall_NorthEast_001"
+    },
+    {
+      "slot": "C_candy/CCD_Pumpkin_ArchNorth_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "C_candy/CCD_Pumpkin_ArchNorth_001"
+    },
+    {
+      "slot": "C_candy/CCD_Pumpkin_ArchSouth_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "C_candy/CCD_Pumpkin_ArchSouth_001"
+    },
+    {
+      "slot": "C_candy/CCD_StreetLamp_MidNorth_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "C_candy/CCD_StreetLamp_MidNorth_001"
+    },
+    {
+      "slot": "C_candy/CCD_StreetLamp_MidSouth_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "C_candy/CCD_StreetLamp_MidSouth_001"
+    },
+    {
+      "slot": "C_candy/CCD_StreetLamp_PlazaNorth_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "C_candy/CCD_StreetLamp_PlazaNorth_001"
+    },
+    {
+      "slot": "C_candy/CCD_StreetLamp_PlazaSouth_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "C_candy/CCD_StreetLamp_PlazaSouth_001"
+    },
+    {
+      "slot": "C_candy/CCD_StreetLamp_WestNorth_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "C_candy/CCD_StreetLamp_WestNorth_001"
+    },
+    {
+      "slot": "C_candy/CCD_StreetLamp_WestSouth_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "C_candy/CCD_StreetLamp_WestSouth_001"
+    },
+    {
+      "slot": "C_candy/CCD_SweetStall_NorthWest_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "C_candy/CCD_SweetStall_NorthWest_001"
+    },
+    {
+      "slot": "C_candy/CCD_WitchPatrolLoop_001/CCD_WitchPatrolLoop_001_CarrierPivot/CCD_WitchPatrolLoop_001_CarrierAttach",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "C_candy/CCD_WitchPatrolLoop_001/CCD_WitchPatrolLoop_001_GuideRing",
+      "policy": "none",
+      "reason": "魔女の巡回路の目印の輪（高さ 10 m の空中）"
+    }
+  ]
+}
