@@ -843,7 +843,8 @@
             "misses": 0,
             "surfaces_below_tip": 1
           }
-        ]
+        ],
+        "measured_meshes_shown": true
       },
       "colliders_under_finished_asset": [],
       "colliders_under_moving_parts": [],

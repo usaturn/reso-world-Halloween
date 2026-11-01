@@ -45,7 +45,10 @@
   - 組み立て（W09R-D で追加。REPLACEMENTS の assembly_with。M05 の屋根）: この行の素材の原点と assembly_with の行の素材の原点の
     差が、アセット一覧の pivot_local の差を素材の向きで回した物と 1 cm 以内
   - 支柱（W09R-D で追加。REPLACEMENTS の poles。M05 の屋根）: 地区の宣言の支柱のメッシュ（8 本）の上端が、どの支柱でも素材の
-    屋根の下面以上で、先が屋根の閉じた殻の中にある（軸の上で先より下の屋根の面の数が奇数）。check_poles
+    屋根の下面以上で、先が屋根の閉じた殻の中にある（軸の上で先より下の屋根の面の数が奇数）。check_poles。測った支柱と屋根の
+    メッシュがワールドに表示されている物か（Slot が有効、MeshRenderer が有効で同じ Slot の StaticMesh を参照し、その URL が
+    apply の state の記録と同じで、state の sourceHash がバンドルのファイルと同じ）も確かめる（check_measured_mesh_is_shown。
+    PR #54 の GPT のレビュー）。state は --state-dir（既定は親の checkout の .resoloop/state）
   - 前照灯（W09R-D で追加。REPLACEMENTS の lens_attachment。M06）: 地区の取付位置が、素材のレンズの前面（review/M06/checks.json
     の headlamp.front_profile_x0）の前 max_gap_m 以内で、レンズの高さにある。check_lens_attachment
 """
@@ -53,6 +56,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 import sys
@@ -74,6 +78,18 @@ from modeling.p2_static.verify_live import (  # noqa: E402
     observe,
     to_world,
 )
+
+
+# apply の state の置き場（親の checkout。AGENTS.md）。--state-dir で変えられる
+STATE_DIR = Path("/workspaces/reso-world/worlds/reso-world-Halloween/.resoloop/state")
+
+
+def applied_mesh(state_file: str, bundle: Path, doc: dict, key: str) -> dict:
+    """宣言の資産 key のメッシュのファイルが、apply の state に記録された物（sourceHash）と同じかと、その取り込み先の URL。
+    検査に使うローカルのバンドルのメッシュと、ワールドが表示しているメッシュが同じ物かを確かめるために使う（PR #54 の GPT のレビュー）。"""
+    rec = (json.loads((STATE_DIR / state_file).read_text(encoding="utf-8")).get("assets") or {}).get(key) or {}
+    sha = hashlib.sha256((bundle / doc["assets"][key]["source"]).read_bytes()).hexdigest()
+    return {"state": state_file, "asset": key, "bundle_matches_state": rec.get("sourceHash", "").lower() == sha, "url": rec.get("url")}
 
 
 def _load(rel: str) -> dict:
@@ -170,7 +186,9 @@ def load_inputs(meshy_id: str, rep: dict) -> dict:
         pkey = next(c for c in pnode["components"] if c["type"] == "FrooxEngine.StaticMesh")["fields"]["URL"].removeprefix("$asset:")
         (cpath, ckey), = _mesh_slots(asset_slot)
         poles = {"slot": rep["poles"], "district_bundle": dbundle.relative_to(PROJECT_ROOT).as_posix(),
-                 "pole_mesh": _mesh(dbundle, ddoc, pkey), "canopy_path": list(cpath), "canopy_mesh": _mesh(bundle, doc, ckey)}
+                 "pole_mesh": _mesh(dbundle, ddoc, pkey), "canopy_path": list(cpath), "canopy_mesh": _mesh(bundle, doc, ckey),
+                 "pole_applied": applied_mesh(f"p2_{rep['district']}.json", dbundle, ddoc, pkey),
+                 "canopy_applied": applied_mesh(f"p2m_{meshy_id}.json", bundle, doc, ckey)}
     lens = None
     if rep.get("lens_attachment"):
         # 前照灯（W09R-D の M06）: レンズの前面の形は素材の仕上げの検査（review/<source>/checks.json の headlamp）から
@@ -352,6 +370,24 @@ def check_poles(pole_chain: list[dict], pole_mesh: dict, canopy_chain: list[dict
         row["surfaces_below_tip"] = below
         rows.append(row)
     return rows, problems
+
+
+def check_measured_mesh_is_shown(chain: list[dict], applied: dict) -> list[str]:
+    """検査で測るメッシュ（ローカルのバンドル）が、chain の最後の Slot に表示されている物か: Slot と祖先が有効、MeshRenderer が
+    有効で同じ Slot の StaticMesh を参照し、その URL が apply の state の記録と同じで、state の記録がバンドルのファイルと同じ
+    （PR #54 の GPT のレビュー: 支柱のメッシュの更新を apply していない・支柱を隠した状態でも、新しいバンドルの形で合格していた）。"""
+    node, problems = chain[-1], []
+    inactive = [n["name"] for n in chain if n.get("isActive") is False]
+    if inactive:
+        problems.append(f"{node['name']}: inactive Slot on the path: {inactive}")
+    renderer, mesh = component(node, "MeshRenderer"), component(node, "StaticMesh")
+    if member(renderer, "Enabled") is not True or mesh is None or member(renderer, "Mesh") != mesh["id"]:
+        problems.append(f"{node['name']}: not drawn with its own StaticMesh")
+    if not applied["bundle_matches_state"]:
+        problems.append(f"{node['name']}: the measured bundle mesh {applied['asset']} is not the one recorded in {applied['state']}")
+    elif mesh is None or not applied["url"] or member(mesh, "URL") != applied["url"]:
+        problems.append(f"{node['name']}: StaticMesh.URL is not the applied {applied['asset']} of {applied['state']}")
+    return problems
 
 
 def check_lens_attachment(att_chain: list[dict], asset_chain: list[dict], lens: dict) -> tuple[dict, list[str]]:
@@ -593,7 +629,10 @@ def check_one(root: dict, meshy_id: str, rep: dict, inp: dict) -> dict:
             problems.append(f"poles: {poles['slot']} or the canopy mesh not found")
         else:
             rows_p, probs_p = check_poles(pole_chain, poles["pole_mesh"], canopy_chain, poles["canopy_mesh"])
-            out["poles"] = {"slot": poles["slot"], "district_bundle": poles.get("district_bundle"), "poles": rows_p}
+            shown = check_measured_mesh_is_shown(pole_chain, poles["pole_applied"]) + check_measured_mesh_is_shown(canopy_chain, poles["canopy_applied"])
+            out["poles"] = {"slot": poles["slot"], "district_bundle": poles.get("district_bundle"), "poles": rows_p,
+                            "measured_meshes_shown": not shown}
+            problems.extend(shown)
             if len(rows_p) != 8:
                 problems.append(f"poles: {len(rows_p)} poles found, expected 8")
             problems.extend(probs_p)
@@ -760,7 +799,10 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--url", required=True)
     parser.add_argument("--raw-out", required=True, help="生の観察の保存先（Git の外）")
     parser.add_argument("--output", required=True, help="要約の保存先（例 review/p2_meshy/live_checks.json）")
+    parser.add_argument("--state-dir", type=Path, help="apply の state の置き場（既定は親の checkout の .resoloop/state）")
     args = parser.parse_args(argv)
+    if args.state_dir:
+        globals()["STATE_DIR"] = args.state_dir
     live = observe(args.url)
     Path(args.raw_out).write_text(json.dumps(live, ensure_ascii=False) + "\n", encoding="utf-8")
     root = live["data"]

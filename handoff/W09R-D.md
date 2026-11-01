@@ -16,14 +16,15 @@
 3. **利用者の決定（支柱「屋根まで伸ばす」）**: W05 の支柱 8 本を、支柱ごとに屋根の下面の 2 cm 上まで伸ばし（TurnRoot のローカルで 3.25 m → 3.97〜4.27 m）、上端の飾りの輪を 3 cm 下げた（記録 15.2・15.3）
 4. 前照灯の取付位置を (0, 1.233, 1.498) → (0, 1.26, 1.39)（M06 のレンズの前面の 1.35 cm 前）へ移した。**利用者の決定**: 取付位置の目印（電球のように見える）はこのまま
 5. M05・M06 を差し替えた。外接箱・原点・取付位置の差 0.0 m、M05 は東、M06 は北を向く。2 回目の apply は書き込み 0、全 17 宣言が変更 0 で収束（記録 15.6・15.7）
-6. `verify_live.py` の取付位置の期待値に親の部品の位置を足した（直し）。屋根と柱の組み立て・支柱・前照灯の検査を足した。テスト 4 件（記録 15.4、9 章）
-7. 撮影 14 枚。黒い面・反転・透けなし（記録 15.8）。利用者の歩行は「問題なし」、60 fps 前後
-8. 後続の子のために、apply した 3 つのバンドルを Git の外の `p2_bundles/` に控えた（記録 15.5）
+6. `verify_live.py` の取付位置の期待値に親の部品の位置を足した（直し）。屋根と柱の組み立て・支柱・前照灯の検査を足した。テスト 6 件（記録 15.4、9 章）
+7. GPT のレビュー（確認事項 7）: Major 1 件（測った支柱のメッシュがワールドに表示されている物かを確かめていない）と Minor 1 件（M05 の外接箱の寸法の並び）を採用して直した（記録 15.9）
+8. 撮影 14 枚。黒い面・反転・透けなし（記録 15.8）。利用者の歩行は「問題なし」、60 fps 前後
+9. 後続の子のために、apply した 3 つのバンドルを Git の外の `p2_bundles/` に控えた（記録 15.5）
 
 ## 3. 変更ファイルと版
 
 - 基点: `main` の `66c4839`
-- 変更（差し替え）: `modeling/p2_meshy/replacements.py`（3 行と新しい項目 `source`・`export_root`・`assembly_with`・`poles`・`lens_attachment`）、`modeling/p2_meshy/export_meshy.py`（`extract_part`・`_providers_for`）、`modeling/p2_meshy/verify_live.py`（記録 15.4）、`tests/test_p2_meshy_verify.py`（4 件）、`review/p2_meshy/live_checks.json`（全 8 行の実測）、`docs/p2-meshy-replacement.md`（冒頭・4 章・8 章の M05・M06 の行・11 章・15 章）
+- 変更（差し替え）: `modeling/p2_meshy/replacements.py`（3 行と新しい項目 `source`・`export_root`・`assembly_with`・`poles`・`lens_attachment`）、`modeling/p2_meshy/export_meshy.py`（`extract_part`・`_providers_for`）、`modeling/p2_meshy/verify_live.py`（記録 15.4）、`tests/test_p2_meshy_verify.py`（6 件）、`review/p2_meshy/live_checks.json`（全 8 行の実測）、`docs/p2-meshy-replacement.md`（冒頭・4 章・8 章の M05・M06 の行・11 章・15 章）
 - 変更（閉じた子 W05 の所有。記録 15.3）: `modeling/D_amusement/layout_data.py`（定数 3 つ）・`assets_rides.py`（支柱・飾りの輪・前照灯）、生成物の `assets/manifest/D_amusement.json`（`Att_Headlamp` の `pivot_local` だけ）・`review/D_amusement/*.png`
 - 追加: `exports/p2_meshy/M05_CenterCasing-20261101T063625Z/`・`M05_Canopy-20261101T063625Z/`・`M06-20261101T063625Z/` と `exports/p2_static/<key>-20261101T062140Z/`（6 キー）・`D_amusement-20261101T063618Z/` の記録（`report.json`・`validate.json`・`placement.json`・`colliders.json`・`replacements.json`）、`review/p2_meshy/` の撮影 14 枚、この文書
 - W09-M05・W09-M06 の `M05`・`M06`、W08 の `modeling/p2_static/` は変えていない
@@ -56,7 +57,7 @@ uv run python modeling/p2_meshy/verify_live.py --url "$URL" --raw-out <Git の�
 |---|---|
 | 保存の後の最初の diff | 全 14 宣言で 0。world・D・E・M02 の資産は `resdb` への移行の no-op（記録 15.1） |
 | export・validate | M05 の 2 行・M06・D がオフライン・`--strict` で issues 0（15.5） |
-| M05 | 柱 1.861 × 3.400 × 1.907 m・屋根 9.314 × 6.387 × 9.512 m、期待値との差 0.0 m。TurnRoot の回転 0 で東（`placement_hint` -90）。屋根は柱の 2.964 m 上（差 0.0 m）。支柱 8 本の上端は屋根の下面の 2.0〜2.8 cm 上で、先は屋根の殻の中（15.7） |
+| M05 | 世界の X × 高さ × Z で、柱 1.907 × 3.400 × 1.861 m・屋根 9.512 × 6.387 × 9.314 m、期待値との差 0.0 m。TurnRoot の回転 0 で東（`placement_hint` -90）。屋根は柱の 2.964 m 上（差 0.0 m）。支柱 8 本の上端は屋根の下面の 2.0〜2.8 cm 上で、先は屋根の殻の中（15.7） |
 | M06 | 1.211 × 1.875 × 3.000 m、差 0.0 m。正面は北（進む向き）。前照灯の取付位置はレンズの前面の 1.35 cm 前、レンズの中心の高さ |
 | 動作の root | `TurnRoot`・`EngineRoot`（と親の `DAM_Carousel_001`・`DAM_GhostTrain_001`）の Slot の ID・位置・回転・拡縮が着手時のスナップショットと同じ |
 | 見た目 | 撮影 14 枚。画像の欠け・反転・黒い面・透けなし。仮モデルは表示されない。排障器と線路の間に隙間（15.8） |
@@ -66,7 +67,7 @@ uv run python modeling/p2_meshy/verify_live.py --url "$URL" --raw-out <Git の�
 | 再適用 | 4 つの宣言の 2 回目の apply が書き込み 0。全 17 宣言の diff が 0。Slot・Component は増えない |
 | 所有範囲 | diff の対象は 3 つの `visual_root` の下と資産、D の支柱のメッシュ・前照灯の取付位置・3 つの仮モデルの描画だけ。ほかの宣言は 0 |
 | 負荷 | 遊園地の近くで 60 fps 前後（利用者の測定、W08 と同じ端末）。三角形 89,037（M05 74,233・M06 14,804）、画像 6（約 42 MB の見積もり）、光源 0、当たり判定 0 |
-| テスト | `uv run pytest` 102 件が通る（9 章） |
+| テスト | `uv run pytest` 104 件が通る（9 章） |
 
 ## 6. 次の子（W09R-E #50、M07 魔法の時計塔）への注意と要望
 
@@ -77,6 +78,7 @@ uv run python modeling/p2_meshy/verify_live.py --url "$URL" --raw-out <Git の�
 - `REPLACEMENTS` の `source`・`export_root`・`asset_id`（`export_meshy.extract_part`）で、1 つの素材の子だけを別の Slot の下に置ける。M07 の文字盤を別に扱う必要が出たときに使える（M07 は 1 つのメッシュなので、子に分けるには M07 の `.blend` の変更が要る）
 - `_Dial` の描画を止めるには、`hide_placeholders` の範囲の守り（`visual_root` か `moving_parts` の `motion_root` の下だけ）を広げる必要がある（#50 の本文）。この子は前照灯の目印で同じ判断になり、利用者の決定で止めなかった
 - 屋根の下面の計測（`verify_live.py` の `_up_hits`）は、素材のメッシュ（バンドルの `*.mesh.json`、Resonite の軸）へ鉛直の線を当てる。M07 の文字盤の面と針の隙間を測るときにも使える
+- `verify_live.py` は支柱の検査で apply の state（`--state-dir`、既定は親の checkout の `.resoloop/state`）を読み、測るメッシュがワールドに表示されている物かを確かめる（記録 15.9）。保存して開き直すと資産の URL は `resdb:///` に移るが、state の URL は `local://` のまま残り（diff では書き直されない）、この検査が失敗する。先に D を apply し、state の URL が変わったかを確かめてから実行する（apply で書き直されるかは未確認）
 - `resoloop capture` は Resonite が背面にあると真っ黒になる（約 23 KB の JPEG）。撮影の前に利用者に前面へ出してもらい、撮った後にファイルの大きさを見る
 
 ### 6.2 要望（他の所有。この子は直していない）
@@ -106,5 +108,7 @@ uv run python modeling/p2_meshy/verify_live.py --url "$URL" --raw-out <Git の�
   - `test_pole_ending_below_the_canopy_is_detected`: 支柱の上端が屋根の下面に届かない（宙で止まって見える）。屋根の殻に 2 cm 入った正しい状態で通ることも確かめる
   - `test_pole_poking_out_of_the_canopy_is_detected`: 支柱の先が屋根の上に突き抜ける
   - `test_headlamp_attachment_inside_the_lamp_is_detected`: 前照灯の取付位置が W05 の旧い位置（ランプの中）のまま。新しい位置で通り、隙間 1.25 cm を返すことも確かめる
+  - `test_pole_mesh_that_is_not_the_applied_one_is_detected`（GPT のレビューの指摘 1）: ワールドの支柱が、測ったバンドルのメッシュではない（更新を apply していない旧い支柱、apply の後に export し直したバンドル）。正しい状態で通ることも確かめる
+  - `test_hidden_poles_are_detected`（同 1）: 支柱の描画が止まっている
   - それぞれ守りを外すと、そのテストだけが失敗することを確かめた（変異ごとに `PYTHONPYCACHEPREFIX` を分けた）
 - 書かなかったもの: 取付位置の期待値の直し（親の部品の位置を足す）は、誤ると正しい配置を失敗にする方向で、実行でエラーとして現れる（L）。`extract_part` の、子が無い・位置が `pivot_local` と違う・回っているときの停止はエラーで分かる（L）。材質と画像の集め方の誤りは validate の参照切れで分かり（L）、`split_part` が同じ結果になることは M01・M03・M08 の宣言の作り直しで確かめた。支柱・前照灯の値（D の定数）と `REPLACEMENTS` の値は設定の写し（F）で、実測の検査と撮影で確かめた

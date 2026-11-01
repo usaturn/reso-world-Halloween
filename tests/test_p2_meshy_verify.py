@@ -387,3 +387,25 @@ def test_headlamp_attachment_inside_the_lamp_is_detected() -> None:
     # the W05 position before W09R-D: 1.9 cm behind the lens front, so a light there is hidden in the lamp
     old = verify_live.check_lens_attachment([_slot("Att_Headlamp", pos=(0.0, 1.498, 1.233))], asset, lens)
     assert any("from the lens front" in p for p in old[1])
+
+
+# PR #54 review (GPT): the pole check measured the latest local bundle mesh and only took the Slot transform from the
+# world, so a pole mesh update that was never applied (the old short poles still shown) or hidden poles passed.
+
+APPLIED = {"state": "p2_D.json", "asset": "mesh_poles", "bundle_matches_state": True, "url": "local://poles-new"}
+
+
+def _poles_slot(url: str = "local://poles-new", enabled: bool = True) -> list[dict]:
+    return [_slot("TurnRoot"), _slot("Poles", comps=[_comp("pm", "StaticMesh", URL=url),
+                                                     _comp("pr", "MeshRenderer", Enabled=enabled, Mesh="id:pm", Materials=[])])]
+
+
+def test_pole_mesh_that_is_not_the_applied_one_is_detected() -> None:
+    assert verify_live.check_measured_mesh_is_shown(_poles_slot(), APPLIED) == []
+    assert any("not the applied" in p for p in verify_live.check_measured_mesh_is_shown(_poles_slot("local://poles-old"), APPLIED))
+    stale = {**APPLIED, "bundle_matches_state": False}  # the bundle was exported again after the last apply
+    assert any("not the one recorded" in p for p in verify_live.check_measured_mesh_is_shown(_poles_slot(), stale))
+
+
+def test_hidden_poles_are_detected() -> None:
+    assert any("not drawn" in p for p in verify_live.check_measured_mesh_is_shown(_poles_slot(enabled=False), APPLIED))
