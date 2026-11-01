@@ -14,6 +14,9 @@ modeling/p2_static/export_p2.py から、当たり判定（colliders.compose）�
 - G03（W10-A）: 噴水の水の Slot に、共有の水の材質を写した専用の材質を足し、水の MeshRenderer だけをそれに付け替える
   （add_g03_material）。その EmissiveColor を ProtoFlux（flux/P3FountainGlow.pg）が drive する。水は動かさないので
   managedFields は付けない
+- G05・G06（W10-B）: B の 2 体のおばけの FloatPivot に G01 と同じ中継 2 つ（位置・回転。managedFields ["scale"]）、扉の蝶番 2 つに
+  回転の中継 1 つ（managedFields ["position", "scale"]。B を再 apply しても閉じた形に戻さない）。それぞれの Value を ProtoFlux
+  （flux/P3MansionMotion.pg）が drive する
 """
 
 from __future__ import annotations
@@ -28,9 +31,24 @@ RELAY_TYPES = {"Position": "[FrooxEngine]FrooxEngine.ValueMultiDriver<float3>",
                "Rotation": "[FrooxEngine]FrooxEngine.ValueMultiDriver<floatQ>"}
 
 
-def relay_key(slot_key: str, member: str) -> str:
-    """G01 の中継（ValueMultiDriver）の Component のキー。flux のマニフェストの drive の先。"""
-    return f"p3_g01_{member.lower()}_{slot_key}"
+def relay_key(slot_key: str, member: str, gimmick: str = "g01") -> str:
+    """中継（ValueMultiDriver）の Component のキー。flux のマニフェストの drive の先（G01 は p3_g01_、W10-B は p3_g05_・p3_g06_）。"""
+    return f"p3_{gimmick}_{member.lower()}_{slot_key}"
+
+
+def relay_members(key: str, name: str) -> tuple[str, list[str]] | None:
+    """地区 key の Slot name に足す中継の（ギミックの接頭辞, 駆動するメンバー）。中継を使わない Slot は None。
+
+    G01・G05 は位置と回転（上下と傾き・揺れ）、G06 は回転だけ（蝶番。位置は静的な apply が管理し続ける）。
+    """
+    if key == gimmicks.g01()["district"]:
+        return "g01", ["Position", "Rotation"]
+    if key == gimmicks.g05()["district"]:
+        if name in {g["motion_root"] for g in gimmicks.g05()["ghosts"]}:
+            return "g05", ["Position", "Rotation"]
+        if name in {h["motion_root"] for h in gimmicks.g06()["hinges"]}:
+            return "g06", ["Rotation"]
+    return None
 
 
 def _find_named(node: dict, chain: list[str], wanted: set[str], hits: dict[str, list[tuple[list[str], dict]]]) -> None:
@@ -61,11 +79,14 @@ def add_drivers(doc: dict, key: str) -> list[dict]:
                "rest": {"position": slot.get("position"), "rotation": slot.get("rotation")}}
         g13 = gimmicks.g13()
         comps = node.setdefault("components", [])
-        if key == gimmicks.g01()["district"]:
+        relays = relay_members(key, name)
+        if relays is not None:
+            gid, members = relays
             rest = {"Position": slot.get("position") or [0.0, 0.0, 0.0], "Rotation": slot.get("rotation") or [0.0, 0.0, 0.0, 1.0]}
             row["relays"] = []
-            for member, type_name in RELAY_TYPES.items():
-                comp_key = relay_key(slot["key"], member)
+            for member in members:
+                type_name = RELAY_TYPES[member]
+                comp_key = relay_key(slot["key"], member, gid)
                 if any(c.get("key") == comp_key for c in comps):
                     raise ValueError(f"{key}: {comp_key} is already declared")
                 comps.append({

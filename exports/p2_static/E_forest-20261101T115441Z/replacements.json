@@ -1,0 +1,21 @@
+[
+  {
+    "meshy_id": "M07",
+    "slot": "E_forest/EFR_ClockTower_001/EFR_ClockTower_001_Body",
+    "component": "renderer_EFR_ClockTower_001_Body_519cb090",
+    "Enabled": false
+  },
+  {
+    "meshy_id": "M07",
+    "slot": "E_forest/EFR_ClockTower_001/EFR_ClockTower_001_Dial",
+    "component": "renderer_EFR_ClockTower_001_Dial_1c1f2e2e",
+    "Enabled": false
+  },
+  {
+    "meshy_id": "M07",
+    "slot": "E_forest/EFR_ClockTower_001/EFR_ClockTower_001_Body_FixedCollision",
+    "component": "fixedcol_collider_EFR_ClockTower_001_Body_519cb090",
+    "Enabled": false,
+    "reason": "collision is the finished asset's own mesh"
+  }
+]

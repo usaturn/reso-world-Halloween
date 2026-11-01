@@ -110,6 +110,84 @@
       "initialFields": {
         "Value": 1.0
       }
+    },
+    {
+      "key": "g05_amp",
+      "type": "[FrooxEngine]FrooxEngine.DynamicValueVariable<float>",
+      "fields": {
+        "VariableName": "HMC_P3/G05Intensity"
+      },
+      "identityFields": [
+        "VariableName"
+      ],
+      "initialFields": {
+        "Value": 1.0
+      }
+    },
+    {
+      "key": "g05_freq",
+      "type": "[FrooxEngine]FrooxEngine.DynamicValueVariable<float>",
+      "fields": {
+        "VariableName": "HMC_P3/G05Frequency"
+      },
+      "identityFields": [
+        "VariableName"
+      ],
+      "initialFields": {
+        "Value": 0.25
+      }
+    },
+    {
+      "key": "g05_phase",
+      "type": "[FrooxEngine]FrooxEngine.DynamicValueVariable<float>",
+      "fields": {
+        "VariableName": "HMC_P3/G05PhaseSpread"
+      },
+      "identityFields": [
+        "VariableName"
+      ],
+      "initialFields": {
+        "Value": 1.0
+      }
+    },
+    {
+      "key": "g06_amp",
+      "type": "[FrooxEngine]FrooxEngine.DynamicValueVariable<float>",
+      "fields": {
+        "VariableName": "HMC_P3/G06Intensity"
+      },
+      "identityFields": [
+        "VariableName"
+      ],
+      "initialFields": {
+        "Value": 1.0
+      }
+    },
+    {
+      "key": "g06_freq",
+      "type": "[FrooxEngine]FrooxEngine.DynamicValueVariable<float>",
+      "fields": {
+        "VariableName": "HMC_P3/G06Frequency"
+      },
+      "identityFields": [
+        "VariableName"
+      ],
+      "initialFields": {
+        "Value": 0.041666666666666664
+      }
+    },
+    {
+      "key": "g06_phase",
+      "type": "[FrooxEngine]FrooxEngine.DynamicValueVariable<float>",
+      "fields": {
+        "VariableName": "HMC_P3/G06Phase"
+      },
+      "identityFields": [
+        "VariableName"
+      ],
+      "initialFields": {
+        "Value": 0.0
+      }
     }
   ],
   "children": [
@@ -139,6 +217,28 @@
       "slot": {
         "key": "p3_g03",
         "name": "G03_Fountain",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "slot": {
+        "key": "p3_g0506",
+        "name": "G05_G06_Mansion",
         "position": [
           0,
           0,
@@ -247,6 +347,66 @@
         0.0
       ],
       "fieldOfView": 50,
+      "width": 1600,
+      "height": 900
+    },
+    "g05_ghosts": {
+      "position": [
+        0.0,
+        4.2,
+        22.5
+      ],
+      "target": [
+        0.0,
+        2.9,
+        30.5
+      ],
+      "fieldOfView": 60,
+      "width": 1600,
+      "height": 900
+    },
+    "g05_ghost_bench": {
+      "position": [
+        -1.2,
+        2.9,
+        25.6
+      ],
+      "target": [
+        -4.3,
+        2.4,
+        28.4
+      ],
+      "fieldOfView": 50,
+      "width": 1600,
+      "height": 900
+    },
+    "g06_doors": {
+      "position": [
+        0.7,
+        3.4,
+        36.6
+      ],
+      "target": [
+        0.7,
+        3.1,
+        40.0
+      ],
+      "fieldOfView": 70,
+      "width": 1600,
+      "height": 900
+    },
+    "g06_doors_inside": {
+      "position": [
+        0.7,
+        3.4,
+        43.2
+      ],
+      "target": [
+        0.7,
+        2.6,
+        40.0
+      ],
+      "fieldOfView": 80,
       "width": 1600,
       "height": 900
     }

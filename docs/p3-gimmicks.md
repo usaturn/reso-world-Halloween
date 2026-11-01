@@ -3,6 +3,7 @@
 自動ギミックを Resonite で動かす方式と、最初の 2 種類 **G13 メリーゴーラウンドの床の回転**・**G01 小カボチャのダンス**の記録。残りの先行 8 種類（Spec §8 の G03・G05・G06・G09・G11・G15・G18・G20）の子は、この文書の 2・4 章の手順と `handoff/W10.md` を使う。
 
 - W10-A（#58）の **G03 噴水の水と光の周期変化**は 16 章（方式の追記: 共有の材質を写した専用の材質と、発光の色の drive）
+- W10-B（#59）の **G05 おばけの浮遊**・**G06 屋敷の扉の開閉**は 17 章（方式の追記: B 用の 1 つのモジュール、回転だけを駆動する蝶番の中継と `managedFields`、開閉の往復の式）
 
 - 担当: Claude Code（Opus 5.5）、2026-11-01（UTC）。apply・配備したのはこのセッションだけ。GPT のレビューは PR で 1 回（14 章）
 - 着手前の確認事項: W08 #41 の回答（issuecomment-6545243021）をそのまま使う（#56 の本文。起票したセッションの判断）
@@ -15,6 +16,7 @@
 - ProtoFlux のビルドに使った Resonite の DLL: 共有の managed data の 2026.9.18.82（`resoloop doctor` の managed data の項目は、`RESONITE_MANAGED_DATA_PATH` をコマンドだけに付けて pass。3,320 ノード）。実行中の Resonite（2026.10.29.1239）より古いが、ビルド・配備・実行は問題なかった（6 章）
 - 着手時の W08 の root: Slot 745・Component 1,684（W09R-E の完了時と同じ。利用者が手で変えた所は無い）。スナップショットと diff・apply・配備の報告は親の checkout の `tmp/w10/`（Git の対象外）
 - W10-A（#58、2026-11-01）も同じ版（Resonite 2026.10.29.1239、ResoniteLink 0.13.1.0、resoloop 0.2.0、Flux-SDK 1.9.0・managed data 2026.9.18.82、Blender 5.0.1）。記録は親の checkout の `tmp/w10a/`
+- W10-B（#59、2026-11-01）も同じ版。記録は親の checkout の `tmp/w10b/`
 - 駆動は、対象のワールドが Resonite の前面にあるときだけ進む（背面では `Spinner` も ProtoFlux の drive も止まって見える。最初の観察で回転が単位回転のまま変わらず、利用者に前面へ出してもらうと動いた）。観察・撮影の前に前面へ出してもらう
 
 ## 2. 方式
@@ -356,3 +358,155 @@ GPT のレビュー（16.11）で直した検査での実行: `verify_g03.py --w
 - 2 人以上での同期、途中参加（P4）。この子の確認は、共有の時刻と同期する値だけから計算する drive の仕組みの説明と、単独の確認まで
 - 保存・再読込の後に、専用の材質・ProtoFlux のモジュール・HMC_P3 の値が残って動くか（P4。開き直していない）
 - VR での見え方（発光の明るさ・まぶしさ）、メモリの負荷
+
+## 17. W10-B（#59）G05 おばけの浮遊・G06 屋敷の扉の開閉
+
+- 担当: Claude Code（Opus 5.5）、2026-11-01（UTC）。claim `agent-claims/issue-59`（11:41:58Z）。apply・配備したのはこのセッションだけ。GPT のレビューは PR で 1 回（17.11）
+- 着手前の確認事項: W08 #41 の回答（issuecomment-6545243021）をそのまま使う（#59 の本文。利用者の変更なし）
+- 対象: B の `BMN_FloatingGhost_001`・`_002` の `_FloatPivot`（G05）と、`BMN_MansionDoubleDoor_001_HingeLeft`・`_HingeRight`（G06）。部品・範囲は W03 の `layout/areas/B_mansion.json` の `Hero_or_Gimmick.gimmicks`。おばけの体と手提げのランタン、扉の葉と枠、玄関ホール、M03 の素材の宣言は変えていない
+- 記録は親の checkout の `tmp/w10b/`（Git の対象外）
+
+### 17.1 方式の追記
+
+| 項目 | 決めたこと | 理由 |
+|---|---|---|
+| 駆動の作り方 | G05・G06 とも ProtoFlux（`flux/P3MansionMotion.pg`。B 用の 1 つのモジュール、worldState は B の state、配備先は `P3_Gimmicks/G05_G06_Mansion`）。B の宣言の各 Slot に中継の `ValueMultiDriver` を置き、その `Value` を drive する（W10 の G01 と同じ） | G05 は上下と揺れを 1 つの位相から決め、2 体の位相をずらし、I04（W11）が値を変えられる必要がある（G01 と同じ型）。G06 は「閉じたまま → 開く → 開いたまま → 閉じる」の往復で、`Spinner` のような連続回転の Component では作れない。Flux の drive は Slot のメンバーを結べないので中継が要る（2.1） |
+| `managedFields` | おばけの `_FloatPivot` は `["scale"]`（位置と回転を駆動）、扉の蝶番は `["position", "scale"]`（回転だけを駆動。位置は W09R-B が M03 の開口の蝶番の線へ動かした値で、静的な apply が管理し続ける） | B を再 apply しても扉が閉じた形に戻らない（`handoff/W09R-B.md`）。17.8 で、扉が動いている最中の B の 2 回目の diff が変更 0 |
+| 中継 | おばけは位置（`ValueMultiDriver<float3>`）と回転（`<floatQ>`）の 2 つ、扉は回転の 1 つ。キーは `p3_g05_<member>_<Slot のキー>`・`p3_g06_rotation_<Slot のキー>`（`district.relay_key` にギミックの接頭辞の引数を足した。G01 の `p3_g01_` のキーは変わらない）。`Value` の初期値は宣言の基準姿勢 | モジュールが無い・止まっているときは基準姿勢（閉じた扉）に止まる。キーが `p3_` で始まるので、W09R の数の検査が P3 の追加として数える（`rest_pose.p3_additions`） |
+| G05 の式 | θ_i = 2π f t + s φ_i、上下 = I (0.125 + 0.225 sin θ_i) m（範囲 −0.10〜+0.35 m）、揺れ = I × 20° × sin(θ_i / 2)（Blender の Z まわり。Resonite の Y まわりは符号が逆）。φ は 001 が 0°、002 が 180° | 上下と揺れを 1 つの位相から決め、揺れは上下の半分の速さで、同じ姿勢の繰り返しに見えにくい。時刻だけから計算し、前の値を足し込まないので漂わない（Spec §8）。φ は W03 のデータに無いので決めた（2 体は 9 m 離れていて、上下が逆向きに見える） |
+| G05 の上下の範囲 | W03 の −0.35〜+0.35 m の中の −0.10〜+0.35 m（`gimmicks.G05_BOB_RANGE_M`。`g05()` が W03 の範囲の中かを確かめる） | Blender の確認（17.2）で、001 は下げ幅が −0.18 m より下だと、手提げのランタン `_LanternCharm` が 1.1 m 隣のベンチ `BMN_CMN_Bench_001` の背もたれ（上端 z 2.45）に入る。−0.10 でベンチとの隙間は 8 cm 以上。上は W03 の範囲いっぱい（Spec §8「P1 の可動範囲を守る」の中） |
+| G06 の式 | θ = 2π (f t + p)、c = (1 − cos θ) / 2、x = clamp01((c − 0.25) / 0.5)、開き = I × 85° × x² (3 − 2x)。左は Blender の +Z まわり（Resonite の Y まわりの負）、右は −Z まわり。どちらも内開き | `c` は時刻から決まる 0〜1 の往復。0.25 未満で閉じたまま、0.75 を超えて開いたまま、その間を smoothstep で動くので、動き始めと止まりが滑らか。既定の 24 秒の周期で、閉じたまま 8 秒 → 4 秒で開く → 開いたまま 8 秒 → 4 秒で閉じる（最大の角速度 約 32°/s）。左右は同じ角度で、対称に開く |
+| 外から変えられる値 | `HMC_P3/G05Intensity`（既定 1、0〜1）・`G05Frequency`（既定 0.25 Hz、0〜1。揺れはその半分）・`G05PhaseSpread`（既定 1、0〜1。0 で 2 体がそろう）、`HMC_P3/G06Intensity`（既定 1、0〜1。開く角度の割合）・`G06Frequency`（既定 1/24 Hz、0〜0.2）・`G06Phase`（既定 0、0〜1。周期の中の位置のずらし）。`P3_Gimmicks` の `DynamicValueVariable<float>`（キー `g05_amp`・`g05_freq`・`g05_phase`・`g06_amp`・`g06_freq`・`g06_phase`、`initialFields`）。モジュールの中で範囲に収める | I04（W11。屋敷の鐘で庭のおばけが一斉に挨拶）は `G05PhaseSpread` = 0 で 2 体をそろえ、`G05Intensity`・`G05Frequency` で大きさ・速さを変えられる。範囲に収めるので、ショーが大きな値を書いても W03 の可動範囲（とベンチを避けた下げ幅）を超えない。定期ショーが扉を開けたいときは `G06Phase`（と `G06Frequency` = 0）で開いた位置に止められる |
+| 同期と途中参加 | G01 と同じ。`WorldTimeDouble` と同期する HMC_P3 の値だけから計算する drive で、同期する書き込み・インパルスは無い | Spec §10.3。途中参加のユーザーも同じ時刻なら同じ姿勢を見る。2 人以上での確認は P4 |
+| 当たり判定（G06） | 付けない（利用者の決定。#59 の issuecomment-6557581300）。扉の葉は W08 の方針（`motion_roots` の下に当たり判定を付けない）で P2 から当たり判定が無く、M03 の開口は切り抜かれているので、開閉に関係なく入口を通れる | 見えない壁・閉じる扉の押し出し・行き止まりの玄関ホールへの閉じ込めが起きない。閉じた扉はすり抜けられる（おばけ屋敷らしさとして許容）。Spec §11「動く装飾には不要な当たり判定を付けない」。おばけも P2 から当たり判定は無い |
+
+採らなかった方法:
+
+- **G06 を標準の Component で作る**（`TimeSineDriver` で回転の角度を往復させる）: 開いたまま・閉じたままの時間を入れられず、外開きの側へも同じ角度だけ振れる（sin の負の側）。駆動の Component は B の宣言に置く必要があり、B の Slot から HMC_P3 の空間に届かないので外から値を変えられない（16.1 と同じ理由）
+- **扉の葉に当たり判定を付けて一緒に動かす**・**入口を固定の当たり判定で塞ぐ**: 利用者に選択肢を示して、付けない案に決まった（閉じる扉が人を押す・ホールに閉じ込める、または開いた扉の所に見えない壁が残る）
+- **扉を開くときに持ち上げる**（扉の下端と玄関ホールの床・絨毯の重なりを避ける。17.2）: 利用者の決定で採らず、W03 への要望にした。蝶番の位置も駆動することになり、開いた扉の下に隙間が見える
+- **G05 の上下を W03 の −0.35〜+0.35 m いっぱいに使う**: 001 のランタンがベンチの背もたれに入る（17.2）
+- **G05・G06 を別のモジュールにする**: どちらも B の state を worldState にするので、1 つにまとめると配備と deploy state が 1 つで済む。W11 が片方だけを変えるときも HMC_P3 の値で足りる
+
+### 17.2 Blender で確かめた可動範囲（保存しない一時的なスクリプト）
+
+B の `.blend` に M03 の `.blend` の `M03_HauntedMansion_001` を、仮モデル `BMN_MansionPlaceholder_001` と同じ変換で置き（Resonite と同じ置き方。`REPLACEMENTS` の M03 は位置・回転 0）、扉を 0〜85° を 5° ごと、おばけを上下 −0.35〜+0.35 m・揺れ ±20° で動かして、ほかのメッシュとの三角形の交差を数えた（`mathutils.bvhtree`）。スクリプトと結果は親の checkout の `tmp/w10b/blender_sweep/`（Git の対象外）、要点は #59 の issuecomment-6557581300。
+
+| 対象 | 結果 | 扱い |
+|---|---|---|
+| G06 の扉の下端と玄関ホールの床・絨毯 | 扉の下端 z 1.870（M03 のポーチの床と同じ）が、ホールの床（上面 1.89）に 2 cm、赤い絨毯（上面 1.92、x 0.0575〜1.3575）に開閉の途中で最大 5 cm 入る。全開（85°）・全閉では絨毯に掛からない（85° の左の葉は x −0.171〜0.051、右は 1.364〜1.586） | 利用者の決定で形は変えず、W03 への要望（handoff 6.3） |
+| G06 の扉と W03 の枠・M03 の壁 | 蝶番の側の縁（厚さ 10 cm の葉の半分）が、W03 の枠の柱（蝶番の線の外 13 cm、壁の面の前後 14 cm）に開く角度とともに最大 5 cm 入る。M03 の壁（単面、y 39.952）と交わるのも蝶番の近くだけ | 柱の中に隠れて見えない（利用者に説明済み） |
+| G06 の扉どうし・ほかの物 | 左右の葉は交わらない。ホールの壁・通路・ポーチへ出る物は無い（開いた葉は扉の面より奥だけ） | — |
+| G05 の 001 とベンチ | 下げ幅 −0.18 m 以下で、手提げのランタンがベンチ `BMN_CMN_Bench_001`（x −4.09〜−3.52、y 27.92〜29.68、上端 z 2.45）の背もたれに入る。−0.17 で隙間 1 cm、−0.10 で 8 cm、0 で 8 cm | 上下の範囲を −0.10〜+0.35 m にした（17.1） |
+| G05 の 002・ほかの物 | 交わる物は無い。どちらも体の最も低い所は地面（z 1.5）より 0.55 m 以上上 | — |
+
+### 17.3 Reflection・Flux-SDK で確かめた物
+
+- `resoloop flux node describe`（managed data 2026.9.18.82、3,320 ノード）: `FromEuler_floatQ`（`Angles: float3`。度で使う。W10 の G01 の傾きと同じ）、`Clamp01_Float`、`Cos_Double`。`Sin_Double`・`Pack_Float3`・`DynamicVariableValueInput<float>`・`WorldTimeDouble` は W10 と同じ
+- `resoloop flux check flux/P3MansionMotion.pg`: コンパイル成功（ヒント 6 件だけ。`DynamicVariableValueInput` の代わりに `~input<T>` が使えるという案内）
+- 中継の型（`ValueMultiDriver<float3>`・`<floatQ>`）と `DynamicValueVariable<float>`・`DynamicVariableSpace` は W10 で確かめた物と同じ。B の diff（実行時の Reflection の検証を含む）は警告 0
+
+### 17.4 保存の後の最初の diff
+
+何も変える前（11:57〜11:58Z）に、今の `main` のまま 6 キーを export した宣言（`exports/p2_static/<key>-20261101T115441Z`。W10・W10-A の駆動は入っている）で、全 19 宣言（`content/main.json`・6 キー・M01 の 3 つ・M02・M03・M04・M05 の 2 つ・M06・M07・M08・`content/p3_gimmicks.json`）の diff を取った。どれも変更 0・警告 0（no-op 29・184・668・333・318・379・780・16・15・15・17・16・18・15・15・15・16・19・11。W10-A の完了時と同じ数）。資産の作り直し・重複は無い。W10 の `P3PlazaDance`（`P3_Gimmicks/G01_Dance`）と W10-A の `P3FountainGlow`（`P3_Gimmicks/G03_Fountain`）は配備されたまま。W08 の root の下は Slot 1,013・Component 2,041（W10-A の完了時と同じ。利用者が手で変えた所は無い）
+
+- 新しい worktree の準備: 全キーの `.blend` の作り直し（11:42〜11:45Z、約 3 分。D・E は `--arg=--no-render`）、Blender の確認（17.2）のための M03 の `.blend`（約 1 分）、Git の外の `p2_bundles/<M>-<UTC>/` を同じ名前の `exports/p2_meshy/` へ写した（コミット済みの記録は上書きせず、`SHA256SUMS` が全 9 つ一致）
+- apply の前のスナップショット: 親の checkout の `tmp/w10b/01_snapshot_before_20261101T115851Z`（W08 の root 全体。最初の diff の後、最初の apply まで書き込みは無い）
+
+### 17.5 手順
+
+4 章の手順に、次を足す（`T` は親の checkout の `tmp/w10b/`）。
+
+```sh
+uv run python modeling/p2_static/export_p2.py --url "$URL" --key B_mansion   # おばけと蝶番に managedFields と中継を足した p2.apply.json と p3_drivers.json
+resoloop diff exports/p2_static/B_mansion-<UTC>/p2.apply.json --state "$ST/p2_B_mansion.json" --brief --report "$T/<新しいファイル>" --url "$URL" --json
+resoloop apply exports/p2_static/B_mansion-<UTC>/p2.apply.json --state "$ST/p2_B_mansion.json" --url "$URL" --json
+uv run python modeling/p3_gimmicks/build_content.py   # B の state から Slot のキーを、B の最新の export から基準の位置を読み、flux/P3MansionMotion.pg・flux/p3_mansion_motion.flux.json も作る
+resoloop diff content/p3_gimmicks.json --state "$ST/p3_gimmicks.json" --brief --report "$T/<新しいファイル>" --url "$URL" --json
+resoloop apply content/p3_gimmicks.json --state "$ST/p3_gimmicks.json" --url "$URL" --json
+uv run python modeling/p3_gimmicks/deploy_flux.py --url "$URL" --manifest flux/p3_mansion_motion.flux.json --report "$T/<新しいファイル>"
+# 同じ diff・apply・配備をもう 1 回行い、変更 0・書き込み 0・配備 no-op を確かめる
+uv run python modeling/p3_gimmicks/verify_b.py --url "$URL" --raw-out "$T/<新しいファイル>" --output review/p3_gimmicks/g05_g06_live_checks.json --windows 2 --gap 300 --duration 50
+uv run python modeling/p3_gimmicks/verify_b.py --url "$URL" --raw-out "$T/<新しいファイル>" --output review/p3_gimmicks/g05_g06_param_checks.json --param-check
+```
+
+- `build_content.py` は B の state に `_FloatPivot`・蝶番の Slot が無いと止まり（先に B を apply する）、B の最新の export でおばけ・蝶番の基準の回転が単位でないと止まる（式は基準の回転を単位として組んでいる）
+- G05・G06 の deploy state は親の checkout の `.resoloop/flux-state/p3_mansion_motion.json`
+- `verify_b.py` の窓は 50 秒（扉の 24 秒の周期で、半分開く角度を 3〜4 回通る）。`--param-check` は HMC_P3 の G05・G06 の値を変えて測り、最後に元に戻ったかを確かめる（途中でおばけが止まり、扉が開いた位置で止まるので、確認中に見ている人がいれば伝える）
+
+### 17.6 G05 の結果
+
+`verify_b.py --windows 2 --gap 300 --duration 50`（12:16:48Z と 12:22:51Z の 2 つの窓。`review/p3_gimmicks/g05_g06_live_checks.json`）と `--param-check`（12:12〜12:16Z。`g05_g06_param_checks.json`）。どれも問題 0。
+
+| 項目 | 結果 |
+|---|---|
+| 上下 | 001 は −0.0541〜+0.2847 m・−0.0985〜+0.3500 m、002 は −0.0282〜+0.2695 m・−0.0991〜+0.3491 m（窓ごと）。−0.10〜+0.35 m の中（許容 2 mm）。W03 の −0.35〜+0.35 m を超えない |
+| 揺れ | 2 体とも −19.998〜+20.000°。±20° の中（許容 0.2°）。回転は Y 軸まわりだけ（X・Z 成分 0.001 以内） |
+| 水平のずれ | 1 mm 以内（位置は基準から上下だけ） |
+| 位相 | 時刻を止めた標本（`G05Frequency` = 0）で、`G05PhaseSpread` 1 のとき 001 は θ = 0（上下 0.125 m・揺れ 0°）、002 は θ = π（0.125 m・20°）、0.5 で 002 が θ = π/2（0.35 m・14.142°）、0 で 2 体とも θ = 0。中継の値と `_FloatPivot` の Slot そのものの両方が式と一致（差 0.5 mm・0.05° 以内） |
+| 時刻の基準 | ゆっくりの時刻（`G05Frequency` = 0.004 Hz）で 21.94 秒あけた 2 回の観察で、001 の θ/2 が 15.781° 進んだ（時刻からの予測 15.797°、差 0.016°。許容 2°）。002 はその時の揺れが 2〜3°（|sin(θ/2)| < 0.2）で θ/2 を求められず、この確認では 2 体の位相差を測れなかった（位相は上の時刻を止めた標本で確かめた）。最初の試しの実行（12:08〜12:11Z）も同じ |
+| 漂い | 6.0 分あけた 2 つの窓で、範囲・軸・構造が同じ（時刻だけから計算し、前の値を足し込まない） |
+| 外から変えられる値 | `G05Intensity` 0.5 で上下 −0.049〜+0.174 m・揺れ 9.8° 以内（範囲の半分）、0 で 2 体とも基準姿勢。範囲の外の値: `G05Intensity` 5 → 1、−1 → 0、`G05PhaseSpread` 1.5 → 1（収めないと 002 が θ = 1.5π の姿勢になる）、`G05Frequency` −1 → 0（止まる）で、どれも式の値と一致。`G05Frequency` の上限（1 Hz）は観察の間隔では測れない（`P3MansionMotion.pg` の `GF = if GF0 < 0.0 then 0.0 else if GF0 > 1.0 then 1.0 else GF0` で収めている） |
+| 戻した値 | `G05Intensity` 1、`G05Frequency` 0.25、`G05PhaseSpread` 1（変える前と同じ。違えば問題にする） |
+| 構造 | 両方の窓の最初と最後で、`_FloatPivot` の下の `_GhostBody`・`_LanternCharm` が宣言と同じパス・ローカルの変換（差 0）。中継 4 つは有効で、`Drives` は自分の `_FloatPivot` の `Position`・`Rotation` を指す |
+| 包絡 | 動く範囲の水平の半径は 2 体とも 0.655 m で、W03 の配置の余裕 `clearance_radius_m` 1.0 m の内側。中央の通路（`Excl_B_CentralSightlineCorridor`、x −2〜2）に入る点は 0。最も低い所は z 2.05 m（001）・2.25 m（002）。ベンチとの隙間は 17.2 |
+
+### 17.7 G06 の結果
+
+| 項目 | 結果 |
+|---|---|
+| 開く角度 | 左右とも 0.0〜85.0°（内開き。2 つの窓）。0〜85° の中（許容 0.2°）。回転は Y 軸まわりだけ |
+| 向き | 左（`_HingeLeft`）は Resonite の Y まわりの負、右は正に回る（Blender の +Z・−Z まわり = 上から見て、左は反時計回り、右は時計回りで、どちらも建物の奥へ開く）。時刻を止めた標本で、開きの符号を逆にしたグラフはここで外れる |
+| 対称 | 時刻を止めた標本で左右が同じ角度（周期の位置 0・0.2・0.25・0.5 で 0・8.117・42.5・85.0°、式と差 0.05° 以内）。動いている間の左右の差は最大 3.8°・3.9°（1 回の observe の中で 2 つの中継を読む時刻のずれ。開閉の最大の速さ 約 32°/s。許容 10°） |
+| 速さ | 半分開いた角度（42.5°）を通る時刻の間隔が 12.069・11.962・12.061 秒、11.844・12.031・11.919 秒（周期の半分 12 秒と 0.16 秒以内。許容 1.5 秒）。開く・閉じるが交互。既定の 24 秒の周期で、閉じたまま 8 秒 → 4 秒で開く → 開いたまま 8 秒 → 4 秒で閉じる |
+| 時刻を止めた標本 | `G06Frequency` = 0 で、周期の位置 0（閉）・0.2（8.117°）・0.25（42.5°）・0.5（85°）、`G06Intensity` 0.5（42.5°）のとき、中継の値と蝶番の Slot そのものの回転が式と一致し、蝶番の位置は宣言のまま（差 0.1 mm 以内） |
+| 外から変えられる値 | 範囲の外の値: `G06Intensity` 5 → 1（全開の位置で 85°。収めないと 425°）、−1 → 0（閉じる）、`G06Phase` 1.5 → 1（閉じる。収めないと θ = 3π で全開）、`G06Frequency` −1 → 0（止まる）で、どれも式の値と一致。`G06Frequency` の上限（0.2 Hz）は観察の間隔では測れない（`DF = if DF0 < 0.0 then 0.0 else if DF0 > 0.2 then 0.2 else DF0`） |
+| 戻した値 | `G06Intensity` 1、`G06Frequency` 0.041666668（1/24）、`G06Phase` 0（変える前と同じ） |
+| 構造 | 両方の窓の最初と最後で、扉の枠・葉が宣言と同じパス・ローカルの変換（差 0）、蝶番の位置と拡縮も宣言のまま（M03 の開口の蝶番の線）。中継 2 つは有効で、`Drives` は自分の蝶番の `Rotation` を指す |
+| B の再 apply | 扉が動いている最中の B の 2 回目の diff は変更 0（no-op 339）、2 回目の apply は書き込み 0。その後の窓でも扉は 0〜85° の往復を続けた（`managedFields` に回転を入れていないので、静的な apply が閉じた形に戻さない） |
+| 包絡 | 葉が 0〜85° で動く範囲（バンドルのメッシュ、5° ごと）は、W03 の扉の振れる範囲 `Excl_B_DoorSwingAndPorch`（x −0.9775〜2.2225、y 37.4〜41.2）の中で、閉じた形の前面（z 39.86、ノッカー）よりポーチ側に出ない。玄関ホールの床・絨毯・枠の柱との重なりは 17.2 |
+| 当たり判定 | 付けない（17.1。利用者の決定）。扉の葉には P2 から当たり判定が無く、W08 の宣言のまま。扉の枠（`_Frame`）とホールの部屋の `MeshCollider` は静的なまま |
+
+### 17.8 diff・apply・配備と、再適用・所有範囲
+
+| 時刻（UTC） | 宣言・操作 | diff | apply・配備 |
+|---|---|---|---|
+| 11:57〜11:58 | 全 19 宣言（17.4。`<key>-20261101T115441Z`） | どれも変更 0・警告 0 | — |
+| 11:59〜12:00 | B（`B_mansion-20261101T115934Z`。おばけと蝶番に `managedFields` と中継） | 作成 6（おばけ 2 体の `ValueMultiDriver<float3>`・`<floatQ>`、蝶番 2 つの `<floatQ>`）・更新 0・no-op 333。`managedFields` の追加は今の値と同じで変更にならない | Component の追加 6（資産は変更なし 45、取り込み 0） |
+| 12:00 | P3（`content/p3_gimmicks.json`） | 作成 7（Slot `G05_G06_Mansion`、値の Component 6）・no-op 11 | Slot の作成 1・Component の追加 6 |
+| 12:01 | ProtoFlux（`deploy_flux.py --manifest flux/p3_mansion_motion.flux.json`） | — | モジュール `P3MansionMotion` を `P3_Gimmicks/G05_G06_Mansion` の下に作成（`action` create、drive の結び先 6 個がすべて解決） |
+| 12:02 | B・P3 の 2 回目の diff（動いている最中） | どちらも変更 0・警告 0（B は no-op 339、P3 は 18）。おばけの位置・回転と扉の回転は差分にならない | — |
+| 12:02 | B・P3 の 2 回目の apply、2 回目の配備 | — | apply はどれも書き込み 0（作成・更新・削除 0、資産の取り込み 0）。配備は `no-op`（「source and transitive dependency hashes match deploy state」） |
+| 12:29〜12:30 | 全 19 宣言の 2 回目の diff（動いている最中。B は `115934Z`） | どれも変更 0・警告 0（no-op は 17.4 と同じで、B は 339、P3 は 18） | — |
+
+- `--prune` は使っていない。削除・名前の変更・Component の作り直しは 0
+- 所有範囲: diff の対象は B のおばけ 2 体の `_FloatPivot` と扉の蝶番 2 つの中継、P3 の宣言の G05・G06 の値と `G05_G06_Mansion` だけ。world・A・C・D・E・`content/main.json`・Meshy の素材の宣言（M03 を含む）は、最初の diff から最後まで変更 0 で、apply していない。A・D をこの子のコードで export し直した `p2.apply.json`・`p3_drivers.json` は `main` の export（`115441Z`）とバイト単位で同じ（中継のキーの関数にギミックの接頭辞を足しても、G01 のキーは変わらない）。W10・W10-A の `flux/P3PlazaDance.pg`・`p3_plaza_dance.flux.json`・`P3FountainGlow.pg`・`p3_fountain_glow.flux.json` は `build_content.py` で作り直してもバイト単位で同じ（`git diff` が空）
+- 数: W08 の root の下は Slot 1,013・Component 2,041 → Slot 1,149・Component 2,227（P3 の宣言 1・6、B の中継 0・6、モジュール `P3MansionMotion` 135・174。親の checkout の `tmp/w10b/02_snapshot_after_*`）。2 回目の apply で増えない
+- apply・配備の記録は親の checkout の `tmp/w10b/`（`diff_first/`・`diff_second/`・`diff_b*`・`apply_b*`・`diff_p3_*`・`apply_p3_*`・`flux_b_*`）
+
+### 17.9 既存の検査
+
+- 動いている状態（12:24〜12:27Z）で実行した。どれも直していない（`rest_pose.py` は `gimmicks.driven_slots()` に B を足しただけで、B の駆動される項目も基準姿勢に戻す）
+- W10 の G01・G13（`modeling/p3_gimmicks/verify_live.py`、1 つの窓 30 秒）: 合格。G13 は 17.996°/s・上から見て反時計回り、G01 は 6 体とも範囲の中、包絡の問題 0（親の checkout の `tmp/w10b/p3_prev_live_1.json`。W10 の `live_checks.json`・`param_checks.json` は書き換えていない）
+- W10-A の G03（`modeling/p3_gimmicks/verify_g03.py`、1 つの窓 30 秒）: 合格（`tmp/w10b/g03_prev_live_1.json`。`g03_live_checks.json`・`g03_param_checks.json` は書き換えていない）
+- W09R（`modeling/p2_meshy/verify_live.py`）: 全項目合格（M01〜M08 の 9 行、5 地区の数）。B の数の照合は、P3 が足した Component 6（中継。`rest_pose.p3_additions` がキーの `p3_` で数える）を加えて実物 Slot 94・Component 213 と一致。基準姿勢への置き換えは 11 個（A の Body 6、D の TurnRoot、B のおばけ 2 体・蝶番 2 つ）。結果は親の checkout の `tmp/w10b/p2_meshy_live_1.json`（`review/p2_meshy/live_checks.json` は W10 の記録のまま書き換えていない）
+- W08（`modeling/p2_static/verify_live.py`）: W09R 以降の既知の 11 件のまま（項目は 11 章と同じ）。B の件は実物と宣言の Component がどちらも 6 増えた（207 / 169 → 213 / 175）だけで、P3・G05・G06 による失敗は 0（`tmp/w10b/p2_static_checks_1.json`）。置き換えを外して同じ観察から測ると、カボチャ 5 体・座席 4 基とおばけ 2 体の 11 件が増える（`tmp/w10b/p2_static_checks_without_rest.json`。この観察の時刻ではカボチャ 006 はたまたま 1 cm 以内だった。扉の蝶番はこの検査が位置だけを比べるので、回転では増えない）。`review/p2_static/live_checks.json` は書き換えていない
+
+### 17.10 撮影と実機の確認
+
+- 撮影（`review/p3_gimmicks/`、1600×900、カメラは `content/p3_gimmicks.json` の `cameras`。12:28〜12:29Z）: `g05_ghosts`・`g05_ghosts_later`（中庭の石畳の南から 2 体のおばけ。約 7 秒あけて高さと向きが違う）、`g05_ghost_bench`（001 と隣のベンチ）、`g06_doors_closed`・`g06_doors_half`・`g06_doors_open`（ポーチの段の前から。`G06Frequency` = 0 にして周期の位置 0・0.25・0.5 で止め、撮った後に戻した）、`g06_doors_inside_open`（玄関ホールの奥から、全開の扉の内側）。どれも 11〜25 万バイトで、真っ黒な約 23 KB の画像は無い。利用者のアバター・名札は写っていない。`<名前>.scene.json` は作業ツリーの絶対パスを含むのでコミットせず、親の checkout の `tmp/w10b/capture_scenes/` に移した。一時カメラ `ResoLoop_Test_Capture_*` は残っていない（`resoloop find`）
+- 撮影で見えたこと: 扉は左右対称に建物の奥へ開き、全開ではホールの両側の壁際に収まる。半開の撮影では、扉の下端が絨毯の縁に掛かる所が見える（17.2）。おばけは墓地の上で、001 はベンチの背もたれの後ろに浮く
+- 利用者の確認（確認事項 6）: 未確認（作業の途中で利用者が席を外したため、戻った後に確かめてもらう。17.11）
+- 負荷（確認事項 8）: 未確認（同上）。足した物は B の Component 6（中継）、P3 の宣言の Slot 1・Component 6、ProtoFlux のモジュールの Slot 135・Component 174（ノード）。粒子は無い。drive は各ユーザーが毎フレーム評価する（ネットワークの送信は無い）
+- 常駐しない: resoloop はコマンドごとに接続して終わる。2 つの窓の間の 5 分（接続していない）も動き続け、2 つ目の窓で同じ範囲・速さ（17.6・17.7。再接続後の観察）
+
+### 17.11 GPT のレビュー（確認事項 7）と保存（確認事項 4）
+
+- GPT のレビュー: 未実施（PR の作成の後）
+- 保存: 未実施（利用者の戻り待ち）
+
+### 17.12 Resonite で未確認の項目
+
+- 2 人以上での同期、途中参加（P4）。この子の確認は、共有の時刻と同期する値だけから計算する drive の仕組みの説明と、単独の確認まで
+- 保存・再読込の後に、中継・ProtoFlux のモジュール・HMC_P3 の値が残って動くか（P4。開き直していない）
+- VR での見え方、開閉する扉とアバターのすれ違い（当たり判定は無いので押されない）、メモリの負荷
