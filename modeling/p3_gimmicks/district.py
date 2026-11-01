@@ -17,6 +17,9 @@ modeling/p2_static/export_p2.py から、当たり判定（colliders.compose）�
 - G05・G06（W10-B）: B の 2 体のおばけの FloatPivot に G01 と同じ中継 2 つ（位置・回転。managedFields ["scale"]）、扉の蝶番 2 つに
   回転の中継 1 つ（managedFields ["position", "scale"]。B を再 apply しても閉じた形に戻さない）。それぞれの Value を ProtoFlux
   （flux/P3MansionMotion.pg）が drive する
+- G09・G11（W10-C）: C の攪拌棒の Pivot に回転の中継 1 つ（managedFields ["position", "scale"]）、魔女の仮モデルの root
+  （M08 の素材の宣言の親）と巡回路の CarrierPivot に位置・回転の中継 2 つずつ（managedFields ["scale"]）。液面の専用の材質と
+  泡・煙の粒子（add_g09_effects）。それぞれを ProtoFlux（flux/P3CandyStreet.pg）が drive する
 """
 
 from __future__ import annotations
@@ -48,6 +51,11 @@ def relay_members(key: str, name: str) -> tuple[str, list[str]] | None:
             return "g05", ["Position", "Rotation"]
         if name in {h["motion_root"] for h in gimmicks.g06()["hinges"]}:
             return "g06", ["Rotation"]
+    if key == gimmicks.g09()["district"]:
+        if name == gimmicks.g09()["stir_pivot"]:
+            return "g09", ["Rotation"]
+        if name in {gimmicks.g11()["rider"], gimmicks.g11()["carrier"]}:
+            return "g11", ["Position", "Rotation"]
     return None
 
 
@@ -170,11 +178,113 @@ def add_g03_material(doc: dict, key: str) -> list[dict]:
              "renderer": renderer["key"], "fields": src_fields, "initialFields": {"EmissiveColor": emissive}}]
 
 
+PD = "[FrooxEngine]FrooxEngine.PhotonDust."
+
+
+def _with_alpha(rgba: list[float], gain: float, alpha: float) -> list[float]:
+    return [float(rgba[0]) * gain, float(rgba[1]) * gain, float(rgba[2]) * gain, float(alpha)]
+
+
+def particle_components(kind: str, base: list[float]) -> list[dict]:
+    """W10-C（G09）: 泡・煙の PhotonDust の Component（gimmicks.G09_PARTICLES の kind）。base は液面の色（sRGB の [r, g, b, a]）。
+
+    ParticleSystem → ParticleStyle（描画と、寿命・速さ・大きさ・大きさの変化・色の変化・乱流・位置の計算のモジュール）、
+    CircleEmitter（取付位置の水平の円から上へ）。描画は小さな球（IcoSphereMesh）を UnlitMaterial（白、半透明）で描き、
+    色と透明度は ColorOverLifetimeStartEnd が液面の色から決める（ProtoFlux が drive するので initialFields）。量は
+    CircleEmitter の Rate（同じく drive）。2026-11-01 の試し（ResoLoop_Test_W10C_Particles）で、粒子が動くには
+    PositionSimulatorModule が要り、粒子の色の変化が UnlitMaterial の色にかかって透明度も効くことを確かめた
+    """
+    p = gimmicks.G09_PARTICLES[kind]
+    k = p["prefix"]
+    modules = ["lif", "spd", "siz", "gro", "col"] + (["trb"] if p["turbulence"] else []) + ["sim"]
+    comps = [
+        {"key": f"{k}ps", "type": PD + "ParticleSystem", "fields": {"MaxParticleCount": p["max"], "Style": f"$component:{k}sty"}},
+        {"key": f"{k}sty", "type": PD + "ParticleStyle",
+         "fields": {"Renderer": f"$component:{k}rnd", "Modules": [f"$component:{k}{m}" for m in modules]}},
+        {"key": f"{k}rnd", "type": PD + "MeshParticleRenderer", "fields": {"Mesh": f"$component:{k}msh", "Material": f"$component:{k}mat"}},
+        {"key": f"{k}msh", "type": "[FrooxEngine]FrooxEngine.IcoSphereMesh", "fields": {"Radius": 0.5, "Subdivisions": 1}},
+        {"key": f"{k}mat", "type": "[FrooxEngine]FrooxEngine.UnlitMaterial",
+         "fields": {"TintColor": [1.0, 1.0, 1.0, 1.0], "BlendMode": "Alpha", "ZWrite": "Off"}},
+        {"key": f"{k}emi", "type": PD + "CircleEmitter",
+         "fields": {"System": f"$component:{k}ps", "Radius": p["radius"], "CircleAlignment": "XZ", "DirectionMode": "Fixed",
+                    "Direction": [0.0, 1.0, 0.0]},
+         "initialFields": {"Rate": p["rate"]}},
+        {"key": f"{k}lif", "type": PD + "LifetimeRangeInitializer", "fields": {"MinValue": p["lifetime"][0], "MaxValue": p["lifetime"][1]}},
+        {"key": f"{k}spd", "type": PD + "SpeedRangeInitializer", "fields": {"MinValue": p["speed"][0], "MaxValue": p["speed"][1]}},
+        {"key": f"{k}siz", "type": PD + "UniformSizeRangeInitializer", "fields": {"MinValue": p["size"][0], "MaxValue": p["size"][1]}},
+        {"key": f"{k}gro", "type": PD + "UniformSizeOverLifetimeStartEnd", "fields": {"StartSize": p["grow"][0], "EndSize": p["grow"][1]}},
+        {"key": f"{k}col", "type": PD + "ColorOverLifetimeStartEnd",
+         "initialFields": {"StartColor": _with_alpha(base, p["color_gain"], p["start_alpha"]),
+                           "EndColor": _with_alpha(base, p["color_gain"], p["end_alpha"])}},
+    ]
+    if p["turbulence"]:
+        comps.append({"key": f"{k}trb", "type": PD + "SimplexTurbulentForce", "fields": {"Strength": p["turbulence"]}})
+    comps.append({"key": f"{k}sim", "type": PD + "PositionSimulatorModule", "fields": {}})
+    return comps
+
+
+def add_g09_effects(doc: dict, key: str) -> list[dict]:
+    """W10-C（G09）: 液面の 1 つ目の材質を専用の材質に替え、泡・煙の取付位置に粒子を足す。
+
+    - 液面の Slot（gimmicks.g09 の liquid）に、1 つ目の材質（P2 のエメラルド。取付位置の目印・I02 の台座・屋台も使う）を写した
+      専用の PBS_Metallic（キー G09_LIQUID_MATERIAL_KEY）を足し、液面の MeshRenderer の 1 つ目の材質だけをそれに付け替える。
+      2 つ目（マゼンタの盛り上がり）と元の材質は変えない。AlbedoColor・EmissiveColor は ProtoFlux が液面の色（HMC_P3）から
+      drive するので initialFields（元の値）に置く（G03 と同じ）
+    - 泡・煙の取付位置の Slot に particle_components を足す（Slot は足さない）
+    - 液面の MeshRenderer が 1 つでない、材質が 2 つでない、すでに足してあるときは止める
+    """
+    g = gimmicks.g09()
+    if key != g["district"]:
+        return []
+    names = {g["liquid"], *g["attach"].values()}
+    hits: dict[str, list[tuple[list[str], dict]]] = {}
+    _find_named(doc, [doc["slot"]["name"]], names, hits)
+    for n in names:
+        if len(hits.get(n, [])) != 1:
+            raise ValueError(f"{key}: expected one Slot named {n}, found {len(hits.get(n, []))}")
+    chain, node = hits[g["liquid"]][0]
+    comps = node.setdefault("components", [])
+    if any(c.get("key") == gimmicks.G09_LIQUID_MATERIAL_KEY for c in comps):
+        raise ValueError(f"{key}: {gimmicks.G09_LIQUID_MATERIAL_KEY} is already declared")
+    renderers = [c for c in comps if c.get("type") == "FrooxEngine.MeshRenderer"]
+    if len(renderers) != 1:
+        raise ValueError(f"{key}/{g['liquid']}: expected one MeshRenderer, found {len(renderers)}")
+    renderer = renderers[0]
+    mats = renderer["fields"]["Materials"]
+    if len(mats) != 2 or not all(str(m).startswith("$component:") for m in mats):
+        raise ValueError(f"{key}/{g['liquid']}: expected two material references, found {mats}")
+    source_key = mats[0].split(":", 1)[1]
+    sources = []
+    stack = [doc]
+    while stack:
+        n = stack.pop()
+        sources += [c for c in n.get("components", []) if c.get("key") == source_key]
+        stack.extend(n.get("children", []))
+    if len(sources) != 1 or sources[0].get("type") != "FrooxEngine.PBS_Metallic":
+        raise ValueError(f"{key}: material {source_key} is not one PBS_Metallic ({len(sources)} found)")
+    src_fields = dict(sources[0]["fields"])
+    driven = {m: src_fields.pop(m) for m in ("AlbedoColor", "EmissiveColor")}
+    comps.append({"key": gimmicks.G09_LIQUID_MATERIAL_KEY, "type": "FrooxEngine.PBS_Metallic", "fields": src_fields,
+                  "initialFields": driven})
+    renderer["fields"]["Materials"] = [_component_ref(gimmicks.G09_LIQUID_MATERIAL_KEY), mats[1]]
+    rows = [{"slot": "/".join(chain), "g09_material": gimmicks.G09_LIQUID_MATERIAL_KEY, "copied_from": source_key,
+             "renderer": renderer["key"], "fields": src_fields, "initialFields": driven}]
+    for kind, name in g["attach"].items():
+        chain, node = hits[name][0]
+        comps = node.setdefault("components", [])
+        new = particle_components(kind, driven["AlbedoColor"])
+        if any(c.get("key") == n["key"] for c in comps for n in new):
+            raise ValueError(f"{key}/{name}: G09 particles are already declared")
+        comps.extend(new)
+        rows.append({"slot": "/".join(chain), "g09_particles": kind, "components": [c["key"] for c in new]})
+    return rows
+
+
 def add_drivers_in_file(p2_path: Path, key: str) -> list[dict]:
-    """p2.apply.json を読み、add_drivers と add_g03_material を適用して書き戻す（対象が無いキーではファイルを変えない）。"""
+    """p2.apply.json を読み、add_drivers・add_g03_material・add_g09_effects を適用して書き戻す（対象が無いキーではファイルを変えない）。"""
     if key not in gimmicks.driven_slots() and key != gimmicks.g03()["district"]:
         return []
     doc = json.loads(p2_path.read_text(encoding="utf-8"))
-    rows = add_drivers(doc, key) + add_g03_material(doc, key)
+    rows = add_drivers(doc, key) + add_g03_material(doc, key) + add_g09_effects(doc, key)
     p2_path.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return rows

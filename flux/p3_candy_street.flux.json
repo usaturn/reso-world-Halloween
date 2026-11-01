@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "1",
+  "projectDirectory": ".",
+  "parent": "Root/HalloweenMagicalCarnival/P3_Gimmicks/G09_G11_Candy",
+  "worldState": "../.resoloop/state/p2_C_candy.json",
+  "deployState": "../.resoloop/flux-state/p3_candy_street.json",
+  "modules": [
+    {
+      "name": "p3-candy-street",
+      "source": "P3CandyStreet.pg",
+      "module": "P3CandyStreet",
+      "bindings": {
+        "RodRotation": {
+          "target": "$member:p3_g09_rotation_object_CCD_MagicCauldron_001_StirRodPivot_267810e8.Value",
+          "mode": "drive"
+        },
+        "WitchPosition": {
+          "target": "$member:p3_g11_position_object_CCD_M08_FlyingWitchProxy_001_51212c6a.Value",
+          "mode": "drive"
+        },
+        "WitchRotation": {
+          "target": "$member:p3_g11_rotation_object_CCD_M08_FlyingWitchProxy_001_51212c6a.Value",
+          "mode": "drive"
+        },
+        "CarrierPosition": {
+          "target": "$member:p3_g11_position_object_CCD_WitchPatrolLoop_001_CarrierPivot_b48107f8.Value",
+          "mode": "drive"
+        },
+        "CarrierRotation": {
+          "target": "$member:p3_g11_rotation_object_CCD_WitchPatrolLoop_001_CarrierPivot_b48107f8.Value",
+          "mode": "drive"
+        },
+        "LiquidAlbedo": {
+          "target": "$member:p3_g09_lm.AlbedoColor",
+          "mode": "drive"
+        },
+        "LiquidEmissive": {
+          "target": "$member:p3_g09_lm.EmissiveColor",
+          "mode": "drive"
+        },
+        "BubblesRate": {
+          "target": "$member:p3_gb_emi.Rate",
+          "mode": "drive"
+        },
+        "BubblesStart": {
+          "target": "$member:p3_gb_col.StartColor",
+          "mode": "drive"
+        },
+        "BubblesEnd": {
+          "target": "$member:p3_gb_col.EndColor",
+          "mode": "drive"
+        },
+        "SmokeRate": {
+          "target": "$member:p3_gs_emi.Rate",
+          "mode": "drive"
+        },
+        "SmokeStart": {
+          "target": "$member:p3_gs_col.StartColor",
+          "mode": "drive"
+        },
+        "SmokeEnd": {
+          "target": "$member:p3_gs_col.EndColor",
+          "mode": "drive"
+        }
+      }
+    }
+  ]
+}

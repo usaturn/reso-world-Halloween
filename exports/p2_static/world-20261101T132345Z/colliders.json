@@ -1,0 +1,144 @@
+{
+  "key": "world",
+  "source": "model.apply.json",
+  "output": "p2.apply.json",
+  "collider_fields": {
+    "Type": "Static",
+    "CharacterCollider": true,
+    "Sidedness": "DualSided"
+  },
+  "counts": {
+    "mesh": 20,
+    "fixed_collision": 0,
+    "none": 1,
+    "mesh_slots": 21,
+    "object_roots": 22
+  },
+  "objects": [
+    {
+      "slot": "world/WLD_CentralIsland_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "world/WLD_CentralIsland_001"
+    },
+    {
+      "slot": "world/WLD_CentralRingRoad_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "world/WLD_CentralRingRoad_001"
+    },
+    {
+      "slot": "world/WLD_CliffSafetyWalls_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "world/WLD_CliffSafetyWalls_001"
+    },
+    {
+      "slot": "world/WLD_EastBridge_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "world/WLD_EastBridge_001"
+    },
+    {
+      "slot": "world/WLD_EastIsland_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "world/WLD_EastIsland_001"
+    },
+    {
+      "slot": "world/WLD_EntranceGarland_Plaza_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "world/WLD_EntranceGarland_Plaza_001"
+    },
+    {
+      "slot": "world/WLD_EntranceGarland_South_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "world/WLD_EntranceGarland_South_001"
+    },
+    {
+      "slot": "world/WLD_FloatingIslets_001",
+      "policy": "none",
+      "reason": "遠景の浮き岩。歩いて届かない"
+    },
+    {
+      "slot": "world/WLD_NorthBridge_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "world/WLD_NorthBridge_001"
+    },
+    {
+      "slot": "world/WLD_NorthPlateau_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "world/WLD_NorthPlateau_001"
+    },
+    {
+      "slot": "world/WLD_OuterLoopPaths_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "world/WLD_OuterLoopPaths_001"
+    },
+    {
+      "slot": "world/WLD_PortalLamp_East_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "world/WLD_PortalLamp_East_001"
+    },
+    {
+      "slot": "world/WLD_PortalLamp_North_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "world/WLD_PortalLamp_North_001"
+    },
+    {
+      "slot": "world/WLD_PortalLamp_South_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "world/WLD_PortalLamp_South_001"
+    },
+    {
+      "slot": "world/WLD_PortalLamp_West_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "world/WLD_PortalLamp_West_001"
+    },
+    {
+      "slot": "world/WLD_SouthIsland_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "world/WLD_SouthIsland_001"
+    },
+    {
+      "slot": "world/WLD_SouthPromenade_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "world/WLD_SouthPromenade_001"
+    },
+    {
+      "slot": "world/WLD_WelcomeBench_East_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "world/WLD_WelcomeBench_East_001"
+    },
+    {
+      "slot": "world/WLD_WelcomeBench_West_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "world/WLD_WelcomeBench_West_001"
+    },
+    {
+      "slot": "world/WLD_WestBridge_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "world/WLD_WestBridge_001"
+    },
+    {
+      "slot": "world/WLD_WestIsland_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "world/WLD_WestIsland_001"
+    }
+  ]
+}

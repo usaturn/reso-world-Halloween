@@ -7,7 +7,9 @@ Meshy asset root) would be measured at its declared place and the check would re
 did not reach a driven Slot, the check would fail on every run while the ride moves. The first test keeps the driven Slots
 replaced; the second keeps a moved non-driven Slot, and a moved TurnRoot position (G13 drives only its rotation), visible
 to the P2 checks. W10-B added B: the ghosts' FloatPivots (position and rotation driven) and the door hinges (only the
-rotation driven; a moved hinge position must stay visible, it is where W09R-B put the door on M03's opening).
+rotation driven; a moved hinge position must stay visible, it is where W09R-B put the door on M03's opening). W10-C added
+C to the observed tree (the stirring rod pivot, the witch proxy that carries M08, and the patrol loop's carrier pivot);
+``apply_rest_pose`` stops when a district with driven Slots is not observed.
 """
 
 from __future__ import annotations
@@ -55,10 +57,19 @@ def _world(moved_pedestal: bool = False, moved_turn_root: bool = False, moved_hi
         _live(h["motion_root"], pos=((-0.809 if i == 0 else 0.809) + (0.4 if moved_hinge else 0.0), 0.0, 0.0),
               rot=(0.0, 0.6, 0.0, 0.8)) for i, h in enumerate(hinges)]))
     b_decl.append(_decl(door, children=[_decl(h["motion_root"], pos=(-0.809 if i == 0 else 0.809, 0.0, 0.0)) for i, h in enumerate(hinges)]))
+    g09, g11 = gimmicks.g09(), gimmicks.g11()
+    c_live = [_live(g09["asset_id"], pos=(34.4, 0.0, 5.2), children=[
+                  _live(g09["stir_pivot"], pos=(0.0, 1.16, 0.0), rot=(0.1, -0.7, 0.07, 0.7))]),
+              _live(g11["rider"], pos=(28.7, 10.2, 8.8), rot=(0.0, -0.82, 0.0, 0.57), children=[_live("M08")]),
+              _live(g11["loop_asset_id"], pos=(33.0, 0.0, 0.0), children=[
+                  _live(g11["carrier"], pos=(-4.3, 10.2, 8.8), rot=(0.0, -0.82, 0.0, 0.57))])]
+    c_decl = [_decl(g09["asset_id"], pos=(34.4, 0.0, 5.2), children=[_decl(g09["stir_pivot"], pos=(0.0, 1.16, 0.0))]),
+              _decl(g11["rider"], pos=(43.2, 10.2, 0.0), children=[_decl("M08")]),
+              _decl(g11["loop_asset_id"], pos=(33.0, 0.0, 0.0), children=[_decl(g11["carrier"], pos=(10.2, 10.2, 0.0))])]
     root = _live("HalloweenMagicalCarnival", children=[_live("A_plaza", children=a_live), _live("D_amusement", children=d_live),
-                                                       _live("B_mansion", children=b_live)])
+                                                       _live("B_mansion", children=b_live), _live("C_candy", children=c_live)])
     decls = {"A_plaza": _decl("A_plaza", children=a_decl), "D_amusement": _decl("D_amusement", children=d_decl),
-             "B_mansion": _decl("B_mansion", children=b_decl)}
+             "B_mansion": _decl("B_mansion", children=b_decl), "C_candy": _decl("C_candy", children=c_decl)}
     return root, decls
 
 
