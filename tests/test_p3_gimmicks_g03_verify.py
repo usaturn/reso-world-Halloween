@@ -10,9 +10,10 @@ correct state passing.
 
 from __future__ import annotations
 
+import copy
 import math
 
-from modeling.p3_gimmicks import verify_g03
+from modeling.p3_gimmicks import district, verify_g03
 
 E0 = [0.504, 0.99, 1.764]
 E1 = [1.2, 0.4, 2.0]
@@ -38,6 +39,12 @@ def test_window_passes_the_formula_and_rejects_another_formula():
     wrong = [{"t": t, "linear": wrong_model(w * t)} for t in _times()]
     _, problems = verify_g03.check_samples(wrong, PARAMS, E0, E1)
     assert any("residual" in p for p in problems)
+
+
+def test_window_rejects_a_time_formula_that_only_matches_the_mean_speed():
+    w = 2.0 * math.pi * 0.2
+    _, problems = verify_g03.check_samples(_samples(lambda t: w * t + 0.8 * math.sin(w * t), _times(22)), PARAMS, E0, E1)
+    assert len(problems) == 1 and "straight line" in problems[0]
 
 
 def test_window_rejects_a_frozen_glow():
@@ -66,30 +73,63 @@ def test_clock_rejects_a_theta_that_does_not_follow_the_world_time():
     assert len(problems) == 1 and "advanced" in problems[0]
 
 
-def _structure():
-    decl = {
-        "water_renderer": "r_water", "material": "p3_g03_wm", "source": "m_water", "shared_renderers": ["r_attach", "r_pylon"],
-        "source_decl": {"fields": {"AlbedoColor": [0.6, 0.8, 0.9, 1.0], "EmissiveColor": [0.74, 1.0, 1.28, 1.0], "Metallic": 0.1}},
-        "material_decl": {"fields": {"AlbedoColor": [0.6, 0.8, 0.9, 1.0], "Metallic": 0.1}},
-    }
-    obs = {
-        "materials": {"r_water": ["id_mine"], "r_attach": ["id_src"], "r_pylon": ["id_stone", "id_src"]},
-        "ids": {"p3_g03_wm": "id_mine", "m_water": "id_src"},
-        "fields": {
-            "m_water": {"AlbedoColor": {"r": 0.6, "g": 0.8, "b": 0.9, "a": 1.0}, "EmissiveColor": {"r": 0.74, "g": 1.0, "b": 1.28, "a": 1.0},
-                        "Metallic": 0.1},
-            "p3_g03_wm": {"AlbedoColor": {"r": 0.6, "g": 0.8, "b": 0.9, "a": 1.0}, "Metallic": 0.1, "Enabled": True},
-        },
-    }
-    return decl, obs
+def _docs():
+    """G03 を足す前の宣言（model）と、district.add_g03_material で足した後の宣言（p2）。"""
+    mat = {"AlbedoColor": [0.6, 0.8, 0.9, 1.0], "EmissiveColor": [0.74, 1.0, 1.28, 1.0], "Metallic": 0.1}
+    def renderer(key, mats):
+        return {"key": key, "type": "FrooxEngine.MeshRenderer", "fields": {"Materials": [f"$component:{m}" for m in mats]}}
+    def slot(name, comps=(), children=()):
+        return {"slot": {"name": name}, "components": list(comps), "children": list(children)}
+    model = slot("A_plaza", children=[
+        slot("Blender_Providers", [{"key": "m_water", "type": "FrooxEngine.PBS_Metallic", "fields": dict(mat)},
+                                   {"key": "m_stone", "type": "FrooxEngine.PBS_Metallic", "fields": {"Metallic": 0.0}}]),
+        slot("APL_Fountain_001", children=[slot("APL_Fountain_001_Water", [renderer("r_water", ["m_water"])]),
+                                           slot("APL_Fountain_001_WaterAttach", [renderer("r_attach", ["m_water"])])]),
+        slot("Pylons", [renderer("r_pylon", ["m_stone", "m_water"])]),
+    ])
+    p2 = copy.deepcopy(model)
+    district.add_g03_material(p2, "A_plaza")
+    return model, p2
 
 
-def test_structure_rejects_a_changed_shared_material_or_a_repointed_shared_renderer():
-    decl, obs = _structure()
-    assert verify_g03.check_structure(obs, decl) == []
-    decl, obs = _structure()
-    obs["fields"]["m_water"]["EmissiveColor"] = {"r": 0.3, "g": 0.4, "b": 0.9, "a": 1.0}   # 共有の材質を駆動してしまった
+def _observe(p2):
+    """宣言どおりに apply された観察（ID は id_<キー>、色は sRGB の profile 付き）。"""
+    obs = {"materials": {r: [f"id_{m}" for m in ms] for r, ms in verify_g03.renderer_materials(p2).items()},
+           "ids": {}, "fields": {}}
+    stack = [p2]
+    while stack:
+        n = stack.pop()
+        for c in n["components"]:
+            if c["type"] == "FrooxEngine.PBS_Metallic":
+                obs["ids"][c["key"]] = f"id_{c['key']}"
+                obs["fields"][c["key"]] = {k: ({"r": v[0], "g": v[1], "b": v[2], "a": v[3], "profile": "sRGB"} if isinstance(v, list) else v)
+                                           for k, v in c["fields"].items()} | {"Enabled": True}
+        stack.extend(n["children"])
+    return obs
+
+
+def test_structure_rejects_a_changed_shared_material():
+    model, p2 = _docs()
+    decl = verify_g03.declared_materials(model, p2)
+    assert decl["shared_renderers"] == ["r_attach", "r_pylon"] and verify_g03.check_structure(_observe(p2), decl) == []
+    obs = _observe(p2)
+    obs["fields"]["m_water"]["EmissiveColor"] = {"r": 0.3, "g": 0.4, "b": 0.9, "a": 1.0, "profile": "sRGB"}   # 共有の材質を駆動してしまった
     assert len(verify_g03.check_structure(obs, decl)) == 1
-    decl, obs = _structure()
-    obs["materials"]["r_attach"] = ["id_mine"]   # 取付位置の目印まで専用の材質に付け替えた
+    obs = _observe(p2)
+    obs["fields"]["m_water"]["EmissiveColor"]["profile"] = "Linear"   # 数値は同じでも、線形にすると明るさが変わる
     assert len(verify_g03.check_structure(obs, decl)) == 1
+
+
+def test_structure_rejects_a_repointed_renderer_even_when_the_declaration_was_repointed_too():
+    model, p2 = _docs()
+    # 宣言でも取付位置の目印を専用の材質へ付け替え、そのとおりに apply された（基準は G03 を足す前の宣言）
+    attach = p2["children"][1]["children"][1]["components"][0]
+    attach["fields"]["Materials"] = ["$component:p3_g03_wm"]
+    decl = verify_g03.declared_materials(model, p2)
+    problems = verify_g03.check_structure(_observe(p2), decl)
+    assert any(p.startswith("declaration r_attach") for p in problems) and any(p.startswith("r_attach:") for p in problems)
+    # ショーの装置の材質の並びが減った（元の水の材質は残っている）
+    model, p2 = _docs()
+    obs = _observe(p2)
+    obs["materials"]["r_pylon"] = ["id_m_water"]
+    assert len(verify_g03.check_structure(obs, verify_g03.declared_materials(model, p2))) == 1

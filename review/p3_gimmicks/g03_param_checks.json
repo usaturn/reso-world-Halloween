@@ -26,8 +26,9 @@
     "problems": [],
     "frozen": [
       {
+        "G03Frequency": 0.0,
         "G03Intensity": 1.0,
-        "clamped": 1.0,
+        "clamped_intensity": 1.0,
         "linear": [
           [
             0.504,
@@ -43,8 +44,9 @@
         "problems": []
       },
       {
+        "G03Frequency": 0.0,
         "G03Intensity": 0.5,
-        "clamped": 0.5,
+        "clamped_intensity": 0.5,
         "linear": [
           [
             0.252,
@@ -60,8 +62,9 @@
         "problems": []
       },
       {
+        "G03Frequency": 0.0,
         "G03Intensity": 0.0,
-        "clamped": 0.0,
+        "clamped_intensity": 0.0,
         "linear": [
           [
             0.0,
@@ -77,8 +80,9 @@
         "problems": []
       },
       {
+        "G03Frequency": 0.0,
         "G03Intensity": 5.0,
-        "clamped": 2.0,
+        "clamped_intensity": 2.0,
         "linear": [
           [
             1.008,
@@ -94,8 +98,9 @@
         "problems": []
       },
       {
+        "G03Frequency": 0.0,
         "G03Intensity": -1.0,
-        "clamped": 0.0,
+        "clamped_intensity": 0.0,
         "linear": [
           [
             0.0,
@@ -106,38 +111,96 @@
             0.0,
             0.0,
             0.0
+          ]
+        ],
+        "problems": []
+      },
+      {
+        "G03Frequency": -1.0,
+        "G03Intensity": 1.0,
+        "clamped_intensity": 1.0,
+        "linear": [
+          [
+            0.504,
+            0.99,
+            1.764
+          ],
+          [
+            0.504,
+            0.99,
+            1.764
           ]
         ],
         "problems": []
       }
     ],
-    "swing_zero": {
-      "linear": [
-        [
-          0.504,
-          0.99,
-          1.764
+    "swing_zero": [
+      {
+        "G03Swing": 0.0,
+        "linear": [
+          [
+            0.504,
+            0.99,
+            1.764
+          ],
+          [
+            0.504,
+            0.99,
+            1.764
+          ],
+          [
+            0.504,
+            0.99,
+            1.764
+          ]
         ],
-        [
-          0.504,
-          0.99,
-          1.764
+        "problems": []
+      },
+      {
+        "G03Swing": -1.0,
+        "linear": [
+          [
+            0.504,
+            0.99,
+            1.764
+          ],
+          [
+            0.504,
+            0.99,
+            1.764
+          ],
+          [
+            0.504,
+            0.99,
+            1.764
+          ]
         ],
-        [
-          0.504,
-          0.99,
-          1.764
-        ]
-      ],
+        "problems": []
+      }
+    ],
+    "swing_over": {
+      "G03Swing": 5.0,
+      "clamped": 1.0,
+      "g03": {
+        "samples": 9,
+        "max_residual": 5.813483405781028e-08,
+        "theta_speed_rad_per_s": 1.2560111914784076,
+        "expected_rad_per_s": 1.2566370614359172,
+        "max_theta_deviation_rad": 0.05678249111285183,
+        "pulse_min": 0.5001753015333283,
+        "pulse_max": 1.4578156713216759,
+        "luminance_min": 0.45322048061,
+        "luminance_max": 1.230362832364
+      },
       "problems": []
     },
     "clock": {
-      "dt_s": 21.486719131469727,
-      "theta_step_rad": 0.5412466120594317,
-      "expected_rad": 0.5400201517853804,
+      "dt_s": 21.345276355743408,
+      "theta_step_rad": 0.5366356997649024,
+      "expected_rad": 0.5364653071043792,
       "residuals": [
-        2.5699091410480435e-08,
-        3.2499839375255135e-08
+        3.2388028370355926e-08,
+        2.4280405019894147e-08
       ],
       "problems": []
     },
