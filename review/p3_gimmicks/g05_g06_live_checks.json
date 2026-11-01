@@ -1,0 +1,1793 @@
+{
+  "windows": [
+    {
+      "started_at": "2026-11-01T12:46:59Z",
+      "params": {
+        "G05Intensity": 1.0,
+        "G05Frequency": 0.25,
+        "G05PhaseSpread": 1.0,
+        "G06Intensity": 1.0,
+        "G06Frequency": 0.041666668,
+        "G06Phase": 0.0
+      },
+      "samples": [
+        {
+          "t": 1793537247.183,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": -0.09523,
+              "horizontal_m": 0.0,
+              "sway_deg": -14.30911,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.34708,
+              "horizontal_m": 0.0,
+              "sway_deg": 16.3615,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 79.0686,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 80.8988,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537249.232,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.34818,
+              "horizontal_m": 0.0,
+              "sway_deg": 14.53367,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": -0.0936,
+              "horizontal_m": 0.0,
+              "sway_deg": 10.8701,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537251.3,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": -0.09994,
+              "horizontal_m": 0.0,
+              "sway_deg": 12.96154,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.33674,
+              "horizontal_m": 0.0,
+              "sway_deg": -17.34195,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537253.352,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.34991,
+              "horizontal_m": 0.0,
+              "sway_deg": -15.56298,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": -0.0826,
+              "horizontal_m": 0.0,
+              "sway_deg": -9.51584,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537255.634,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": -0.0206,
+              "horizontal_m": 0.0,
+              "sway_deg": -5.14615,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.19899,
+              "horizontal_m": 0.0,
+              "sway_deg": 19.94188,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 84.9948,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 84.7551,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537257.916,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.26111,
+              "horizontal_m": 0.0,
+              "sway_deg": 19.45957,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.06203,
+              "horizontal_m": 0.0,
+              "sway_deg": 0.99051,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 41.2519,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 37.3871,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537259.966,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.00845,
+              "horizontal_m": 0.0,
+              "sway_deg": 3.58926,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.16493,
+              "horizontal_m": 0.0,
+              "sway_deg": -19.99988,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": -0.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 0.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537262.028,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.22614,
+              "horizontal_m": 0.0,
+              "sway_deg": -19.80078,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.10305,
+              "horizontal_m": 0.0,
+              "sway_deg": 0.83016,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": -0.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 0.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537264.081,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.04023,
+              "horizontal_m": 0.0,
+              "sway_deg": -2.0473,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.12994,
+              "horizontal_m": 0.0,
+              "sway_deg": 19.93423,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": -0.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 0.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537266.127,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.18219,
+              "horizontal_m": 0.0,
+              "sway_deg": 19.98698,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.15016,
+              "horizontal_m": 0.0,
+              "sway_deg": -2.91766,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": -0.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 0.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537268.172,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.06786,
+              "horizontal_m": 0.0,
+              "sway_deg": 0.72036,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.10031,
+              "horizontal_m": 0.0,
+              "sway_deg": -19.78634,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 1.2093,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 2.3029,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537270.225,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.15816,
+              "horizontal_m": 0.0,
+              "sway_deg": -19.99757,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.17309,
+              "horizontal_m": 0.0,
+              "sway_deg": 3.9721,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 54.7112,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 58.3936,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537272.277,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.10278,
+              "horizontal_m": 0.0,
+              "sway_deg": 1.11035,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.05977,
+              "horizontal_m": 0.0,
+              "sway_deg": 19.42889,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537274.318,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.12933,
+              "horizontal_m": 0.0,
+              "sway_deg": 19.93104,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.20156,
+              "horizontal_m": 0.0,
+              "sway_deg": -5.24003,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537276.335,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.12656,
+              "horizontal_m": 0.0,
+              "sway_deg": -1.91422,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.04295,
+              "horizontal_m": 0.0,
+              "sway_deg": -19.23031,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537278.334,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.12249,
+              "horizontal_m": 0.0,
+              "sway_deg": -19.90969,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.20705,
+              "horizontal_m": 0.0,
+              "sway_deg": 5.49615,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537280.384,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.16208,
+              "horizontal_m": 0.0,
+              "sway_deg": 3.46343,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.01113,
+              "horizontal_m": 0.0,
+              "sway_deg": 18.73923,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 80.7826,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 79.2117,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537282.453,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.07677,
+              "horizontal_m": 0.0,
+              "sway_deg": 19.59928,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.25055,
+              "horizontal_m": 0.0,
+              "sway_deg": -7.52357,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 23.531,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 20.1321,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537284.512,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.1965,
+              "horizontal_m": 0.0,
+              "sway_deg": -5.0352,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": -0.01818,
+              "horizontal_m": 0.0,
+              "sway_deg": -18.11456,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": -0.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 0.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537286.749,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": -0.05194,
+              "horizontal_m": 0.0,
+              "sway_deg": -17.1439,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.33961,
+              "horizontal_m": 0.0,
+              "sway_deg": 13.26026,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": -0.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 0.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537289.09,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.3476,
+              "horizontal_m": 0.0,
+              "sway_deg": 14.39123,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": -0.09469,
+              "horizontal_m": 0.0,
+              "sway_deg": 11.01742,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": -0.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 0.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537291.375,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": -0.09467,
+              "horizontal_m": 0.0,
+              "sway_deg": 11.03913,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.30933,
+              "horizontal_m": 0.0,
+              "sway_deg": -18.51141,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": -0.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 0.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537293.544,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.33192,
+              "horizontal_m": 0.0,
+              "sway_deg": -17.62226,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": -0.04056,
+              "horizontal_m": 0.0,
+              "sway_deg": -6.33834,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 32.2727,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 36.0901,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537295.614,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": -0.07133,
+              "horizontal_m": 0.0,
+              "sway_deg": -8.53478,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.26931,
+              "horizontal_m": 0.0,
+              "sway_deg": 19.34181,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 84.3313,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 84.8415,
+              "off_axis": 0.0
+            }
+          }
+        }
+      ],
+      "problems": [],
+      "structure_start": {
+        "rows": [
+          {
+            "slot": "BMN_FloatingGhost_001/BMN_FloatingGhost_001_FloatPivot",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_FloatingGhost_001/BMN_FloatingGhost_001_FloatPivot/BMN_FloatingGhost_001_GhostBody",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_FloatingGhost_001/BMN_FloatingGhost_001_FloatPivot/BMN_FloatingGhost_001_LanternCharm",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_FloatingGhost_002/BMN_FloatingGhost_002_FloatPivot",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_FloatingGhost_002/BMN_FloatingGhost_002_FloatPivot/BMN_FloatingGhost_002_GhostBody",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_FloatingGhost_002/BMN_FloatingGhost_002_FloatPivot/BMN_FloatingGhost_002_LanternCharm",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_MansionDoubleDoor_001/BMN_MansionDoubleDoor_001_Frame",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_MansionDoubleDoor_001/BMN_MansionDoubleDoor_001_HingeLeft",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_MansionDoubleDoor_001/BMN_MansionDoubleDoor_001_HingeLeft/BMN_MansionDoubleDoor_001_LeafLeft",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_MansionDoubleDoor_001/BMN_MansionDoubleDoor_001_HingeRight",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_MansionDoubleDoor_001/BMN_MansionDoubleDoor_001_HingeRight/BMN_MansionDoubleDoor_001_LeafRight",
+            "local_error": 0.0
+          }
+        ],
+        "problems": []
+      },
+      "relay_problems": [],
+      "frozen_probe": {
+        "params": {
+          "G05Intensity": 1.0,
+          "G05Frequency": 0.0,
+          "G05PhaseSpread": 1.0,
+          "G06Intensity": 1.0,
+          "G06Frequency": 0.0,
+          "G06Phase": 0.0
+        },
+        "slots": {
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.125,
+              "sway_deg": -0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.125,
+              "sway_deg": 20.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": -0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 0.0
+            }
+          }
+        },
+        "problems": []
+      },
+      "structure_end": {
+        "rows": [
+          {
+            "slot": "BMN_FloatingGhost_001/BMN_FloatingGhost_001_FloatPivot",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_FloatingGhost_001/BMN_FloatingGhost_001_FloatPivot/BMN_FloatingGhost_001_GhostBody",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_FloatingGhost_001/BMN_FloatingGhost_001_FloatPivot/BMN_FloatingGhost_001_LanternCharm",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_FloatingGhost_002/BMN_FloatingGhost_002_FloatPivot",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_FloatingGhost_002/BMN_FloatingGhost_002_FloatPivot/BMN_FloatingGhost_002_GhostBody",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_FloatingGhost_002/BMN_FloatingGhost_002_FloatPivot/BMN_FloatingGhost_002_LanternCharm",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_MansionDoubleDoor_001/BMN_MansionDoubleDoor_001_Frame",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_MansionDoubleDoor_001/BMN_MansionDoubleDoor_001_HingeLeft",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_MansionDoubleDoor_001/BMN_MansionDoubleDoor_001_HingeLeft/BMN_MansionDoubleDoor_001_LeafLeft",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_MansionDoubleDoor_001/BMN_MansionDoubleDoor_001_HingeRight",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_MansionDoubleDoor_001/BMN_MansionDoubleDoor_001_HingeRight/BMN_MansionDoubleDoor_001_LeafRight",
+            "local_error": 0.0
+          }
+        ],
+        "problems": []
+      },
+      "summary": {
+        "samples": 24,
+        "ghosts": {
+          "BMN_FloatingGhost_001": {
+            "lift_m": [
+              -0.0999,
+              0.3499
+            ],
+            "sway_deg": [
+              -19.998,
+              19.987
+            ]
+          },
+          "BMN_FloatingGhost_002": {
+            "lift_m": [
+              -0.0947,
+              0.3471
+            ],
+            "sway_deg": [
+              -20.0,
+              19.942
+            ]
+          }
+        },
+        "doors": {
+          "BMN_MansionDoubleDoor_001_HingeLeft": [
+            -0.0,
+            85.0
+          ],
+          "BMN_MansionDoubleDoor_001_HingeRight": [
+            0.0,
+            85.0
+          ]
+        },
+        "max_door_asymmetry_deg": 3.865
+      },
+      "variation_problems": [],
+      "door_clock": {
+        "crossings": [
+          {
+            "t": 1793537257.851,
+            "direction": "down"
+          },
+          {
+            "t": 1793537269.756,
+            "direction": "up"
+          },
+          {
+            "t": 1793537281.767,
+            "direction": "down"
+          },
+          {
+            "t": 1793537293.951,
+            "direction": "up"
+          }
+        ],
+        "intervals_s": [
+          11.906,
+          12.011,
+          12.183
+        ],
+        "expected_interval_s": 12.0,
+        "problems": []
+      },
+      "ok": true
+    },
+    {
+      "started_at": "2026-11-01T12:53:20Z",
+      "params": {
+        "G05Intensity": 1.0,
+        "G05Frequency": 0.25,
+        "G05PhaseSpread": 1.0,
+        "G06Intensity": 1.0,
+        "G06Frequency": 0.041666668,
+        "G06Phase": 0.0
+      },
+      "samples": [
+        {
+          "t": 1793537627.663,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": -0.06944,
+              "horizontal_m": 0.0,
+              "sway_deg": 8.34951,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.26591,
+              "horizontal_m": 0.0,
+              "sway_deg": -19.39067,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": -0.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 0.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537629.691,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.30665,
+              "horizontal_m": 0.0,
+              "sway_deg": -18.58179,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.003,
+              "horizontal_m": 0.0,
+              "sway_deg": -3.88283,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 37.6233,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 40.9335,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537631.744,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": -0.04579,
+              "horizontal_m": 0.0,
+              "sway_deg": -6.65729,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.23166,
+              "horizontal_m": 0.0,
+              "sway_deg": 19.75726,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 84.8768,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537633.792,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.29576,
+              "horizontal_m": 0.0,
+              "sway_deg": 18.86179,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.01824,
+              "horizontal_m": 0.0,
+              "sway_deg": 3.10551,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537635.85,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": -0.02927,
+              "horizontal_m": 0.0,
+              "sway_deg": 5.63857,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.20471,
+              "horizontal_m": 0.0,
+              "sway_deg": -19.91937,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537637.968,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.22653,
+              "horizontal_m": 0.0,
+              "sway_deg": -19.79705,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.10229,
+              "horizontal_m": 0.0,
+              "sway_deg": 0.82242,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537640.11,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.05082,
+              "horizontal_m": 0.0,
+              "sway_deg": -1.25825,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.10646,
+              "horizontal_m": 0.0,
+              "sway_deg": 19.8241,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 83.9265,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 82.8815,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537642.206,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.16519,
+              "horizontal_m": 0.0,
+              "sway_deg": 19.99996,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.16687,
+              "horizontal_m": 0.0,
+              "sway_deg": -3.70718,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 30.7981,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 27.1233,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537644.277,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.12065,
+              "horizontal_m": 0.0,
+              "sway_deg": -1.61325,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.04892,
+              "horizontal_m": 0.0,
+              "sway_deg": -19.30606,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": -0.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 0.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537646.403,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.124,
+              "horizontal_m": 0.0,
+              "sway_deg": -19.91178,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.22007,
+              "horizontal_m": 0.0,
+              "sway_deg": 7.27431,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": -0.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 0.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537648.718,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.30425,
+              "horizontal_m": 0.0,
+              "sway_deg": 10.48876,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": -0.091,
+              "horizontal_m": 0.0,
+              "sway_deg": 14.83385,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": -0.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 0.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537650.961,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": -0.06747,
+              "horizontal_m": 0.0,
+              "sway_deg": 16.45069,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.34648,
+              "horizontal_m": 0.0,
+              "sway_deg": -14.36001,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": -0.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 0.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537653.019,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.32343,
+              "horizontal_m": 0.0,
+              "sway_deg": -11.801,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": -0.09823,
+              "horizontal_m": 0.0,
+              "sway_deg": -13.72258,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 16.3218,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 19.5046,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537655.077,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": -0.08548,
+              "horizontal_m": 0.0,
+              "sway_deg": -15.343,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.35,
+              "horizontal_m": 0.0,
+              "sway_deg": 15.4233,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 77.2916,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 79.1146,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537657.093,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.33551,
+              "horizontal_m": 0.0,
+              "sway_deg": 12.83801,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": -0.1,
+              "horizontal_m": 0.0,
+              "sway_deg": 12.73767,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537659.1,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": -0.08755,
+              "horizontal_m": 0.0,
+              "sway_deg": 15.16591,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.34987,
+              "horizontal_m": 0.0,
+              "sway_deg": -15.58122,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537661.134,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.34112,
+              "horizontal_m": 0.0,
+              "sway_deg": -13.43004,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": -0.09914,
+              "horizontal_m": 0.0,
+              "sway_deg": -12.10028,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537663.187,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": -0.0954,
+              "horizontal_m": 0.0,
+              "sway_deg": -14.26401,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.34697,
+              "horizontal_m": 0.0,
+              "sway_deg": 16.3759,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 85.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537665.25,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.3483,
+              "horizontal_m": 0.0,
+              "sway_deg": 14.55557,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": -0.09339,
+              "horizontal_m": 0.0,
+              "sway_deg": 10.81826,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 62.1293,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 58.5918,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537667.3,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": -0.09978,
+              "horizontal_m": 0.0,
+              "sway_deg": 13.13335,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.33845,
+              "horizontal_m": 0.0,
+              "sway_deg": -17.22996,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": 4.0619,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 2.5464,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537669.312,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.34996,
+              "horizontal_m": 0.0,
+              "sway_deg": -15.25856,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": -0.08649,
+              "horizontal_m": 0.0,
+              "sway_deg": -9.93483,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": -0.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 0.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537671.33,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": -0.0996,
+              "horizontal_m": 0.0,
+              "sway_deg": -12.31851,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.32975,
+              "horizontal_m": 0.0,
+              "sway_deg": 17.73554,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": -0.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 0.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537673.421,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.34689,
+              "horizontal_m": 0.0,
+              "sway_deg": 16.67691,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": -0.06234,
+              "horizontal_m": 0.0,
+              "sway_deg": 7.81927,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": -0.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 0.0,
+              "off_axis": 0.0
+            }
+          }
+        },
+        {
+          "t": 1793537675.578,
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": -0.06583,
+              "horizontal_m": 0.0,
+              "sway_deg": 8.05844,
+              "off_axis": 0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.26051,
+              "horizontal_m": 0.0,
+              "sway_deg": -19.46754,
+              "off_axis": 0.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": -0.0,
+              "off_axis": 0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 0.0,
+              "off_axis": 0.0
+            }
+          }
+        }
+      ],
+      "problems": [],
+      "structure_start": {
+        "rows": [
+          {
+            "slot": "BMN_FloatingGhost_001/BMN_FloatingGhost_001_FloatPivot",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_FloatingGhost_001/BMN_FloatingGhost_001_FloatPivot/BMN_FloatingGhost_001_GhostBody",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_FloatingGhost_001/BMN_FloatingGhost_001_FloatPivot/BMN_FloatingGhost_001_LanternCharm",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_FloatingGhost_002/BMN_FloatingGhost_002_FloatPivot",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_FloatingGhost_002/BMN_FloatingGhost_002_FloatPivot/BMN_FloatingGhost_002_GhostBody",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_FloatingGhost_002/BMN_FloatingGhost_002_FloatPivot/BMN_FloatingGhost_002_LanternCharm",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_MansionDoubleDoor_001/BMN_MansionDoubleDoor_001_Frame",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_MansionDoubleDoor_001/BMN_MansionDoubleDoor_001_HingeLeft",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_MansionDoubleDoor_001/BMN_MansionDoubleDoor_001_HingeLeft/BMN_MansionDoubleDoor_001_LeafLeft",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_MansionDoubleDoor_001/BMN_MansionDoubleDoor_001_HingeRight",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_MansionDoubleDoor_001/BMN_MansionDoubleDoor_001_HingeRight/BMN_MansionDoubleDoor_001_LeafRight",
+            "local_error": 0.0
+          }
+        ],
+        "problems": []
+      },
+      "relay_problems": [],
+      "frozen_probe": {
+        "params": {
+          "G05Intensity": 1.0,
+          "G05Frequency": 0.0,
+          "G05PhaseSpread": 1.0,
+          "G06Intensity": 1.0,
+          "G06Frequency": 0.0,
+          "G06Phase": 0.0
+        },
+        "slots": {
+          "ghosts": {
+            "BMN_FloatingGhost_001": {
+              "lift_m": 0.125,
+              "sway_deg": -0.0
+            },
+            "BMN_FloatingGhost_002": {
+              "lift_m": 0.125,
+              "sway_deg": 20.0
+            }
+          },
+          "doors": {
+            "BMN_MansionDoubleDoor_001_HingeLeft": {
+              "open_deg": -0.0
+            },
+            "BMN_MansionDoubleDoor_001_HingeRight": {
+              "open_deg": 0.0
+            }
+          }
+        },
+        "problems": []
+      },
+      "structure_end": {
+        "rows": [
+          {
+            "slot": "BMN_FloatingGhost_001/BMN_FloatingGhost_001_FloatPivot",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_FloatingGhost_001/BMN_FloatingGhost_001_FloatPivot/BMN_FloatingGhost_001_GhostBody",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_FloatingGhost_001/BMN_FloatingGhost_001_FloatPivot/BMN_FloatingGhost_001_LanternCharm",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_FloatingGhost_002/BMN_FloatingGhost_002_FloatPivot",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_FloatingGhost_002/BMN_FloatingGhost_002_FloatPivot/BMN_FloatingGhost_002_GhostBody",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_FloatingGhost_002/BMN_FloatingGhost_002_FloatPivot/BMN_FloatingGhost_002_LanternCharm",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_MansionDoubleDoor_001/BMN_MansionDoubleDoor_001_Frame",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_MansionDoubleDoor_001/BMN_MansionDoubleDoor_001_HingeLeft",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_MansionDoubleDoor_001/BMN_MansionDoubleDoor_001_HingeLeft/BMN_MansionDoubleDoor_001_LeafLeft",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_MansionDoubleDoor_001/BMN_MansionDoubleDoor_001_HingeRight",
+            "local_error": 0.0
+          },
+          {
+            "slot": "BMN_MansionDoubleDoor_001/BMN_MansionDoubleDoor_001_HingeRight/BMN_MansionDoubleDoor_001_LeafRight",
+            "local_error": 0.0
+          }
+        ],
+        "problems": []
+      },
+      "summary": {
+        "samples": 24,
+        "ghosts": {
+          "BMN_FloatingGhost_001": {
+            "lift_m": [
+              -0.0998,
+              0.35
+            ],
+            "sway_deg": [
+              -19.912,
+              20.0
+            ]
+          },
+          "BMN_FloatingGhost_002": {
+            "lift_m": [
+              -0.1,
+              0.35
+            ],
+            "sway_deg": [
+              -19.919,
+              19.824
+            ]
+          }
+        },
+        "doors": {
+          "BMN_MansionDoubleDoor_001_HingeLeft": [
+            -0.0,
+            85.0
+          ],
+          "BMN_MansionDoubleDoor_001_HingeRight": [
+            0.0,
+            85.0
+          ]
+        },
+        "max_door_asymmetry_deg": 3.675
+      },
+      "variation_problems": [],
+      "door_clock": {
+        "crossings": [
+          {
+            "t": 1793537629.903,
+            "direction": "up"
+          },
+          {
+            "t": 1793537641.744,
+            "direction": "down"
+          },
+          {
+            "t": 1793537653.903,
+            "direction": "up"
+          },
+          {
+            "t": 1793537665.943,
+            "direction": "down"
+          }
+        ],
+        "intervals_s": [
+          11.841,
+          12.158,
+          12.04
+        ],
+        "expected_interval_s": 12.0,
+        "problems": []
+      },
+      "ok": true
+    }
+  ],
+  "gap_s": 300.0,
+  "drift": {
+    "rows": [
+      {
+        "window": 2,
+        "asset_id": "BMN_FloatingGhost_001",
+        "lift_diff_m": 0.0,
+        "sway_diff_deg": 0.0
+      },
+      {
+        "window": 2,
+        "asset_id": "BMN_FloatingGhost_002",
+        "lift_diff_m": 0.0,
+        "sway_diff_deg": 0.0
+      },
+      {
+        "window": 2,
+        "hinge": "BMN_MansionDoubleDoor_001_HingeLeft",
+        "open_diff_deg": 0.0
+      },
+      {
+        "window": 2,
+        "hinge": "BMN_MansionDoubleDoor_001_HingeRight",
+        "open_diff_deg": 0.0
+      }
+    ],
+    "problems": []
+  },
+  "envelopes": {
+    "G05": [
+      {
+        "asset_id": "BMN_FloatingGhost_001",
+        "moving_radius_m": 0.6552,
+        "clearance_radius_m": 1.0,
+        "within_clearance": true,
+        "lowest_m": 2.05,
+        "points_in_central_corridor": 0
+      },
+      {
+        "asset_id": "BMN_FloatingGhost_002",
+        "moving_radius_m": 0.6552,
+        "clearance_radius_m": 1.0,
+        "within_clearance": true,
+        "lowest_m": 2.25,
+        "points_in_central_corridor": 0
+      }
+    ],
+    "G06": [
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeLeft",
+        "closed_front_z": 39.86,
+        "beyond_closed_front_toward_porch_m": 0.0,
+        "points_outside_swing_zone": 0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeRight",
+        "closed_front_z": 39.86,
+        "beyond_closed_front_toward_porch_m": 0.0,
+        "points_outside_swing_zone": 0
+      }
+    ]
+  },
+  "envelope_problems": [],
+  "tolerances": {
+    "lift_m": 0.002,
+    "deg": 0.2,
+    "horizontal_m": 0.001,
+    "off_axis": 0.001,
+    "live_symmetry_deg": 10.0,
+    "cross_s": 1.5,
+    "frozen_lift_m": 0.0005,
+    "frozen_deg": 0.05,
+    "local": 0.0001
+  },
+  "ok": true
+}

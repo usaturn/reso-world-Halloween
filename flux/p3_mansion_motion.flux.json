@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1",
+  "projectDirectory": ".",
+  "parent": "Root/HalloweenMagicalCarnival/P3_Gimmicks/G05_G06_Mansion",
+  "worldState": "../.resoloop/state/p2_B_mansion.json",
+  "deployState": "../.resoloop/flux-state/p3_mansion_motion.json",
+  "modules": [
+    {
+      "name": "p3-mansion-motion",
+      "source": "P3MansionMotion.pg",
+      "module": "P3MansionMotion",
+      "bindings": {
+        "G1Position": {
+          "target": "$member:p3_g05_position_object_BMN_FloatingGhost_001_FloatPivot_3047518a.Value",
+          "mode": "drive"
+        },
+        "G1Rotation": {
+          "target": "$member:p3_g05_rotation_object_BMN_FloatingGhost_001_FloatPivot_3047518a.Value",
+          "mode": "drive"
+        },
+        "G2Position": {
+          "target": "$member:p3_g05_position_object_BMN_FloatingGhost_002_FloatPivot_36dfc11f.Value",
+          "mode": "drive"
+        },
+        "G2Rotation": {
+          "target": "$member:p3_g05_rotation_object_BMN_FloatingGhost_002_FloatPivot_36dfc11f.Value",
+          "mode": "drive"
+        },
+        "D1Rotation": {
+          "target": "$member:p3_g06_rotation_object_BMN_MansionDoubleDoor_001_HingeLeft_f0016e93.Value",
+          "mode": "drive"
+        },
+        "D2Rotation": {
+          "target": "$member:p3_g06_rotation_object_BMN_MansionDoubleDoor_001_HingeRight_4e2d5a18.Value",
+          "mode": "drive"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,713 @@
+{
+  "problems": [],
+  "before": {
+    "G05Intensity": 1.0,
+    "G05Frequency": 0.25,
+    "G05PhaseSpread": 1.0,
+    "G06Intensity": 1.0,
+    "G06Frequency": 0.041666668,
+    "G06Phase": 0.0
+  },
+  "frozen_spread_1.0_phase_0.0": {
+    "params": {
+      "G05Intensity": 1.0,
+      "G05Frequency": 0.0,
+      "G05PhaseSpread": 1.0,
+      "G06Intensity": 1.0,
+      "G06Frequency": 0.0,
+      "G06Phase": 0.0
+    },
+    "rows": [
+      {
+        "asset_id": "BMN_FloatingGhost_001",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": -0.0,
+        "expected_sway_deg": 0.0
+      },
+      {
+        "asset_id": "BMN_FloatingGhost_002",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": 20.0,
+        "expected_sway_deg": 20.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeLeft",
+        "open_deg": -0.0,
+        "expected_open_deg": 0.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeRight",
+        "open_deg": 0.0,
+        "expected_open_deg": 0.0
+      }
+    ],
+    "slot_rows": [
+      {
+        "asset_id": "BMN_FloatingGhost_001",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": -0.0,
+        "expected_sway_deg": 0.0
+      },
+      {
+        "asset_id": "BMN_FloatingGhost_002",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": 20.0,
+        "expected_sway_deg": 20.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeLeft",
+        "open_deg": -0.0,
+        "expected_open_deg": 0.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeRight",
+        "open_deg": 0.0,
+        "expected_open_deg": 0.0
+      }
+    ],
+    "problems": []
+  },
+  "frozen_spread_1.0_phase_0.2": {
+    "params": {
+      "G05Intensity": 1.0,
+      "G05Frequency": 0.0,
+      "G05PhaseSpread": 1.0,
+      "G06Intensity": 1.0,
+      "G06Frequency": 0.0,
+      "G06Phase": 0.2
+    },
+    "rows": [
+      {
+        "asset_id": "BMN_FloatingGhost_001",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": -0.0,
+        "expected_sway_deg": 0.0
+      },
+      {
+        "asset_id": "BMN_FloatingGhost_002",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": 20.0,
+        "expected_sway_deg": 20.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeLeft",
+        "open_deg": 8.1168,
+        "expected_open_deg": 8.1168
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeRight",
+        "open_deg": 8.1168,
+        "expected_open_deg": 8.1168
+      }
+    ],
+    "slot_rows": [
+      {
+        "asset_id": "BMN_FloatingGhost_001",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": -0.0,
+        "expected_sway_deg": 0.0
+      },
+      {
+        "asset_id": "BMN_FloatingGhost_002",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": 20.0,
+        "expected_sway_deg": 20.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeLeft",
+        "open_deg": 8.1168,
+        "expected_open_deg": 8.1168
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeRight",
+        "open_deg": 8.1168,
+        "expected_open_deg": 8.1168
+      }
+    ],
+    "problems": []
+  },
+  "frozen_spread_1.0_phase_0.25": {
+    "params": {
+      "G05Intensity": 1.0,
+      "G05Frequency": 0.0,
+      "G05PhaseSpread": 1.0,
+      "G06Intensity": 1.0,
+      "G06Frequency": 0.0,
+      "G06Phase": 0.25
+    },
+    "rows": [
+      {
+        "asset_id": "BMN_FloatingGhost_001",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": -0.0,
+        "expected_sway_deg": 0.0
+      },
+      {
+        "asset_id": "BMN_FloatingGhost_002",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": 20.0,
+        "expected_sway_deg": 20.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeLeft",
+        "open_deg": 42.5,
+        "expected_open_deg": 42.5
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeRight",
+        "open_deg": 42.5,
+        "expected_open_deg": 42.5
+      }
+    ],
+    "slot_rows": [
+      {
+        "asset_id": "BMN_FloatingGhost_001",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": -0.0,
+        "expected_sway_deg": 0.0
+      },
+      {
+        "asset_id": "BMN_FloatingGhost_002",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": 20.0,
+        "expected_sway_deg": 20.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeLeft",
+        "open_deg": 42.5,
+        "expected_open_deg": 42.5
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeRight",
+        "open_deg": 42.5,
+        "expected_open_deg": 42.5
+      }
+    ],
+    "problems": []
+  },
+  "frozen_spread_1.0_phase_0.5": {
+    "params": {
+      "G05Intensity": 1.0,
+      "G05Frequency": 0.0,
+      "G05PhaseSpread": 1.0,
+      "G06Intensity": 1.0,
+      "G06Frequency": 0.0,
+      "G06Phase": 0.5
+    },
+    "rows": [
+      {
+        "asset_id": "BMN_FloatingGhost_001",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": -0.0,
+        "expected_sway_deg": 0.0
+      },
+      {
+        "asset_id": "BMN_FloatingGhost_002",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": 20.0,
+        "expected_sway_deg": 20.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeLeft",
+        "open_deg": 85.0,
+        "expected_open_deg": 85.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeRight",
+        "open_deg": 85.0,
+        "expected_open_deg": 85.0
+      }
+    ],
+    "slot_rows": [
+      {
+        "asset_id": "BMN_FloatingGhost_001",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": -0.0,
+        "expected_sway_deg": 0.0
+      },
+      {
+        "asset_id": "BMN_FloatingGhost_002",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": 20.0,
+        "expected_sway_deg": 20.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeLeft",
+        "open_deg": 85.0,
+        "expected_open_deg": 85.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeRight",
+        "open_deg": 85.0,
+        "expected_open_deg": 85.0
+      }
+    ],
+    "problems": []
+  },
+  "frozen_spread_0.5_phase_0.0": {
+    "params": {
+      "G05Intensity": 1.0,
+      "G05Frequency": 0.0,
+      "G05PhaseSpread": 0.5,
+      "G06Intensity": 1.0,
+      "G06Frequency": 0.0,
+      "G06Phase": 0.0
+    },
+    "rows": [
+      {
+        "asset_id": "BMN_FloatingGhost_001",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": -0.0,
+        "expected_sway_deg": 0.0
+      },
+      {
+        "asset_id": "BMN_FloatingGhost_002",
+        "lift_m": 0.35,
+        "expected_lift_m": 0.35,
+        "sway_deg": 14.1421,
+        "expected_sway_deg": 14.1421
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeLeft",
+        "open_deg": -0.0,
+        "expected_open_deg": 0.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeRight",
+        "open_deg": 0.0,
+        "expected_open_deg": 0.0
+      }
+    ],
+    "slot_rows": [
+      {
+        "asset_id": "BMN_FloatingGhost_001",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": -0.0,
+        "expected_sway_deg": 0.0
+      },
+      {
+        "asset_id": "BMN_FloatingGhost_002",
+        "lift_m": 0.35,
+        "expected_lift_m": 0.35,
+        "sway_deg": 14.1421,
+        "expected_sway_deg": 14.1421
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeLeft",
+        "open_deg": -0.0,
+        "expected_open_deg": 0.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeRight",
+        "open_deg": 0.0,
+        "expected_open_deg": 0.0
+      }
+    ],
+    "problems": []
+  },
+  "frozen_spread_0.0_phase_0.0": {
+    "params": {
+      "G05Intensity": 1.0,
+      "G05Frequency": 0.0,
+      "G05PhaseSpread": 0.0,
+      "G06Intensity": 1.0,
+      "G06Frequency": 0.0,
+      "G06Phase": 0.0
+    },
+    "rows": [
+      {
+        "asset_id": "BMN_FloatingGhost_001",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": -0.0,
+        "expected_sway_deg": 0.0
+      },
+      {
+        "asset_id": "BMN_FloatingGhost_002",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": -0.0,
+        "expected_sway_deg": 0.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeLeft",
+        "open_deg": -0.0,
+        "expected_open_deg": 0.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeRight",
+        "open_deg": 0.0,
+        "expected_open_deg": 0.0
+      }
+    ],
+    "slot_rows": [
+      {
+        "asset_id": "BMN_FloatingGhost_001",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": -0.0,
+        "expected_sway_deg": 0.0
+      },
+      {
+        "asset_id": "BMN_FloatingGhost_002",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": -0.0,
+        "expected_sway_deg": 0.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeLeft",
+        "open_deg": -0.0,
+        "expected_open_deg": 0.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeRight",
+        "open_deg": 0.0,
+        "expected_open_deg": 0.0
+      }
+    ],
+    "problems": []
+  },
+  "frozen_G06Intensity_0.5": {
+    "params": {
+      "G05Intensity": 1.0,
+      "G05Frequency": 0.0,
+      "G05PhaseSpread": 1.0,
+      "G06Intensity": 0.5,
+      "G06Frequency": 0.0,
+      "G06Phase": 0.5
+    },
+    "rows": [
+      {
+        "asset_id": "BMN_FloatingGhost_001",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": -0.0,
+        "expected_sway_deg": 0.0
+      },
+      {
+        "asset_id": "BMN_FloatingGhost_002",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": 20.0,
+        "expected_sway_deg": 20.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeLeft",
+        "open_deg": 42.5,
+        "expected_open_deg": 42.5
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeRight",
+        "open_deg": 42.5,
+        "expected_open_deg": 42.5
+      }
+    ],
+    "slot_rows": [
+      {
+        "asset_id": "BMN_FloatingGhost_001",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": -0.0,
+        "expected_sway_deg": 0.0
+      },
+      {
+        "asset_id": "BMN_FloatingGhost_002",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": 20.0,
+        "expected_sway_deg": 20.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeLeft",
+        "open_deg": 42.5,
+        "expected_open_deg": 42.5
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeRight",
+        "open_deg": 42.5,
+        "expected_open_deg": 42.5
+      }
+    ],
+    "problems": []
+  },
+  "frozen_out_of_range_high": {
+    "params": {
+      "G05Intensity": 5.0,
+      "G05Frequency": -1.0,
+      "G05PhaseSpread": 1.5,
+      "G06Intensity": 5.0,
+      "G06Frequency": -1.0,
+      "G06Phase": 0.5
+    },
+    "rows": [
+      {
+        "asset_id": "BMN_FloatingGhost_001",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": -0.0,
+        "expected_sway_deg": 0.0
+      },
+      {
+        "asset_id": "BMN_FloatingGhost_002",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": 20.0,
+        "expected_sway_deg": 20.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeLeft",
+        "open_deg": 85.0,
+        "expected_open_deg": 85.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeRight",
+        "open_deg": 85.0,
+        "expected_open_deg": 85.0
+      }
+    ],
+    "slot_rows": [
+      {
+        "asset_id": "BMN_FloatingGhost_001",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": -0.0,
+        "expected_sway_deg": 0.0
+      },
+      {
+        "asset_id": "BMN_FloatingGhost_002",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": 20.0,
+        "expected_sway_deg": 20.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeLeft",
+        "open_deg": 85.0,
+        "expected_open_deg": 85.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeRight",
+        "open_deg": 85.0,
+        "expected_open_deg": 85.0
+      }
+    ],
+    "problems": []
+  },
+  "frozen_out_of_range_phase": {
+    "params": {
+      "G05Intensity": 5.0,
+      "G05Frequency": -1.0,
+      "G05PhaseSpread": 1.5,
+      "G06Intensity": 5.0,
+      "G06Frequency": -1.0,
+      "G06Phase": 1.5
+    },
+    "rows": [
+      {
+        "asset_id": "BMN_FloatingGhost_001",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": -0.0,
+        "expected_sway_deg": 0.0
+      },
+      {
+        "asset_id": "BMN_FloatingGhost_002",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": 20.0,
+        "expected_sway_deg": 20.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeLeft",
+        "open_deg": -0.0,
+        "expected_open_deg": 0.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeRight",
+        "open_deg": 0.0,
+        "expected_open_deg": 0.0
+      }
+    ],
+    "slot_rows": [
+      {
+        "asset_id": "BMN_FloatingGhost_001",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": -0.0,
+        "expected_sway_deg": 0.0
+      },
+      {
+        "asset_id": "BMN_FloatingGhost_002",
+        "lift_m": 0.125,
+        "expected_lift_m": 0.125,
+        "sway_deg": 20.0,
+        "expected_sway_deg": 20.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeLeft",
+        "open_deg": -0.0,
+        "expected_open_deg": 0.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeRight",
+        "open_deg": 0.0,
+        "expected_open_deg": 0.0
+      }
+    ],
+    "problems": []
+  },
+  "frozen_out_of_range_low": {
+    "params": {
+      "G05Intensity": -1.0,
+      "G05Frequency": -1.0,
+      "G05PhaseSpread": 1.5,
+      "G06Intensity": -1.0,
+      "G06Frequency": -1.0,
+      "G06Phase": 0.5
+    },
+    "rows": [
+      {
+        "asset_id": "BMN_FloatingGhost_001",
+        "lift_m": -0.0,
+        "expected_lift_m": 0.0,
+        "sway_deg": -0.0,
+        "expected_sway_deg": 0.0
+      },
+      {
+        "asset_id": "BMN_FloatingGhost_002",
+        "lift_m": -0.0,
+        "expected_lift_m": 0.0,
+        "sway_deg": -0.0,
+        "expected_sway_deg": 0.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeLeft",
+        "open_deg": -0.0,
+        "expected_open_deg": 0.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeRight",
+        "open_deg": 0.0,
+        "expected_open_deg": 0.0
+      }
+    ],
+    "slot_rows": [
+      {
+        "asset_id": "BMN_FloatingGhost_001",
+        "lift_m": -0.0,
+        "expected_lift_m": 0.0,
+        "sway_deg": -0.0,
+        "expected_sway_deg": 0.0
+      },
+      {
+        "asset_id": "BMN_FloatingGhost_002",
+        "lift_m": -0.0,
+        "expected_lift_m": 0.0,
+        "sway_deg": -0.0,
+        "expected_sway_deg": 0.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeLeft",
+        "open_deg": -0.0,
+        "expected_open_deg": 0.0
+      },
+      {
+        "hinge": "BMN_MansionDoubleDoor_001_HingeRight",
+        "open_deg": 0.0,
+        "expected_open_deg": 0.0
+      }
+    ],
+    "problems": []
+  },
+  "G05_clock": {
+    "params": {
+      "G05Intensity": 1.0,
+      "G05Frequency": 0.004,
+      "G05PhaseSpread": 1.0,
+      "G06Intensity": 1.0,
+      "G06Frequency": 0.041666668,
+      "G06Phase": 0.0
+    },
+    "advance": [
+      {
+        "asset_id": "BMN_FloatingGhost_002",
+        "half_angle_advance_deg": 15.969,
+        "expected_deg": 15.945,
+        "error_deg": 0.024
+      }
+    ],
+    "phase_pair": {
+      "pair": [
+        "BMN_FloatingGhost_001",
+        "BMN_FloatingGhost_002"
+      ],
+      "error_deg": 0.168
+    },
+    "lift_consistency": [
+      {
+        "observation": "first",
+        "asset_id": "BMN_FloatingGhost_001",
+        "lift_m": -0.01497,
+        "lift_from_sway_m": -0.01445
+      },
+      {
+        "observation": "first",
+        "asset_id": "BMN_FloatingGhost_002",
+        "lift_m": 0.26393,
+        "lift_from_sway_m": 0.26341
+      },
+      {
+        "observation": "second",
+        "asset_id": "BMN_FloatingGhost_002",
+        "lift_m": 0.14919,
+        "lift_from_sway_m": 0.14862
+      }
+    ],
+    "seconds": 22.146,
+    "problems": []
+  },
+  "G05Intensity_0.5": {
+    "lift_range_m": [
+      -0.0484,
+      0.15775
+    ],
+    "sway_abs_max_deg": 9.9993,
+    "problems": []
+  },
+  "G05Intensity_0.0": {
+    "lift_range_m": [
+      -0.0,
+      -0.0
+    ],
+    "sway_abs_max_deg": 0.0,
+    "problems": []
+  },
+  "restored": {
+    "G05Intensity": 1.0,
+    "G05Frequency": 0.25,
+    "G05PhaseSpread": 1.0,
+    "G06Intensity": 1.0,
+    "G06Frequency": 0.041666668,
+    "G06Phase": 0.0
+  },
+  "ok": true
+}

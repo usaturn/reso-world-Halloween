@@ -27,6 +27,22 @@ ProtoGraph の式（G03。E0 は P2 の水の発光、E1 は G03_SHIFT_EMISSIVE_
     脈 = 1 + 0.5 A sin θ                      （明るさ。A = 1 で 0.5〜1.5 倍）
     混ぜ = A (1 − cos(θ / 2)) / 2             （色。0 で青、A で紫寄り。脈の半分の速さ）
     発光 = I × 脈 × ((1 − 混ぜ) E0 + 混ぜ E1)  （Linear の colorX。A = 0・I = 1 で P2 の発光と同じ）
+
+W10-B（G05・G06）で足した物:
+- content/p3_gimmicks.json に G05・G06 の値 6 つ（HMC_P3/G05Intensity・G05Frequency・G05PhaseSpread・G06Intensity・
+  G06Frequency・G06Phase）と、モジュールの配備先 G05_G06_Mansion
+- flux/P3MansionMotion.pg: B の 2 体のおばけの位置・回転と、扉の左右の蝶番の回転を出すモジュール
+- flux/p3_mansion_motion.flux.json: その出力を B の中継（ValueMultiDriver）の Value へ drive で結ぶマニフェスト（worldState は B の state）
+
+ProtoGraph の式（G05。i は個体、φ_i は gimmicks.G05_PHASE_DEG、lo・hi は gimmicks.G05_BOB_RANGE_M、yaw は W03 の揺れの最大 20°）:
+    I = clamp01(G05Intensity)、f = clamp(G05Frequency, 0, 1)、s = clamp01(G05PhaseSpread)
+    θ_i = 2π f t + s φ_i
+    上下 = I (mid + half sin θ_i)               （Blender の Z = Resonite の Y。mid・half は lo・hi の中央と半幅）
+    揺れ = I yaw sin(θ_i / 2)                   （Blender の Z まわり。Resonite の Y まわりは符号が逆）
+ProtoGraph の式（G06。H は gimmicks.G06_HOLD、A は W03 の 85°）:
+    I = clamp01(G06Intensity)、f = clamp(G06Frequency, 0, 0.2)、p = clamp01(G06Phase)
+    θ = 2π (f t + p)、c = (1 − cos θ) / 2、x = clamp01((c − H) / (1 − 2H))
+    開き = I A x² (3 − 2x)                      （左は Blender の +Z まわり、右は −Z まわり。どちらも内開き）
 """
 
 from __future__ import annotations
@@ -48,6 +64,8 @@ PG = PROJECT_ROOT / "flux" / f"{gimmicks.G01_MODULE}.pg"
 MANIFEST = PROJECT_ROOT / "flux" / "p3_plaza_dance.flux.json"
 G03_PG = PROJECT_ROOT / "flux" / f"{gimmicks.G03_MODULE}.pg"
 G03_MANIFEST = PROJECT_ROOT / "flux" / "p3_fountain_glow.flux.json"
+B_PG = PROJECT_ROOT / "flux" / f"{gimmicks.B_MODULE}.pg"
+B_MANIFEST = PROJECT_ROOT / "flux" / "p3_mansion_motion.flux.json"
 
 
 def b2r(p) -> list[float]:
@@ -57,7 +75,8 @@ def b2r(p) -> list[float]:
 def content_doc() -> dict:
     comps = [{"key": "p3_space", "type": "FrooxEngine.DynamicVariableSpace",
               "fields": {"SpaceName": gimmicks.SPACE_NAME, "OnlyDirectBinding": False}}]
-    for name, spec in {**gimmicks.G01_VARIABLES, **gimmicks.G03_VARIABLES}.items():
+    for name, spec in {**gimmicks.G01_VARIABLES, **gimmicks.G03_VARIABLES, **gimmicks.G05_VARIABLES,
+                       **gimmicks.G06_VARIABLES}.items():
         comps.append({
             "key": spec["key"],
             "type": "[FrooxEngine]FrooxEngine.DynamicValueVariable<float>",
@@ -78,6 +97,8 @@ def content_doc() -> dict:
                       "position": [0, 0, 0], "rotation": [0, 0, 0, 1], "scale": [1, 1, 1]}},
             {"slot": {"key": "p3_g03", "name": gimmicks.G03_FLUX_SLOT,
                       "position": [0, 0, 0], "rotation": [0, 0, 0, 1], "scale": [1, 1, 1]}},
+            {"slot": {"key": "p3_g0506", "name": gimmicks.B_FLUX_SLOT,
+                      "position": [0, 0, 0], "rotation": [0, 0, 0, 1], "scale": [1, 1, 1]}},
         ],
         # 撮影のカメラ（resoloop capture の bookmark。ワールドには何も作らない）。座標は Resonite の世界座標
         "cameras": CAMERAS,
@@ -95,6 +116,12 @@ CAMERAS = {
     # G03: 南東から噴水（水の輪 3 段・M02・同じ水の材質の I03 の台座 (0, *, -4.65)）、南西から水の輪の近く
     "g03_fountain": {"position": [7.5, 3.4, -9.0], "target": [0.0, 1.0, -0.5], "fieldOfView": 45, "width": 1600, "height": 900},
     "g03_water": {"position": [-4.2, 2.3, -5.6], "target": [0.0, 0.8, 0.0], "fieldOfView": 50, "width": 1600, "height": 900},
+    # G05: 中庭の石畳の南から 2 体のおばけ（(-4.6, *, 28)・(4.6, *, 33)）、近くから 001 と隣のベンチ (-3.8, *, 28.8)
+    "g05_ghosts": {"position": [0.0, 4.2, 22.5], "target": [0.0, 2.9, 30.5], "fieldOfView": 60, "width": 1600, "height": 900},
+    "g05_ghost_bench": {"position": [-1.2, 2.9, 25.6], "target": [-4.3, 2.4, 28.4], "fieldOfView": 50, "width": 1600, "height": 900},
+    # G06: ポーチの段の前から扉と開口（W09R-B の m03_entrance と同じ位置）、玄関ホールの奥から扉の内側
+    "g06_doors": {"position": [0.7, 3.4, 36.6], "target": [0.7, 3.1, 40.0], "fieldOfView": 70, "width": 1600, "height": 900},
+    "g06_doors_inside": {"position": [0.7, 3.4, 43.2], "target": [0.7, 2.6, 40.0], "fieldOfView": 80, "width": 1600, "height": 900},
 }
 
 
@@ -239,6 +266,140 @@ def manifest(keys: dict[str, str]) -> dict:
     }
 
 
+def b_keys(state_dir: Path) -> dict[str, str]:
+    """B の state から、G05 の FloatPivot と G06 の蝶番の Slot のキーを探す（パスで照合し、1 つに決まらなければ止める）。"""
+    state = json.loads((state_dir / "p2_B_mansion.json").read_text(encoding="utf-8"))
+    rows = [(g["asset_id"], g["motion_root"]) for g in gimmicks.g05()["ghosts"]]
+    rows += [(h["asset_id"], h["motion_root"]) for h in gimmicks.g06()["hinges"]]
+    keys: dict[str, str] = {}
+    for asset_id, part in rows:
+        want = f"{gimmicks.P2_ROOT}/{gimmicks.g05()['district']}/{asset_id}/{part}"
+        hits = [k for k, v in state["slots"].items() if v.get("path") == want]
+        if len(hits) != 1:
+            raise SystemExit(f"{want}: {len(hits)} Slots in the B state")
+        keys[part] = hits[0]
+    return keys
+
+
+def b_rest(declaration: dict | None = None) -> dict[str, list[float]]:
+    """B の最新の宣言の、G05 の FloatPivot と G06 の蝶番の基準の位置（Resonite の親のローカル）。回転が単位でなければ止める
+    （式は基準の回転を単位として組んでいる）。"""
+    doc = declaration or rest_pose.latest_declaration(gimmicks.g05()["district"])
+    names = [g["motion_root"] for g in gimmicks.g05()["ghosts"]] + [h["motion_root"] for h in gimmicks.g06()["hinges"]]
+    out: dict[str, list[float]] = {}
+    stack = [doc]
+    while stack:
+        n = stack.pop()
+        if n["slot"]["name"] in names:
+            if n["slot"]["name"] in out:
+                raise SystemExit(f"B declaration: {n['slot']['name']} appears twice")
+            rot = n["slot"].get("rotation") or [0.0, 0.0, 0.0, 1.0]
+            if max(abs(a - b) for a, b in zip(rot, (0.0, 0.0, 0.0, 1.0))) > 1e-6:
+                raise SystemExit(f"B declaration: {n['slot']['name']} rest rotation {rot} is not identity")
+            out[n["slot"]["name"]] = [float(x) for x in (n["slot"].get("position") or [0.0, 0.0, 0.0])]
+        stack.extend(n.get("children", []))
+    missing = [x for x in names if x not in out]
+    if missing:
+        raise SystemExit(f"B declaration: {missing} not found (export B first)")
+    return out
+
+
+def _neg(var: str, sign: float) -> str:
+    """Blender の Z まわり sign × var を Resonite の Y まわりにした式（符号が逆）。"""
+    return f"0.0 - {var}" if sign > 0 else var
+
+
+def protograph_b(rest: dict[str, list[float]]) -> str:
+    g5, g6 = gimmicks.g05(), gimmicks.g06()
+    v5, v6 = gimmicks.G05_VARIABLES, gimmicks.G06_VARIABLES
+    name = gimmicks.SPACE_NAME
+
+    def clamp(var: str, spec: dict) -> str:
+        return (f"if {var}0 < {_f(spec['min'])} then {_f(spec['min'])} "
+                f"else if {var}0 > {_f(spec['max'])} then {_f(spec['max'])} else {var}0")
+
+    lines = [
+        "// Generated by modeling/p3_gimmicks/build_content.py (W10-B, G05 and G06). Do not edit by hand.",
+        "// Local presentation: every user evaluates the output Drives from the shared WorldTimeDouble and the",
+        "// HMC_P3 dynamic variables. No impulses and no synchronized writes.",
+        f"module {gimmicks.B_MODULE}",
+    ]
+    for i, _ in enumerate(g5["ghosts"], start=1):
+        lines += [f"out G{i}Position: float3", f"out G{i}Rotation: floatQ"]
+    for i, _ in enumerate(g6["hinges"], start=1):
+        lines.append(f"out D{i}Rotation: floatQ")
+    lines += [
+        "where {",
+        "    T = WorldTimeDouble;",
+        f'    G05IntensityIn = DynamicVariableValueInput<float>(VariableName = "{name}/G05Intensity");',
+        f'    G05FrequencyIn = DynamicVariableValueInput<float>(VariableName = "{name}/G05Frequency");',
+        f'    G05SpreadIn = DynamicVariableValueInput<float>(VariableName = "{name}/G05PhaseSpread");',
+        f'    G06IntensityIn = DynamicVariableValueInput<float>(VariableName = "{name}/G06Intensity");',
+        f'    G06FrequencyIn = DynamicVariableValueInput<float>(VariableName = "{name}/G06Frequency");',
+        f'    G06PhaseIn = DynamicVariableValueInput<float>(VariableName = "{name}/G06Phase");',
+        "    // A missing variable reads as 0, which keeps the ghosts at their rest pose and the doors closed.",
+        "    // G05: floating ghosts (lift along Y, sway about Y at half the speed)",
+        "    GI = Clamp01_Float(G05IntensityIn.Value);",
+        "    GF0 = G05FrequencyIn.Value;",
+        f"    GF = {clamp('GF', v5['G05Frequency'])};",
+        "    GS = Clamp01_Float(G05SpreadIn.Value);",
+        "    GBase = T * (GF->as<double>) * 6.283185307179586d;",
+        "    GSd = GS->as<double>;",
+    ]
+    for i, g in enumerate(g5["ghosts"], start=1):
+        lo, hi = g["bob_m"]
+        mid, half = (lo + hi) / 2.0, (hi - lo) / 2.0
+        r = rest[g["motion_root"]]
+        lines += [
+            f"    // {g['asset_id']}: phase {g['phase_deg']} deg, lift {lo}..{hi} m, sway +-{g['yaw_deg']} deg",
+            f"    GTh{i} = GBase + GSd * {_f(math.radians(g['phase_deg']))}d;",
+            f"    GLift{i} = GI * ({_f(mid)} + {_f(half)} * (Sin_Double(GTh{i})->as<float>));",
+            f"    GYaw{i} = GI * {_f(g['yaw_deg'])} * (Sin_Double(GTh{i} * 0.5d)->as<float>);",
+            f"    G{i}Position = Pack_Float3({_f(r[0])}, {_f(r[1])} + GLift{i}, {_f(r[2])});",
+            f"    G{i}Rotation = FromEuler_floatQ(Pack_Float3(0.0, {_neg(f'GYaw{i}', 1.0)}, 0.0));",
+        ]
+    hold = gimmicks.G06_HOLD
+    open_deg = g6["hinges"][0]["open_deg"]
+    lines += [
+        "    // G06: double door (closed, opening, open, closing), smoothstep between the holds",
+        "    DI = Clamp01_Float(G06IntensityIn.Value);",
+        "    DF0 = G06FrequencyIn.Value;",
+        f"    DF = {clamp('DF', v6['G06Frequency'])};",
+        "    DP = Clamp01_Float(G06PhaseIn.Value);",
+        "    DTh = (T * (DF->as<double>) + (DP->as<double>)) * 6.283185307179586d;",
+        "    DC = 0.5 - 0.5 * (Cos_Double(DTh)->as<float>);",
+        f"    DX = Clamp01_Float((DC - {_f(hold)}) * {_f(1.0 / (1.0 - 2.0 * hold))});",
+        "    DOpen = DX * DX * (3.0 - 2.0 * DX);",
+        f"    DAng = DI * {_f(open_deg)} * DOpen;",
+    ]
+    for i, h in enumerate(g6["hinges"], start=1):
+        lines += [
+            f"    // {h['motion_root']}: opens {'+' if h['open_sign_blender_z'] > 0 else '-'}Z in Blender (inward)",
+            f"    D{i}Rotation = FromEuler_floatQ(Pack_Float3(0.0, {_neg('DAng', h['open_sign_blender_z'])}, 0.0));",
+        ]
+    lines.append("}")
+    return "\n".join(lines) + "\n"
+
+
+def manifest_b(keys: dict[str, str]) -> dict:
+    bindings = {}
+    for i, g in enumerate(gimmicks.g05()["ghosts"], start=1):
+        k = keys[g["motion_root"]]
+        bindings[f"G{i}Position"] = {"target": f"$member:{district.relay_key(k, 'Position', 'g05')}.Value", "mode": "drive"}
+        bindings[f"G{i}Rotation"] = {"target": f"$member:{district.relay_key(k, 'Rotation', 'g05')}.Value", "mode": "drive"}
+    for i, h in enumerate(gimmicks.g06()["hinges"], start=1):
+        k = keys[h["motion_root"]]
+        bindings[f"D{i}Rotation"] = {"target": f"$member:{district.relay_key(k, 'Rotation', 'g06')}.Value", "mode": "drive"}
+    return {
+        "schemaVersion": "1",
+        "projectDirectory": ".",
+        "parent": f"{gimmicks.P3_ROOT_PATH}/{gimmicks.B_FLUX_SLOT}",
+        "worldState": "../.resoloop/state/p2_B_mansion.json",
+        "deployState": "../.resoloop/flux-state/p3_mansion_motion.json",
+        "modules": [{"name": "p3-mansion-motion", "source": B_PG.name, "module": gimmicks.B_MODULE, "bindings": bindings}],
+    }
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--state-dir", type=Path, default=DEFAULT_STATE_DIR)
@@ -250,10 +411,15 @@ def main(argv: list[str] | None = None) -> int:
     MANIFEST.write_text(json.dumps(manifest(keys), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     G03_PG.write_text(protograph_g03(e0), encoding="utf-8")
     G03_MANIFEST.write_text(json.dumps(manifest_g03(), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    bkeys = b_keys(args.state_dir)
+    B_PG.write_text(protograph_b(b_rest()), encoding="utf-8")
+    B_MANIFEST.write_text(json.dumps(manifest_b(bkeys), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"content": CONTENT.relative_to(PROJECT_ROOT).as_posix(), "protograph": PG.relative_to(PROJECT_ROOT).as_posix(),
                       "manifest": MANIFEST.relative_to(PROJECT_ROOT).as_posix(), "bodies": keys,
                       "g03_protograph": G03_PG.relative_to(PROJECT_ROOT).as_posix(),
-                      "g03_manifest": G03_MANIFEST.relative_to(PROJECT_ROOT).as_posix(), "g03_base_linear": e0},
+                      "g03_manifest": G03_MANIFEST.relative_to(PROJECT_ROOT).as_posix(), "g03_base_linear": e0,
+                      "b_protograph": B_PG.relative_to(PROJECT_ROOT).as_posix(),
+                      "b_manifest": B_MANIFEST.relative_to(PROJECT_ROOT).as_posix(), "b_slots": bkeys},
                      ensure_ascii=False, indent=2))
     return 0
 

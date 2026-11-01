@@ -54,6 +54,75 @@ G03_PULSE_DEPTH = 0.5                 # 明るさの脈の半幅（G03Swing = 1 
 G03_SHIFT_EMISSIVE_LINEAR = (1.2, 0.4, 2.0)
 
 
+# W10-B: G05 おばけの浮遊・G06 屋敷の扉の開閉（B 北・おばけ屋敷）。部品・範囲は W03 の layout/areas/B_mansion.json の
+# Hero_or_Gimmick.gimmicks から読む。ProtoFlux のモジュールは B 用に 1 つ（worldState は B の state。docs/p3-gimmicks.md 17 章）
+G05_VARIABLES = {
+    "G05Intensity": {"key": "g05_amp", "default": 1.0, "min": 0.0, "max": 1.0,
+                     "meaning": "上下・揺れの大きさ（1 で G05_BOB_RANGE_M・W03 の揺れの範囲いっぱい、0 で基準姿勢に止まる）"},
+    "G05Frequency": {"key": "g05_freq", "default": 0.25, "min": 0.0, "max": 1.0,
+                     "meaning": "上下の速さ（Hz）。左右の揺れはその半分の速さ"},
+    "G05PhaseSpread": {"key": "g05_phase", "default": 1.0, "min": 0.0, "max": 1.0,
+                       "meaning": "個体ごとの位相（G05_PHASE_DEG）にかける倍率。0 で 2 体がそろう（I04 の一斉の挨拶）"},
+}
+# 上下の範囲（Blender の Z、基準からの m）。W03 の translation_range_m（-0.35〜+0.35）の中の部分。001 は下げ幅が -0.18 m より
+# 下だと、手提げのランタンが隣のベンチ BMN_CMN_Bench_001 の背もたれ（上端 z 2.45）に入る（Blender での確認。#59 の
+# issuecomment-6557581300）。-0.10 でベンチとの隙間は 8 cm 以上
+G05_BOB_RANGE_M = (-0.10, 0.35)
+# 2 体の位相（度）。W03 のデータに位相は無いので、この子で決めた（上下が逆向き、揺れは 90° ずれる）
+G05_PHASE_DEG = {"BMN_FloatingGhost_001": 0.0, "BMN_FloatingGhost_002": 180.0}
+G06_VARIABLES = {
+    "G06Intensity": {"key": "g06_amp", "default": 1.0, "min": 0.0, "max": 1.0,
+                     "meaning": "開く角度の割合（1 で W03 の 85° まで、0 で閉じたまま）"},
+    "G06Frequency": {"key": "g06_freq", "default": 1.0 / 24.0, "min": 0.0, "max": 0.2,
+                     "meaning": "開閉の 1 周期の速さ（Hz。既定は 24 秒で 1 回）。0 で時刻を止める"},
+    "G06Phase": {"key": "g06_phase", "default": 0.0, "min": 0.0, "max": 1.0,
+                 "meaning": "開閉の周期の中の位置のずらし（周期の割合、0〜1）"},
+}
+# 開閉の形: c = (1 - cos θ) / 2 を、c < HOLD で閉じたまま、c > 1 - HOLD で開いたまま、その間を滑らかに（smoothstep）動く。
+# HOLD 0.25 で、閉じたまま・開いたままが周期の 1/3 ずつ、開く・閉じるが 1/6 ずつ（24 秒の周期で 8 秒・4 秒）
+G06_HOLD = 0.25
+B_FLUX_SLOT = "G05_G06_Mansion"      # P3_Gimmicks の子。B のモジュールの配備先
+B_MODULE = "P3MansionMotion"
+
+
+def _b_gimmick(gid: str) -> dict:
+    return _load("layout/areas/B_mansion.json")["Hero_or_Gimmick"]["gimmicks"][gid]
+
+
+def g05() -> dict:
+    """G05 の 2 体。FloatPivot（motion_root）・範囲・位相。上下は Blender の Z、揺れは Z まわり（W03 のデータ）。"""
+    rows = []
+    for m in _b_gimmick("G05")["motion_roots"]:
+        if m["translation_axis"] != "Z" or m["rotation_axis"] != "Z" or any(abs(x) > 1e-9 for x in m["rest_pose_euler_deg"]):
+            raise ValueError(f"G05 {m['part_id']}: unsupported motion {m}")
+        lo, hi = m["translation_range_m"]
+        if not (lo - 1e-9 <= G05_BOB_RANGE_M[0] < 0.0 < G05_BOB_RANGE_M[1] <= hi + 1e-9):
+            raise ValueError(f"G05 {m['part_id']}: bob range {G05_BOB_RANGE_M} is outside the W03 range {m['translation_range_m']}")
+        rlo, rhi = m["rotation_range_deg"]
+        if abs(rlo + rhi) > 1e-9:
+            raise ValueError(f"G05 {m['part_id']}: unsupported rotation range {m['rotation_range_deg']}")
+        rows.append({"asset_id": m["asset_id"], "motion_root": m["part_id"], "bob_m": list(G05_BOB_RANGE_M),
+                     "w03_bob_m": [lo, hi], "yaw_deg": rhi, "phase_deg": G05_PHASE_DEG[m["asset_id"]]})
+    if len(rows) != 2:
+        raise ValueError(f"G05: expected 2 floating ghosts, found {len(rows)}")
+    return {"gimmick_id": "G05", "district": "B_mansion", "ghosts": rows, "managed_fields": ["scale"]}
+
+
+def g06() -> dict:
+    """G06 の左右の扉。蝶番（motion_root）と、開く向き（Blender の Z まわりの符号）。範囲は 0 から ±85°（W03 のデータ）。"""
+    rows = []
+    for m in _b_gimmick("G06")["motion_roots"]:
+        lo, hi = m["rotation_range_deg"]
+        if m["rotation_axis"] != "Z" or any(abs(x) > 1e-9 for x in m["rest_pose_euler_deg"]) or min(abs(lo), abs(hi)) > 1e-9:
+            raise ValueError(f"G06 {m['part_id']}: unsupported motion {m}")
+        sign = 1.0 if hi > 0 else -1.0
+        rows.append({"asset_id": m["asset_id"], "motion_root": m["part_id"], "open_sign_blender_z": sign,
+                     "open_deg": max(abs(lo), abs(hi))})
+    if len(rows) != 2 or {r["open_sign_blender_z"] for r in rows} != {1.0, -1.0} or len({r["open_deg"] for r in rows}) != 1:
+        raise ValueError(f"G06: expected a symmetric double door, found {rows}")
+    return {"gimmick_id": "G06", "district": "B_mansion", "hinges": rows, "managed_fields": ["position", "scale"]}
+
+
 def g03() -> dict:
     """G03 の対象。水のメッシュの部品は W02 のアセット一覧の motion から読む（ここに写さない）。"""
     hits = [a for a in _load("assets/manifest/A_plaza.json")["assets"] if (a.get("motion") or {}).get("gimmick_id") == "G03"]
@@ -143,7 +212,10 @@ def driven_slots() -> dict[str, dict[str, list[str]]]:
     """地区ごとの、P3 が位置・回転を駆動する Slot の名前と、静的な apply が管理し続ける変換（managedFields）。"""
     a = g01()
     d = g13()
+    b5, b6 = g05(), g06()
     return {
         a["district"]: {p["motion_root"]: a["managed_fields"] for p in a["pumpkins"]},
         d["district"]: {d["motion_root"]: d["managed_fields"]},
+        b5["district"]: {**{g["motion_root"]: b5["managed_fields"] for g in b5["ghosts"]},
+                         **{h["motion_root"]: b6["managed_fields"] for h in b6["hinges"]}},
     }
