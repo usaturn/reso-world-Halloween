@@ -30,7 +30,7 @@
 - W09-M05・W09-M06 の `M05`・`M06`、W08 の `modeling/p2_static/` は変えていない
 - state: 親の checkout の `/workspaces/reso-world/worlds/reso-world-Halloween/.resoloop/state/` に `p2m_M05_CenterCasing.json`・`p2m_M05_Canopy.json`・`p2m_M06.json` を足し、`p2_D_amusement.json` を更新した（#49 の本文の `p2m_M05.json` ではなく行ごと）。消すと次の apply が同じ物をもう一度作るので消さない
 - 版: Resonite 2026.10.29.1239、ResoniteLink 0.13.1.0、resoloop 0.2.0、Blender 5.0.1
-- 保存（確認事項 4）: 記録 15.10（PR の後に記録する）
+- 保存（確認事項 4）: GPT のレビューへの対応の後に、エージェントの依頼で利用者が Resonite で 1 回保存した（2026-11-01、07:10Z より前）。保存の後は apply していない。保存の後に読み取りだけで確かめた（07:10:29Z〜）全 17 宣言の diff は変更 0。M05・M06・D の支柱の資産の URL はまだ `local://`（ワールドを開き直していない。記録 15.10）
 
 ## 4. 再実行手順
 
@@ -78,7 +78,7 @@ uv run python modeling/p2_meshy/verify_live.py --url "$URL" --raw-out <Git の�
 - `REPLACEMENTS` の `source`・`export_root`・`asset_id`（`export_meshy.extract_part`）で、1 つの素材の子だけを別の Slot の下に置ける。M07 の文字盤を別に扱う必要が出たときに使える（M07 は 1 つのメッシュなので、子に分けるには M07 の `.blend` の変更が要る）
 - `_Dial` の描画を止めるには、`hide_placeholders` の範囲の守り（`visual_root` か `moving_parts` の `motion_root` の下だけ）を広げる必要がある（#50 の本文）。この子は前照灯の目印で同じ判断になり、利用者の決定で止めなかった
 - 屋根の下面の計測（`verify_live.py` の `_up_hits`）は、素材のメッシュ（バンドルの `*.mesh.json`、Resonite の軸）へ鉛直の線を当てる。M07 の文字盤の面と針の隙間を測るときにも使える
-- `verify_live.py` は支柱の検査で apply の state（`--state-dir`、既定は親の checkout の `.resoloop/state`）を読み、測るメッシュがワールドに表示されている物かを確かめる（記録 15.9）。保存して開き直すと資産の URL は `resdb:///` に移るが、state の URL は `local://` のまま残り（diff では書き直されない）、この検査が失敗する。先に D を apply し、state の URL が変わったかを確かめてから実行する（apply で書き直されるかは未確認）
+- `verify_live.py` は支柱の検査で apply の state（`--state-dir`、既定は親の checkout の `.resoloop/state`）を読み、測るメッシュがワールドに表示されている物かを確かめる（記録 15.9）。保存して開き直すと資産の URL は `resdb:///` に移るが、state の URL は次の apply まで `local://` のまま残り（diff では書き直されない）、この検査が失敗する。先に D を apply（変更 0 でよい。apply が live の URL を state に記録することは、この子の D で確かめた）してから実行する
 - `resoloop capture` は Resonite が背面にあると真っ黒になる（約 23 KB の JPEG）。撮影の前に利用者に前面へ出してもらい、撮った後にファイルの大きさを見る
 
 ### 6.2 要望（他の所有。この子は直していない）

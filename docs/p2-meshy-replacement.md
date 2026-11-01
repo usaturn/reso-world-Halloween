@@ -675,7 +675,12 @@ M03 の仕上げた形を Blender で測り直し（ポーチの床の高さ、�
 | 2 | Minor | 15.7 と引き継ぎの M05 の外接箱の寸法が、`live_checks.json` の世界の X・Z と逆 | 採用 | 記録の誤り。世界の X × 高さ × Z の順を明記し、柱 1.907 × 3.400 × 1.861 m・屋根 9.512 × 6.387 × 9.314 m に直した |
 
 - 1 は、URL・`sourceHash`・描画のそれぞれの守りを外すと、そのテストだけが失敗することを確かめた。直した検査で実際のワールドを観察し直し、すべて合格した（07:00:10Z、`review/p2_meshy/live_checks.json`）。ワールドへの書き込みは無い
-- 注意: ワールドを保存して開き直すと、資産の URL が `resdb:///` に移るが、state の URL は `local://` のまま残る（world の state `p2_world.json` で確認。diff では書き直されない。resoloop は「state will record the live URL」と表示し、apply で記録すると見込むが、この子では確かめていない）。その間はこの検査が URL の違いで失敗する（誤りを見落とす方向ではない）。D を開き直した後に実行するときは、先に D を apply し、state の URL が変わったかを確かめる
+- 注意: ワールドを保存して開き直すと、資産の URL が `resdb:///` に移るが、state の URL は次の apply まで `local://` のまま残る（diff では書き直されない。apply していない world の state `p2_world.json` は 21 件とも `local://`）。apply は live の URL を state に記録する（この子が apply した D の state は、`resdb` 57 件と新しい支柱のメッシュの `local` 1 件になり、保存の後の D の diff は「source hash and imported URL match state」になった）。その間はこの検査が URL の違いで失敗する（誤りを見落とす方向ではない）。D を開き直した後に実行するときは、先に D を apply（変更 0 でよい）してから実行する
+
+### 15.10 保存（確認事項 4）
+
+- GPT のレビューへの対応の後に、エージェントの依頼で利用者が Resonite で 1 回保存した（2026-11-01、07:10Z より前）。保存の後は apply していない
+- 保存の後に読み取りだけで確かめた（07:10:29〜07:11:03Z）: 全 17 宣言（`content/main.json`・6 キー・M01 の 3 つ・M02・M03・M04・M05 の 2 つ・M06・M08）の diff が変更 0。資産の判定は、world・E・M02 が「asset URL was migrated to resdb by a world save」、それ以外（D・M05 の 2 つ・M06 を含む）が「source hash and imported URL match state」で、M05・M06 と D の支柱の URL はまだ `local://`（ワールドを開き直していない）
 
 ### 15.11 Resonite で未確認の項目
 
