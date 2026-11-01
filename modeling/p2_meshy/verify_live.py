@@ -26,7 +26,8 @@
   - 可動部品（W09R-A で追加。REPLACEMENTS の moving_parts。M01 の門扉）: 外接箱は素材のすべてのメッシュ（素材の Slot の子孫と、
     motion_root の下の部品の宣言）を合わせた物。仮モデルの motion_root と部品の原点が素材の蝶番（received.json の向きと
     アセット一覧の leaves の pivot_local から求める）と 1 cm 以内、motion_root の回転が閉 0° からの開いた角度、部品の世界の向きが
-    開いた形。部品も描画され、部品の下に当たり判定が無い。hide の対象は motion_root の下も探す
+    開いた形。部品ごとの外接箱が、部品のメッシュをデータの蝶番・向きで置いた物と 1 cm 以内（縮尺・形の誤りを全体の外接箱は
+    見落とす）。部品の宣言にメッシュがあり、描画され、部品の下に当たり判定が無い。hide の対象は motion_root の下も探す
 """
 
 from __future__ import annotations
@@ -268,7 +269,7 @@ def check_one(root: dict, meshy_id: str, rep: dict, inp: dict) -> dict:
             if chain is None:
                 problems.append(f"mesh Slot {part_id}/{'/'.join(mesh['path'])} not found")
             else:
-                part_chains[part_id]["meshes"].append(chain)
+                part_chains[part_id]["meshes"].append((mesh, chain))
                 part_meshes.append((chain, mesh["vertices"]))
     if not main_meshes:
         out["problems"] = problems + ["no mesh of the finished asset was found"]
@@ -319,6 +320,25 @@ def check_one(root: dict, meshy_id: str, rep: dict, inp: dict) -> dict:
                 problems.append(f"{part_id}: {label} origin is {dist(o2, hinge_exp):.4f} m away from the hinge")
             if dist(fwd2, fexp2) > 1e-3:
                 problems.append(f"{part_id}: {label} is not in the opened pose")
+        # 部品ごとの外接箱（PR #52 の GPT のレビュー）: 全体の外接箱はアーチともう一方の門扉で決まるので、門扉の縮尺・形の
+        # 誤りを見落とす。部品のメッシュの頂点を、データの蝶番・向き（拡縮なし）で置いた外接箱と比べる。部品の宣言に
+        # メッシュが無ければ、検査の対象から消えないように失敗にする
+        if not mp["meshes"]:
+            problems.append(f"{part_id}: the part declaration has no mesh to check")
+        row["bounds_world"] = []
+        for mesh, chain in part_chains[part_id]["meshes"]:
+            if mesh["path"]:
+                problems.append(f"{part_id}: mesh Slot {'/'.join(mesh['path'])} below the part is not supported by the check")
+                continue
+            plo, phi = mesh_bounds_world(chain, mesh["vertices"])
+            pts = [[hinge_exp[i] + b2r(rz(inp["hint_deg"] + mp["placed_deg"], [v["position"]["x"], v["position"]["z"], v["position"]["y"]]))[i]
+                    for i in range(3)] for v in mesh["vertices"]]
+            elo2, ehi2 = [min(q[i] for q in pts) for i in range(3)], [max(q[i] for q in pts) for i in range(3)]
+            pdiff = max(max(abs(plo[i] - elo2[i]), abs(phi[i] - ehi2[i])) for i in range(3))
+            row["bounds_world"].append({"slot": chain[-1]["name"], "live": {"min": [round(v, 4) for v in plo], "max": [round(v, 4) for v in phi]},
+                                        "expected": {"min": [round(v, 4) for v in elo2], "max": [round(v, 4) for v in ehi2]}, "max_diff_m": round(pdiff, 4)})
+            if pdiff > TOL_M:
+                problems.append(f"{part_id}: {chain[-1]['name']} bounds differ by {pdiff:.4f} m")
         moving_out[part_id] = row
     if moving:
         out["moving_parts"] = moving_out

@@ -164,7 +164,9 @@ INPUTS_MOVING = {**INPUTS, "meshes": [{"path": ["ArchMesh"], "vertices": VERTICE
                  "placeholder_asset": {"origin_world": [0.0, 0.0, 1.6], "parts": []},
                  "moving_parts": {"Leaf": {"motion_root": "Proxy_DoorL", "bundle_root_name": "M", "pivot_local": [1.0, -0.2, 0.0],
                                            "closed_deg": 0.0, "placed_deg": 90.0,
-                                           "meshes": [{"path": [], "vertices": [{"position": {"x": 0.0, "y": 0.0, "z": 0.0}}]}]}}}
+                                           # the hinge and a point of the closed leaf (Resonite axes), inside the arch's box
+                                           "meshes": [{"path": [], "vertices": [{"position": {"x": 0.0, "y": 0.0, "z": 0.0}},
+                                                                                 {"position": {"x": -0.25, "y": 1.0, "z": 0.0}}]}]}}}
 Q90 = (0, -0.7071067811865476, 0, 0.7071067811865476)  # Blender Z +90 deg as a Resonite rotation
 
 
@@ -224,3 +226,18 @@ def test_collider_under_a_moving_part_is_detected() -> None:
     world = _world_moving()
     _find(world, "Leaf")["components"].append(_comp("c9", "MeshCollider", Enabled=True))
     assert any("colliders under the moving parts" in p for p in _problems_moving(world))
+
+
+def test_moving_part_with_a_wrong_scale_is_detected() -> None:
+    # PR #52 review (GPT): the whole box is set by the arch and the other leaf, so a leaf shrunk to half passed every check.
+    world = _world_moving()
+    _find(world, "Leaf")["scale"] = dict(zip("xyz", (0.5, 0.5, 0.5)))
+    assert any("Leaf bounds differ" in p for p in _problems_moving(world))
+
+
+def test_moving_part_declaration_without_a_mesh_is_detected() -> None:
+    # PR #52 review (GPT): the meshes to check come from the part declaration, so a declaration that lost its mesh left
+    # nothing to check and an invisible leaf passed.
+    inputs = copy.deepcopy(INPUTS_MOVING)
+    inputs["moving_parts"]["Leaf"]["meshes"] = []
+    assert any("has no mesh" in p for p in verify_live.check_one(_world_moving(), "MX", REP_MOVING, inputs)["problems"])
