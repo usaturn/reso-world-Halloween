@@ -473,9 +473,9 @@ M03 の仕上げた形を Blender で測り直し（ポーチの床の高さ、�
 - `replacements.py`: M03 の行（`visual_root` は仮モデルのアセットの root `BMN_MansionPlaceholder_001`、回転 0 = `placement_hint` 180 − 仮モデルの root 180）。新しい項目 `collision: "finished"` と `entrance`（検査用）。`disable_fixed_collisions` が地区の宣言の `<visual_root>_FixedCollision`（visual_root の兄弟）の `MeshCollider` を `Enabled = false` にする（`hide_in_file` から呼ぶので、W08 の `export_p2.py` は変えていない。止めた行は `replacements.json` に書く）
 - `export_meshy.py`: `collision: "finished"` の素材は、素材のメッシュの Slot に `MeshCollider` を足す（`add_mesh_colliders`。`placement.json` の `colliders`）
 - `verify_live.py`:
-  - `collision: "finished"`: 仮モデルの `FixedCollision` が残っていて `MeshCollider.Enabled` が false、素材のすべてのメッシュの Slot に有効・`Static`・`CharacterCollider` の `MeshCollider` があり同じ Slot の `StaticMesh` を参照する、素材のバンドルの中のそれ以外の Slot に当たり判定が無い
-  - `entrance`: 地区の扉の蝶番の Slot の原点が M03 の開口の蝶番の線の下端と 1 cm 以内で、扉の面が M03 の壁と平行。玄関ホールの原点が開口の中心の床から 1.85 m 奥と 1 cm 以内。期待値は `review/M03/checks.json` の `door_opening`（W09-M03 の実測）とデータの原点・向きから求め、B の配置データから求めない（B の値の誤りを、同じ値で合格にしないため）
-- テスト: `tests/test_p2_meshy_verify.py` に 4 件、`tests/test_p2_meshy_replacements.py` に 1 件（どれも S。14.9）。それぞれ守りを外すと、そのテストだけが失敗することを確かめた（変異ごとに `PYTHONPYCACHEPREFIX` を分けた）
+  - `collision: "finished"`: 仮モデルの `FixedCollision` が残っていて `MeshCollider.Enabled` が false、素材のすべてのメッシュの Slot に有効・`Static`・`CharacterCollider`・`Offset` 0 の `MeshCollider` があり同じ Slot の `StaticMesh` を参照する、素材のバンドルの中のそれ以外の Slot に当たり判定が無い
+  - `entrance`: 地区の扉の蝶番の Slot の原点が M03 の開口の蝶番の線の下端と 1 cm 以内で、蝶番の Slot の前方が建物の奥を向く（閉じた扉が壁の面にある）。玄関ホールの原点が開口の中心の床から 1.85 m 奥と 1 cm 以内で、前方が建物の奥を向く。扉とホールのアセットの root から下のすべての Slot と祖先の拡縮が 1。期待値は `review/M03/checks.json` の `door_opening`（W09-M03 の実測）とデータの原点・向きから求め、B の配置データから求めない（B の値の誤りを、同じ値で合格にしないため）
+- テスト: `tests/test_p2_meshy_verify.py` に 8 件（うち 4 件は 14.9 の GPT のレビューで足した）、`tests/test_p2_meshy_replacements.py` に 1 件（どれも S。`handoff/W09R-B.md` 9 章）。それぞれ守りを外すと、そのテストだけが失敗することを確かめた（変異ごとに `PYTHONPYCACHEPREFIX` を分けた）
 
 ### 14.5 export と validate
 
@@ -509,8 +509,8 @@ M03 の仕上げた形を Blender で測り直し（ポーチの床の高さ、�
 | 外接箱 | x -7.5005〜7.4996、高さ 1.5003〜12.1072、z 36.3899〜46.6104（15.0001 × 10.6069 × 10.2206 m）。アセット一覧の `bounds_local` を 180° で置いた値との差 0.0 m |
 | 正面と鏡像 | (0, 0, -1)（南の中庭。`placement_hint` から）。祖先の拡縮はすべて正 |
 | 描画 | 仮モデルの `MeshRenderer.Enabled` が false。M03 は有効で、色の画像を持つ `PBS_Metallic` を参照 |
-| 入口 | `_HingeLeft` (-0.1015, 1.87, 39.95)・`_HingeRight` (1.5165, 1.87, 39.95)。M03 の蝶番の線（Resonite の z 39.9523）との差 2.3 mm、扉の面は壁と平行。`BMN_EntranceHall_001` (0.7075, 1.87, 41.8)、開口の中心の 1.85 m 奥との差 2.3 mm（W03 の扉の面 y 39.95 と M03 の壁 39.9523 の差） |
-| 当たり判定 | `BMN_MansionPlaceholder_001_FixedCollision` は残っていて `MeshCollider.Enabled` が false。`M03_HauntedMansion_001` の `MeshCollider` が有効・`Static`・`CharacterCollider`・同じ Slot の `StaticMesh` を参照。素材の中のほかの Slot に当たり判定は無い |
+| 入口 | `_HingeLeft` (-0.1015, 1.87, 39.95)・`_HingeRight` (1.5165, 1.87, 39.95)。M03 の蝶番の線（Resonite の z 39.9523）との差 2.3 mm、閉じた扉は壁の面にある（蝶番の前方が建物の奥を向く）。`BMN_EntranceHall_001` (0.7075, 1.87, 41.8)、開口の中心の 1.85 m 奥との差 2.3 mm（W03 の扉の面 y 39.95 と M03 の壁 39.9523 の差）で、前方は建物の奥。扉とホールの Slot の拡縮はすべて 1 |
+| 当たり判定 | `BMN_MansionPlaceholder_001_FixedCollision` は残っていて `MeshCollider.Enabled` が false。`M03_HauntedMansion_001` の `MeshCollider` が有効・`Static`・`CharacterCollider`・`Offset` 0・同じ Slot の `StaticMesh` を参照。素材の中のほかの Slot に当たり判定は無い |
 | 数 | B の Slot 94・Component 207（W08 の実測 88・200 に M03 の 6・7 を足した値と一致）。W08 の root の下は Slot 721・Component 1,659（着手時の 715・1,652 から +6・+7） |
 
 - M01・M02・M04・M08 の検査と A・C の数も合格のまま。ID・部品名は変えていない（扉とホールは位置と扉の高さだけ）。仮モデルに取付位置は無い
@@ -520,8 +520,23 @@ M03 の仕上げた形を Blender で測り直し（ポーチの床の高さ、�
 撮影（`review/p2_meshy/`、1600×900）: `m03_front`（中庭から正面）、`m03_front_close`（ポーチと扉）、`m03_entrance`（段の前から開口と扉の枠）、`m03_door_edge_left`・`m03_door_edge_right`（開口の西・東の縁）、`m03_porch_steps`（石畳から M03 の段への上がり口）、`m03_oblique_se`・`m03_oblique_sw`（斜め上）、`m03_back`（北）、`area_B_mansion`（W08 と同じ B の全景）、`overview_south`（W08 と同じ全景。M03 の差し替えの後に撮り直した）。
 
 - 黒い面・反転・透け・ちらつきは見つからない。ポーチは南を向き、扉の枠が開口の切り口を覆い、扉の合わせ目（1.4 cm）から奥のホールの明かりが見える。石畳の延長は M03 の段の前で止まり、段の下に隙間は無い
+- 扉を開いたときの開口の奥（Resonite では扉を閉じたまま。P3 で開く）は Blender で確かめた: B の `.blend` に M03 を置き（回転 180°）、扉を ±85°（可動範囲の端）に開き、ポーチの 5 つの視点から開口の内側の格子（19 × 29）を通るレイ 2,755 本の最初の当たりは、玄関ホールの部屋 1,837・扉の葉 827・枠 36・シャンデリアの取付位置 55 で、M03 の内側の面と、何にも当たらないレイは 0 だった（保存しない一時的なスクリプト）
 - 石畳の延長の東西の端と、石畳の北の端（y 36.4。仮モデルの台座が隠していた所）には、W01 の台地（z 1.5）との 6.5 cm の段が見える（`m03_porch_steps`）。中庭の石畳のほかの縁と同じ形で、歩行の妨げにはならない
 - W03 の窓のおばけ（G08、`BMN_WindowGhost_001`・`_002`、(±4.2, 37.35, 4.8)）の窓枠は、仮モデルの窓に合わせた物で、M03 の窓と合わず手前に浮いて見え、東の枠は張り出しの屋根に刺さる（`m03_front`・`m03_oblique_se`）。窓の顔出しは P3 の範囲なので変えていない（`handoff/W09R-B.md` 6.2 の要望）
 - 利用者の実機（デスクトップ）: （記録待ち）
 - 負荷: （記録待ち）
 - 増えた物: 三角形 29,801（仮モデルの 314 三角形は描画を止めた）、画像 2（約 112 MB の見積もり）、`MeshCollider` 1（29,801 三角形。仮モデルの 314 三角形の当たり判定は止めた）、光源 0
+
+### 14.9 GPT のレビュー（確認事項 7）
+
+- 起動: `codex exec --sandbox read-only -C <worktree> -o <出力> "<依頼文>" < /dev/null`（codex-cli 0.166.0、モデル gpt-6-astra）。対象は PR #53 の `d8b5112`。Resonite には接続させず、checkout も変更させていない。観点は、宣言の正しさ、B の修正、実測の検査の拡張、記録の正確さ、テストの採用基準の 5 つ
+- 結果: Major 2 件・Minor 1 件・Info 1 件。宣言の正しさ（対象の取り違えなし、宣言の再生成は控えたバンドルと一致）、B の修正（値は記録と開口に整合、ID・階層は維持）、期待値の独立性、記録の数値は指摘なし。全文は PR #53 のコメント
+
+| # | 重大度 | 指摘 | 採否 | 対応 |
+|---|---|---|---|---|
+| 1 | Major | 入口の検査は蝶番とホールの原点しか見ないので、扉の縦の拡縮 0.5（扉・枠が半分の高さ）や、ホールの 180° の回転（奥の壁が入口をふさぐ）でも合格する | 採用 | 検査が誤った状態を成功と報告する経路のため。扉とホールのアセットの root から下のすべての Slot と祖先の拡縮が 1 であること、ホールの前方が建物の奥を向くことを確かめる。テスト 2 件 |
+| 2 | Major | M03 の `MeshCollider.Offset` だけを (0.5, 0, 0) にすると、見た目から 50 cm ずれた当たり判定が合格する | 採用 | 同じ理由。`Offset` が 0 であることを確かめる。テスト 1 件 |
+| 3 | Minor | 扉の面の向きの検査は位置の検査と重複しない（蝶番の Slot を +85° 回しても原点は動かない）のに、引き継ぎで D としてテストを書いていない | 採用 | 分類の誤り。向きの検査を「平行」から「建物の奥を向く」に強め（180° の回転も見つける）、テスト 1 件。`handoff/W09R-B.md` 9 章の分類を直した |
+| 4 | Info | 8 章の表の M03 の行は「利用者の実機」を含むが、14.8 と引き継ぎは確認待ち | 予定どおり | 利用者の実機の確認の後に 14.8 と引き継ぎに結果を書いて揃える（14.8） |
+
+- 1〜3 は、それぞれ守りを外すとそのテストだけが失敗することを確かめた。直した検査で実際のワールドを観察し直し、すべて合格した（`review/p2_meshy/live_checks.json`。扉とホールの前方は建物の奥、拡縮はすべて 1、`Offset` 0）。ワールドへの書き込みは無い

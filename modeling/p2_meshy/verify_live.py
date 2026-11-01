@@ -31,11 +31,14 @@
   - 素材のメッシュの当たり判定（W09R-B で追加。REPLACEMENTS の collision が "finished"。M03）: 仮モデルの
     <visual_root>_FixedCollision の MeshCollider が Enabled = false（残っていると、見えない仮モデルの形と素材の形の両方に
     当たる）。素材のすべてのメッシュの Slot に、有効・Static・CharacterCollider の MeshCollider があり、同じ Slot の StaticMesh を
-    参照する。素材のバンドルの中で、それ以外の Slot に当たり判定が無い
+    参照し、Offset が 0（見た目からずれた当たり判定を見落とさない。PR #53 の GPT のレビュー）。素材のバンドルの中で、
+    それ以外の Slot に当たり判定が無い
   - 入口（W09R-B で追加。REPLACEMENTS の entrance。M03）: 地区の扉の蝶番の Slot の原点が、素材の開口の蝶番の線の下端
     （review/M03/checks.json の door_opening.hinges の local_bottom を、データの原点と向きで置いた点）と 1 cm 以内で、
-    扉の面が素材の壁と平行（蝶番の Slot の前方が素材の正面の向きと平行）。玄関ホールの原点が、開口の中心の床から
-    hall_depth_m 奥（素材の正面の逆向き）と 1 cm 以内
+    蝶番の Slot の前方が建物の奥（素材の正面の逆向き）を向く（閉じた扉が壁の面にある。回った扉を見落とさない）。玄関ホールの
+    原点が、開口の中心の床から hall_depth_m 奥と 1 cm 以内で、ホールの前方も建物の奥を向く。扉とホールのアセットの root から
+    下のすべての Slot と、地区の root からの祖先の拡縮が 1（原点が合っていても扉やホールの形が縮む・伸びるのを見落とさない。
+    PR #53 の GPT のレビュー）
 """
 
 from __future__ import annotations
@@ -399,8 +402,19 @@ def check_one(root: dict, meshy_id: str, rep: dict, inp: dict) -> dict:
     ent = inp.get("entrance")
     if ent:
         front_world = b2r(rz(inp["hint_deg"], [0.0, 1.0, 0.0]))
+        inward = [-v for v in front_world]  # 建物の奥（素材の正面の逆向き）
         district_node, district_prefix = vr_chain[-2], tuple(x["name"] for x in vr_chain[:-1])
         ent_out: dict = {"hinges": []}
+
+        def facing(chain: list[dict]) -> float:
+            o3, f3 = to_world(chain, (0.0, 0.0, 0.0)), to_world(chain, (0.0, 0.0, 1.0))
+            n3 = math.sqrt(sum((f3[i] - o3[i]) ** 2 for i in range(3))) or 1.0
+            return sum((f3[i] - o3[i]) / n3 * inward[i] for i in range(3))
+
+        def non_unit_scale(nodes: list[dict]) -> list[str]:
+            return [x["name"] for x in nodes if any(abs(float(x["scale"][k]) - 1.0) > 1e-4 for k in "xyz")]
+
+        scaled: set[str] = set()
         for slot_name, local in ent["hinges"].items():
             chain = next((chain_for(root, p) for p in _paths_named(district_node, slot_name, district_prefix)), None)
             if chain is None:
@@ -408,15 +422,14 @@ def check_one(root: dict, meshy_id: str, rep: dict, inp: dict) -> dict:
                 continue
             live = to_world(chain, (0.0, 0.0, 0.0))
             exp = [origin_exp[i] + b2r(rz(inp["hint_deg"], local))[i] for i in range(3)]
-            f2 = to_world(chain, (0.0, 0.0, 1.0))
-            n2 = math.sqrt(sum((f2[i] - live[i]) ** 2 for i in range(3))) or 1.0
-            parallel = abs(sum((f2[i] - live[i]) / n2 * front_world[i] for i in range(3)))
+            face = facing(chain)
             ent_out["hinges"].append({"slot": slot_name, "live_world": [round(v, 4) for v in live], "expected": [round(v, 4) for v in exp],
-                                      "diff_m": round(dist(live, exp), 4), "door_plane_parallel_to_wall": round(parallel, 4)})
+                                      "diff_m": round(dist(live, exp), 4), "facing_inward": round(face, 4)})
             if dist(live, exp) > TOL_M:
                 problems.append(f"entrance {slot_name} is {dist(live, exp):.4f} m away from the opening's hinge line")
-            if parallel < 1.0 - 1e-3:
-                problems.append(f"entrance {slot_name}: the door is not in the wall plane")
+            if face < 1.0 - 1e-3:
+                problems.append(f"entrance {slot_name}: the closed door is not in the wall plane (facing {face:.4f})")
+            scaled.update(non_unit_scale(chain[:-1] + [chain[-2], *_descendants(chain[-2])]))
         chain = next((chain_for(root, p) for p in _paths_named(district_node, ent["hall"], district_prefix)), None)
         if chain is None:
             problems.append(f"entrance {ent['hall']} not found")
@@ -424,10 +437,17 @@ def check_one(root: dict, meshy_id: str, rep: dict, inp: dict) -> dict:
             live = to_world(chain, (0.0, 0.0, 0.0))
             centre = [origin_exp[i] + b2r(rz(inp["hint_deg"], ent["opening_centre_floor_local"]))[i] for i in range(3)]
             exp = [centre[i] - front_world[i] * ent["hall_depth_m"] for i in range(3)]
+            face = facing(chain)
             ent_out["hall"] = {"slot": ent["hall"], "live_world": [round(v, 4) for v in live], "expected": [round(v, 4) for v in exp],
-                               "diff_m": round(dist(live, exp), 4)}
+                               "diff_m": round(dist(live, exp), 4), "facing_inward": round(face, 4)}
             if dist(live, exp) > TOL_M:
                 problems.append(f"entrance {ent['hall']} is {dist(live, exp):.4f} m away from behind the opening")
+            if face < 1.0 - 1e-3:
+                problems.append(f"entrance {ent['hall']} does not face into the building (facing {face:.4f})")
+            scaled.update(non_unit_scale(chain[:-1] + [chain[-1], *_descendants(chain[-1])]))
+        ent_out["non_unit_scale"] = sorted(scaled)
+        if scaled:
+            problems.append(f"entrance: non-unit scale on {sorted(scaled)}")
         out["entrance"] = ent_out
 
     # 当たり判定
@@ -455,9 +475,11 @@ def check_one(root: dict, meshy_id: str, rep: dict, inp: dict) -> dict:
         for chain, _ in main_meshes:
             node = chain[-1]
             col, mesh = component(node, "MeshCollider"), component(node, "StaticMesh")
+            offset = member(col, "Offset")
             ok = {"collider_enabled": member(col, "Enabled") is True,
                   "static_character_collider": member(col, "Type") == "Static" and member(col, "CharacterCollider") is True,
-                  "uses_own_static_mesh": mesh is not None and col is not None and member(col, "Mesh") == mesh["id"]}
+                  "uses_own_static_mesh": mesh is not None and col is not None and member(col, "Mesh") == mesh["id"],
+                  "zero_offset": isinstance(offset, dict) and all(abs(float(offset.get(k, 1.0))) < 1e-6 for k in "xyz")}
             rows.append({"slot": node["name"], **ok})
             bad = [k for k, v in ok.items() if not v]
             if bad:

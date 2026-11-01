@@ -503,7 +503,7 @@
               39.9523
             ],
             "diff_m": 0.0023,
-            "door_plane_parallel_to_wall": 1.0
+            "facing_inward": 1.0
           },
           {
             "slot": "BMN_MansionDoubleDoor_001_HingeRight",
@@ -518,7 +518,7 @@
               39.9523
             ],
             "diff_m": 0.0023,
-            "door_plane_parallel_to_wall": 1.0
+            "facing_inward": 1.0
           }
         ],
         "hall": {
@@ -533,8 +533,10 @@
             1.87,
             41.8023
           ],
-          "diff_m": 0.0023
-        }
+          "diff_m": 0.0023,
+          "facing_inward": 1.0
+        },
+        "non_unit_scale": []
       },
       "colliders_under_finished_asset": [
         "M03_HauntedMansion_001"
@@ -550,7 +552,8 @@
           "slot": "M03_HauntedMansion_001",
           "collider_enabled": true,
           "static_character_collider": true,
-          "uses_own_static_mesh": true
+          "uses_own_static_mesh": true,
+          "zero_offset": true
         }
       ],
       "problems": []

@@ -253,7 +253,8 @@ REP_FINISHED = {**REP, "collision": "finished"}
 def _world_finished() -> dict:
     world = _world()
     next(c for c in _find(world, "Proxy_Body_FixedCollision")["components"] if c["id"] == "c1")["members"]["Enabled"]["value"] = False
-    _find(world, "Asset")["components"].append(_comp("c2", "MeshCollider", Enabled=True, Type="Static", CharacterCollider=True, Mesh="id:m2"))
+    _find(world, "Asset")["components"].append(_comp("c2", "MeshCollider", Enabled=True, Type="Static", CharacterCollider=True, Mesh="id:m2",
+                                                     Offset={"x": 0.0, "y": 0.0, "z": 0.0}))
     return world
 
 
@@ -273,6 +274,13 @@ def test_finished_asset_without_its_collider_is_detected() -> None:
     asset = _find(world, "Asset")
     asset["components"] = [c for c in asset["components"] if c["id"] != "c2"]
     assert any("finished-asset collider fails" in p for p in _problems_finished(world))
+
+
+def test_finished_asset_collider_moved_off_the_mesh_is_detected() -> None:
+    # PR #53 review (GPT): the collider used the right mesh but its Offset moved the collision 0.5 m away from what is drawn.
+    world = _world_finished()
+    next(c for c in _find(world, "Asset")["components"] if c["id"] == "c2")["members"]["Offset"]["value"] = {"x": 0.5, "y": 0.0, "z": 0.0}
+    assert any("zero_offset" in p for p in _problems_finished(world))
 
 
 # W09R-B (#48): the district's door hinges and entrance hall must sit on the finished asset's door opening. The expected
@@ -307,3 +315,25 @@ def test_entrance_hall_off_the_opening_is_detected() -> None:
     world = _world_entrance()
     _find(world, "Hall")["position"]["x"] = -0.3725
     assert any("Hall is" in p for p in _problems_entrance(world))
+
+
+def test_entrance_door_turned_on_its_hinge_is_detected() -> None:
+    # PR #53 review (GPT): turning the hinge Slot keeps its origin on the hinge line, so only the facing check sees that the
+    # closed door is no longer in the wall plane.
+    world = _world_entrance()
+    _find(world, "HingeL")["rotation"] = dict(zip("xyzw", (0, -0.6755902076156602, 0, 0.7372773368101241)))  # +85 deg
+    assert any("not in the wall plane" in p for p in _problems_entrance(world))
+
+
+def test_entrance_hall_turned_around_is_detected() -> None:
+    # PR #53 review (GPT): a hall turned 180 deg keeps its origin, but its back wall would close the doorway.
+    world = _world_entrance()
+    _find(world, "Hall")["rotation"] = dict(zip("xyzw", (0, 1, 0, 0)))
+    assert any("does not face into the building" in p for p in _problems_entrance(world))
+
+
+def test_entrance_door_with_a_wrong_scale_is_detected() -> None:
+    # PR #53 review (GPT): a door scaled to half height keeps its hinge origins, so every position check still passed.
+    world = _world_entrance()
+    _find(world, "Door")["scale"] = dict(zip("xyz", (1.0, 0.5, 1.0)))
+    assert any("non-unit scale" in p for p in _problems_entrance(world))
