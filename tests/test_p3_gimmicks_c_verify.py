@@ -3,7 +3,9 @@
 Why these tests exist (create-reso-world AGENTS.md, test criterion S): ``verify_c.py`` is the evidence that the stirring rod,
 the witch, the liquid colour and the particles in the world follow the formulas and the W04 data. If one of its guards
 broke, it would report a reversed stir, a witch off the patrol path or facing backwards, a stopped or double-speed motion,
-a drift between the two windows, a moved M08 or a liquid colour that no longer follows HMC_P3 as passing, with no error.
+a drift between the two windows, a moved M08, a liquid colour that no longer follows HMC_P3, a carrier pivot that stops or
+leaves the witch, an angle that keeps the mean speed but leaves the clock, or a shared material that changed as passing,
+with no error (the last three were added after the GPT review, M-1 to M-3).
 Each test keeps one guard and also passes the correct state, so an implementation that rejects everything fails.
 """
 
@@ -112,22 +114,63 @@ def test_travel_check_finds_a_witch_that_flies_backwards():
     assert v.check_travel([sample(0.4, True), sample(0.6, True)])["problems"]
 
 
-def test_speed_check_finds_a_stopped_rod_and_a_double_speed_patrol():
+def test_speed_check_finds_a_stopped_rod_a_double_speed_patrol_a_stopped_carrier_and_an_angle_off_the_clock():
     params = _params()
     rod = [(t * 1.5, (60.0 * t * 1.5) % 360.0) for t in range(10)]
-    patrol = [(t * 3.0, (8.0 * t * 3.0) % 360.0) for t in range(8)]
-    assert v.check_speeds(rod, patrol, params)["problems"] == []
-    assert v.check_speeds([(t * 1.5, 40.0) for t in range(10)], patrol, params)["problems"]
-    assert v.check_speeds(rod, [(t * 3.0, (16.0 * t * 3.0) % 360.0) for t in range(8)], params)["problems"]
+    patrol = [(t * 3.0, (8.0 * t * 3.0) % 360.0) for t in range(11)]
+    assert v.check_speeds(rod, patrol, params, patrol)["problems"] == []
+    assert v.check_speeds([(t * 1.5, 40.0) for t in range(10)], patrol, params, patrol)["problems"]
+    assert v.check_speeds(rod, [(t * 3.0, (16.0 * t * 3.0) % 360.0) for t in range(11)], params, patrol)["problems"]
+    # CarrierPivot だけが止まっている（魔女は動く。GPT のレビューの指摘 M-1）
+    assert any(p.startswith("carrier") for p in v.check_speeds(rod, patrol, params, [(t * 3.0, 0.0) for t in range(11)])["problems"])
+    # 平均の速さは 8°/s だが、時刻から ±20° 外れる式（指摘 M-3 の例）
+    wobbly = [(t * 3.0, (8.0 * t * 3.0 + 20.0 * math.cos(2 * math.pi * t * 3.0 / 30.0)) % 360.0) for t in range(11)]
+    assert any("off the line of the clock" in p for p in v.check_speeds(rod, wobbly, params, patrol)["problems"])
+
+
+def test_carrier_phase_check_finds_a_carrier_that_does_not_follow_the_witch():
+    same = [{"witch": {"theta_deg": 10.0 * k}, "carrier": {"theta_deg": 10.0 * k - 2.0}} for k in range(5)]
+    late = [{"witch": {"theta_deg": 10.0 * k}, "carrier": {"theta_deg": 10.0 * k - 30.0}} for k in range(5)]
+    assert v.check_carrier_phase(same)["problems"] == []
+    assert v.check_carrier_phase(late)["problems"]
+
+
+def test_material_check_finds_a_changed_shared_colour_and_a_renderer_moved_to_the_dedicated_material():
+    def comp(key, typ, fields):
+        return {"key": key, "type": typ, "fields": fields}
+
+    def tree(liquid_mats, stall_mats):
+        g9 = gimmicks.g09()
+        return {"slot": {"name": "C_candy"}, "components": [
+            comp("emerald", "FrooxEngine.PBS_Metallic", {"AlbedoColor": [0.46, 0.98, 0.75, 1.0], "EmissiveColor": [0.9, 1.9, 1.5, 1.0]}),
+            comp("magenta", "FrooxEngine.PBS_Metallic", {"AlbedoColor": [0.98, 0.53, 0.9, 1.0], "EmissiveColor": [1.9, 1.0, 1.7, 1.0]})],
+            "children": [{"slot": {"name": g9["liquid"]}, "components": [comp("liquid_r", "FrooxEngine.MeshRenderer", {"Materials": liquid_mats})]},
+                         {"slot": {"name": "Stall"}, "components": [comp("stall_r", "FrooxEngine.MeshRenderer", {"Materials": stall_mats})]}]}
+
+    model = tree(["$component:emerald", "$component:magenta"], ["$component:emerald"])
+    doc = tree([f"$component:{gimmicks.G09_LIQUID_MATERIAL_KEY}", "$component:magenta"], ["$component:emerald"])
+    exp = v.material_expectations(model, doc)
+    ids = {"emerald": "E", "magenta": "M", gimmicks.G09_LIQUID_MATERIAL_KEY: "L"}
+    observed = {"liquid_r": ["L", "M"], "stall_r": ["E"]}
+    colors = {(k, m): dict(zip("rgba", vals), profile="sRGB") for (k, m), vals in exp["colors"].items()}
+    assert v.compare_materials(exp, observed, ids, colors) == []
+    # 宣言の作り方の誤りで屋台の MeshRenderer まで専用の材質に付け替わった（変更後の宣言から対象を取ると、屋台が対象から抜けて見落とす）
+    bad_doc = tree([f"$component:{gimmicks.G09_LIQUID_MATERIAL_KEY}", "$component:magenta"], [f"$component:{gimmicks.G09_LIQUID_MATERIAL_KEY}"])
+    bad = v.material_expectations(model, bad_doc)
+    assert any(p.startswith("stall_r") for p in v.compare_materials(bad, {**observed, "stall_r": ["L"]}, ids, colors))
+    # 共有のエメラルドの色が変わった（参照は同じ）
+    changed = {**colors, ("emerald", "EmissiveColor"): dict(r=1.9, g=0.47, b=1.5, a=1.0, profile="sRGB")}
+    assert any("shared material colour" in p for p in v.compare_materials(exp, observed, ids, changed))
 
 
 def test_drift_check_finds_a_moved_phase_and_a_clock_offset_between_windows():
     probe = {"params": {"G11Phase": 0.25}, "slots": {"rod": [0.0, -0.38, 0.0, 0.92], "witch": [33.0, 10.4, 9.5],
                                                      "carrier": [0.0, 10.4, 9.5]}}
     moved = {"params": probe["params"], "slots": dict(probe["slots"], witch=[33.02, 10.4, 9.5])}
-    assert v.check_drift([probe, probe], [100.0, 101.0])["problems"] == []
-    assert any("witch moved" in p for p in v.check_drift([probe, moved], [100.0, 101.0])["problems"])
-    assert any("theta - omega t" in p for p in v.check_drift([probe, probe], [100.0, 120.0])["problems"])
+    assert v.check_drift([probe, probe], [100.0, 101.0], [98.0, 99.0])["problems"] == []
+    assert any("witch moved" in p for p in v.check_drift([probe, moved], [100.0, 101.0], [98.0, 99.0])["problems"])
+    assert any("witch theta - omega t" in p for p in v.check_drift([probe, probe], [100.0, 120.0], [98.0, 99.0])["problems"])
+    assert any("carrier theta - omega t" in p for p in v.check_drift([probe, probe], [100.0, 101.0], [98.0, 130.0])["problems"])
 
 
 def _live(name, pos=(0, 0, 0), rot=(0, 0, 0, 1), children=None) -> dict:

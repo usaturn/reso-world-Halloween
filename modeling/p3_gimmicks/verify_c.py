@@ -68,6 +68,10 @@ CLOCK_FREQUENCY = 0.004      # ゆっくりの時刻（Hz）。φ・θ は 1.44�
 CLOCK_WAIT_S = 20.0
 CLOCK_TOL_DEG = 1.0
 CLOCK_OFFSET_TOL_DEG = 6.0   # 窓の間の θ − ω t の差（observe の時刻の見積もりのずれ ±0.5 秒 × 8°/s の分）
+# 各観察と、角度を連続にして当てはめた直線の差（GPT のレビューの指摘 M-3）。observe の時刻の見積もりのずれの分を許す
+# （2026-11-01 の実測で攪拌棒 ±5.1°（60°/s）、巡回 ±1.2°（8°/s））
+RESIDUAL_TOL_DEG = {"rod": 15.0, "patrol": 4.0}
+CARRIER_PHASE_TOL_DEG = 4.0  # 同じ観察の中の魔女と CarrierPivot の θ の差（実測 1.6〜2.4°。CarrierPivot を後に読む）
 DRIFT_TOL_M = 0.01
 DRIFT_TOL_DEG = 0.5
 LOCAL_TOL = 1e-4
@@ -271,23 +275,59 @@ def check_travel(samples: list[dict]) -> dict:
     return {"errors_deg": rows, "problems": problems}
 
 
-def check_speeds(rod_samples: list[tuple[float, float]], theta_samples: list[tuple[float, float]], params: dict) -> dict:
-    """攪拌の角度 φ と巡回の θ の速さ（度/秒）を、HMC_P3 の速さと比べる。隣の観察の間の進みが大きすぎれば測れないとする。"""
+def _unwrap(samples: list[tuple[float, float]]) -> list[tuple[float, float]]:
+    out, acc, prev = [], 0.0, None
+    for t, a in samples:
+        acc = a if prev is None else acc + (a - prev + 180.0) % 360.0 - 180.0
+        prev = a
+        out.append((t, acc))
+    return out
+
+
+def max_residual(samples: list[tuple[float, float]]) -> float:
+    """角度を連続にして直線に当てはめたときの、各観察と直線の差の最大（度）。平均の速さだけが合う、時刻から外れた式を見つける
+    （GPT のレビューの指摘 M-3）。"""
+    u = _unwrap(samples)
+    n = len(u)
+    mt, ma = sum(t for t, _ in u) / n, sum(a for _, a in u) / n
+    slope = sum((t - mt) * (a - ma) for t, a in u) / sum((t - mt) ** 2 for t, _ in u)
+    return max(abs(a - (ma + slope * (t - mt))) for t, a in u)
+
+
+def check_speeds(rod_samples: list[tuple[float, float]], theta_samples: list[tuple[float, float]], params: dict,
+                 carrier_samples: list[tuple[float, float]] | None = None) -> dict:
+    """攪拌の角度 φ と、魔女・CarrierPivot の巡回の θ の速さ（度/秒）を HMC_P3 の速さと比べ、各観察の直線からの差を見る。
+    隣の観察の間の進みが大きすぎれば測れないとする。CarrierPivot も魔女とは別に見る（GPT のレビューの指摘 M-1）。"""
     out: dict = {"problems": []}
-    for name, samples, f in (("rod", rod_samples, params["G09StirFrequency"]), ("patrol", theta_samples, params["G11Frequency"])):
+    series = [("rod", rod_samples, params["G09StirFrequency"]), ("patrol", theta_samples, params["G11Frequency"])]
+    if carrier_samples is not None:
+        series.append(("carrier", carrier_samples, params["G11Frequency"]))
+    for name, samples, f in series:
         want = 360.0 * f
-        steps = [(b[1] - a[1]) % 360.0 for a, b in zip(samples, samples[1:])]
         if len(samples) < 4:
             out["problems"].append(f"{name}: too few observations ({len(samples)})")
             continue
+        steps = [(b[1] - a[1]) % 360.0 for a, b in zip(samples, samples[1:])]
         if max(steps) > MAX_STEP_DEG:
             out["problems"].append(f"{name}: a step of {max(steps):.1f} deg is too large to follow the angle")
         speed = fit_speed(samples)
+        resid = max_residual(samples)
+        tol = RESIDUAL_TOL_DEG["rod" if name == "rod" else "patrol"]
         out[name] = {"deg_per_s": round(speed, 4), "expected": round(want, 4), "max_step_deg": round(max(steps), 2),
-                     "samples": len(samples)}
+                     "max_residual_deg": round(resid, 3), "samples": len(samples)}
         if want <= 0 or abs(speed - want) > SPEED_TOL * want:
             out["problems"].append(f"{name}: {speed:.3f} deg/s != {want:.3f} deg/s")
+        if resid > tol:
+            out["problems"].append(f"{name}: an observation is {resid:.2f} deg off the line of the clock (tolerance {tol})")
     return out
+
+
+def check_carrier_phase(samples: list[dict]) -> dict:
+    """同じ観察の中の、魔女と CarrierPivot の θ の差（度）。同じ式なら読み取りの時刻のずれの分だけ（GPT のレビューの指摘 M-1）。"""
+    diffs = [wrap_deg(s["witch"]["theta_deg"] - s["carrier"]["theta_deg"]) for s in samples]
+    problems = [f"carrier is {max(diffs, key=abs):.2f} deg away from the witch on the path"] if diffs and \
+        max(abs(d) for d in diffs) > CARRIER_PHASE_TOL_DEG else []
+    return {"diff_deg": [round(min(diffs), 3), round(max(diffs), 3)] if diffs else None, "problems": problems}
 
 
 def clock_offset(theta_samples: list[tuple[float, float]], f: float) -> float:
@@ -425,40 +465,73 @@ def check_relays(url: str, keys: dict[str, str]) -> list[str]:
     return problems
 
 
-def check_materials(url: str, doc: dict | None = None) -> dict:
-    """液面の MeshRenderer の材質が [専用の材質, 宣言の 2 つ目]、元の材質を使うほかの MeshRenderer は元の材質のまま、か。"""
-    doc = doc or latest_declaration(gimmicks.g09()["district"])
+def material_expectations(model: dict, doc: dict) -> dict:
+    """材質の照合の基準。G09 を足す前の宣言（同じ export の model.apply.json）から、液面の元の材質（エメラルド・マゼンタ）と、
+    それを使う MeshRenderer の材質の並び、元の材質の色を取る（GPT のレビューの指摘 M-2。変更後の宣言から取ると、誤って付け替えた
+    MeshRenderer が対象から抜ける）。液面の MeshRenderer だけは [専用の材質, 2 つ目] になる。"""
     g9 = gimmicks.g09()
-    liquid = _find_decl(doc, g9["liquid"])
-    rend = next(c for c in liquid["components"] if c["type"] == "FrooxEngine.MeshRenderer")
-    want = [m.split(":", 1)[1] for m in rend["fields"]["Materials"]]
-    original = next(c for c in liquid["components"] if c["key"] == gimmicks.G09_LIQUID_MATERIAL_KEY)
-    # 元の材質（専用の材質を写した元）を使う、ほかの MeshRenderer
-    model = json.loads((_bundle(g9["district"]) / "model.apply.json").read_text(encoding="utf-8"))
+
+    def renderers(d: dict) -> dict[str, list[str]]:
+        out = {}
+        stack = [d]
+        while stack:
+            n = stack.pop()
+            for c in n.get("components", []):
+                if c["type"] == "FrooxEngine.MeshRenderer":
+                    out[c["key"]] = [m.split(":", 1)[1] for m in c["fields"].get("Materials", [])]
+            stack.extend(n.get("children", []))
+        return out
+
+    def component(d: dict, key: str) -> dict:
+        stack = [d]
+        while stack:
+            n = stack.pop()
+            for c in n.get("components", []):
+                if c.get("key") == key:
+                    return c
+            stack.extend(n.get("children", []))
+        raise SystemExit(f"{key} is not declared")
+
     src = _find_decl(model, g9["liquid"])
-    src_key = next(c for c in src["components"] if c["type"] == "FrooxEngine.MeshRenderer")["fields"]["Materials"][0].split(":", 1)[1]
-    users = []
-    stack = [doc]
-    while stack:
-        n = stack.pop()
-        for c in n.get("components", []):
-            if c["type"] == "FrooxEngine.MeshRenderer" and f"$component:{src_key}" in c["fields"].get("Materials", []):
-                users.append((c["key"], [m.split(":", 1)[1] for m in c["fields"]["Materials"]]))
-        stack.extend(n.get("children", []))
-    sels = [f"$member:{rend['key']}.Materials"] + [f"$member:{k}.Materials" for k, _ in users]
-    data = run_json(["resoloop", "observe", *sels, "--state", str(C_STATE), "--url", url, "--json"])["data"]["values"]
-    keys = sorted({*want, *(m for _, ms in users for m in ms)})
-    ids = {k: component_id(f"$member:{k}.Enabled", C_STATE, url) for k in keys}
+    liquid = next(c for c in src["components"] if c["type"] == "FrooxEngine.MeshRenderer")
+    sources = [m.split(":", 1)[1] for m in liquid["fields"]["Materials"]]
+    base = renderers(model)
+    want = {k: ms for k, ms in base.items() if set(ms) & set(sources)}
+    want[liquid["key"]] = [gimmicks.G09_LIQUID_MATERIAL_KEY] + sources[1:]
+    if renderers(doc).get(liquid["key"]) != want[liquid["key"]]:
+        raise SystemExit("C declaration: the liquid renderer is not [dedicated material, second material]")
+    colors = {(k, m): [float(x) for x in component(model, k)["fields"][m]] for k in sources for m in ("AlbedoColor", "EmissiveColor")}
+    return {"liquid_renderer": liquid["key"], "sources": sources, "renderers": want, "colors": colors}
+
+
+def compare_materials(exp: dict, observed: dict[str, list[str]], ids: dict[str, str], colors: dict[tuple, dict]) -> list[str]:
+    """観察した MeshRenderer の材質の参照（targetId の並び）と、元の材質の色を、基準（material_expectations）と比べる。"""
     problems = []
-    got = [e.get("targetId") for e in data[sels[0]]["member"]["elements"]]
-    if got != [ids[k] for k in want] or want[0] != gimmicks.G09_LIQUID_MATERIAL_KEY:
-        problems.append(f"liquid renderer materials {got} != {want}")
-    for (k, ms), sel in zip(users, sels[1:]):
-        got = [e.get("targetId") for e in data[sel]["member"]["elements"]]
-        if got != [ids[m] for m in ms]:
-            problems.append(f"{k}: materials changed {got} != {ms}")
-    return {"liquid": want, "copied_from": src_key, "original_users": [k for k, _ in users],
-            "dedicated_fields": original.get("fields"), "problems": problems}
+    for rend, ms in exp["renderers"].items():
+        got = observed.get(rend)
+        if got != [ids.get(m) for m in ms]:
+            problems.append(f"{rend}: materials {got} != {ms}")
+    for (mat, member), want in exp["colors"].items():
+        got = colors.get((mat, member))
+        if got is None or got.get("profile", "sRGB") != "sRGB" or max(abs(float(got[c]) - w) for c, w in zip("rgba", want)) > 1e-4:
+            problems.append(f"{mat}.{member}: shared material colour changed {got} != {want}")
+    return problems
+
+
+def check_materials(url: str, doc: dict | None = None) -> dict:
+    """液面の MeshRenderer の材質が [専用の材質, 2 つ目]、元の材質を使うほかの MeshRenderer は元の材質のまま、元の材質の色も
+    宣言のまま、か。"""
+    doc = doc or latest_declaration(gimmicks.g09()["district"])
+    model = json.loads((_bundle(gimmicks.g09()["district"]) / "model.apply.json").read_text(encoding="utf-8"))
+    exp = material_expectations(model, doc)
+    sels = [f"$member:{k}.Materials" for k in exp["renderers"]] + [f"$member:{k}.{m}" for k, m in exp["colors"]]
+    data = run_json(["resoloop", "observe", *sels, "--state", str(C_STATE), "--url", url, "--json"])["data"]["values"]
+    keys = sorted({m for ms in exp["renderers"].values() for m in ms})
+    ids = {k: component_id(f"$member:{k}.Enabled", C_STATE, url) for k in keys}
+    observed = {k: [e.get("targetId") for e in data[f"$member:{k}.Materials"]["member"]["elements"]] for k in exp["renderers"]}
+    colors = {(k, m): data[f"$member:{k}.{m}"]["member"]["value"] for k, m in exp["colors"]}
+    return {"liquid": exp["renderers"][exp["liquid_renderer"]], "sources": exp["sources"],
+            "renderers": sorted(exp["renderers"]), "problems": compare_materials(exp, observed, ids, colors)}
 
 
 # ---- 包絡（バンドルのメッシュから。観察ではない） -----------------------------------------------------------------------
@@ -600,8 +673,9 @@ def frozen_probe(url: str, raw: list) -> dict:
             "problems": problems}
 
 
-def check_drift(probes: list[dict], offsets: list[float]) -> dict:
-    """窓ごとの時刻を止めた標本を最初の窓と比べ（同じ位相の位置の差 1 cm 以内、攪拌棒の回転の差）、θ − ω t の差も見る。"""
+def check_drift(probes: list[dict], offsets: list[float], carrier_offsets: list[float] | None = None) -> dict:
+    """窓ごとの時刻を止めた標本を最初の窓と比べ（同じ位相の位置の差 1 cm 以内、攪拌棒の回転の差）、θ − ω t の差も見る
+    （魔女と、別に CarrierPivot。GPT のレビューの指摘 M-1）。"""
     rows, problems = [], []
     if len(probes) < 2:
         return {"rows": rows, "problems": ["drift: needs two windows"]}
@@ -618,12 +692,14 @@ def check_drift(probes: list[dict], offsets: list[float]) -> dict:
         rows.append({"window": i, "slot": "rod", "rotation_diff": round(dq, 6)})
         if dq > math.radians(DRIFT_TOL_DEG) / 2.0:
             problems.append(f"drift: rod rotation differs {dq:.5f} at the same phase by window {i}")
-    for i, off in enumerate(offsets[1:], start=2):
-        d = abs(wrap_deg(off - offsets[0]))
-        rows.append({"window": i, "clock_offset_diff_deg": round(d, 3)})
-        if d > CLOCK_OFFSET_TOL_DEG:
-            problems.append(f"drift: theta - omega t moved {d:.2f} deg between windows 1 and {i}")
-    return {"rows": rows, "clock_offsets_deg": [round(o, 3) for o in offsets], "problems": problems}
+    for name, offs in (("witch", offsets), ("carrier", carrier_offsets or [])):
+        for i, off in enumerate(offs[1:], start=2):
+            d = abs(wrap_deg(off - offs[0]))
+            rows.append({"window": i, "slot": name, "clock_offset_diff_deg": round(d, 3)})
+            if d > CLOCK_OFFSET_TOL_DEG:
+                problems.append(f"drift: {name} theta - omega t moved {d:.2f} deg between windows 1 and {i}")
+    return {"rows": rows, "clock_offsets_deg": [round(o, 3) for o in offsets],
+            "carrier_clock_offsets_deg": [round(o, 3) for o in carrier_offsets or []], "problems": problems}
 
 
 def observe_window(url: str, duration: float, rod_duration: float, raw: list) -> dict:
@@ -661,9 +737,12 @@ def observe_window(url: str, duration: float, rod_duration: float, raw: list) ->
     window["structure_end"] = check_structure(hier2["data"])
     smp = window["samples"]
     theta = [(s["t"], s["witch"]["theta_deg"]) for s in smp]
-    window["speeds"] = check_speeds(rod_samples, theta, params)
+    ctheta = [(s["t"], s["carrier"]["theta_deg"]) for s in smp]
+    window["speeds"] = check_speeds(rod_samples, theta, params, ctheta)
     window["travel"] = check_travel(smp)
+    window["carrier_phase"] = check_carrier_phase(smp)
     window["clock_offset_deg"] = clock_offset(theta, params["G11Frequency"]) if theta else None
+    window["carrier_clock_offset_deg"] = clock_offset(ctheta, params["G11Frequency"]) if ctheta else None
     window["summary"] = {
         "samples": len(smp), "rod_samples": len(rod_samples),
         "rod_tilt_deg": [round(min(s["rod"]["tilt_deg"] for s in smp), 3), round(max(s["rod"]["tilt_deg"] for s in smp), 3)],
@@ -675,7 +754,8 @@ def observe_window(url: str, duration: float, rod_duration: float, raw: list) ->
     }
     for s in smp:
         window["problems"].extend(s["problems"])
-    window["problems"] += (window["speeds"]["problems"] + window["travel"]["problems"] + window["relay_problems"]
+    window["problems"] += (window["speeds"]["problems"] + window["travel"]["problems"] + window["carrier_phase"]["problems"]
+                           + window["relay_problems"]
                            + window["materials"]["problems"] + window["frozen_probe"]["problems"]
                            + window["structure_start"]["problems"] + window["structure_end"]["problems"])
     window["ok"] = not window["problems"]
@@ -747,6 +827,9 @@ def param_check(url: str, raw: list) -> dict:
         put("G11Phase", 0.0)
         put(gimmicks.G09_COLOR_VARIABLE, MAGENTA)
         case = _frozen_case(url, "color_magenta", keys, sels, gain, raw)
+        # 色を変えている間も、共有の材質の色と参照が変わらないこと（GPT のレビューの指摘 M-2）
+        case["materials"] = check_materials(url)
+        case["problems"] += case["materials"]["problems"]
         out["frozen_color_magenta"] = case
         out["problems"].extend(case["problems"])
     finally:
@@ -807,12 +890,14 @@ def main(argv: list[str] | None = None) -> int:
                 time.sleep(args.gap)
             wins.append(observe_window(args.url, args.duration, args.rod_duration, raw))
         env = envelopes()
-        drift = check_drift([w["frozen_probe"] for w in wins], [w["clock_offset_deg"] for w in wins])
+        drift = check_drift([w["frozen_probe"] for w in wins], [w["clock_offset_deg"] for w in wins],
+                            [w["carrier_clock_offset_deg"] for w in wins])
         result = {"windows": wins, "gap_s": args.gap if args.windows > 1 else None, "drift": drift, "envelopes": env,
                   "envelope_problems": envelope_problems(env),
                   "tolerances": {"path_m": PATH_TOL_M, "heading_deg": HEADING_TOL_DEG, "travel_deg": TRAVEL_TOL_DEG,
                                  "rod_tilt_deg": ROD_TILT_TOL_DEG, "frozen_pos_m": FROZEN_POS_TOL_M, "frozen_deg": FROZEN_DEG_TOL,
                                  "color": COLOR_TOL, "speed": SPEED_TOL, "drift_m": DRIFT_TOL_M, "clock_offset_deg": CLOCK_OFFSET_TOL_DEG,
+                                 "residual_deg": RESIDUAL_TOL_DEG, "carrier_phase_deg": CARRIER_PHASE_TOL_DEG,
                                  "local": LOCAL_TOL}}
         drift_problems = drift["problems"] if args.windows > 1 else []
         result["ok"] = all(w["ok"] for w in wins) and not result["envelope_problems"] and not drift_problems

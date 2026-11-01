@@ -933,13 +933,34 @@
         0.0
       ]
     },
-    "problems": []
+    "problems": [],
+    "materials": {
+      "liquid": [
+        "p3_g09_lm",
+        "mat_material_MAT_CCD_PotionMagentaGlow_f71b9f0a"
+      ],
+      "sources": [
+        "mat_material_MAT_CCD_PotionEmeraldGlow_a2f675eb",
+        "mat_material_MAT_CCD_PotionMagentaGlow_f71b9f0a"
+      ],
+      "renderers": [
+        "renderer_CCD_CandyMachine_001_Body_58896122",
+        "renderer_CCD_CauldronColorControl_001_CrystalOrb_d1962fba",
+        "renderer_CCD_CauldronColorControl_001_Pedestal_e8f76f91",
+        "renderer_CCD_GumballStall_SouthEast_001_bde64ed5",
+        "renderer_CCD_MagicCauldron_001_BubbleAttach_b59dcfde",
+        "renderer_CCD_MagicCauldron_001_Liquid_2fe1b424",
+        "renderer_CCD_MagicCauldron_001_StirRod_adedb1f8",
+        "renderer_CCD_PotionStall_NorthEast_001_8a26168d"
+      ],
+      "problems": []
+    }
   },
   "clock": {
-    "dt_s": 23.638,
-    "expected_deg": 34.0385,
-    "rod_deg": 33.9869,
-    "patrol_deg": 33.9864,
+    "dt_s": 23.899,
+    "expected_deg": 34.4146,
+    "rod_deg": 34.4921,
+    "patrol_deg": 34.4914,
     "problems": []
   },
   "restored": {
