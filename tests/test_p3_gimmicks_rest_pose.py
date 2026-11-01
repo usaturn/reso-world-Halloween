@@ -5,7 +5,8 @@ and ``modeling/p2_meshy/verify_live.py``) now replace the observed local pose of
 rest pose before measuring. If that replacement reached any other Slot, a part that really moved (a pedestal, a seat, a
 Meshy asset root) would be measured at its declared place and the check would report it as passing with no error. If it
 did not reach a driven Slot, the check would fail on every run while the ride moves. The first test keeps the driven Slots
-replaced; the second keeps a moved non-driven Slot visible to the P2 checks.
+replaced; the second keeps a moved non-driven Slot, and a moved TurnRoot position (G13 drives only its rotation), visible
+to the P2 checks.
 """
 
 from __future__ import annotations
@@ -22,7 +23,7 @@ def _decl(name, pos=(0, 0, 0), rot=(0, 0, 0, 1), children=None) -> dict:
     return {"slot": {"key": name, "name": name, "position": list(pos), "rotation": list(rot)}, "children": children or []}
 
 
-def _world(moved_pedestal: bool = False) -> tuple[dict, dict]:
+def _world(moved_pedestal: bool = False, moved_turn_root: bool = False) -> tuple[dict, dict]:
     """A のカボチャ 6 体と D の TurnRoot を、駆動された姿勢（動いている途中）で観察した木と、宣言。"""
     g01, g13 = gimmicks.g01(), gimmicks.g13()
     a_live, a_decl = [], []
@@ -37,7 +38,7 @@ def _world(moved_pedestal: bool = False) -> tuple[dict, dict]:
             _decl(p["motion_root"], pos=(0.0, 0.24, 0.0), children=[_decl(f"{p['asset_id']}_GlowAttach", pos=(0.0, 0.26, -0.22))])]))
     d_live = [_live("DAM_Carousel_001", children=[
         _live("DAM_Carousel_001_Base"),
-        _live(g13["motion_root"], pos=(0.0, 0.36, 0.0), rot=(0.0, 0.7071, 0.0, 0.7071),
+        _live(g13["motion_root"], pos=(0.2, 0.36, 0.0) if moved_turn_root else (0.0, 0.36, 0.0), rot=(0.0, 0.7071, 0.0, 0.7071),
               children=[_live("DAM_Carousel_001_SeatRoot_001", pos=(3.35, 1.05, 0.0))])])]
     d_decl = [_decl("DAM_Carousel_001", children=[
         _decl("DAM_Carousel_001_Base"),
@@ -71,9 +72,11 @@ def test_driven_slots_are_put_back_to_their_declared_rest_pose():
     assert turn["rotation"] == {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
 
 
-def test_a_moved_slot_that_p3_does_not_drive_keeps_its_observed_pose():
-    root, decls = _world(moved_pedestal=True)
+def test_a_moved_slot_or_field_that_p3_does_not_drive_keeps_its_observed_pose():
+    root, decls = _world(moved_pedestal=True, moved_turn_root=True)
     rest_pose.apply_rest_pose(root, decls)
+    # G13 は回転だけを駆動する。TurnRoot の位置は静的な apply が管理し続けるので、ずれたら P2 の検査に見えるまま残す
+    assert _find(root, gimmicks.g13()["motion_root"])["position"]["x"] == 0.2
     pedestal = _find(root, f"{gimmicks.g01()['pumpkins'][0]['asset_id']}_Pedestal")
     assert pedestal["position"]["x"] == 0.3
     seat = _find(root, "DAM_Carousel_001_SeatRoot_001")

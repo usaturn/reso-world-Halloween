@@ -1,8 +1,9 @@
 """W10: P2 の検査（modeling/p2_static/verify_live.py・modeling/p2_meshy/verify_live.py）が、P3 の駆動で動いている
 可動部品を「ずれた」と誤って判定しないように、観察（resoloop hierarchy）の中の駆動される Slot だけを基準姿勢に戻す。
 
-- 対象は gimmicks.driven_slots() の Slot（G13 の TurnRoot、G01 の 6 体の Body）だけ。ローカルの位置・回転を、最新の
-  地区の宣言（exports/p2_static/<key>-*/p2.apply.json）のその Slot の値に置き換える。拡縮と、ほかの Slot は変えない
+- 対象は gimmicks.driven_slots() の Slot（G13 の TurnRoot、G01 の 6 体の Body）の、P3 が駆動する項目だけ（managedFields に
+  残っていない位置・回転。TurnRoot は回転だけ、Body は位置と回転）。最新の地区の宣言（exports/p2_static/<key>-*/p2.apply.json）
+  のその Slot の値に置き換える。静的な apply が管理し続ける項目（TurnRoot の位置、拡縮）と、ほかの Slot は観察のまま
 - 置き換えた Slot の子孫（座席・M05・取付位置など）は、基準姿勢の親の下で今までどおり検査される。駆動された値そのものの
   検査は modeling/p3_gimmicks/verify_live.py が行う
 - 宣言に無い・観察に無い・同じ名前が複数あるときは止める（黙って置き換えずに進むと、動いている物の位置で P2 の検査が
@@ -60,12 +61,12 @@ def apply_rest_pose(root: dict, declarations: dict[str, dict] | None = None) -> 
     declarations は地区のキー → 宣言（テスト用。省略すると最新の export を読む）。
     """
     rows: list[dict] = []
-    for key, names in gimmicks.driven_slots().items():
+    for key, slots in gimmicks.driven_slots().items():
         district = next((c for c in root.get("children") or [] if c["name"] == key), None)
         if district is None:
             raise ValueError(f"{key}: district root is not observed")
         doc = (declarations or {}).get(key) or latest_declaration(key)
-        for name in names:
+        for name, managed in slots.items():
             live = _find(district, name, lambda n: n["name"], lambda n: n.get("children") or [])
             decl = _find(doc, name, lambda n: n["slot"]["name"], lambda n: n.get("children") or [])
             if len(live) != 1 or len(decl) != 1:
@@ -74,8 +75,11 @@ def apply_rest_pose(root: dict, declarations: dict[str, dict] | None = None) -> 
             slot = decl[0][1]["slot"]
             rest_pos = _xyz(slot.get("position") or [0, 0, 0], "xyz")
             rest_rot = _xyz(slot.get("rotation") or [0, 0, 0, 1], "xyzw")
-            rows.append({"slot": "/".join(live[0][0]), "live": {"position": node["position"], "rotation": node["rotation"]},
-                         "rest": {"position": rest_pos, "rotation": rest_rot}})
-            node["position"] = rest_pos
-            node["rotation"] = rest_rot
+            replaced = {}
+            if "position" not in managed:
+                replaced["position"] = rest_pos
+            if "rotation" not in managed:
+                replaced["rotation"] = rest_rot
+            rows.append({"slot": "/".join(live[0][0]), "live": {f: node[f] for f in replaced}, "rest": replaced})
+            node.update(replaced)
     return rows

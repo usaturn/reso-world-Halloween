@@ -17,12 +17,15 @@
 - G13: 回転は Y 軸まわりだけ。回した +X 軸の向きの角度（東 → 北が正。上から見て反時計回り）を時刻で直線に当てはめた傾きが、
   W05 の速さ（Blender の +Z まわり、上から見て反時計回り）と 5% 以内。TurnRoot の位置と、子のローカルの変換が宣言どおり
 - G01: 位置は基準から上下だけ（水平のずれ 1 mm 以内）、上下は I×W02 の範囲、回転はローカル Z まわりだけで I×W02 の傾きの範囲。
-  I は HMC_P3 の値を観察して使う。上下と傾きは別の Component で読む時刻がずれるので、動いている間は式との一致を見ない
-- --param-check: G01Frequency = 0（時刻を止める）で各個体の上下・傾きが式（θ = s φ）の値と一致するか、G01PhaseSpread = 0 で
-  全員が θ = 0 か（式・位相・中継の結び先の確認）。G01Intensity 0.5・0 で範囲が縮むか。G13 の速さを半分にして測り直す。
+  I は HMC_P3 の値を観察して使う。上下と傾きは別の Component で読む時刻がずれるので、動いている間は式との一致を見ない。
+  各個体の上下・傾きの幅が範囲の 15% 未満なら「動いていない」とする（時刻の項が止まったグラフを合格にしない）。中継が有効か
+- --param-check: G01Frequency = 0（時刻を止める）で各個体の中継の値と Body の Slot そのものが式（θ = s φ）の値と一致するか、
+  G01PhaseSpread = 0 で全員が θ = 0 か（式・位相・中継の結び先と、中継が Body を駆動していることの確認）。G01Frequency を
+  ゆっくり（0.004 Hz）にして 20 秒の間に θ/2 が時刻どおり進むか、位相差が W02 の値か。G01Intensity 0.5・0 で範囲が縮むか。G13 の速さを半分にして測り直す。
   Spinner を 8 秒止めて再開した角度が、止める前の時刻の延長上にあるか（ワールドの時刻から角度を決めているか）。どれも元に戻す
 - 包絡: 動く物の水平の広がり（バンドルのメッシュから計算。観察ではない）を記録し、G01 は W02 の envelope_radius_m と、
-  G13 は人の高さより下の部分が台座（Base）の半径の内側かを比べる
+  G13 は人の高さより下の部分が台座（Base）の半径の内側かを比べる。外れたら最終の判定を不合格にする
+- 構造: TurnRoot の子孫と各カボチャの台座・取付位置を、宣言と同じパス（親子関係）でたどってローカルの変換を比べる
 """
 
 from __future__ import annotations
@@ -49,6 +52,10 @@ TILT_TOL_DEG = 0.2
 HORIZ_TOL_M = 0.001
 FROZEN_LIFT_TOL_M = 0.0005
 FROZEN_TILT_TOL_DEG = 0.05
+CLOCK_TOL_DEG = 2.0      # ゆっくりの時刻での θ/2 の進みと位相差の許容
+CLOCK_FREQUENCY = 0.004  # ゆっくりの時刻の G01Frequency（Hz）。θ/2 は 0.72°/s で、1 回の observe の中の読み取りのずれ（約 1 秒）が 1° 未満
+CLOCK_WAIT_S = 20.0      # ゆっくりの時刻の 2 回の観察の間（θ/2 は約 14° 進む）
+VARIATION = 0.15         # 動いている間、各個体の上下・傾きの幅が範囲のこの割合より小さければ「動いていない」
 LOCAL_TOL = 1e-4
 HEAD_HEIGHT_M = 2.2   # G13 の包絡: 床の上面からこの高さまでの回る部分を、人がぶつかり得る部分とする
 
@@ -153,10 +160,20 @@ def check_g01_sample(values: dict[str, dict], params: dict[str, float], pumpkins
     return {"pumpkins": rows, "problems": problems}
 
 
-def check_g01_frozen(values: dict[str, dict], params: dict[str, float], pumpkins: list[dict], keys: dict[str, str]) -> dict:
+def _body_values(bodies: dict[str, dict], p: dict, k: str) -> dict[str, dict]:
+    """観察した Body の Slot（name・position・rotation）を、中継の observe の values と同じ形にする。"""
+    b = bodies[p["motion_root"]]
+    return {f"$member:{district.relay_key(k, 'Position')}.Value": {"member": {"value": b["position"]}},
+            f"$member:{district.relay_key(k, 'Rotation')}.Value": {"member": {"value": b["rotation"]}}}
+
+
+def check_g01_frozen(values: dict[str, dict], params: dict[str, float], pumpkins: list[dict], keys: dict[str, str],
+                     bodies: dict[str, dict] | None = None) -> dict:
     """G01Frequency = 0（時刻を止めた状態）の観察。θ_i = s φ_i なので、各個体の上下と傾きが式の値と一致する。
 
     上下 = I (mid + half sin θ_i)、傾き = I tilt sin(θ_i / 2)。式・位相・中継の結び先がすべて正しいときだけ一致する。
+    bodies（Body の Slot の観察。名前 → ノード）を渡すと、中継の値だけでなく Body そのものの位置・回転も照合する
+    （中継が無効・別の Slot を駆動しているとき、中継の値が正しくても Body は動かない）。
     """
     I = min(max(params["G01Intensity"], 0.0), 1.0)
     S = min(max(params["G01PhaseSpread"], 0.0), 1.0)
@@ -173,7 +190,84 @@ def check_g01_frozen(values: dict[str, dict], params: dict[str, float], pumpkins
                      "tilt_deg": round(tilt, 4), "expected_tilt_deg": round(want_tilt, 4)})
         if err_l > FROZEN_LIFT_TOL_M or err_t > FROZEN_TILT_TOL_DEG or horiz > HORIZ_TOL_M or off_axis > LOCAL_TOL * 10:
             problems.append(f"{p['asset_id']}: frozen pose lift {lift:.4f} (want {want_lift:.4f}), tilt {tilt:.3f} (want {want_tilt:.3f})")
+        if bodies is not None:
+            if p["motion_root"] not in bodies:
+                problems.append(f"{p['asset_id']}: Body is not observed")
+                continue
+            b_lift, b_horiz, b_tilt, b_off = _g01_pose(_body_values(bodies, p, keys[p["motion_root"]]), p, keys[p["motion_root"]])
+            rows[-1].update({"body_lift_m": round(b_lift, 5), "body_tilt_deg": round(b_tilt, 4)})
+            if (abs(b_lift - want_lift) > FROZEN_LIFT_TOL_M or abs(b_tilt - want_tilt) > FROZEN_TILT_TOL_DEG
+                    or b_horiz > HORIZ_TOL_M or b_off > LOCAL_TOL * 10):
+                problems.append(f"{p['asset_id']}: Body pose lift {b_lift:.4f} (want {want_lift:.4f}), tilt {b_tilt:.3f} (want {want_tilt:.3f})")
     return {"pumpkins": rows, "problems": problems}
+
+
+def g01_half_angles(values: dict[str, dict], params: dict[str, float], pumpkins: list[dict], keys: dict[str, str]) -> dict[str, float]:
+    """中継の値から各個体の θ/2（度）を求める。sin(θ/2) は傾きから、sin θ は上下から。|sin(θ/2)| が小さい個体は除く。"""
+    I = min(max(params["G01Intensity"], 0.0), 1.0)
+    out = {}
+    for p in pumpkins:
+        lift, _, tilt, _ = _g01_pose(values, p, keys[p["motion_root"]])
+        lo, hi = p["bounce_m"]
+        tilt_max = max(abs(x) for x in p["tilt_deg"])
+        s = max(-1.0, min(1.0, tilt / (I * tilt_max)))
+        if abs(s) < 0.2:
+            continue
+        sin_t = (lift / I - (lo + hi) / 2.0) / ((hi - lo) / 2.0)
+        c = max(-1.0, min(1.0, sin_t / (2.0 * s)))
+        out[p["asset_id"]] = math.degrees(math.atan2(s, math.copysign(math.sqrt(max(0.0, 1.0 - s * s)), c)))
+    return out
+
+
+def check_g01_clock(v1: dict, t1: float, v2: dict, t2: float, params: dict[str, float], pumpkins: list[dict],
+                    keys: dict[str, str]) -> dict:
+    """ゆっくりの時刻（G01Frequency を小さくした状態）の 2 回の観察。θ/2 が時刻どおり（π f Δt）進み、個体の位相差が s φ/2。
+
+    遅い周期なら、上下と傾きを読む時刻のずれの影響が小さく、θ を求められる。時刻の項が止まっている・速さが違う・位相が違う
+    グラフは、ここで外れる。
+    """
+    f = min(max(params["G01Frequency"], 0.0), 2.0)
+    S = min(max(params["G01PhaseSpread"], 0.0), 1.0)
+    a1 = g01_half_angles(v1, params, pumpkins, keys)
+    a2 = g01_half_angles(v2, params, pumpkins, keys)
+    want = 180.0 * f * (t2 - t1)
+    rows, problems = [], []
+    both = [p["asset_id"] for p in pumpkins if p["asset_id"] in a1 and p["asset_id"] in a2]
+    if len(both) < 3:
+        problems.append(f"G01 clock: only {len(both)} pumpkins can be measured")
+    for a in both:
+        got = wrap_deg(a2[a] - a1[a])
+        err = abs(wrap_deg(got - want))
+        rows.append({"asset_id": a, "half_angle_advance_deg": round(got, 3), "expected_deg": round(want, 3), "error_deg": round(err, 3)})
+        if err > CLOCK_TOL_DEG:
+            problems.append(f"{a}: half angle advanced {got:.2f} deg in {t2 - t1:.1f} s (want {want:.2f})")
+    phases = {p["asset_id"]: p["phase_deg"] for p in pumpkins}
+    pairs = []
+    ids = sorted(a1)
+    for i, a in enumerate(ids):
+        for b in ids[i + 1:]:
+            err = abs(wrap_deg(wrap_deg(a1[a] - a1[b]) - S * (phases[a] - phases[b]) / 2.0))
+            pairs.append({"pair": [a, b], "error_deg": round(err, 3)})
+            if err > CLOCK_TOL_DEG:
+                problems.append(f"{a}-{b}: phase difference off by {err:.2f} deg")
+    return {"advance": rows, "phase_pairs": pairs, "seconds": round(t2 - t1, 3), "problems": problems}
+
+
+def check_g01_variation(samples: list[dict], params: dict[str, float], pumpkins: list[dict]) -> list[str]:
+    """動いている間の観察の列で、各個体の上下と傾きが実際に変わっているか（時刻の項が止まった一定の姿勢を合格にしない）。"""
+    I = min(max(params["G01Intensity"], 0.0), 1.0)
+    f = min(max(params["G01Frequency"], 0.0), 2.0)
+    if I < 0.05 or f <= 0.0:
+        return []
+    problems = []
+    for p in pumpkins:
+        lifts = [r["lift_m"] for s in samples for r in s["pumpkins"] if r["asset_id"] == p["asset_id"]]
+        tilts = [r["tilt_deg"] for s in samples for r in s["pumpkins"] if r["asset_id"] == p["asset_id"]]
+        lo, hi = p["bounce_m"]
+        tilt_max = max(abs(x) for x in p["tilt_deg"])
+        if len(lifts) < 4 or max(lifts) - min(lifts) < VARIATION * I * (hi - lo) or max(tilts) - min(tilts) < VARIATION * I * 2 * tilt_max:
+            problems.append(f"{p['asset_id']}: not moving enough over {len(lifts)} samples")
+    return problems
 
 
 def check_g13(samples: list[dict], expected: float) -> tuple[dict, list[str]]:
@@ -229,13 +323,35 @@ def _same_local(live: dict, slot: dict) -> float:
     return max(abs(a - b) for a, b in zip(vals, want))
 
 
-def check_structure(root: dict) -> dict:
-    """TurnRoot の子（床・支柱・座席・M05 の visual_root）と、各カボチャの台座・取付位置の、ローカルの変換が宣言どおりか。"""
+def _child(node: dict | None, name: str) -> dict | None:
+    """直接の子だけを名前で探す（観察のノード）。"""
+    if node is None:
+        return None
+    return next((c for c in node.get("children") or [] if c["name"] == name), None)
+
+
+def _decl_paths(node: dict, prefix: tuple = ()) -> list[tuple[tuple, dict]]:
+    """宣言の node の子孫を、node からの名前のパスとともに返す。"""
+    out = []
+    for ch in node.get("children", []):
+        path = prefix + (ch["slot"]["name"],)
+        out.append((path, ch))
+        out.extend(_decl_paths(ch, path))
+    return out
+
+
+def check_structure(root: dict, declarations: dict[str, dict] | None = None) -> dict:
+    """TurnRoot の子孫（床・支柱・座席・M05 の visual_root など）と、各カボチャの台座・取付位置が、宣言と同じパス（親子関係）で
+    同じローカルの変換か。名前だけで探すと、親を付け替えた Slot（例 Body の外へ出た取付位置）を見落とす。
+
+    declarations は地区のキー → 宣言（テスト用。省略すると最新の export を読む）。
+    """
     problems, rows = [], []
-    g13 = gimmicks.g13()
-    d_doc = latest_declaration(g13["district"])
+    g13, g01 = gimmicks.g13(), gimmicks.g01()
+    d_doc = (declarations or {}).get(g13["district"]) or latest_declaration(g13["district"])
+    a_doc = (declarations or {}).get(g01["district"]) or latest_declaration(g01["district"])
     turn_decl = _find_decl(d_doc, g13["motion_root"])
-    turn_live = _find_live(root, g13["motion_root"])
+    turn_live = _find_live(_child(root, g13["district"]) or {}, g13["motion_root"]) if _child(root, g13["district"]) else None
     if turn_decl is None or turn_live is None:
         return {"rows": [], "problems": ["TurnRoot is missing"]}
     rest = turn_decl["slot"]["position"]
@@ -243,27 +359,26 @@ def check_structure(root: dict) -> dict:
     rows.append({"slot": g13["motion_root"], "position_error_m": round(pos_err, 6)})
     if pos_err > LOCAL_TOL:
         problems.append(f"TurnRoot moved {pos_err:.5f} m")
-    for ch in turn_decl.get("children", []):
-        live = _find_live(turn_live, ch["slot"]["name"])
-        err = math.inf if live is None else _same_local(live, ch["slot"])
-        rows.append({"slot": f"{g13['motion_root']}/{ch['slot']['name']}", "local_error": round(err, 6)})
-        if err > LOCAL_TOL:
-            problems.append(f"{ch['slot']['name']}: local transform differs from the declaration ({err})")
-    a_doc = latest_declaration(gimmicks.g01()["district"])
-    for p in gimmicks.g01()["pumpkins"]:
+
+    def compare(base_name: str, decl_root: dict, live_root: dict | None, skip: set[str]) -> None:
+        for path, decl in _decl_paths(decl_root):
+            if path[-1] in skip:
+                continue
+            live = live_root
+            for name in path:
+                live = _child(live, name)
+            err = math.inf if live is None else _same_local(live, decl["slot"])
+            rows.append({"slot": "/".join((base_name, *path)), "local_error": round(err, 6)})
+            if err > LOCAL_TOL:
+                problems.append(f"{'/'.join((base_name, *path))}: missing at the declared path or local transform differs ({err})")
+
+    compare(g13["motion_root"], turn_decl, turn_live, set())
+    district_live = _child(root, g01["district"])
+    for p in g01["pumpkins"]:
         asset_decl = _find_decl(a_doc, p["asset_id"])
-        asset_live = _find_live(root, p["asset_id"])
-        for ch in asset_decl.get("children", []):
-            names = [ch["slot"]["name"]] + [g["slot"]["name"] for g in ch.get("children", [])]
-            for name in names:
-                if name == p["motion_root"]:
-                    continue   # 駆動される Body そのものは G01 の検査で見る
-                decl = _find_decl(asset_decl, name)
-                live = _find_live(asset_live, name) if asset_live else None
-                err = math.inf if live is None else _same_local(live, decl["slot"])
-                rows.append({"slot": f"{p['asset_id']}/{name}", "local_error": round(err, 6)})
-                if err > LOCAL_TOL:
-                    problems.append(f"{p['asset_id']}/{name}: local transform differs from the declaration ({err})")
+        asset_live = _find_live(district_live, p["asset_id"]) if district_live else None
+        # 駆動される Body そのものは G01 の検査で見る（子の取付位置は Body の下のパスで照合する）
+        compare(p["asset_id"], asset_decl, asset_live, {p["motion_root"]})
     return {"rows": rows, "problems": problems}
 
 
@@ -307,6 +422,18 @@ def _radius_in_parent(bundle: Path, doc: dict, node: dict) -> float:
     s = node["slot"]
     pts = _local_points(bundle, doc, node, tuple(s.get("rotation") or (0, 0, 0, 1)), s.get("position") or (0, 0, 0))
     return max((math.hypot(x, z) for x, _, z in pts), default=0.0)
+
+
+def envelope_problems(env: dict) -> list[str]:
+    """包絡の判定（envelopes の結果）を問題の一覧にする。"""
+    problems = [f"{r['asset_id']}: moving radius {r['moving_radius_m']} m exceeds the W02 envelope {r['w02_envelope_radius_m']} m"
+                for r in env["G01"] if not r["within_w02_envelope"]]
+    g = env["G13"]
+    if g.get("missing_meshy_bundles"):
+        problems.append(f"G13 envelope misses Meshy bundles {g['missing_meshy_bundles']}")
+    if not g.get("low_parts_within_base"):
+        problems.append(f"G13 parts below head height reach {g.get('swept_radius_below_head_m')} m beyond the base {g.get('base_radius_m')} m")
+    return problems
 
 
 def envelopes() -> dict:
@@ -408,7 +535,8 @@ def observe_window(url: str, duration: float, interval: float, raw: list) -> dic
     keys = body_keys()
     pumpkins = gimmicks.g01()["pumpkins"]
     relay_sels = [f"$member:{district.relay_key(keys[p['motion_root']], m)}.Value" for p in pumpkins for m in ("Position", "Rotation")]
-    drive_sels = [f"$member:{district.relay_key(keys[p['motion_root']], m)}.Drives" for p in pumpkins for m in ("Position", "Rotation")]
+    drive_sels = [f"$member:{district.relay_key(keys[p['motion_root']], m)}.{mem}" for p in pumpkins for m in ("Position", "Rotation")
+                  for mem in ("Drives", "Enabled")]
     params = observe_params(url)
     spinner = observe_spinner(url)
     window: dict = {"started_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "params": params, "spinner": spinner,
@@ -427,6 +555,10 @@ def observe_window(url: str, duration: float, interval: float, raw: list) -> dic
         member_ids = {"Position": info["Position"]["id"], "Rotation": info["Rotation"]["id"]}
         for m in ("Position", "Rotation"):
             elems = drives["data"]["values"][f"$member:{district.relay_key(keys[p['motion_root']], m)}.Drives"]["member"]["elements"]
+            enabled = drives["data"]["values"][f"$member:{district.relay_key(keys[p['motion_root']], m)}.Enabled"]["member"]["value"]
+            if enabled is not True:
+                targets_ok = False
+                window["problems"].append(f"{p['asset_id']}: relay {m} is disabled")
             if [e.get("targetId") for e in elems] != [member_ids[m]]:
                 targets_ok = False
                 window["problems"].append(f"{p['asset_id']}: relay {m} drives {[e.get('targetId') for e in elems]}, not the Body {m}")
@@ -470,6 +602,8 @@ def observe_window(url: str, duration: float, interval: float, raw: list) -> dic
         } for p in pumpkins}
     for smp in s:
         window["problems"].extend(smp["problems"])
+    window["g01"]["variation_problems"] = check_g01_variation(s, params, pumpkins)
+    window["problems"].extend(window["g01"]["variation_problems"])
     window["problems"].extend(window["structure_start"]["problems"] + window["structure_end"]["problems"])
     window["ok"] = not window["problems"]
     return window
@@ -507,12 +641,30 @@ def param_check(url: str, raw: list) -> dict:
             for _ in range(2):
                 _, obs = timed(["resoloop", "observe", *relay_sels, "--state", a_state, "--url", url, "--json"])
                 raw.append({"kind": f"relays_frozen_spread_{spread}", "data": obs})
-                res.append(check_g01_frozen(obs["data"]["values"], params, pumpkins, keys))
+                hier = run_json(["resoloop", "hierarchy", "--under", f"{gimmicks.P2_ROOT}/{gimmicks.g01()['district']}", "--depth", "2",
+                                 "--url", url, "--json"])
+                raw.append({"kind": f"bodies_frozen_spread_{spread}", "data": hier})
+                bodies = {p["motion_root"]: _find_live(hier["data"], p["motion_root"]) for p in pumpkins}
+                bodies = {k: v for k, v in bodies.items() if v is not None}
+                res.append(check_g01_frozen(obs["data"]["values"], params, pumpkins, keys, bodies))
             out[f"G01_frozen_spread_{spread}"] = {"params": params, "pumpkins": res[-1]["pumpkins"],
                                                   "problems": [p for r in res for p in r["problems"]]}
             out["problems"].extend(out[f"G01_frozen_spread_{spread}"]["problems"])
     finally:
         set_member(sid, "Value", str(before["G01PhaseSpread"]), url)
+        set_member(fid, "Value", str(before["G01Frequency"]), url)
+    # 0b) ゆっくりの時刻: G01Frequency = CLOCK_FREQUENCY で、CLOCK_WAIT_S 秒の間に θ/2 が時刻どおり進むか、個体の位相差が s φ/2 か
+    try:
+        set_member(fid, "Value", str(CLOCK_FREQUENCY), url)
+        time.sleep(1.0)
+        params = observe_params(url)
+        t1, o1 = timed(["resoloop", "observe", *relay_sels, "--state", a_state, "--url", url, "--json"])
+        time.sleep(CLOCK_WAIT_S)
+        t2, o2 = timed(["resoloop", "observe", *relay_sels, "--state", a_state, "--url", url, "--json"])
+        raw.append({"kind": "relays_clock", "t": [t1, t2], "data": [o1, o2]})
+        out["G01_clock"] = {"params": params, **check_g01_clock(o1["data"]["values"], t1, o2["data"]["values"], t2, params, pumpkins, keys)}
+        out["problems"].extend(out["G01_clock"]["problems"])
+    finally:
         set_member(fid, "Value", str(before["G01Frequency"]), url)
     # 1) G01Intensity を 0.5 に → 範囲が半分 → 0 に → 基準姿勢 → 1 に戻す
     cid = component_id(f"$member:{gimmicks.G01_VARIABLES['G01Intensity']['key']}.Value", p3_state, url)
@@ -554,6 +706,8 @@ def param_check(url: str, raw: list) -> dict:
     finally:
         set_member(scid, "_speed", json.dumps([orig["x"], orig["y"], orig["z"]]), url)
     out["G13_speed_restored"] = observe_spinner(url)["speed"]
+    if out["G13_speed_restored"] != orig:
+        out["problems"].append(f"G13 speed not restored: {out['G13_speed_restored']} != {orig}")
     smp = []
     for _ in range(6):
         t, data = timed(["resoloop", "inspect", sel, "--state", st, "--url", url, "--json"])
@@ -561,6 +715,9 @@ def param_check(url: str, raw: list) -> dict:
         time.sleep(1.0)
     speed = fit_speed(smp)
     t_ref, a_ref = smp[-1]
+    expected = gimmicks.g13()["speed_deg_per_sec_blender_z"]
+    if abs(speed - expected) > SPEED_TOL * expected:
+        out["problems"].append(f"G13 is not turning at {expected} deg/s before the pause ({speed:.2f}); is the world in front?")
     try:
         set_member(scid, "Enabled", "false", url)
         time.sleep(8.0)
@@ -575,7 +732,11 @@ def param_check(url: str, raw: list) -> dict:
                                     "error_deg": round(err, 2),
                                     "lag_if_accumulating_deg": round(abs(speed) * 8.0, 1),
                                     "follows_world_time": err < 10.0}
+    if not out["G13_spinner_time_base"]["follows_world_time"]:
+        out["problems"].append(f"G13 Spinner does not follow the world time ({err:.1f} deg off after the pause)")
     out["G13_spinner_enabled_restored"] = observe_spinner(url)["enabled"]
+    if out["G13_spinner_enabled_restored"] is not spinner["enabled"]:
+        out["problems"].append(f"G13 Spinner Enabled not restored: {out['G13_spinner_enabled_restored']}")
     out["ok"] = not out["problems"]
     return out
 
@@ -600,10 +761,12 @@ def main(argv: list[str] | None = None) -> int:
             if i:
                 time.sleep(args.gap)
             wins.append(observe_window(args.url, args.duration, args.interval, raw))
-        result = {"windows": wins, "gap_s": args.gap if args.windows > 1 else None, "envelopes": envelopes(),
+        env = envelopes()
+        result = {"windows": wins, "gap_s": args.gap if args.windows > 1 else None, "envelopes": env,
+                  "envelope_problems": envelope_problems(env),
                   "tolerances": {"speed": SPEED_TOL, "lift_m": LIFT_TOL_M, "tilt_deg": TILT_TOL_DEG, "horizontal_m": HORIZ_TOL_M,
                                  "frozen_lift_m": FROZEN_LIFT_TOL_M, "frozen_tilt_deg": FROZEN_TILT_TOL_DEG, "local": LOCAL_TOL}}
-        result["ok"] = all(w["ok"] for w in wins)
+        result["ok"] = all(w["ok"] for w in wins) and not result["envelope_problems"]
     args.raw_out.parent.mkdir(parents=True, exist_ok=True)
     args.raw_out.write_text(json.dumps(raw, ensure_ascii=False) + "\n", encoding="utf-8")
     args.output.parent.mkdir(parents=True, exist_ok=True)
@@ -613,7 +776,7 @@ def main(argv: list[str] | None = None) -> int:
         "windows": [{"ok": w["ok"], "g13": {k: w["g13"][k] for k in ("fitted_speed_deg_per_s", "direction", "max_off_axis")},
                      "g01_summary": w["g01"]["summary"], "relay_targets_ok": w["relay_targets_ok"],
                      "problems": w["problems"][:10]} for w in result["windows"]],
-        "envelopes": result["envelopes"]}
+        "envelopes": result["envelopes"], "envelope_problems": result["envelope_problems"]}
     print(json.dumps(summary, ensure_ascii=False, indent=1))
     return 0 if result["ok"] else 1
 
