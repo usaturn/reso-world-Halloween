@@ -1,0 +1,20 @@
+[
+  {
+    "meshy_id": "M05_CenterCasing",
+    "slot": "D_amusement/DAM_Carousel_001/DAM_Carousel_001_TurnRoot/DAM_Carousel_001_M05_CenterCasing",
+    "component": "renderer_DAM_Carousel_001_M05_CenterCasing_eecd9b48",
+    "Enabled": false
+  },
+  {
+    "meshy_id": "M05_Canopy",
+    "slot": "D_amusement/DAM_Carousel_001/DAM_Carousel_001_TurnRoot/DAM_Carousel_001_M05_Canopy",
+    "component": "renderer_DAM_Carousel_001_M05_Canopy_45fe7fa5",
+    "Enabled": false
+  },
+  {
+    "meshy_id": "M06",
+    "slot": "D_amusement/DAM_GhostTrain_001/DAM_GhostTrain_001_EngineRoot/DAM_GhostTrain_001_M06_EngineShell",
+    "component": "renderer_DAM_GhostTrain_001_M06_EngineShell_29550d26",
+    "Enabled": false
+  }
+]

@@ -23,6 +23,18 @@ TRACK_STRAIGHT_HALF_Y_M: float = 2.0
 TRACK_RAIL_GAUGE_M: float = 0.76
 TRACK_RAIL_TOP_Z_M: float = 0.14
 
+# W09R-D (#49, 2026-11-01): values the Meshy replacement of M05/M06 needs (docs/p2-meshy-replacement.md 15 章).
+# G13 carousel poles, TurnRoot space: idx k stands at angle k * 45 deg, radius 3.35 m (even k, the seat poles) or 4.15 m.
+# The top of each pole reaches 2 cm above the underside of the finished M05 canopy at that pole (measured on the
+# M05_Canopy_001 mesh placed at TurnRoot z 3.154 with Blender Z -90 deg, received.json placement_hint), so the tip is
+# hidden inside the canopy shell and no gap shows. modeling/p2_meshy/verify_live.py re-measures this from the meshes.
+CAROUSEL_POLE_TOP_Z_M: tuple[float, ...] = (3.97, 4.25, 4.00, 4.27, 3.98, 4.27, 4.00, 4.27)
+# The decorative collar near the top (was 3.08-3.25) is lowered 3 cm to clear the canopy fringe (lowest 3.236 m).
+CAROUSEL_POLE_COLLAR_Z_M: tuple[float, float] = (3.05, 3.22)
+# G15 headlamp attachment, EngineRoot space: in front of the finished M06 headlamp lens (front face y 1.244-1.252 m,
+# z 1.28-1.50 m, centre about z 1.39; handoff/W09-M06.md 6.5). It was (0, 1.233, 1.498), inside the lamp.
+GHOST_TRAIN_HEADLAMP_LOCAL: tuple[float, float, float] = (0.0, 1.26, 1.39)
+
 
 def compute_track_loop_waypoints(num_arc_samples: int = 8) -> list[dict[str, Any]]:
     """Compute ordered closed-loop waypoints (local to `DAM_TrainTrack_001` and world) for G15.

@@ -1,0 +1,45 @@
+{
+  "root_slot": {
+    "name": "M06",
+    "key": "root",
+    "parent": "Root/HalloweenMagicalCarnival/D_amusement/DAM_GhostTrain_001/DAM_GhostTrain_001_EngineRoot/DAM_GhostTrain_001_M06_EngineShell",
+    "position": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "rotation": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "scale": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "children": [
+    "M06_GhostTrainEngine_001",
+    "Blender_Providers"
+  ],
+  "assets": [
+    "mesh_M06_GhostTrainEngine_001_0ef67ca7",
+    "pbr_mat_material_MAT_M06_GhostTrainEngine_18_fc69bc58",
+    "tex_M06_GhostTrainEngine_001_color_color_e81f9c7f"
+  ],
+  "moving_parts": [],
+  "colliders": [],
+  "district": "D_amusement",
+  "placeholder": "DAM_GhostTrain_001",
+  "visual_root": "DAM_GhostTrain_001_M06_EngineShell",
+  "visual_root_path": "Root/HalloweenMagicalCarnival/D_amusement/DAM_GhostTrain_001/DAM_GhostTrain_001_EngineRoot/DAM_GhostTrain_001_M06_EngineShell",
+  "asset_id": "M06_GhostTrainEngine_001",
+  "rotation_z_deg": 0.0,
+  "position_local": [
+    0.0,
+    0.0,
+    0.0
+  ]
+}

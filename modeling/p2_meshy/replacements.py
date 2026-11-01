@@ -14,6 +14,9 @@
 - 当たり判定を素材のメッシュで作る素材（W09R-B の M03。collision が "finished"。docs/p2-meshy-replacement.md 14 章）:
   素材の宣言で、素材のメッシュの Slot に MeshCollider を付け（export_meshy.py）、地区の宣言では仮モデルの形の
   <visual_root>_FixedCollision の MeshCollider を Enabled = false にする（disable_fixed_collisions。Slot は消さない）
+- 1 つの素材を複数の visual_root に分けて置く素材（W09R-D の M05 の柱と屋根。docs/p2-meshy-replacement.md 15 章）: received.json の
+  行ごとに REPLACEMENTS の行を作り、source（素材のキー）・export_root（export の中の素材の root）・asset_id（その行で置く子）を
+  書く。export_meshy.extract_part が、子 1 つだけを宣言の root の直下に置いた宣言にする
 """
 
 from __future__ import annotations
@@ -222,6 +225,81 @@ REPLACEMENTS: dict[str, dict] = {
             "m08_front": ([43.2, 10.9, 6.5], [43.2, 10.6, 0], 40),
             "m08_oblique_back": ([47.5, 12, -4.5], [43.2, 10.5, 0], 45),
             "m08_from_street": ([40, 1.6, -14], [43.2, 10.4, 0], 50),  # 地上（M04 の南の通り）から見上げる。M04 の屋根に遮られない位置
+        },
+    },
+    # W09R-D（#49）: D 南・パンプキン遊園地。どれも P3 で動く部品（TurnRoot・EngineRoot）の下なので当たり判定は付けない（W08）。
+    # M05 は 1 つの素材（M05_PumpkinCarousel_001 の下の柱と屋根）を、TurnRoot の下の 2 つの visual_root に分けて置く（1 つの
+    # 宣言は 1 つの親の下だけ）。行は received.json の行ごと。source は素材のキー（.blend・アセット一覧・review の置き場）、
+    # export_root は export の中の素材の root、asset_id はこの行で置く子（export_meshy.extract_part が子だけの宣言にする）
+    "M05_CenterCasing": {
+        "district": "D_amusement",
+        "placeholder": "DAM_Carousel_001",
+        "visual_root": "DAM_Carousel_001_M05_CenterCasing",
+        "visual_root_path": f"{P2_ROOT}/D_amusement/DAM_Carousel_001/DAM_Carousel_001_TurnRoot/DAM_Carousel_001_M05_CenterCasing",
+        "hide": ["DAM_Carousel_001_M05_CenterCasing"],
+        "source": "M05",
+        "blend": "blender/M05/M05.blend",
+        "export_root": "M05_PumpkinCarousel_001",
+        "asset_id": "M05_CenterCasing_001",
+        "rotation_z_deg": -90.0,  # placement_hint -90 - 仮モデルの visual_root 0（顔と紋章を東の主動線へ）
+        "position_local": [0.0, 0.0, 0.0],  # 柱の底 = visual_root の原点（回転床の上面、TurnRoot の z 0.19）
+        "collision": False,  # 回る（P3 の G13）。W08 は可動部品の下に当たり判定を付けない
+        # 回転床の中心は (-10.5, 0.36, -32)（Resonite の Root の座標）。柱は高さ 3.4 m、屋根の原点は TurnRoot の z 3.154
+        "cameras": {
+            "m05_front": ([3.5, 4.8, -32], [-10.5, 4.6, -32], 55),  # 東（主動線の側）から顔と紋章を
+            "m05_oblique_se": ([1, 9, -45], [-10.5, 4.2, -32], 55),
+            "m05_back": ([-25, 5.5, -32], [-10.5, 4.6, -32], 55),
+            "m05_under_canopy": ([-6.2, 1.8, -33.4], [-10.5, 3.6, -32], 75),  # 回転床の縁から柱・支柱・屋根の下面を
+            "m05_pole_top": ([-5.4, 3.4, -30.6], [-7.15, 4.2, -32], 55),  # 東の支柱（idx 0）の先と屋根の垂れ飾り
+            "area_D_amusement": ([14, 11, -52], [-2, 1, -32], 65),  # W08 と同じ
+        },
+    },
+    "M05_Canopy": {
+        "district": "D_amusement",
+        "placeholder": "DAM_Carousel_001",
+        "visual_root": "DAM_Carousel_001_M05_Canopy",
+        "visual_root_path": f"{P2_ROOT}/D_amusement/DAM_Carousel_001/DAM_Carousel_001_TurnRoot/DAM_Carousel_001_M05_Canopy",
+        "hide": ["DAM_Carousel_001_M05_Canopy"],
+        "source": "M05",
+        "blend": "blender/M05/M05.blend",
+        "export_root": "M05_PumpkinCarousel_001",
+        "asset_id": "M05_Canopy_001",
+        "rotation_z_deg": -90.0,  # 柱と同じ（同じ素材の子で、組み立ての向きを保つ）
+        "position_local": [0.0, 0.0, 0.0],  # ハブの下面 = visual_root の原点（TurnRoot の z 3.154 = 柱の原点の 2.964 m 上）
+        "collision": False,
+        # 屋根が柱の上に組み立てどおりに乗っているか（verify_live.py）: この行の素材の原点と、assembly_with の行の素材の原点の差が、
+        # 素材のアセット一覧の parts の pivot_local の差（2.964 m 上）を向きどおりに回した物と 1 cm 以内
+        "assembly_with": "M05_CenterCasing",
+        # W05 の支柱が屋根の下面に届き、先が屋根の殻の中にあるか（verify_live.py。地区の宣言のメッシュと素材のメッシュから測る）
+        "poles": "DAM_Carousel_001_Poles",
+        "cameras": {
+            "m05_canopy_east": ([4, 7.5, -32], [-10.5, 6.5, -32], 50),
+            "m05_canopy_top": ([2, 17, -42], [-10.5, 7, -32], 50),
+        },
+    },
+    "M06": {
+        "district": "D_amusement",
+        "placeholder": "DAM_GhostTrain_001",
+        "visual_root": "DAM_GhostTrain_001_M06_EngineShell",
+        "visual_root_path": f"{P2_ROOT}/D_amusement/DAM_GhostTrain_001/DAM_GhostTrain_001_EngineRoot/DAM_GhostTrain_001_M06_EngineShell",
+        "hide": ["DAM_GhostTrain_001_M06_EngineShell"],
+        "blend": "blender/M06/M06.blend",
+        "asset_id": "M06_GhostTrainEngine_001",
+        # placement_hint は null（経路の上）。仮モデルは回転 0 で正面 +Y（W07 の front_world north(+Y)、進む向き）
+        "rotation_z_deg": 0.0,
+        "position_local": [0.0, 0.0, 0.0],  # 前後の車輪の中点の真下の線路の上面 = EngineRoot の原点
+        "collision": False,  # 動く（P3 の G15）。W08 は可動部品の下に当たり判定を付けない
+        # 前照灯の取付位置（verify_live.py）: W05 の Att_Headlamp が、素材のレンズの前面（review/M06/checks.json の
+        # headlamp.front_profile_x0）の前 max_gap_m 以内で、レンズの高さ（handoff/W09-M06.md 6.5 の z 1.28〜1.50）にあるか
+        "lens_attachment": {"slot": "DAM_GhostTrain_001_Att_Headlamp", "lens_z_m": [1.28, 1.50], "max_gap_m": 0.03},
+        # 先頭車の原点は (7.5, 0.14, -30.5)、長さ 3 m（後ろ 1.125・前 1.875）、高さ 1.875 m、正面は北（+Z）
+        "cameras": {
+            "m06_front": ([7.5, 1.7, -25.0], [7.5, 1.0, -30.0], 55),
+            "m06_oblique_nw": ([4.2, 2.8, -26.2], [7.5, 0.9, -30.3], 55),
+            "m06_side_west": ([3.4, 1.3, -30.2], [7.5, 0.9, -30.2], 55),
+            "m06_back": ([4.6, 1.5, -33.4], [7.5, 0.7, -31.4], 55),  # 西の後ろから先頭車の後面と客車の連結の側
+            "m06_headlamp": ([7.5, 1.7, -27.6], [7.5, 1.53, -29.25], 45),  # 前照灯のレンズと取付位置
+            "m06_plow_rail": ([6.3, 0.3, -28.1], [7.5, 0.15, -28.7], 55),  # 排障器の下端と線路の隙間
         },
     },
 }

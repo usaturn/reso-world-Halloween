@@ -1,0 +1,47 @@
+{
+  "root_slot": {
+    "name": "M05",
+    "key": "root",
+    "parent": "Root/HalloweenMagicalCarnival/D_amusement/DAM_Carousel_001/DAM_Carousel_001_TurnRoot/DAM_Carousel_001_M05_CenterCasing",
+    "position": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "rotation": [
+      0.0,
+      0.707106781187,
+      0.0,
+      0.707106781187
+    ],
+    "scale": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "children": [
+    "M05_CenterCasing_001",
+    "Blender_Providers"
+  ],
+  "assets": [
+    "mesh_M05_CenterCasing_001_0d80836f",
+    "pbr_mat_material_MAT_M05_CenterCasing_0dbb79_f16c01a2",
+    "tex_M05_CenterCasing_001_color_color_3d325257"
+  ],
+  "moving_parts": [],
+  "colliders": [],
+  "district": "D_amusement",
+  "placeholder": "DAM_Carousel_001",
+  "visual_root": "DAM_Carousel_001_M05_CenterCasing",
+  "visual_root_path": "Root/HalloweenMagicalCarnival/D_amusement/DAM_Carousel_001/DAM_Carousel_001_TurnRoot/DAM_Carousel_001_M05_CenterCasing",
+  "asset_id": "M05_CenterCasing_001",
+  "rotation_z_deg": -90.0,
+  "position_local": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "source": "M05",
+  "export_root": "M05_PumpkinCarousel_001"
+}

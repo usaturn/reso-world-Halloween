@@ -10,6 +10,9 @@ import bpy  # type: ignore
 from modeling.D_amusement.layout_data import (
     CARNIVAL_STALL_ORIGIN,
     CAROUSEL_ORIGIN,
+    CAROUSEL_POLE_COLLAR_Z_M,
+    CAROUSEL_POLE_TOP_Z_M,
+    GHOST_TRAIN_HEADLAMP_LOCAL,
     GHOST_TRAIN_ORIGIN,
     PLAZA_ORIGIN,
     PUMPKIN_CUPS_ORIGIN,
@@ -117,9 +120,10 @@ def build_carousel(
         ang = idx * (math.pi / 4.0)
         r_pole = 3.35 if idx % 2 == 0 else 4.15
         px, py = r_pole * math.cos(ang), r_pole * math.sin(ang)
-        add_frustum_z(bm_poles, uv_poles, (px, py), 0.19, 3.25, 0.055, 0.055, segments=10, material_index=4)
+        # W09R-D: the shaft reaches into the M05 canopy, the collar sits below its fringe (layout_data.py)
+        add_frustum_z(bm_poles, uv_poles, (px, py), 0.19, CAROUSEL_POLE_TOP_Z_M[idx], 0.055, 0.055, segments=10, material_index=4)
         add_frustum_z(bm_poles, uv_poles, (px, py), 0.19, 0.36, 0.13, 0.09, segments=10, material_index=3)
-        add_frustum_z(bm_poles, uv_poles, (px, py), 3.08, 3.25, 0.09, 0.14, segments=10, material_index=4)
+        add_frustum_z(bm_poles, uv_poles, (px, py), *CAROUSEL_POLE_COLLAR_Z_M, 0.09, 0.14, segments=10, material_index=4)
     finalize_mesh_obj("DAM_Carousel_001_Poles", bm_poles, collection, mat_list, parent=turn_root)
 
     create_attachment_socket("DAM_Carousel_001_Att_M05_CenterCasing", collection, mats["carnival_gold"], location=(0.0, 0.0, 0.19), parent=turn_root)
@@ -253,7 +257,7 @@ def build_ghost_train(
     engine_root = create_empty_node("DAM_GhostTrain_001_EngineRoot", collection, location=(0.0, 1.0, 0.14), parent=root, display_size=0.5)
     create_attachment_socket("DAM_GhostTrain_001_Att_M06_Engine", collection, mats["carnival_gold"], location=(0.0, 0.0, 0.0), parent=engine_root)
     create_attachment_socket("DAM_GhostTrain_001_Att_CouplerRear", collection, mats["carnival_gold"], location=(0.0, -1.125, 0.394), parent=engine_root)
-    create_attachment_socket("DAM_GhostTrain_001_Att_Headlamp", collection, mats["carnival_gold"], location=(0.0, 1.233, 1.498), parent=engine_root)
+    create_attachment_socket("DAM_GhostTrain_001_Att_Headlamp", collection, mats["carnival_gold"], location=GHOST_TRAIN_HEADLAMP_LOCAL, parent=engine_root)
 
     # M06_EngineShell: matches W09 M06 bounds [-0.605, -1.125, 0.0] .. [0.606, 1.875, 1.905] (1.211 x 3.000 x 1.905 m)
     bm_eng = bmesh.new()
