@@ -1,0 +1,54 @@
+{
+  "commands": [
+    "resoloop validate exports/p2_meshy/M01-20261101T042541Z/p2m.apply.json --json",
+    "resoloop validate exports/p2_meshy/M01-20261101T042541Z/p2m.apply.json --strict --url <URL> --json",
+    "resoloop validate exports/p2_meshy/M01-20261101T042541Z/p2m_DoorLeft.apply.json --json",
+    "resoloop validate exports/p2_meshy/M01-20261101T042541Z/p2m_DoorLeft.apply.json --strict --url <URL> --json",
+    "resoloop validate exports/p2_meshy/M01-20261101T042541Z/p2m_DoorRight.apply.json --json",
+    "resoloop validate exports/p2_meshy/M01-20261101T042541Z/p2m_DoorRight.apply.json --strict --url <URL> --json"
+  ],
+  "p2m": {
+    "offline": {
+      "exit": 0,
+      "valid": true,
+      "issues": [],
+      "error_code": null
+    },
+    "strict": {
+      "exit": 0,
+      "valid": true,
+      "issues": [],
+      "error_code": null
+    }
+  },
+  "parts": {
+    "p2m_DoorLeft.apply.json": {
+      "offline": {
+        "exit": 0,
+        "valid": true,
+        "issues": [],
+        "error_code": null
+      },
+      "strict": {
+        "exit": 0,
+        "valid": true,
+        "issues": [],
+        "error_code": null
+      }
+    },
+    "p2m_DoorRight.apply.json": {
+      "offline": {
+        "exit": 0,
+        "valid": true,
+        "issues": [],
+        "error_code": null
+      },
+      "strict": {
+        "exit": 0,
+        "valid": true,
+        "issues": [],
+        "error_code": null
+      }
+    }
+  }
+}

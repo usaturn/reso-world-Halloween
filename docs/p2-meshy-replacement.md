@@ -1,6 +1,6 @@
 # P2 Meshy 素材の差し替え（W09R、Issue #44）
 
-仮モデルを Meshy の仕上げた素材に差し替える方式と、最初の素材 M02 巨大ジャック・オー・ランタンの差し替えの記録。残りの 7 素材の子は、この文書の 2・4 章の手順と `handoff/W09R.md` を使う。後続の子の記録は 12 章から（W09R-C #46 の M04・M08 は 12 章）。
+仮モデルを Meshy の仕上げた素材に差し替える方式と、最初の素材 M02 巨大ジャック・オー・ランタンの差し替えの記録。残りの 7 素材の子は、この文書の 2・4 章の手順と `handoff/W09R.md` を使う。後続の子の記録は 12 章から（W09R-C #46 の M04・M08 は 12 章、W09R-A #47 の M01 は 13 章）。
 
 - 担当: Claude Code（Opus 5.5）、2026-10-31（UTC）。apply したのはこのセッションだけ
 - 着手前の確認事項: W08 #41 の回答（issuecomment-6545243021）をそのまま使う（2026-10-31 の利用者の決定）
@@ -67,6 +67,7 @@ resoloop capture <p2m.apply.json> --camera <名前> --output review/p2_meshy/<�
 - 置き方・光源・カメラだけを変えるときは、export し直さずに `export_meshy.py --meshy <M> --recompose <既存のバンドル>` で宣言だけを作り直す。export し直すと、メッシュの接線が 1.8e-7 だけ変わり（Blender の export のたびに変わる。W09-M02 の handoff と同じ）、apply がメッシュの資産を取り込み直す（Slot・Component は増えず、`StaticMesh.URL` の更新 1 と資産の取り込み 1。5.2）
 - `resoloop capture` は `<名前>.scene.json` も書く。作業ツリーの絶対パスを含むのでコミットしない
 - `verify_live.py` は `REPLACEMENTS` のすべての素材のバンドル（`exports/p2_meshy/<M>-*/p2m.apply.json` とメッシュ）を読む。バンドルはコミットしないので、新しい worktree では、前の子が Git の外の `/workspaces/reso-world/worlds/reso-world-Halloween-meshy/p2_bundles/<M>-<UTC>/` に控えた物（`SHA256SUMS` で確かめる）を、同じ名前の出力先へ写してから実行する（W09R-C で追加。12.4）
+- 可動部品を持つ素材（M01 の門扉。W09R-A で追加、13.2）は、1 素材で宣言が複数になる。素材の宣言 `p2m.apply.json`（state `p2m_<M>.json`）と、部品ごとの `p2m_<部品>.apply.json`（state `p2m_<M>_<部品>.json`。M01 は `DoorLeft`・`DoorRight`）を、上と同じ形で diff・apply する（素材の宣言を先に。資産は `--texture-transfer data`）
 - コミットするのは `exports/p2_meshy/<M>-<UTC>/` の `report.json`・`validate.json`・`placement.json`（`exports/p2_meshy/.gitignore`）、地区の出力先の `report.json`・`validate.json`・`colliders.json`・`replacements.json`、`review/p2_meshy/` の撮影と `live_checks.json`
 
 ## 5. M02 の差し替えの結果
@@ -147,13 +148,13 @@ ID・部品名・可動部品は変えていない。`APL_GiantJackProxy_001` �
 - 差し替えで増えた物: 三角形 30,792（仮モデル 932 は描画を止めた）、画像 2（約 28 MB の見積もり）、点光源 1（影なし）
 - 低下の原因（素材・画像・光源のどれか、測定の揺れか）は切り分けていない（未確認。P4 で通常時・ショー時と比べる）
 
-## 8. 全素材の状態（Spec §12「P2」の 3 つ目、2026-10-31。M04・M08 の行は 2026-11-01 に W09R-C が更新）
+## 8. 全素材の状態（Spec §12「P2」の 3 つ目、2026-10-31。M04・M08 の行は 2026-11-01 に W09R-C が、M01 の行は同日に W09R-A が更新）
 
 受領は W09 #13（`assets/meshy/received.json`、PR #26）。どの素材も未着ではない。採用しない物は、利用者が作り直す前の版（各ディレクトリの `size_over/`）と、M07 の `NG/`（針が塔に溶接されていた）だけで、確定版で置き換えた。
 
 | 素材 | 受領 | 仕上げ（子・PR） | Resonite への投入 | 確認 | 採用 |
 |---|---|---|---|---|---|
-| M01 入場ゲート | 済（約 3.0 万三角形） | 済（W09-M01 #14・PR #29。門扉を切り離し両面化） | 未（仮モデル `APL_EntranceGateProxy_001`） | Blender・export・validate まで | 採用 |
+| M01 入場ゲート | 済（約 3.0 万三角形） | 済（W09-M01 #14・PR #29。門扉を切り離し両面化） | **済（W09R-A #47。門扉は仮モデルの門扉の Slot の下に別の宣言）** | **Resonite で実測・撮影・利用者の実機**（13 章） | 採用 |
 | M02 巨大ジャック・オー・ランタン | 済（約 3.1 万） | 済（W09-M02 #15・PR #27） | **済（この子）** | **Resonite で実測・撮影・利用者の実機**（5 章） | 採用 |
 | M03 幽霊屋敷の外観 | 済（約 3.0 万） | 済（W09-M03 #16・PR #35。入口の開口） | 未（`BMN_MansionPlaceholder_001`） | Blender・export・validate まで | 採用 |
 | M04 魔女のお菓子工房の外観 | 済（約 3.1 万） | 済（W09-M04 #17・PR #39。窓の発光） | **済（W09R-C #46）** | **Resonite で実測・撮影・利用者の実機**（12 章） | 採用 |
@@ -196,7 +197,7 @@ ID・部品名・可動部品は変えていない。`APL_GiantJackProxy_001` �
 - VR での見え方、二人以上
 - 負荷の低下（60 → ときどき 54 fps）の原因（7 章）
 - 帽子の色の照明による変化の調整（5.4。後続）
-- `docs/p1-handoff.md` 8 章の 1〜4・6〜8（残りの 7 素材の子）
+- `docs/p1-handoff.md` 8 章の 1〜3・6〜8（残りの素材の子）。4（入口の門扉の可動範囲）は W09R-A が門扉の Slot の基準姿勢を決めた（13.2）
 
 ## 12. W09R-C（#46）: C 東の M04 お菓子工房・M08 ほうきに乗った魔女
 
@@ -311,3 +312,93 @@ ID・部品名・可動部品は変えていない。`APL_GiantJackProxy_001` �
 | 3 | Minor | C の数が「Slot 93・Component 209」で、`live_checks.json` の 95・211 と食い違う | 採用 | 光源を足す前の値を写していた。12.6 を 95・211 に直した |
 
 直した検査でワールドを観察し直し、すべて合格した（`review/p2_meshy/live_checks.json` は同じ内容）。ワールドへの書き込みは無い。
+
+## 13. W09R-A（#47）: A 中央広場の M01 入場ゲート
+
+- 担当: Claude Code（Opus 5.5）、2026-11-01（UTC）。apply したのはこのセッションだけ。着手前の確認事項は W08 #41 の回答（#47 の本文）
+- 版: Resonite 2026.10.29.1239、ResoniteLink 0.13.1.0、resoloop 0.2.0、Blender 5.0.1（W09R・W09R-C と同じ）
+- スナップショットと diff・apply の報告は親の checkout の `tmp/w09r-a/`（Git の対象外）
+- 閉じた子の所有ファイル（W02 の `A_plaza`、W09-M01 の `M01`、W08 の `modeling/p2_static/`）は変えていない。門扉の Slot の置き直しは、差し替え側（`modeling/p2_meshy/replacements.py`）で A の宣言を後処理した
+
+### 13.1 保存の後の最初の diff
+
+- 着手時のスナップショット（`tmp/w09r-a/01_snapshot_before_20261101T041854Z`）は W08 の root の下が Slot 696・Component 1,634 で、W09R-C の完了時と同じ（利用者が手で変えた所は無い）
+- 最初の diff（04:19:27Z、何も変える前。M01 の行を足す前の `REPLACEMENTS` で 6 キーを export した宣言）: 全 10 宣言（`content/main.json`・6 キー・M02・M04・M08）が変更 0（no-op 29・184・655・333・318・378・780・17・18・19）。資産の作り直し・重複は無い
+- A の資産 110 件は `resdb:///` に移った後の no-op（「asset URL was migrated to resdb by a world save」）。M04・M08 の資産は「source hash and imported URL match state」（W09R-C の保存の後、ワールドを開き直していないので `local://` のまま）
+
+### 13.2 決めたこと
+
+| 項目 | 決めたこと | 理由 |
+|---|---|---|
+| 宣言の分け方 | M01 を親ごとに 3 つの宣言にする: アーチ `p2m.apply.json`（親 `_Arch`、state `p2m_M01.json`）、左の門扉 `p2m_DoorLeft.apply.json`（親 `_DoorLeft`、state `p2m_M01_DoorLeft.json`）、右の門扉 `p2m_DoorRight.apply.json`（親 `_DoorRight`、state `p2m_M01_DoorRight.json`）。export は 1 回で、`export_meshy.py` が宣言を分ける | resoloop 0.2.0 の宣言は、子の Slot に `parent` を書いても無視して宣言の root の下に作る（試しの宣言の `diff` で確かめた）。1 つの宣言は 1 つの親の下にしか置けない。門扉を可動部品の Slot（Spec §6.3 の `MotionRoot`）の下に置かないと、P3 が門扉を回せない |
+| 門扉の Slot（**利用者の決定**、2026-11-01） | 仮モデルの `_DoorLeft`・`_DoorRight` を M01 の蝶番へ動かし、回転を ±88° → ±90° にする。Slot・ID・階層・Component は作り直さず、A の宣言の位置と回転だけを変える（`replacements.repose_motion_roots`） | M01 の蝶番は柱の裏にあり、仮モデルの蝶番（A のアセットの root のローカルで x ∓2.18、奥行き 0）から左 15.3 cm・右 12.9 cm 離れている。Slot を動かさないと、P3 が Slot を回したときに門扉が蝶番からずれた軸で回り、閉じると柱にめり込む。動かさない案（Slot の中で門扉を補正して置き、P3 は素材の中の Slot を回す）は Spec §6.3 の差し替えと動作の分離に反する |
+| 基準姿勢（P3 が使う値） | P3 が回すのは `APL_EntranceGateProxy_001_DoorLeft`・`_DoorRight` の Slot の回転（Blender の Z 軸 = Resonite のローカルの Y 軸まわり）。閉 0°、開いた形（今の置き方）は DoorLeft +90°・DoorRight −90°（Blender の Z 軸まわり。Resonite の四元数で DoorLeft (0, −0.7071, 0, 0.7071)・DoorRight (0, 0.7071, 0, 0.7071)）。開く向きは北（広場の側） | M01 のアセット一覧の `leaves`（回転 0 で閉、左 +90°・右 −90° で開く）を、仮モデルの Slot の回転に移した。門扉の宣言の root は 180° で、その下の門扉の Slot は回転・移動なしの閉じた形なので、P3 は素材の中を回さない |
+| 門扉の Slot の位置 | DoorLeft (−2.18, 0, 0) → (−2.2562, 0, 0.1328)、DoorRight (2.18, 0, 0) → (2.2498, 0, 0.1088)（Resonite の軸、A のアセットの root のローカル。世界では (−2.2562, 0, −39.8672)・(2.2498, 0, −39.8912)） | M01 の `leaves.pivot_local` を `received.json` の 180° で置いた値 |
+| 仮モデルの見た目 | A の宣言で、アーチ・門扉 2 枚と、アーチの子の取付位置の目印 3 つ（`_BannerAttach`・`_LanternAttachLeft`・`_LanternAttachRight`）の `MeshRenderer` を `Enabled = false` にする | 目印は発光の部品で、M01 の柱と看板の前（奥行き −0.65 m）に出る。Slot と位置は残す（M02 と同じ） |
+| 画像 | 3 つの宣言がそれぞれ同じ画像 2 枚と材質を持つ（宣言の外の Component は参照できないので、`Blender_Providers` のうち門扉の材質が参照する物を写す） | apply の後の `StaticTexture2D.URL` は 3 つの宣言で同じで、Resonite の中では同じ資産を使う（画像の読み込みは 1 回分） |
+| 当たり判定 | アーチは仮モデルの形の `APL_EntranceGateProxy_001_Arch_FixedCollision` のまま。門扉には付けない | 仮モデルのアーチは W09 の外形・開口（幅 4.36 m・高さ 3.973 m）で作った箱で、柱の内側の面（x ±2.18）は M01 の柱の内側（ゲートの面の前で ±2.172）と 1 cm 以内。利用者の歩行で問題なし（13.7）。開いた門扉は通路側へ最大約 21 cm（ゲートの面の奥で x ±1.94〜1.97）出るが、当たり判定を付けると通路が 3.909 m に狭まる（`handoff/W09-M01.md` 8 章） |
+
+- P3 への注意: A の宣言は門扉の Slot の回転（開いた形）を書いているので、P3 が回した後に A を再 apply すると開いた形に戻る（Spec §6.3「動作値を静的モデルの再適用で戻さない」）。P3 は、動作中に A を再 apply しない運用にするか、回転を宣言の管理から外す方法を決める（宣言の Slot には `managedFields` の項目がある（`resoloop schema describe slot`）が、この子では使っておらず未確認）
+
+### 13.3 実装（`modeling/p2_meshy/`）
+
+- `replacements.py`: M01 の行。新しい項目 `moving_parts`（素材の子のうち、仮モデルの motion_root の下に別の宣言で置く部品と、宣言の名前）。`moving_part_poses` が M01 のアセット一覧の `leaves` から motion_root の位置・回転と門扉の宣言の root の回転を求め、`repose_motion_roots` が A の宣言の motion_root を置き直す（`hide_in_file` から呼ぶので、W08 の `export_p2.py` は変えていない。置き直した前後の値は `replacements.json` に書く）。visual_root と motion_root が同じ親の子でなかったり、visual_root が親のローカルで回転・移動なしでなかったりすれば止める。`hide` の対象は motion_root の下も認める
+- `export_meshy.py`: `moving_parts` の部品を素材の宣言から外し、部品ごとの宣言（ownership のキーは素材の宣言のキーに `_doorleft` などを付けた物）を作る。export の部品の位置・回転がアセット一覧の蝶番・開いた角度と違えば止める。3 つの宣言をそれぞれオフラインと `--strict` で validate する
+- `verify_live.py`: 外接箱を素材のすべてのメッシュ（アーチと門扉 2 枚）を合わせた物にし、motion_root と門扉の原点が蝶番と 1 cm 以内か、motion_root の回転と門扉の世界の向きが開いた形か、門扉が描画されるか、門扉の下に当たり判定が無いかを確かめる。期待値はアセット一覧の `leaves` と `received.json` の向きから直接求め、`moving_part_poses` の計算を通さない（置き方の計算の誤りを、同じ計算の期待値で合格にしないため）
+- テスト: `tests/test_p2_meshy_verify.py` に 4 件（S。motion_root が蝶番から外れている、門扉が閉じている、門扉が描画されない、門扉の下に当たり判定がある、をそれぞれ失敗にする。1 件目は正しい状態で通ることも確かめる）。それぞれ守りを外すと、そのテストだけが失敗することを確かめた
+
+### 13.4 export と validate
+
+| 出力先 | 内容 | validate（オフライン・`--strict`） |
+|---|---|---|
+| `exports/p2_meshy/M01-20261101T042541Z` | M01（`--parent` はアーチの `visual_root`、`--preserve-hierarchy --pack-pbr`）。正面のカメラ 2 つは `--recompose` で柵の内側へ移した（宣言の中身はカメラだけが変わり、門扉の 2 つの宣言はバイト単位で同じ） | `p2m.apply.json`・`p2m_DoorLeft.apply.json`・`p2m_DoorRight.apply.json` とも issues 0 |
+| `exports/p2_static/A_plaza-20261101T042531Z` | M01 の仮モデルの描画 6 つを止め、門扉の Slot 2 つを置き直した A（apply した版） | issues 0 |
+| `exports/p2_static/<key>-20261101T041730Z`（6 キー） | 13.1 の確認に使った world・A〜E（M01 の行を足す前） | issues 0 |
+
+- M01: 三角形 35,521、頂点 76,124、材質 1、描画の区切り 3（アーチ・門扉 2 枚）、画像 2（色 2048×2048、詰めた PBR 1024×1024。RGBA8 とミップの見積もり 合計 約 28 MB）、警告 0
+- 後続の子のために、apply した M01 のバンドルを Git の外の `/workspaces/reso-world/worlds/reso-world-Halloween-meshy/p2_bundles/M01-20261101T042541Z`（`SHA256SUMS`）に控えた。新しい worktree で `verify_live.py` を実行するときは、M02・M04・M08 と同じく同じ名前の出力先へ写す
+
+### 13.5 diff と apply
+
+| 時刻（UTC） | 宣言 | diff | apply |
+|---|---|---|---|
+| 04:26:23 | M01 のアーチ | 作成 16（資産 3、Slot 7、Component 6。すべて `_Arch` の下） | — |
+| 04:26:23 | M01 の左・右の門扉 | それぞれ作成 15（資産 3、Slot 6、Component 6。すべて `_DoorLeft`・`_DoorRight` の下） | — |
+| 04:26:23 | A | 更新 8（`_DoorLeft`・`_DoorRight` の Slot の位置・回転 2、仮モデルの `MeshRenderer.Enabled` 6）。作成・削除 0 | — |
+| 04:26:53〜04:27:14 | M01 のアーチ → 左 → 右 → A | — | アーチ: Slot 7・Component 6・資産 3 を作成。門扉: それぞれ Slot 6・Component 6・資産 3 を作成。A: Slot の更新 2・Component の更新 6 |
+| 04:27:40〜04:27:51 | 同じ 4 宣言の 2 回目 | すべて変更 0（no-op 16・15・15・655） | 書き込み 0 |
+| 04:29:58 | 全 13 宣言（`content/main.json`・6 キー・M02・M04・M08・M01 の 3 つ） | すべて変更 0 | — |
+
+- `--prune` は使っていない。削除・名前の変更・作り直しは 0。diff の対象は M01 の 3 つの親の下と資産、A の仮モデルのゲートの中だけ（ほかの地区・`content/main.json`・前の素材の宣言は 0）
+- apply の前のスナップショット: `tmp/w09r-a/01_snapshot_before_*`（W08 の root 全体。最初の diff の後、apply まで書き込みは無い）
+
+### 13.6 実測（`review/p2_meshy/live_checks.json`）
+
+| 検査 | 結果 |
+|---|---|
+| `visual_root` の世界の原点 | `_Arch` が (0, 0, −40)。W07 の `frame_origin_world` と差 0.0 m |
+| 外接箱（アーチと門扉 2 枚を合わせた物） | x −5.4999〜5.4999、高さ −0.0001〜7.7392、z −41.311〜−37.6129（10.9999 × 7.7393 × 3.698 m。奥行きは開いた門扉を含む）。アセット一覧の `bounds_local` を 180° で置いた値との差 0.2 mm |
+| 正面と鏡像 | 素材の前方は (0, 0, −1)（南。看板がスポーンを向く。`placement_hint` から）。祖先の拡縮はすべて正 |
+| 門扉の Slot と門扉 | DoorLeft の原点 (−2.2562, 0, −39.8672)、DoorRight (2.2498, 0, −39.8912)。M01 の蝶番との差 0.0 m（差し替えの前の位置からは 15.3 cm・12.9 cm 動いた。13.2）。Slot の回転は閉 0° から +90°・−90°、門扉の世界の向きは開いた形（差 0.0） |
+| 描画 | 仮モデルのアーチ・門扉 2 枚・目印 3 つの `MeshRenderer.Enabled` が false。M01 のアーチと門扉 2 枚は有効で、色の画像を持つ `PBS_Metallic` を参照する |
+| 取付位置 | `_LanternAttachLeft` (−2.45, 3.6, −40.65)、`_LanternAttachRight` (2.45, 3.6, −40.65)、`_BannerAttach` (0, 5.8, −40.65)。差し替えの前と同じ（差 0.0 m） |
+| 当たり判定 | `APL_EntranceGateProxy_001_Arch_FixedCollision` が有効・`_Arch` と同じ変換・`Static`・`CharacterCollider`・仮モデルと同じメッシュ。M01 のアーチと門扉の下に当たり判定は無い |
+| 数 | A の Slot 192・Component 404（W08 の実測 166・379 に、M02 の 7・7 と M01 の 3 つの宣言の 19・18 を足した値と一致）。W08 の root の下は Slot 715・Component 1,652（着手時の 696・1,634 から +19・+18） |
+
+- M02・M04・M08 の検査と C の数も合格のまま。ID・部品名は変えていない（門扉の Slot は位置と回転だけを変えた）
+
+### 13.7 撮影と実機の確認
+
+撮影（`review/p2_meshy/`、1600×900）: `m01_front`・`m01_front_close`（正面。南の柵の内側から）、`m01_oblique_sw`（南西の斜め上）、`m01_back`（広場の側から）、`m01_leaves_inside`（開いた門扉を広場の側から）、`m01_hinge_left`（通路から左の蝶番の付近）、`area_A_entrance`（入口の全景）、`overview_south`（W08 と同じ全景。M01 の差し替えの後に撮り直した）。
+
+- 黒い面・反転・透け・ちらつきは見つからない。看板の文字は南から読め、門扉は柱の裏の蝶番から北（広場の側）へ開き、地面に乗る。両面にした門扉は広場の側からも欠けない
+- 広場の側から見た看板の裏は、文字が鏡像に見える（`m01_back`）。Meshy の画像のままで、アーチは片面（W09 の決定）。差し替えの不具合ではない
+- 利用者の実機（2026-11-01、04:37Z ごろ、デスクトップ）: スポーンから北へ、広場から南へゲートをくぐり、柱・袖の壁・開いた門扉のまわりを歩いた。「問題なし」（引っかかる所・すり抜ける所・見た目の不具合なし）
+- 負荷（利用者の測定、W08 と同じ端末）: ゲートの近くで 60 fps 前後（W08 の基準と同じ）
+- 増えた物: 三角形 35,521（仮モデルのゲート 496 三角形は描画を止めた）、画像 2（約 28 MB の見積もり。3 つの宣言で同じ資産）、光源 0
+
+### 13.8 Resonite で未確認の項目
+
+- 保存の後の状態（13.10）と、再読込の後に M01 の画像が保たれるか（P4）
+- 門扉の開閉の動き（P3）。閉じた形（Slot の回転 0°）は、原本の門扉の位置（W09-M01 は閉じた形のメッシュを蝶番で回して開いた。`handoff/W09-M01.md` 2 章）だが、Resonite では閉じた形を置いて確かめていない
+- VR での見え方、二人以上
