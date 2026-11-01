@@ -1,0 +1,20 @@
+{
+  "commands": [
+    "resoloop validate exports/p2_meshy/M07-20261101T073451Z/p2m.apply.json --json",
+    "resoloop validate exports/p2_meshy/M07-20261101T073451Z/p2m.apply.json --strict --url <URL> --json"
+  ],
+  "p2m": {
+    "offline": {
+      "exit": 0,
+      "valid": true,
+      "issues": [],
+      "error_code": null
+    },
+    "strict": {
+      "exit": 0,
+      "valid": true,
+      "issues": [],
+      "error_code": null
+    }
+  }
+}

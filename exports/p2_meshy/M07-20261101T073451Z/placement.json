@@ -1,0 +1,47 @@
+{
+  "root_slot": {
+    "name": "M07",
+    "key": "root",
+    "parent": "Root/HalloweenMagicalCarnival/E_forest/EFR_ClockTower_001/EFR_ClockTower_001_Body",
+    "position": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "rotation": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "scale": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "children": [
+    "M07_ClockTower_001",
+    "Blender_Providers"
+  ],
+  "assets": [
+    "mesh_M07_ClockTower_001_d49a0df6",
+    "pbr_mat_material_MAT_M07_ClockTower_f3f34237_9a8d0f66",
+    "tex_M07_ClockTower_001_color_color_832323da"
+  ],
+  "moving_parts": [],
+  "colliders": [
+    "M07_ClockTower_001"
+  ],
+  "district": "E_forest",
+  "placeholder": "EFR_ClockTower_001",
+  "visual_root": "EFR_ClockTower_001_Body",
+  "visual_root_path": "Root/HalloweenMagicalCarnival/E_forest/EFR_ClockTower_001/EFR_ClockTower_001_Body",
+  "asset_id": "M07_ClockTower_001",
+  "rotation_z_deg": 0.0,
+  "position_local": [
+    0.0,
+    0.0,
+    0.0
+  ]
+}

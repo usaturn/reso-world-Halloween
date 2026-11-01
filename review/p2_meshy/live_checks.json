@@ -2,8 +2,8 @@
   "root": "Root/HalloweenMagicalCarnival",
   "tolerance_m": 0.01,
   "root_live": {
-    "slots": 739,
-    "components": 1677
+    "slots": 745,
+    "components": 1684
   },
   "replacements": [
     {
@@ -753,7 +753,7 @@
       },
       "poles": {
         "slot": "DAM_Carousel_001_Poles",
-        "district_bundle": "exports/p2_static/D_amusement-20261101T063618Z",
+        "district_bundle": "exports/p2_static/D_amusement-20261101T073124Z",
         "poles": [
           {
             "pole": 0,
@@ -1092,6 +1092,143 @@
       "problems": []
     },
     {
+      "meshy_id": "M07",
+      "visual_root": "Root/HalloweenMagicalCarnival/E_forest/EFR_ClockTower_001/EFR_ClockTower_001_Body",
+      "bundle": "exports/p2_meshy/M07-20261101T073451Z",
+      "front_source": "received.json placement_hint.rotation_z_deg",
+      "visual_root_world": {
+        "live": [
+          -38.5,
+          0.0,
+          0.0
+        ],
+        "expected": [
+          -38.5,
+          0.0,
+          0.0
+        ],
+        "diff_m": 0.0
+      },
+      "bounds_world": {
+        "live": {
+          "min": [
+            -42.2892,
+            -0.0002,
+            -4.1196
+          ],
+          "max": [
+            -34.711,
+            14.0,
+            4.119
+          ]
+        },
+        "expected": {
+          "min": [
+            -42.2892,
+            -0.0002,
+            -4.1196
+          ],
+          "max": [
+            -34.711,
+            14.0,
+            4.119
+          ]
+        },
+        "size_live": [
+          7.5783,
+          14.0002,
+          8.2386
+        ],
+        "max_diff_m": 0.0
+      },
+      "front": {
+        "live": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "expected": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "diff": 0.0
+      },
+      "renderers_enabled": {
+        "EFR_ClockTower_001_Body": false,
+        "EFR_ClockTower_001_Dial": false,
+        "M07_ClockTower_001": true
+      },
+      "attachment_points": [],
+      "dial_hands": {
+        "centre_world": [
+          -38.1461,
+          8.032,
+          -0.0015
+        ],
+        "axis_world": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "district_bundle": "exports/p2_static/E_forest-20261101T073434Z",
+        "hands": [
+          {
+            "pivot": "EFR_ClockTower_001_HourHandPivot",
+            "pivot_off_axis_m": 0.0,
+            "pivot_in_front_of_dial_centre_m": 0.0651,
+            "hand_origin_off_pivot_m": 0.0,
+            "axis_alignment": {
+              "pivot": 1.0,
+              "hand": 1.0
+            },
+            "hand_rear_m": 0.0651,
+            "hand_front_m": 0.0951,
+            "reach_m": 0.62,
+            "triangles_behind_within_reach": 254,
+            "triangles_in_hand_slab": 0,
+            "gap_to_dial_m": 0.0125
+          },
+          {
+            "pivot": "EFR_ClockTower_001_MinuteHandPivot",
+            "pivot_off_axis_m": 0.0,
+            "pivot_in_front_of_dial_centre_m": 0.1051,
+            "hand_origin_off_pivot_m": 0.0,
+            "axis_alignment": {
+              "pivot": 1.0,
+              "hand": 1.0
+            },
+            "hand_rear_m": 0.0991,
+            "hand_front_m": 0.1351,
+            "reach_m": 0.93,
+            "triangles_behind_within_reach": 1058,
+            "triangles_in_hand_slab": 0,
+            "gap_to_dial_m": 0.0465
+          }
+        ],
+        "measured_meshes_shown": true
+      },
+      "colliders_under_finished_asset": [
+        "M07_ClockTower_001"
+      ],
+      "colliders_under_moving_parts": [],
+      "fixed_collision": {
+        "slot": "EFR_ClockTower_001_Body_FixedCollision",
+        "exists": true,
+        "collider_enabled": false
+      },
+      "finished_colliders": [
+        {
+          "slot": "M07_ClockTower_001",
+          "collider_enabled": true,
+          "static_character_collider": true,
+          "uses_own_static_mesh": true,
+          "zero_offset": true
+        }
+      ],
+      "problems": []
+    },
+    {
       "meshy_id": "M08",
       "visual_root": "Root/HalloweenMagicalCarnival/C_candy/CCD_M08_FlyingWitchProxy_001",
       "bundle": "exports/p2_meshy/M08-20261101T022537Z",
@@ -1227,6 +1364,20 @@
         "M05_Canopy",
         "M05_CenterCasing",
         "M06"
+      ],
+      "ok": true
+    },
+    "E_forest": {
+      "live": [
+        196,
+        482
+      ],
+      "expected": [
+        196,
+        482
+      ],
+      "replacements": [
+        "M07"
       ],
       "ok": true
     }

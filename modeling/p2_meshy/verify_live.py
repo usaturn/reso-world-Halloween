@@ -51,6 +51,12 @@
     PR #54 の GPT のレビュー）。state は --state-dir（既定は親の checkout の .resoloop/state）
   - 前照灯（W09R-D で追加。REPLACEMENTS の lens_attachment。M06）: 地区の取付位置が、素材のレンズの前面（review/M06/checks.json
     の headlamp.front_profile_x0）の前 max_gap_m 以内で、レンズの高さにある。check_lens_attachment
+  - 隠す兄弟（W09R-E で追加。M07 の仮の文字盤）: hide の対象は、visual_root の兄弟のうち地区のアセット一覧の
+    replacement_slot.hide_on_replacement に書いてある物も探す（replacements.owner_hide_on_replacement と同じ値）
+  - 針（W09R-E で追加。REPLACEMENTS の dial_hands。M07）: 地区の時針・分針の回転軸が、素材の文字盤の中心（review/M07/checks.json の
+    dial.centre_local_m をデータの原点と向きで置いた点）を通る軸の上 TOL_M 以内で、文字盤より前にある。針の頂点の前後の範囲と
+    回る半径の中に素材の三角形が無い（めり込まない。針は 360° 回るので回す位置によらない）。測った針と文字盤のメッシュが
+    ワールドに表示されている物か（check_measured_mesh_is_shown）。check_dial_hands
 """
 
 from __future__ import annotations
@@ -193,6 +199,21 @@ def load_inputs(meshy_id: str, rep: dict) -> dict:
     if rep.get("lens_attachment"):
         # 前照灯（W09R-D の M06）: レンズの前面の形は素材の仕上げの検査（review/<source>/checks.json の headlamp）から
         lens = {**rep["lens_attachment"], "front_profile": _load(f"review/{source}/checks.json")["headlamp"]["front_profile_x0"]}
+    hands = None
+    if rep.get("dial_hands"):
+        # 針（W09R-E の M07）: 文字盤の中心は素材の仕上げの検査（review/<source>/checks.json の dial）から、針の形は地区の宣言の
+        # メッシュ（最新の exports/p2_static/<地区>-*）から、文字盤の形は素材のメッシュから
+        dbundle = sorted((PROJECT_ROOT / "exports" / "p2_static").glob(f"{rep['district']}-*/p2.apply.json"))[-1].parent
+        ddoc = json.loads((dbundle / "p2.apply.json").read_text(encoding="utf-8"))
+        rows_h = {}
+        for pivot, hand in rep["dial_hands"].items():
+            hnode = _find_decl(ddoc, hand)
+            hkey = next(c for c in hnode["components"] if c["type"] == "FrooxEngine.StaticMesh")["fields"]["URL"].removeprefix("$asset:")
+            rows_h[pivot] = {"hand": hand, "mesh": _mesh(dbundle, ddoc, hkey), "applied": applied_mesh(f"p2_{rep['district']}.json", dbundle, ddoc, hkey)}
+        (dpath, dkey), = _mesh_slots(asset_slot)
+        hands = {"centre_local": _load(f"review/{source}/checks.json")["dial"]["centre_local_m"], "hands": rows_h,
+                 "district_bundle": dbundle.relative_to(PROJECT_ROOT).as_posix(), "dial_path": list(dpath),
+                 "dial_mesh": _mesh(bundle, doc, dkey), "dial_applied": applied_mesh(f"p2m_{meshy_id}.json", bundle, doc, dkey)}
     # 可動部品（W09R-A）: 部品ごとの宣言（motion_root の下）。期待値はアセット一覧の leaves から直接求める（moving_part_poses の
     # 計算を通さない。置き方の計算の誤りを、同じ計算で求めた期待値で合格にしないため）
     moving = {}
@@ -223,6 +244,7 @@ def load_inputs(meshy_id: str, rep: dict) -> dict:
         "assembly": assembly,
         "poles": poles,
         "lens_attachment": lens,
+        "dial_hands": hands,
         "hint_deg": hint_deg,
         "hint_source": hint_source,
         "frame_origin_world": placeholders[meshy_id]["frame_origin_world"],
@@ -411,6 +433,121 @@ def check_lens_attachment(att_chain: list[dict], asset_chain: list[dict], lens: 
     return row, problems
 
 
+def _clip_slab(poly: list[tuple[float, float, float]], lo: float, hi: float) -> list[tuple[float, float, float]]:
+    """(a, u, v) の多角形を lo <= a <= hi で切り取る（Sutherland–Hodgman）。"""
+    for keep in (lambda q: q[0] - lo, lambda q: hi - q[0]):
+        out = []
+        for i, cur in enumerate(poly):
+            prev = poly[i - 1]
+            dc, dp = keep(cur), keep(prev)
+            if dc >= 0:
+                if dp < 0:
+                    t = dp / (dp - dc)
+                    out.append(tuple(prev[k] + (cur[k] - prev[k]) * t for k in range(3)))
+                out.append(cur)
+            elif dp >= 0:
+                t = dp / (dp - dc)
+                out.append(tuple(prev[k] + (cur[k] - prev[k]) * t for k in range(3)))
+        poly = out
+        if not poly:
+            return []
+    return poly
+
+
+def _dist_to_polygon_2d(pts: list[tuple[float, float]]) -> float:
+    """原点から凸多角形（面の上の 2 次元、退化して線分・点でもよい）までの距離。中にあれば 0。"""
+    n = len(pts)
+    if n >= 3:
+        cross = [pts[i][0] * pts[(i + 1) % n][1] - pts[i][1] * pts[(i + 1) % n][0] for i in range(n)]
+        area2 = sum(cross)
+        if abs(area2) > 1e-12 and all(c * area2 >= -1e-12 for c in cross):
+            return 0.0
+    best = math.inf
+    for i in range(n):
+        (x0, y0), (x1, y1) = pts[i], pts[(i + 1) % n]
+        dx, dy = x1 - x0, y1 - y0
+        ll = dx * dx + dy * dy
+        t = 0.0 if ll < 1e-18 else max(0.0, min(1.0, -(x0 * dx + y0 * dy) / ll))
+        best = min(best, math.hypot(x0 + dx * t, y0 + dy * t))
+    return best
+
+
+def check_dial_hands(hands: list[dict], dial_chain: list[dict], dial_mesh: dict, centre: list[float], axis: list[float]) -> tuple[list[dict], list[str]]:
+    """時計の針が素材の文字盤の前で回るか（W09R-E の M07）。centre は文字盤の中心、axis は文字盤の面の前向き（どちらも世界）。
+
+    hands は針ごとに {"pivot": 名前, "pivot_chain", "hand_chain", "mesh"}（mesh は地区の宣言の針のメッシュ、ローカル）。
+    - 回転軸: 回転軸の Slot の原点が、文字盤の中心を通る軸の上（軸からの距離 TOL_M 以内）で、文字盤の面より前。回転軸の Slot と
+      針の Slot の前方（ローカルの +Z。W06 の針の回転軸）が文字盤の軸と平行で、針の Slot の原点が回転軸の Slot の原点にある
+      （PR #55 の GPT のレビュー: 回転軸の Slot だけを見ると、針の Slot がずれた・傾いた状態を合格にした）
+    - めり込み: 針の頂点の、軸に沿った前後の範囲（後ろの面〜前の面）と、軸からの最も遠い距離（針が回る半径）を求める。素材の
+      三角形を前後の範囲で切り取り、残りを文字盤の面へ移した形が、回る半径の円と重ならない（針は軸のまわりに 360° 回るので、
+      回した位置のどこでもめり込まない。三角形の頂点などの点だけで選ぶと、大きな三角形が円を横切るのを見落とす。PR #55 の
+      GPT のレビュー）。前後の範囲より後ろにあり、面へ移した形が円と重なる三角形のうち最も前の物と、針の後ろの面の隙間を返す
+    """
+    ref = (1.0, 0.0, 0.0) if abs(axis[0]) < 0.9 else (0.0, 1.0, 0.0)
+    e1 = [ref[1] * axis[2] - ref[2] * axis[1], ref[2] * axis[0] - ref[0] * axis[2], ref[0] * axis[1] - ref[1] * axis[0]]
+    n1 = math.sqrt(sum(c * c for c in e1))
+    e1 = [c / n1 for c in e1]
+    e2 = [axis[1] * e1[2] - axis[2] * e1[1], axis[2] * e1[0] - axis[0] * e1[2], axis[0] * e1[1] - axis[1] * e1[0]]
+
+    def auv(p) -> tuple[float, float, float]:
+        d = [p[i] - centre[i] for i in range(3)]
+        return (sum(d[i] * axis[i] for i in range(3)), sum(d[i] * e1[i] for i in range(3)), sum(d[i] * e2[i] for i in range(3)))
+
+    def forward(chain: list[dict]) -> list[float]:
+        o, f = to_world(chain, (0.0, 0.0, 0.0)), to_world(chain, (0.0, 0.0, 1.0))
+        n = math.sqrt(sum((f[i] - o[i]) ** 2 for i in range(3))) or 1.0
+        return [(f[i] - o[i]) / n for i in range(3)]
+
+    wp = [auv(to_world(dial_chain, v)) for v in dial_mesh["vertices"]]
+    tris = [(wp[a], wp[b], wp[c]) for a, b, c in dial_mesh["triangles"]]
+    rows, problems = [], []
+    for h in hands:
+        po = to_world(h["pivot_chain"], (0.0, 0.0, 0.0))
+        along, pu, pv = auv(po)
+        radial = math.hypot(pu, pv)
+        hand_off = dist(to_world(h["hand_chain"], (0.0, 0.0, 0.0)), po)
+        tilt = {k: sum(fw[i] * axis[i] for i in range(3)) for k, fw in (("pivot", forward(h["pivot_chain"])), ("hand", forward(h["hand_chain"])))}
+        hv = [auv(to_world(h["hand_chain"], v)) for v in h["mesh"]["vertices"]]
+        rear, front = min(q[0] for q in hv), max(q[0] for q in hv)
+        reach = max(math.hypot(q[1], q[2]) for q in hv)
+        inside, behind, near = 0, [], 0
+        for tri in tris:
+            amin, amax = min(q[0] for q in tri), max(q[0] for q in tri)
+            if amin > front:
+                continue
+            if any(all(q[k] > reach for q in tri) or all(q[k] < -reach for q in tri) for k in (1, 2)):
+                continue  # 面へ移した形の外接箱が円の外
+            if amax < rear:
+                if _dist_to_polygon_2d([(q[1], q[2]) for q in tri]) <= reach:
+                    near += 1
+                    behind.append(amax)
+                continue
+            clipped = _clip_slab(list(tri), rear, front)
+            if clipped and _dist_to_polygon_2d([(q[1], q[2]) for q in clipped]) <= reach:
+                inside += 1
+        gap = rear - max(behind) if behind else None
+        row = {"pivot": h["pivot"], "pivot_off_axis_m": round(radial, 4), "pivot_in_front_of_dial_centre_m": round(along, 4),
+               "hand_origin_off_pivot_m": round(hand_off, 4), "axis_alignment": {k: round(v, 6) for k, v in tilt.items()},
+               "hand_rear_m": round(rear, 4), "hand_front_m": round(front, 4), "reach_m": round(reach, 4),
+               "triangles_behind_within_reach": near, "triangles_in_hand_slab": inside, "gap_to_dial_m": None if gap is None else round(gap, 4)}
+        rows.append(row)
+        if radial > TOL_M:
+            problems.append(f"{h['pivot']}: {radial:.4f} m off the dial centre axis")
+        if along <= 0.0:
+            problems.append(f"{h['pivot']}: not in front of the dial face ({along:+.4f} m)")
+        if hand_off > TOL_M:
+            problems.append(f"{h['pivot']}: the hand is {hand_off:.4f} m off its pivot")
+        bad_tilt = [k for k, v in tilt.items() if v < 1.0 - 1e-3]
+        if bad_tilt:
+            problems.append(f"{h['pivot']}: {bad_tilt} forward is not parallel to the dial axis")
+        if inside:
+            problems.append(f"{h['pivot']}: {inside} triangles of the dial are inside the swept hand ({rear:.4f}..{front:.4f} m)")
+        elif gap is None:
+            problems.append(f"{h['pivot']}: no dial surface behind the hand")
+    return rows, problems
+
+
 def _descendants(node: dict):
     for c in node.get("children") or []:
         yield c
@@ -575,6 +712,10 @@ def check_one(root: dict, meshy_id: str, rep: dict, inp: dict) -> dict:
     hide_scope = [vr, *_descendants(vr)]
     for part in part_chains.values():
         hide_scope += [part["motion_root"][-1], *_descendants(part["motion_root"][-1])]
+    # visual_root の兄弟で、地区の持ち主が差し替えのときに隠すと書いた物（W09R-E の M07 の仮の文字盤。replacements の
+    # owner_hide_on_replacement と同じアセット一覧の値）
+    owner_hide = set((inp["placeholder_asset"].get("replacement_slot") or {}).get("hide_on_replacement") or [])
+    hide_scope += [x for x in vr_chain[-2].get("children") or [] if x["name"] in owner_hide]
     for name in rep["hide"]:
         node = next((x for x in hide_scope if x["name"] == name), None)
         enabled = member(component(node, "MeshRenderer"), "Enabled")
@@ -647,6 +788,33 @@ def check_one(root: dict, meshy_id: str, rep: dict, inp: dict) -> dict:
             row_l, probs_l = check_lens_attachment(att_chain, m_chain, lens)
             out["lens_attachment"] = row_l
             problems.extend(probs_l)
+
+    # 針（W09R-E の M07）: 地区の時計の針が、素材の文字盤の中心の軸の上で、文字盤にめり込まずに回るか
+    dh = inp.get("dial_hands")
+    if dh:
+        district_node, district_prefix = vr_chain[-2], tuple(x["name"] for x in vr_chain[:-1])
+        dial_chain = find_path(root, rel_parts + (inp["bundle_root_name"], rep["asset_id"], *dh["dial_path"]))
+        centre = [origin_exp[i] + b2r(rz(inp["hint_deg"], dh["centre_local"]))[i] for i in range(3)]
+        axis = b2r(rz(inp["hint_deg"], [0.0, 1.0, 0.0]))
+        hands, shown = [], []
+        for pivot, hand in dh["hands"].items():
+            pchain = next((chain_for(root, p) for p in _paths_named(district_node, pivot, district_prefix)), None)
+            hchain = None if pchain is None else next(
+                (chain_for(root, p) for p in _paths_named(pchain[-1], hand["hand"], tuple(x["name"] for x in pchain))), None)
+            if hchain is None:
+                problems.append(f"dial hands: {pivot}/{hand['hand']} not found")
+                continue
+            hands.append({"pivot": pivot, "pivot_chain": pchain, "hand_chain": hchain, "mesh": hand["mesh"]})
+            shown += check_measured_mesh_is_shown(hchain, hand["applied"])
+        if dial_chain is None:
+            problems.append("dial hands: the finished asset's dial mesh not found")
+        else:
+            shown += check_measured_mesh_is_shown(dial_chain, dh["dial_applied"])
+            rows_h, probs_h = check_dial_hands(hands, dial_chain, dh["dial_mesh"], centre, axis)
+            out["dial_hands"] = {"centre_world": [round(v, 4) for v in centre], "axis_world": [round(v, 4) for v in axis],
+                                 "district_bundle": dh["district_bundle"], "hands": rows_h, "measured_meshes_shown": not shown}
+            problems.extend(probs_h)
+        problems.extend(shown)
 
     # 入口（W09R-B）: 地区の扉の蝶番と玄関ホールが、素材の開口に合っているか
     ent = inp.get("entrance")

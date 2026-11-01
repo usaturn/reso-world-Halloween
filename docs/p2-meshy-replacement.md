@@ -1,6 +1,6 @@
 # P2 Meshy 素材の差し替え（W09R、Issue #44）
 
-仮モデルを Meshy の仕上げた素材に差し替える方式と、最初の素材 M02 巨大ジャック・オー・ランタンの差し替えの記録。残りの 7 素材の子は、この文書の 2・4 章の手順と `handoff/W09R.md` を使う。後続の子の記録は 12 章から（W09R-C #46 の M04・M08 は 12 章、W09R-A #47 の M01 は 13 章、W09R-B #48 の M03 は 14 章、W09R-D #49 の M05・M06 は 15 章）。
+仮モデルを Meshy の仕上げた素材に差し替える方式と、最初の素材 M02 巨大ジャック・オー・ランタンの差し替えの記録。残りの 7 素材の子は、この文書の 2・4 章の手順と `handoff/W09R.md` を使う。後続の子の記録は 12 章から（W09R-C #46 の M04・M08 は 12 章、W09R-A #47 の M01 は 13 章、W09R-B #48 の M03 は 14 章、W09R-D #49 の M05・M06 は 15 章、W09R-E #50 の M07 は 16 章）。
 
 - 担当: Claude Code（Opus 5.5）、2026-10-31（UTC）。apply したのはこのセッションだけ
 - 着手前の確認事項: W08 #41 の回答（issuecomment-6545243021）をそのまま使う（2026-10-31 の利用者の決定）
@@ -69,6 +69,7 @@ resoloop capture <p2m.apply.json> --camera <名前> --output review/p2_meshy/<�
 - `verify_live.py` は `REPLACEMENTS` のすべての素材のバンドル（`exports/p2_meshy/<M>-*/p2m.apply.json` とメッシュ）を読む。バンドルはコミットしないので、新しい worktree では、前の子が Git の外の `/workspaces/reso-world/worlds/reso-world-Halloween-meshy/p2_bundles/<M>-<UTC>/` に控えた物（`SHA256SUMS` で確かめる）を、同じ名前の出力先へ写してから実行する（W09R-C で追加。12.4）
 - 可動部品を持つ素材（M01 の門扉。W09R-A で追加、13.2）は、1 素材で宣言が複数になる。素材の宣言 `p2m.apply.json`（state `p2m_<M>.json`）と、部品ごとの `p2m_<部品>.apply.json`（state `p2m_<M>_<部品>.json`。M01 は `DoorLeft`・`DoorRight`）を、上と同じ形で diff・apply する（素材の宣言を先に。資産は `--texture-transfer data`）
 - 当たり判定を素材のメッシュで作る素材（M03。W09R-B で追加、14.2）は、`REPLACEMENTS` の `collision: "finished"`。`export_meshy.py` が素材のメッシュに `MeshCollider` を付け、`export_p2.py` で地区を export し直すと、仮モデルの `<visual_root>_FixedCollision` の `MeshCollider` が `Enabled = false` になる（Slot は残す）。手順は上と同じ
+- visual_root の兄弟の仮モデルの部品も隠す素材（M07 の仮の文字盤 `_Dial`。W09R-E で追加、16.2）は、`hide` にその Slot を書く。範囲の外の Slot は、地区のアセット一覧の `replacement_slot.hide_on_replacement` に書いてある兄弟だけ許される（`replacements.owner_hide_on_replacement`）。手順は上と同じ
 - 1 つの素材を複数の visual_root に分けて置く素材（M05 の柱と屋根。W09R-D で追加、15.2）は、`received.json` の行ごとに `REPLACEMENTS` の行を作る。出力先は `exports/p2_meshy/<行>-<UTC>/`、state は `p2m_<行>.json`（M05 は `p2m_M05_CenterCasing.json`・`p2m_M05_Canopy.json`）。手順は上と同じ
 - コミットするのは `exports/p2_meshy/<M>-<UTC>/` の `report.json`・`validate.json`・`placement.json`（`exports/p2_meshy/.gitignore`）、地区の出力先の `report.json`・`validate.json`・`colliders.json`・`replacements.json`、`review/p2_meshy/` の撮影と `live_checks.json`
 
@@ -150,7 +151,7 @@ ID・部品名・可動部品は変えていない。`APL_GiantJackProxy_001` �
 - 差し替えで増えた物: 三角形 30,792（仮モデル 932 は描画を止めた）、画像 2（約 28 MB の見積もり）、点光源 1（影なし）
 - 低下の原因（素材・画像・光源のどれか、測定の揺れか）は切り分けていない（未確認。P4 で通常時・ショー時と比べる）
 
-## 8. 全素材の状態（Spec §12「P2」の 3 つ目、2026-10-31。M04・M08 の行は 2026-11-01 に W09R-C が、M01 の行は同日に W09R-A が、M03 の行は同日に W09R-B が、M05・M06 の行は同日に W09R-D が更新）
+## 8. 全素材の状態（Spec §12「P2」の 3 つ目、2026-10-31。M04・M08 の行は 2026-11-01 に W09R-C が、M01 の行は同日に W09R-A が、M03 の行は同日に W09R-B が、M05・M06 の行は同日に W09R-D が、M07 の行は同日に W09R-E が更新。これで 8 素材とも Resonite への投入が済んだ）
 
 受領は W09 #13（`assets/meshy/received.json`、PR #26）。どの素材も未着ではない。採用しない物は、利用者が作り直す前の版（各ディレクトリの `size_over/`）と、M07 の `NG/`（針が塔に溶接されていた）だけで、確定版で置き換えた。
 
@@ -163,7 +164,7 @@ ID・部品名・可動部品は変えていない。`APL_GiantJackProxy_001` �
 | M05 メリーゴーラウンドの屋根 | 済（約 4.2 万） | 済（W09-M05 #18・PR #34） | **済（W09R-D #49。柱と別の宣言で `DAM_Carousel_001_M05_Canopy` の下。W05 の支柱を屋根まで伸ばした）** | **Resonite で実測・撮影・利用者の実機**（15 章） | 採用 |
 | M05 メリーゴーラウンドの中央の柱 | 済（約 3.2 万） | 済（同上） | **済（W09R-D #49。`DAM_Carousel_001_M05_CenterCasing` の下）** | **Resonite で実測・撮影・利用者の実機**（15 章） | 採用 |
 | M06 おばけ列車の先頭車外装 | 済（約 1.5 万） | 済（W09-M06 #19・PR #38） | **済（W09R-D #49。前照灯の取付位置をレンズの前へ移した）** | **Resonite で実測・撮影・利用者の実機**（15 章） | 採用 |
-| M07 魔法の時計塔 | 済（約 3.1 万。針の無い作り直しの版） | 済（W09-M07 #20・PR #32。文字盤の計測） | 未（`EFR_ClockTower_001_Body`・`_Dial`） | Blender・export・validate まで | 採用（`NG/` の版は不採用） |
+| M07 魔法の時計塔 | 済（約 3.1 万。針の無い作り直しの版） | 済（W09-M07 #20・PR #32。文字盤の計測） | **済（W09R-E #50。当たり判定は M07 のメッシュ。仮の文字盤は描画を止め、針・鐘は W06 の部品のまま）** | **Resonite で実測・撮影・利用者の実機**（16 章） | 採用（`NG/` の版は不採用） |
 | M08 ほうきに乗った魔女 | 済（約 3.1 万） | 済（W09-M08 #21・PR #37） | **済（W09R-C #46。点光源 2 つ）** | **Resonite で実測・撮影・利用者の実機**（12 章） | 採用 |
 
 仕上げた物は Git の外の `/workspaces/reso-world/worlds/reso-world-Halloween-meshy/finished/<M>/`。各素材の差し替えの注意は `handoff/W09R.md` 6 章。
@@ -199,7 +200,7 @@ ID・部品名・可動部品は変えていない。`APL_GiantJackProxy_001` �
 - VR での見え方、二人以上
 - 負荷の低下（60 → ときどき 54 fps）の原因（7 章）
 - 帽子の色の照明による変化の調整（5.4。後続）
-- `docs/p1-handoff.md` 8 章の 6〜8（残りの素材の子）。2（M05 の支柱）と 3（M06 の前照灯）は W09R-D が対応した（15.2）。4（入口の門扉の可動範囲）は W09R-A が門扉の Slot の基準姿勢を決めた（13.2）。1（M03 の扉・玄関ホール）は W09R-B が対応した（14.2。階段は外した）
+- `docs/p1-handoff.md` 8 章の 6〜8 は記録のみ（各子が 5 章の表と `blender/<M>/<M>.blend`・`placement_hint` を使った）。5（西の主動線の床と時計塔の台座）は W08 が床を時計塔の東の面で止め、W09R-E が時計塔の当たり判定を M07 のメッシュにした（16.2）。2（M05 の支柱）と 3（M06 の前照灯）は W09R-D が対応した（15.2）。4（入口の門扉の可動範囲）は W09R-A が門扉の Slot の基準姿勢を決めた（13.2）。1（M03 の扉・玄関ホール）は W09R-B が対応した（14.2。階段は外した）
 
 ## 12. W09R-C（#46）: C 東の M04 お菓子工房・M08 ほうきに乗った魔女
 
@@ -686,3 +687,115 @@ M03 の仕上げた形を Blender で測り直し（ポーチの床の高さ、�
 
 - 再読込の後に M05・M06 の画像が保たれるか（P4）
 - 回転床・座席・列車を動かしたときの見え方（P3）、VR、二人以上
+
+## 16. W09R-E（#50）: E 西の M07 魔法の時計塔
+
+- 担当: Claude Code（Opus 5.5）、2026-11-01（UTC）。apply したのはこのセッションだけ。着手前の確認事項は W08 #41 の回答（#50 の本文）
+- 版: Resonite 2026.10.29.1239、ResoniteLink 0.13.1.0、resoloop 0.2.0、Blender 5.0.1（W09R〜W09R-D と同じ）
+- スナップショットと diff・apply の報告は親の checkout の `tmp/w09r-e/`（Git の対象外）
+- 閉じた子の所有ファイルのうち、W06 の `E_forest`、W08 の `modeling/p2_static/` は変えていない。W09-M07 の `review/M07/checks.json`・`M07_dial_textured.png` は、ビルドが W06 の今の針の軸と照合し直した結果をそのままコミットした（16.3。形は変えていない）
+- これで採用する 8 素材（9 行）の差し替えが終わった（8 章の表）
+
+### 16.1 保存の後の最初の diff
+
+- 着手時のスナップショット（`tmp/w09r-e/01_snapshot_before_20261101T073258Z`）は W08 の root の下が Slot 739・Component 1,677 で、W09R-D の完了時と同じ（利用者が手で変えた所は無い）
+- 最初の diff（07:33:32〜07:34:19Z、何も変える前。M07 の行を足す前の `REPLACEMENTS` で 6 キーを export した宣言 `exports/p2_static/<key>-20261101T073124Z`）: 全 17 宣言（`content/main.json`・6 キー・M01 の 3 つ・M02・M03・M04・M05 の 2 つ・M06・M08）が変更 0（no-op 29・184・655・333・318・378・780・16・15・15・17・16・18・15・15・15・19）。資産の作り直し・重複は無い
+- 資産の判定: world・E・M02 は「asset URL was migrated to resdb by a world save」、それ以外は「source hash and imported URL match state」（W09R-D の保存の後、開き直していないので D・M05・M06 も `local://` のまま）
+
+### 16.2 決めたこと
+
+| 項目 | 決めたこと | 理由 |
+|---|---|---|
+| 当たり判定（**利用者の決定**、2026-11-01） | M07 のメッシュ（30,633 三角形）に `MeshCollider`（W08 と同じ `Static`・`CharacterCollider`・`DualSided`）を付ける。仮の本体の `EFR_ClockTower_001_Body_FixedCollision` は Slot と `StaticMesh` を残し、`MeshCollider` を `Enabled = false` にする（`REPLACEMENTS` の `collision: "finished"`。W09R-B の M03 と同じ形） | W06 の仮の本体（2,575 三角形）を、M07 と同じ原点・向きで Blender で比べた（下に照らし合わせのスクリプトの結果）。正面の階段: M07 は台座の上面（高さ 1.6 m）から正面へ下り y 3.3 m で地面に着くが、仮の本体は y 2.9 m まで高さ 1.56 m の平らな台が続き、その先で下りる（M07 の階段の上を歩くと最大で約 0.8 m 浮く。y 2.5 で M07 0.80 m・仮 1.56 m）。高さ 1.8〜3.0 m では仮の城の壁と角の塔が M07 の壁より 0.4〜1.3 m 外に、高さ 0.6〜1.2 m では台座の岩が 0.4〜1.3 m 外に出る（見えない壁）。台座のまわりは主動線の終点で人が近づく |
+| 仮の文字盤 `EFR_ClockTower_001_Dial` | 描画だけ止める（`MeshRenderer.Enabled = false`。Slot・位置は残す）。`_Dial` は `_Body` の兄弟なので、`hide` の範囲（`visual_root` と `moving_parts` の `motion_root` の下）を、`visual_root` の兄弟で**地区の持ち主がアセット一覧の `replacement_slot.hide_on_replacement` に書いた物**にだけ広げた（`replacements.owner_hide_on_replacement`） | M07 の文字盤と重なる（`handoff/W06.md` 6 章）。範囲を行の設定だけで広げると、行の書き間違いで針・鐘のような兄弟が黙って消える。W06 が自分のデータで隠してよいと書いた物に限れば、持ち主の判断の範囲に留まる。今このデータを持つのは E の時計塔の `_Dial` だけ |
+| 針・鐘・腕木 | 変えない（ID・原点・階層・可動部品の原点はそのまま） | W07 が針の軸を M07 の文字盤の実測の中心 (0.0015, 8.032) に合わせ済み（`docs/p1-handoff.md` 4 章の 4）。Resonite の実測で軸のずれ 0.0 m、針は文字盤より前でめり込まない（16.5） |
+| 鐘の腕木の板 | 直さない（W06 の所有。記録だけ） | 北から見ると、腕木の板（W06 の `BellBracket`）の下の端は M07 の正面の破風に乗っているが、上の部分と鐘楼の壁の間に隙間が見える（`m07_bell_side`）。正面と広場の側からは付いて見え（`m07_bell`・`m07_front`）、高さ 11 m の細部なので、範囲外として `handoff/W09R-E.md` 6.2 に要望を書いた |
+| 置き方 | `rotation_z_deg` 0（`placement_hint` -90 − 仮モデルの root -90）、`position_local` 0 | 仮の本体は M07 と同じ外接箱・原点・正面で作ってある（`handoff/W09-M07.md` 9 章） |
+
+照らし合わせのスクリプト（セッションの一時的な物。コミットしていない）: M07 の `.blend` に E の `.blend` から仮の本体を読み込み、どちらもアセットの root のローカル（Blender の軸）で、0.1 m の格子に上からのレイ、x = 0 の正面の階段の断面、6 つの高さで外から中心への水平のレイ（5° ごと）を当てた。歩ける高さ（どちらかの上面が 2.4 m 未満）の 3,403 点のうち、上面の差が 5 cm を超える点は 3,295、30 cm を超える点は 2,803。
+
+### 16.3 実装（`modeling/p2_meshy/`）
+
+- `replacements.py`: `M07` の行（`hide` に `_Body` と `_Dial`、`collision: "finished"`、`dial_hands`、撮影のカメラ）。`owner_hide_on_replacement` と、`hide_placeholders` の範囲の広げ方（16.2）
+- `verify_live.py`:
+  - `hide` の対象は、`visual_root` の兄弟のうち地区のアセット一覧の `hide_on_replacement` に書いてある物も探す（無ければ失敗）
+  - `dial_hands`（`check_dial_hands`）: 地区の時針・分針の回転軸（`_HourHandPivot`・`_MinuteHandPivot`）の原点が、素材の文字盤の中心（`review/M07/checks.json` の `dial.centre_local_m` をデータの原点と向きで置いた点）を通る軸の上 1 cm 以内で、文字盤より前にある。回転軸の Slot と針の Slot の前方（ローカルの +Z。W06 の針の回転軸）が文字盤の軸と平行で、針の Slot の原点が回転軸の Slot の原点にある（16.8 の GPT のレビューの指摘 2）。E の宣言の針のメッシュ（最新の `exports/p2_static/E_forest-*`）を Slot の変換で置き、軸に沿った前後の範囲と回る半径を求め、M07 の三角形を前後の範囲で切り取って文字盤の面へ移した形が、回る半径の円と重ならない（針は 360° 回るので、回す位置によらずめり込まない。三角形の頂点などの点で選ぶと大きな三角形が円を横切るのを見落とすので、切り取った多角形と円の距離で判定する。16.8 の指摘 1）。測った針と文字盤のメッシュがワールドに表示されている物か（W09R-D の `check_measured_mesh_is_shown`）
+  - `collision: "finished"` の素材は当たり判定の節で検査を終えるので、針の検査はその前に置いた
+- テスト（どれも S。`handoff/W09R-E.md` 9 章）: `tests/test_p2_meshy_replacements.py` に 1 件、`tests/test_p2_meshy_verify.py` に 2 件（16.8 の指摘 1・2 の反例を同じ 2 件に足した）。それぞれ守りを外すと、そのテストだけが失敗することを確かめた（変異ごとに `PYTHONPYCACHEPREFIX` を分けた）
+- `review/M07/checks.json` の `dial.w06`（W09-M07 の所有）: M07 のビルドが W06 のアセット一覧の今の針の軸と照合し直し、軸のずれが 0.063 m → 0.0 m になった（W07 の直しの後の値）。`M07_dial_textured.png` の水色の点（W06 の針の軸）も中心に移った。形・画像の解像度・三角形は変えていない。アセット一覧の `export_result`（ビルドで `unexported` に戻る）と追跡中の `.blend`・他のキーの確認画像は戻した
+
+### 16.4 export と validate
+
+| 出力先 | 内容 | validate（オフライン・`--strict`） |
+|---|---|---|
+| `exports/p2_meshy/M07-20261101T073451Z` | M07（`--parent` は `EFR_ClockTower_001_Body`、`--preserve-hierarchy --pack-pbr`）。素材のメッシュの Slot に `MeshCollider`。撮影のカメラを足して `--recompose` した（ワールドには書かない。diff 0 を確かめた） | issues 0 |
+| `exports/p2_static/E_forest-20261101T073434Z` | 仮の本体と仮の文字盤の描画、仮の本体の `FixedCollision` の `MeshCollider` を止めた E | issues 0 |
+| `exports/p2_static/<key>-20261101T073124Z`（6 キー） | 16.1 の確認に使った world・A〜E（M07 の行の前） | issues 0 |
+
+- M07: 三角形 30,633、画像 2（色 2048・詰めた PBR 1024、RGBA8 とミップの見積もり 合計 約 28 MB）、材質 1。警告なし
+- 後続の作業のために、apply したバンドルを Git の外の `/workspaces/reso-world/worlds/reso-world-Halloween-meshy/p2_bundles/M07-20261101T073451Z`（`SHA256SUMS`）に控えた。新しい worktree で `verify_live.py` を実行するときは、ほかの素材と同じく同じ名前の出力先へ写す
+
+### 16.5 diff と apply
+
+| 時刻（UTC） | 宣言 | diff | apply |
+|---|---|---|---|
+| 07:35 前 | M07（最初） | 作成 16（資産 3、Slot 6、Component 7。すべて `EFR_ClockTower_001_Body/M07` の下。Component は `StaticMesh`・`MeshRenderer`・`MeshCollider`・`AI_GeneratedContent`・画像 2・材質） | — |
+| 07:35 前 | E | 更新 3（`_Body` と `_Dial` の `MeshRenderer`、`_Body_FixedCollision` の `MeshCollider`。どれも `Enabled` を false に）。作成・削除・名前の変更 0 | — |
+| 07:35:30〜07:35:52 | M07 → E | — | M07: Slot 6・Component 7・資産 3 を作成。E: Component の更新 3（資産は変更なし 115） |
+| 07:36 | 2 つの 2 回目 | M07・E とも変更 0（no-op 16・780） | 書き込み 0 |
+
+- `--prune` は使っていない。削除・名前の変更・Component の作り直しは 0。diff の対象は M07 の `visual_root` の下と資産、E の仮の本体・仮の文字盤の描画と仮の本体の当たり判定だけ（ほかの地区・`content/main.json`・前の素材の宣言は 0。16.1 の宣言のまま apply していない）
+- apply の前のスナップショット: `tmp/w09r-e/01_snapshot_before_20261101T073258Z`（W08 の root 全体。最初の diff の後、apply まで書き込みは無い）
+
+### 16.6 実測（`review/p2_meshy/live_checks.json`）
+
+| 検査 | M07 |
+|---|---|
+| `visual_root` の世界の原点（W07 の `frame_origin_world` との差） | (-38.5, 0, 0)、0.0 m |
+| 外接箱（世界の X × 高さ × Z、期待値との差） | 7.578 × 14.000 × 8.239 m、0.0 m（-90° で置くので、アセットの幅 8.239・奥行き 7.578 が入れ替わる）。`assets/manifest/M07.json` の寸法と一致 |
+| 正面と鏡像 | (1, 0, 0)（東、広場の側。`placement_hint` -90）。祖先の拡縮はすべて正 |
+| 描画 | 仮の本体と仮の文字盤の `MeshRenderer.Enabled` が false、素材は有効で色の画像を持つ材質を参照 |
+| 針 | 文字盤の中心 (-38.1461, 8.032, -0.0015)、軸 (1, 0, 0)。時針の回転軸は軸のずれ 0.0 m・文字盤の面の 6.51 cm 前、針の前後の範囲で回る半径 0.62 m の円に重なる M07 の三角形 0、後ろで円に重なる三角形 254 のうち最も前の面（軸受け）との隙間 1.25 cm。分針は軸のずれ 0.0 m・10.51 cm 前、半径 0.93 m の範囲で 0、後ろの 1,058、隙間 4.65 cm。どちらも針の Slot は回転軸の Slot の原点にあり、前方は文字盤の軸と平行。測った針と文字盤のメッシュはワールドに表示されている物（16.8 の直しの後、07:54:20Z に観察し直した値） |
+| 当たり判定 | 仮の本体の `FixedCollision` の `MeshCollider` が false、M07 のメッシュの `MeshCollider` が有効・`Static`・`CharacterCollider`・同じ Slot の `StaticMesh`・Offset 0。素材のバンドルの中のほかの Slot に当たり判定は無い |
+| 取付位置 | E の時計塔に取付位置（attachment_point）は無い |
+
+- 数: E の Slot 196・Component 482（W08 の実測に M07 の宣言の 6・7 を足した値と一致）。W08 の root の下は Slot 745・Component 1,684（着手時の 739・1,677 から +6・+7）
+- 針・鐘・腕木と仮の本体・仮の文字盤・当たり判定の Slot（`EFR_ClockTower_001` と子 10 個）の ID・親・位置・回転・拡縮・有効は、着手時のスナップショットと同じ（`_HourHandPivot` (0.0015, 8.032, 0.419)、`_MinuteHandPivot` (0.0015, 8.032, 0.459)、`_BellPivot` (0.0015, 10.95, 1.45)。Resonite の軸、アセットの root のローカル）
+- M01〜M06・M08 の検査と A〜D の数も合格のまま。アセットの ID・部品名・階層は変えていない
+
+### 16.7 撮影と実機の確認
+
+撮影（`review/p2_meshy/`、1600×900）: `m07_front`（東の主動線の先から全景）、`m07_front_close`（主動線から階段と入口）、`m07_dial`（文字盤と針の正面）、`m07_dial_oblique`（斜めから針と文字盤の隙間）、`m07_bell`・`m07_bell_side`（鐘の腕木と M07 の壁）、`m07_stairs_side`（横から階段と台座）、`m07_oblique_se`、`m07_back`（西）、`area_E_forest`（W08 と同じ E の全景）
+
+- 撮るたびにファイルの大きさを見た（212〜396 KB。真っ黒な約 23 KB は無い）。北東からの斜めのカメラは手前の木の樹冠に遮られたので、南東（`m07_oblique_se`）に変えて撮り直した
+- 黒い面・反転・透けは見つからない。仮の本体と仮の文字盤は表示されない。針は文字盤の中心にあり、斜めから見ても文字盤の前に浮いて、M07 の軸受けは針の根元の円に隠れる（`m07_dial`・`m07_dial_oblique`）。文字盤が緑がかって見えるのは近くの照明の色（照明の調整は範囲外）
+- 鐘の腕木: 16.2 のとおり、北から見ると板の上の部分と鐘楼の壁の間に隙間がある（`m07_bell_side`）
+- 利用者の実機（確認事項 6。2026-11-01、07:55Z ごろ、デスクトップ）: 時計塔のまわりと台座を歩き、当たり判定と、文字盤と針の見え方は「すべて問題ありません」
+- 負荷（確認事項 8。利用者の測定、W08 と同じ端末）: 時計塔の近くで 60 fps（W08 の基準と同じ）
+- 増えた物: 三角形 30,633（仮の本体と仮の文字盤の描画は止めた）、画像 2（約 28 MB の見積もり）、光源 0、当たり判定 1（M07 のメッシュの `MeshCollider` 30,633 三角形。仮の本体の当たり判定は止めた）
+
+### 16.8 GPT のレビュー（確認事項 7）
+
+- 起動: `codex exec --sandbox read-only -C <worktree> -o <出力> "<依頼文>" < /dev/null`（codex-cli 0.166.0、モデル gpt-6-astra）。対象は PR #55 の `668012f`。Resonite には接続させず、checkout も変更させていない。観点は、宣言の正しさ、`hide` の範囲の広げ方、実測の検査の追加、記録の正確さ、テストの採用基準の 5 つ
+- 結果: Major 3 件・Minor 2 件。宣言の正しさと `hide` の範囲の広げ方は指摘なし、足したテスト 3 件はどれも S（書きすぎなし）。全文は PR #55 のコメント
+- 採否は「直さないと致命的な問題（誤った結果を正しいと記録する、物が黙って消えるなど）になるか」で決めた
+
+| # | 重大度 | 指摘 | 採否 | 対応 |
+|---|---|---|---|---|
+| 1 | Major | 三角形を頂点・辺の中点・重心の 7 点で選ぶので、大きな三角形が針の回る範囲を横切っても見落とす（レビュアーが反例で再現） | 採用 | 針の位置の証拠に使う検査が、めり込みを合格と報告する経路のため。三角形を針の前後の範囲で切り取り、文字盤の面へ移した多角形と回る半径の円の距離で判定する。反例をテストに足した |
+| 2 | Major | 回転軸の Slot の原点だけを比べるので、針の Slot がずれた・回転軸の向きが傾いた状態を合格にする | 採用 | 1 と同じく誤った状態を合格と報告するため。針の Slot の原点が回転軸の Slot の原点にあり、両方の前方が文字盤の軸と平行かを確かめる。テストに 2 例を足した |
+| 3 | Major | 針の材質の参照が切れていても「表示されている」とする | 採用しない | 針の材質は W08 が統合したままで、この子の diff の対象外（E の宣言の針の Component は変えていない）。`check_measured_mesh_is_shown` の主張は「測ったメッシュがワールドで表示中の物」までで、W09R-D の支柱と同じ。針が見えることは撮影（`m07_dial`・`m07_dial_oblique`）と利用者の実機で確かめた |
+| 4 | Minor | 8 章の表の M07 の「確認」が利用者の実機を含むのに、16.7 では記入待ち | 採用 | 利用者の実機の確認（16.7）を受けて、表と 16.7 を同じ内容にした |
+| 5 | Minor | 「許可された名前でも兄弟でなければ拒否する」条件をテストしていない | 採用しない | 宣言の中に同じ名前の Slot が 2 つあると `_find_children_named` がエラーで止まるので、許可された名前が兄弟以外にあるのは、持ち主のデータの名前が兄弟に無い場合だけ。そのときは持ち主自身が隠すと書いた Slot で、針・鐘が黙って消える経路ではない |
+
+- 1・2 は、直した判定（多角形と円の距離、針の Slot のずれ、軸の平行）・めり込みの判定・軸からのずれの判定のそれぞれの守りを外すと、対応するテストだけが失敗することを確かめた。直した検査で実際のワールドを観察し直し、すべて合格した（07:54:20Z、`review/p2_meshy/live_checks.json`）。ワールドへの書き込みは無い
+
+### 16.9 保存（確認事項 4）
+
+- GPT のレビューへの対応と利用者の実機の確認の後に、エージェントの依頼で利用者が Resonite で 1 回保存した（2026-11-01、08:08Z より前）。保存の後は apply していない
+- 保存の後に読み取りだけで確かめた（08:08:55〜08:09:52Z）: 全 18 宣言（`content/main.json`・6 キー・M01 の 3 つ・M02・M03・M04・M05 の 2 つ・M06・M07・M08）の diff が変更 0（M07 は no-op 16、E は 780）。資産の判定は、world・M02 が「asset URL was migrated to resdb by a world save」、それ以外（E・M07 を含む）が「source hash and imported URL match state」。E の state は、この子の apply で live の URL（`resdb` 115 件）を記録した。M07 の資産の URL はまだ `local://`（ワールドを開き直していない）
+
+### 16.10 Resonite で未確認の項目
+
+- 再読込の後に M07 の画像と当たり判定が保たれるか（P4）
+- 針・鐘を動かしたときの見え方（P3 の G20）、VR、二人以上

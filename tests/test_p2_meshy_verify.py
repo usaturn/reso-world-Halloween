@@ -409,3 +409,41 @@ def test_pole_mesh_that_is_not_the_applied_one_is_detected() -> None:
 
 def test_hidden_poles_are_detected() -> None:
     assert any("not drawn" in p for p in verify_live.check_measured_mesh_is_shown(_poles_slot(enabled=False), APPLIED))
+
+
+# W09R-E (M07): the clock hands are W06 parts that stay; the finished tower's dial replaces the placeholder dial. If the
+# hands' axis were off the dial centre or the hands swept through the dial's surface (the bearing 1.3 cm behind the hour
+# hand), the check would record the clock as verified while the hands look off-centre or sink into the face.
+
+# dial face at z 0 and a bearing (one triangle) 5 cm in front of it, around the centre; the axis is +Z
+DIAL = {"vertices": [[-1, -1, 0], [1, -1, 0], [1, 1, 0], [-1, 1, 0], [-0.05, -0.05, 0.05], [0.05, -0.05, 0.05], [0.0, 0.08, 0.05]],
+        "triangles": [(0, 1, 2), (0, 2, 3), (4, 5, 6)]}
+# a hand plate in its pivot frame: 22 mm thick towards the front, 0.6 m long
+HAND = {"vertices": [[x, y, z] for x in (-0.05, 0.05) for y in (-0.1, 0.6) for z in (0.0, 0.022)], "triangles": []}
+
+
+def _hand(pivot_pos, hand_pos=(0, 0, 0), pivot_rot=(0, 0, 0, 1)) -> dict:
+    pivot = _slot("Pivot", pos=pivot_pos, rot=pivot_rot)
+    return {"pivot": "Pivot", "pivot_chain": [pivot], "hand_chain": [pivot, _slot("Hand", pos=hand_pos)], "mesh": HAND}
+
+
+def _dial_problems(pivot_pos, dial=DIAL, **kw) -> tuple[list[dict], list[str]]:
+    return verify_live.check_dial_hands([_hand(pivot_pos, **kw)], [_slot("Dial")], dial, [0.0, 0.0, 0.0], [0.0, 0.0, 1.0])
+
+
+def test_hand_sunk_into_the_dial_is_detected() -> None:
+    rows, problems = _dial_problems((0.0, 0.0, 0.065))
+    assert problems == [] and rows[0]["gap_to_dial_m"] == pytest.approx(0.015, abs=1e-4)
+    assert any("inside the swept hand" in p for p in _dial_problems((0.0, 0.0, 0.04))[1])
+    # PR #55 review (GPT): a large triangle crossing the swept disc in the hand's slab, with every vertex, edge midpoint and
+    # the centroid outside the reach (0.6 m), was missed when triangles were picked by those points
+    crossing = {"vertices": DIAL["vertices"] + [[-2, 0.5, 0.07], [1, 0.5, 0.07], [1, 3, 0.07]], "triangles": DIAL["triangles"] + [(7, 8, 9)]}
+    assert any("inside the swept hand" in p for p in _dial_problems((0.0, 0.0, 0.065), dial=crossing)[1])
+
+
+def test_hand_axis_off_the_dial_centre_is_detected() -> None:
+    assert any("off the dial centre axis" in p for p in _dial_problems((0.0, 0.03, 0.065))[1])
+    # PR #55 review (GPT): the pivot on the axis but the hand Slot moved off it, or the pivot's axis tilted off the dial axis
+    assert any("off its pivot" in p for p in _dial_problems((0.0, 0.0, 0.065), hand_pos=(0.3, 0, 0))[1])
+    tilt = (math.sin(math.radians(5)), 0.0, 0.0, math.cos(math.radians(5)))
+    assert any("not parallel to the dial axis" in p for p in _dial_problems((0.0, 0.0, 0.065), pivot_rot=tilt)[1])
