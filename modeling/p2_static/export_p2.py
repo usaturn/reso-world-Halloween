@@ -29,6 +29,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 from modeling.p2_meshy import replacements  # noqa: E402
 from modeling.p2_static import colliders  # noqa: E402
+from modeling.p3_gimmicks import district  # noqa: E402
 
 KEYS = ["world", "A_plaza", "B_mansion", "C_candy", "D_amusement", "E_forest"]
 PARENT = "Root/HalloweenMagicalCarnival"
@@ -85,6 +86,11 @@ def export_key(key: str, stamp: str, url: str) -> dict:
     if hidden:
         (out / "replacements.json").write_text(json.dumps(hidden, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         result["hidden_placeholders"] = hidden
+    # W10: P3 が駆動する可動部品の managedFields と G13 の Spinner（modeling/p3_gimmicks/district.py）
+    drivers = district.add_drivers_in_file(out / "p2.apply.json", key)
+    if drivers:
+        (out / "p3_drivers.json").write_text(json.dumps(drivers, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        result["p3_drivers"] = drivers
     result["p2"] = validate_both(f"{out_rel}/p2.apply.json", url)
     result["colliders"] = summary["counts"]
     (out / "validate.json").write_text(

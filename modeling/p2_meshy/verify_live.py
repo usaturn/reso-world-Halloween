@@ -73,6 +73,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 from modeling.p2_meshy.export_meshy import part_document_name  # noqa: E402
 from modeling.p2_meshy.replacements import REPLACEMENTS  # noqa: E402
+from modeling.p3_gimmicks import rest_pose  # noqa: E402
 from modeling.p2_static.verify_live import (  # noqa: E402
     TOL_M,
     b2r,
@@ -948,17 +949,22 @@ def _paths_named(node: dict, name: str, prefix: tuple[str, ...]):
         yield from walk(c, prefix)
 
 
-def check_counts(root: dict, w08_keys: dict, declared_by_meshy: dict[str, dict]) -> dict:
-    """地区ごとに、実測の Slot・Component の数 = W08 の実測 + その地区のすべての差し替えの宣言の数。"""
+def check_counts(root: dict, w08_keys: dict, declared_by_meshy: dict[str, dict],
+                 p3_added: dict[str, tuple[int, int]] | None = None) -> dict:
+    """地区ごとに、実測の Slot・Component の数 = W08 の実測 + その地区のすべての差し替えの宣言の数
+    + P3 が地区の宣言に足した数（p3_added。W10 の G13 の Spinner・G01 の中継。rest_pose.p3_additions）。"""
+    p3_added = p3_added or {}
     out = {}
     districts = sorted({REPLACEMENTS[m]["district"] for m in declared_by_meshy})
     for district in districts:
         node = chain_for(root, (root["name"], district))[-1]
         live = count_nodes(node)
         members = [m for m in declared_by_meshy if REPLACEMENTS[m]["district"] == district]
-        exp = (w08_keys[district]["live_slots"] + sum(declared_by_meshy[m]["slots"] for m in members),
-               w08_keys[district]["live_components"] + sum(declared_by_meshy[m]["components"] for m in members))
-        out[district] = {"live": list(live), "expected": list(exp), "replacements": members, "ok": tuple(live) == exp}
+        add_s, add_c = p3_added.get(district, (0, 0))
+        exp = (w08_keys[district]["live_slots"] + sum(declared_by_meshy[m]["slots"] for m in members) + add_s,
+               w08_keys[district]["live_components"] + sum(declared_by_meshy[m]["components"] for m in members) + add_c)
+        out[district] = {"live": list(live), "expected": list(exp), "replacements": members, "p3_added": [add_s, add_c],
+                         "ok": tuple(live) == exp}
     return out
 
 
@@ -974,11 +980,15 @@ def main(argv: list[str] | None = None) -> int:
     live = observe(args.url)
     Path(args.raw_out).write_text(json.dumps(live, ensure_ascii=False) + "\n", encoding="utf-8")
     root = live["data"]
+    # W10: P3 が駆動している可動部品（M05 を載せた G13 の TurnRoot など）は、宣言の基準姿勢に戻してから検査する
+    rest_rows = rest_pose.apply_rest_pose(root)
     total_s, total_c = count_nodes(root)
     inputs = {m: load_inputs(m, r) for m, r in sorted(REPLACEMENTS.items())}
     rows = [check_one(root, m, REPLACEMENTS[m], inp) for m, inp in inputs.items()]
-    counts = check_counts(root, _load("review/p2_static/live_checks.json")["keys"], {m: inp["declared"] for m, inp in inputs.items()})
+    counts = check_counts(root, _load("review/p2_static/live_checks.json")["keys"], {m: inp["declared"] for m, inp in inputs.items()},
+                          {k: rest_pose.p3_additions(k) for k in rest_pose.gimmicks.driven_slots()})
     summary = {"root": "Root/" + root["name"], "tolerance_m": TOL_M, "root_live": {"slots": total_s, "components": total_c},
+               "p3_rest_pose": [r["slot"] for r in rest_rows],
                "replacements": rows, "district_counts": counts,
                "ok": all(not r["problems"] for r in rows) and all(c["ok"] for c in counts.values())}
     Path(args.output).write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

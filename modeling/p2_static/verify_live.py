@@ -10,7 +10,8 @@
 - 検査（docs/p2-static-integration.md 8 章）
   - キーごとの Slot・Component の数と、宣言（exports/p2_static/<key>-*/p2.apply.json の最新）の数
   - .blend のオブジェクト（バンドルの Slot。Blender_Providers と FixedCollision を除く）がすべて同じ階層の名前で存在するか
-  - 可動部品 78 個（review/overview/checks.json の motion_parts）の原点（Blender の pivot_world を (x, z, y) に直した値）との差
+  - 可動部品 78 個（review/overview/checks.json の motion_parts）の原点（Blender の pivot_world を (x, z, y) に直した値）との差。
+    P3 が駆動している Slot（modeling/p3_gimmicks/rest_pose.py）は、宣言の基準姿勢に戻してから測る（W10）
   - Meshy の仮モデル 9 行の位置、ランドマーク 5 つの建てた物の位置（checks.json の built_origin）との差
   - 当たり判定: MeshCollider の数（colliders.json）と、可動部品の下・取付位置に当たり判定が無いこと
 """
@@ -25,6 +26,10 @@ import sys
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(PROJECT_ROOT))
+
+from modeling.p3_gimmicks import rest_pose  # noqa: E402
+
 ROOT_PATH = "Root/HalloweenMagicalCarnival"
 KEYS = ["world", "A_plaza", "B_mansion", "C_candy", "D_amusement", "E_forest"]
 TOL_M = 0.01
@@ -171,6 +176,8 @@ def dist(a, b) -> float:
 
 def run_checks(live: dict) -> dict:
     root = live["data"]
+    # W10: P3 が駆動している可動部品（G13 の TurnRoot、G01 の Body）は、宣言の基準姿勢に戻してから検査する
+    rest_rows = rest_pose.apply_rest_pose(root)
     checks = json.loads((PROJECT_ROOT / "review" / "overview" / "checks.json").read_text(encoding="utf-8"))
     by_path: dict[tuple[str, ...], tuple] = {}
     by_key_name: dict[tuple[str, str], list] = {}
@@ -179,7 +186,8 @@ def run_checks(live: dict) -> dict:
         if len(path) >= 3:
             by_key_name.setdefault((path[1], path[-1]), []).append((path, wpos, wrot, node))
 
-    result: dict = {"root": ROOT_PATH, "tolerance_m": TOL_M, "keys": {}, "problems": []}
+    result: dict = {"root": ROOT_PATH, "tolerance_m": TOL_M, "keys": {}, "problems": [],
+                    "p3_rest_pose": [r["slot"] for r in rest_rows]}
     top_children = [c["name"] for c in root.get("children") or []]
     result["root_children"] = top_children
 
