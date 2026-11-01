@@ -16,7 +16,11 @@
     hide に書いた仮モデルの MeshRenderer は Enabled = false
   - 取付位置: 仮モデルのアセットの取付位置（attachment_point）が、データの位置にある
   - 当たり判定: <visual_root>_FixedCollision が有効で、visual_root と同じ変換、MeshCollider が有効・Static・CharacterCollider で、
-    同じ Slot の StaticMesh（visual_root と同じメッシュの資産）を参照する
+    同じ Slot の StaticMesh（visual_root と同じメッシュの資産）を参照する。REPLACEMENTS の collision が False の素材（空を飛ぶ
+    M08 など）は、<visual_root>_FixedCollision が無いことを確かめる（あれば設定の誤りとして失敗にし、検査を黙って飛ばさない）
+  - 発光: REPLACEMENTS の emissive が True の素材（M04）は、材質の EmissiveMap が URL のある画像を参照する
+  - 向き: received.json の placement_hint に回転が無い素材（経路の上の M06・M08）は、W07 の review/overview/checks.json の
+    placeholders.<M>.front_world（仮モデルの正面の世界の向き）から期待値を求める（W09R-C で追加）
   - 数: 地区ごとに、Slot・Component の数が W08 の実測（review/p2_static/live_checks.json）に、その地区のすべての差し替えの
     宣言の数を足した値と一致する
 """
@@ -57,6 +61,21 @@ def latest_meshy_bundle(meshy_id: str) -> Path:
     return dirs[-1]
 
 
+# W07 の checks.json の front_world（仮モデルの正面の世界の向き）を、Blender の Z 軸まわりの回転（+Y が 0°）にする
+FRONT_WORLD_DEG = {"north(+Y)": 0.0, "west(-X)": 90.0, "south(-Y)": 180.0, "east(+X)": -90.0}
+
+
+def expected_yaw_deg(meshy_id: str, received: dict, placeholders: dict) -> tuple[float, str]:
+    """素材の世界の向きの期待値（Blender の Z 軸まわりの度）と、その出典。"""
+    hint = (received["decided"].get("placement_hint") or {}).get("rotation_z_deg")
+    if hint is not None:
+        return float(hint), "received.json placement_hint.rotation_z_deg"
+    front = (placeholders.get(meshy_id) or {}).get("front_world")
+    if front not in FRONT_WORLD_DEG:
+        raise SystemExit(f"{meshy_id}: no placement_hint rotation and no usable front_world in review/overview/checks.json ({front!r})")
+    return FRONT_WORLD_DEG[front], f"review/overview/checks.json placeholders.{meshy_id}.front_world = {front}"
+
+
 def load_inputs(meshy_id: str, rep: dict) -> dict:
     """検査に使うデータ（実測ではない物）を読む。テストはこの dict を直接作る。"""
     bundle = latest_meshy_bundle(meshy_id)
@@ -65,13 +84,16 @@ def load_inputs(meshy_id: str, rep: dict) -> dict:
     mesh_key = next(c for c in asset_slot["components"] if c["type"] == "FrooxEngine.StaticMesh")["fields"]["URL"].removeprefix("$asset:")
     received = next(a for a in _load("assets/meshy/received.json")["assets"] if a["row_id"] == meshy_id)
     ds, dc, auto = declared_counts(doc)
+    placeholders = _load("review/overview/checks.json")["placeholders"]
+    hint_deg, hint_source = expected_yaw_deg(meshy_id, received, placeholders)
     return {
         "bundle": bundle.relative_to(PROJECT_ROOT).as_posix(),
         "bundle_root_name": doc["slot"]["name"],
         "vertices": json.loads((bundle / doc["assets"][mesh_key]["source"]).read_text(encoding="utf-8"))["vertices"],
         "bounds_local": _load(f"assets/manifest/{meshy_id}.json")["assets"][0]["bounds_local"],
-        "hint_deg": received["decided"]["placement_hint"]["rotation_z_deg"],
-        "frame_origin_world": _load("review/overview/checks.json")["placeholders"][meshy_id]["frame_origin_world"],
+        "hint_deg": hint_deg,
+        "hint_source": hint_source,
+        "frame_origin_world": placeholders[meshy_id]["frame_origin_world"],
         "placeholder_asset": next(a for a in _load(f"assets/manifest/{rep['district']}.json")["assets"] if a["asset_id"] == rep["placeholder"]),
         "declared": {"slots": ds, "components": dc + auto},
     }
@@ -137,9 +159,9 @@ def _same_transform(a: dict, b: dict) -> bool:
     return all(abs(float(a[f][k]) - float(b[f][k])) < 1e-6 for f, keys in (("position", "xyz"), ("rotation", "xyzw"), ("scale", "xyz")) for k in keys)
 
 
-def check_rendering(chain: list[dict], index: dict) -> list[str]:
+def check_rendering(chain: list[dict], index: dict, emissive: bool = False) -> list[str]:
     """素材の Slot（chain の最後）が描画されるか: 祖先を含めて有効、MeshRenderer が同じ Slot の StaticMesh と、
-    色の画像（URL のある StaticTexture2D）を持つ材質を参照する。"""
+    色の画像（URL のある StaticTexture2D）を持つ材質を参照する。emissive なら発光の画像（EmissiveMap）も確かめる。"""
     problems = []
     node = chain[-1]
     inactive = [n["name"] for n in chain if n.get("isActive") is False]
@@ -158,6 +180,10 @@ def check_rendering(chain: list[dict], index: dict) -> list[str]:
         tex = index.get(member(mat, "AlbedoTexture") or "", (None, None))[0]
         if mat is None or not mat.get("type", "").endswith("PBS_Metallic") or tex is None or not member(tex, "URL"):
             problems.append(f"{node['name']}: material {mid!r} has no albedo texture with a URL")
+        elif emissive:
+            etex = index.get(member(mat, "EmissiveMap") or "", (None, None))[0]
+            if etex is None or not member(etex, "URL"):
+                problems.append(f"{node['name']}: material {mid!r} has no emissive map with a URL")
     return problems
 
 
@@ -178,6 +204,7 @@ def check_one(root: dict, meshy_id: str, rep: dict, inp: dict) -> dict:
     # 位置（データの原点と、データの向きで置いた外接箱）
     vr_live = to_world(vr_chain, (0.0, 0.0, 0.0))
     vr_exp = b2r(inp["frame_origin_world"])
+    out["front_source"] = inp.get("hint_source", "received.json placement_hint.rotation_z_deg")
     out["visual_root_world"] = {"live": [round(v, 4) for v in vr_live], "expected": vr_exp, "diff_m": round(dist(vr_live, vr_exp), 4)}
     if dist(vr_live, vr_exp) > TOL_M:
         problems.append(f"visual_root is {dist(vr_live, vr_exp):.4f} m away from frame_origin_world")
@@ -211,7 +238,7 @@ def check_one(root: dict, meshy_id: str, rep: dict, inp: dict) -> dict:
         renderers[name] = enabled
         if enabled is not False:
             problems.append(f"{name}: MeshRenderer.Enabled is {enabled!r}, expected False")
-    render_problems = check_rendering(m_chain, index)
+    render_problems = check_rendering(m_chain, index, emissive=bool(rep.get("emissive")))
     renderers[rep["asset_id"]] = not render_problems
     problems.extend(render_problems)
     out["renderers_enabled"] = renderers
@@ -237,6 +264,16 @@ def check_one(root: dict, meshy_id: str, rep: dict, inp: dict) -> dict:
     # 当たり判定
     fixed_name = f"{rep['visual_root']}_FixedCollision"
     fixed = next((x for x in vr_chain[-2].get("children") or [] if x["name"] == fixed_name), None)
+    out["colliders_under_finished_asset"] = [x["name"] for x in _descendants(m_chain[-2]) if component(x, "MeshCollider")]
+    if rep.get("collision", True) is False:
+        # 空を飛ぶ・動く物: 当たり判定を付けない方針。仮モデルに FixedCollision があるのに False と書いたなら設定の誤り
+        out["fixed_collision"] = {"slot": fixed_name, "expected": False, "exists": fixed is not None}
+        if fixed is not None:
+            problems.append(f"{fixed_name} exists although the replacement is configured without collision")
+        if out["colliders_under_finished_asset"]:
+            problems.append(f"colliders under the finished asset: {out['colliders_under_finished_asset']}")
+        out["problems"] = problems
+        return out
     collider, fmesh = component(fixed, "MeshCollider"), component(fixed, "StaticMesh")
     checks = {
         "exists": fixed is not None,
@@ -251,7 +288,6 @@ def check_one(root: dict, meshy_id: str, rep: dict, inp: dict) -> dict:
     bad = [k for k, v in checks.items() if not v]
     if bad:
         problems.append(f"FixedCollision fails: {bad}")
-    out["colliders_under_finished_asset"] = [x["name"] for x in _descendants(m_chain[-2]) if component(x, "MeshCollider")]
     out["problems"] = problems
     return out
 

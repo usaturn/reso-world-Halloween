@@ -2,14 +2,15 @@
   "root": "Root/HalloweenMagicalCarnival",
   "tolerance_m": 0.01,
   "root_live": {
-    "slots": 681,
-    "components": 1619
+    "slots": 696,
+    "components": 1634
   },
   "replacements": [
     {
       "meshy_id": "M02",
       "visual_root": "Root/HalloweenMagicalCarnival/A_plaza/APL_GiantJackProxy_001/APL_GiantJackProxy_001_Body",
       "bundle": "exports/p2_meshy/M02-20261031T164338Z",
+      "front_source": "received.json placement_hint.rotation_z_deg",
       "visual_root_world": {
         "live": [
           0.0,
@@ -119,6 +120,7 @@
           "diff_m": 0.0
         }
       ],
+      "colliders_under_finished_asset": [],
       "fixed_collision": {
         "slot": "APL_GiantJackProxy_001_Body_FixedCollision",
         "exists": true,
@@ -129,7 +131,163 @@
         "uses_own_static_mesh": true,
         "same_mesh_as_visual_root": true
       },
+      "problems": []
+    },
+    {
+      "meshy_id": "M04",
+      "visual_root": "Root/HalloweenMagicalCarnival/C_candy/CCD_M04_CandyWorkshopProxy_001",
+      "bundle": "exports/p2_meshy/M04-20261101T022427Z",
+      "front_source": "received.json placement_hint.rotation_z_deg",
+      "visual_root_world": {
+        "live": [
+          38.0,
+          0.0,
+          0.0
+        ],
+        "expected": [
+          38.0,
+          0.0,
+          0.0
+        ],
+        "diff_m": 0.0
+      },
+      "bounds_world": {
+        "live": {
+          "min": [
+            35.3166,
+            -0.0001,
+            -4.0003
+          ],
+          "max": [
+            40.6833,
+            7.6278,
+            3.9998
+          ]
+        },
+        "expected": {
+          "min": [
+            35.3166,
+            -0.0001,
+            -4.0003
+          ],
+          "max": [
+            40.6833,
+            7.6278,
+            3.9998
+          ]
+        },
+        "size_live": [
+          5.3667,
+          7.6278,
+          8.0001
+        ],
+        "max_diff_m": 0.0
+      },
+      "front": {
+        "live": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "expected": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "diff": 0.0
+      },
+      "renderers_enabled": {
+        "CCD_M04_CandyWorkshopProxy_001": false,
+        "M04_WitchCandyWorkshop_001": true
+      },
+      "attachment_points": [],
       "colliders_under_finished_asset": [],
+      "fixed_collision": {
+        "slot": "CCD_M04_CandyWorkshopProxy_001_FixedCollision",
+        "exists": true,
+        "active": true,
+        "same_transform_as_visual_root": true,
+        "collider_enabled": true,
+        "static_character_collider": true,
+        "uses_own_static_mesh": true,
+        "same_mesh_as_visual_root": true
+      },
+      "problems": []
+    },
+    {
+      "meshy_id": "M08",
+      "visual_root": "Root/HalloweenMagicalCarnival/C_candy/CCD_M08_FlyingWitchProxy_001",
+      "bundle": "exports/p2_meshy/M08-20261101T022537Z",
+      "front_source": "review/overview/checks.json placeholders.M08.front_world = north(+Y)",
+      "visual_root_world": {
+        "live": [
+          43.2,
+          10.2,
+          0.0
+        ],
+        "expected": [
+          43.2,
+          10.2,
+          0.0
+        ],
+        "diff_m": 0.0
+      },
+      "bounds_world": {
+        "live": {
+          "min": [
+            42.5632,
+            9.5881,
+            -1.2147
+          ],
+          "max": [
+            44.1049,
+            12.0882,
+            0.9116
+          ]
+        },
+        "expected": {
+          "min": [
+            42.5632,
+            9.5881,
+            -1.2147
+          ],
+          "max": [
+            44.1049,
+            12.0882,
+            0.9116
+          ]
+        },
+        "size_live": [
+          1.5417,
+          2.5001,
+          2.1262
+        ],
+        "max_diff_m": 0.0
+      },
+      "front": {
+        "live": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "expected": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "diff": 0.0
+      },
+      "renderers_enabled": {
+        "CCD_M08_FlyingWitchProxy_001": false,
+        "M08_FlyingWitch_001": true
+      },
+      "attachment_points": [],
+      "colliders_under_finished_asset": [],
+      "fixed_collision": {
+        "slot": "CCD_M08_FlyingWitchProxy_001_FixedCollision",
+        "expected": false,
+        "exists": false
+      },
       "problems": []
     }
   ],
@@ -145,6 +303,21 @@
       ],
       "replacements": [
         "M02"
+      ],
+      "ok": true
+    },
+    "C_candy": {
+      "live": [
+        95,
+        211
+      ],
+      "expected": [
+        95,
+        211
+      ],
+      "replacements": [
+        "M04",
+        "M08"
       ],
       "ok": true
     }

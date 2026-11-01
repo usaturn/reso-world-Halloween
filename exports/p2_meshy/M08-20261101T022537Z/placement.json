@@ -1,0 +1,43 @@
+{
+  "root_slot": {
+    "name": "M08",
+    "key": "root",
+    "parent": "Root/HalloweenMagicalCarnival/C_candy/CCD_M08_FlyingWitchProxy_001",
+    "position": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "rotation": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "scale": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "children": [
+    "M08_FlyingWitch_001",
+    "Blender_Providers"
+  ],
+  "assets": [
+    "mesh_M08_FlyingWitch_001_ef677c08",
+    "pbr_mat_material_MAT_M08_FlyingWitch_e90b9ec_409b614c",
+    "tex_M08_FlyingWitch_001_color_color_1e27a09f"
+  ],
+  "district": "C_candy",
+  "placeholder": "CCD_M08_FlyingWitchProxy_001",
+  "visual_root": "CCD_M08_FlyingWitchProxy_001",
+  "visual_root_path": "Root/HalloweenMagicalCarnival/C_candy/CCD_M08_FlyingWitchProxy_001",
+  "asset_id": "M08_FlyingWitch_001",
+  "rotation_z_deg": 0.0,
+  "position_local": [
+    0.0,
+    0.0,
+    0.0
+  ]
+}

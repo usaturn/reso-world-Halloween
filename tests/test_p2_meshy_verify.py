@@ -118,3 +118,15 @@ def test_district_counts_include_every_replacement_of_the_district(monkeypatch: 
     assert verify_live.check_counts(world, w08, declared)["A"]["ok"]
     _find(world, "Proxy")["children"].append(_slot("Duplicate"))  # one Slot more than W08 + both declarations
     assert not verify_live.check_counts(world, w08, declared)["A"]["ok"]
+
+
+def test_replacement_without_collision_fails_while_the_placeholder_still_has_one() -> None:
+    # W09R-C: M08 (flying) is configured with collision=False, which skips the collider checks. If that flag were set on a
+    # placeholder that does have a FixedCollision, the collider checks would be skipped silently and a broken collider
+    # would be recorded as verified, so the flag is only accepted when the placeholder really has no FixedCollision.
+    rep = {**REP, "collision": False}
+    world = _world()
+    assert any("configured without collision" in p for p in verify_live.check_one(world, "MX", rep, copy.deepcopy(INPUTS))["problems"])
+    proxy = _find(world, "Proxy")
+    proxy["children"] = [c for c in proxy["children"] if c["name"] != "Proxy_Body_FixedCollision"]
+    assert verify_live.check_one(world, "MX", rep, copy.deepcopy(INPUTS))["problems"] == []

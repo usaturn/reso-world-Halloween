@@ -1,6 +1,6 @@
 # P2 Meshy 素材の差し替え（W09R、Issue #44）
 
-仮モデルを Meshy の仕上げた素材に差し替える方式と、最初の素材 M02 巨大ジャック・オー・ランタンの差し替えの記録。残りの 7 素材の子は、この文書の 2・4 章の手順と `handoff/W09R.md` を使う。
+仮モデルを Meshy の仕上げた素材に差し替える方式と、最初の素材 M02 巨大ジャック・オー・ランタンの差し替えの記録。残りの 7 素材の子は、この文書の 2・4 章の手順と `handoff/W09R.md` を使う。後続の子の記録は 12 章から（W09R-C #46 の M04・M08 は 12 章）。
 
 - 担当: Claude Code（Opus 5.5）、2026-10-31（UTC）。apply したのはこのセッションだけ
 - 着手前の確認事項: W08 #41 の回答（issuecomment-6545243021）をそのまま使う（2026-10-31 の利用者の決定）
@@ -66,6 +66,7 @@ resoloop capture <p2m.apply.json> --camera <名前> --output review/p2_meshy/<�
 
 - 置き方・光源・カメラだけを変えるときは、export し直さずに `export_meshy.py --meshy <M> --recompose <既存のバンドル>` で宣言だけを作り直す。export し直すと、メッシュの接線が 1.8e-7 だけ変わり（Blender の export のたびに変わる。W09-M02 の handoff と同じ）、apply がメッシュの資産を取り込み直す（Slot・Component は増えず、`StaticMesh.URL` の更新 1 と資産の取り込み 1。5.2）
 - `resoloop capture` は `<名前>.scene.json` も書く。作業ツリーの絶対パスを含むのでコミットしない
+- `verify_live.py` は `REPLACEMENTS` のすべての素材のバンドル（`exports/p2_meshy/<M>-*/p2m.apply.json` とメッシュ）を読む。バンドルはコミットしないので、新しい worktree では、前の子が Git の外の `/workspaces/reso-world/worlds/reso-world-Halloween-meshy/p2_bundles/<M>-<UTC>/` に控えた物（`SHA256SUMS` で確かめる）を、同じ名前の出力先へ写してから実行する（W09R-C で追加。12.4）
 - コミットするのは `exports/p2_meshy/<M>-<UTC>/` の `report.json`・`validate.json`・`placement.json`（`exports/p2_meshy/.gitignore`）、地区の出力先の `report.json`・`validate.json`・`colliders.json`・`replacements.json`、`review/p2_meshy/` の撮影と `live_checks.json`
 
 ## 5. M02 の差し替えの結果
@@ -146,7 +147,7 @@ ID・部品名・可動部品は変えていない。`APL_GiantJackProxy_001` �
 - 差し替えで増えた物: 三角形 30,792（仮モデル 932 は描画を止めた）、画像 2（約 28 MB の見積もり）、点光源 1（影なし）
 - 低下の原因（素材・画像・光源のどれか、測定の揺れか）は切り分けていない（未確認。P4 で通常時・ショー時と比べる）
 
-## 8. 全素材の状態（Spec §12「P2」の 3 つ目、2026-10-31）
+## 8. 全素材の状態（Spec §12「P2」の 3 つ目、2026-10-31。M04・M08 の行は 2026-11-01 に W09R-C が更新）
 
 受領は W09 #13（`assets/meshy/received.json`、PR #26）。どの素材も未着ではない。採用しない物は、利用者が作り直す前の版（各ディレクトリの `size_over/`）と、M07 の `NG/`（針が塔に溶接されていた）だけで、確定版で置き換えた。
 
@@ -155,12 +156,12 @@ ID・部品名・可動部品は変えていない。`APL_GiantJackProxy_001` �
 | M01 入場ゲート | 済（約 3.0 万三角形） | 済（W09-M01 #14・PR #29。門扉を切り離し両面化） | 未（仮モデル `APL_EntranceGateProxy_001`） | Blender・export・validate まで | 採用 |
 | M02 巨大ジャック・オー・ランタン | 済（約 3.1 万） | 済（W09-M02 #15・PR #27） | **済（この子）** | **Resonite で実測・撮影・利用者の実機**（5 章） | 採用 |
 | M03 幽霊屋敷の外観 | 済（約 3.0 万） | 済（W09-M03 #16・PR #35。入口の開口） | 未（`BMN_MansionPlaceholder_001`） | Blender・export・validate まで | 採用 |
-| M04 魔女のお菓子工房の外観 | 済（約 3.1 万） | 済（W09-M04 #17・PR #39。窓の発光） | 未（`CCD_M04_CandyWorkshopProxy_001`） | Blender・export・validate まで | 採用 |
+| M04 魔女のお菓子工房の外観 | 済（約 3.1 万） | 済（W09-M04 #17・PR #39。窓の発光） | **済（W09R-C #46）** | **Resonite で実測・撮影・利用者の実機**（12 章） | 採用 |
 | M05 メリーゴーラウンドの屋根 | 済（約 4.2 万） | 済（W09-M05 #18・PR #34） | 未（`DAM_Carousel_001_M05_Canopy`） | Blender・export・validate まで | 採用 |
 | M05 メリーゴーラウンドの中央の柱 | 済（約 3.2 万） | 済（同上） | 未（`DAM_Carousel_001_M05_CenterCasing`） | Blender・export・validate まで | 採用 |
 | M06 おばけ列車の先頭車外装 | 済（約 1.5 万） | 済（W09-M06 #19・PR #38） | 未（`DAM_GhostTrain_001_M06_EngineShell`） | Blender・export・validate まで | 採用 |
 | M07 魔法の時計塔 | 済（約 3.1 万。針の無い作り直しの版） | 済（W09-M07 #20・PR #32。文字盤の計測） | 未（`EFR_ClockTower_001_Body`・`_Dial`） | Blender・export・validate まで | 採用（`NG/` の版は不採用） |
-| M08 ほうきに乗った魔女 | 済（約 3.1 万） | 済（W09-M08 #21・PR #37） | 未（`CCD_M08_FlyingWitchProxy_001`） | Blender・export・validate まで | 採用 |
+| M08 ほうきに乗った魔女 | 済（約 3.1 万） | 済（W09-M08 #21・PR #37） | **済（W09R-C #46。点光源 2 つ）** | **Resonite で実測・撮影・利用者の実機**（12 章） | 採用 |
 
 仕上げた物は Git の外の `/workspaces/reso-world/worlds/reso-world-Halloween-meshy/finished/<M>/`。各素材の差し替えの注意は `handoff/W09R.md` 6 章。
 
@@ -191,8 +192,109 @@ ID・部品名・可動部品は変えていない。`APL_GiantJackProxy_001` �
 
 ## 11. Resonite で未確認の項目
 
-- 保存・再読込の後の状態（資産の URL が `resdb:///` に変わった後の再 apply、M02 の画像と光源が保存されるか）。P4
+- 保存・再読込の後の状態（M02 の画像と光源が保存されるか）。P4。資産の URL が `resdb:///` に変わった後の再 apply は、W09R-C が確かめた（12.1。作り直し・重複なし）
 - VR での見え方、二人以上
 - 負荷の低下（60 → ときどき 54 fps）の原因（7 章）
 - 帽子の色の照明による変化の調整（5.4。後続）
 - `docs/p1-handoff.md` 8 章の 1〜4・6〜8（残りの 7 素材の子）
+
+## 12. W09R-C（#46）: C 東の M04 お菓子工房・M08 ほうきに乗った魔女
+
+- 担当: Claude Code（Opus 5.5）、2026-11-01（UTC）。apply したのはこのセッションだけ。着手前の確認事項は W08 #41 の回答（#46 の本文）
+- 版: Resonite 2026.10.29.1239、ResoniteLink 0.13.1.0、resoloop 0.2.0、Blender 5.0.1（W09R と同じ）
+- スナップショットと diff・apply の報告は親の checkout の `tmp/w09r-c/`（Git の対象外）
+- 閉じた子の所有ファイル（W04 の `C_candy`、W09-M04・W09-M08 の `M04`・`M08`、W08 の `modeling/p2_static/`）は変えていない
+
+### 12.1 保存の後の最初の diff
+
+- 着手時のスナップショット（`tmp/w09r-c/01_snapshot_before_20261101T022208Z`）は W08 の root の下が Slot 681・Component 1,619 で、W09R の完了時と同じ（利用者が手で変えた所は無い）
+- 最初の diff（02:23:51〜02:24:16Z、何も変える前。C は M04・M08 の仮モデルの描画を止める宣言で取った）:
+
+| 宣言 | 操作 |
+|---|---|
+| `content/main.json` | 0（no-op 29） |
+| `world`・`A_plaza`・`B_mansion`・`D_amusement`・`E_forest`（この子で作り直して export した `p2.apply.json`） | 0（no-op 184・655・333・378・780） |
+| `C_candy` | 更新 2（`CCD_M04_CandyWorkshopProxy_001`・`CCD_M08_FlyingWitchProxy_001` の `MeshRenderer` の `Enabled` だけ）。資産の作成・更新は 0 |
+| M02（W09R が Git の外に控えたバンドル `p2_bundles/M02-20261031T164338Z`） | 0（no-op 17） |
+
+- 資産の URL は、W09R の後の保存とワールドの開き直しで `resdb:///` に移っていた（W08 と M02 の 399 件）。resoloop は「asset URL was migrated to resdb by a world save; state will record the live URL」として no-op と判定し、資産の作り直し・重複は無かった。W09R で未確認だった「`resdb:///` に変わった後の再 apply」はこれで確かめた（画像・光源が保存されることの確認は P4）
+
+### 12.2 設定（`modeling/p2_meshy/replacements.py`）
+
+| 項目 | M04 | M08 |
+|---|---|---|
+| `visual_root` | `CCD_M04_CandyWorkshopProxy_001`（仮モデルのアセットの root がそのまま見た目。W04 の `hierarchy.visual_roots`） | `CCD_M08_FlyingWitchProxy_001`（C の root の直下。巡回の `CCD_WitchPatrolLoop_001_CarrierPivot` の子ではない） |
+| `hide` | 仮モデル（`visual_root` 自身）の `MeshRenderer` | 同じ |
+| 回転 | 0（`placement_hint` 90 − 仮モデルの root 90） | 0（`placement_hint` は null。仮モデルは回転 0 で正面 +Y） |
+| 置き方 | 土台の下面の中央 = 仮モデルの原点（地面） | 飛行の動作中心 = 仮モデルの原点（巡回の点 0、(43.2, 0, 10.2)） |
+| 当たり判定 | 仮モデルの形の `CCD_M04_CandyWorkshopProxy_001_FixedCollision`（C の root の下の兄弟）をそのまま使う。仮モデルと仕上げた素材の外接箱は同じで、利用者の歩行で問題なし（12.7） | 付けない（`collision: False`。空を飛ぶ、P3 の G11） |
+| 発光・光源 | 窓の発光の画像（`PBS_Metallic` の `EmissiveMap`、`emissive: True`）。`EmissiveColor` は白のまま（昼も光る。夜の制御は P3） | 点光源 2 つ（`M08_FrontGlow` 前 (0, 1.3, 0.3)・`M08_UnderGlow` 足元の下 (0, 0.2, -1.1)、素材のローカル。色 (1.0, 0.8, 0.6)、強さ 3.0、範囲 3.0・2.8 m、影なし）。利用者の確認で足した（12.7） |
+
+### 12.3 検査の拡張（`modeling/p2_meshy/verify_live.py`）
+
+- 向き: `received.json` の `placement_hint` に回転が無い素材（経路の上の M06・M08）は、W07 の `review/overview/checks.json` の `placeholders.<M>.front_world`（M08 は north(+Y) → 0°）から期待値を求める。どちらから求めたかを `front_source` に書く
+- 当たり判定を付けない素材（`collision: False`）: `<visual_root>_FixedCollision` が無いこと、素材の下に `MeshCollider` が無いことを確かめる。仮モデルに `FixedCollision` があるのに `False` と書いたら設定の誤りとして失敗にする（当たり判定の検査を黙って飛ばさない）
+- 発光（`emissive: True`）: 材質の `EmissiveMap` が URL のある画像を参照すること
+- テスト: `tests/test_p2_meshy_verify.py` に 1 件（S。`collision: False` の素材は、仮モデルに `FixedCollision` が残っていれば失敗し、無ければ通る）。守りを外すと失敗することを確かめた
+- 地区ごとの数の検査（`check_counts`）は W09R のまま、C の 2 素材の宣言を足した値で比べた
+
+### 12.4 export と validate
+
+| 出力先 | 内容 | validate（オフライン・`--strict`） |
+|---|---|---|
+| `exports/p2_meshy/M04-20261101T022427Z` | M04（`--parent` は M04 の `visual_root`、`--preserve-hierarchy --pack-pbr`） | issues 0 |
+| `exports/p2_meshy/M08-20261101T022537Z` | M08。光源とカメラは `--recompose` で足した（3 回。最後は光源 2 つ） | issues 0 |
+| `exports/p2_static/C_candy-20261101T022203Z` | M04・M08 の仮モデルの描画を止めた C（apply した版） | issues 0 |
+| `exports/p2_static/<key>-20261101T022203Z`（5 キー） | 12.1 の確認に使った world・A・B・D・E | issues 0 |
+
+- M04: 三角形 30,702、頂点 49,968、材質 1、描画の区切り 1、画像 3（色 2048×2048、詰めた PBR 1024×1024、発光 1024×1024。RGBA8 とミップの見積もり 合計 約 33.6 MB）、警告 0
+- M08: 三角形 31,130、頂点 42,750、材質 1、描画の区切り 1、画像 2（色 1024×1024、詰めた PBR 512×512。合計 約 7.0 MB）、警告 0
+- 後続の子のために、apply した M04・M08 のバンドルを Git の外の `/workspaces/reso-world/worlds/reso-world-Halloween-meshy/p2_bundles/M04-20261101T022427Z`・`M08-20261101T022537Z` に控えた（`SHA256SUMS`）。新しい worktree で `verify_live.py` を実行するときは、M02 と同じく同じ名前の出力先へ写す（4 章）
+
+### 12.5 diff と apply
+
+| 時刻（UTC） | 宣言 | diff | apply |
+|---|---|---|---|
+| 02:25:09 | M04（最初） | 作成 18（資産 4、Slot 7、Component 7。すべて M04 の `visual_root` の下） | Slot 7・Component 7・資産 4 を作成 |
+| 02:25:47 | M08（最初） | 作成 15（資産 3、Slot 6、Component 6。すべて M08 の `visual_root` の下） | Slot 6・Component 6・資産 3 を作成 |
+| 02:26:03 | C（仮モデルの描画を止める） | 更新 2 | Component の更新 2 |
+| 02:26:09〜02:26:29 | 全 10 宣言（`content/main.json`・6 キー・M02・M04・M08）の 2 回目 | すべて変更 0 | — |
+| 02:26:37〜02:26:42 | M04・M08・C の 2 回目 | — | 書き込み 0 |
+| 02:37:23 | M08（光源 1 つ目） | 作成 2（Slot 1・Component 1） | Slot 1・Component 1 を作成 |
+| 02:41:02 | M08（光源 2 つ目と、1 つ目の強さ） | 作成 2・更新 1 | Slot 1・Component 1 を作成、Component の更新 1 |
+| 02:43:01〜02:43:29 | M08 の 2 回目の apply と、全 10 宣言の diff | すべて変更 0 | M08 は書き込み 0 |
+
+- `--prune` は使っていない。削除・名前の変更・作り直しは 0
+- apply の前のスナップショット: `tmp/w09r-c/01_snapshot_before_*`（W08 の root 全体）、`13_snapshot_m08_before_light_*`・`17_snapshot_m08_before_light2_*`（`CCD_M08_FlyingWitchProxy_001`）
+
+### 12.6 実測（`review/p2_meshy/live_checks.json`）
+
+| 検査 | M04 | M08 |
+|---|---|---|
+| `visual_root` の世界の原点 | (38, 0, 0)。W07 の `frame_origin_world` と差 0.0 m | (43.2, 10.2, 0)。差 0.0 m |
+| 外接箱 | x 35.3166〜40.6833、高さ -0.0001〜7.6278、z -4.0003〜3.9998（5.3667 × 7.6278 × 8.0001 m）。期待値との差 0.0 m | x 42.5632〜44.1049、高さ 9.5881〜12.0882、z -1.2147〜0.9116（1.5417 × 2.5001 × 2.1262 m）。差 0.0 m |
+| 正面と鏡像 | (-1, 0, 0)（西の広場。`placement_hint` から） | (0, 0, 1)（北。`front_world` から）。祖先の拡縮はすべて正 |
+| 描画 | 仮モデルの `MeshRenderer.Enabled` が false。素材は有効で、色と発光の画像を持つ `PBS_Metallic` を参照 | 仮モデルの描画が false。素材は有効で、色の画像を参照 |
+| 当たり判定 | `FixedCollision` が有効・`visual_root` と同じ変換・`Static`・`CharacterCollider`・仮モデルと同じメッシュ。素材の下に当たり判定なし | `FixedCollision` が無い（方針どおり）。素材の下に当たり判定なし |
+| 数 | C の Slot 93・Component 209（W08 の実測に M04 の 7・7 と M08 の 8・8 を足した値と一致） | 同左 |
+
+- W08 の root の下は Slot 696・Component 1,634（着手時の 681・1,619 から +15・+15）。M02 の検査と A の数も合格のまま
+- ID・部品名・可動部品は変えていない。M04・M08 には取付位置が無い
+
+### 12.7 撮影と実機の確認
+
+撮影（`review/p2_meshy/`、1600×900）: `m04_front`・`m04_front_close`（正面）、`m04_oblique_nw`（北西の斜め上）、`m04_side_north`（右側面）、`m04_back`（裏）、`area_C_candy`（W08 と同じ C の全景）、`m08_side_west`・`m08_front`・`m08_oblique_back`、`m08_from_street`（M04 の南の通りから見上げる）。
+
+- M04: 黒い面・反転・透け・ちらつきは見つからない。窓の発光は窓だけに出て、扉は西の広場を向く。入口の照明は建物にめり込まない
+- M08: 正面は北を向き、ほうきは W04 の巡回の線（`CCD_WitchPatrolLoop_001_GuideRing` の発光の線）の上にある。光源を足す前は、空を背にした影に近い見え方だった
+- 利用者の実機（2026-11-01、デスクトップ）:
+  - M04 の正面と建物のまわりを歩いた。当たり判定の問題の報告は無し。「お店の裏側に道の出っ張りみたいなものはあります」: W01 の東の連絡橋の床 `WLD_EastBridge_001`（x 14.14〜42.25、上面 z 0.06）が工房の下を通り、裏（x 40.68）から 1.57 m はみ出したもの。仮モデルのときから同じ形で、西の時計塔の同じ形は W08 が床を塔の前で止めて直している（`modeling/world/build.py`）。`world` は W01 の所有でこの子の範囲外なので、利用者の決定で記録だけにした（`handoff/W09R-C.md` 6 章の要望）
+  - M08: 「暗くて見えにくい」→ 前の光源 1 つ（強さ 2.0）で「まだ暗い」→ 足元の下の光源を足し、両方を強さ 3.0 にして「このままでよい」
+- 負荷（利用者の測定、W08 と同じ端末）: C の地区から M04 を見て 60 fps 前後（W08 の基準と同じ）
+- 増えた物: 三角形 61,832（M04 30,702・M08 31,130。仮モデル 410・230 は描画を止めた）、画像 5（約 40.6 MB の見積もり）、点光源 2（影なし）
+
+### 12.8 Resonite で未確認の項目
+
+- 保存（確認事項 4）の後の M04・M08 の状態（資産の URL の `resdb:///` への移行、光源の保存）。保存の時刻と、保存の後に読み取りだけで確かめた結果は `handoff/W09R-C.md` 3 章
+- M08 が巡回しているときの見え方と光源の当たり方（P3 の G11）
+- 窓の発光の昼夜の制御（P3）、VR、二人以上
