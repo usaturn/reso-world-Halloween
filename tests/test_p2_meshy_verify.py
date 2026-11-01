@@ -409,3 +409,33 @@ def test_pole_mesh_that_is_not_the_applied_one_is_detected() -> None:
 
 def test_hidden_poles_are_detected() -> None:
     assert any("not drawn" in p for p in verify_live.check_measured_mesh_is_shown(_poles_slot(enabled=False), APPLIED))
+
+
+# W09R-E (M07): the clock hands are W06 parts that stay; the finished tower's dial replaces the placeholder dial. If the
+# hands' axis were off the dial centre or the hands swept through the dial's surface (the bearing 1.3 cm behind the hour
+# hand), the check would record the clock as verified while the hands look off-centre or sink into the face.
+
+# dial face at z 0 and a bearing (one triangle) 5 cm in front of it, around the centre; the axis is +Z
+DIAL = {"vertices": [[-1, -1, 0], [1, -1, 0], [1, 1, 0], [-1, 1, 0], [-0.05, -0.05, 0.05], [0.05, -0.05, 0.05], [0.0, 0.08, 0.05]],
+        "triangles": [(0, 1, 2), (0, 2, 3), (4, 5, 6)]}
+# a hand plate in its pivot frame: 22 mm thick towards the front, 0.6 m long
+HAND = {"vertices": [[x, y, z] for x in (-0.05, 0.05) for y in (-0.1, 0.6) for z in (0.0, 0.022)], "triangles": []}
+
+
+def _hand(pivot_pos) -> dict:
+    pivot = _slot("Pivot", pos=pivot_pos)
+    return {"pivot": "Pivot", "pivot_chain": [pivot], "hand_chain": [pivot, _slot("Hand")], "mesh": HAND}
+
+
+def _dial_problems(pivot_pos) -> tuple[list[dict], list[str]]:
+    return verify_live.check_dial_hands([_hand(pivot_pos)], [_slot("Dial")], DIAL, [0.0, 0.0, 0.0], [0.0, 0.0, 1.0])
+
+
+def test_hand_sunk_into_the_dial_is_detected() -> None:
+    rows, problems = _dial_problems((0.0, 0.0, 0.065))
+    assert problems == [] and rows[0]["gap_to_dial_m"] == pytest.approx(0.015, abs=1e-4)
+    assert any("inside the swept hand" in p for p in _dial_problems((0.0, 0.0, 0.04))[1])
+
+
+def test_hand_axis_off_the_dial_centre_is_detected() -> None:
+    assert any("off the dial centre axis" in p for p in _dial_problems((0.0, 0.03, 0.065))[1])

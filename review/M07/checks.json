@@ -195,33 +195,33 @@
     "w06": {
       "manifest": "assets/manifest/E_forest.json",
       "hour_hand_pivot": [
-        0.001,
+        0.0015,
         0.419,
-        8.095
+        8.032
       ],
       "minute_hand_pivot": [
-        0.001,
+        0.0015,
         0.459,
-        8.095
+        8.032
       ],
       "axis_offset_xz_m": [
-        -0.0005,
-        0.063
+        -0.0,
+        -0.0
       ],
-      "axis_offset_m": 0.063,
+      "axis_offset_m": 0.0,
       "hour_pivot_in_front_of_dial_face_m": 0.0651,
       "hour_pivot_in_front_of_max_dial_y_m": 0.0138,
       "minute_pivot_in_front_of_max_dial_y_m": 0.0538,
       "placeholder_dial_outer_diameter_m": 2.288,
       "bell_pivot": [
-        0.001,
+        0.0015,
         1.45,
         10.95
       ],
       "m07_front_y_behind_bell_m": {
         "x_m": [
-          -0.249,
-          0.251
+          -0.248,
+          0.252
         ],
         "z_m": [
           10.5,

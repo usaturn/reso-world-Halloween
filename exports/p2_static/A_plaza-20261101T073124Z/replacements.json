@@ -1,0 +1,132 @@
+[
+  {
+    "meshy_id": "M01",
+    "slot": "A_plaza/APL_EntranceGateProxy_001/APL_EntranceGateProxy_001_Arch",
+    "component": "renderer_APL_EntranceGateProxy_001_Arch_e61f9401",
+    "Enabled": false
+  },
+  {
+    "meshy_id": "M01",
+    "slot": "A_plaza/APL_EntranceGateProxy_001/APL_EntranceGateProxy_001_Arch/APL_EntranceGateProxy_001_BannerAttach",
+    "component": "renderer_APL_EntranceGateProxy_001_BannerAttach_f9c705a3",
+    "Enabled": false
+  },
+  {
+    "meshy_id": "M01",
+    "slot": "A_plaza/APL_EntranceGateProxy_001/APL_EntranceGateProxy_001_Arch/APL_EntranceGateProxy_001_LanternAttachLeft",
+    "component": "renderer_APL_EntranceGateProxy_001_LanternAttachL_fd2233ff",
+    "Enabled": false
+  },
+  {
+    "meshy_id": "M01",
+    "slot": "A_plaza/APL_EntranceGateProxy_001/APL_EntranceGateProxy_001_Arch/APL_EntranceGateProxy_001_LanternAttachRight",
+    "component": "renderer_APL_EntranceGateProxy_001_LanternAttachR_489bc63d",
+    "Enabled": false
+  },
+  {
+    "meshy_id": "M01",
+    "slot": "A_plaza/APL_EntranceGateProxy_001/APL_EntranceGateProxy_001_DoorLeft",
+    "component": "renderer_APL_EntranceGateProxy_001_DoorLeft_ce3926a5",
+    "Enabled": false
+  },
+  {
+    "meshy_id": "M01",
+    "slot": "A_plaza/APL_EntranceGateProxy_001/APL_EntranceGateProxy_001_DoorRight",
+    "component": "renderer_APL_EntranceGateProxy_001_DoorRight_70ab4a9b",
+    "Enabled": false
+  },
+  {
+    "meshy_id": "M02",
+    "slot": "A_plaza/APL_GiantJackProxy_001/APL_GiantJackProxy_001_Body",
+    "component": "renderer_APL_GiantJackProxy_001_Body_b5e03b89",
+    "Enabled": false
+  },
+  {
+    "meshy_id": "M02",
+    "slot": "A_plaza/APL_GiantJackProxy_001/APL_GiantJackProxy_001_Body/APL_GiantJackProxy_001_EyeLightAttach",
+    "component": "renderer_APL_GiantJackProxy_001_EyeLightAttach_274dba40",
+    "Enabled": false
+  },
+  {
+    "meshy_id": "M02",
+    "slot": "A_plaza/APL_GiantJackProxy_001/APL_GiantJackProxy_001_Body/APL_GiantJackProxy_001_MouthReactionAttach",
+    "component": "renderer_APL_GiantJackProxy_001_MouthReactionAtta_b05b8aed",
+    "Enabled": false
+  },
+  {
+    "meshy_id": "M02",
+    "slot": "A_plaza/APL_GiantJackProxy_001/APL_GiantJackProxy_001_Body/APL_GiantJackProxy_001_InteriorLightAttach",
+    "component": "renderer_APL_GiantJackProxy_001_InteriorLightAtta_bd40abae",
+    "Enabled": false
+  },
+  {
+    "meshy_id": "M01",
+    "slot": "A_plaza/APL_EntranceGateProxy_001/APL_EntranceGateProxy_001_DoorLeft",
+    "part": "M01_GateLeafLeft_001",
+    "repose": {
+      "from": {
+        "position": [
+          -2.180000066757202,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          0.0,
+          -0.6946583986282349,
+          0.0,
+          0.7193397879600525
+        ]
+      },
+      "to": {
+        "position": [
+          -2.2562,
+          0.0,
+          0.1328
+        ],
+        "rotation": [
+          0.0,
+          -0.707106781187,
+          0.0,
+          0.707106781187
+        ]
+      },
+      "rotation_z_deg": 90.0,
+      "closed_rotation_z_deg": 0.0
+    }
+  },
+  {
+    "meshy_id": "M01",
+    "slot": "A_plaza/APL_EntranceGateProxy_001/APL_EntranceGateProxy_001_DoorRight",
+    "part": "M01_GateLeafRight_001",
+    "repose": {
+      "from": {
+        "position": [
+          2.180000066757202,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          0.0,
+          0.6946583986282349,
+          0.0,
+          0.7193397879600525
+        ]
+      },
+      "to": {
+        "position": [
+          2.2498,
+          0.0,
+          0.1088
+        ],
+        "rotation": [
+          0.0,
+          0.707106781187,
+          0.0,
+          0.707106781187
+        ]
+      },
+      "rotation_z_deg": -90.0,
+      "closed_rotation_z_deg": 0.0
+    }
+  }
+]

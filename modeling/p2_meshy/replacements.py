@@ -30,7 +30,8 @@ P2_ROOT = "Root/HalloweenMagicalCarnival"
 
 # 差し替えの設定。キーは Meshy の ID（received.json の素材）。
 # - district / placeholder / visual_root: handoff/W08.md 3.1 の仮モデルの Slot（visual_root が差し替えの範囲）
-# - hide: 地区の宣言で MeshRenderer を Enabled = false にする Slot の名前（visual_root より下の物だけ）
+# - hide: 地区の宣言で MeshRenderer を Enabled = false にする Slot の名前（visual_root より下の物と、visual_root の兄弟で
+#   地区のアセット一覧の replacement_slot.hide_on_replacement に書いてある物だけ。hide_placeholders）
 # - blend / asset_id: 仕上げた素材（modeling/<M>/build.py が作る .blend と、その中のオブジェクト）
 # - rotation_z_deg / position_local: 仕上げた素材の root を visual_root のローカルでどう置くか（Blender の軸）。
 #   回転 = received.json の placement_hint.rotation_z_deg - 仮モデルのアセットの root の世界の回転
@@ -227,6 +228,43 @@ REPLACEMENTS: dict[str, dict] = {
             "m08_from_street": ([40, 1.6, -14], [43.2, 10.4, 0], 50),  # 地上（M04 の南の通り）から見上げる。M04 の屋根に遮られない位置
         },
     },
+    # W09R-E（#50）: E 西・魔法の森の時計塔。針・鐘・鐘の腕木は W06 の別の部品で、差し替えない（可動部品の原点も変えない）
+    "M07": {
+        "district": "E_forest",
+        "placeholder": "EFR_ClockTower_001",
+        "visual_root": "EFR_ClockTower_001_Body",
+        "visual_root_path": f"{P2_ROOT}/E_forest/EFR_ClockTower_001/EFR_ClockTower_001_Body",
+        # 仮の本体と、本体の兄弟の仮の文字盤（M07 の文字盤と重なる。W06 がアセット一覧の replacement_slot.hide_on_replacement に
+        # 書いた物。owner_hide_on_replacement）。どちらも描画だけ止め、Slot は残す
+        "hide": ["EFR_ClockTower_001_Body", "EFR_ClockTower_001_Dial"],
+        "blend": "blender/M07/M07.blend",
+        "asset_id": "M07_ClockTower_001",
+        "rotation_z_deg": 0.0,  # placement_hint -90 - 仮モデルの root -90（文字盤と階段を東の広場へ）
+        "position_local": [0.0, 0.0, 0.0],  # 台座の底面の中央 = 仮の本体の原点（地面）
+        # 当たり判定は M07 のメッシュ（2026-11-01 の利用者の決定）。仮の本体は M07 と形が大きく違う: 正面の階段の所で高さ 1.56 m の
+        # 台が y 2.9 m まで続き（M07 の階段の上で最大約 0.8 m 浮く）、城の壁・角の塔・台座の岩が M07 より 0.4〜1.3 m 外に出る
+        "collision": "finished",
+        # 針（verify_live.py）: 時針・分針の回転軸が M07 の文字盤の中心（review/M07/checks.json の dial.centre_local_m）の軸の上に
+        # あり、針が回る範囲（回転軸からの半径）で、針の後ろの面より前に M07 の面が無いか（地区の宣言の針のメッシュと M07 のメッシュから測る）
+        "dial_hands": {
+            "EFR_ClockTower_001_HourHandPivot": "EFR_ClockTower_001_HourHand",
+            "EFR_ClockTower_001_MinuteHandPivot": "EFR_ClockTower_001_MinuteHand",
+        },
+        # 時計塔の原点は (-38.5, 0, 0)（Resonite の Root の座標）、高さ 14 m、正面（文字盤・階段）は東（+X）。文字盤の中心は
+        # (-38.146, 8.032, -0.0015)、鐘の吊り点は (-37.05, 10.95, 0)。西の主動線の床は x -34.711（塔の東の面）まで
+        "cameras": {
+            "m07_front": ([-17.5, 7.5, 0], [-38.5, 7.0, 0], 55),
+            "m07_front_close": ([-28.5, 2.2, 0], [-36.5, 2.4, 0], 60),  # 主動線から階段と入口を
+            "m07_dial": ([-33.2, 8.03, 0], [-38.15, 8.03, 0], 35),  # 文字盤と針を正面から
+            "m07_dial_oblique": ([-35.0, 8.4, 2.6], [-38.15, 8.03, 0], 35),  # 斜めから針と文字盤の隙間を
+            "m07_bell": ([-34.6, 11.0, 2.4], [-37.1, 10.9, 0], 45),  # 鐘の腕木と M07 の壁
+            "m07_bell_side": ([-37.6, 11.0, 5.5], [-37.6, 10.9, 0], 40),  # 北から、腕木の板と M07 の壁の間（W09-M07 の 6 章）
+            "m07_stairs_side": ([-33.0, 2.4, 5.0], [-35.6, 0.9, 0], 60),  # 横から階段の段と台座
+            "m07_oblique_se": ([-26, 9, -13], [-38.5, 6.5, 0], 55),  # 北東（z +12）からは手前の木の樹冠に遮られた
+            "m07_back": ([-55, 9, -6], [-38.5, 6.5, 0], 55),
+            "area_E_forest": ([-16, 10, 14], [-36, 4, 0], 65),  # W08 と同じ
+        },
+    },
     # W09R-D（#49）: D 南・パンプキン遊園地。どれも P3 で動く部品（TurnRoot・EngineRoot）の下なので当たり判定は付けない（W08）。
     # M05 は 1 つの素材（M05_PumpkinCarousel_001 の下の柱と屋根）を、TurnRoot の下の 2 つの visual_root に分けて置く（1 つの
     # 宣言は 1 つの親の下だけ）。行は received.json の行ごと。source は素材のキー（.blend・アセット一覧・review の置き場）、
@@ -376,25 +414,41 @@ def _find_children_named(node: dict, chain: list[str], wanted: set[str], hits: d
         _find_children_named(child, here, wanted, hits)
 
 
+def owner_hide_on_replacement(meshy_id: str, rep: dict) -> set[str]:
+    """地区の持ち主がアセット一覧で「差し替えのときに隠す」と書いた Slot（仮モデルのアセットの replacement_slot の
+    hide_on_replacement。W06 の M07 の仮の文字盤 EFR_ClockTower_001_Dial）。アセット一覧が無い・書いていなければ空。"""
+    path = PROJECT_ROOT / f"assets/manifest/{rep['district']}.json"
+    if not path.is_file():
+        return set()
+    for asset in json.loads(path.read_text(encoding="utf-8"))["assets"]:
+        slot = asset.get("replacement_slot") or {}
+        if asset["asset_id"] == rep["placeholder"] and slot.get("meshy_id") == rep.get("source", meshy_id):
+            return set(slot.get("hide_on_replacement") or [])
+    return set()
+
+
 def hide_placeholders(doc: dict, key: str) -> list[dict]:
     """地区の宣言 doc の中で、差し替えた仮モデルの MeshRenderer を Enabled = false にする（doc をその場で変える）。
 
     対象は REPLACEMENTS の hide に書いた Slot だけで、その Slot が visual_root（またはその子孫）か、moving_parts の
-    motion_root（またはその子孫）でなければ止める。見つからない・MeshRenderer が無いときも止める（黙って何もしないと、
-    仮モデルが仕上げた素材と重なって表示される）。
+    motion_root（またはその子孫）か、visual_root の兄弟で地区の持ち主が hide_on_replacement に書いた物
+    （owner_hide_on_replacement。W09R-E の M07 の仮の文字盤）でなければ止める。見つからない・MeshRenderer が無いときも止める
+    （黙って何もしないと、仮モデルが仕上げた素材と重なって表示される）。
     """
     rows: list[dict] = []
     for meshy_id, rep in for_district(key).items():
         wanted = set(rep["hide"])
         hits: dict[str, tuple[list[str], dict]] = {}
-        _find_children_named(doc, [doc["slot"]["name"]], wanted, hits)
-        missing = wanted - set(hits)
+        _find_children_named(doc, [doc["slot"]["name"]], wanted | {rep["visual_root"]}, hits)
+        missing = (wanted | {rep["visual_root"]}) - set(hits)
         if missing:
             raise ValueError(f"{meshy_id}: Slot not found in the {key} declaration: {sorted(missing)}")
         ranges = [rep["visual_root"], *(p["motion_root"] for p in (rep.get("moving_parts") or {}).values())]
+        siblings = owner_hide_on_replacement(meshy_id, rep)
+        vr_parent = hits[rep["visual_root"]][0][:-1]
         for name in rep["hide"]:
             chain, node = hits[name]
-            if not any(r in chain for r in ranges):
+            if not any(r in chain for r in ranges) and not (name in siblings and chain[:-1] == vr_parent):
                 raise ValueError(f"{meshy_id}: {name} is outside the replacement range {ranges}")
             renderers = [c for c in node.get("components", []) if c.get("type") == "FrooxEngine.MeshRenderer"]
             if not renderers:

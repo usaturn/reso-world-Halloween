@@ -54,6 +54,22 @@ def test_hide_target_outside_the_replacement_range_is_refused(monkeypatch: pytes
         replacements.hide_placeholders(district(), "D")
 
 
+def test_only_a_sibling_listed_by_the_district_owner_can_be_hidden(monkeypatch: pytest.MonkeyPatch) -> None:
+    # W09R-E (S): M07's dial placeholder is a sibling of the visual root, and the district owner (W06) listed it in its asset's
+    # replacement_slot.hide_on_replacement. The widened range must not let another sibling (the clock hands, the bell) vanish.
+    doc = district()
+    doc["children"][0]["children"].append(node("Proxy_Hand"))
+    monkeypatch.setattr(replacements, "owner_hide_on_replacement", lambda meshy_id, rep: {"Proxy_Other"})
+    rep = {"district": "D", "visual_root": "Proxy_Body", "hide": ["Proxy_Body", "Proxy_Other"]}
+    monkeypatch.setattr(replacements, "REPLACEMENTS", {"MX": rep})
+    replacements.hide_placeholders(doc, "D")
+    assert renderer_fields(doc, "Proxy_Other")["Enabled"] is False
+    assert "Enabled" not in renderer_fields(doc, "Proxy_Hand")
+    rep["hide"] = ["Proxy_Body", "Proxy_Hand"]
+    with pytest.raises(ValueError, match="outside the replacement range"):
+        replacements.hide_placeholders(doc, "D")
+
+
 def test_only_the_replacements_fixed_collision_is_disabled(monkeypatch: pytest.MonkeyPatch) -> None:
     # W09R-B (S): for collision="finished" the district declaration disables the placeholder's FixedCollision collider.
     # If another collider were disabled (the district's ground, a neighbour's FixedCollision), visitors would fall or walk
