@@ -28,6 +28,14 @@
     アセット一覧の leaves の pivot_local から求める）と 1 cm 以内、motion_root の回転が閉 0° からの開いた角度、部品の世界の向きが
     開いた形。部品ごとの外接箱が、部品のメッシュをデータの蝶番・向きで置いた物と 1 cm 以内（縮尺・形の誤りを全体の外接箱は
     見落とす）。部品の宣言にメッシュがあり、描画され、部品の下に当たり判定が無い。hide の対象は motion_root の下も探す
+  - 素材のメッシュの当たり判定（W09R-B で追加。REPLACEMENTS の collision が "finished"。M03）: 仮モデルの
+    <visual_root>_FixedCollision の MeshCollider が Enabled = false（残っていると、見えない仮モデルの形と素材の形の両方に
+    当たる）。素材のすべてのメッシュの Slot に、有効・Static・CharacterCollider の MeshCollider があり、同じ Slot の StaticMesh を
+    参照する。素材のバンドルの中で、それ以外の Slot に当たり判定が無い
+  - 入口（W09R-B で追加。REPLACEMENTS の entrance。M03）: 地区の扉の蝶番の Slot の原点が、素材の開口の蝶番の線の下端
+    （review/M03/checks.json の door_opening.hinges の local_bottom を、データの原点と向きで置いた点）と 1 cm 以内で、
+    扉の面が素材の壁と平行（蝶番の Slot の前方が素材の正面の向きと平行）。玄関ホールの原点が、開口の中心の床から
+    hall_depth_m 奥（素材の正面の逆向き）と 1 cm 以内
 """
 
 from __future__ import annotations
@@ -120,6 +128,14 @@ def load_inputs(meshy_id: str, rep: dict) -> dict:
                            "meshes": [{"path": list(path), "vertices": _vertices(bundle, pdoc, key)} for path, key in _mesh_slots(pslot)]}
     placeholders = _load("review/overview/checks.json")["placeholders"]
     hint_deg, hint_source = expected_yaw_deg(meshy_id, received, placeholders)
+    # 入口（W09R-B）: 期待値は素材の仕上げの検査（review/<M>/checks.json の door_opening）から求め、地区の配置データから求めない
+    entrance = None
+    if rep.get("entrance"):
+        opening = _load(f"review/{meshy_id}/checks.json")["door_opening"]
+        entrance = {"hinges": {slot: opening["hinges"][name]["local_bottom"] for slot, name in rep["entrance"]["hinges"].items()},
+                    "hall": rep["entrance"]["hall"], "hall_depth_m": float(rep["entrance"]["hall_depth_m"]),
+                    "opening_centre_floor_local": [opening["opening_local_m"]["centre_x"], opening["opening_local_m"]["wall_y"],
+                                                   opening["opening_local_m"]["z_bottom"]]}
     return {
         "bundle": bundle.relative_to(PROJECT_ROOT).as_posix(),
         "bundle_root_name": doc["slot"]["name"],
@@ -130,6 +146,7 @@ def load_inputs(meshy_id: str, rep: dict) -> dict:
         "frame_origin_world": placeholders[meshy_id]["frame_origin_world"],
         "placeholder_asset": next(a for a in _load(f"assets/manifest/{rep['district']}.json")["assets"] if a["asset_id"] == rep["placeholder"]),
         "moving_parts": moving,
+        "entrance": entrance,
         "declared": {"slots": ds, "components": dc + auto},
     }
 
@@ -378,6 +395,41 @@ def check_one(root: dict, meshy_id: str, rep: dict, inp: dict) -> dict:
             problems.append(f"attachment {part['part_id']} is {d:.4f} m off")
     out["attachment_points"] = attach
 
+    # 入口（W09R-B）: 地区の扉の蝶番と玄関ホールが、素材の開口に合っているか
+    ent = inp.get("entrance")
+    if ent:
+        front_world = b2r(rz(inp["hint_deg"], [0.0, 1.0, 0.0]))
+        district_node, district_prefix = vr_chain[-2], tuple(x["name"] for x in vr_chain[:-1])
+        ent_out: dict = {"hinges": []}
+        for slot_name, local in ent["hinges"].items():
+            chain = next((chain_for(root, p) for p in _paths_named(district_node, slot_name, district_prefix)), None)
+            if chain is None:
+                problems.append(f"entrance {slot_name} not found")
+                continue
+            live = to_world(chain, (0.0, 0.0, 0.0))
+            exp = [origin_exp[i] + b2r(rz(inp["hint_deg"], local))[i] for i in range(3)]
+            f2 = to_world(chain, (0.0, 0.0, 1.0))
+            n2 = math.sqrt(sum((f2[i] - live[i]) ** 2 for i in range(3))) or 1.0
+            parallel = abs(sum((f2[i] - live[i]) / n2 * front_world[i] for i in range(3)))
+            ent_out["hinges"].append({"slot": slot_name, "live_world": [round(v, 4) for v in live], "expected": [round(v, 4) for v in exp],
+                                      "diff_m": round(dist(live, exp), 4), "door_plane_parallel_to_wall": round(parallel, 4)})
+            if dist(live, exp) > TOL_M:
+                problems.append(f"entrance {slot_name} is {dist(live, exp):.4f} m away from the opening's hinge line")
+            if parallel < 1.0 - 1e-3:
+                problems.append(f"entrance {slot_name}: the door is not in the wall plane")
+        chain = next((chain_for(root, p) for p in _paths_named(district_node, ent["hall"], district_prefix)), None)
+        if chain is None:
+            problems.append(f"entrance {ent['hall']} not found")
+        else:
+            live = to_world(chain, (0.0, 0.0, 0.0))
+            centre = [origin_exp[i] + b2r(rz(inp["hint_deg"], ent["opening_centre_floor_local"]))[i] for i in range(3)]
+            exp = [centre[i] - front_world[i] * ent["hall_depth_m"] for i in range(3)]
+            ent_out["hall"] = {"slot": ent["hall"], "live_world": [round(v, 4) for v in live], "expected": [round(v, 4) for v in exp],
+                               "diff_m": round(dist(live, exp), 4)}
+            if dist(live, exp) > TOL_M:
+                problems.append(f"entrance {ent['hall']} is {dist(live, exp):.4f} m away from behind the opening")
+        out["entrance"] = ent_out
+
     # 当たり判定
     fixed_name = f"{rep['visual_root']}_FixedCollision"
     fixed = next((x for x in vr_chain[-2].get("children") or [] if x["name"] == fixed_name), None)
@@ -389,6 +441,33 @@ def check_one(root: dict, meshy_id: str, rep: dict, inp: dict) -> dict:
     out["colliders_under_moving_parts"] = [x["name"] for r in part_roots for x in [r, *_descendants(r)] if component(x, "MeshCollider")]
     if out["colliders_under_moving_parts"]:
         problems.append(f"colliders under the moving parts: {out['colliders_under_moving_parts']}")
+    if rep.get("collision", True) == "finished":
+        # 素材のメッシュが当たり判定（W09R-B の M03）: 仮モデルの FixedCollision は Slot を残して MeshCollider を止め、素材の
+        # すべてのメッシュの Slot に MeshCollider がある。素材のバンドルの中のそれ以外の Slot に当たり判定は無い
+        fcol = component(fixed, "MeshCollider")
+        out["fixed_collision"] = {"slot": fixed_name, "exists": fixed is not None, "collider_enabled": member(fcol, "Enabled")}
+        if fixed is None or fcol is None:
+            problems.append(f"{fixed_name} or its MeshCollider is missing (expected to be kept and disabled)")
+        elif member(fcol, "Enabled") is not False:
+            problems.append(f"{fixed_name}: MeshCollider.Enabled is {member(fcol, 'Enabled')!r}, expected False")
+        mesh_slots = {id(c[-1]) for c, _ in main_meshes}
+        rows = []
+        for chain, _ in main_meshes:
+            node = chain[-1]
+            col, mesh = component(node, "MeshCollider"), component(node, "StaticMesh")
+            ok = {"collider_enabled": member(col, "Enabled") is True,
+                  "static_character_collider": member(col, "Type") == "Static" and member(col, "CharacterCollider") is True,
+                  "uses_own_static_mesh": mesh is not None and col is not None and member(col, "Mesh") == mesh["id"]}
+            rows.append({"slot": node["name"], **ok})
+            bad = [k for k, v in ok.items() if not v]
+            if bad:
+                problems.append(f"{node['name']}: finished-asset collider fails {bad}")
+        out["finished_colliders"] = rows
+        extra = [x["name"] for x in [bundle_root, *_descendants(bundle_root)] if component(x, "MeshCollider") and id(x) not in mesh_slots]
+        if extra:
+            problems.append(f"colliders on non-mesh Slots under the finished asset: {extra}")
+        out["problems"] = problems
+        return out
     if rep.get("collision", True) is False:
         # 空を飛ぶ・動く物: 当たり判定を付けない方針。仮モデルに FixedCollision があるのに False と書いたなら設定の誤り
         out["fixed_collision"] = {"slot": fixed_name, "expected": False, "exists": fixed is not None}

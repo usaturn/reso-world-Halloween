@@ -241,3 +241,69 @@ def test_moving_part_declaration_without_a_mesh_is_detected() -> None:
     inputs = copy.deepcopy(INPUTS_MOVING)
     inputs["moving_parts"]["Leaf"]["meshes"] = []
     assert any("has no mesh" in p for p in verify_live.check_one(_world_moving(), "MX", REP_MOVING, inputs)["problems"])
+
+
+# W09R-B (#48): M03's collision is its own mesh, and the placeholder's FixedCollision stays as a Slot with its collider
+# disabled (collision="finished"). If these guards broke, an invisible placeholder-shaped collider (a column in the
+# central arch, a 0.28 m ledge in front of the bays) left enabled, or a mansion without any collider (walk-through
+# walls), would be recorded as verified with no error. The first test also keeps the correct state passing.
+REP_FINISHED = {**REP, "collision": "finished"}
+
+
+def _world_finished() -> dict:
+    world = _world()
+    next(c for c in _find(world, "Proxy_Body_FixedCollision")["components"] if c["id"] == "c1")["members"]["Enabled"]["value"] = False
+    _find(world, "Asset")["components"].append(_comp("c2", "MeshCollider", Enabled=True, Type="Static", CharacterCollider=True, Mesh="id:m2"))
+    return world
+
+
+def _problems_finished(world: dict) -> list[str]:
+    return verify_live.check_one(world, "MX", REP_FINISHED, copy.deepcopy(INPUTS))["problems"]
+
+
+def test_placeholder_collider_left_enabled_is_detected_for_a_finished_asset_collision() -> None:
+    assert _problems_finished(_world_finished()) == []
+    world = _world_finished()
+    next(c for c in _find(world, "Proxy_Body_FixedCollision")["components"] if c["id"] == "c1")["members"]["Enabled"]["value"] = True
+    assert any("expected False" in p for p in _problems_finished(world))
+
+
+def test_finished_asset_without_its_collider_is_detected() -> None:
+    world = _world_finished()
+    asset = _find(world, "Asset")
+    asset["components"] = [c for c in asset["components"] if c["id"] != "c2"]
+    assert any("finished-asset collider fails" in p for p in _problems_finished(world))
+
+
+# W09R-B (#48): the district's door hinges and entrance hall must sit on the finished asset's door opening. The expected
+# values come from the asset's opening (review/<M>/checks.json), not from the district layout, so a door left at the P1
+# position (0.37 m off the opening) or a hall that did not follow it is reported instead of being recorded as verified.
+INPUTS_ENTRANCE = {**INPUTS, "entrance": {"hinges": {"HingeL": [0.5, 1.0, 0.2]}, "hall": "Hall", "hall_depth_m": 1.5,
+                                          "opening_centre_floor_local": [0.0, 1.0, 0.2]}}
+
+
+def _world_entrance() -> dict:
+    # asset origin (0, 1.6, 0) turned 180 deg: hinge (0.5, 1.0, 0.2) -> Resonite (-0.5, 1.8, -1.0); the opening centre on the
+    # floor -> (0, 1.8, -1.0) and 1.5 m behind the wall (+Z, opposite to the asset's front -Z) -> (0, 1.8, 0.5)
+    world = _world()
+    proxy = _find(world, "Proxy")
+    proxy["children"] += [_slot("Door", pos=(0, 0.2, -1.0), children=[_slot("HingeL", pos=(-0.5, 0, 0))]),
+                          _slot("Hall", pos=(0, 0.2, 0.5))]
+    return world
+
+
+def _problems_entrance(world: dict) -> list[str]:
+    return verify_live.check_one(world, "MX", REP, copy.deepcopy(INPUTS_ENTRANCE))["problems"]
+
+
+def test_entrance_door_off_the_opening_is_detected() -> None:
+    assert _problems_entrance(_world_entrance()) == []
+    world = _world_entrance()
+    _find(world, "Door")["position"]["x"] = -0.3725  # the P1 position relative to the finished opening
+    assert any("HingeL is" in p and "hinge line" in p for p in _problems_entrance(world))
+
+
+def test_entrance_hall_off_the_opening_is_detected() -> None:
+    world = _world_entrance()
+    _find(world, "Hall")["position"]["x"] = -0.3725
+    assert any("Hall is" in p for p in _problems_entrance(world))

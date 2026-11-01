@@ -23,6 +23,9 @@ from mathutils import Euler, Vector  # type: ignore
 
 from modeling.B_mansion.layout_data import (
     COMMON_PLACEMENTS,
+    DOOR_HEIGHT,
+    DOOR_ORIGIN,
+    HALL_ORIGIN,
     build_b_mansion_area_layout_dict,
 )
 from modeling.common.build import BLEND_REL_PATH as COMMON_BLEND_REL_PATH
@@ -308,7 +311,7 @@ def get_b_mansion_materials() -> dict[str, bpy.types.Material]:
 def build_courtyard_ground(
     col: bpy.types.Collection, mats: dict[str, bpy.types.Material]
 ) -> dict[str, Any]:
-    """Build `BMN_CourtyardGround_001` at (0.0, 32.0, 1.5), including porch steps to z=1.779m."""
+    """Build `BMN_CourtyardGround_001` at (0.0, 32.0, 1.5), with the paving run up to M03's own porch step."""
     bm = bmesh.new()
     uv = bm.loops.layers.uv.new("UVMap")
     # Origin is (0.0, 32.0, 1.5)
@@ -325,14 +328,13 @@ def build_courtyard_ground(
         _add_box(bm, uv, (x_in, -7.5, 0.0), (x_out, 3.8, 0.08), material_index=1)
         _add_box(bm, uv, (x_in, -7.5, 0.0), (x_out, -7.25, 0.20), material_index=2)
         _add_box(bm, uv, (x_in, 3.55, 0.0), (x_out, 3.8, 0.20), material_index=2)
-    # 4. Gentle 3-step / ramp porch apron bridging world y=34.8..36.39 (local y=2.8..4.39) up to z=+0.279m
-    # Aligned with M03 porch arch centre at world x=+0.335 (stops flush at mansion plinth y=36.3895 to prevent z-fighting)
-    _add_box(bm, uv, (-1.6, 2.8, 0.0), (2.25, 4.388, 0.10), material_index=2)
-    _add_box(bm, uv, (-1.45, 3.35, 0.10), (2.10, 4.388, 0.19), material_index=2)
-    _add_box(bm, uv, (-1.30, 3.88, 0.19), (1.95, 4.388, 0.279), material_index=2)
-    # Side step cheek blocks
-    _add_box(bm, uv, (-1.85, 2.8, 0.0), (-1.45, 4.388, 0.42), material_index=2)
-    _add_box(bm, uv, (2.05, 2.8, 0.0), (2.45, 4.388, 0.42), material_index=2)
+    # 4. Paving run-out to the finished M03's porch (W09R-B, Issue #48; user decision 2026-11-01).
+    # The finished M03 has its own porch steps (world z 1.5 -> 1.68 -> porch floor 1.870, front edge world
+    # y 37.03..37.06, x -1.0..2.4) 0.67 m north of where the P1 placeholder's plinth ended, so the former 3-step
+    # apron (top z 1.779 at y 36.388) would have dropped visitors back onto the plateau. It is removed and the
+    # terrace is extended at the same height (top 0.065) from y 36.4 to 37.12 (a few cm under M03's step), so
+    # the M03 steps (+0.115 m, +0.19 m) lead to the porch. Starts exactly at the terrace edge (no overlapping tops).
+    _add_box(bm, uv, (-1.1, 4.4, 0.0), (2.5, 5.12, 0.065), material_index=0)
 
     obj = _create_mesh_obj(
         "BMN_CourtyardGround_001",
@@ -364,7 +366,7 @@ def build_courtyard_ground(
         },
         "is_placeholder": False,
         "future_target": None,
-        "notes": "Courtyard slate paving, east/west diagonal bridge connector walkways, graveyard soil beds, and gentle 3-step porch approach rising +0.279m (z=1.779m) to M03's front porch.",
+        "notes": "Courtyard slate paving, east/west diagonal bridge connector walkways, graveyard soil beds, and a paving run-out (world y 36.4..37.12) to the finished M03's own porch steps (z 1.68 and the porch floor 1.870). W09R-B removed the P1 3-step apron.",
     }
 
 
@@ -791,7 +793,9 @@ def build_mansion_placeholder(
         "notes": (
             "P1 architectural placeholder for M03_HauntedMansion_001 matching confirmed W09 dimensions "
             "(15.0m x 10.221m x 10.607m), porch floor (z_local=0.279m -> z_world=1.779m), front arcade, "
-            "and open doorway cutout at world (0.335, 39.95, 1.779)."
+            "and open doorway cutout at world (0.335, 39.95, 1.779). Since W09R-B (Issue #48, P2) Resonite hides this "
+            "placeholder and disables its FixedCollision collider: the finished M03 is the visual and its own mesh is the "
+            "collision. The placeholder keeps the P1 doorway and plinth, so the moved G06 doors no longer fit it in Blender."
         ),
     }
 
@@ -799,7 +803,7 @@ def build_mansion_placeholder(
 def build_mansion_double_door(
     col: bpy.types.Collection, mats: dict[str, bpy.types.Material]
 ) -> dict[str, Any]:
-    """Build `BMN_MansionDoubleDoor_001` (G06) at (0.335, 39.95, 1.779) matching M03's 1.618m x 2.683m doorway."""
+    """Build `BMN_MansionDoubleDoor_001` (G06) at DOOR_ORIGIN matching the finished M03's 1.618m x 2.592m doorway."""
     asset_id = "BMN_MansionDoubleDoor_001"
     frame_id = f"{asset_id}_Frame"
     hinge_l_id = f"{asset_id}_HingeLeft"
@@ -807,21 +811,23 @@ def build_mansion_double_door(
     hinge_r_id = f"{asset_id}_HingeRight"
     leaf_r_id = f"{asset_id}_LeafRight"
 
-    root = _create_empty_obj(asset_id, col, location=(0.335, 39.95, 1.779))
+    root = _create_empty_obj(asset_id, col, location=DOOR_ORIGIN)
 
-    # Static gothic arch doorframe surrounding x=-0.809..+0.809, z=0.0..2.683
+    # Static gothic arch doorframe surrounding x=-0.809..+0.809, z=0.0..DOOR_HEIGHT. The jambs and the lintel
+    # straddle M03's single-sided wall (world y 39.952) and cover the cut edges of its opening (W09-M03 8.)
+    h = DOOR_HEIGHT
     fbm = bmesh.new()
     fuv = fbm.loops.layers.uv.new("UVMap")
-    _add_box(fbm, fuv, (-0.94, -0.14, 0.0), (-0.809, 0.14, 2.75), material_index=0)
-    _add_box(fbm, fuv, (0.809, -0.14, 0.0), (0.94, 0.14, 2.75), material_index=0)
-    _add_box(fbm, fuv, (-0.96, -0.16, 2.683), (0.96, 0.16, 2.92), material_index=0)
+    _add_box(fbm, fuv, (-0.94, -0.14, 0.0), (-0.809, 0.14, h + 0.067), material_index=0)
+    _add_box(fbm, fuv, (0.809, -0.14, 0.0), (0.94, 0.14, h + 0.067), material_index=0)
+    _add_box(fbm, fuv, (-0.96, -0.16, h), (0.96, 0.16, h + 0.237), material_index=0)
     frame_obj = _create_mesh_obj(frame_id, fbm, [mats["wrought_iron"]], col, parent=root)
 
-    # Left Hinge at local (-0.809, 0.0, 0.0) -> world (-0.474, 39.95, 1.779)
+    # Left Hinge at local (-0.809, 0.0, 0.0) -> world (-0.1015, 39.95, 1.870) (M03's hinge line)
     hinge_l = _create_empty_obj(hinge_l_id, col, location=(-0.809, 0.0, 0.0), parent=root)
     lbm = bmesh.new()
     luv = lbm.loops.layers.uv.new("UVMap")
-    _add_box(lbm, luv, (0.0, -0.05, 0.0), (0.802, 0.05, 2.66), material_index=0)
+    _add_box(lbm, luv, (0.0, -0.05, 0.0), (0.802, 0.05, h - 0.023), material_index=0)
     # Iron strap hinges + ring knocker at x=+0.66
     _add_box(lbm, luv, (0.0, -0.07, 0.45), (0.55, 0.07, 0.55), material_index=1)
     _add_box(lbm, luv, (0.0, -0.07, 2.05), (0.55, 0.07, 2.15), material_index=1)
@@ -834,11 +840,11 @@ def build_mansion_double_door(
         parent=hinge_l,
     )
 
-    # Right Hinge at local (+0.809, 0.0, 0.0) -> world (+1.144, 39.95, 1.779)
+    # Right Hinge at local (+0.809, 0.0, 0.0) -> world (+1.5165, 39.95, 1.870) (M03's hinge line)
     hinge_r = _create_empty_obj(hinge_r_id, col, location=(0.809, 0.0, 0.0), parent=root)
     rbm = bmesh.new()
     ruv = rbm.loops.layers.uv.new("UVMap")
-    _add_box(rbm, ruv, (-0.802, -0.05, 0.0), (0.0, 0.05, 2.66), material_index=0)
+    _add_box(rbm, ruv, (-0.802, -0.05, 0.0), (0.0, 0.05, h - 0.023), material_index=0)
     _add_box(rbm, ruv, (-0.55, -0.07, 0.45), (0.0, 0.07, 0.55), material_index=1)
     _add_box(rbm, ruv, (-0.55, -0.07, 2.05), (0.0, 0.07, 2.15), material_index=1)
     _add_box(rbm, ruv, (-0.72, -0.09, 1.20), (-0.60, 0.09, 1.38), material_index=2)
@@ -918,16 +924,17 @@ def build_mansion_double_door(
 def build_entrance_hall(
     col: bpy.types.Collection, mats: dict[str, bpy.types.Material]
 ) -> dict[str, Any]:
-    """Build `BMN_EntranceHall_001` at (0.335, 41.80, 1.779) directly behind the G06 double doors."""
+    """Build `BMN_EntranceHall_001` at HALL_ORIGIN directly behind the G06 double doors."""
     asset_id = "BMN_EntranceHall_001"
     room_id = f"{asset_id}_Room"
     hook_id = f"{asset_id}_ChandelierHook"
 
-    root = _create_empty_obj(asset_id, col, location=(0.335, 41.80, 1.779))
+    root = _create_empty_obj(asset_id, col, location=HALL_ORIGIN)
 
     bm = bmesh.new()
     uv = bm.loops.layers.uv.new("UVMap")
-    # Origin at (0.335, 41.80, 1.779); door plane is at world y=39.95 -> local y=-1.85
+    # Origin at HALL_ORIGIN; door plane is at world y=39.95 -> local y=-1.85. The room closes the view through
+    # M03's doorway (M03's wall is single-sided and has nothing behind the opening; W09-M03 8.)
     # Floor slab & velvet red carpet runner (local x=-1.60..+1.60, y=-1.85..+1.85)
     _add_box(bm, uv, (-1.60, -1.85, -0.06), (1.60, 1.85, 0.02), material_index=0)
     _add_box(bm, uv, (-0.65, -1.82, 0.02), (0.65, 1.65, 0.05), material_index=1)
@@ -1476,8 +1483,8 @@ def build_b_mansion() -> dict[str, Any]:
             },
             {
                 "filepath": facade_png,
-                "location": (0.335, 31.8, 2.75),
-                "target": (0.335, 40.0, 2.95),
+                "location": (DOOR_ORIGIN[0], 31.8, 2.75),
+                "target": (DOOR_ORIGIN[0], 40.0, 2.95),
                 "lens_mm": 28.0,
             },
             {
