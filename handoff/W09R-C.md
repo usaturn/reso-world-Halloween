@@ -25,7 +25,7 @@
 - 閉じた子の所有ファイル（W04・W09-M04・W09-M08・W08）は変えていない
 - state: 親の checkout の `/workspaces/reso-world/worlds/reso-world-Halloween/.resoloop/state/` に `p2m_M04.json`・`p2m_M08.json` を足し、`p2_C_candy.json` を更新した。消すと次の apply が同じ物をもう一度作るので消さない
 - 版: Resonite 2026.10.29.1239、ResoniteLink 0.13.1.0、resoloop 0.2.0、Blender 5.0.1
-- 保存（確認事項 4）: 〔保存の後に記入〕
+- 保存（確認事項 4）: GPT のレビューへの対応の後に、エージェントの依頼で利用者が Resonite で 1 回保存した（2026-11-01、03:02Z より前）。保存の後は apply していない。保存の後に読み取りだけで確かめた（03:02:54Z〜）: 全 10 宣言の diff が変更 0。M04・M08 の資産は「source hash and imported URL match state」で、URL はまだ `local://`（W09R と同じく、ワールドを開き直すと `resdb:///` に移り、次の diff は no-op と判定する。記録 12.1）
 
 ## 4. 再実行手順
 
@@ -81,7 +81,7 @@ uv run python modeling/p2_meshy/verify_live.py --url "$URL" --raw-out <Git の�
 
 ## 7. 未確認・未解決
 
-- 保存（確認事項 4）の後の M04・M08 の状態（3 章の保存の記録）。再読込の後に画像・光源が保たれるかは P4
+- 再読込の後に M04・M08 の画像・光源が保たれるか（P4）。保存の後の状態は 3 章
 - M08 が巡回しているときの見え方（P3）、VR、二人以上
 - 6.2 の東の床のはみ出し（記録だけ）
 
