@@ -433,50 +433,116 @@ def check_lens_attachment(att_chain: list[dict], asset_chain: list[dict], lens: 
     return row, problems
 
 
+def _clip_slab(poly: list[tuple[float, float, float]], lo: float, hi: float) -> list[tuple[float, float, float]]:
+    """(a, u, v) の多角形を lo <= a <= hi で切り取る（Sutherland–Hodgman）。"""
+    for keep in (lambda q: q[0] - lo, lambda q: hi - q[0]):
+        out = []
+        for i, cur in enumerate(poly):
+            prev = poly[i - 1]
+            dc, dp = keep(cur), keep(prev)
+            if dc >= 0:
+                if dp < 0:
+                    t = dp / (dp - dc)
+                    out.append(tuple(prev[k] + (cur[k] - prev[k]) * t for k in range(3)))
+                out.append(cur)
+            elif dp >= 0:
+                t = dp / (dp - dc)
+                out.append(tuple(prev[k] + (cur[k] - prev[k]) * t for k in range(3)))
+        poly = out
+        if not poly:
+            return []
+    return poly
+
+
+def _dist_to_polygon_2d(pts: list[tuple[float, float]]) -> float:
+    """原点から凸多角形（面の上の 2 次元、退化して線分・点でもよい）までの距離。中にあれば 0。"""
+    n = len(pts)
+    if n >= 3:
+        cross = [pts[i][0] * pts[(i + 1) % n][1] - pts[i][1] * pts[(i + 1) % n][0] for i in range(n)]
+        area2 = sum(cross)
+        if abs(area2) > 1e-12 and all(c * area2 >= -1e-12 for c in cross):
+            return 0.0
+    best = math.inf
+    for i in range(n):
+        (x0, y0), (x1, y1) = pts[i], pts[(i + 1) % n]
+        dx, dy = x1 - x0, y1 - y0
+        ll = dx * dx + dy * dy
+        t = 0.0 if ll < 1e-18 else max(0.0, min(1.0, -(x0 * dx + y0 * dy) / ll))
+        best = min(best, math.hypot(x0 + dx * t, y0 + dy * t))
+    return best
+
+
 def check_dial_hands(hands: list[dict], dial_chain: list[dict], dial_mesh: dict, centre: list[float], axis: list[float]) -> tuple[list[dict], list[str]]:
     """時計の針が素材の文字盤の前で回るか（W09R-E の M07）。centre は文字盤の中心、axis は文字盤の面の前向き（どちらも世界）。
 
     hands は針ごとに {"pivot": 名前, "pivot_chain", "hand_chain", "mesh"}（mesh は地区の宣言の針のメッシュ、ローカル）。
-    - 回転軸: 回転軸の Slot の原点が、文字盤の中心を通る軸の上（軸からの距離 TOL_M 以内）で、文字盤の面より前
-    - めり込み: 針の頂点の、軸に沿った前後の範囲（後ろの面〜前の面）と、軸からの最も遠い距離（針が回る半径）を求める。
-      素材の三角形のうち、軸からの距離（頂点・辺の中点・重心の最小）が回る半径以内の物が、針の前後の範囲に入っていない
-      （針は軸のまわりに 360° 回るので、回した位置のどこでもめり込まない）。範囲より後ろの面のうち最も前の物と、針の後ろの面の
-      隙間を返す
+    - 回転軸: 回転軸の Slot の原点が、文字盤の中心を通る軸の上（軸からの距離 TOL_M 以内）で、文字盤の面より前。回転軸の Slot と
+      針の Slot の前方（ローカルの +Z。W06 の針の回転軸）が文字盤の軸と平行で、針の Slot の原点が回転軸の Slot の原点にある
+      （PR #55 の GPT のレビュー: 回転軸の Slot だけを見ると、針の Slot がずれた・傾いた状態を合格にした）
+    - めり込み: 針の頂点の、軸に沿った前後の範囲（後ろの面〜前の面）と、軸からの最も遠い距離（針が回る半径）を求める。素材の
+      三角形を前後の範囲で切り取り、残りを文字盤の面へ移した形が、回る半径の円と重ならない（針は軸のまわりに 360° 回るので、
+      回した位置のどこでもめり込まない。三角形の頂点などの点だけで選ぶと、大きな三角形が円を横切るのを見落とす。PR #55 の
+      GPT のレビュー）。前後の範囲より後ろにあり、面へ移した形が円と重なる三角形のうち最も前の物と、針の後ろの面の隙間を返す
     """
-    def rel(p) -> tuple[float, float]:
-        d = [p[i] - centre[i] for i in range(3)]
-        a = sum(d[i] * axis[i] for i in range(3))
-        return a, math.sqrt(max(0.0, sum(d[i] ** 2 for i in range(3)) - a * a))
+    ref = (1.0, 0.0, 0.0) if abs(axis[0]) < 0.9 else (0.0, 1.0, 0.0)
+    e1 = [ref[1] * axis[2] - ref[2] * axis[1], ref[2] * axis[0] - ref[0] * axis[2], ref[0] * axis[1] - ref[1] * axis[0]]
+    n1 = math.sqrt(sum(c * c for c in e1))
+    e1 = [c / n1 for c in e1]
+    e2 = [axis[1] * e1[2] - axis[2] * e1[1], axis[2] * e1[0] - axis[0] * e1[2], axis[0] * e1[1] - axis[1] * e1[0]]
 
-    wv = [rel(to_world(dial_chain, v)) for v in dial_mesh["vertices"]]
-    wp = [to_world(dial_chain, v) for v in dial_mesh["vertices"]]
-    tris = []
-    for a, b, c in dial_mesh["triangles"]:
-        pts = [wp[a], wp[b], wp[c]]
-        extra = [[(pts[i][k] + pts[j][k]) / 2 for k in range(3)] for i, j in ((0, 1), (1, 2), (2, 0))]
-        extra.append([sum(q[k] for q in pts) / 3 for k in range(3)])
-        radial = min([wv[a][1], wv[b][1], wv[c][1], *(rel(q)[1] for q in extra)])
-        along = [wv[a][0], wv[b][0], wv[c][0]]
-        tris.append((radial, min(along), max(along)))
+    def auv(p) -> tuple[float, float, float]:
+        d = [p[i] - centre[i] for i in range(3)]
+        return (sum(d[i] * axis[i] for i in range(3)), sum(d[i] * e1[i] for i in range(3)), sum(d[i] * e2[i] for i in range(3)))
+
+    def forward(chain: list[dict]) -> list[float]:
+        o, f = to_world(chain, (0.0, 0.0, 0.0)), to_world(chain, (0.0, 0.0, 1.0))
+        n = math.sqrt(sum((f[i] - o[i]) ** 2 for i in range(3))) or 1.0
+        return [(f[i] - o[i]) / n for i in range(3)]
+
+    wp = [auv(to_world(dial_chain, v)) for v in dial_mesh["vertices"]]
+    tris = [(wp[a], wp[b], wp[c]) for a, b, c in dial_mesh["triangles"]]
     rows, problems = [], []
     for h in hands:
-        along, radial = rel(to_world(h["pivot_chain"], (0.0, 0.0, 0.0)))
-        hv = [rel(to_world(h["hand_chain"], v)) for v in h["mesh"]["vertices"]]
-        rear, front, reach = min(a for a, _ in hv), max(a for a, _ in hv), max(r for _, r in hv)
-        near = [t for t in tris if t[0] <= reach]
-        inside = [t for t in near if t[2] >= rear and t[1] <= front]
-        behind = [t[2] for t in near if t[2] < rear]
+        po = to_world(h["pivot_chain"], (0.0, 0.0, 0.0))
+        along, pu, pv = auv(po)
+        radial = math.hypot(pu, pv)
+        hand_off = dist(to_world(h["hand_chain"], (0.0, 0.0, 0.0)), po)
+        tilt = {k: sum(fw[i] * axis[i] for i in range(3)) for k, fw in (("pivot", forward(h["pivot_chain"])), ("hand", forward(h["hand_chain"])))}
+        hv = [auv(to_world(h["hand_chain"], v)) for v in h["mesh"]["vertices"]]
+        rear, front = min(q[0] for q in hv), max(q[0] for q in hv)
+        reach = max(math.hypot(q[1], q[2]) for q in hv)
+        inside, behind, near = 0, [], 0
+        for tri in tris:
+            amin, amax = min(q[0] for q in tri), max(q[0] for q in tri)
+            if amin > front:
+                continue
+            if any(all(q[k] > reach for q in tri) or all(q[k] < -reach for q in tri) for k in (1, 2)):
+                continue  # 面へ移した形の外接箱が円の外
+            if amax < rear:
+                if _dist_to_polygon_2d([(q[1], q[2]) for q in tri]) <= reach:
+                    near += 1
+                    behind.append(amax)
+                continue
+            clipped = _clip_slab(list(tri), rear, front)
+            if clipped and _dist_to_polygon_2d([(q[1], q[2]) for q in clipped]) <= reach:
+                inside += 1
         gap = rear - max(behind) if behind else None
         row = {"pivot": h["pivot"], "pivot_off_axis_m": round(radial, 4), "pivot_in_front_of_dial_centre_m": round(along, 4),
+               "hand_origin_off_pivot_m": round(hand_off, 4), "axis_alignment": {k: round(v, 6) for k, v in tilt.items()},
                "hand_rear_m": round(rear, 4), "hand_front_m": round(front, 4), "reach_m": round(reach, 4),
-               "triangles_within_reach": len(near), "triangles_in_hand_slab": len(inside), "gap_to_dial_m": None if gap is None else round(gap, 4)}
+               "triangles_behind_within_reach": near, "triangles_in_hand_slab": inside, "gap_to_dial_m": None if gap is None else round(gap, 4)}
         rows.append(row)
         if radial > TOL_M:
             problems.append(f"{h['pivot']}: {radial:.4f} m off the dial centre axis")
         if along <= 0.0:
             problems.append(f"{h['pivot']}: not in front of the dial face ({along:+.4f} m)")
+        if hand_off > TOL_M:
+            problems.append(f"{h['pivot']}: the hand is {hand_off:.4f} m off its pivot")
+        bad_tilt = [k for k, v in tilt.items() if v < 1.0 - 1e-3]
+        if bad_tilt:
+            problems.append(f"{h['pivot']}: {bad_tilt} forward is not parallel to the dial axis")
         if inside:
-            problems.append(f"{h['pivot']}: {len(inside)} triangles of the dial are inside the swept hand ({rear:.4f}..{front:.4f} m)")
+            problems.append(f"{h['pivot']}: {inside} triangles of the dial are inside the swept hand ({rear:.4f}..{front:.4f} m)")
         elif gap is None:
             problems.append(f"{h['pivot']}: no dial surface behind the hand")
     return rows, problems

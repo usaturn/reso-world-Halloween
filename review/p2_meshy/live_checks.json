@@ -1177,10 +1177,15 @@
             "pivot": "EFR_ClockTower_001_HourHandPivot",
             "pivot_off_axis_m": 0.0,
             "pivot_in_front_of_dial_centre_m": 0.0651,
+            "hand_origin_off_pivot_m": 0.0,
+            "axis_alignment": {
+              "pivot": 1.0,
+              "hand": 1.0
+            },
             "hand_rear_m": 0.0651,
             "hand_front_m": 0.0951,
             "reach_m": 0.62,
-            "triangles_within_reach": 254,
+            "triangles_behind_within_reach": 254,
             "triangles_in_hand_slab": 0,
             "gap_to_dial_m": 0.0125
           },
@@ -1188,10 +1193,15 @@
             "pivot": "EFR_ClockTower_001_MinuteHandPivot",
             "pivot_off_axis_m": 0.0,
             "pivot_in_front_of_dial_centre_m": 0.1051,
+            "hand_origin_off_pivot_m": 0.0,
+            "axis_alignment": {
+              "pivot": 1.0,
+              "hand": 1.0
+            },
             "hand_rear_m": 0.0991,
             "hand_front_m": 0.1351,
             "reach_m": 0.93,
-            "triangles_within_reach": 1050,
+            "triangles_behind_within_reach": 1058,
             "triangles_in_hand_slab": 0,
             "gap_to_dial_m": 0.0465
           }
