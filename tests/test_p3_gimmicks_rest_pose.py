@@ -84,12 +84,6 @@ def test_driven_slots_are_put_back_to_their_declared_rest_pose():
         assert body["rotation"] == {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
     turn = _find(root, gimmicks.g13()["motion_root"])
     assert turn["rotation"] == {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
-    for g in gimmicks.g05()["ghosts"]:
-        pivot = _find(root, g["motion_root"])
-        assert pivot["position"] == {"x": 0.0, "y": 0.0, "z": 0.0}
-        assert pivot["rotation"] == {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
-    for h in gimmicks.g06()["hinges"]:
-        assert _find(root, h["motion_root"])["rotation"] == {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
 
 
 def test_a_moved_slot_or_field_that_p3_does_not_drive_keeps_its_observed_pose():

@@ -9,6 +9,8 @@
 観察（窓ごと。--windows の数だけ、--gap 秒あけて繰り返す）
 - 中継 6 個（おばけ 2 体の位置・回転、扉の蝶番 2 つの回転）の Value を 1 回の resoloop observe で読み、--duration 秒続ける。
   中継の Drives が FloatPivot・蝶番の Slot の Position・Rotation を指し、有効かも見る
+- 時刻を止めた標本: 窓の最初に G05Frequency・G06Frequency を 0 にして（θ = s φ・2π p の姿勢）、FloatPivot・蝶番の Slot そのものの
+  姿勢を読み、速さを戻す。式と照合し、窓の間で比べる（同じ位相の上下の差 1 cm 以内、揺れ・開きの差 0.5° 以内。漂わないか）
 - 構造: 窓の最初と最後に resoloop hierarchy で、おばけと扉のアセットの子孫が宣言と同じパスで同じローカルの変換か
   （FloatPivot は位置・回転、蝶番は回転が駆動されるので、そこだけは比べない。蝶番の位置と拡縮は比べる）
 
@@ -21,7 +23,7 @@
 - --param-check: 時刻を止めた標本（G05Frequency・G06Frequency = 0）で、中継の値と Slot そのものが式の値と一致するか
   （G05 は位相の倍率 1・0.5・0、G06 は周期の位置 0・0.2・0.25・0.5 と強さ 0.5）。範囲の外の値（強さ 5・-1、速さ -1、位相の
   倍率 1.5、周期の位置 1.5。収めない場合と姿勢が区別できる値）が範囲に収まるか。G05Frequency をゆっくり（0.004 Hz）にして
-  20 秒の間に θ/2 が時刻どおり進むか（2 体とも測れるときは位相差も）。G05Intensity 0.5・0 で範囲が縮むか。どれも元に戻し、
+  20 秒の間に θ/2 が時刻どおり進むか（2 体とも測れるときは位相差も）、揺れから求めた θ の式の上下が観察と合うか。G05Intensity 0.5・0 で範囲が縮むか。どれも元に戻し、
   戻ったかを確かめる。速さの上限（G05Frequency 1 Hz・G06Frequency 0.2 Hz）は観察の間隔では測れないので見ない
 - 包絡（バンドルのメッシュから。観察ではない）: おばけの動く範囲が W03 の配置の余裕（clearance_radius_m）の中で、中央の通路
   （Excl_B_CentralSightlineCorridor）に入らないか。扉の葉が開く間に W03 の扉の振れる範囲（Excl_B_DoorSwingAndPorch）の中に
@@ -59,6 +61,9 @@ LIVE_SYMMETRY_DEG = 10.0     # 動いている間の左右の扉の開きの差�
 CLOCK_TOL_DEG = 2.0
 CLOCK_FREQUENCY = 0.004      # ゆっくりの時刻の G05Frequency（Hz）。θ/2 は 0.72°/s
 CLOCK_WAIT_S = 20.0
+CLOCK_LIFT_TOL_M = 0.005     # ゆっくりの時刻で、揺れから求めた θ の式の上下と観察した上下の差（GPT のレビューの指摘 M-1）
+DRIFT_TOL_M = 0.01           # 窓ごとの時刻を止めた標本の、窓の間の上下の差（#59 の受け入れ基準「同じ位相の位置の差が 1 cm 以内」）
+DRIFT_TOL_DEG = 0.5          # 同じく揺れ・扉の開きの差
 VARIATION = 0.15
 DOOR_REACH = 0.9             # 窓の中で、開きが I × 85° のこの割合まで開き、(1 - この割合) まで閉じること
 CROSS_TOL_S = 1.5            # 半分開いた角度を通る時刻の間隔と、周期の半分の差の許容
@@ -242,11 +247,26 @@ def ghost_half_angles(sample: dict, params: dict[str, float]) -> dict[str, float
 
 
 def check_clock(s1: dict, t1: float, s2: dict, t2: float, params: dict[str, float]) -> dict:
-    """ゆっくりの時刻の 2 回の観察。θ/2 が π f Δt 進み、2 体の θ/2 の差が s (φ1 - φ2) / 2 か。"""
+    """ゆっくりの時刻の 2 回の観察。θ/2 が π f Δt 進み、2 体の θ/2 の差が s (φ1 - φ2) / 2 か。
+
+    θ/2 は揺れ（sin(θ/2)）から求め、上下からは cos(θ/2) の符号だけを使うので、測った各観察で、その θ の式の上下と観察した
+    上下が合うかも見る（上下だけが別の速さ・位相のグラフを見逃さない。GPT のレビューの指摘 M-1）。
+    """
     f, S = params["G05Frequency"], params["G05PhaseSpread"]
     a1, a2 = ghost_half_angles(s1, params), ghost_half_angles(s2, params)
     want = 180.0 * f * (t2 - t1)
     rows, problems = [], []
+    lift_rows = []
+    for label, sample, angles in (("first", s1, a1), ("second", s2, a2)):
+        for g in gimmicks.g05()["ghosts"]:
+            if g["asset_id"] not in angles:
+                continue
+            want_l, _ = expected_ghost(params, g, 2.0 * math.radians(angles[g["asset_id"]]))
+            got_l = sample["ghosts"][g["asset_id"]]["lift_m"]
+            lift_rows.append({"observation": label, "asset_id": g["asset_id"], "lift_m": round(got_l, 5),
+                              "lift_from_sway_m": round(want_l, 5)})
+            if abs(got_l - want_l) > CLOCK_LIFT_TOL_M:
+                problems.append(f"{g['asset_id']} ({label}): lift {got_l:.4f} m does not match the sway phase ({want_l:.4f} m)")
     both = [g["asset_id"] for g in gimmicks.g05()["ghosts"] if g["asset_id"] in a1 and g["asset_id"] in a2]
     if not both:
         problems.append("G05 clock: no ghost can be measured")
@@ -264,7 +284,7 @@ def check_clock(s1: dict, t1: float, s2: dict, t2: float, params: dict[str, floa
         pair = {"pair": [a, b], "error_deg": round(err, 3)}
         if err > CLOCK_TOL_DEG:
             problems.append(f"{a}-{b}: phase difference off by {err:.2f} deg")
-    return {"advance": rows, "phase_pair": pair, "seconds": round(t2 - t1, 3), "problems": problems}
+    return {"advance": rows, "phase_pair": pair, "lift_consistency": lift_rows, "seconds": round(t2 - t1, 3), "problems": problems}
 
 
 # ---- 窓のまとめ ------------------------------------------------------------------------------------------------------
@@ -487,6 +507,66 @@ def check_relays(url: str, keys: dict[str, str]) -> list[str]:
     return problems
 
 
+def frozen_probe(url: str, keys: dict[str, str], rest: dict, raw: list) -> dict:
+    """時刻を止めた標本（G05Frequency・G06Frequency = 0 で θ = s φ・2π p の姿勢）を Slot そのもので取り、速さを戻す。
+
+    窓ごとに取り、窓の間で比べる（同じ位相の位置が数分の間にずれないか。check_drift）。式とも照合する。
+    """
+    v = variables()
+    ids = {n: component_id(f"$member:{v[n]['key']}.Value", P3_STATE, url) for n in ("G05Frequency", "G06Frequency")}
+    before = observe_params(url)
+    try:
+        for n in ids:
+            set_member(ids[n], "Value", "0", url)
+        time.sleep(1.5)
+        params = params_of(observe_params(url))
+        hier = b_hierarchy(url, depth=2)
+        raw.append({"kind": "frozen_probe", "data": hier})
+        slots = read_slots(hier["data"], rest)
+    finally:
+        for n in ids:
+            set_member(ids[n], "Value", str(before[n]), url)
+    restored = observe_params(url)
+    res = check_frozen(slots, params, "slot")
+    problems = list(res["problems"])
+    if restored != before:
+        problems.append(f"frozen probe: variables not restored: {restored} != {before}")
+    return {"params": params, "slots": {"ghosts": {a: {"lift_m": round(g["lift_m"], 5), "sway_deg": round(g["sway_deg"], 4)}
+                                                   for a, g in slots["ghosts"].items()},
+                                        "doors": {n: {"open_deg": round(d["open_deg"], 4)} for n, d in slots["doors"].items()}},
+            "problems": problems}
+
+
+def check_drift(probes: list[dict]) -> dict:
+    """窓ごとの時刻を止めた標本を、最初の窓と比べる。同じ位相の上下の差 1 cm 以内、揺れ・扉の開きの差 0.5° 以内。"""
+    rows, problems = [], []
+    if len(probes) < 2:
+        return {"rows": rows, "problems": ["drift: needs two windows"]}
+    base = probes[0]["slots"]
+    for i, p in enumerate(probes[1:], start=2):
+        if p["params"] != probes[0]["params"]:
+            problems.append(f"drift: window {i} was probed with other values {p['params']}")
+        for a, g in base["ghosts"].items():
+            o = p["slots"]["ghosts"].get(a)
+            if o is None:
+                problems.append(f"drift: {a} is not observed in window {i}")
+                continue
+            dl, ds = abs(o["lift_m"] - g["lift_m"]), abs(o["sway_deg"] - g["sway_deg"])
+            rows.append({"window": i, "asset_id": a, "lift_diff_m": round(dl, 5), "sway_diff_deg": round(ds, 4)})
+            if dl > DRIFT_TOL_M or ds > DRIFT_TOL_DEG:
+                problems.append(f"drift: {a} moved {dl:.4f} m / {ds:.3f} deg at the same phase by window {i}")
+        for n, d in base["doors"].items():
+            o = p["slots"]["doors"].get(n)
+            if o is None:
+                problems.append(f"drift: {n} is not observed in window {i}")
+                continue
+            dd = abs(o["open_deg"] - d["open_deg"])
+            rows.append({"window": i, "hinge": n, "open_diff_deg": round(dd, 4)})
+            if dd > DRIFT_TOL_DEG:
+                problems.append(f"drift: {n} opened {dd:.3f} deg more or less at the same phase by window {i}")
+    return {"rows": rows, "problems": problems}
+
+
 def observe_window(url: str, duration: float, raw: list) -> dict:
     keys = b_keys(STATE_DIR)
     rest = rest_positions()
@@ -498,6 +578,7 @@ def observe_window(url: str, duration: float, raw: list) -> dict:
     raw.append({"kind": "hierarchy_start", "data": hier})
     window["structure_start"] = check_structure(hier["data"])
     window["relay_problems"] = check_relays(url, keys)
+    window["frozen_probe"] = frozen_probe(url, keys, rest, raw)
     t_end = time.time() + duration
     while time.time() < t_end:
         t, obs = timed(["resoloop", "observe", *sels, "--state", str(B_STATE), "--url", url, "--json"])
@@ -528,6 +609,7 @@ def observe_window(url: str, duration: float, raw: list) -> dict:
     window["variation_problems"] = check_variation(smp, params)
     window["door_clock"] = check_door_clock(smp, params)
     window["problems"] += (window["variation_problems"] + window["door_clock"]["problems"] + window["relay_problems"]
+                           + window["frozen_probe"]["problems"]
                            + window["structure_start"]["problems"] + window["structure_end"]["problems"])
     window["ok"] = not window["problems"]
     return window
@@ -670,12 +752,15 @@ def main(argv: list[str] | None = None) -> int:
                 time.sleep(args.gap)
             wins.append(observe_window(args.url, args.duration, raw))
         env = envelopes()
-        result = {"windows": wins, "gap_s": args.gap if args.windows > 1 else None, "envelopes": env,
+        drift = check_drift([w["frozen_probe"] for w in wins])
+        result = {"windows": wins, "gap_s": args.gap if args.windows > 1 else None, "drift": drift, "envelopes": env,
                   "envelope_problems": envelope_problems(env),
                   "tolerances": {"lift_m": LIFT_TOL_M, "deg": DEG_TOL, "horizontal_m": HORIZ_TOL_M, "off_axis": OFF_AXIS_TOL,
                                  "live_symmetry_deg": LIVE_SYMMETRY_DEG, "cross_s": CROSS_TOL_S, "frozen_lift_m": FROZEN_LIFT_TOL_M,
                                  "frozen_deg": FROZEN_DEG_TOL, "local": LOCAL_TOL}}
-        result["ok"] = all(w["ok"] for w in wins) and not result["envelope_problems"]
+        # 漂いの判定は 2 つ以上の窓が要る（1 つの窓の試しでは問題にしない）
+        drift_problems = drift["problems"] if args.windows > 1 else []
+        result["ok"] = all(w["ok"] for w in wins) and not result["envelope_problems"] and not drift_problems
     args.raw_out.parent.mkdir(parents=True, exist_ok=True)
     args.raw_out.write_text(json.dumps(raw, ensure_ascii=False) + "\n", encoding="utf-8")
     if not args.param_check:

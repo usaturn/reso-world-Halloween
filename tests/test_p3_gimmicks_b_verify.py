@@ -204,3 +204,32 @@ def test_envelope_rejects_a_door_that_swings_onto_the_porch(tmp_path, monkeypatc
     problems = verify_b.envelope_problems(verify_b.envelopes(doc, tmp_path, layout))
     assert len(problems) == 2 and all("toward the porch" in p for p in problems)
 
+
+
+def _clock_sample(t: float, f: float, lift_speed: float = 1.0, params=PARAMS) -> dict:
+    """ゆっくりの時刻の観察。lift_speed = 2 は上下だけが 2 倍の速さで動くグラフ（揺れは正しい）。"""
+    out = {"ghosts": {}, "doors": {}}
+    for g in GHOSTS:
+        th = 2.0 * math.pi * f * t + math.radians(g["phase_deg"])
+        lift, _ = verify_b.expected_ghost(params, g, lift_speed * th - (lift_speed - 1.0) * math.radians(g["phase_deg"]))
+        _, sway = verify_b.expected_ghost(params, g, th)
+        out["ghosts"][g["asset_id"]] = {"lift_m": lift, "sway_deg": sway, "horizontal_m": 0.0, "off_axis": 0.0}
+    return out
+
+
+def test_clock_rejects_a_lift_that_runs_at_another_speed_than_the_sway():
+    params = dict(PARAMS, G05Frequency=0.004)
+    good = verify_b.check_clock(_clock_sample(17.0, 0.004), 17.0, _clock_sample(37.0, 0.004), 37.0, params)
+    assert good["problems"] == [] and len(good["advance"]) == 2
+    bad = verify_b.check_clock(_clock_sample(17.0, 0.004, 2.0), 17.0, _clock_sample(37.0, 0.004, 2.0), 37.0, params)
+    assert bad["problems"] and all("does not match the sway phase" in p for p in bad["problems"])
+
+
+def test_drift_rejects_a_ghost_that_moved_at_the_same_phase_between_windows():
+    def probe(dlift: float) -> dict:
+        return {"params": PARAMS, "slots": {"ghosts": {g["asset_id"]: {"lift_m": 0.125 + (dlift if i == 0 else 0.0), "sway_deg": 0.0}
+                                                       for i, g in enumerate(GHOSTS)},
+                                            "doors": {h["motion_root"]: {"open_deg": 0.0} for h in HINGES}}}
+    assert verify_b.check_drift([probe(0.0), probe(0.004)])["problems"] == []
+    problems = verify_b.check_drift([probe(0.0), probe(0.02)])["problems"]
+    assert len(problems) == 1 and GHOSTS[0]["asset_id"] in problems[0]
