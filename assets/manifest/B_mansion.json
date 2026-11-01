@@ -19,19 +19,19 @@
       ],
       "dimensions_m": {
         "width": 32.4,
-        "depth": 16.92,
-        "height": 0.2
+        "depth": 16.87,
+        "height": 0.08
       },
       "bounds_local": {
         "min": [
           -16.2,
-          -11.8,
+          -11.75,
           0.0
         ],
         "max": [
           16.2,
           5.12,
-          0.2
+          0.08
         ]
       },
       "parts": [
@@ -57,16 +57,15 @@
       },
       "materials": [
         "MAT_BMN_CourtyardSlate",
-        "MAT_BMN_GraveyardSoil",
-        "MAT_BMN_MansionWallStone"
+        "MAT_BMN_GraveyardSoil"
       ],
       "textures": [],
       "metrics": {
         "measured": true,
         "measurement_source": "blender_scene",
-        "triangles": 120,
-        "vertices": 80,
-        "materials_count": 3,
+        "triangles": 72,
+        "vertices": 48,
+        "materials_count": 2,
         "objects_count": 1
       },
       "export_result": {
@@ -78,7 +77,7 @@
       "replacement": {
         "is_placeholder": false,
         "modifiable": true,
-        "notes": "Courtyard slate paving, east/west diagonal bridge connector walkways, graveyard soil beds, and a paving run-out (world y 36.4..37.12) to the finished M03's own porch steps (z 1.68 and the porch floor 1.870). W09R-B removed the P1 3-step apron.",
+        "notes": "Courtyard slate paving, east/west diagonal bridge connector walkways, graveyard soil beds, and a paving run-out (world y 36.4..37.12) to the finished M03's own porch steps (z 1.68 and the porch floor 1.870). W09R-B removed the P1 3-step apron and the four graveyard curbs, and starts the paving at y 20.25 where the north bridge ends level.",
         "future_target": null
       }
     },

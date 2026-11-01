@@ -315,19 +315,22 @@ def build_courtyard_ground(
     bm = bmesh.new()
     uv = bm.loops.layers.uv.new("UVMap")
     # Origin is (0.0, 32.0, 1.5)
-    # 1. Central courtyard slate terrace (world x=-5.2..5.2, y=20.2..36.4, local y=-11.8..+4.4)
+    # 1. Central courtyard slate terrace (world x=-5.2..5.2, y=20.25..36.4, local y=-11.75..+4.4)
     # W07 (Issue #9): top 0.065 (was 0.06). At 0.06 (world z 1.56) it lay exactly on W01's North Mansion Avenue
     # (WLD_NorthBridge_001, world z 1.50..1.56), so the two faces fought for the same pixels.
-    _add_box(bm, uv, (-5.2, -11.8, 0.0), (5.2, 4.4, 0.065), material_index=0)
+    # W09R-B (Issue #48, the user's walk on 2026-11-01): it began at y 20.2 on the sloped end of the north bridge
+    # (deck top z ~1.52 there), a 4 cm step; it now begins at y 20.25 where the bridge deck ends level at z 1.56.
+    _add_box(bm, uv, (-5.2, -11.75, 0.0), (5.2, 4.4, 0.065), material_index=0)
     # 2. East & West diagonal bridge connector paths (world y=21.2..29.5, x=-16.2..+16.2)
     _add_box(bm, uv, (-16.2, -10.8, 0.0), (-5.2, -7.8, 0.05), material_index=0)
     _add_box(bm, uv, (5.2, -10.8, 0.0), (16.2, -7.8, 0.05), material_index=0)
-    # 3. West and East graveyard soil beds with low stone curbing (world x=±5.4..±14.0, y=24.5..35.8)
+    # 3. West and East graveyard soil beds (world x=±5.4..±14.0, y=24.5..35.8)
+    # W09R-B (Issue #48, the user's walk on 2026-11-01): the four 0.20 m stone curbs along the beds' south and north
+    # edges (8.6 m long, 0.25 m wide; only those two sides) read as stray bars lying on the ground and were a step
+    # across the path from the diagonal bridges, so they are removed. The beds stay 0.08 m high.
     for sign in (-1.0, 1.0):
         x_in, x_out = sorted([sign * 5.4, sign * 14.0])
         _add_box(bm, uv, (x_in, -7.5, 0.0), (x_out, 3.8, 0.08), material_index=1)
-        _add_box(bm, uv, (x_in, -7.5, 0.0), (x_out, -7.25, 0.20), material_index=2)
-        _add_box(bm, uv, (x_in, 3.55, 0.0), (x_out, 3.8, 0.20), material_index=2)
     # 4. Paving run-out to the finished M03's porch (W09R-B, Issue #48; user decision 2026-11-01).
     # The finished M03 has its own porch steps (world z 1.5 -> 1.68 -> porch floor 1.870, front edge world
     # y 37.03..37.06, x -1.0..2.4) 0.67 m north of where the P1 placeholder's plinth ended, so the former 3-step
@@ -339,7 +342,9 @@ def build_courtyard_ground(
     obj = _create_mesh_obj(
         "BMN_CourtyardGround_001",
         bm,
-        [mats["courtyard_slate"], mats["grave_soil"], mats["mansion_stone"]],
+        # mansion_stone is no longer used (W09R-B removed the steps and curbs). The exporter drops unused slots, so the
+        # live MeshRenderer's Materials list shrinks 3 -> 2 and resoloop recreates that one component (nothing refers to it)
+        [mats["courtyard_slate"], mats["grave_soil"]],
         col,
         location=(0.0, 32.0, 1.5),
     )
@@ -366,7 +371,7 @@ def build_courtyard_ground(
         },
         "is_placeholder": False,
         "future_target": None,
-        "notes": "Courtyard slate paving, east/west diagonal bridge connector walkways, graveyard soil beds, and a paving run-out (world y 36.4..37.12) to the finished M03's own porch steps (z 1.68 and the porch floor 1.870). W09R-B removed the P1 3-step apron.",
+        "notes": "Courtyard slate paving, east/west diagonal bridge connector walkways, graveyard soil beds, and a paving run-out (world y 36.4..37.12) to the finished M03's own porch steps (z 1.68 and the porch floor 1.870). W09R-B removed the P1 3-step apron and the four graveyard curbs, and starts the paving at y 20.25 where the north bridge ends level.",
     }
 
 
