@@ -1,0 +1,153 @@
+{
+  "root_slot": {
+    "name": "M01",
+    "key": "root",
+    "parent": "Root/HalloweenMagicalCarnival/A_plaza/APL_EntranceGateProxy_001/APL_EntranceGateProxy_001_Arch",
+    "position": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "rotation": [
+      0.0,
+      -1.0,
+      0.0,
+      0.0
+    ],
+    "scale": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "children": [
+    "M01_EntranceGate_001",
+    "Blender_Providers"
+  ],
+  "assets": [
+    "mesh_M01_GateArch_001_ccf4f9ec",
+    "pbr_mat_material_MAT_M01_EntranceGate_ff76e1_7f53ece2",
+    "tex_M01_EntranceGate_001_color_color_2221647c"
+  ],
+  "moving_parts": [
+    {
+      "part": "M01_GateLeafLeft_001",
+      "document": "p2m_DoorLeft.apply.json",
+      "state": "p2m_M01_DoorLeft.json",
+      "parent": "Root/HalloweenMagicalCarnival/A_plaza/APL_EntranceGateProxy_001/APL_EntranceGateProxy_001_DoorLeft",
+      "root_slot": {
+        "name": "M01",
+        "key": "root",
+        "parent": "Root/HalloweenMagicalCarnival/A_plaza/APL_EntranceGateProxy_001/APL_EntranceGateProxy_001_DoorLeft",
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          0.0,
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "ownership": "blender_M01_d968fce4_doorleft",
+      "assets": [
+        "mesh_M01_GateLeafLeft_001_b429930c",
+        "pbr_mat_material_MAT_M01_EntranceGate_ff76e1_7f53ece2",
+        "tex_M01_EntranceGate_001_color_color_2221647c"
+      ],
+      "motion_root_repose": {
+        "motion_root": "APL_EntranceGateProxy_001_DoorLeft",
+        "hinge_blender": [
+          -2.2562,
+          0.1328,
+          0.0
+        ],
+        "motion_root_position": [
+          -2.2562,
+          0.0,
+          0.1328
+        ],
+        "motion_root_rotation": [
+          0.0,
+          -0.707106781187,
+          0.0,
+          0.707106781187
+        ],
+        "motion_root_rotation_z_deg": 90.0,
+        "closed_rotation_z_deg": 0.0
+      }
+    },
+    {
+      "part": "M01_GateLeafRight_001",
+      "document": "p2m_DoorRight.apply.json",
+      "state": "p2m_M01_DoorRight.json",
+      "parent": "Root/HalloweenMagicalCarnival/A_plaza/APL_EntranceGateProxy_001/APL_EntranceGateProxy_001_DoorRight",
+      "root_slot": {
+        "name": "M01",
+        "key": "root",
+        "parent": "Root/HalloweenMagicalCarnival/A_plaza/APL_EntranceGateProxy_001/APL_EntranceGateProxy_001_DoorRight",
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          0.0,
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "ownership": "blender_M01_d968fce4_doorright",
+      "assets": [
+        "mesh_M01_GateLeafRight_001_5e394af6",
+        "pbr_mat_material_MAT_M01_EntranceGate_ff76e1_7f53ece2",
+        "tex_M01_EntranceGate_001_color_color_2221647c"
+      ],
+      "motion_root_repose": {
+        "motion_root": "APL_EntranceGateProxy_001_DoorRight",
+        "hinge_blender": [
+          2.2498,
+          0.1088,
+          0.0
+        ],
+        "motion_root_position": [
+          2.2498,
+          0.0,
+          0.1088
+        ],
+        "motion_root_rotation": [
+          0.0,
+          0.707106781187,
+          0.0,
+          0.707106781187
+        ],
+        "motion_root_rotation_z_deg": -90.0,
+        "closed_rotation_z_deg": 0.0
+      }
+    }
+  ],
+  "district": "A_plaza",
+  "placeholder": "APL_EntranceGateProxy_001",
+  "visual_root": "APL_EntranceGateProxy_001_Arch",
+  "visual_root_path": "Root/HalloweenMagicalCarnival/A_plaza/APL_EntranceGateProxy_001/APL_EntranceGateProxy_001_Arch",
+  "asset_id": "M01_EntranceGate_001",
+  "rotation_z_deg": 180.0,
+  "position_local": [
+    0.0,
+    0.0,
+    0.0
+  ]
+}

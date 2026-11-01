@@ -152,3 +152,92 @@ def test_missing_emissive_map_is_detected_for_an_emissive_replacement() -> None:
     material = next(c for c in _find(world, "mat")["components"] if c["id"] == "p1")
     material["members"]["EmissiveMap"] = {"kind": "reference", "targetId": "t1"}
     assert verify_live.check_one(world, "MX", rep, copy.deepcopy(INPUTS))["problems"] == []
+
+
+# W09R-A (#47): a finished asset whose moving part (M01's gate leaf) sits in its own declaration under the placeholder's
+# motion root. If these guards broke, a leaf hinged 15 cm off the axis P3 rotates, a closed leaf, an invisible leaf or a
+# leaf with a collider would be recorded as verified with no error. The first test also keeps the correct state passing.
+REP_MOVING = {**REP, "visual_root": "Proxy_Arch", "visual_root_path": "Root/W/A/Proxy/Proxy_Arch",
+              "hide": ["Proxy_Arch", "Proxy_DoorL"],
+              "moving_parts": {"Leaf": {"motion_root": "Proxy_DoorL", "document": "DoorL"}}}
+INPUTS_MOVING = {**INPUTS, "meshes": [{"path": ["ArchMesh"], "vertices": VERTICES}],
+                 "placeholder_asset": {"origin_world": [0.0, 0.0, 1.6], "parts": []},
+                 "moving_parts": {"Leaf": {"motion_root": "Proxy_DoorL", "bundle_root_name": "M", "pivot_local": [1.0, -0.2, 0.0],
+                                           "closed_deg": 0.0, "placed_deg": 90.0,
+                                           # the hinge and a point of the closed leaf (Resonite axes), inside the arch's box
+                                           "meshes": [{"path": [], "vertices": [{"position": {"x": 0.0, "y": 0.0, "z": 0.0}},
+                                                                                 {"position": {"x": -0.25, "y": 1.0, "z": 0.0}}]}]}}}
+Q90 = (0, -0.7071067811865476, 0, 0.7071067811865476)  # Blender Z +90 deg as a Resonite rotation
+
+
+def _world_moving() -> dict:
+    def providers(mat, tex):
+        return _slot("Blender_Providers", children=[
+            _slot("mat", comps=[_comp(mat, "PBS_Metallic", AlbedoTexture=f"id:{tex}")]),
+            _slot("tex", comps=[_comp(tex, "StaticTexture2D", URL="local://tex")]),
+        ])
+
+    arch = _slot("Proxy_Arch", comps=[_comp("m1", "StaticMesh", URL="local://proxy"),
+                                      _comp("r1", "MeshRenderer", Enabled=False, Mesh="id:m1", Materials=[])], children=[
+        _slot("M", rot=(0, -1, 0, 0), children=[
+            _slot("Asset", children=[_slot("ArchMesh", comps=[_comp("m2", "StaticMesh", URL="local://arch"),
+                                                              _comp("r3", "MeshRenderer", Enabled=True, Mesh="id:m2", Materials=["p1"])])]),
+            providers("p1", "t1"),
+        ]),
+    ])
+    # hinge (1.0, -0.2) of the asset turned 180 deg -> (-1.0, 0.2) in Blender -> Resonite (-1.0, 0, 0.2); opened +90 deg
+    door = _slot("Proxy_DoorL", pos=(-1.0, 0, 0.2), rot=Q90, comps=[_comp("r4", "MeshRenderer", Enabled=False)], children=[
+        _slot("M", rot=(0, -1, 0, 0), children=[
+            _slot("Leaf", comps=[_comp("m5", "StaticMesh", URL="local://leaf"),
+                                 _comp("r5", "MeshRenderer", Enabled=True, Mesh="id:m5", Materials=["p2"])]),
+            providers("p2", "t2"),
+        ]),
+    ])
+    fixed = _slot("Proxy_Arch_FixedCollision", comps=[
+        _comp("m3", "StaticMesh", URL="local://proxy"),
+        _comp("c1", "MeshCollider", Enabled=True, Type="Static", CharacterCollider=True, Mesh="id:m3")])
+    return _slot("W", children=[_slot("A", children=[_slot("Proxy", pos=(0, 1.6, 0), children=[arch, door, fixed])])])
+
+
+def _problems_moving(world: dict) -> list[str]:
+    return verify_live.check_one(world, "MX", REP_MOVING, copy.deepcopy(INPUTS_MOVING))["problems"]
+
+
+def test_moving_part_motion_root_off_the_hinge_is_detected() -> None:
+    assert _problems_moving(_world_moving()) == []
+    world = _world_moving()
+    _find(world, "Proxy_DoorL")["position"]["x"] = -1.15  # the placeholder's own hinge, 15 cm from the asset's
+    assert any("away from the hinge" in p for p in _problems_moving(world))
+
+
+def test_moving_part_that_is_not_in_the_opened_pose_is_detected() -> None:
+    world = _world_moving()
+    _find(world, "Proxy_DoorL")["rotation"] = dict(zip("xyzw", (0, 0, 0, 1)))  # closed leaf
+    assert any("not in the opened pose" in p for p in _problems_moving(world))
+
+
+def test_moving_part_that_is_not_drawn_is_detected() -> None:
+    world = _world_moving()
+    next(c for c in _find(world, "Leaf")["components"] if c["id"] == "r5")["members"]["Enabled"]["value"] = False
+    assert any("Leaf: MeshRenderer.Enabled" in p for p in _problems_moving(world))
+
+
+def test_collider_under_a_moving_part_is_detected() -> None:
+    world = _world_moving()
+    _find(world, "Leaf")["components"].append(_comp("c9", "MeshCollider", Enabled=True))
+    assert any("colliders under the moving parts" in p for p in _problems_moving(world))
+
+
+def test_moving_part_with_a_wrong_scale_is_detected() -> None:
+    # PR #52 review (GPT): the whole box is set by the arch and the other leaf, so a leaf shrunk to half passed every check.
+    world = _world_moving()
+    _find(world, "Leaf")["scale"] = dict(zip("xyz", (0.5, 0.5, 0.5)))
+    assert any("Leaf bounds differ" in p for p in _problems_moving(world))
+
+
+def test_moving_part_declaration_without_a_mesh_is_detected() -> None:
+    # PR #52 review (GPT): the meshes to check come from the part declaration, so a declaration that lost its mesh left
+    # nothing to check and an invisible leaf passed.
+    inputs = copy.deepcopy(INPUTS_MOVING)
+    inputs["moving_parts"]["Leaf"]["meshes"] = []
+    assert any("has no mesh" in p for p in verify_live.check_one(_world_moving(), "MX", REP_MOVING, inputs)["problems"])

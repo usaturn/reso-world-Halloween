@@ -2,10 +2,296 @@
   "root": "Root/HalloweenMagicalCarnival",
   "tolerance_m": 0.01,
   "root_live": {
-    "slots": 696,
-    "components": 1634
+    "slots": 715,
+    "components": 1652
   },
   "replacements": [
+    {
+      "meshy_id": "M01",
+      "visual_root": "Root/HalloweenMagicalCarnival/A_plaza/APL_EntranceGateProxy_001/APL_EntranceGateProxy_001_Arch",
+      "bundle": "exports/p2_meshy/M01-20261101T042541Z",
+      "front_source": "received.json placement_hint.rotation_z_deg",
+      "visual_root_world": {
+        "live": [
+          0.0,
+          0.0,
+          -40.0
+        ],
+        "expected": [
+          0.0,
+          0.0,
+          -40.0
+        ],
+        "diff_m": 0.0
+      },
+      "bounds_world": {
+        "live": {
+          "min": [
+            -5.4999,
+            -0.0001,
+            -41.311
+          ],
+          "max": [
+            5.4999,
+            7.7392,
+            -37.6129
+          ]
+        },
+        "expected": {
+          "min": [
+            -5.5,
+            0.0,
+            -41.311
+          ],
+          "max": [
+            5.5,
+            7.739,
+            -37.613
+          ]
+        },
+        "size_live": [
+          10.9999,
+          7.7393,
+          3.698
+        ],
+        "max_diff_m": 0.0002
+      },
+      "front": {
+        "live": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "expected": [
+          -0.0,
+          0.0,
+          -1.0
+        ],
+        "diff": 0.0
+      },
+      "moving_parts": {
+        "M01_GateLeafLeft_001": {
+          "motion_root": {
+            "origin_world": [
+              -2.2562,
+              0.0,
+              -39.8672
+            ],
+            "origin_diff_m": 0.0,
+            "front": [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            "front_expected": [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            "front_diff": 0.0
+          },
+          "hinge_expected": [
+            -2.2562,
+            0.0,
+            -39.8672
+          ],
+          "open_deg_from_closed": 90.0,
+          "part": {
+            "origin_world": [
+              -2.2562,
+              0.0,
+              -39.8672
+            ],
+            "origin_diff_m": 0.0,
+            "front": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "front_expected": [
+              1.0,
+              0.0,
+              -0.0
+            ],
+            "front_diff": 0.0
+          },
+          "bounds_world": [
+            {
+              "slot": "M01_GateLeafLeft_001",
+              "live": {
+                "min": [
+                  -2.2896,
+                  0.0051,
+                  -39.79
+                ],
+                "max": [
+                  -1.9395,
+                  4.2,
+                  -37.6395
+                ]
+              },
+              "expected": {
+                "min": [
+                  -2.2896,
+                  0.0051,
+                  -39.79
+                ],
+                "max": [
+                  -1.9395,
+                  4.2,
+                  -37.6395
+                ]
+              },
+              "max_diff_m": 0.0
+            }
+          ]
+        },
+        "M01_GateLeafRight_001": {
+          "motion_root": {
+            "origin_world": [
+              2.2498,
+              0.0,
+              -39.8912
+            ],
+            "origin_diff_m": 0.0,
+            "front": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "front_expected": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "front_diff": 0.0
+          },
+          "hinge_expected": [
+            2.2498,
+            0.0,
+            -39.8912
+          ],
+          "open_deg_from_closed": -90.0,
+          "part": {
+            "origin_world": [
+              2.2498,
+              0.0,
+              -39.8912
+            ],
+            "origin_diff_m": 0.0,
+            "front": [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            "front_expected": [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            "front_diff": 0.0
+          },
+          "bounds_world": [
+            {
+              "slot": "M01_GateLeafRight_001",
+              "live": {
+                "min": [
+                  1.9656,
+                  0.0043,
+                  -39.82
+                ],
+                "max": [
+                  2.311,
+                  4.2,
+                  -37.6129
+                ]
+              },
+              "expected": {
+                "min": [
+                  1.9656,
+                  0.0043,
+                  -39.82
+                ],
+                "max": [
+                  2.311,
+                  4.2,
+                  -37.6129
+                ]
+              },
+              "max_diff_m": 0.0
+            }
+          ]
+        }
+      },
+      "renderers_enabled": {
+        "APL_EntranceGateProxy_001_Arch": false,
+        "APL_EntranceGateProxy_001_BannerAttach": false,
+        "APL_EntranceGateProxy_001_LanternAttachLeft": false,
+        "APL_EntranceGateProxy_001_LanternAttachRight": false,
+        "APL_EntranceGateProxy_001_DoorLeft": false,
+        "APL_EntranceGateProxy_001_DoorRight": false,
+        "M01_GateArch_001": true,
+        "M01_GateLeafLeft_001": true,
+        "M01_GateLeafRight_001": true
+      },
+      "attachment_points": [
+        {
+          "part": "APL_EntranceGateProxy_001_LanternAttachLeft",
+          "live_world": [
+            -2.45,
+            3.6,
+            -40.65
+          ],
+          "expected": [
+            -2.45,
+            3.6,
+            -40.65
+          ],
+          "diff_m": 0.0
+        },
+        {
+          "part": "APL_EntranceGateProxy_001_LanternAttachRight",
+          "live_world": [
+            2.45,
+            3.6,
+            -40.65
+          ],
+          "expected": [
+            2.45,
+            3.6,
+            -40.65
+          ],
+          "diff_m": 0.0
+        },
+        {
+          "part": "APL_EntranceGateProxy_001_BannerAttach",
+          "live_world": [
+            0.0,
+            5.8,
+            -40.65
+          ],
+          "expected": [
+            0.0,
+            5.8,
+            -40.65
+          ],
+          "diff_m": 0.0
+        }
+      ],
+      "colliders_under_finished_asset": [],
+      "colliders_under_moving_parts": [],
+      "fixed_collision": {
+        "slot": "APL_EntranceGateProxy_001_Arch_FixedCollision",
+        "exists": true,
+        "active": true,
+        "same_transform_as_visual_root": true,
+        "collider_enabled": true,
+        "static_character_collider": true,
+        "uses_own_static_mesh": true,
+        "same_mesh_as_visual_root": true
+      },
+      "problems": []
+    },
     {
       "meshy_id": "M02",
       "visual_root": "Root/HalloweenMagicalCarnival/A_plaza/APL_GiantJackProxy_001/APL_GiantJackProxy_001_Body",
@@ -121,6 +407,7 @@
         }
       ],
       "colliders_under_finished_asset": [],
+      "colliders_under_moving_parts": [],
       "fixed_collision": {
         "slot": "APL_GiantJackProxy_001_Body_FixedCollision",
         "exists": true,
@@ -202,6 +489,7 @@
       },
       "attachment_points": [],
       "colliders_under_finished_asset": [],
+      "colliders_under_moving_parts": [],
       "fixed_collision": {
         "slot": "CCD_M04_CandyWorkshopProxy_001_FixedCollision",
         "exists": true,
@@ -283,6 +571,7 @@
       },
       "attachment_points": [],
       "colliders_under_finished_asset": [],
+      "colliders_under_moving_parts": [],
       "fixed_collision": {
         "slot": "CCD_M08_FlyingWitchProxy_001_FixedCollision",
         "expected": false,
@@ -294,14 +583,15 @@
   "district_counts": {
     "A_plaza": {
       "live": [
-        173,
-        386
+        192,
+        404
       ],
       "expected": [
-        173,
-        386
+        192,
+        404
       ],
       "replacements": [
+        "M01",
         "M02"
       ],
       "ok": true
