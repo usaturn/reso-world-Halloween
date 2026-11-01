@@ -11,6 +11,9 @@ modeling/p2_static/export_p2.py から、当たり判定（colliders.compose）�
   それぞれの Value を ProtoFlux（flux/P3PlazaDance.pg）が drive する。Flux のマニフェストの drive は Component の
   メンバーしか結べない（$slot-member: は FLUX_BINDING_TARGET_INVALID）ための中継。Value の初期値は基準姿勢で、
   モジュールが無いときは基準姿勢に止まる
+- G03（W10-A）: 噴水の水の Slot に、共有の水の材質を写した専用の材質を足し、水の MeshRenderer だけをそれに付け替える
+  （add_g03_material）。その EmissiveColor を ProtoFlux（flux/P3FountainGlow.pg）が drive する。水は動かさないので
+  managedFields は付けない
 """
 
 from __future__ import annotations
@@ -89,11 +92,68 @@ def add_drivers(doc: dict, key: str) -> list[dict]:
     return rows
 
 
+def _component_ref(key: str) -> str:
+    return f"$component:{key}"
+
+
+def add_g03_material(doc: dict, key: str) -> list[dict]:
+    """W10-A（G03）: 噴水の水の MeshRenderer だけに、共有の水の材質を写した専用の材質を付ける。
+
+    - 水の Slot（gimmicks.g03 の water_slot）に PBS_Metallic（キー G03_MATERIAL_KEY）を足す。fields は元の材質と同じ値
+      （見た目は P2 と同じ）。EmissiveColor は ProtoFlux（flux/P3FountainGlow.pg）が drive するので、元の値を initialFields に置く
+      （fields に書くと apply が駆動と競う。モジュールが無いときは P2 の発光のまま）
+    - 水の MeshRenderer の Materials の、元の材質への参照だけを専用の材質へ付け替える。同じ材質を使うほかの MeshRenderer
+      （取付位置の目印、I03 の台座、ショーの装置）と元の材質（Blender_Providers の下）は変えない
+    - 水の MeshRenderer が 1 つでない、元の材質が 1 つに決まらない、すでに足してあるときは止める
+    """
+    g = gimmicks.g03()
+    if key != g["district"]:
+        return []
+    hits: dict[str, list[tuple[list[str], dict]]] = {}
+    _find_named(doc, [doc["slot"]["name"]], {g["water_slot"]}, hits)
+    found = hits.get(g["water_slot"], [])
+    if len(found) != 1:
+        raise ValueError(f"{key}: expected one Slot named {g['water_slot']}, found {len(found)}")
+    chain, node = found[0]
+    comps = node.setdefault("components", [])
+    if any(c.get("key") == gimmicks.G03_MATERIAL_KEY for c in comps):
+        raise ValueError(f"{key}: {gimmicks.G03_MATERIAL_KEY} is already declared")
+    renderers = [c for c in comps if c.get("type") == "FrooxEngine.MeshRenderer"]
+    if len(renderers) != 1:
+        raise ValueError(f"{key}/{g['water_slot']}: expected one MeshRenderer, found {len(renderers)}")
+    renderer = renderers[0]
+    mats = renderer["fields"]["Materials"]
+    if len(mats) != 1 or not str(mats[0]).startswith("$component:"):
+        raise ValueError(f"{key}/{g['water_slot']}: expected one material reference, found {mats}")
+    source_key = mats[0].split(":", 1)[1]
+    sources = []
+    stack = [doc]
+    while stack:
+        n = stack.pop()
+        sources += [c for c in n.get("components", []) if c.get("key") == source_key]
+        stack.extend(n.get("children", []))
+    if len(sources) != 1 or sources[0].get("type") != "FrooxEngine.PBS_Metallic":
+        raise ValueError(f"{key}: material {source_key} is not one PBS_Metallic ({len(sources)} found)")
+    src_fields = dict(sources[0]["fields"])
+    if "EmissiveColor" not in src_fields:
+        raise ValueError(f"{key}: material {source_key} has no EmissiveColor")
+    emissive = src_fields.pop("EmissiveColor")
+    comps.append({
+        "key": gimmicks.G03_MATERIAL_KEY,
+        "type": "FrooxEngine.PBS_Metallic",
+        "fields": src_fields,
+        "initialFields": {"EmissiveColor": emissive},
+    })
+    renderer["fields"]["Materials"] = [_component_ref(gimmicks.G03_MATERIAL_KEY)]
+    return [{"slot": "/".join(chain), "g03_material": gimmicks.G03_MATERIAL_KEY, "copied_from": source_key,
+             "renderer": renderer["key"], "fields": src_fields, "initialFields": {"EmissiveColor": emissive}}]
+
+
 def add_drivers_in_file(p2_path: Path, key: str) -> list[dict]:
-    """p2.apply.json を読み、add_drivers を適用して書き戻す（対象が無いキーではファイルを変えない）。"""
-    if key not in gimmicks.driven_slots():
+    """p2.apply.json を読み、add_drivers と add_g03_material を適用して書き戻す（対象が無いキーではファイルを変えない）。"""
+    if key not in gimmicks.driven_slots() and key != gimmicks.g03()["district"]:
         return []
     doc = json.loads(p2_path.read_text(encoding="utf-8"))
-    rows = add_drivers(doc, key)
+    rows = add_drivers(doc, key) + add_g03_material(doc, key)
     p2_path.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return rows

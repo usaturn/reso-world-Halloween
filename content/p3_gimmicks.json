@@ -71,6 +71,45 @@
       "initialFields": {
         "Value": 1.0
       }
+    },
+    {
+      "key": "g03_amp",
+      "type": "[FrooxEngine]FrooxEngine.DynamicValueVariable<float>",
+      "fields": {
+        "VariableName": "HMC_P3/G03Intensity"
+      },
+      "identityFields": [
+        "VariableName"
+      ],
+      "initialFields": {
+        "Value": 1.0
+      }
+    },
+    {
+      "key": "g03_freq",
+      "type": "[FrooxEngine]FrooxEngine.DynamicValueVariable<float>",
+      "fields": {
+        "VariableName": "HMC_P3/G03Frequency"
+      },
+      "identityFields": [
+        "VariableName"
+      ],
+      "initialFields": {
+        "Value": 0.2
+      }
+    },
+    {
+      "key": "g03_swing",
+      "type": "[FrooxEngine]FrooxEngine.DynamicValueVariable<float>",
+      "fields": {
+        "VariableName": "HMC_P3/G03Swing"
+      },
+      "identityFields": [
+        "VariableName"
+      ],
+      "initialFields": {
+        "Value": 1.0
+      }
     }
   ],
   "children": [
@@ -78,6 +117,28 @@
       "slot": {
         "key": "p3_g01_dance",
         "name": "G01_Dance",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "slot": {
+        "key": "p3_g03",
+        "name": "G03_Fountain",
         "position": [
           0,
           0,
@@ -154,6 +215,36 @@
         0.0,
         0.75,
         -3.89
+      ],
+      "fieldOfView": 50,
+      "width": 1600,
+      "height": 900
+    },
+    "g03_fountain": {
+      "position": [
+        7.5,
+        3.4,
+        -9.0
+      ],
+      "target": [
+        0.0,
+        1.0,
+        -0.5
+      ],
+      "fieldOfView": 45,
+      "width": 1600,
+      "height": 900
+    },
+    "g03_water": {
+      "position": [
+        -4.2,
+        2.3,
+        -5.6
+      ],
+      "target": [
+        0.0,
+        0.8,
+        0.0
       ],
       "fieldOfView": 50,
       "width": 1600,

@@ -1,0 +1,219 @@
+{
+  "tool": "modeling/p3_gimmicks/verify_g03.py",
+  "export": "A_plaza-20261101T105131Z",
+  "e0_linear": [
+    0.5039999887943268,
+    0.9899999952316278,
+    1.763999987602233
+  ],
+  "e1_linear": [
+    1.2,
+    0.4,
+    2.0
+  ],
+  "shared_renderers": [
+    "renderer_APL_Fountain_001_WaterAttach_62d4190f",
+    "renderer_APL_JackInteractionPedestal_001_EffectAt_41209d26",
+    "renderer_APL_PeriodicShowRig_001_GhostOrbitAttach_98292de3",
+    "renderer_APL_PeriodicShowRig_001_GhostOrbitAttach_bbb11745",
+    "renderer_APL_PeriodicShowRig_001_GhostOrbitAttach_d616afdb",
+    "renderer_APL_PeriodicShowRig_001_GhostOrbitAttach_ff5a370c",
+    "renderer_APL_PeriodicShowRig_001_Pylons_aca847fe"
+  ],
+  "material": "p3_g03_wm",
+  "source_material": "mat_material_MAT_APL_MagicWater_f767b0c9",
+  "param_check": {
+    "problems": [],
+    "frozen": [
+      {
+        "G03Frequency": 0.0,
+        "G03Intensity": 1.0,
+        "clamped_intensity": 1.0,
+        "linear": [
+          [
+            0.504,
+            0.99,
+            1.764
+          ],
+          [
+            0.504,
+            0.99,
+            1.764
+          ]
+        ],
+        "problems": []
+      },
+      {
+        "G03Frequency": 0.0,
+        "G03Intensity": 0.5,
+        "clamped_intensity": 0.5,
+        "linear": [
+          [
+            0.252,
+            0.495,
+            0.882
+          ],
+          [
+            0.252,
+            0.495,
+            0.882
+          ]
+        ],
+        "problems": []
+      },
+      {
+        "G03Frequency": 0.0,
+        "G03Intensity": 0.0,
+        "clamped_intensity": 0.0,
+        "linear": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "problems": []
+      },
+      {
+        "G03Frequency": 0.0,
+        "G03Intensity": 5.0,
+        "clamped_intensity": 2.0,
+        "linear": [
+          [
+            1.008,
+            1.98,
+            3.528
+          ],
+          [
+            1.008,
+            1.98,
+            3.528
+          ]
+        ],
+        "problems": []
+      },
+      {
+        "G03Frequency": 0.0,
+        "G03Intensity": -1.0,
+        "clamped_intensity": 0.0,
+        "linear": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "problems": []
+      },
+      {
+        "G03Frequency": -1.0,
+        "G03Intensity": 1.0,
+        "clamped_intensity": 1.0,
+        "linear": [
+          [
+            0.504,
+            0.99,
+            1.764
+          ],
+          [
+            0.504,
+            0.99,
+            1.764
+          ]
+        ],
+        "problems": []
+      }
+    ],
+    "swing_zero": [
+      {
+        "G03Swing": 0.0,
+        "linear": [
+          [
+            0.504,
+            0.99,
+            1.764
+          ],
+          [
+            0.504,
+            0.99,
+            1.764
+          ],
+          [
+            0.504,
+            0.99,
+            1.764
+          ]
+        ],
+        "problems": []
+      },
+      {
+        "G03Swing": -1.0,
+        "linear": [
+          [
+            0.504,
+            0.99,
+            1.764
+          ],
+          [
+            0.504,
+            0.99,
+            1.764
+          ],
+          [
+            0.504,
+            0.99,
+            1.764
+          ]
+        ],
+        "problems": []
+      }
+    ],
+    "swing_over": {
+      "G03Swing": 5.0,
+      "clamped": 1.0,
+      "g03": {
+        "samples": 9,
+        "max_residual": 5.813483405781028e-08,
+        "theta_speed_rad_per_s": 1.2560111914784076,
+        "expected_rad_per_s": 1.2566370614359172,
+        "max_theta_deviation_rad": 0.05678249111285183,
+        "pulse_min": 0.5001753015333283,
+        "pulse_max": 1.4578156713216759,
+        "luminance_min": 0.45322048061,
+        "luminance_max": 1.230362832364
+      },
+      "problems": []
+    },
+    "clock": {
+      "dt_s": 21.345276355743408,
+      "theta_step_rad": 0.5366356997649024,
+      "expected_rad": 0.5364653071043792,
+      "residuals": [
+        3.2388028370355926e-08,
+        2.4280405019894147e-08
+      ],
+      "problems": []
+    },
+    "before": {
+      "G03Intensity": 1.0,
+      "G03Frequency": 0.2,
+      "G03Swing": 1.0
+    },
+    "restored": {
+      "G03Intensity": 1.0,
+      "G03Frequency": 0.2,
+      "G03Swing": 1.0
+    }
+  },
+  "ok": true
+}

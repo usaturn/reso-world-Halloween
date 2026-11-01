@@ -1,0 +1,15 @@
+[
+  {
+    "meshy_id": "M03",
+    "slot": "B_mansion/BMN_MansionPlaceholder_001",
+    "component": "renderer_BMN_MansionPlaceholder_001_39fd031b",
+    "Enabled": false
+  },
+  {
+    "meshy_id": "M03",
+    "slot": "B_mansion/BMN_MansionPlaceholder_001_FixedCollision",
+    "component": "fixedcol_collider_BMN_MansionPlaceholder_001_39fd031b",
+    "Enabled": false,
+    "reason": "collision is the finished asset's own mesh"
+  }
+]

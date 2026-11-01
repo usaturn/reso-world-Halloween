@@ -2,6 +2,8 @@
 
 自動ギミックを Resonite で動かす方式と、最初の 2 種類 **G13 メリーゴーラウンドの床の回転**・**G01 小カボチャのダンス**の記録。残りの先行 8 種類（Spec §8 の G03・G05・G06・G09・G11・G15・G18・G20）の子は、この文書の 2・4 章の手順と `handoff/W10.md` を使う。
 
+- W10-A（#58）の **G03 噴水の水と光の周期変化**は 16 章（方式の追記: 共有の材質を写した専用の材質と、発光の色の drive）
+
 - 担当: Claude Code（Opus 5.5）、2026-11-01（UTC）。apply・配備したのはこのセッションだけ。GPT のレビューは PR で 1 回（14 章）
 - 着手前の確認事項: W08 #41 の回答（issuecomment-6545243021）をそのまま使う（#56 の本文。起票したセッションの判断）
 - Spec §5 の P3 は「GPT が主担当、Claude が確認」だが、この子は 2026-11-01 の利用者の決定で Claude Code が実装し GPT がレビューした（§5 の「個別タスクで交代できる」）
@@ -12,6 +14,7 @@
 - Resonite 2026.10.29.1239、ResoniteLink 0.13.1.0、resoloop 0.2.0、Flux-SDK 1.9.0、Blender 5.0.1
 - ProtoFlux のビルドに使った Resonite の DLL: 共有の managed data の 2026.9.18.82（`resoloop doctor` の managed data の項目は、`RESONITE_MANAGED_DATA_PATH` をコマンドだけに付けて pass。3,320 ノード）。実行中の Resonite（2026.10.29.1239）より古いが、ビルド・配備・実行は問題なかった（6 章）
 - 着手時の W08 の root: Slot 745・Component 1,684（W09R-E の完了時と同じ。利用者が手で変えた所は無い）。スナップショットと diff・apply・配備の報告は親の checkout の `tmp/w10/`（Git の対象外）
+- W10-A（#58、2026-11-01）も同じ版（Resonite 2026.10.29.1239、ResoniteLink 0.13.1.0、resoloop 0.2.0、Flux-SDK 1.9.0・managed data 2026.9.18.82、Blender 5.0.1）。記録は親の checkout の `tmp/w10a/`
 - 駆動は、対象のワールドが Resonite の前面にあるときだけ進む（背面では `Spinner` も ProtoFlux の drive も止まって見える。最初の観察で回転が単位回転のまま変わらず、利用者に前面へ出してもらうと動いた）。観察・撮影の前に前面へ出してもらう
 
 ## 2. 方式
@@ -202,3 +205,154 @@ A・D の地区のキー（W02・W05）の所有ファイルと、Meshy の素�
 - 保存・再読込の後に、`Spinner`・ProtoFlux のモジュール・HMC_P3 の値・中継が残って動くか（P4）
 - VR での見え方、動くカボチャ・回転床とアバターのすれ違い（P4）
 - 負荷のメモリ
+
+## 16. W10-A（#58）G03 噴水の水と光の周期変化
+
+- 担当: Claude Code（Opus 5.5）、2026-11-01（UTC）。claim `agent-claims/issue-58`（10:37:05Z）。apply・配備したのはこのセッションだけ。GPT のレビューは PR で 1 回（16.11）
+- 着手前の確認事項: W08 #41 の回答（issuecomment-6545243021）をそのまま使う（#58 の本文。利用者の変更なし）
+- 対象: A の `APL_Fountain_001_Water`（W02 の水の幕のメッシュ。`assets/manifest/A_plaza.json` の `motion` が `tiered_fountain_water_and_glow`）。動きの範囲は無く、水の発光の色と明るさだけを変える。水のメッシュ・取付位置 `APL_Fountain_001_WaterAttach`・M02 の素材の宣言と点光源は変えていない
+
+### 16.1 方式の追記
+
+| 項目 | 決めたこと | 理由 |
+|---|---|---|
+| 何を変えるか | 水の材質の `EmissiveColor`（明るさの脈と、水色 → 紫の色の移り変わり）。`AlbedoColor`・金属・滑らかさ・メッシュ・位置は変えない | Spec §8 の「水／光の流れが周期的に変化」。水の材質に画像は無い（`MAT_APL_MagicWater` は色だけ）ので、画像のずらし（`TextureOffset`）では見た目が変わらない |
+| 共有の材質の扱い | A の宣言で、水の Slot に共有の材質を写した専用の `PBS_Metallic`（キー `p3_g03_wm`）を足し、水の MeshRenderer の `Materials` だけをそれに付け替える（`modeling/p3_gimmicks/district.py` の `add_g03_material`。`export_p2.py` が呼ぶ `add_drivers_in_file` から）。専用の材質の `fields` は元の材質と同じ値、`EmissiveColor` は元の値を `initialFields` に置く（ProtoFlux が drive する） | `MAT_APL_MagicWater` は水のほかに 7 個の MeshRenderer（水の取付位置の目印、I03 の台座の `EffectAttach`、ショーの装置の `Pylons` と `GhostOrbitAttach` 4 つ）が使う。共有の材質を駆動すると、それらが全部光り方を変える（`docs/p2-static-integration.md` 11 章）。材質を写せば、水以外の物は元の材質のまま |
+| 駆動の作り方 | ProtoFlux（`flux/P3FountainGlow.pg`）。`WorldTimeDouble` と HMC_P3 の値 3 つから発光の色を計算し、専用の材質の `EmissiveColor` を drive で結ぶ（`flux/p3_fountain_glow.flux.json`、worldState は A の state）。配備先は `P3_Gimmicks/G03_Fountain`（P3 の宣言の Slot） | Flux の drive は Component のメンバーを直接結べる（材質は Component なので、G01 のような中継は要らない）。HMC_P3 の DynamicVariableSpace は `P3_Gimmicks` にあり、A の地区の Slot から上へたどっても届かないので、値を読む物は `P3_Gimmicks` の下に置く必要がある |
+| 式 | θ = 2π f t、脈 = 1 + 0.5 A sin θ、混ぜ = A (1 − cos(θ/2)) / 2、発光 = I × 脈 × ((1 − 混ぜ) E0 + 混ぜ E1)。E0 は P2 の水の発光の線形の値 (0.504, 0.99, 1.764)（A の宣言の元の値 sRGB (0.738, 0.996, 1.281) を線形にした値。Blender の発光 (0.28, 0.55, 0.98) × 1.8 と同じ）、E1 は紫 (1.2, 0.4, 2.0)（`gimmicks.G03_SHIFT_EMISSIVE_LINEAR`）。出力は `Pack_ColorX(…, ColorProfile.Linear)` | 時刻だけから決まり、前の値を足し込まないので漂わない（Spec §8）。A = 0・I = 1 で P2 の見た目と同じ（モジュールの外の基準）。色の移り変わりは脈の半分の速さで、明るさと色が同じ周期でそろわない |
+| 色の空間 | 計算は線形の値で行い、Linear の profile の `colorX` で出す | ProtoGraph では enum の値を `ColorProfile.Linear` と書ける。`ColorProfile.sRGB` は小文字で始まるので構文で書けなかった（`flux check` が「Unable to parse」）。元の材質の値は sRGB（`resoloop observe` の `profile`）なので、P2 の値は sRGB → 線形に直して式に入れた（`gimmicks.srgb_to_linear`） |
+| 外から変えられる値 | `HMC_P3/G03Intensity`（既定 1、0〜2。発光の強さの倍率。2 は定期ショーの盛り上がり用）、`HMC_P3/G03Frequency`（既定 0.2 Hz、0〜1。明るさの脈の速さ。色はその半分）、`HMC_P3/G03Swing`（既定 1、0〜1。変化の深さ。0 で P2 の色のまま一定）。`P3_Gimmicks` の `DynamicValueVariable<float>`（キー `g03_amp`・`g03_freq`・`g03_swing`、`initialFields`）。モジュールの中で範囲に収める | G01 と同じ置き場（ショーのモジュールが名前で書ける）。範囲に収めるので、ショーが大きな値を書いても、発光の倍率は最大 3 倍（強さ 2 × 脈 1.5）に収まる |
+| 既定の速さ | 脈は 5 秒、色の一巡は 10 秒 | W02 のデータに速さが無いので、この子で決めた（水が呼吸するように見え、せわしなくない。利用者の確認で問題なし） |
+| 同期と途中参加 | G01 と同じ。共有の時刻と、同期する値だけから計算する drive で、同期する書き込み・インパルスは無い | Spec §10.3。途中参加のユーザーも同じ時刻なら同じ色を見る。2 人以上での確認は P4 |
+
+採らなかった方法:
+
+- **共有の材質 `MAT_APL_MagicWater` をそのまま駆動する**: 水以外の 7 個の MeshRenderer も一緒に光り方が変わる（#58 の受け入れ基準の「共有の材質」に反する）
+- **標準の Component（`TimeSineDriver` で `ValueGradientDriver<colorX>` の `Progress` を動かす）**: Reflection で確かめた（`TimeSineDriver` は `Target`・`Speed`・`Min`・`Max`、`ValueGradientDriver<colorX>` は `Progress`・`Target`・`Interpolate`・`Points`）。駆動の Component は材質と同じ A の宣言に置く必要があるが、A の Slot から HMC_P3 の空間に届かないので外から値を変えられない（DynamicVariable の駆動を足しても同じ）。範囲に収める処理も無い
+- **発光用の別の Slot（重ねたメッシュや点光源）を足す**: メッシュを重ねると同じ高さの面が重なり（W07 の z-fighting）、点光源は M02 とまわりの物の照らされ方を変える（「M02 の見た目が変わっていない」に反する）
+- **水の材質を Blender（W02 の `modeling/A_plaza/build.py`）で分ける**: W02 の所有ファイルの造形のやり直しになる（#58 の範囲外）。export の後の宣言で分ければ、W02 のデータも `.blend` も変えずに済む
+
+### 16.2 Reflection・Flux-SDK で確かめた物
+
+- `resoloop type describe`: `FrooxEngine.PBS_Metallic`（`AlbedoColor`・`EmissiveColor` は `colorX`、`TextureOffset` など）、`FrooxEngine.TimeSineDriver`、`FrooxEngine.ValueGradientDriver<colorX>`。`resoloop type search`（Gradient・Sine・Pulse・Panner）で周期の Component の候補を見た
+- `resoloop flux node describe`（managed data 2026.9.18.82、3,320 ノード）: `Pack_ColorX`（R・G・B・A と `ColorProfile`）、`Cos_Double`、`Cast_float4_To_colorX`・`Mul_ColorX_Float`・`ColorXSetProfile`（候補として見た）。`resoloop flux check` で、`ColorProfile.Linear` は書け、`ColorProfile.sRGB` は構文で書けないことを確かめた
+- 観察: 元の材質の `EmissiveColor` は sRGB の (0.7379854, 0.9955913, 1.281473, 1)。配備の後、専用の材質の値は Linear の profile で時間とともに変わる
+
+### 16.3 保存の後の最初の diff
+
+何も変える前（10:44〜10:45Z）に、今の `main` のまま 6 キーを export した宣言（`exports/p2_static/<key>-20261101T104312Z`。W10 の駆動は入っている）で、全 19 宣言（`content/main.json`・6 キー・M01 の 3 つ・M02・M03・M04・M05 の 2 つ・M06・M07・M08・`content/p3_gimmicks.json`）の diff を取った。どれも変更 0・警告 0（no-op 29・184・667・333・318・379・780・16・15・15・17・16・18・15・15・15・16・19・7）。資産の作り直し・重複は無い。W10 の ProtoFlux のモジュール `P3PlazaDance` は `P3_Gimmicks/G01_Dance` の下に配備されたまま。W08 の root の下は Slot 939・Component 1,951（W10 の完了時と同じ。利用者が手で変えた所は無い）
+
+- 新しい worktree の準備: 全キーの `.blend` の作り直し（10:37〜10:42Z、約 5 分）と、Git の外の `p2_bundles/<M>-<UTC>/` を同じ名前の `exports/p2_meshy/` へ写した（コミット済みの記録は上書きせず、`SHA256SUMS` が全 9 つ一致）
+- apply の前のスナップショット: 親の checkout の `tmp/w10a/01_snapshot_before_20261101T104558Z`（W08 の root 全体。最初の diff の後、最初の apply まで書き込みは無い）
+
+### 16.4 手順
+
+4 章の手順に、次を足す（`T` は親の checkout の `tmp/w10a/`）。
+
+```sh
+uv run python modeling/p2_static/export_p2.py --url "$URL" --key A_plaza      # 水の専用の材質を足した p2.apply.json と p3_drivers.json
+resoloop diff exports/p2_static/A_plaza-<UTC>/p2.apply.json --state "$ST/p2_A_plaza.json" --brief --report "$T/<新しいファイル>" --url "$URL" --json
+resoloop apply exports/p2_static/A_plaza-<UTC>/p2.apply.json --state "$ST/p2_A_plaza.json" --url "$URL" --json
+uv run python modeling/p3_gimmicks/build_content.py   # A の最新の export から E0 を読み、flux/P3FountainGlow.pg・flux/p3_fountain_glow.flux.json も作る
+resoloop diff content/p3_gimmicks.json --state "$ST/p3_gimmicks.json" --brief --report "$T/<新しいファイル>" --url "$URL" --json
+resoloop apply content/p3_gimmicks.json --state "$ST/p3_gimmicks.json" --url "$URL" --json
+uv run python modeling/p3_gimmicks/deploy_flux.py --url "$URL" --manifest flux/p3_fountain_glow.flux.json --report "$T/<新しいファイル>"
+# 同じ diff・apply・配備をもう 1 回行い、変更 0・書き込み 0・配備 no-op を確かめる
+uv run python modeling/p3_gimmicks/verify_g03.py --url "$URL" --raw-out "$T/<新しいファイル>" --output review/p3_gimmicks/g03_live_checks.json --windows 2 --gap 300
+uv run python modeling/p3_gimmicks/verify_g03.py --url "$URL" --raw-out "$T/<新しいファイル>" --output review/p3_gimmicks/g03_param_checks.json --param-check
+```
+
+- `build_content.py` は A の最新の export に専用の材質（`p3_g03_wm`）が無いと止まる（先に A を export する）
+- `deploy_flux.py --manifest` は `flux/` の下のマニフェストだけを受け付ける。G03 の deploy state は親の checkout の `.resoloop/flux-state/p3_fountain_glow.json`
+- `resoloop apply --json` は進み具合の行を標準出力に出し、最後の行が JSON になる（読むときは最後の行だけを読む）
+
+### 16.5 G03 の結果
+
+GPT のレビュー（16.11）で直した検査での実行: `verify_g03.py --windows 2 --gap 300 --duration 30`（11:23:56Z と 11:30:02Z の 2 つの窓。`review/p3_gimmicks/g03_live_checks.json`）と `--param-check`（11:20〜11:22Z。`g03_param_checks.json`）。どれも問題 0。直す前の検査での実行（`--param-check` 10:59〜11:00Z、2 つの窓 11:01:41Z・11:07:19Z）も合格だった（窓の θ の速さ 1.2569・1.2559 rad/s）
+
+| 項目 | 結果 |
+|---|---|
+| 式 | 発光の色は 1 つのメンバーなので、1 回の観察の 3 成分は同じ時刻の値。各観察から θ を 0〜4π で求めると、式との残差は 2 つの窓の 40 回とも 1e-6 未満（許容 0.01） |
+| 速さ | θ を観察の時刻で連続にして当てはめた傾きは 1.2612・1.2548 rad/s（2π × 0.2 = 1.2566 と 0.4% 以内。許容 5%）。各観察の θ と当てはめた直線の差は最大 0.19 rad（許容 0.4。観察の時刻のずれの分。平均の速さだけが合う曲がった式はここで外れる）。脈は 5 秒、色の一巡は 10 秒 |
+| 変化の幅 | 脈は両方の窓で 0.500〜1.499 倍（式の 0.5〜1.5）。発光の輝度（線形の Y）は 0.36〜1.34。色は水色（E0）から紫（E1）まで（撮影 16.10） |
+| 漂い | 6.1 分あけた 2 つの窓で、式・速さ・幅が同じ（時刻だけから計算し、前の値を足し込まない） |
+| 時刻を止めた標本（`G03Frequency` = 0） | θ = 0 で発光は I × E0。`G03Intensity` 1・0.5・0 で (0.504, 0.99, 1.764)・(0.252, 0.495, 0.882)・0。5 は 2 に収まり (1.008, 1.98, 3.528)、−1 は 0 に収まる（差 1e-4 以内）。`G03Frequency` = −1 も 0 に収まり、P2 の発光で止まる |
+| `G03Swing` = 0・−1 | 速さを戻した状態で、どちらも 3 回とも P2 の発光 (0.504, 0.99, 1.764) のまま一定（−1 は 0 に収まる） |
+| `G03Swing` = 5 | 1 に収まる。動いている間の 9 回の観察が A = 1 の式に合う（残差 1e-6 未満、θ の速さ 1.2560 rad/s、直線との差 0.057 rad、脈 0.50〜1.46 倍）。収めていなければ脈が 1 ± 2.5 倍になり残差で外れる |
+| `G03Frequency` の上限 | 実測していない。1 Hz では θ が観察の間隔（約 1.4 秒）に 8.8 rad 進み、連続にできない（4π の周期の中で 1.8π まで）。生成した `flux/P3FountainGlow.pg` の `F = if F0 < 0.0 then 0.0 else if F0 > 1.0 then 1.0 else F0` で収めている |
+| ゆっくりの時刻（`G03Frequency` = 0.004 Hz） | 21.35 秒あけた 2 回の観察で θ が 0.5366 rad 進んだ（時刻からの予測 0.5365、差 0.0001 rad。許容 0.05）。時刻の項が止まっている・速さが違うグラフはここで外れる |
+| 戻した値 | `G03Intensity` 1、`G03Frequency` 0.2、`G03Swing` 1（変える前と同じ。違えば問題にする） |
+| モジュール | 両方の窓で `P3_Gimmicks/G03_Fountain/P3FountainGlow` と `G01_Dance/P3PlazaDance` がある |
+| 利用者の確認 | 問題なし（16.10） |
+
+- 生の観察は親の checkout の `tmp/w10a/g03_raw_windows_3.json`・`g03_param_raw_2.json`（直す前の検査の実行は `_1`。Git の対象外）。コミットした要約に ResoniteLink の ID は含めない（構造の照合は参照先を宣言のキーで書く）
+- 最初の確認（10:54Z、1 つの窓 20 秒）も合格（14 回、残差 1.6e-7、1.2503 rad/s）
+- 構造の観察は 1 回の `resoloop observe` に 64 個まで（`OBSERVE_LIMIT`。超えると `OBSERVE_LIMIT` のエラー）なので、MeshRenderer 110 個と材質 21 個を分けて読む
+
+### 16.6 共有の材質（水以外の物と M02 の見た目）
+
+- 構造の照合（`verify_g03.py` の各窓の `structure`）: 基準は G03 を足す前の宣言（同じ export の `model.apply.json`）。A の MeshRenderer 110 個すべての `Materials` を、基準の並びと順番まで比べた（水だけは専用の材質 1 つ）。G03 を足した後の宣言そのものも基準と比べ、違うのは水の MeshRenderer だけ。水の MeshRenderer は専用の材質 `p3_g03_wm` だけを指す。同じ `MAT_APL_MagicWater` を使っていた 7 個（`APL_Fountain_001_WaterAttach`、`APL_JackInteractionPedestal_001_EffectAttach`、`APL_PeriodicShowRig_001_Pylons`（4 つ目の材質）と `_GhostOrbitAttach_E`・`_N`・`_S`・`_W`）は元の材質を指したまま。元の材質の `AlbedoColor`・`EmissiveColor`・`Metallic`・`Smoothness` は宣言の値のまま（色は profile を考慮して線形の値で比べ、差 1e-5 以内）。専用の材質の `AlbedoColor`・`Metallic`・`Smoothness` は元の材質と同じ
+- M02 の素材の宣言（`exports/p2_meshy/M02-20261031T164338Z/p2m.apply.json`）の diff は、最初・2 回目・保存の後のどれも変更 0（no-op 17）。M02 の点光源も変えていない
+- 撮影（16.10）: G03Swing = 0（P2 と同じ発光）の `g03_fountain_swing0` と、動いている間の `g03_fountain`・`g03_fountain_later` で、水の輪だけが水色・明るい紫・淡い紫と変わり、M02・踊るカボチャ・灯り・手前の I03 の台座は同じ見た目
+- 利用者の確認（確認事項 6）: ほかの物の見た目は変わっていない（16.10）
+
+### 16.7 はみ出し
+
+- G03 は発光の色だけを変え、メッシュ・Slot の位置・回転・拡縮を動かさない（専用の材質と MeshRenderer の付け替えだけ。駆動する Slot は無く、`managedFields` も足していない）。水の輪の外径は W02 の 3.64 m（台の外径 8.4 m の内側）のまま
+- 光で通路が隠れる・まぶしいといった点も含めて、利用者の実機の確認で問題なし（16.10）
+
+### 16.8 diff・apply・配備と、再適用・所有範囲
+
+| 時刻（UTC） | 宣言・操作 | diff | apply・配備 |
+|---|---|---|---|
+| 10:44〜10:45 | 全 19 宣言（16.3。`<key>-20261101T104312Z`） | どれも変更 0・警告 0 | — |
+| 10:52 | A（`A_plaza-20261101T105131Z`。専用の材質を足した） | 作成 1（水の Slot の `p3_g03_wm`）・更新 1（水の MeshRenderer の `Materials`。「one or more fields differ or depend on a new target」）・no-op 666 | Component の追加 1・更新 1（資産は変更なし 110、取り込み 0） |
+| 10:53 | P3（`content/p3_gimmicks.json`） | 作成 4（Slot `G03_Fountain`、値の Component 3）・no-op 7 | Slot の作成 1・Component の追加 3 |
+| 10:53 | ProtoFlux（`deploy_flux.py --manifest flux/p3_fountain_glow.flux.json`） | — | モジュール `P3FountainGlow` を `P3_Gimmicks/G03_Fountain` の下に作成（`action` create、drive の結び先 `p3_g03_wm.EmissiveColor` が解決） |
+| 10:55 | 全 19 宣言の 2 回目の diff（動いている最中。A は `105131Z`） | どれも変更 0・警告 0（A は no-op 668、P3 は 11）。発光の値は差分にならない | — |
+| 10:56 | A・P3 の 2 回目の apply、2 回目の配備 | — | apply はどれも書き込み 0（作成・更新・削除 0、資産の取り込み 0）。配備は `no-op`（「source and transitive dependency hashes match deploy state」、モジュールの Slot は同じ） |
+
+- `--prune` は使っていない。削除・名前の変更・Component の作り直しは 0。MeshRenderer は作り直されず、`Materials` の要素の更新だけ
+- 所有範囲: diff の対象は A の水の Slot の専用の材質と水の MeshRenderer、P3 の宣言の G03 の Slot と値だけ。world・B・C・D・E・`content/main.json`・Meshy の素材の宣言（M02 を含む）は、最初の diff から最後まで変更 0 で、apply していない。W10 の `flux/P3PlazaDance.pg`・`flux/p3_plaza_dance.flux.json` は `build_content.py` で作り直してもバイト単位で同じ（`git diff` が空）
+- 数: W08 の root の下は Slot 939・Component 1,951 → Slot 1,013・Component 2,041（P3 の宣言 1・3、A の専用の材質 0・1、モジュール `P3FountainGlow` 73・86。`tmp/w10a/02_snapshot_after_*` と `03_g03_module_*`）
+- apply・配備の記録は親の checkout の `tmp/w10a/`（`diff_first/`・`diff_second/`・`diff_g03_*`・`apply_g03_*`・`flux_g03_deploy_*`）
+
+### 16.9 既存の検査
+
+- 動いている状態（10:56〜10:58Z）で実行した。どれも直していない
+- W10 の G01・G13（`modeling/p3_gimmicks/verify_live.py`、1 つの窓 30 秒）: 合格。G13 は 18.01°/s・上から見て反時計回り、G01 は 6 体とも範囲の中（記録は親の checkout の `tmp/w10a/p3_prev_live_1.json`。W10 の `live_checks.json`・`param_checks.json` は書き換えていない）
+- W09R（`modeling/p2_meshy/verify_live.py`）: 全項目合格（M01〜M08 の 9 行、5 地区の数）。A の数の照合は、P3 が足した Component 13（W10 の中継 12 と、この子の専用の材質 1。`rest_pose.p3_additions` がキーの `p3_` で数える）を加えて実物 Slot 192・Component 417 と一致。結果は親の checkout の `tmp/w10a/p2_meshy_live_1.json`（`review/p2_meshy/live_checks.json` は W10 の記録のまま書き換えていない）
+- W08（`modeling/p2_static/verify_live.py`）: W09R 以降の既知の 11 件のまま（項目は W10 の記録 11 章と同じ）。A の件は実物と宣言の Component がどちらも 1 増えた（416 / 344 → 417 / 345）だけで、P3・G03 による失敗は 0（`tmp/w10a/p2_static_checks_1.json`）。`review/p2_static/live_checks.json` は書き換えていない
+
+### 16.10 撮影と実機の確認
+
+- 撮影（`review/p3_gimmicks/`、1600×900、カメラは `content/p3_gimmicks.json` の `cameras`。11:00〜11:01Z）: `g03_fountain_swing0`（南東から。G03Swing = 0 で P2 と同じ発光。撮った後に 1 に戻した）、`g03_fountain`・`g03_fountain_later`（同じ位置から約 6 秒あけた 2 枚。水の輪が明るい紫と淡い紫）、`g03_water`・`g03_water_later`（南西から水の輪の近く）。どれも 39〜40 万バイトで、真っ黒な約 23 KB の画像は無い。`<名前>.scene.json` は作業ツリーの絶対パスを含むのでコミットせず、親の checkout の `tmp/w10a/capture_scenes/` に移した
+- 利用者の確認（確認事項 6、デスクトップ、11:03Z ごろ。2 つの窓の間）: 噴水の水の変化、ほかの物（M02、I03 の台座、ショーの柱の目印、踊るカボチャ、回転床）の見た目が変わっていないこと、通路へのはみ出し・不自然な点が無いこと、resoloop がつながっていない間も変化が続くことの 4 点とも「どれも問題ない」
+- 負荷（確認事項 8）: W08 の基準と同じ端末（デスクトップ一人）で 60 fps 前後（W10 と同じ）。足した物は A の Component 1（専用の材質）、P3 の宣言の Slot 1・Component 3、ProtoFlux のモジュールの Slot 73・Component 86（ノード）。粒子は無い。drive は各ユーザーが毎フレーム評価する（ネットワークの送信は無い）
+
+### 16.11 保存（確認事項 4）と GPT のレビュー（確認事項 7）
+
+- 保存は下の 16.11.1（GPT のレビューへの対応と実機の測り直しの後）
+- GPT のレビュー: `codex exec --sandbox read-only -C <worktree> -o <出力> "<依頼文>" < /dev/null`（モデル gpt-6-astra）。対象は PR #63 の `97f5b73`。Resonite には接続させず、checkout も変更させていない。観点は、宣言と駆動の正しさ、W10 の行・検査・生成物、実測の検査、記録の正確さ、テストの採用基準の 5 つ。全文は PR #63 のコメント
+- 結果: Major 1 件・Minor 3 件（どれも実測の検査の見逃し。配備・宣言・生成物・W10 への影響・記録の集計値・追加したテストは指摘なし）
+
+| # | 重大度 | 指摘 | 採否 | 対応 |
+|---|---|---|---|---|
+| 1 | Major | 照合の対象（同じ材質を使う MeshRenderer）を G03 を足した後の宣言から探すので、宣言でも水以外を付け替えると対象から消える。参照を含むかしか見ないので、`Pylons` の材質の並びが減っても合格する | 採用 | 水以外の見た目が変わった状態を合格と報告するため。基準を G03 を足す前の宣言（`model.apply.json`）にし、A の MeshRenderer 110 個すべての `Materials` を順番まで比べる。G03 を足した後の宣言も基準と比べる |
+| 2 | Minor | 各観察の θ を直線に当てはめた傾きしか見ないので、平均の速さだけが合う曲がった時刻の式（θ = ωt + 0.8 sin ωt）も合格する | 採用 | 式・速さが正しいと誤って報告するため。各観察の θ と直線の差を 0.4 rad 以内とした（実測のばらつきは最大 0.13 rad） |
+| 3 | Minor | 材質の色の比較が profile を捨てるので、同じ数値で sRGB → Linear に変わっても合格する | 採用 | 共有の材質の発光が変わった状態を合格と報告するため。色は profile を考慮して線形の値で比べる（宣言の配列は sRGB） |
+| 4 | Minor | 範囲外の値を試すのが `G03Intensity` だけで、`G03Frequency`・`G03Swing` の範囲の収め方を実測していない | 一部採用 | `G03Frequency` −1（0 に収まる）、`G03Swing` −1（0 に収まる）・5（1 に収まる）を `--param-check` に足した。`G03Frequency` の上限は観察の間隔では測れないので、理由を 16.5 に書いた |
+
+- テスト（S）: 指摘 1〜3 の守りに 3 件（`tests/test_p3_gimmicks_g03_verify.py`。曲がった時刻の式、共有の材質の値と profile の変化、宣言と観察の両方の付け替えと並びの減り）を足し、構造の照合の 1 件を新しい基準の形に直した（全 8 件）。指摘 4 は `--param-check` の実機の流れの中の判定で、守りそのもの（`check_frozen`・`check_samples` に収めた値を渡す）は既存のテストが見るので足していない（D）。どれも守りを外す変異でそのテストだけが失敗することを確かめた
+- 直した検査で実機を測り直し、すべて合格した（16.5・16.6）
+
+#### 16.11.1 保存
+
+- GPT のレビューへの対応と実機の測り直し（16.5）の後に、エージェントの依頼で利用者がワールドを 1 回保存した（2026-11-01 11:36Z より前。保存の操作の種類は記録していない）
+- 保存の後（11:37〜11:38Z）に全 19 宣言（W08 の 7 つ・Meshy の 11 個・P3）の diff を取り、どれも変更 0・警告 0（`tmp/w10a/diff_aftersave/`）。水の発光は変わり続けていた（専用の材質の `EmissiveColor` が 3 秒あけて別の値）。保存・再読込の後に専用の材質・モジュール・HMC_P3 の値が残って動くかは P4（開き直していない）
+
+### 16.12 Resonite で未確認の項目
+
+- 2 人以上での同期、途中参加（P4）。この子の確認は、共有の時刻と同期する値だけから計算する drive の仕組みの説明と、単独の確認まで
+- 保存・再読込の後に、専用の材質・ProtoFlux のモジュール・HMC_P3 の値が残って動くか（P4。開き直していない）
+- VR での見え方（発光の明るさ・まぶしさ）、メモリの負荷
