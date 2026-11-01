@@ -11,6 +11,7 @@ test keeps the correct state passing.
 from __future__ import annotations
 
 import copy
+import math
 
 import pytest
 
@@ -337,3 +338,74 @@ def test_entrance_door_with_a_wrong_scale_is_detected() -> None:
     world = _world_entrance()
     _find(world, "Door")["scale"] = dict(zip("xyz", (1.0, 0.5, 1.0)))
     assert any("non-unit scale" in p for p in _problems_entrance(world))
+
+
+# W09R-D (#49): the carousel canopy (M05) sits on its centre casing, the W05 poles reach into the canopy, and the ghost
+# train's headlamp attachment sits in front of the M06 lens. Each check below derives its expectation from the finished
+# asset's data (manifest pivots, the canopy mesh, the lens profile of review/M06/checks.json), not from the district
+# values it judges, so a wrong value in the district or the assembly is not passed by the same value.
+
+
+def test_canopy_off_its_centre_casing_is_detected() -> None:
+    # Each M05 row only compares its own part with its own placeholder, so a canopy placeholder at the wrong height above
+    # the casing would pass both rows; the assembly check compares the two parts with the M05 manifest pivots.
+    path = ["W", "A", "Proxy", "Proxy_Body", "M", "Asset"]
+    inputs = {**copy.deepcopy(INPUTS), "assembly": {"with": "MY", "other_path": path, "offset_local": [0.0, 0.0, 0.0]}}
+    assert verify_live.check_one(_world(), "MX", REP, inputs)["problems"] == []
+    inputs["assembly"]["offset_local"] = [0.0, 0.0, 0.05]  # the canopy should be 5 cm higher than it is
+    assert any("assembly with MY" in p for p in verify_live.check_one(_world(), "MX", REP, inputs)["problems"])
+
+
+def _box_shell(y0: float, y1: float) -> dict:
+    """A closed slab (x, z in -1..1) between heights y0 and y1: the underside and the top."""
+    vs = [[x, y, z] for y in (y0, y1) for x in (-1.0, 1.0) for z in (-1.0, 1.0)]
+    return {"vertices": vs, "triangles": [(0, 1, 3), (0, 3, 2), (4, 5, 7), (4, 7, 6)]}
+
+
+def _pole(top: float) -> dict:
+    ring = [[0.4 + 0.05 * math.cos(a), y, 0.05 * math.sin(a)] for y in (0.0, top) for a in (0, math.pi / 2, math.pi, 3 * math.pi / 2)]
+    return {"vertices": ring, "triangles": []}
+
+
+def test_pole_ending_below_the_canopy_is_detected() -> None:
+    chain = [_slot("TurnRoot")]
+    assert verify_live.check_poles(chain, _pole(1.02), chain, _box_shell(1.0, 1.5))[1] == []  # 2 cm into the canopy
+    assert any("below the canopy underside" in p for p in verify_live.check_poles(chain, _pole(0.9), chain, _box_shell(1.0, 1.5))[1])
+
+
+def test_pole_poking_out_of_the_canopy_is_detected() -> None:
+    chain = [_slot("TurnRoot")]
+    assert any("outside the canopy shell" in p for p in verify_live.check_poles(chain, _pole(1.6), chain, _box_shell(1.0, 1.5))[1])
+
+
+def test_headlamp_attachment_inside_the_lamp_is_detected() -> None:
+    lens = {"slot": "Att_Headlamp", "lens_z_m": [1.28, 1.50], "max_gap_m": 0.03,
+            "front_profile": [[1.2, 1.369], [1.3, 1.252], [1.4, 1.247], [1.5, 1.252], [1.6, 1.22]]}
+    asset = [_slot("Engine")]
+    ok = verify_live.check_lens_attachment([_slot("Att_Headlamp", pos=(0.0, 1.39, 1.26))], asset, lens)
+    assert ok[1] == [] and ok[0]["gap_m"] == pytest.approx(0.0125, abs=1e-4)
+    # the W05 position before W09R-D: 1.9 cm behind the lens front, so a light there is hidden in the lamp
+    old = verify_live.check_lens_attachment([_slot("Att_Headlamp", pos=(0.0, 1.498, 1.233))], asset, lens)
+    assert any("from the lens front" in p for p in old[1])
+
+
+# PR #54 review (GPT): the pole check measured the latest local bundle mesh and only took the Slot transform from the
+# world, so a pole mesh update that was never applied (the old short poles still shown) or hidden poles passed.
+
+APPLIED = {"state": "p2_D.json", "asset": "mesh_poles", "bundle_matches_state": True, "url": "local://poles-new"}
+
+
+def _poles_slot(url: str = "local://poles-new", enabled: bool = True) -> list[dict]:
+    return [_slot("TurnRoot"), _slot("Poles", comps=[_comp("pm", "StaticMesh", URL=url),
+                                                     _comp("pr", "MeshRenderer", Enabled=enabled, Mesh="id:pm", Materials=[])])]
+
+
+def test_pole_mesh_that_is_not_the_applied_one_is_detected() -> None:
+    assert verify_live.check_measured_mesh_is_shown(_poles_slot(), APPLIED) == []
+    assert any("not the applied" in p for p in verify_live.check_measured_mesh_is_shown(_poles_slot("local://poles-old"), APPLIED))
+    stale = {**APPLIED, "bundle_matches_state": False}  # the bundle was exported again after the last apply
+    assert any("not the one recorded" in p for p in verify_live.check_measured_mesh_is_shown(_poles_slot(), stale))
+
+
+def test_hidden_poles_are_detected() -> None:
+    assert any("not drawn" in p for p in verify_live.check_measured_mesh_is_shown(_poles_slot(enabled=False), APPLIED))

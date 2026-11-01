@@ -10,6 +10,8 @@
     resoloop validate p2m.apply.json --json と --strict --url <URL> --json
 REPLACEMENTS の collision が "finished" の素材（M03）は、素材のメッシュの Slot に MeshCollider（W08 と同じ Static・
 CharacterCollider・DualSided）を付ける（地区の宣言で仮モデルの FixedCollision を止めるのは replacements.py）。
+REPLACEMENTS の export_root がある行（W09R-D の M05_CenterCasing・M05_Canopy）は、素材の .blend を行ごとに export し、
+export_root の子 asset_id だけを置いた宣言にする（extract_part。ほかの子と、使わない材質・画像は外す）。
 結果は <出力先>/validate.json と <出力先>/placement.json に書く（どちらもコミットする。バンドル本体と画像はコミットしない）。
 apply は行わない（docs/p2-meshy-replacement.md の手順で、diff を確かめてから --texture-transfer data で行う）。
 """
@@ -92,20 +94,7 @@ def split_part(doc: dict, rep: dict, meshy_id: str, part_id: str, pose: dict, mo
     part["slot"]["position"] = [0.0, 0.0, 0.0]
     part["slot"]["rotation"] = [0.0, 0.0, 0.0, 1.0]
     part["slot"]["scale"] = [1.0, 1.0, 1.0]
-    # 部品の Component が参照する Component を、Blender_Providers の中から推移的に集める
-    providers = next(c for c in doc["children"] if c["slot"]["name"] == "Blender_Providers")
-    by_key = {comp["key"]: (child, comp) for child in providers.get("children", []) for comp in child.get("components", [])}
-    wanted: set[str] = set()
-    todo = set().union(*(_component_refs(c.get("fields", {})) for c in part.get("components", [])))
-    while todo:
-        key = todo.pop()
-        if key in wanted or key not in by_key:
-            continue
-        wanted.add(key)
-        todo |= _component_refs(by_key[key][1].get("fields", {}))
-    prov = copy.deepcopy(providers)
-    prov["children"] = [c for c in prov.get("children", []) if any(comp["key"] in wanted for comp in c.get("components", []))]
-    assets = _asset_refs([c.get("fields", {}) for n in (part, prov) for c in _all_components(n)])
+    prov, assets = _providers_for(doc, part)
     return {
         "schemaVersion": doc["schemaVersion"],
         "ownership": {"key": f"{doc['ownership']['key']}_{pose['document'].lower()}"},
@@ -115,6 +104,56 @@ def split_part(doc: dict, rep: dict, meshy_id: str, part_id: str, pose: dict, mo
         "components": [],
         "children": [part, prov],
     }
+
+
+def _providers_for(doc: dict, part: dict) -> tuple[dict, set[str]]:
+    """part の Component が参照する Component を doc の Blender_Providers から推移的に集め、それだけを持つ Blender_Providers の
+    写しと、part とその写しが参照する資産のキーを返す（宣言の外の Component は参照できない）。"""
+    providers = next(c for c in doc["children"] if c["slot"]["name"] == "Blender_Providers")
+    by_key = {comp["key"]: (child, comp) for child in providers.get("children", []) for comp in child.get("components", [])}
+    wanted: set[str] = set()
+    todo = set().union(*(_component_refs(c.get("fields", {})) for c in _all_components(part)))
+    while todo:
+        key = todo.pop()
+        if key in wanted or key not in by_key:
+            continue
+        wanted.add(key)
+        todo |= _component_refs(by_key[key][1].get("fields", {}))
+    prov = copy.deepcopy(providers)
+    prov["children"] = [c for c in prov.get("children", []) if any(comp["key"] in wanted for comp in c.get("components", []))]
+    assets = _asset_refs([c.get("fields", {}) for n in (part, prov) for c in _all_components(n)])
+    return prov, assets
+
+
+def extract_part(doc: dict, rep: dict, meshy_id: str) -> dict:
+    """素材の宣言 doc（変えない）から、export_root の子 asset_id だけを、バンドルの root の直下に回転・移動なしで置いた宣言を作る
+    （W09R-D の M05。柱と屋根を別の visual_root の下に置く）。
+
+    asset_id の組み立ての位置（export_root の中の位置）は visual_root の位置が受け持つので、子の位置は 0 にする。export の子の
+    位置が素材のアセット一覧の parts の pivot_local と違う、回っている、拡縮がある、export_root が root の直下で回転・移動なし
+    でないときは止める（違うまま 0 にすると、柱と屋根の組み立てがずれる）。材質と画像は子が参照する物だけを写す。
+    """
+    er = next((c for c in doc["children"] if c["slot"]["name"] == rep["export_root"]), None)
+    if er is None:
+        raise ValueError(f"{rep['export_root']} is not a child of the bundle root")
+    if not _is_identity_slot(er["slot"]):
+        raise ValueError(f"{rep['export_root']} is not at the identity of the bundle root")
+    node = next((c for c in er.get("children", []) if c["slot"]["name"] == rep["asset_id"]), None)
+    if node is None:
+        raise ValueError(f"{rep['asset_id']} is not a child of {rep['export_root']}")
+    parts = json.loads((PROJECT_ROOT / f"assets/manifest/{rep.get('source', meshy_id)}.json").read_text(encoding="utf-8"))["assets"][0]["parts"]
+    pivot = next(p["pivot_local"] for p in parts if p["part_id"] == rep["asset_id"])
+    slot = node["slot"]
+    pos, rot, scl = slot.get("position") or [0, 0, 0], slot.get("rotation") or [0, 0, 0, 1], slot.get("scale") or [1, 1, 1]
+    if max(abs(a - b) for a, b in zip(pos, b2r(pivot))) > 1e-3 or max(abs(a - b) for a, b in zip([*rot, *scl], [0, 0, 0, 1, 1, 1, 1])) > 1e-6:
+        raise ValueError(f"{rep['asset_id']}: exported transform {pos} {rot} {scl} differs from the manifest pivot {pivot}")
+    part = copy.deepcopy(node)
+    part["slot"]["position"] = [0.0, 0.0, 0.0]
+    prov, assets = _providers_for(doc, part)
+    out = copy.deepcopy(doc)
+    out["children"] = [part, prov]
+    out["assets"] = {k: v for k, v in doc["assets"].items() if k in assets}
+    return out
 
 
 def _all_components(node: dict):
@@ -150,7 +189,8 @@ def add_mesh_colliders(node: dict, chain: tuple[str, ...] = ()) -> list[str]:
 
 def compose(model_path: Path, out_path: Path, rep: dict, meshy_id: str | None = None) -> dict:
     doc = json.loads(model_path.read_text(encoding="utf-8"))
-    out = copy.deepcopy(doc)
+    # 素材の子 1 つだけを置く行（W09R-D の M05）: export_root の下の asset_id だけの宣言にする
+    out = extract_part(doc, rep, meshy_id or "") if rep.get("export_root") else copy.deepcopy(doc)
     root = out["slot"]
     if root.get("parent") != rep["visual_root_path"]:
         raise ValueError(f"bundle parent {root.get('parent')!r} != {rep['visual_root_path']!r}")
@@ -247,6 +287,7 @@ def export_one(meshy_id: str, stamp: str, url: str, recompose: str | None = None
 def _compose_and_validate(meshy_id: str, rep: dict, out: Path, out_rel: str, url: str, result: dict) -> dict:
     placement = compose(out / "model.apply.json", out / "p2m.apply.json", rep, meshy_id)
     placement.update({k: rep[k] for k in ("district", "placeholder", "visual_root", "visual_root_path", "asset_id", "rotation_z_deg", "position_local")})
+    placement.update({k: rep[k] for k in ("source", "export_root") if k in rep})
     (out / "placement.json").write_text(json.dumps(placement, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     docs = ["p2m.apply.json", *(p["document"] for p in placement["moving_parts"])]
     result["p2m"] = validate_both(f"{out_rel}/p2m.apply.json", url)

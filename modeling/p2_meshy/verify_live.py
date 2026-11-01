@@ -39,11 +39,24 @@
     原点が、開口の中心の床から hall_depth_m 奥と 1 cm 以内で、ホールの前方も建物の奥を向く。扉とホールのアセットの root から
     下のすべての Slot と、地区の root からの祖先の拡縮が 1（原点が合っていても扉やホールの形が縮む・伸びるのを見落とさない。
     PR #53 の GPT のレビュー）
+  - 素材の子 1 つだけを置く行（W09R-D で追加。REPLACEMENTS の source・export_root。M05 の柱と屋根）: アセット一覧と review は
+    素材のキー（source）から読み、外接箱の期待値は review/<source>/checks.json の parts の bounds_m（子のローカル）
+  - 取付位置の期待値は、アセット一覧の親の部品の pivot_local を足した位置（W09R-D で修正。D の取付位置は TurnRoot・EngineRoot の子）
+  - 組み立て（W09R-D で追加。REPLACEMENTS の assembly_with。M05 の屋根）: この行の素材の原点と assembly_with の行の素材の原点の
+    差が、アセット一覧の pivot_local の差を素材の向きで回した物と 1 cm 以内
+  - 支柱（W09R-D で追加。REPLACEMENTS の poles。M05 の屋根）: 地区の宣言の支柱のメッシュ（8 本）の上端が、どの支柱でも素材の
+    屋根の下面以上で、先が屋根の閉じた殻の中にある（軸の上で先より下の屋根の面の数が奇数）。check_poles。測った支柱と屋根の
+    メッシュがワールドに表示されている物か（Slot が有効、MeshRenderer が有効で同じ Slot の StaticMesh を参照し、その URL が
+    apply の state の記録と同じで、state の sourceHash がバンドルのファイルと同じ）も確かめる（check_measured_mesh_is_shown。
+    PR #54 の GPT のレビュー）。state は --state-dir（既定は親の checkout の .resoloop/state）
+  - 前照灯（W09R-D で追加。REPLACEMENTS の lens_attachment。M06）: 地区の取付位置が、素材のレンズの前面（review/M06/checks.json
+    の headlamp.front_profile_x0）の前 max_gap_m 以内で、レンズの高さにある。check_lens_attachment
 """
 
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 import sys
@@ -65,6 +78,18 @@ from modeling.p2_static.verify_live import (  # noqa: E402
     observe,
     to_world,
 )
+
+
+# apply の state の置き場（親の checkout。AGENTS.md）。--state-dir で変えられる
+STATE_DIR = Path("/workspaces/reso-world/worlds/reso-world-Halloween/.resoloop/state")
+
+
+def applied_mesh(state_file: str, bundle: Path, doc: dict, key: str) -> dict:
+    """宣言の資産 key のメッシュのファイルが、apply の state に記録された物（sourceHash）と同じかと、その取り込み先の URL。
+    検査に使うローカルのバンドルのメッシュと、ワールドが表示しているメッシュが同じ物かを確かめるために使う（PR #54 の GPT のレビュー）。"""
+    rec = (json.loads((STATE_DIR / state_file).read_text(encoding="utf-8")).get("assets") or {}).get(key) or {}
+    sha = hashlib.sha256((bundle / doc["assets"][key]["source"]).read_bytes()).hexdigest()
+    return {"state": state_file, "asset": key, "bundle_matches_state": rec.get("sourceHash", "").lower() == sha, "url": rec.get("url")}
 
 
 def _load(rel: str) -> dict:
@@ -108,6 +133,23 @@ def _vertices(bundle: Path, doc: dict, key: str) -> list[dict]:
     return json.loads((bundle / doc["assets"][key]["source"]).read_text(encoding="utf-8"))["vertices"]
 
 
+def _mesh(bundle: Path, doc: dict, key: str) -> dict:
+    """メッシュの資産の頂点（Resonite の軸）と三角形（頂点の番号の組）。"""
+    data = json.loads((bundle / doc["assets"][key]["source"]).read_text(encoding="utf-8"))
+    tris = [tuple(sm["vertexIndices"][i:i + 3]) for sm in data["submeshes"] for i in range(0, len(sm["vertexIndices"]), 3)]
+    return {"vertices": [[v["position"][k] for k in "xyz"] for v in data["vertices"]], "triangles": tris}
+
+
+def _find_decl(node: dict, name: str) -> dict | None:
+    if node["slot"]["name"] == name:
+        return node
+    for ch in node.get("children", []):
+        hit = _find_decl(ch, name)
+        if hit is not None:
+            return hit
+    return None
+
+
 def load_inputs(meshy_id: str, rep: dict) -> dict:
     """検査に使うデータ（実測ではない物）を読む。テストはこの dict を直接作る。"""
     bundle = latest_meshy_bundle(meshy_id)
@@ -116,7 +158,41 @@ def load_inputs(meshy_id: str, rep: dict) -> dict:
     meshes = [{"path": list(path), "vertices": _vertices(bundle, doc, key)} for path, key in _mesh_slots(asset_slot)]
     received = next(a for a in _load("assets/meshy/received.json")["assets"] if a["row_id"] == meshy_id)
     ds, dc, auto = declared_counts(doc)
-    manifest = _load(f"assets/manifest/{meshy_id}.json")["assets"][0]
+    # 素材の子 1 つだけを置く行（W09R-D の M05）: アセット一覧と review は素材のキー（source）。外接箱は素材の仕上げの検査
+    # （review/<source>/checks.json の parts の bounds_m。子のローカル）から求める
+    source = rep.get("source", meshy_id)
+    manifest = _load(f"assets/manifest/{source}.json")["assets"][0]
+    bounds_local = manifest["bounds_local"]
+    if rep.get("export_root"):
+        part_checks = _load(f"review/{source}/checks.json")["parts"][meshy_id]
+        if part_checks["object"] != rep["asset_id"]:
+            raise SystemExit(f"{meshy_id}: review/{source}/checks.json parts.{meshy_id} is {part_checks['object']}, not {rep['asset_id']}")
+        bounds_local = part_checks["bounds_m"]
+    pivots = {p["part_id"]: p["pivot_local"] for p in manifest["parts"]}
+    assembly = None
+    if rep.get("assembly_with"):
+        # 組み立て（W09R-D の M05 の屋根と柱）: 期待値は素材のアセット一覧の pivot_local の差（実測と配置の値から求めない）
+        other = REPLACEMENTS[rep["assembly_with"]]
+        other_doc = json.loads((latest_meshy_bundle(rep["assembly_with"]) / "p2m.apply.json").read_text(encoding="utf-8"))
+        assembly = {"with": rep["assembly_with"],
+                    "other_path": [*other["visual_root_path"].split("/")[1:], other_doc["slot"]["name"], other["asset_id"]],
+                    "offset_local": [pivots[rep["asset_id"]][i] - pivots[other["asset_id"]][i] for i in range(3)]}
+    poles = None
+    if rep.get("poles"):
+        # 支柱（W09R-D）: 地区の宣言のメッシュ（最新の exports/p2_static/<地区>-*）と、素材のメッシュ（三角形を含む）から測る
+        dbundle = sorted((PROJECT_ROOT / "exports" / "p2_static").glob(f"{rep['district']}-*/p2.apply.json"))[-1].parent
+        ddoc = json.loads((dbundle / "p2.apply.json").read_text(encoding="utf-8"))
+        pnode = _find_decl(ddoc, rep["poles"])
+        pkey = next(c for c in pnode["components"] if c["type"] == "FrooxEngine.StaticMesh")["fields"]["URL"].removeprefix("$asset:")
+        (cpath, ckey), = _mesh_slots(asset_slot)
+        poles = {"slot": rep["poles"], "district_bundle": dbundle.relative_to(PROJECT_ROOT).as_posix(),
+                 "pole_mesh": _mesh(dbundle, ddoc, pkey), "canopy_path": list(cpath), "canopy_mesh": _mesh(bundle, doc, ckey),
+                 "pole_applied": applied_mesh(f"p2_{rep['district']}.json", dbundle, ddoc, pkey),
+                 "canopy_applied": applied_mesh(f"p2m_{meshy_id}.json", bundle, doc, ckey)}
+    lens = None
+    if rep.get("lens_attachment"):
+        # 前照灯（W09R-D の M06）: レンズの前面の形は素材の仕上げの検査（review/<source>/checks.json の headlamp）から
+        lens = {**rep["lens_attachment"], "front_profile": _load(f"review/{source}/checks.json")["headlamp"]["front_profile_x0"]}
     # 可動部品（W09R-A）: 部品ごとの宣言（motion_root の下）。期待値はアセット一覧の leaves から直接求める（moving_part_poses の
     # 計算を通さない。置き方の計算の誤りを、同じ計算で求めた期待値で合格にしないため）
     moving = {}
@@ -143,7 +219,10 @@ def load_inputs(meshy_id: str, rep: dict) -> dict:
         "bundle": bundle.relative_to(PROJECT_ROOT).as_posix(),
         "bundle_root_name": doc["slot"]["name"],
         "meshes": meshes,
-        "bounds_local": manifest["bounds_local"],
+        "bounds_local": bounds_local,
+        "assembly": assembly,
+        "poles": poles,
+        "lens_attachment": lens,
         "hint_deg": hint_deg,
         "hint_source": hint_source,
         "frame_origin_world": placeholders[meshy_id]["frame_origin_world"],
@@ -202,6 +281,134 @@ def expected_bounds(bounds_local: dict, deg: float, origin_resonite) -> tuple[li
     corners = [rz(deg, [x, y, z]) for x in (lo[0], hi[0]) for y in (lo[1], hi[1]) for z in (lo[2], hi[2])]
     pts = [[origin_resonite[i] + b2r(c)[i] for i in range(3)] for c in corners]
     return [min(p[i] for p in pts) for i in range(3)], [max(p[i] for p in pts) for i in range(3)]
+
+
+def to_local(chain: list[dict], p) -> list[float]:
+    """世界の点 p を chain の最後の Slot のローカル（Resonite の軸）にする（祖先の拡縮は正で、軸は直交する前提）。"""
+    o = to_world(chain, (0.0, 0.0, 0.0))
+    out = []
+    for axis in ((1.0, 0.0, 0.0), (0.0, 1.0, 0.0), (0.0, 0.0, 1.0)):
+        e = [a - b for a, b in zip(to_world(chain, axis), o)]
+        out.append(sum((p[i] - o[i]) * e[i] for i in range(3)) / sum(c * c for c in e))
+    return out
+
+
+def pivot_in_asset(asset: dict, part_id: str) -> list[float]:
+    """アセット一覧の部品の、アセットの root からの位置（Blender の軸）。pivot_local は親の部品からの位置なので、
+    アセットの root までの親の pivot_local を足す（W09R-D: D の取付位置は TurnRoot・EngineRoot の子。親は回転なしの前提）。"""
+    by = {p["part_id"]: p for p in asset["parts"]}
+    off, p = [0.0, 0.0, 0.0], by[part_id]
+    while True:
+        off = [off[i] + float(p["pivot_local"][i]) for i in range(3)]
+        parent = by.get(p.get("parent_part") or "")
+        if parent is None or parent["role"] == "asset_root":
+            return off
+        p = parent
+
+
+def _up_hits(mesh: dict, x: float, z: float) -> list[float]:
+    """メッシュ（ローカル、Resonite の軸）を、点 (x, z) を通る鉛直（ローカルの y）の線が通る高さ（小さい順）。"""
+    if "_bb" not in mesh:
+        vs = mesh["vertices"]
+        mesh["_bb"] = [(min(vs[a][0], vs[b][0], vs[c][0]), max(vs[a][0], vs[b][0], vs[c][0]),
+                        min(vs[a][2], vs[b][2], vs[c][2]), max(vs[a][2], vs[b][2], vs[c][2])) for a, b, c in mesh["triangles"]]
+    vs, hits = mesh["vertices"], []
+    for (a, b, c), (x0, x1, z0, z1) in zip(mesh["triangles"], mesh["_bb"]):
+        if x < x0 or x > x1 or z < z0 or z > z1:
+            continue
+        (ax, ay, az), (bx, by, bz), (cx, cy, cz) = vs[a], vs[b], vs[c]
+        d = (bz - cz) * (ax - cx) + (cx - bx) * (az - cz)
+        if abs(d) < 1e-12:
+            continue
+        l1 = ((bz - cz) * (x - cx) + (cx - bx) * (z - cz)) / d
+        l2 = ((cz - az) * (x - cx) + (ax - cx) * (z - cz)) / d
+        l3 = 1.0 - l1 - l2
+        if min(l1, l2, l3) >= -1e-9:
+            hits.append(l1 * ay + l2 * by + l3 * cy)
+    return sorted(hits)
+
+
+def check_poles(pole_chain: list[dict], pole_mesh: dict, canopy_chain: list[dict], canopy_mesh: dict) -> tuple[list[dict], list[str]]:
+    """W05 の支柱（1 つのメッシュに 8 本）が素材の屋根の下面に届き、先が屋根の殻の中にあるか（W09R-D の M05）。
+
+    支柱は頂点を水平の距離 0.3 m でまとめた塊ごと。上端は塊の最も高い頂点、太さは上端の頂点の軸からの距離。上端の高さで、
+    軸と、軸のまわりの 16 点を屋根のローカルへ移し、鉛直の線が最初に屋根に当たる高さ（下面）を測る。どの点でも上端が下面
+    以上（隙間が見えない）で、軸の上で上端より下にある屋根の面の数が奇数（先が閉じた殻の中にあり、上に突き抜けない）。
+    """
+    clusters: list[list[list[float]]] = []
+    for v in pole_mesh["vertices"]:
+        for cl in clusters:
+            if (v[0] - cl[0][0]) ** 2 + (v[2] - cl[0][2]) ** 2 < 0.09:
+                cl.append(v)
+                break
+        else:
+            clusters.append([v])
+    rows, problems = [], []
+    for k, cl in enumerate(sorted(clusters, key=lambda c: math.atan2(sum(v[2] for v in c), sum(v[0] for v in c)))):
+        cx, cz = sum(v[0] for v in cl) / len(cl), sum(v[2] for v in cl) / len(cl)
+        top = max(v[1] for v in cl)
+        radius = max(math.hypot(v[0] - cx, v[2] - cz) for v in cl if v[1] > top - 1e-4)
+        firsts, misses, below = [], 0, None
+        for j in range(17):
+            px, pz = (cx, cz) if j == 0 else (cx + radius * math.cos(j * math.pi / 8), cz + radius * math.sin(j * math.pi / 8))
+            q = to_local(canopy_chain, to_world(pole_chain, (px, top, pz)))
+            hits = _up_hits(canopy_mesh, q[0], q[2])
+            if not hits:
+                misses += 1
+                continue
+            firsts.append(hits[0] - q[1])  # 下面の上端からの高さ（正なら隙間）
+            if j == 0:
+                below = sum(1 for h in hits if h < q[1])
+        row = {"pole": k, "centre_local": [round(cx, 3), round(cz, 3)], "top_local_y": round(top, 4),
+               "max_gap_m": round(max(firsts), 4) if firsts else None, "misses": misses}
+        if misses:
+            problems.append(f"pole {k}: no canopy above {misses} of 17 points")
+        elif max(firsts) > 1e-3:
+            problems.append(f"pole {k}: ends {max(firsts):.3f} m below the canopy underside")
+        elif below is None or below % 2 == 0:
+            problems.append(f"pole {k}: the tip is outside the canopy shell ({below} surfaces below it)")
+        row["surfaces_below_tip"] = below
+        rows.append(row)
+    return rows, problems
+
+
+def check_measured_mesh_is_shown(chain: list[dict], applied: dict) -> list[str]:
+    """検査で測るメッシュ（ローカルのバンドル）が、chain の最後の Slot に表示されている物か: Slot と祖先が有効、MeshRenderer が
+    有効で同じ Slot の StaticMesh を参照し、その URL が apply の state の記録と同じで、state の記録がバンドルのファイルと同じ
+    （PR #54 の GPT のレビュー: 支柱のメッシュの更新を apply していない・支柱を隠した状態でも、新しいバンドルの形で合格していた）。"""
+    node, problems = chain[-1], []
+    inactive = [n["name"] for n in chain if n.get("isActive") is False]
+    if inactive:
+        problems.append(f"{node['name']}: inactive Slot on the path: {inactive}")
+    renderer, mesh = component(node, "MeshRenderer"), component(node, "StaticMesh")
+    if member(renderer, "Enabled") is not True or mesh is None or member(renderer, "Mesh") != mesh["id"]:
+        problems.append(f"{node['name']}: not drawn with its own StaticMesh")
+    if not applied["bundle_matches_state"]:
+        problems.append(f"{node['name']}: the measured bundle mesh {applied['asset']} is not the one recorded in {applied['state']}")
+    elif mesh is None or not applied["url"] or member(mesh, "URL") != applied["url"]:
+        problems.append(f"{node['name']}: StaticMesh.URL is not the applied {applied['asset']} of {applied['state']}")
+    return problems
+
+
+def check_lens_attachment(att_chain: list[dict], asset_chain: list[dict], lens: dict) -> tuple[dict, list[str]]:
+    """前照灯の取付位置（W05 の Att_Headlamp）が、素材のレンズの前面の前 max_gap_m 以内で、レンズの高さにあるか（W09R-D の M06）。
+    レンズの前面は素材の仕上げの検査の、x = 0 の断面（z ごとの最も前の y。素材のローカル、Blender の軸）から補間する。"""
+    loc = to_local(asset_chain, to_world(att_chain, (0.0, 0.0, 0.0)))
+    x, y, z = loc[0], loc[2], loc[1]  # Blender の軸
+    prof = sorted(lens["front_profile"])
+    front = None
+    for (z0, y0), (z1, y1) in zip(prof, prof[1:]):
+        if z0 <= z <= z1:
+            front = y0 + (y1 - y0) * (z - z0) / (z1 - z0)
+    row = {"slot": lens["slot"], "local_blender": [round(x, 4), round(y, 4), round(z, 4)],
+           "lens_front_y": None if front is None else round(front, 4), "gap_m": None if front is None else round(y - front, 4)}
+    problems = []
+    lo, hi = lens["lens_z_m"]
+    if abs(x) > TOL_M or not lo <= z <= hi or front is None:
+        problems.append(f"{lens['slot']}: not at the lens (local {row['local_blender']}, lens z {lo}-{hi})")
+    elif not 0.0 < y - front <= lens["max_gap_m"]:
+        problems.append(f"{lens['slot']}: {y - front:+.4f} m from the lens front (expected in front, within {lens['max_gap_m']} m)")
+    return row, problems
 
 
 def _descendants(node: dict):
@@ -391,12 +598,55 @@ def check_one(root: dict, meshy_id: str, rep: dict, inp: dict) -> dict:
             problems.append(f"attachment {part['part_id']} not found")
             continue
         live = to_world(node_chain, (0.0, 0.0, 0.0))
-        exp = [b2r(asset["origin_world"])[i] + b2r(rz(proxy_yaw, part["pivot_local"]))[i] for i in range(3)]
+        exp = [b2r(asset["origin_world"])[i] + b2r(rz(proxy_yaw, pivot_in_asset(asset, part["part_id"])))[i] for i in range(3)]
         d = dist(live, exp)
         attach.append({"part": part["part_id"], "live_world": [round(v, 4) for v in live], "expected": [round(v, 4) for v in exp], "diff_m": round(d, 4)})
         if d > TOL_M:
             problems.append(f"attachment {part['part_id']} is {d:.4f} m off")
     out["attachment_points"] = attach
+
+    # 組み立て（W09R-D の M05）: この行の素材の原点と、assembly_with の行の素材の原点の差が、アセット一覧の pivot_local の差を
+    # 素材の向きで回した物と 1 cm 以内（屋根が柱の上に乗っている。それぞれの行の外接箱の検査は、仮モデルの間の高さの誤りを見落とす）
+    asm = inp.get("assembly")
+    if asm:
+        other = find_path(root, tuple(asm["other_path"]))
+        if other is None:
+            problems.append(f"assembly: {'/'.join(asm['other_path'])} not found")
+        else:
+            live = [a - b for a, b in zip(to_world(m_chain, (0.0, 0.0, 0.0)), to_world(other, (0.0, 0.0, 0.0)))]
+            exp = b2r(rz(inp["hint_deg"], asm["offset_local"]))
+            out["assembly"] = {"with": asm["with"], "live_offset": [round(v, 4) for v in live], "expected": [round(v, 4) for v in exp],
+                               "diff_m": round(dist(live, exp), 4)}
+            if dist(live, exp) > TOL_M:
+                problems.append(f"assembly with {asm['with']} differs by {dist(live, exp):.4f} m")
+
+    # 支柱（W09R-D の M05 の屋根）: 地区の支柱が屋根の下面に届き、先が屋根の殻の中にある
+    poles = inp.get("poles")
+    if poles:
+        pole_chain = next((chain_for(root, p) for p in _paths_named(vr_chain[-2], poles["slot"], tuple(x["name"] for x in vr_chain[:-1]))), None)
+        canopy_chain = find_path(root, rel_parts + (inp["bundle_root_name"], rep["asset_id"], *poles["canopy_path"]))
+        if pole_chain is None or canopy_chain is None:
+            problems.append(f"poles: {poles['slot']} or the canopy mesh not found")
+        else:
+            rows_p, probs_p = check_poles(pole_chain, poles["pole_mesh"], canopy_chain, poles["canopy_mesh"])
+            shown = check_measured_mesh_is_shown(pole_chain, poles["pole_applied"]) + check_measured_mesh_is_shown(canopy_chain, poles["canopy_applied"])
+            out["poles"] = {"slot": poles["slot"], "district_bundle": poles.get("district_bundle"), "poles": rows_p,
+                            "measured_meshes_shown": not shown}
+            problems.extend(shown)
+            if len(rows_p) != 8:
+                problems.append(f"poles: {len(rows_p)} poles found, expected 8")
+            problems.extend(probs_p)
+
+    # 前照灯（W09R-D の M06）: 地区の取付位置が素材のレンズの前にある
+    lens = inp.get("lens_attachment")
+    if lens:
+        att_chain = next((chain_for(root, p) for p in _paths_named(vr_chain[-2], lens["slot"], tuple(x["name"] for x in vr_chain[:-1]))), None)
+        if att_chain is None:
+            problems.append(f"{lens['slot']} not found")
+        else:
+            row_l, probs_l = check_lens_attachment(att_chain, m_chain, lens)
+            out["lens_attachment"] = row_l
+            problems.extend(probs_l)
 
     # 入口（W09R-B）: 地区の扉の蝶番と玄関ホールが、素材の開口に合っているか
     ent = inp.get("entrance")
@@ -549,7 +799,10 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--url", required=True)
     parser.add_argument("--raw-out", required=True, help="生の観察の保存先（Git の外）")
     parser.add_argument("--output", required=True, help="要約の保存先（例 review/p2_meshy/live_checks.json）")
+    parser.add_argument("--state-dir", type=Path, help="apply の state の置き場（既定は親の checkout の .resoloop/state）")
     args = parser.parse_args(argv)
+    if args.state_dir:
+        globals()["STATE_DIR"] = args.state_dir
     live = observe(args.url)
     Path(args.raw_out).write_text(json.dumps(live, ensure_ascii=False) + "\n", encoding="utf-8")
     root = live["data"]

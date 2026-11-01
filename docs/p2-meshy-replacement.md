@@ -1,6 +1,6 @@
 # P2 Meshy 素材の差し替え（W09R、Issue #44）
 
-仮モデルを Meshy の仕上げた素材に差し替える方式と、最初の素材 M02 巨大ジャック・オー・ランタンの差し替えの記録。残りの 7 素材の子は、この文書の 2・4 章の手順と `handoff/W09R.md` を使う。後続の子の記録は 12 章から（W09R-C #46 の M04・M08 は 12 章、W09R-A #47 の M01 は 13 章、W09R-B #48 の M03 は 14 章）。
+仮モデルを Meshy の仕上げた素材に差し替える方式と、最初の素材 M02 巨大ジャック・オー・ランタンの差し替えの記録。残りの 7 素材の子は、この文書の 2・4 章の手順と `handoff/W09R.md` を使う。後続の子の記録は 12 章から（W09R-C #46 の M04・M08 は 12 章、W09R-A #47 の M01 は 13 章、W09R-B #48 の M03 は 14 章、W09R-D #49 の M05・M06 は 15 章）。
 
 - 担当: Claude Code（Opus 5.5）、2026-10-31（UTC）。apply したのはこのセッションだけ
 - 着手前の確認事項: W08 #41 の回答（issuecomment-6545243021）をそのまま使う（2026-10-31 の利用者の決定）
@@ -69,6 +69,7 @@ resoloop capture <p2m.apply.json> --camera <名前> --output review/p2_meshy/<�
 - `verify_live.py` は `REPLACEMENTS` のすべての素材のバンドル（`exports/p2_meshy/<M>-*/p2m.apply.json` とメッシュ）を読む。バンドルはコミットしないので、新しい worktree では、前の子が Git の外の `/workspaces/reso-world/worlds/reso-world-Halloween-meshy/p2_bundles/<M>-<UTC>/` に控えた物（`SHA256SUMS` で確かめる）を、同じ名前の出力先へ写してから実行する（W09R-C で追加。12.4）
 - 可動部品を持つ素材（M01 の門扉。W09R-A で追加、13.2）は、1 素材で宣言が複数になる。素材の宣言 `p2m.apply.json`（state `p2m_<M>.json`）と、部品ごとの `p2m_<部品>.apply.json`（state `p2m_<M>_<部品>.json`。M01 は `DoorLeft`・`DoorRight`）を、上と同じ形で diff・apply する（素材の宣言を先に。資産は `--texture-transfer data`）
 - 当たり判定を素材のメッシュで作る素材（M03。W09R-B で追加、14.2）は、`REPLACEMENTS` の `collision: "finished"`。`export_meshy.py` が素材のメッシュに `MeshCollider` を付け、`export_p2.py` で地区を export し直すと、仮モデルの `<visual_root>_FixedCollision` の `MeshCollider` が `Enabled = false` になる（Slot は残す）。手順は上と同じ
+- 1 つの素材を複数の visual_root に分けて置く素材（M05 の柱と屋根。W09R-D で追加、15.2）は、`received.json` の行ごとに `REPLACEMENTS` の行を作る。出力先は `exports/p2_meshy/<行>-<UTC>/`、state は `p2m_<行>.json`（M05 は `p2m_M05_CenterCasing.json`・`p2m_M05_Canopy.json`）。手順は上と同じ
 - コミットするのは `exports/p2_meshy/<M>-<UTC>/` の `report.json`・`validate.json`・`placement.json`（`exports/p2_meshy/.gitignore`）、地区の出力先の `report.json`・`validate.json`・`colliders.json`・`replacements.json`、`review/p2_meshy/` の撮影と `live_checks.json`
 
 ## 5. M02 の差し替えの結果
@@ -149,7 +150,7 @@ ID・部品名・可動部品は変えていない。`APL_GiantJackProxy_001` �
 - 差し替えで増えた物: 三角形 30,792（仮モデル 932 は描画を止めた）、画像 2（約 28 MB の見積もり）、点光源 1（影なし）
 - 低下の原因（素材・画像・光源のどれか、測定の揺れか）は切り分けていない（未確認。P4 で通常時・ショー時と比べる）
 
-## 8. 全素材の状態（Spec §12「P2」の 3 つ目、2026-10-31。M04・M08 の行は 2026-11-01 に W09R-C が、M01 の行は同日に W09R-A が、M03 の行は同日に W09R-B が更新）
+## 8. 全素材の状態（Spec §12「P2」の 3 つ目、2026-10-31。M04・M08 の行は 2026-11-01 に W09R-C が、M01 の行は同日に W09R-A が、M03 の行は同日に W09R-B が、M05・M06 の行は同日に W09R-D が更新）
 
 受領は W09 #13（`assets/meshy/received.json`、PR #26）。どの素材も未着ではない。採用しない物は、利用者が作り直す前の版（各ディレクトリの `size_over/`）と、M07 の `NG/`（針が塔に溶接されていた）だけで、確定版で置き換えた。
 
@@ -159,9 +160,9 @@ ID・部品名・可動部品は変えていない。`APL_GiantJackProxy_001` �
 | M02 巨大ジャック・オー・ランタン | 済（約 3.1 万） | 済（W09-M02 #15・PR #27） | **済（この子）** | **Resonite で実測・撮影・利用者の実機**（5 章） | 採用 |
 | M03 幽霊屋敷の外観 | 済（約 3.0 万） | 済（W09-M03 #16・PR #35。入口の開口） | **済（W09R-B #48。当たり判定は M03 のメッシュ。W03 の扉・ホールを開口へ動かし、階段を外した）** | **Resonite で実測・撮影・利用者の実機**（14 章） | 採用 |
 | M04 魔女のお菓子工房の外観 | 済（約 3.1 万） | 済（W09-M04 #17・PR #39。窓の発光） | **済（W09R-C #46）** | **Resonite で実測・撮影・利用者の実機**（12 章） | 採用 |
-| M05 メリーゴーラウンドの屋根 | 済（約 4.2 万） | 済（W09-M05 #18・PR #34） | 未（`DAM_Carousel_001_M05_Canopy`） | Blender・export・validate まで | 採用 |
-| M05 メリーゴーラウンドの中央の柱 | 済（約 3.2 万） | 済（同上） | 未（`DAM_Carousel_001_M05_CenterCasing`） | Blender・export・validate まで | 採用 |
-| M06 おばけ列車の先頭車外装 | 済（約 1.5 万） | 済（W09-M06 #19・PR #38） | 未（`DAM_GhostTrain_001_M06_EngineShell`） | Blender・export・validate まで | 採用 |
+| M05 メリーゴーラウンドの屋根 | 済（約 4.2 万） | 済（W09-M05 #18・PR #34） | **済（W09R-D #49。柱と別の宣言で `DAM_Carousel_001_M05_Canopy` の下。W05 の支柱を屋根まで伸ばした）** | **Resonite で実測・撮影・利用者の実機**（15 章） | 採用 |
+| M05 メリーゴーラウンドの中央の柱 | 済（約 3.2 万） | 済（同上） | **済（W09R-D #49。`DAM_Carousel_001_M05_CenterCasing` の下）** | **Resonite で実測・撮影・利用者の実機**（15 章） | 採用 |
+| M06 おばけ列車の先頭車外装 | 済（約 1.5 万） | 済（W09-M06 #19・PR #38） | **済（W09R-D #49。前照灯の取付位置をレンズの前へ移した）** | **Resonite で実測・撮影・利用者の実機**（15 章） | 採用 |
 | M07 魔法の時計塔 | 済（約 3.1 万。針の無い作り直しの版） | 済（W09-M07 #20・PR #32。文字盤の計測） | 未（`EFR_ClockTower_001_Body`・`_Dial`） | Blender・export・validate まで | 採用（`NG/` の版は不採用） |
 | M08 ほうきに乗った魔女 | 済（約 3.1 万） | 済（W09-M08 #21・PR #37） | **済（W09R-C #46。点光源 2 つ）** | **Resonite で実測・撮影・利用者の実機**（12 章） | 採用 |
 
@@ -198,7 +199,7 @@ ID・部品名・可動部品は変えていない。`APL_GiantJackProxy_001` �
 - VR での見え方、二人以上
 - 負荷の低下（60 → ときどき 54 fps）の原因（7 章）
 - 帽子の色の照明による変化の調整（5.4。後続）
-- `docs/p1-handoff.md` 8 章の 2・3・6〜8（残りの素材の子）。4（入口の門扉の可動範囲）は W09R-A が門扉の Slot の基準姿勢を決めた（13.2）。1（M03 の扉・玄関ホール）は W09R-B が対応した（14.2。階段は外した）
+- `docs/p1-handoff.md` 8 章の 6〜8（残りの素材の子）。2（M05 の支柱）と 3（M06 の前照灯）は W09R-D が対応した（15.2）。4（入口の門扉の可動範囲）は W09R-A が門扉の Slot の基準姿勢を決めた（13.2）。1（M03 の扉・玄関ホール）は W09R-B が対応した（14.2。階段は外した）
 
 ## 12. W09R-C（#46）: C 東の M04 お菓子工房・M08 ほうきに乗った魔女
 
@@ -557,3 +558,131 @@ M03 の仕上げた形を Blender で測り直し（ポーチの床の高さ、�
 
 - 再読込の後に M03 の画像と当たり判定が保たれるか（P4）
 - 扉を開いたときの開口の奥の Resonite での見え方（P3。Blender のレイでは塞がっている。14.8）、VR、二人以上
+
+## 15. W09R-D（#49）: D 南の M05 メリーゴーラウンドの屋根・中央の柱、M06 おばけ列車の先頭車
+
+- 担当: Claude Code（Opus 5.5）、2026-11-01（UTC）。apply したのはこのセッションだけ。着手前の確認事項は W08 #41 の回答（#49 の本文）
+- 版: Resonite 2026.10.29.1239、ResoniteLink 0.13.1.0、resoloop 0.2.0、Blender 5.0.1（W09R〜W09R-B と同じ）
+- スナップショットと diff・apply の報告は親の checkout の `tmp/w09r-d/`（Git の対象外）
+- 閉じた子の所有ファイルのうち、W05 の `D_amusement`（支柱の長さと飾りの輪、前照灯の取付位置）を最小限だけ直した（15.3）。W09-M05・W09-M06 の `M05`・`M06`、W08 の `modeling/p2_static/` は変えていない
+
+### 15.1 保存の後の最初の diff
+
+- 着手時のスナップショット（`tmp/w09r-d/01_snapshot_before_20261101T062101Z`）は W08 の root の下が Slot 721・Component 1,659 で、W09R-B の完了時と同じ（利用者が手で変えた所は無い）
+- 最初の diff（06:22:46〜06:23:11Z、何も変える前。M05・M06 の行を足す前の `REPLACEMENTS` で 6 キーを export した宣言 `exports/p2_static/<key>-20261101T062140Z`）: 全 14 宣言（`content/main.json`・6 キー・M02・M04・M08・M01 の 3 つ・M03）が変更 0（no-op 29・184・655・333・318・378・780・17・18・19・16・15・15・16）。資産の作り直し・重複は無い
+- 資産の判定: world・D・E・M02 は「asset URL was migrated to resdb by a world save」、A・B・C・M01・M03・M04・M08 は「source hash and imported URL match state」（W09R-B の保存の後、開き直していないので `local://` のまま）
+
+### 15.2 決めたこと
+
+| 項目 | 決めたこと | 理由 |
+|---|---|---|
+| M05 の行の分け方 | `REPLACEMENTS` を `received.json` の行ごとに 2 行（`M05_CenterCasing`・`M05_Canopy`）にする。どちらも M05 の `.blend` を行ごとの出力先へ export し、`export_root`（`M05_PumpkinCarousel_001`）の子 1 つ（`asset_id`）だけを宣言の root の直下に置く（`export_meshy.extract_part`）。state は行ごとの `p2m_M05_CenterCasing.json`・`p2m_M05_Canopy.json`（#49 の本文の `p2m_M05.json` ではない） | 1 つの宣言は 1 つの親の下だけ（13.2）。W07 の `placeholders`・`received.json` の行・取付位置が行ごとなので、検査の期待値もそのまま行ごとに引ける。W09R-A の `moving_parts` は蝶番（`leaves`）が前提で、回らない子には使えない |
+| 子の置き方 | 子の位置（組み立ての位置。屋根は柱の原点の 2.964 m 上）は visual_root の位置（TurnRoot の z 0.19 と 3.154）が受け持つので 0 にする。export の子の位置がアセット一覧の `pivot_local` と違えば止める。屋根が柱の上に組み立てどおりに乗っていることは実測で確かめる（15.4 の `assembly_with`） | 2 つの visual_root の差 2.964 m は W05 が M05 の確定値で置いた（`handoff/W09-M05.md` 6 章） |
+| M05 の向き | `rotation_z_deg` -90（`placement_hint` の -90 − 仮モデルの visual_root 0）。顔と紋章は東（主動線の側）を向く | `received.json` の `placement_hint`。W05 の回転床の乗り口（土台の段）も東 |
+| 支柱（2026-11-01 の利用者の決定「屋根まで伸ばす」） | W05 の支柱 8 本を、支柱ごとに屋根の下面の 2 cm 上まで伸ばす（TurnRoot のローカルで 3.25 m → 3.97〜4.27 m。先は屋根の閉じた殻の中）。上端の飾りの輪（3.08〜3.25 m）は 3 cm 下げて 3.05〜3.22 m にする。支柱・座席の位置は変えない | 屋根の下面は支柱の位置で 3.80〜4.25 m（支柱の太さの範囲の最も高い所。M05 の屋根のメッシュを -90° で置いて上向きのレイで測った）で、支柱の上端との間が 0.55〜1.0 m 空いていた（`docs/p1-handoff.md` 8 章の 2）。東西の 2 本（半径 3.35 m）では屋根の垂れ飾りの最下点が 3.236 m で、飾りの輪の上端 3.25 m と重なっていた。支柱の太さ（半径 0.055 m）の範囲は垂れ飾りに当たらない |
+| 前照灯の取付位置 | W05 の `DAM_GhostTrain_001_Att_Headlamp` を EngineRoot のローカルで (0, 1.233, 1.498) → (0, 1.26, 1.39) に移す（M06 のレンズの前面の 1.35 cm 前、レンズの中心の高さ） | `docs/p1-handoff.md` 8 章の 3、`handoff/W09-M06.md` 6.5。旧い位置はレンズの上の縁の高さで、前面より 1.9 cm 奥（ランプの中） |
+| 取付位置の目印 | 描画を止めない（2026-11-01 の利用者の決定「このまま」）。前照灯の目印（金色の八角形、半径 4 cm）はレンズの前で電球のように見える | P3 で前照灯の光を付ける場所の目印にもなる。止めるには、visual_root の外を止めない守り（`hide_placeholders`）を変える必要がある |
+| 当たり判定 | 付けない（`collision: False`。3 行とも） | W08 の `colliders.json` で 3 つの仮モデルに `FixedCollision` が無い（可動部品 `TurnRoot`・`EngineRoot` の下。Spec §8・§11）。外周の当たり判定は W05 の土台（`DAM_Carousel_001_Base`）と柵のまま |
+
+### 15.3 直した閉じた子のファイル（W05 の `D_amusement`）
+
+| ファイル | 変更（旧 → 新） | 理由 |
+|---|---|---|
+| `modeling/D_amusement/layout_data.py` | 定数 `CAROUSEL_POLE_TOP_Z_M`（支柱ごとの上端、TurnRoot のローカル。3.97・4.25・4.00・4.27・3.98・4.27・4.00・4.27。支柱 k は角度 k × 45°）、`CAROUSEL_POLE_COLLAR_Z_M`（3.05〜3.22）、`GHOST_TRAIN_HEADLAMP_LOCAL`（(0, 1.26, 1.39)）を足した | 15.2 |
+| `modeling/D_amusement/assets_rides.py` | 支柱の軸の上端 3.25 → 上の定数、飾りの輪 3.08〜3.25 → 3.05〜3.22、前照灯の取付位置 (0, 1.233, 1.498) → 定数 | 15.2 |
+| `assets/manifest/D_amusement.json`・`review/D_amusement/*.png` | 上の 2 つから作り直した（アセット一覧の変更は `Att_Headlamp` の `pivot_local` だけ。`layout/areas/D_amusement.json` は変わらない） | 生成物 |
+
+- `uv run python tools/check_data.py --key D_amusement`・`tools/check_blend.py --key D_amusement` が 0。`tests/test_D_amusement_layout.py`（座席の上下が屋根の飾りの下に収まる）も通る
+- 支柱の上端の値は、M05 の屋根を -90° で置いたときの実測から決めた。屋根の向きや高さを変えるときは測り直す（`verify_live.py` の支柱の検査が、ずれを見つける。15.4）
+- 他の子の記録で値が古くなった物（直していない。`handoff/W09R-D.md` 6.2 の要望）: `handoff/W05.md`（支柱・前照灯の値）、`handoff/W08.md` 3.1 の「前照灯は 8 章の 3」、`docs/p1-handoff.md` 8 章の 2・3（この子で対応済み）
+
+### 15.4 実装（`modeling/p2_meshy/`）
+
+- `replacements.py`: `M05_CenterCasing`・`M05_Canopy`・`M06` の行。新しい項目 `source`（素材のキー。`.blend`・アセット一覧・review の置き場）・`export_root`・`assembly_with`・`poles`（`M05_Canopy`）・`lens_attachment`（`M06`）
+- `export_meshy.py`: `extract_part`（`export_root` の子 `asset_id` だけを置いた宣言にする。材質と画像は子が参照する物だけ）。材質と画像を集める処理を `_providers_for` にまとめ、W09R-A の `split_part` もこれを使う（M01・M03・M08 の宣言を作り直して、apply 済みの宣言と同じになることを確かめた）
+- `verify_live.py`:
+  - 素材の子 1 つだけを置く行: アセット一覧と review は `source` から読み、外接箱の期待値は `review/M05/checks.json` の `parts.<行>.bounds_m`（子のローカル）
+  - 取付位置の期待値に、アセット一覧の親の部品の `pivot_local` を足す（**直し**。D の取付位置は `TurnRoot`・`EngineRoot` の子で、今までの式では 0.36 m・(0, 1.0, 0.14) ずれた位置と比べて失敗した。M01・M02 の取付位置の親は原点 0 なので結果は変わらない）
+  - `assembly_with`（M05 の屋根）: この行の素材の原点と柱の行の素材の原点の差が、M05 のアセット一覧の `pivot_local` の差（2.964 m 上）を素材の向きで回した物と 1 cm 以内。それぞれの行の検査は自分の仮モデルとしか比べないので、仮モデルの間の高さの誤りを見落とす
+  - `poles`（`check_poles`）: D の宣言の支柱のメッシュ（最新の `exports/p2_static/D_amusement-*`）を水平の距離で 8 本にまとめ、各支柱の上端の高さで、軸とまわりの 16 点（支柱の太さ）を屋根のローカルへ移し、屋根のメッシュ（素材のバンドル）に上向きのレイを当てる。どの点でも上端が屋根の下面以上（隙間が見えない）で、軸の上で上端より下にある屋根の面の数が奇数（先が閉じた殻の中にあり、上に突き抜けない）。期待値は D の定数ではなく 2 つのメッシュから求める
+  - `lens_attachment`（`check_lens_attachment`）: D の `Att_Headlamp` を M06 のローカルへ移し、`review/M06/checks.json` の `headlamp.front_profile_x0`（x = 0 の断面の、高さごとの前面）から補間したレンズの前面の前 3 cm 以内、レンズの高さ（z 1.28〜1.50）、x 0 から 1 cm 以内
+- テスト: `tests/test_p2_meshy_verify.py` に 6 件（うち 2 件は 15.9 の GPT のレビューで足した。どれも S。`handoff/W09R-D.md` 9 章）。それぞれ守りを外すと、そのテストだけが失敗することを確かめた（変異ごとに `PYTHONPYCACHEPREFIX` を分けた）
+
+### 15.5 export と validate
+
+| 出力先 | 内容 | validate（オフライン・`--strict`） |
+|---|---|---|
+| `exports/p2_meshy/M05_CenterCasing-20261101T063625Z` | M05 の柱（`--parent` は `DAM_Carousel_001_M05_CenterCasing`、`--preserve-hierarchy --pack-pbr`）。宣言は `M05_CenterCasing_001` と、その材質・画像だけ | issues 0 |
+| `exports/p2_meshy/M05_Canopy-20261101T063625Z` | M05 の屋根（`--parent` は `DAM_Carousel_001_M05_Canopy`）。宣言は `M05_Canopy_001` と、その材質・画像だけ | issues 0 |
+| `exports/p2_meshy/M06-20261101T063625Z` | M06（`--parent` は `DAM_GhostTrain_001_M06_EngineShell`）。撮影のカメラ `m06_back` を直して `--recompose` した（ワールドには書かない） | issues 0 |
+| `exports/p2_static/D_amusement-20261101T063618Z` | 支柱・前照灯を直し、3 つの仮モデルの描画を止めた D | issues 0 |
+| `exports/p2_static/<key>-20261101T062140Z`（6 キー） | 15.1 の確認に使った world・A〜E（M05・M06 の行と D の修正の前） | issues 0 |
+
+- M05: 三角形は柱 32,414・屋根 41,819（`report.json` の 74,233 は 2 つの合計で、それぞれの宣言は自分の子だけを持つ）。画像は柱が色 1024・詰めた PBR 512、屋根が色 2048・詰めた PBR 1024（RGBA8 とミップの見積もり 合計 約 35 MB）。警告 1（「More than 50,000 triangles」。2 つの合計。W09 の判断で削減しない）
+- M06: 三角形 14,804、画像 2（色 1024・詰めた PBR 512、約 7 MB）。警告なし
+- 後続の子のために、apply した 3 つのバンドルを Git の外の `/workspaces/reso-world/worlds/reso-world-Halloween-meshy/p2_bundles/M05_CenterCasing-20261101T063625Z`・`M05_Canopy-20261101T063625Z`・`M06-20261101T063625Z`（`SHA256SUMS`、43 MB・43 MB・10 MB）に控えた。新しい worktree で `verify_live.py` を実行するときは、ほかの素材と同じく同じ名前の出力先へ写す
+
+### 15.6 diff と apply
+
+| 時刻（UTC） | 宣言 | diff | apply |
+|---|---|---|---|
+| 06:38:08〜06:38:12 | M05_CenterCasing・M05_Canopy・M06（最初） | それぞれ作成 15（資産 3、Slot 6、Component 6。すべて自分の `visual_root` の下。Component は `StaticMesh`・`MeshRenderer`・`AI_GeneratedContent`・画像 2・材質） | — |
+| 06:38:06 | D | 作成 1（支柱のメッシュの資産）、更新 5（支柱の `StaticMesh.URL`、`Att_Headlamp` の Slot の位置、3 つの仮モデルの `MeshRenderer.Enabled`）。削除・名前の変更 0 | — |
+| 06:38:21〜06:38:47 | M05_CenterCasing → M05_Canopy → M06 → D | — | 素材はそれぞれ Slot 6・Component 6・資産 3 を作成。D: Slot の更新 1・Component の更新 4・資産の取り込み 1 |
+| 06:38:57〜06:39:04 | 4 つの 2 回目 | — | 書き込み 0（資産は変更なし 3・3・3・58） |
+| 06:39:07〜06:39:36 | 全 17 宣言（`content/main.json`・6 キー・M01 の 3 つ・M02・M03・M04・M05 の 2 つ・M06・M08） | すべて変更 0（M05 の 2 つと M06 は no-op 15、D は 378） | — |
+
+- `--prune` は使っていない。削除・名前の変更・Component の作り直しは 0。diff の対象は M05・M06 の 3 つの `visual_root` の下と資産、D の支柱のメッシュ・前照灯の取付位置・3 つの仮モデルの描画だけ（ほかの地区・`content/main.json`・前の素材の宣言は 0）
+- apply の前のスナップショット: `tmp/w09r-d/01_snapshot_before_20261101T062101Z`（W08 の root 全体。最初の diff の後、apply まで書き込みは無い）
+
+### 15.7 実測（`review/p2_meshy/live_checks.json`、06:39:44Z。15.9 の直しの後に 07:00:10Z に観察し直した）
+
+| 検査 | M05_CenterCasing | M05_Canopy | M06 |
+|---|---|---|---|
+| `visual_root` の世界の原点（W07 の `frame_origin_world` との差） | (-10.5, 0.55, -32)、0.0 m | (-10.5, 3.514, -32)、0.0 m | (7.5, 0.14, -30.5)、0.0 m |
+| 外接箱（世界の X × 高さ × Z、期待値との差） | 1.907 × 3.400 × 1.861 m、0.0 m（-90° で置くので、アセットの幅 1.861・奥行き 1.907 が入れ替わる） | 9.512 × 6.387 × 9.314 m、0.0 m | 1.211 × 1.875 × 3.000 m、0.0 m |
+| 正面と鏡像 | (1, 0, 0)（東。`placement_hint` -90）。祖先の拡縮はすべて正 | 同左 | (0, 0, 1)（北、進む向き。W07 の `front_world`） |
+| 描画 | 仮モデルの `MeshRenderer.Enabled` が false、素材は有効で色の画像を持つ材質を参照 | 同左 | 同左 |
+| 取付位置 | `_Att_M05_CenterCasing`・`_Att_M05_Canopy` とも差 0.0 m | 同左 | `_Att_M06_Engine`・`_Att_CouplerRear`・`_Att_Headlamp`（新しい位置）とも差 0.0 m |
+| 組み立て | — | 柱との差 (0, 2.964, 0)、期待値との差 0.0 m | — |
+| 支柱 | — | 8 本とも上端が屋根の下面の 2.0〜2.8 cm 上（隙間なし）、先より下の屋根の面は 1（殻の中）。測った支柱と屋根のメッシュは、ワールドに表示されている物（URL が apply の state の記録と同じ、state の sourceHash がバンドルと同じ、描画が有効） | — |
+| 前照灯 | — | — | M06 のローカルで (0, 1.26, 1.39)、レンズの前面 y 1.2465 の 1.35 cm 前 |
+| 当たり判定 | 仮モデルに `FixedCollision` は無く、素材の中にも無い | 同左 | 同左 |
+
+- 数: D の Slot 116・Component 240（W08 の実測に 3 つの宣言の 18・18 を足した値と一致）。W08 の root の下は Slot 739・Component 1,677（着手時の 721・1,659 から +18・+18）
+- 動作の root: `DAM_Carousel_001`・`_TurnRoot`・`DAM_GhostTrain_001`・`_EngineRoot` の Slot の ID・位置・回転・拡縮は、着手時のスナップショットと同じ（TurnRoot は (0, 0.36, 0)、EngineRoot は (0, 0.14, 1.0)、どれも回転なし・拡縮 1）
+- M01・M02・M03・M04・M08 の検査と A・B・C の数も合格のまま。アセットの ID・部品名・階層は変えていない（動かしたのは `Att_Headlamp` の位置だけ）
+
+### 15.8 撮影と実機の確認
+
+撮影（`review/p2_meshy/`、1600×900）: `m05_front`（東の主動線の側から顔と紋章）、`m05_oblique_se`、`m05_back`（西）、`m05_under_canopy`（回転床の縁から柱・支柱・屋根の下面）、`m05_pole_top`（東の支柱の先と垂れ飾り）、`m05_canopy_east`・`m05_canopy_top`（屋根）、`area_D_amusement`（W08 と同じ D の全景）、`m06_front`・`m06_oblique_nw`・`m06_side_west`・`m06_back`（先頭車の後面と客車）、`m06_headlamp`（前照灯のレンズと取付位置の目印）、`m06_plow_rail`（排障器と線路）
+
+- 最初の撮影のうち 3 枚（`m05_front`・`m05_oblique_se`・`m05_back`）は Resonite が背面にあって真っ黒だった（利用者の指摘）ので、前面に出して撮り直した。`m06_back` は客車の屋根がカメラの前をふさいだので、カメラを西の後ろへ移して撮り直した
+- 黒い面・反転・透け・ちらつきは見つからない。屋根は柱のハブの上に乗り、支柱は屋根の下面に入り（`m05_under_canopy`・`m05_pole_top`）、飾りの輪は垂れ飾りの下にある。仮モデルの見た目は表示されない
+- M06 の排障器の下端と線路の上面の間に隙間が見える（`m06_plow_rail`。W09-M06 の 3 cm の持ち上げ）。W05 の車輪は M06 のアーチの中に収まる（`m06_side_west`）。前照灯の取付位置の目印（金色の八角形）はレンズの前で電球のように見える（`m06_headlamp`。15.2 の利用者の決定でこのまま）
+- 利用者の実機（2026-11-01、06:45Z ごろ、デスクトップ）: メリーゴーラウンドと列車のまわりを歩き、見た目と外周の当たり判定は「問題なし」
+- 負荷（利用者の測定、W08 と同じ端末）: 遊園地の近くで 60 fps 前後（W08 の基準と同じ）
+- 増えた物: 三角形 89,037（M05 の 74,233 と M06 の 14,804。仮モデルの描画は止めた）、画像 6（約 42 MB の見積もり）、光源 0、当たり判定 0
+
+### 15.9 GPT のレビュー（確認事項 7）
+
+- 起動: `codex exec --sandbox read-only -C <worktree> -o <出力> "<依頼文>" < /dev/null`（codex-cli 0.166.0、モデル gpt-6-astra）。対象は PR #54 の `52a0309`。Resonite には接続させず、checkout も変更させていない。観点は、宣言の正しさ、W05 の修正、実測の検査の拡張、記録の正確さ、テストの採用基準の 5 つ
+- 結果: Major 1 件・Minor 1 件。宣言の正しさ（`extract_part` の参照切れ・余分な資産なし、M01 の `split_part` は基点と同じ結果）、W05 の修正（名前・キー・階層の変更なし）、`source`・`export_root`・`pivot_in_asset`・前照灯・組み立ての期待値、足したテスト 4 件の採否は指摘なし。全文は PR #54 のコメント
+
+| # | 重大度 | 指摘 | 採否 | 対応 |
+|---|---|---|---|---|
+| 1 | Major | 支柱の検査は、支柱の形を最新のローカルのバンドルから取り、ワールドからは Slot の変換しか使わない。支柱のメッシュの更新を apply していない（旧い短い支柱が表示されている）状態や、支柱の描画を止めた・Slot を無効にした状態でも合格する（レビュアーが保存した観察の支柱の URL だけを戻して再現） | 採用 | 検査が誤った状態を成功と報告する経路のため。測った支柱と屋根のメッシュがワールドに表示されている物か（Slot と祖先が有効、`MeshRenderer` が有効で同じ Slot の `StaticMesh` を参照し、その URL が apply の state の記録と同じで、state の `sourceHash` がバンドルのファイルの SHA-256 と同じ）を確かめる（`check_measured_mesh_is_shown`。state の置き場は `--state-dir`、既定は親の checkout の `.resoloop/state`）。テスト 2 件 |
+| 2 | Minor | 15.7 と引き継ぎの M05 の外接箱の寸法が、`live_checks.json` の世界の X・Z と逆 | 採用 | 記録の誤り。世界の X × 高さ × Z の順を明記し、柱 1.907 × 3.400 × 1.861 m・屋根 9.512 × 6.387 × 9.314 m に直した |
+
+- 1 は、URL・`sourceHash`・描画のそれぞれの守りを外すと、そのテストだけが失敗することを確かめた。直した検査で実際のワールドを観察し直し、すべて合格した（07:00:10Z、`review/p2_meshy/live_checks.json`）。ワールドへの書き込みは無い
+- 注意: ワールドを保存して開き直すと、資産の URL が `resdb:///` に移るが、state の URL は次の apply まで `local://` のまま残る（diff では書き直されない。apply していない world の state `p2_world.json` は 21 件とも `local://`）。apply は live の URL を state に記録する（この子が apply した D の state は、`resdb` 57 件と新しい支柱のメッシュの `local` 1 件になり、保存の後の D の diff は「source hash and imported URL match state」になった）。その間はこの検査が URL の違いで失敗する（誤りを見落とす方向ではない）。D を開き直した後に実行するときは、先に D を apply（変更 0 でよい）してから実行する
+
+### 15.10 保存（確認事項 4）
+
+- GPT のレビューへの対応の後に、エージェントの依頼で利用者が Resonite で 1 回保存した（2026-11-01、07:10Z より前）。保存の後は apply していない
+- 保存の後に読み取りだけで確かめた（07:10:29〜07:11:03Z）: 全 17 宣言（`content/main.json`・6 キー・M01 の 3 つ・M02・M03・M04・M05 の 2 つ・M06・M08）の diff が変更 0。資産の判定は、world・E・M02 が「asset URL was migrated to resdb by a world save」、それ以外（D・M05 の 2 つ・M06 を含む）が「source hash and imported URL match state」で、M05・M06 と D の支柱の URL はまだ `local://`（ワールドを開き直していない）
+
+### 15.11 Resonite で未確認の項目
+
+- 再読込の後に M05・M06 の画像が保たれるか（P4）
+- 回転床・座席・列車を動かしたときの見え方（P3）、VR、二人以上
