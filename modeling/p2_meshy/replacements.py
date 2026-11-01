@@ -67,6 +67,69 @@ REPLACEMENTS: dict[str, dict] = {
             "overview_south": ([0, 48, -92], [0, 0, -4], 60),  # W08 と同じ
         },
     },
+    # W09R-C（#46）: C 東・キャンディストリート
+    "M04": {
+        "district": "C_candy",
+        "placeholder": "CCD_M04_CandyWorkshopProxy_001",
+        # 仮モデルはアセットの root がそのまま見た目（W04 の hierarchy.visual_roots）。当たり判定は C の root の下の兄弟
+        "visual_root": "CCD_M04_CandyWorkshopProxy_001",
+        "visual_root_path": f"{P2_ROOT}/C_candy/CCD_M04_CandyWorkshopProxy_001",
+        "hide": ["CCD_M04_CandyWorkshopProxy_001"],
+        "blend": "blender/M04/M04.blend",
+        "asset_id": "M04_WitchCandyWorkshop_001",
+        "rotation_z_deg": 0.0,  # placement_hint 90 - 仮モデルの root 90（正面の扉を西の広場へ）
+        "position_local": [0.0, 0.0, 0.0],  # 土台の下面の中央 = 仮モデルの原点（地面）
+        "emissive": True,  # 窓の発光の画像（PBS_Metallic の EmissiveMap。handoff/W09-M04.md 8 章）
+        # M04 の底の中央は (38, 0, 0)、高さ 7.63 m、正面（扉）は西（-X）。右側面（Blender のローカル +X）は北（+Z）
+        "cameras": {
+            "m04_front": ([24, 4.2, 0], [38, 3.6, 0], 55),
+            "m04_front_close": ([30.5, 2.4, 0], [38, 3.0, 0], 60),
+            "m04_oblique_nw": ([27, 8, 9], [38, 3.4, 0], 55),
+            "m04_side_north": ([38, 4, 12.5], [38, 3.6, 0], 55),
+            "m04_back": ([51, 6, -6], [38, 3.4, 0], 55),
+            "area_C_candy": ([16, 9, -14], [36, 2, 0], 65),  # W08 と同じ
+        },
+    },
+    "M08": {
+        "district": "C_candy",
+        "placeholder": "CCD_M08_FlyingWitchProxy_001",
+        "visual_root": "CCD_M08_FlyingWitchProxy_001",
+        "visual_root_path": f"{P2_ROOT}/C_candy/CCD_M08_FlyingWitchProxy_001",
+        "hide": ["CCD_M08_FlyingWitchProxy_001"],
+        "blend": "blender/M08/M08.blend",
+        "asset_id": "M08_FlyingWitch_001",
+        # placement_hint は null（経路の上）。仮モデルは回転 0 で正面 +Y（巡回の点 0 の接線、W07 の front_world north(+Y)）
+        "rotation_z_deg": 0.0,
+        "position_local": [0.0, 0.0, 0.0],  # 飛行の動作中心 = 仮モデルの原点（巡回の点 0）
+        "collision": False,  # 空を飛ぶ（P3 の G11）。歩行の当たり判定は要らない（handoff/W09-M08.md 8 章）
+        # 魔女を照らす点光源 2 つ（2026-11-01 の利用者の確認「暗くて見えにくい」「（前の光源 1 つでは）まだ暗い」への対応）。
+        # position_local は素材のローカル（Blender の軸、+Y がほうきの先、原点は飛行の動作中心）。前の光源は顔と体の前を、
+        # 下の光源は地上から見上げたときに見える下側（ブーツ・ほうき・服の裾・帽子のつばの裏）を照らす。M08 の Slot の子なので、
+        # P3 の G11 で一緒に動く。影なし。範囲は M04 の屋根（光源から 3 m 前後）をほとんど照らさない大きさ
+        "lights": [
+            {
+                "name": "M08_FrontGlow",
+                "position_local": [0.0, 1.3, 0.3],
+                "color": [1.0, 0.8, 0.6, 1.0],
+                "intensity": 3.0,
+                "range": 3.0,
+            },
+            {
+                "name": "M08_UnderGlow",
+                "position_local": [0.0, 0.2, -1.1],
+                "color": [1.0, 0.8, 0.6, 1.0],
+                "intensity": 3.0,
+                "range": 2.8,
+            },
+        ],
+        # M08 の原点は (43.2, 10.2, 0)、上に 1.89 m・下に 0.61 m、正面（ほうきの先）は北（+Z）
+        "cameras": {
+            "m08_side_west": ([37.5, 10.8, 0], [43.2, 10.6, 0], 40),
+            "m08_front": ([43.2, 10.9, 6.5], [43.2, 10.6, 0], 40),
+            "m08_oblique_back": ([47.5, 12, -4.5], [43.2, 10.5, 0], 45),
+            "m08_from_street": ([40, 1.6, -14], [43.2, 10.4, 0], 50),  # 地上（M04 の南の通り）から見上げる。M04 の屋根に遮られない位置
+        },
+    },
 }
 
 

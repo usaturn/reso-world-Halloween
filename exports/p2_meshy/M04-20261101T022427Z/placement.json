@@ -1,0 +1,44 @@
+{
+  "root_slot": {
+    "name": "M04",
+    "key": "root",
+    "parent": "Root/HalloweenMagicalCarnival/C_candy/CCD_M04_CandyWorkshopProxy_001",
+    "position": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "rotation": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "scale": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "children": [
+    "M04_WitchCandyWorkshop_001",
+    "Blender_Providers"
+  ],
+  "assets": [
+    "mesh_M04_WitchCandyWorkshop_001_dee690c1",
+    "pbr_mat_material_MAT_M04_WitchCandyWorkshop__00ff9350",
+    "tex_M04_WitchCandyWorkshop_001_color_color_ee38f238",
+    "tex_M04_WitchCandyWorkshop_001_emission_colo_6c1c890b"
+  ],
+  "district": "C_candy",
+  "placeholder": "CCD_M04_CandyWorkshopProxy_001",
+  "visual_root": "CCD_M04_CandyWorkshopProxy_001",
+  "visual_root_path": "Root/HalloweenMagicalCarnival/C_candy/CCD_M04_CandyWorkshopProxy_001",
+  "asset_id": "M04_WitchCandyWorkshop_001",
+  "rotation_z_deg": 0.0,
+  "position_local": [
+    0.0,
+    0.0,
+    0.0
+  ]
+}
