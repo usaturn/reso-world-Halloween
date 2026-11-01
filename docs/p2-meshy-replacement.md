@@ -233,9 +233,9 @@ ID・部品名・可動部品は変えていない。`APL_GiantJackProxy_001` �
 ### 12.3 検査の拡張（`modeling/p2_meshy/verify_live.py`）
 
 - 向き: `received.json` の `placement_hint` に回転が無い素材（経路の上の M06・M08）は、W07 の `review/overview/checks.json` の `placeholders.<M>.front_world`（M08 は north(+Y) → 0°）から期待値を求める。どちらから求めたかを `front_source` に書く
-- 当たり判定を付けない素材（`collision: False`）: `<visual_root>_FixedCollision` が無いこと、素材の下に `MeshCollider` が無いことを確かめる。仮モデルに `FixedCollision` があるのに `False` と書いたら設定の誤りとして失敗にする（当たり判定の検査を黙って飛ばさない）
+- 当たり判定を付けない素材（`collision: False`）: `<visual_root>_FixedCollision` が無いこと、素材のバンドルの root とその子孫に `MeshCollider` が無いことを確かめる。仮モデルに `FixedCollision` があるのに `False` と書いたら設定の誤りとして失敗にする（当たり判定の検査を黙って飛ばさない）
 - 発光（`emissive: True`）: 材質の `EmissiveMap` が URL のある画像を参照すること
-- テスト: `tests/test_p2_meshy_verify.py` に 1 件（S。`collision: False` の素材は、仮モデルに `FixedCollision` が残っていれば失敗し、無ければ通る）。守りを外すと失敗することを確かめた
+- テスト: `tests/test_p2_meshy_verify.py` に 3 件（S。`collision: False` の素材は、仮モデルに `FixedCollision` が残っていれば失敗し、無ければ通る。バンドルの root の `MeshCollider` を見落とさない。`emissive` の素材は `EmissiveMap` が無ければ失敗し、あれば通る）。それぞれ守りを外すと失敗することを確かめた（後の 2 件は 12.9 の GPT のレビューで足した）
 - 地区ごとの数の検査（`check_counts`）は W09R のまま、C の 2 素材の宣言を足した値で比べた
 
 ### 12.4 export と validate
@@ -276,7 +276,7 @@ ID・部品名・可動部品は変えていない。`APL_GiantJackProxy_001` �
 | 正面と鏡像 | (-1, 0, 0)（西の広場。`placement_hint` から） | (0, 0, 1)（北。`front_world` から）。祖先の拡縮はすべて正 |
 | 描画 | 仮モデルの `MeshRenderer.Enabled` が false。素材は有効で、色と発光の画像を持つ `PBS_Metallic` を参照 | 仮モデルの描画が false。素材は有効で、色の画像を参照 |
 | 当たり判定 | `FixedCollision` が有効・`visual_root` と同じ変換・`Static`・`CharacterCollider`・仮モデルと同じメッシュ。素材の下に当たり判定なし | `FixedCollision` が無い（方針どおり）。素材の下に当たり判定なし |
-| 数 | C の Slot 93・Component 209（W08 の実測に M04 の 7・7 と M08 の 8・8 を足した値と一致） | 同左 |
+| 数 | C の Slot 95・Component 211（W08 の実測 80・196 に、M04 の 7・7 と M08 の 8・8（光源 2 つを含む）を足した値と一致） | 同左 |
 
 - W08 の root の下は Slot 696・Component 1,634（着手時の 681・1,619 から +15・+15）。M02 の検査と A の数も合格のまま
 - ID・部品名・可動部品は変えていない。M04・M08 には取付位置が無い
@@ -298,3 +298,16 @@ ID・部品名・可動部品は変えていない。`APL_GiantJackProxy_001` �
 - 保存（確認事項 4）の後の M04・M08 の状態（資産の URL の `resdb:///` への移行、光源の保存）。保存の時刻と、保存の後に読み取りだけで確かめた結果は `handoff/W09R-C.md` 3 章
 - M08 が巡回しているときの見え方と光源の当たり方（P3 の G11）
 - 窓の発光の昼夜の制御（P3）、VR、二人以上
+
+### 12.9 GPT のレビュー（確認事項 7）
+
+- 起動: `codex exec --sandbox read-only -C <worktree> -o <出力> "<依頼文>" < /dev/null`（codex-cli 0.166.0、モデル gpt-6-astra）。対象は PR #51 の `4e42888`。Resonite には接続させず、checkout も変更させていない。観点は、宣言の正しさ、実測の検査の拡張、diff の対象と収束・所有範囲、テストの採用基準、記録の正確さの 5 つ
+- 結果: Major 1 件・Minor 2 件。宣言の正しさと diff・所有範囲は指摘なし。全文は PR #51 のコメント
+
+| # | 重大度 | 指摘 | 採否 | 対応 |
+|---|---|---|---|---|
+| 1 | Major | `collision: False` の検査が、素材のバンドルの root 自身にある `MeshCollider` を見落とす | 採用 | 失敗を成功と報告する経路のため。走査の範囲にバンドルの root を含めた |
+| 2 | Minor | 素材の下の当たり判定の拒否と、発光の画像の参照の検査にテストが無い。撮影で分かるので L とした分類は、検査の偽陽性を S とする基準に合わない | 採用 | 代表 1 件ずつ（計 2 件）を足し、それぞれ守りを外すと失敗することを確かめた。`handoff/W09R-C.md` 9 章の分類も直した |
+| 3 | Minor | C の数が「Slot 93・Component 209」で、`live_checks.json` の 95・211 と食い違う | 採用 | 光源を足す前の値を写していた。12.6 を 95・211 に直した |
+
+直した検査でワールドを観察し直し、すべて合格した（`review/p2_meshy/live_checks.json` は同じ内容）。ワールドへの書き込みは無い。

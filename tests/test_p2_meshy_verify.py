@@ -130,3 +130,25 @@ def test_replacement_without_collision_fails_while_the_placeholder_still_has_one
     proxy = _find(world, "Proxy")
     proxy["children"] = [c for c in proxy["children"] if c["name"] != "Proxy_Body_FixedCollision"]
     assert verify_live.check_one(world, "MX", rep, copy.deepcopy(INPUTS))["problems"] == []
+
+
+def test_collider_on_the_bundle_root_is_detected_for_a_replacement_without_collision() -> None:
+    # PR #51 review (GPT): the scan for colliders under the finished asset skipped the bundle root itself, so a collider
+    # placed there passed the collision=False check and the replacement was recorded as verified.
+    rep = {**REP, "collision": False}
+    world = _world()
+    proxy = _find(world, "Proxy")
+    proxy["children"] = [c for c in proxy["children"] if c["name"] != "Proxy_Body_FixedCollision"]
+    _find(world, "M")["components"].append(_comp("c9", "MeshCollider", Enabled=True))
+    assert any("colliders under the finished asset" in p for p in verify_live.check_one(world, "MX", rep, copy.deepcopy(INPUTS))["problems"])
+
+
+def test_missing_emissive_map_is_detected_for_an_emissive_replacement() -> None:
+    # W09R-C: M04's windows glow only through the material's EmissiveMap. If the check accepted a material without it,
+    # dark windows would be recorded as verified.
+    rep = {**REP, "emissive": True}
+    world = _world()
+    assert any("emissive map" in p for p in verify_live.check_one(world, "MX", rep, copy.deepcopy(INPUTS))["problems"])
+    material = next(c for c in _find(world, "mat")["components"] if c["id"] == "p1")
+    material["members"]["EmissiveMap"] = {"kind": "reference", "targetId": "t1"}
+    assert verify_live.check_one(world, "MX", rep, copy.deepcopy(INPUTS))["problems"] == []

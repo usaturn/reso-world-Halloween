@@ -12,7 +12,7 @@
 
 1. 保存の後の最初の diff: 全宣言で資産の作り直し・重複なし。資産の URL が `resdb:///` に移った後の再 apply も no-op（W09R で未確認だった項目。記録 12.1）
 2. M04・M08 を W09R の方式で差し替えた。外接箱・原点・正面が期待値と差 0.0 m、2 回目の diff・apply は変更 0・書き込み 0、全 10 宣言が変更 0 で収束（記録 12.5・12.6）
-3. `verify_live.py` を、当たり判定を付けない素材・`placement_hint` に回転が無い素材・発光の画像を持つ素材に対応させた（記録 12.3。テスト 1 件）
+3. `verify_live.py` を、当たり判定を付けない素材・`placement_hint` に回転が無い素材・発光の画像を持つ素材に対応させた（記録 12.3。テスト 3 件。うち 2 件は GPT のレビューで足した）
 4. 利用者の確認「暗くて見えにくい」に対応して、M08 に影なしの点光源 2 つを足した（利用者が「このままでよい」）
 5. 利用者がデスクトップで M04 のまわりを歩き、当たり判定に問題なし。fps は 60 前後（W08 の基準と同じ）
 6. 後続の子のために、apply した M04・M08 のバンドルを Git の外の `p2_bundles/` に控えた
@@ -20,7 +20,7 @@
 ## 3. 変更ファイルと版
 
 - 基点: `main` の `b07d52a`
-- 変更: `modeling/p2_meshy/replacements.py`（M04・M08 の行）、`modeling/p2_meshy/verify_live.py`（記録 12.3）、`tests/test_p2_meshy_verify.py`（1 件）、`review/p2_meshy/live_checks.json`（M02・M04・M08 の実測）、`docs/p2-meshy-replacement.md`（冒頭・4 章・8 章の M04・M08 の行・11 章・12 章）
+- 変更: `modeling/p2_meshy/replacements.py`（M04・M08 の行）、`modeling/p2_meshy/verify_live.py`（記録 12.3）、`tests/test_p2_meshy_verify.py`（3 件）、`review/p2_meshy/live_checks.json`（M02・M04・M08 の実測）、`docs/p2-meshy-replacement.md`（冒頭・4 章・8 章の M04・M08 の行・11 章・12 章。GPT のレビューは 12.9）
 - 追加: `exports/p2_meshy/M04-20261101T022427Z/`・`M08-20261101T022537Z/` と `exports/p2_static/<key>-20261101T022203Z/`（6 キー）の記録（`report.json`・`validate.json`・`placement.json`・`colliders.json`・`replacements.json`）、`review/p2_meshy/` の撮影 10 枚、この文書
 - 閉じた子の所有ファイル（W04・W09-M04・W09-M08・W08）は変えていない
 - state: 親の checkout の `/workspaces/reso-world/worlds/reso-world-Halloween/.resoloop/state/` に `p2m_M04.json`・`p2m_M08.json` を足し、`p2_C_candy.json` を更新した。消すと次の apply が同じ物をもう一度作るので消さない
@@ -61,7 +61,7 @@ uv run python modeling/p2_meshy/verify_live.py --url "$URL" --raw-out <Git の�
 | 再適用 | 2 回目の diff は全 10 宣言で 0、M04・M08・C の 2 回目の apply は書き込み 0。Slot・Component は増えない |
 | 所有範囲 | diff の対象は M04・M08 の `visual_root` の下と資産、C の仮モデルの描画 2 件だけ。ほかの宣言は 0 |
 | 負荷 | 60 fps 前後。三角形 61,832、画像 5（約 40.6 MB）、点光源 2 |
-| テスト | `uv run pytest` が通る（記録の 9 章のテストの要否） |
+| テスト | `uv run pytest` 83 件が通る（9 章） |
 
 ## 6. 次の子（W09R-A #47、M01 入場ゲート）への注意と要望
 
@@ -92,5 +92,9 @@ uv run python modeling/p2_meshy/verify_live.py --url "$URL" --raw-out <Git の�
 
 ## 9. テストの要否
 
-- 足したテスト: `tests/test_p2_meshy_verify.py` の `test_replacement_without_collision_fails_while_the_placeholder_still_has_one`（S。`collision: False` は当たり判定の検査を飛ばすので、仮モデルに `FixedCollision` が残る素材に誤って付けると、壊れた当たり判定を確認済みとして記録してしまう）。正しい状態で通る例を含み、守りを外すと失敗することを確かめた
-- 書かなかったもの: `placement_hint` が無い素材の向き（誤れば M04 か M08 の正面の検査が失敗して分かる。L）、発光の画像の参照（撮影で窓が光らないことで分かる。L）、`REPLACEMENTS` の値（設定の写しで F）
+- 足したテスト（`tests/test_p2_meshy_verify.py`、どれも S。検査が誤った状態を成功と報告すると、気付かないまま確認済みとして記録される）:
+  - `test_replacement_without_collision_fails_while_the_placeholder_still_has_one`: `collision: False` は当たり判定の検査を飛ばすので、仮モデルに `FixedCollision` が残る素材に誤って付けると、壊れた当たり判定を確認済みにしてしまう。正しく通る例を含む
+  - `test_collider_on_the_bundle_root_is_detected_for_a_replacement_without_collision`（GPT のレビューの指摘 1・2）: 素材のバンドルの root の `MeshCollider` を見落とさない
+  - `test_missing_emissive_map_is_detected_for_an_emissive_replacement`（GPT のレビューの指摘 2）: 発光の画像の参照が無い材質を成功にしない。正しく通る例を含む
+  - それぞれ守りを外すと、そのテストだけが失敗することを確かめた
+- 書かなかったもの: `placement_hint` が無い素材の向き（誤れば M04 か M08 の正面の検査が実測と食い違って失敗する。L）、`REPLACEMENTS` の値（設定の写しで F）

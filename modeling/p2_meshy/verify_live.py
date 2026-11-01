@@ -264,7 +264,9 @@ def check_one(root: dict, meshy_id: str, rep: dict, inp: dict) -> dict:
     # 当たり判定
     fixed_name = f"{rep['visual_root']}_FixedCollision"
     fixed = next((x for x in vr_chain[-2].get("children") or [] if x["name"] == fixed_name), None)
-    out["colliders_under_finished_asset"] = [x["name"] for x in _descendants(m_chain[-2]) if component(x, "MeshCollider")]
+    # 素材のバンドルの root（m_chain[-2]）自身とその子孫（GPT のレビュー、PR #51: root 自身を見落としていた）
+    bundle_root = m_chain[-2]
+    out["colliders_under_finished_asset"] = [x["name"] for x in [bundle_root, *_descendants(bundle_root)] if component(x, "MeshCollider")]
     if rep.get("collision", True) is False:
         # 空を飛ぶ・動く物: 当たり判定を付けない方針。仮モデルに FixedCollision があるのに False と書いたなら設定の誤り
         out["fixed_collision"] = {"slot": fixed_name, "expected": False, "exists": fixed is not None}
