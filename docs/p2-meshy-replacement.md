@@ -792,7 +792,8 @@ M03 の仕上げた形を Blender で測り直し（ポーチの床の高さ、�
 
 ### 16.9 保存（確認事項 4）
 
-（記入待ち）
+- GPT のレビューへの対応と利用者の実機の確認の後に、エージェントの依頼で利用者が Resonite で 1 回保存した（2026-11-01、08:08Z より前）。保存の後は apply していない
+- 保存の後に読み取りだけで確かめた（08:08:55〜08:09:52Z）: 全 18 宣言（`content/main.json`・6 キー・M01 の 3 つ・M02・M03・M04・M05 の 2 つ・M06・M07・M08）の diff が変更 0（M07 は no-op 16、E は 780）。資産の判定は、world・M02 が「asset URL was migrated to resdb by a world save」、それ以外（E・M07 を含む）が「source hash and imported URL match state」。E の state は、この子の apply で live の URL（`resdb` 115 件）を記録した。M07 の資産の URL はまだ `local://`（ワールドを開き直していない）
 
 ### 16.10 Resonite で未確認の項目
 

@@ -32,7 +32,7 @@
 - W06 の `E_forest`、W08 の `modeling/p2_static/`、W09-M07 の `modeling/M07/`・`assets/manifest/M07.json` は変えていない
 - state: 親の checkout の `/workspaces/reso-world/worlds/reso-world-Halloween/.resoloop/state/` に `p2m_M07.json` を足し、`p2_E_forest.json` を更新した。消すと次の apply が同じ物をもう一度作るので消さない
 - 版: Resonite 2026.10.29.1239、ResoniteLink 0.13.1.0、resoloop 0.2.0、Blender 5.0.1
-- 保存（確認事項 4）: （記入待ち）
+- 保存（確認事項 4）: GPT のレビューへの対応と利用者の実機の確認の後に、エージェントの依頼で利用者が Resonite で 1 回保存した（2026-11-01、08:08Z より前）。保存の後は apply していない。保存の後に読み取りだけで確かめた（08:08:55Z〜）全 18 宣言の diff は変更 0。M07 の資産の URL はまだ `local://`（ワールドを開き直していない。記録 16.9）
 
 ## 4. 再実行手順
 
