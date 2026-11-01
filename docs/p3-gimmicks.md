@@ -4,6 +4,7 @@
 
 - W10-A（#58）の **G03 噴水の水と光の周期変化**は 16 章（方式の追記: 共有の材質を写した専用の材質と、発光の色の drive）
 - W10-B（#59）の **G05 おばけの浮遊**・**G06 屋敷の扉の開閉**は 17 章（方式の追記: B 用の 1 つのモジュール、回転だけを駆動する蝶番の中継と `managedFields`、開閉の往復の式）
+- W10-C（#60）の **G09 大釜の攪拌と泡・煙**・**G11 魔女の巡回**は 18 章（方式の追記: C 用の 1 つのモジュール、素材の宣言の親（仮モデルの root）を動かす、8 点を通る三角補間の経路、液面の専用の材質、PhotonDust の粒子）
 
 - 担当: Claude Code（Opus 5.5）、2026-11-01（UTC）。apply・配備したのはこのセッションだけ。GPT のレビューは PR で 1 回（14 章）
 - 着手前の確認事項: W08 #41 の回答（issuecomment-6545243021）をそのまま使う（#56 の本文。起票したセッションの判断）
@@ -17,6 +18,7 @@
 - 着手時の W08 の root: Slot 745・Component 1,684（W09R-E の完了時と同じ。利用者が手で変えた所は無い）。スナップショットと diff・apply・配備の報告は親の checkout の `tmp/w10/`（Git の対象外）
 - W10-A（#58、2026-11-01）も同じ版（Resonite 2026.10.29.1239、ResoniteLink 0.13.1.0、resoloop 0.2.0、Flux-SDK 1.9.0・managed data 2026.9.18.82、Blender 5.0.1）。記録は親の checkout の `tmp/w10a/`
 - W10-B（#59、2026-11-01）も同じ版。記録は親の checkout の `tmp/w10b/`
+- W10-C（#60、2026-11-01）も同じ版。記録は親の checkout の `tmp/w10c/`
 - 駆動は、対象のワールドが Resonite の前面にあるときだけ進む（背面では `Spinner` も ProtoFlux の drive も止まって見える。最初の観察で回転が単位回転のまま変わらず、利用者に前面へ出してもらうと動いた）。観察・撮影の前に前面へ出してもらう
 
 ## 2. 方式
@@ -525,3 +527,166 @@ GPT のレビュー（17.11）で直した検査での実行: `verify_b.py --win
 - 2 人以上での同期、途中参加（P4）。この子の確認は、共有の時刻と同期する値だけから計算する drive の仕組みの説明と、単独の確認まで
 - 保存・再読込の後に、中継・ProtoFlux のモジュール・HMC_P3 の値が残って動くか（P4。開き直していない）
 - VR での見え方、開閉する扉とアバターのすれ違い（当たり判定は無いので押されない）、メモリの負荷
+
+## 18. W10-C（#60）G09 大釜の攪拌と泡・煙・G11 魔女の巡回
+
+- 担当: Claude Code（Opus 5.5）、2026-11-01（UTC）。claim `agent-claims/issue-60`（13:16:57Z）。apply・配備したのはこのセッションだけ。GPT のレビューは PR で 1 回（18.11）
+- 着手前の確認事項: W08 #41 の回答（issuecomment-6545243021）をそのまま使う（#60 の本文。利用者の指示は「推奨案で行けるところまで」）
+- 対象: C の大釜 `CCD_MagicCauldron_001` の攪拌棒の Pivot `_StirRodPivot`、液面 `_Liquid`、泡・煙の取付位置 `_BubbleAttach`・`_SmokeAttach`（G09）。魔女の仮モデル `CCD_M08_FlyingWitchProxy_001`（M08 の素材の宣言の親）と巡回路の `CCD_WitchPatrolLoop_001_CarrierPivot`（G11）。部品・範囲は W04 の `layout/areas/C_candy.json` の `Hero_or_Gimmick`（G09・G11）と `assets/manifest/C_candy.json`。大釜の本体・巡回路の帯・M08 の素材の宣言と点光源 2 つは変えていない
+- 記録は親の checkout の `tmp/w10c/`（Git の対象外）
+
+### 18.1 方式の追記
+
+| 項目 | 決めたこと | 理由 |
+|---|---|---|
+| 駆動の作り方 | G09・G11 とも ProtoFlux（`flux/P3CandyStreet.pg`。C 用の 1 つのモジュール、worldState は C の state、配備先は `P3_Gimmicks/G09_G11_Candy`）。C の宣言の中継（`ValueMultiDriver`）の `Value`、液面の専用の材質の色、粒子の量と色を drive する | 攪拌の速さ（`HMC_P3/G09StirFrequency`）は I02 のショー（W11）が変えられる値で、C の Slot の `Spinner` からは HMC_P3 の空間に届かない（16.1 と同じ理由）。揺れ（W04 の `wobble_tilt_deg` ±12°）は回転と同じ位相から決めるので、`Spinner` だけでは作れない。G11 は経路の位置と向きの計算が要る。どちらも C の state を worldState にするので 1 つにまとめた |
+| G11 で動かす Slot | 魔女の仮モデルの root（`CCD_M08_FlyingWitchProxy_001`。位置と回転）と、巡回路の `CarrierPivot`（W04 の G11 の `motion_root`。位置と回転）を同じ姿勢で動かす。M08 と点光源 2 つは仮モデルの子なので一緒に動く | M08 の素材の宣言の親のパス（`C_candy/CCD_M08_FlyingWitchProxy_001`）を変えない（#60 の範囲）。仮モデルは CarrierPivot の子ではない（C の宣言で兄弟の asset root）ので、CarrierPivot だけを動かしても魔女は動かない。CarrierPivot を動かさないと、その子の取付位置の目印（星の光の材質の小さな八面体）が巡回の点 0 の空に残る |
+| `managedFields` | 攪拌棒の Pivot は `["position", "scale"]`（回転だけを駆動。G06 の蝶番と同じ）、魔女の仮モデルと CarrierPivot は `["scale"]`（位置と回転を駆動） | C を再 apply しても駆動された姿勢を基準姿勢に戻さない（18.7 で動いている最中の 2 回目の diff が変更 0） |
+| 中継 | 攪拌棒は回転の 1 つ（`p3_g09_rotation_<Slot のキー>`）、魔女と CarrierPivot は位置と回転の 2 つずつ（`p3_g11_<member>_<Slot のキー>`）。`Value` の初期値は宣言の基準姿勢（巡回の点 0、攪拌の角度 0） | モジュールが無い・止まっているときは基準姿勢に止まる。キーが `p3_` で始まるので、W09R の数の検査が P3 の追加として数える |
+| G09 の式 | φ = 2π (f t + p)、揺れ w = 12° × sin 2φ、回転 = Y(−φ) × Z(w)（四元数の積を成分で組む: (sy sz, sy cz, cy sz, cy cz)、sy = sin(−φ/2)・cy = cos(φ/2)・sz = sin(w/2)・cz = cos(w/2)） | W04 の攪拌は Blender の +Z まわり（上から見て反時計回り = Resonite の Y まわりの負）。揺れは攪拌棒のローカル Z（Blender のローカル Y。棒が傾いている面に垂直な軸）まわりで、1 周に 2 回大きく傾くので、櫂が楕円を描くように見える。角度は時刻 t が大きくなっても float の精度を失わないよう、double の sin・cos の半角から四元数を作る（`FromEuler_floatQ` に度で渡すと、時刻が大きいと角度の精度が落ちる）。φ = 0 で基準姿勢 |
+| G09 の液面の色 | 液面の 1 つ目の材質（P2 のエメラルド）を写した専用の `PBS_Metallic`（キー `p3_g09_lm`）を C の宣言で液面の Slot に足し、液面の MeshRenderer の 1 つ目の材質だけを付け替える（`district.add_g09_effects`）。`AlbedoColor` = 色、`EmissiveColor` = 色 × K（K = 1.9646。P2 の発光 / 色の 3 成分の平均）。色は `HMC_P3/G09LiquidColor`（`DynamicValueVariable<colorX>`、既定は P2 の液面の色 sRGB (0.4614, 0.9822, 0.7484, 1)） | エメラルドの材質は液面のほかに 3 つの MeshRenderer（泡の取付位置の目印、I02 の台座、北東の薬の屋台）が使う。共有の材質を変えると、それらも I02 の色に変わる（16.1 と同じ）。2 つ目のマゼンタ（液面の盛り上がり 2 つ）は変えない。I02 は色のプリセット（`#2EFF88` など）をそのまま書けばよく、明るさはモジュールが決める。`Mul_ColorX_Float` は sRGB の値の成分をそのまま掛け、profile を保つ（18.5） |
+| G09 の泡・煙 | PhotonDust の粒子。取付位置の Slot に Component だけを足す（Slot は足さない）: `ParticleSystem`・`ParticleStyle`・`MeshParticleRenderer`（小さな `IcoSphereMesh` を白の `UnlitMaterial`（Alpha）で描く）・`CircleEmitter`（取付位置の水平の円から上へ）・寿命・速さ・大きさ・大きさの変化・色の変化（`ColorOverLifetimeStartEnd`）・位置の計算（`PositionSimulatorModule`）、煙は乱流（`SimplexTurbulentForce`）も。泡は毎秒 6 個・寿命 0.6〜1.2 秒・最大 16 個、煙は毎秒 3 個・寿命 2.5〜3.5 秒・最大 24 個。量は `Rate`、色は液面の色 × 1.6（泡、透明度 0.9 → 0.6）・× 1.1（煙、0.45 → 0）を ProtoFlux が drive する | Spec §11「大量の粒子を控える」。2 つ合わせて最大 40 個。粒子の色は材質の色にかかり、透明度も効く（2026-11-01 に `ResoLoop_Test_W10C_Particles` で試して確かめた。18.2）。I02 が液面の色を変えると泡と煙も同じ色になる |
+| G11 の経路 | 8 点（W04 の `patrol_loop_waypoints_m`）を等間隔の角度 2πk/8 で通る三角補間（x・y・z を cos nθ・sin nθ（n = 0〜4）の和にする。`gimmicks.trig_coefficients`）。高さは W04 の 9.8〜10.5 m に収める。θ = 2π (f t + p) | 閉じた滑らかな曲線で 8 点をすべて通り、向きの変化が単調（左右に揺れない）。θ = 2πk/8 で巡回の点 k なので、時刻を止めた標本で配置データの値とそのまま照合できる。補間した高さは点 1・7 の近くで最大 10.538 m になるので 10.5 m に収める（収めた区間は高さが平らになるだけで、点はすべて範囲の中） |
+| G11 の向き | ψ = atan2(dx/dθ, dy/dθ)（Blender の x・y の微分）、回転 = Y(ψ)（(0, sin ψ/2, 0, cos ψ/2)） | 魔女の正面（W09R-C の M08 の正面、仮モデルのローカル +Y = Resonite の +Z）が進む向きを向く。θ = 0 で ψ = 0（北）なので、基準姿勢（巡回の点 0、回転 0）と一致する。高さの変化（最大 0.3 m / 7 m）は小さいので、上下の傾きは付けない |
+| 既定の速さ | 攪拌は 6 秒で 1 周（1/6 Hz）、巡回は 45 秒で 1 周（1/45 Hz。経路 61.1 m、平均 1.36 m/s、点の間の速さは平均の 0.86〜1.21 倍） | W04 のデータに速さが無いので、この子で決めた（鍋をゆっくりかき混ぜる・魔女が見上げて追える速さ） |
+| 外から変えられる値 | `HMC_P3/G09StirFrequency`（既定 1/6、0〜1 回/秒）・`G09StirPhase`（0、0〜1。回転の位置）・`G09Bubbles`（1、0〜2。泡の量の倍率）・`G09Smoke`（1、0〜2）・`G09LiquidColor`（colorX）、`HMC_P3/G11Frequency`（1/45、0〜0.1 周/秒）・`G11Phase`（0、0〜1。k/8 で巡回の点 k）。`P3_Gimmicks` の `DynamicValueVariable`（キー `g09_freq`・`g09_phase`・`g09_bub`・`g09_smk`・`g09_color`・`g11_freq`・`g11_phase`、`initialFields`）。モジュールの中で範囲に収める | I02（W11）は `G09LiquidColor` を書けば液面・泡・煙の色が変わる。定期ショーは `G11Phase`（と `G11Frequency` = 0）で魔女を決まった点に止められ、`G09Bubbles`・`G09Smoke` で盛り上げられる。範囲に収めるので、大きな値でも粒子は最大の数（16・24）を超えない |
+| 同期と途中参加 | G01 と同じ。`WorldTimeDouble` と同期する HMC_P3 の値だけから計算する drive で、同期する書き込み・インパルスは無い。粒子の放出は各ユーザーの画面で行われ、粒子の位置は同期しない（放出の量と色は共有の値から決まる） | Spec §10.3。途中参加のユーザーも同じ時刻なら同じ攪拌棒の角度・魔女の位置を見る。泡・煙の 1 粒ずつの位置は人ごとに違うが、演出として問題にならない。2 人以上での確認は P4 |
+| 当たり判定 | 付けない。魔女（M08）は P2 から当たり判定が無い（W09R-C）。攪拌棒・粒子にも付けない（粒子の `PositionSimulatorModule` の `Collisions` は既定のまま） | Spec §11「動く装飾には不要な当たり判定を付けない」。大釜の本体の `MeshCollider` は静的なまま |
+
+採らなかった方法:
+
+- **攪拌棒を `Spinner` で回す**（`handoff/W10.md` 6.2 の案）: 攪拌の速さを HMC_P3 から変えられない（C の Slot から HMC_P3 の空間に届かない）。`_speed` を ProtoFlux で drive すれば変えられるが、`Spinner` は角度を速さ × 時刻で決めるので速さを変えた瞬間に角度が跳び、揺れは別に要る
+- **M08 を CarrierPivot の子へ移す**: M08 の素材の宣言の親のパスが変わる（#60 の「M08 の素材の宣言の親のパスを変えない」）
+- **魔女の仮モデルだけを動かす**: CarrierPivot の子の取付位置の目印が巡回の点 0 の空に残る
+- **8 点を直線で結ぶ（巡回路の帯と同じ八角形）**: 点ごとに向きが 45° 跳ぶ。角を丸めるには区間ごとの式を `if` でつなぐ必要があり、ノードが増える
+- **点を増やした三角補間（帯の上を 16〜48 点で通る）**: 帯からのずれは 0.12〜0.31 m に減るが、向きが左右に揺れる（向きの変化の符号が 1,228〜1,602 回 / 4,000 回逆になる）
+- **平滑化した級数（Lanczos・Fejér の重みで 6〜16 次）**: 揺れは消えるが、巡回の点から 0.4〜2.1 m 外れる（帯の目印の点を通らない）
+- **ビルボードの粒子（`BillboardParticleRenderer`）**: Reflection で探した手続きのテクスチャ（`GradientStripTexture`・`NoiseTexture`・`GridTexture` など）に丸い形が無く、四角い板になる。小さな球のメッシュの粒子にした
+- **大釜の造形を直して液面を見せる**: 18.2 の 4 のとおり液面は大釜の縁の蓋に隠れているが、地区の造形のやり直しは #60 の範囲外。W04 への要望にした（handoff 6.3）
+
+### 18.2 Blender・Reflection・試しの Slot で確かめたこと
+
+1. **Reflection（`resoloop type search`・`type describe`）**: PhotonDust の `ParticleSystem`（`MaxParticleCount`・`Style`）、`ParticleStyle`（`Renderer`・`Modules`）、`MeshParticleRenderer`（`Mesh`・`Material`）、`CircleEmitter`（`Rate`・`Radius`・`CircleAlignment` XY/XZ/YZ・`DirectionMode` Fixed など）、`LifetimeRangeInitializer`・`SpeedRangeInitializer`・`UniformSizeRangeInitializer`（`MinValue`・`MaxValue`）、`UniformSizeOverLifetimeStartEnd`、`ColorOverLifetimeStartEnd`（`StartColor`・`EndColor` は colorX）、`SimplexTurbulentForce`、`PositionSimulatorModule`、`IcoSphereMesh`、`UnlitMaterial`（`BlendMode` Alpha・`ZWrite` Off）。旧来の粒子（`ParticleSpray`）と `Legacy*Adapter` は使わない
+2. **Flux-SDK（`resoloop flux node describe`、managed data 2026.9.18.82、3,320 ノード）**: `Atan2_Double`（Y, X）、`Pack_FloatQ`（X, Y, Z, W）、`Mul_ColorX_Float`、`ColorXSetAlpha`、`DynamicVariableValueInput<colorX>`。四元数どうしの積のノードは無い（`Mul_FloatQ_Float3` はベクトルの回転だけ）ので、攪拌棒の回転は成分の式で組んだ。`resoloop flux check flux/P3CandyStreet.pg` はヒント 7 件だけでコンパイル成功
+3. **試しの Slot**（`Root/HalloweenMagicalCarnival/ResoLoop_Test_W10C_Particles`。大釜の位置に泡と煙を試し、撮影してから ID を確かめて `slot delete` で消した。`resoloop find` で残っていない）: 粒子は `PositionSimulatorModule` が無いと生まれた位置から動かない。`ColorOverLifetimeStartEnd` の色（試しは白 → 透明な赤）は `UnlitMaterial` の色にかかり、透明度も効く。`ParticleSystemMetadata` の `ParticleCount` は observe で値が読めない（kind empty）ので使わない
+4. **大釜の液面は大釜の蓋の下に隠れている**（W04 の造形）: `modeling/C_candy/build.py` の `_add_frustum_z` は円錐台の上と下に面を張るので、大釜の縁（z 1.14〜1.28）の上面 z 1.28 が蓋になり、液面（z 1.12〜1.26。盛り上がりを含む）は外から見えない（撮影 `g09_cauldron` でも蓋の上に攪拌棒が刺さって見える）。液面の色の変化は材質の値で確かめ（18.5）、見た目の色は泡・煙で見える。W04 への要望（handoff 6.3）
+5. **Blender の確かめ**（保存しない一時的なスクリプト。親の checkout の `tmp/w10c/blender_sweep/sweep_c.py` と `sweep_c.json`）: overview の `.blend` に M04・M08 の `.blend` を仮モデルと同じ変換で置き、M08 を経路に沿って 720 の位置・向きに動かして、高さ 6 m を超えるほかのメッシュとの最短距離と三角形の交差を数えた。3 m 以内に来るのは巡回路自身の星の光の帯（`_GuideRing`。8 点を結ぶ帯と点の目印。720 の位置のうち 302 で交わる）と CarrierPivot の子の取付位置の目印（動かすので一緒に動く）だけ。M04（上端 7.628 m）・キャンディのアーチ（上端 9.5 m）・浮島（上端 10.5 m）は 3 m より遠い。魔女の最も低い所は 9.19 m。攪拌棒は φ を 10° ごと・揺れ ±12° で回して、縁の上面の高さで軸から 6 cm 以内（縁の内側 0.72 m）、櫂の上端は最大 z 0.996（液面 1.12 の下）、最も低い所は 0.578（大釜の腹の底 0.20 の上）
+6. **巡回路の帯と経路のずれ**: 帯は 8 点を直線で結ぶが、経路は滑らかな曲線なので、点と点の間で帯から外へ最大 0.95 m ふくらむ（点 0 と点 1 の間の中ほどなど）。点の目印はすべて通る（18.6）
+
+### 18.3 保存の後の最初の diff
+
+何も変える前（13:23〜13:25Z）に、今の `main` のまま 6 キーを export した宣言（`exports/p2_static/<key>-20261101T132345Z`。W10・W10-A・W10-B の駆動は入っている）で、全 19 宣言（`content/main.json`・6 キー・M01 の 3 つ・M02・M03・M04・M05 の 2 つ・M06・M07・M08・`content/p3_gimmicks.json`）の diff を取った。どれも変更 0・警告 0（no-op 29・184・668・339・318・379・780・16・15・15・17・16・18・15・15・15・16・19・18。W10-B の完了時と同じ数）。資産の作り直し・重複は無い。W10 の `P3PlazaDance`（`P3_Gimmicks/G01_Dance`）、W10-A の `P3FountainGlow`（`G03_Fountain`）、W10-B の `P3MansionMotion`（`G05_G06_Mansion`）は配備されたまま。W08 の root の下は Slot 1,149・Component 2,227（W10-B の完了時と同じ。利用者が手で変えた所は無い）
+
+- 新しい worktree の準備: 全キーの `.blend` の作り直し（13:17〜13:20Z、約 3 分。D・E は `--arg=--no-render`）、Blender の確かめ（18.2）のための M04・M08 の `.blend`（約 3 分）と overview の `.blend`（`--arg=--no-render`）、Git の外の `p2_bundles/<M>-<UTC>/` を同じ名前の `exports/p2_meshy/` へ写した（コミット済みの記録は上書きせず、`SHA256SUMS` が全 9 つ一致）。overview のビルドが書き換えた `assets/manifest.json`・`review/overview/checks.json`（W07 の所有）と確認画像は戻した
+- apply の前のスナップショット: 親の checkout の `tmp/w10c/01_snapshot_before_20261101T132551Z`（W08 の root 全体。最初の diff の後、最初の apply まで書き込みは無い。試しの Slot（18.2 の 3）はスナップショットの後に作り、消した）
+
+### 18.4 手順
+
+4 章の手順に、次を足す（`T` は親の checkout の `tmp/w10c/`）。
+
+```sh
+uv run python modeling/p2_static/export_p2.py --url "$URL" --key C_candy   # 攪拌棒・魔女・CarrierPivot の managedFields と中継、液面の専用の材質、泡・煙の粒子を足した p2.apply.json と p3_drivers.json
+resoloop diff exports/p2_static/C_candy-<UTC>/p2.apply.json --state "$ST/p2_C_candy.json" --brief --report "$T/<新しいファイル>" --url "$URL" --json
+resoloop apply exports/p2_static/C_candy-<UTC>/p2.apply.json --state "$ST/p2_C_candy.json" --url "$URL" --json
+uv run python modeling/p3_gimmicks/build_content.py   # C の state から Slot のキーを、C の最新の export から基準の位置と液面の色を読み、flux/P3CandyStreet.pg・flux/p3_candy_street.flux.json も作る
+resoloop diff content/p3_gimmicks.json --state "$ST/p3_gimmicks.json" --brief --report "$T/<新しいファイル>" --url "$URL" --json
+resoloop apply content/p3_gimmicks.json --state "$ST/p3_gimmicks.json" --url "$URL" --json
+uv run python modeling/p3_gimmicks/deploy_flux.py --url "$URL" --manifest flux/p3_candy_street.flux.json --report "$T/<新しいファイル>"
+# 同じ diff・apply・配備をもう 1 回行い、変更 0・書き込み 0・配備 no-op を確かめる
+uv run python modeling/p3_gimmicks/verify_c.py --url "$URL" --raw-out "$T/<新しいファイル>" --output review/p3_gimmicks/g09_g11_live_checks.json --windows 2 --gap 300
+uv run python modeling/p3_gimmicks/verify_c.py --url "$URL" --raw-out "$T/<新しいファイル>" --output review/p3_gimmicks/g09_g11_param_checks.json --param-check
+```
+
+- `build_content.py` は C の state に攪拌棒の Pivot・魔女の仮モデル・CarrierPivot の Slot が無いと止まり（先に C を apply する）、C の最新の export でそれらの基準の回転が単位でない・魔女と CarrierPivot の基準の位置が巡回の点 0 でない・液面の専用の材質が無いと止まる
+- G09・G11 の deploy state は親の checkout の `.resoloop/flux-state/p3_candy_street.json`
+- `verify_c.py` の窓は、攪拌棒だけを 20 秒（1 回 約 1.5 秒。60°/s の回転を連続にできる間隔）、全部の駆動の値を 40 秒（1 回 約 3 秒）観察する。窓の最初の時刻を止めた標本と `--param-check` は HMC_P3 の値を変えて測り、最後に元に戻ったかを確かめる（途中で攪拌棒と魔女が止まり、液面がマゼンタになるので、確認中に見ている人がいれば伝える）
+
+### 18.5 G09 の結果
+
+`verify_c.py --windows 2 --gap 300`（14:08:09Z と 14:15:17Z の 2 つの窓。7.1 分あけた。`review/p3_gimmicks/g09_g11_live_checks.json`）と `--param-check`（14:17〜14:21Z。`g09_g11_param_checks.json`）。どれも問題 0。試しの実行（1 つの窓 13:44Z、`--param-check` 13:47〜13:50Z）も合格だった
+
+| 項目 | 結果 |
+|---|---|
+| 回る向きと速さ | 上から見て反時計回り（Resonite の Y まわりの負。攪拌の角度 φ を 13・15 回の観察で連続にした傾きが正）。60.249・60.034°/s（6 秒で 1 周 = 60°/s と 0.5% 以内。許容 5%）。隣の観察の間は最大 104.9°（連続にできる 150° 未満） |
+| 回転の形と揺れ | 各観察の回転が Y まわり × ローカル Z まわりの形（残差 1e-3 未満）で、揺れが 12° × sin 2φ と 0.1° 以内で一致。揺れの範囲は −11.891〜+11.883°（±12° の中） |
+| 時刻を止めた標本 | `G09StirFrequency` = 0 で `G09StirPhase` 0・0.125・0.3・0.6・0.9 のとき、中継の値と攪拌棒の Pivot の Slot そのものの回転が式の四元数と 1e-7 以内で一致。窓ごとの標本（φ = 0.125 周）も同じ |
+| 大釜の縁・液面から外れない（包絡） | 攪拌棒を 5° ごと・揺れ込みで回したとき、縁の上面（z 1.28）より下の部分は軸から最大 0.392 m（液面の半径 0.70 m の内側）、最も低い所は z 0.578（大釜の腹の底 0.20 の上）、`clear_radius_m` 1.4 m の外に出る点 0。Blender の確かめ（18.2 の 5）でも縁の高さで軸から 6 cm 以内、櫂は液面の下 |
+| 泡・煙 | 泡は毎秒 6 個・寿命 0.6〜1.2 秒・最大 16 個（大きさ 0.05〜0.10 m が 0.6 → 1.4 倍）、煙は毎秒 3 個・寿命 2.5〜3.5 秒・最大 24 個（0.16〜0.24 m が 0.6 → 2.2 倍、乱流 0.3）。`Rate` は両方の窓の全観察で 6・3（`G09Bubbles`・`G09Smoke` = 1）。撮影 `g09_cauldron`・`_later` で泡と煙が出ている |
+| 色の値を変えると液面と煙の色が変わる | `G09LiquidColor` を I02 の Magenta（#F53DC7）にすると、液面の専用の材質の `AlbedoColor` が (0.9608, 0.2392, 0.7804, 1)、`EmissiveColor` が × 1.9646、泡・煙の `StartColor`・`EndColor` が × 1.6・× 1.1（透明度 0.9・0.6、0.45・0）に変わり、式と 1e-3 以内で一致。撮影 `g09_cauldron_magenta` で泡・煙がマゼンタ。元の色（sRGB (0.4614, 0.9822, 0.7484, 1)）に戻した。液面そのものは大釜の蓋に隠れて見えない（18.2 の 4） |
+| 液面の材質（共有の材質） | 液面の MeshRenderer の材質は [`p3_g09_lm`, マゼンタ]。元のエメラルドを使うほかの 3 つ（北東の薬の屋台、泡の取付位置の目印、I02 の台座）は元の材質のまま（両方の窓）。P2 の発光との差は 0.4% 以内（`Mul_ColorX_Float` は sRGB の値の成分をそのまま掛け、profile は sRGB のまま） |
+| 範囲の外の値 | `G09StirPhase` 1.5 → 1（φ = 2π で基準姿勢。収めないと 180° 回った姿勢）、`G09StirFrequency` −1 → 0（止まる）、`G09Bubbles` 5 → 2（`Rate` 12）・−1 → 0、`G09Smoke` −1 → 0・5 → 2（`Rate` 6）。どれも式の値と一致 |
+| ゆっくりの時刻 | `G09StirFrequency` = 0.004 Hz で 23.64 秒あけた 2 回の観察で φ が 33.987° 進んだ（時刻からの予測 34.039°。許容 1°） |
+| 戻した値 | `G09StirFrequency` 0.16666667、`G09StirPhase` 0、`G09Bubbles` 1、`G09Smoke` 1、`G09LiquidColor` 元の色（変える前と同じ。違えば問題にする） |
+| 構造 | 両方の窓の最初と最後で、大釜の子孫（本体・液面・取付位置・攪拌棒）が宣言と同じパス・ローカルの変換（攪拌棒の Pivot は位置と拡縮）。中継は有効で、`Drives` は攪拌棒の Pivot の `Rotation` を指す |
+
+### 18.6 G11 の結果
+
+| 項目 | 結果 |
+|---|---|
+| 経路 | 両方の窓の全観察（11 回ずつ）で、魔女の仮モデルと CarrierPivot（巡回路の root の原点を足した位置）が経路の上（ずれ 5e-6 m 未満。許容 1 cm）。θ は 1 つ目の窓で 59.0〜354.3°、2 つ目で 2.4〜331.7°（ほぼ 1 周を観察） |
+| 巡回の点 | 時刻を止めた標本（`G11Frequency` = 0）で `G11Phase` = k/8（k = 0〜7）のとき、魔女と CarrierPivot が配置データの巡回の点 k と 1e-6 m 以内（中継の値と Slot そのものの両方）。点の間（0.0625）も式と一致 |
+| 向き | 動いている間、正面の向きと経路の接線の差は最大 1.42°・1.20°（位置と回転は別の中継で、1 回の observe の中で読む時刻がずれる。許容 3°）、Y 軸まわりだけ。隣の観察の間に進んだ向き（弦）と正面の向きの差は最大 2.63°・3.31°（許容 8°）。時刻を止めた標本では 0.0° |
+| 高さ | 9.8023〜10.5 m・9.9157〜10.5 m（W04 の 9.8〜10.5 m の中。許容 1 mm）。M08 の最も低い所は 9.21 m（バンドルのメッシュ）、W04 の上空の通り道 `EX_C_SkyPatrolCorridor` の下端 9.0 m より上で、平面でも外に出る点 0 |
+| 屋根・塔に当たらない | M04 の外接箱（上端 7.628 m）から最短 2.465 m（バンドルのメッシュ）。Blender の確かめ（18.2 の 5）で、3 m 以内に来るのは巡回路自身の帯と CarrierPivot の目印だけ |
+| 1 周の時間と速さ | 45 秒（`G11Frequency` 1/45）。θ の速さは 7.979・8.003°/s（8.0°/s と 0.3% 以内）。経路 61.1 m、平均 1.36 m/s |
+| 漂わない | 2 つの窓の最初の時刻を止めた標本（`G11Phase` 0.25 = 巡回の点 2）の位置の差 0.0 m（許容 1 cm）。各窓の θ − 360 f t（t は壁の時計）の円の平均は 1.709°・1.657°（差 0.052°。許容 6°）で、θ が時刻から決まり、5 分の間に漂っていない |
+| 範囲の外の値 | `G11Phase` 1.5 → 1（巡回の点 0。収めないと点 4）、`G11Frequency` −1 → 0（止まる）。式の値と一致 |
+| ゆっくりの時刻 | `G11Frequency` = 0.004 Hz で θ が 33.986° 進んだ（予測 34.039°） |
+| 戻した値 | `G11Frequency` 0.022222223、`G11Phase` 0 |
+| M08 と光源 | 両方の窓の最初と最後で、仮モデルの下の `M08`（素材の宣言の root）と `M08_FlyingWitch_001`・`M08_FrontGlow`・`M08_UnderGlow` が宣言と同じパス・ローカルの変換（差 1e-4 未満）。M08 の素材の宣言の diff は最後まで変更 0（18.7） |
+| 構造 | 巡回路の子孫（帯・CarrierPivot・取付位置）と仮モデルが宣言と同じパス（CarrierPivot・仮モデルは拡縮）。中継 4 つは有効で、`Drives` は自分の Slot の `Position`・`Rotation` を指す |
+
+### 18.7 diff・apply・配備と、再適用・所有範囲
+
+| 時刻（UTC） | 宣言・操作 | diff | apply・配備 |
+|---|---|---|---|
+| 13:23〜13:25 | 全 19 宣言（18.3。`<key>-20261101T132345Z`） | どれも変更 0・警告 0 | — |
+| 13:39 | C（`C_candy-20261101T133857Z`。攪拌棒・魔女・CarrierPivot に `managedFields` と中継、液面の専用の材質、泡・煙の粒子） | 作成 31（中継 5、液面の材質 1、泡 12・煙 13）・更新 1（液面の MeshRenderer の `Materials` の 1 つ目）・no-op 317・警告 0。`managedFields` の追加は今の値と同じで変更にならない | Component の追加 31・更新 1（資産は変更なし 42、取り込み 0） |
+| 13:41 | P3（`content/p3_gimmicks.json`） | 作成 8（Slot `G09_G11_Candy`、値の Component 7）・no-op 18 | Slot の作成 1・Component の追加 7 |
+| 13:41 | ProtoFlux（`deploy_flux.py --manifest flux/p3_candy_street.flux.json`） | — | モジュール `P3CandyStreet` を `P3_Gimmicks/G09_G11_Candy` の下に作成（drive の結び先 13 個がすべて解決） |
+| 13:54 | C・P3 の 2 回目の diff（動いている最中） | どちらも変更 0・警告 0（C は no-op 349、P3 は 26）。攪拌棒の回転、魔女・CarrierPivot の位置と回転、液面と粒子の色・量は差分にならない | — |
+| 13:54 | C・P3 の 2 回目の apply、2 回目の配備 | — | apply はどれも書き込み 0（作成・更新・削除 0、資産の取り込み 0）。配備は `no-op`（「source and transitive dependency hashes match deploy state」） |
+| 14:13 | 全 19 宣言の 2 回目の diff（動いている最中。C は `133857Z`） | どれも変更 0・警告 0（no-op は 18.3 と同じで、C は 349、P3 は 26）。M08 の素材の宣言も変更 0（魔女は親の仮モデルの動きについて動く） | — |
+
+- `--prune` は使っていない。削除・名前の変更・Component の作り直しは 0
+- 所有範囲: diff の対象は C の攪拌棒の Pivot・魔女の仮モデル・CarrierPivot の中継、液面の専用の材質と液面の MeshRenderer の 1 つ目の材質、泡・煙の取付位置の粒子、P3 の宣言の G09・G11 の値と `G09_G11_Candy` だけ。world・A・B・D・E・`content/main.json`・Meshy の素材の宣言（M04・M08 を含む）は、最初の diff から最後まで変更 0 で、apply していない。world・A・B・D・E をこの子のコードで export し直した `p2.apply.json`・`p3_drivers.json` は `main` の export（`132345Z`）とバイト単位で同じ（比べた後に消した）。W10・W10-A・W10-B の `flux/P3PlazaDance.pg`・`p3_plaza_dance.flux.json`・`P3FountainGlow.pg`・`p3_fountain_glow.flux.json`・`P3MansionMotion.pg`・`p3_mansion_motion.flux.json` は `build_content.py` で作り直してもバイト単位で同じ（`git diff` が空）
+- 数: W08 の root の下は Slot 1,149・Component 2,227 → Slot 1,372・Component 2,556（P3 の宣言 1・7、C の中継・材質・粒子 0・31、モジュール `P3CandyStreet` 222・291。親の checkout の `tmp/w10c/02_snapshot_after_*`）。2 回目の apply で増えない
+- apply・配備の記録は親の checkout の `tmp/w10c/`（`diff_first/`・`diff_second/`・`diff_c*`・`apply_c*`・`diff_p3_*`・`apply_p3_*`・`flux_c_*`）
+
+### 18.8 撮影（`review/p3_gimmicks/`、1600×900、カメラは `content/p3_gimmicks.json` の `cameras`。14:05〜14:07Z）
+
+- `g09_cauldron`・`g09_cauldron_later`（南の上から大釜。約 3 秒あけて攪拌棒の向きと泡・煙が違う）、`g09_cauldron_magenta`（`G09LiquidColor` を I02 の Magenta にして撮り、戻した。泡・煙がマゼンタになる）
+- `g11_patrol_watch`（地上の鑑賞位置 `VP_C_SkyPatrolWatch` から見上げる。キャンディのアーチの奥、M04 の屋根の上の魔女と星の光の帯）、`g11_patrol_overview`・`g11_patrol_overview_later`（南西の上から巡回の全体。約 10 秒あけて魔女の位置が違う）、`g11_witch_close`（`G11Phase` 0.25・`G11Frequency` 0 で巡回の点 2 に止めて近くから撮り、戻した。魔女は点 2 の目印のそばで帯の上を進む向きを向く）
+- どれも 16〜29 万バイトで、真っ黒な約 23 KB の画像は無い。利用者のアバター・名札は写っていない。`<名前>.scene.json` は作業ツリーの絶対パスを含むのでコミットせず、親の checkout の `tmp/w10c/capture_scenes/` に移した。一時カメラ `ResoLoop_Test_Capture_*` は残っていない（`resoloop find`）
+
+### 18.9 既存の検査
+
+- 動いている状態（13:55〜14:00Z）で実行した。どれも直していない（`rest_pose.py` は `gimmicks.driven_slots()` に C を足しただけで、C の駆動される項目も基準姿勢に戻す）
+- W10 の G01・G13（`modeling/p3_gimmicks/verify_live.py`、1 つの窓 30 秒）: 合格。G13 は 17.904°/s・上から見て反時計回り（親の checkout の `tmp/w10c/p3_prev_live_1.json`。W10 の `live_checks.json`・`param_checks.json` は書き換えていない）
+- W10-A の G03（`verify_g03.py`、1 つの窓 30 秒）: 合格（`tmp/w10c/g03_prev_live_1.json`）
+- W10-B の G05・G06（`verify_b.py`、1 つの窓 50 秒）: 合格。おばけの上下 −0.10〜+0.35 m・揺れ ±20° 以内、扉 0〜85.0°（`tmp/w10c/b_prev_live_1.json`。`g05_g06_*.json` は書き換えていない）
+- W09R（`modeling/p2_meshy/verify_live.py`）: 全項目合格（M01〜M08 の 9 行、5 地区の数）。C の数の照合は、P3 が足した Component 31（キーの `p3_` で数える）を加えて実物 Slot 95・Component 242 と一致。基準姿勢への置き換えは 14 個（A の Body 6、D の TurnRoot、B のおばけ 2 体・蝶番 2 つ、C の攪拌棒の Pivot・魔女の仮モデル・CarrierPivot）。M08 は魔女の仮モデルを基準姿勢（巡回の点 0）に戻した位置で、W09R-C の外接箱・原点・正面と一致（`tmp/w10c/p2_meshy_live_1.json`。`review/p2_meshy/live_checks.json` は書き換えていない）
+- W08（`modeling/p2_static/verify_live.py`）: W09R 以降の既知の 11 件のまま（項目は 11 章と同じ）。C の件は実物と宣言の Component がどちらも 31 増えた（211 / 166 → 242 / 197）だけで、G09・G11 による失敗は 0（`tmp/w10c/p2_static_checks_1.json`）。`review/p2_static/live_checks.json` は書き換えていない
+
+### 18.10 実機の確認と負荷
+
+- 利用者の確認（確認事項 6、デスクトップ、14:0xZ ごろ）: G09 の攪拌と泡・煙（量・見え方）、G11 の魔女の巡回（向き・速さ・高さ、星の光の帯からのふくらみ）、通路・鑑賞位置へのはみ出し、resoloop が接続していない間も動き続けることを見てもらい、「問題なし」
+- 大釜の液面が蓋に隠れている点（18.2 の 4）は、利用者の決定で W04 への要望として記録だけにした（handoff 6.3）
+- 負荷（確認事項 8）: W08 の基準と同じ端末（デスクトップ一人）で 60 fps 前後（W10・W10-A・W10-B と同じ）。足した物は C の Component 31（中継 5、液面の材質 1、粒子 25）、P3 の宣言の Slot 1・Component 7、ProtoFlux のモジュールの Slot 222・Component 291（ノード）。粒子は泡が最大 16 個・煙が最大 24 個（既定の量で同時に 約 7 個・約 9 個。毎秒の数 × 寿命の平均）。drive は各ユーザーが毎フレーム評価する（ネットワークの送信は無い）
+- 常駐しない: resoloop はコマンドごとに接続して終わる。2 つの窓の間の 5 分（接続していない）も動き続けた（18.5・18.6。再接続後の観察で θ − ω t が窓の間で合う）
+
+### 18.11 GPT のレビュー（確認事項 7）と保存（確認事項 4）
+
+- GPT のレビュー: PR の後に記録する
+
+#### 18.11.1 保存
+
+- 保存の後に記録する
+
+### 18.12 Resonite で未確認の項目
+
+- 2 人以上での同期、途中参加（P4）。この子の確認は、共有の時刻と同期する値だけから計算する drive の仕組みの説明と、単独の確認まで。粒子の 1 粒ずつの位置は人ごとに違う（同期しない）
+- 保存・再読込の後に、中継・ProtoFlux のモジュール・HMC_P3 の値・粒子が残って動くか（P4）
+- 液面の色の見た目（大釜の蓋に隠れて見えない。18.2 の 4。W04 の要望の後に見る）。色の変化そのものは材質の値と泡・煙で確かめた
+- 粒子の数の実測（`ParticleSystemMetadata.ParticleCount` は observe で読めない。最大の数は `MaxParticleCount` で決まり、撮影で出ていることを見た）
+- VR での見え方、頭上を通る魔女の見え方の人による違い、メモリの負荷

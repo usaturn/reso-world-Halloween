@@ -1,0 +1,778 @@
+{
+  "windows": [
+    {
+      "started_at": "2026-11-01T14:08:09Z",
+      "params": {
+        "G09StirFrequency": 0.16666667,
+        "G09StirPhase": 0.0,
+        "G09Bubbles": 1.0,
+        "G09Smoke": 1.0,
+        "G11Frequency": 0.022222223,
+        "G11Phase": 0.0,
+        "G09LiquidColor": {
+          "r": 0.46135613,
+          "g": 0.98220706,
+          "b": 0.74837905,
+          "a": 1,
+          "profile": "sRGB"
+        }
+      },
+      "samples": [
+        {
+          "t": 1793542174.242,
+          "rod": {
+            "phi_deg": 76.7617,
+            "tilt_deg": 5.35,
+            "form_residual": 0.0
+          },
+          "witch": {
+            "theta_deg": 59.0345,
+            "path_error_m": 0.0,
+            "altitude_m": 10.5,
+            "heading_error_deg": -0.7978
+          },
+          "carrier": {
+            "theta_deg": 60.7702,
+            "path_error_m": 0.0,
+            "heading_error_deg": -1.0274
+          }
+        },
+        {
+          "t": 1793542177.929,
+          "rod": {
+            "phi_deg": 289.839,
+            "tilt_deg": -7.6617,
+            "form_residual": 0.0
+          },
+          "witch": {
+            "theta_deg": 87.4353,
+            "path_error_m": 0.0,
+            "altitude_m": 10.4163,
+            "heading_error_deg": -0.457
+          },
+          "carrier": {
+            "theta_deg": 89.1723,
+            "path_error_m": 0.0,
+            "heading_error_deg": -0.5242
+          }
+        },
+        {
+          "t": 1793542181.655,
+          "rod": {
+            "phi_deg": 152.8724,
+            "tilt_deg": -9.7395,
+            "form_residual": 0.0
+          },
+          "witch": {
+            "theta_deg": 117.223,
+            "path_error_m": 0.0,
+            "altitude_m": 10.2311,
+            "heading_error_deg": -0.8372
+          },
+          "carrier": {
+            "theta_deg": 119.0381,
+            "path_error_m": 0.0,
+            "heading_error_deg": -1.121
+          }
+        },
+        {
+          "t": 1793542185.396,
+          "rod": {
+            "phi_deg": 13.8676,
+            "tilt_deg": 5.5846,
+            "form_residual": 0.0
+          },
+          "witch": {
+            "theta_deg": 146.6402,
+            "path_error_m": 0.0,
+            "altitude_m": 9.9964,
+            "heading_error_deg": -1.1326
+          },
+          "carrier": {
+            "theta_deg": 148.3829,
+            "path_error_m": 0.0,
+            "heading_error_deg": -1.2294
+          }
+        },
+        {
+          "t": 1793542189.078,
+          "rod": {
+            "phi_deg": 239.9046,
+            "tilt_deg": 10.4122,
+            "form_residual": 0.0
+          },
+          "witch": {
+            "theta_deg": 176.7905,
+            "path_error_m": 0.0,
+            "altitude_m": 9.8023,
+            "heading_error_deg": -0.3397
+          },
+          "carrier": {
+            "theta_deg": 178.5177,
+            "path_error_m": 0.0,
+            "heading_error_deg": -0.3326
+          }
+        },
+        {
+          "t": 1793542192.771,
+          "rod": {
+            "phi_deg": 95.9618,
+            "tilt_deg": -2.4793,
+            "form_residual": 0.0
+          },
+          "witch": {
+            "theta_deg": 205.7117,
+            "path_error_m": 0.0,
+            "altitude_m": 9.9281,
+            "heading_error_deg": -0.866
+          },
+          "carrier": {
+            "theta_deg": 207.4412,
+            "path_error_m": 0.0,
+            "heading_error_deg": -0.9541
+          }
+        },
+        {
+          "t": 1793542196.406,
+          "rod": {
+            "phi_deg": 318.8682,
+            "tilt_deg": -11.8908,
+            "form_residual": 0.0
+          },
+          "witch": {
+            "theta_deg": 235.3142,
+            "path_error_m": 0.0,
+            "altitude_m": 10.1805,
+            "heading_error_deg": -1.1219
+          },
+          "carrier": {
+            "theta_deg": 237.1852,
+            "path_error_m": 0.0,
+            "heading_error_deg": -1.0492
+          }
+        },
+        {
+          "t": 1793542200.031,
+          "rod": {
+            "phi_deg": 169.8725,
+            "tilt_deg": -4.1544,
+            "form_residual": 0.0
+          },
+          "witch": {
+            "theta_deg": 263.4516,
+            "path_error_m": 0.0,
+            "altitude_m": 10.3585,
+            "heading_error_deg": -0.4534
+          },
+          "carrier": {
+            "theta_deg": 265.1878,
+            "path_error_m": 0.0,
+            "heading_error_deg": -0.5221
+          }
+        },
+        {
+          "t": 1793542203.68,
+          "rod": {
+            "phi_deg": 34.9138,
+            "tilt_deg": 11.2639,
+            "form_residual": 0.0
+          },
+          "witch": {
+            "theta_deg": 293.5842,
+            "path_error_m": 0.0,
+            "altitude_m": 10.5,
+            "heading_error_deg": -0.7274
+          },
+          "carrier": {
+            "theta_deg": 295.319,
+            "path_error_m": 0.0,
+            "heading_error_deg": -0.7478
+          }
+        },
+        {
+          "t": 1793542207.398,
+          "rod": {
+            "phi_deg": 249.9137,
+            "tilt_deg": 7.7411,
+            "form_residual": 0.0
+          },
+          "witch": {
+            "theta_deg": 322.4127,
+            "path_error_m": 0.0,
+            "altitude_m": 10.4496,
+            "heading_error_deg": -1.4204
+          },
+          "carrier": {
+            "theta_deg": 324.7889,
+            "path_error_m": 0.0,
+            "heading_error_deg": -1.277
+          }
+        },
+        {
+          "t": 1793542211.282,
+          "rod": {
+            "phi_deg": 130.9707,
+            "tilt_deg": -11.8815,
+            "form_residual": 0.0
+          },
+          "witch": {
+            "theta_deg": 354.2587,
+            "path_error_m": 0.0,
+            "altitude_m": 10.2086,
+            "heading_error_deg": -1.0212
+          },
+          "carrier": {
+            "theta_deg": 355.9927,
+            "path_error_m": 0.0,
+            "heading_error_deg": -1.0258
+          }
+        }
+      ],
+      "problems": [],
+      "structure_start": {
+        "rows": 20,
+        "problems": []
+      },
+      "relay_problems": [],
+      "materials": {
+        "liquid": [
+          "p3_g09_lm",
+          "mat_material_MAT_CCD_PotionMagentaGlow_f71b9f0a"
+        ],
+        "copied_from": "mat_material_MAT_CCD_PotionEmeraldGlow_a2f675eb",
+        "original_users": [
+          "renderer_CCD_PotionStall_NorthEast_001_8a26168d",
+          "renderer_CCD_MagicCauldron_001_BubbleAttach_b59dcfde",
+          "renderer_CCD_CauldronColorControl_001_Pedestal_e8f76f91"
+        ],
+        "dedicated_fields": {
+          "Metallic": 0.0,
+          "Smoothness": 0.8499999940395355
+        },
+        "problems": []
+      },
+      "frozen_probe": {
+        "params": {
+          "G09StirFrequency": 0.0,
+          "G09StirPhase": 0.125,
+          "G09Bubbles": 1.0,
+          "G09Smoke": 1.0,
+          "G11Frequency": 0.0,
+          "G11Phase": 0.25
+        },
+        "rows": {
+          "rod_q_error": 1e-07,
+          "witch": {
+            "position_error_m": 0.0,
+            "heading_error_deg": 0.0,
+            "waypoint_error_m": 0.0
+          },
+          "carrier": {
+            "position_error_m": 0.0,
+            "heading_error_deg": 0.0,
+            "waypoint_error_m": 0.0
+          }
+        },
+        "slots": {
+          "rod": [
+            -0.040001,
+            -0.380587,
+            0.096572,
+            0.918819
+          ],
+          "witch": [
+            33.0,
+            10.4,
+            9.5
+          ],
+          "carrier": [
+            0.0,
+            10.4,
+            9.5
+          ]
+        },
+        "problems": []
+      },
+      "structure_end": {
+        "rows": 20,
+        "problems": []
+      },
+      "speeds": {
+        "problems": [],
+        "rod": {
+          "deg_per_s": 60.2494,
+          "expected": 60.0,
+          "max_step_deg": 104.92,
+          "samples": 13
+        },
+        "patrol": {
+          "deg_per_s": 7.9785,
+          "expected": 8.0,
+          "max_step_deg": 31.85,
+          "samples": 11
+        }
+      },
+      "travel": {
+        "errors_deg": [
+          0.512,
+          -1.949,
+          -2.028,
+          2.453,
+          -2.415,
+          -2.633,
+          1.44,
+          -1.668,
+          -0.907,
+          -1.473
+        ],
+        "problems": []
+      },
+      "clock_offset_deg": 1.7093309874614404,
+      "summary": {
+        "samples": 11,
+        "rod_samples": 13,
+        "rod_tilt_deg": [
+          -11.891,
+          11.264
+        ],
+        "witch_path_error_m": 0.0,
+        "carrier_path_error_m": 0.0,
+        "witch_altitude_m": [
+          9.8023,
+          10.5
+        ],
+        "witch_heading_error_deg": 1.42,
+        "witch_theta_deg": [
+          59.03,
+          354.26
+        ]
+      },
+      "ok": true
+    },
+    {
+      "started_at": "2026-11-01T14:15:17Z",
+      "params": {
+        "G09StirFrequency": 0.16666667,
+        "G09StirPhase": 0.0,
+        "G09Bubbles": 1.0,
+        "G09Smoke": 1.0,
+        "G11Frequency": 0.022222223,
+        "G11Phase": 0.0,
+        "G09LiquidColor": {
+          "r": 0.46135613,
+          "g": 0.98220706,
+          "b": 0.74837905,
+          "a": 1,
+          "profile": "sRGB"
+        }
+      },
+      "samples": [
+        {
+          "t": 1793542598.876,
+          "rod": {
+            "phi_deg": 342.9484,
+            "tilt_deg": -6.7282,
+            "form_residual": 0.0
+          },
+          "witch": {
+            "theta_deg": 214.5258,
+            "path_error_m": 0.0,
+            "altitude_m": 10.0071,
+            "heading_error_deg": -1.2
+          },
+          "carrier": {
+            "theta_deg": 216.2657,
+            "path_error_m": 0.0,
+            "heading_error_deg": -1.4654
+          }
+        },
+        {
+          "t": 1793542602.438,
+          "rod": {
+            "phi_deg": 197.0007,
+            "tilt_deg": 6.7106,
+            "form_residual": 0.0
+          },
+          "witch": {
+            "theta_deg": 243.0634,
+            "path_error_m": 0.0,
+            "altitude_m": 10.2329,
+            "heading_error_deg": -0.855
+          },
+          "carrier": {
+            "theta_deg": 244.7994,
+            "path_error_m": 0.0,
+            "heading_error_deg": -0.7918
+          }
+        },
+        {
+          "t": 1793542605.956,
+          "rod": {
+            "phi_deg": 49.0067,
+            "tilt_deg": 11.8828,
+            "form_residual": 0.0
+          },
+          "witch": {
+            "theta_deg": 271.3308,
+            "path_error_m": 0.0,
+            "altitude_m": 10.4085,
+            "heading_error_deg": -0.4584
+          },
+          "carrier": {
+            "theta_deg": 273.0707,
+            "path_error_m": 0.0,
+            "heading_error_deg": -0.5425
+          }
+        },
+        {
+          "t": 1793542609.641,
+          "rod": {
+            "phi_deg": 280.0327,
+            "tilt_deg": -4.1171,
+            "form_residual": 0.0
+          },
+          "witch": {
+            "theta_deg": 302.1354,
+            "path_error_m": 0.0,
+            "altitude_m": 10.5,
+            "heading_error_deg": -0.8023
+          },
+          "carrier": {
+            "theta_deg": 303.8684,
+            "path_error_m": 0.0,
+            "heading_error_deg": -0.8136
+          }
+        },
+        {
+          "t": 1793542613.525,
+          "rod": {
+            "phi_deg": 142.1038,
+            "tilt_deg": -11.633,
+            "form_residual": 0.0
+          },
+          "witch": {
+            "theta_deg": 331.7394,
+            "path_error_m": 0.0,
+            "altitude_m": 10.3681,
+            "heading_error_deg": -0.8749
+          },
+          "carrier": {
+            "theta_deg": 333.6028,
+            "path_error_m": 0.0,
+            "heading_error_deg": -1.048
+          }
+        },
+        {
+          "t": 1793542617.376,
+          "rod": {
+            "phi_deg": 12.0467,
+            "tilt_deg": 4.8987,
+            "form_residual": 0.0
+          },
+          "witch": {
+            "theta_deg": 2.4064,
+            "path_error_m": 0.0,
+            "altitude_m": 10.2015,
+            "heading_error_deg": -1.0257
+          },
+          "carrier": {
+            "theta_deg": 4.1409,
+            "path_error_m": 0.0,
+            "heading_error_deg": -1.4536
+          }
+        },
+        {
+          "t": 1793542621.244,
+          "rod": {
+            "phi_deg": 246.1169,
+            "tilt_deg": 8.8849,
+            "form_residual": 0.0
+          },
+          "witch": {
+            "theta_deg": 33.9168,
+            "path_error_m": 0.0,
+            "altitude_m": 10.4191,
+            "heading_error_deg": -0.8176
+          },
+          "carrier": {
+            "theta_deg": 35.7469,
+            "path_error_m": 0.0,
+            "heading_error_deg": -0.8507
+          }
+        },
+        {
+          "t": 1793542625.219,
+          "rod": {
+            "phi_deg": 128.1649,
+            "tilt_deg": -11.6601,
+            "form_residual": 0.0
+          },
+          "witch": {
+            "theta_deg": 65.8847,
+            "path_error_m": 0.0,
+            "altitude_m": 10.5,
+            "heading_error_deg": -0.7272
+          },
+          "carrier": {
+            "theta_deg": 67.6113,
+            "path_error_m": 0.0,
+            "heading_error_deg": -0.8216
+          }
+        },
+        {
+          "t": 1793542629.101,
+          "rod": {
+            "phi_deg": 2.1258,
+            "tilt_deg": 0.8896,
+            "form_residual": 0.0
+          },
+          "witch": {
+            "theta_deg": 97.095,
+            "path_error_m": 0.0,
+            "altitude_m": 10.3551,
+            "heading_error_deg": -0.4548
+          },
+          "carrier": {
+            "theta_deg": 98.8155,
+            "path_error_m": 0.0,
+            "heading_error_deg": -0.5625
+          }
+        },
+        {
+          "t": 1793542632.807,
+          "rod": {
+            "phi_deg": 220.1367,
+            "tilt_deg": 11.8275,
+            "form_residual": 0.0
+          },
+          "witch": {
+            "theta_deg": 126.152,
+            "path_error_m": 0.0,
+            "altitude_m": 10.1698,
+            "heading_error_deg": -1.188
+          },
+          "carrier": {
+            "theta_deg": 127.7505,
+            "path_error_m": 0.0,
+            "heading_error_deg": -1.4549
+          }
+        },
+        {
+          "t": 1793542636.525,
+          "rod": {
+            "phi_deg": 82.1758,
+            "tilt_deg": 3.2368,
+            "form_residual": 0.0
+          },
+          "witch": {
+            "theta_deg": 155.7526,
+            "path_error_m": 0.0,
+            "altitude_m": 9.9157,
+            "heading_error_deg": -0.7812
+          },
+          "carrier": {
+            "theta_deg": 157.7574,
+            "path_error_m": 0.0,
+            "heading_error_deg": -0.8259
+          }
+        }
+      ],
+      "problems": [],
+      "structure_start": {
+        "rows": 20,
+        "problems": []
+      },
+      "relay_problems": [],
+      "materials": {
+        "liquid": [
+          "p3_g09_lm",
+          "mat_material_MAT_CCD_PotionMagentaGlow_f71b9f0a"
+        ],
+        "copied_from": "mat_material_MAT_CCD_PotionEmeraldGlow_a2f675eb",
+        "original_users": [
+          "renderer_CCD_PotionStall_NorthEast_001_8a26168d",
+          "renderer_CCD_MagicCauldron_001_BubbleAttach_b59dcfde",
+          "renderer_CCD_CauldronColorControl_001_Pedestal_e8f76f91"
+        ],
+        "dedicated_fields": {
+          "Metallic": 0.0,
+          "Smoothness": 0.8499999940395355
+        },
+        "problems": []
+      },
+      "frozen_probe": {
+        "params": {
+          "G09StirFrequency": 0.0,
+          "G09StirPhase": 0.125,
+          "G09Bubbles": 1.0,
+          "G09Smoke": 1.0,
+          "G11Frequency": 0.0,
+          "G11Phase": 0.25
+        },
+        "rows": {
+          "rod_q_error": 1e-07,
+          "witch": {
+            "position_error_m": 0.0,
+            "heading_error_deg": 0.0,
+            "waypoint_error_m": 0.0
+          },
+          "carrier": {
+            "position_error_m": 0.0,
+            "heading_error_deg": 0.0,
+            "waypoint_error_m": 0.0
+          }
+        },
+        "slots": {
+          "rod": [
+            -0.040001,
+            -0.380587,
+            0.096572,
+            0.918819
+          ],
+          "witch": [
+            33.0,
+            10.4,
+            9.5
+          ],
+          "carrier": [
+            0.0,
+            10.4,
+            9.5
+          ]
+        },
+        "problems": []
+      },
+      "structure_end": {
+        "rows": 20,
+        "problems": []
+      },
+      "speeds": {
+        "problems": [],
+        "rod": {
+          "deg_per_s": 60.0342,
+          "expected": 60.0,
+          "max_step_deg": 84.03,
+          "samples": 15
+        },
+        "patrol": {
+          "deg_per_s": 8.0027,
+          "expected": 8.0,
+          "max_step_deg": 31.97,
+          "samples": 11
+        }
+      },
+      "travel": {
+        "errors_deg": [
+          0.199,
+          0.576,
+          -1.937,
+          -0.435,
+          -1.278,
+          -0.601,
+          -1.058,
+          0.55,
+          -3.313,
+          1.139
+        ],
+        "problems": []
+      },
+      "clock_offset_deg": 1.6569913014814368,
+      "summary": {
+        "samples": 11,
+        "rod_samples": 15,
+        "rod_tilt_deg": [
+          -11.66,
+          11.883
+        ],
+        "witch_path_error_m": 0.0,
+        "carrier_path_error_m": 0.0,
+        "witch_altitude_m": [
+          9.9157,
+          10.5
+        ],
+        "witch_heading_error_deg": 1.2,
+        "witch_theta_deg": [
+          2.41,
+          331.74
+        ]
+      },
+      "ok": true
+    }
+  ],
+  "gap_s": 300.0,
+  "drift": {
+    "rows": [
+      {
+        "window": 2,
+        "slot": "witch",
+        "position_diff_m": 0.0
+      },
+      {
+        "window": 2,
+        "slot": "carrier",
+        "position_diff_m": 0.0
+      },
+      {
+        "window": 2,
+        "slot": "rod",
+        "rotation_diff": 0.0
+      },
+      {
+        "window": 2,
+        "clock_offset_diff_deg": 0.052
+      }
+    ],
+    "clock_offsets_deg": [
+      1.709,
+      1.657
+    ],
+    "problems": []
+  },
+  "envelopes": {
+    "G09": {
+      "max_radius_below_rim_m": 0.3924,
+      "lowest_m": 0.5777,
+      "points_outside_clear_radius": 0,
+      "rim_top_m": 1.28,
+      "liquid_radius_m": 0.7,
+      "bottom_m": 0.2,
+      "clear_radius_m": 1.4
+    },
+    "G11": {
+      "lowest_m": 9.2087,
+      "corridor_bottom_m": 9.0,
+      "points_outside_corridor_xy": 0,
+      "m04_box": {
+        "min": [
+          35.3166,
+          -4.0003,
+          -0.0001
+        ],
+        "max": [
+          40.6833,
+          3.9998,
+          7.6278
+        ]
+      },
+      "nearest_m04_box_m": 2.4652,
+      "m04_clearance_m": 1.0,
+      "samples": 360,
+      "m08_points": 1527
+    }
+  },
+  "envelope_problems": [],
+  "tolerances": {
+    "path_m": 0.01,
+    "heading_deg": 3.0,
+    "travel_deg": 8.0,
+    "rod_tilt_deg": 0.1,
+    "frozen_pos_m": 0.001,
+    "frozen_deg": 0.05,
+    "color": 0.001,
+    "speed": 0.05,
+    "drift_m": 0.01,
+    "clock_offset_deg": 6.0,
+    "local": 0.0001
+  },
+  "ok": true
+}

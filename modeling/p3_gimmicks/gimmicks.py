@@ -3,6 +3,7 @@
 値は地区の持ち主のデータから読み、ここには写さない（写すと食い違う）。
 - G13 メリーゴーラウンドの床の回転: layout/areas/D_amusement.json の gimmick_specs.G13_carousel_rotation（W05）
 - G01 小カボチャのダンス: assets/manifest/A_plaza.json の各アセットの motion（W02）
+- G09 大釜の攪拌と泡・煙、G11 魔女の巡回（W10-C）: layout/areas/C_candy.json の Hero_or_Gimmick と assets/manifest/C_candy.json（W04）
 
 座標: Blender の (x, y, z) は Resonite の (x, z, y)。Blender の Z まわり +θ は Resonite の Y まわり -θ
 （docs/p2-static-integration.md 14 章。軸を入れ替えると右手系と左手系が入れ替わるので、回る向きの符号が変わる）。
@@ -11,6 +12,7 @@
 from __future__ import annotations
 
 import json
+import math
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -83,6 +85,149 @@ G06_VARIABLES = {
 G06_HOLD = 0.25
 B_FLUX_SLOT = "G05_G06_Mansion"      # P3_Gimmicks の子。B のモジュールの配備先
 B_MODULE = "P3MansionMotion"
+
+
+# W10-C: G09 大釜の攪拌と泡・煙、G11 魔女の巡回（C 東・キャンディストリート）。部品・範囲は W04 の layout/areas/C_candy.json の
+# Hero_or_Gimmick（G09・G11）と assets/manifest/C_candy.json から読む。ProtoFlux のモジュールは C 用に 1 つ（worldState は C の
+# state。docs/p3-gimmicks.md 18 章）
+G09_VARIABLES = {
+    "G09StirFrequency": {"key": "g09_freq", "default": 1.0 / 6.0, "min": 0.0, "max": 1.0,
+                         "meaning": "攪拌棒の回る速さ（回/秒。既定は 6 秒で 1 周）。0 で時刻を止める"},
+    "G09StirPhase": {"key": "g09_phase", "default": 0.0, "min": 0.0, "max": 1.0,
+                     "meaning": "攪拌棒の回転の位置のずらし（1 周の割合、0〜1）"},
+    "G09Bubbles": {"key": "g09_bub", "default": 1.0, "min": 0.0, "max": 2.0,
+                   "meaning": "泡の量の倍率（1 で毎秒 G09_PARTICLES の bubbles.rate 個、0 で出ない）"},
+    "G09Smoke": {"key": "g09_smk", "default": 1.0, "min": 0.0, "max": 2.0,
+                 "meaning": "煙の量の倍率（1 で毎秒 G09_PARTICLES の smoke.rate 個、0 で出ない）"},
+}
+# 液面の色（colorX。I02（W11）が書く）。既定は P2 の液面のエメラルドの材質の AlbedoColor（C の宣言から読む。g09_liquid_base）
+G09_COLOR_VARIABLE = "G09LiquidColor"
+G09_COLOR_KEY = "g09_color"
+G09_LIQUID_MATERIAL_KEY = "p3_g09_lm"   # C の宣言に足す液面の専用の材質（PBS_Metallic）の Component のキー（10 文字未満）
+# 泡・煙（PhotonDust）。rate は量の倍率 1 のときの毎秒の数。max は MaxParticleCount（rate × 寿命の最大 × 倍率の上限 2 より多め）。
+# color_gain・start_alpha・end_alpha は液面の色にかける明るさと、生まれたとき・消えるときの透明度（ColorOverLifetimeStartEnd）
+G09_PARTICLES = {
+    "bubbles": {"attach": "bubble_emitter_attach", "prefix": "p3_gb_", "rate": 6.0, "max": 16, "radius": 0.4,
+                "lifetime": (0.6, 1.2), "speed": (0.15, 0.35), "size": (0.05, 0.1), "grow": (0.6, 1.4),
+                "color_gain": 1.6, "start_alpha": 0.9, "end_alpha": 0.6, "turbulence": 0.0},
+    "smoke": {"attach": "smoke_audio_attach", "prefix": "p3_gs_", "rate": 3.0, "max": 24, "radius": 0.25,
+              "lifetime": (2.5, 3.5), "speed": (0.25, 0.4), "size": (0.16, 0.24), "grow": (0.6, 2.2),
+              "color_gain": 1.1, "start_alpha": 0.45, "end_alpha": 0.0, "turbulence": 0.3},
+}
+G11_VARIABLES = {
+    "G11Frequency": {"key": "g11_freq", "default": 1.0 / 45.0, "min": 0.0, "max": 0.1,
+                     "meaning": "巡回の速さ（周/秒。既定は 45 秒で 1 周、平均 約 1.36 m/s）。0 で時刻を止める"},
+    "G11Phase": {"key": "g11_phase", "default": 0.0, "min": 0.0, "max": 1.0,
+                 "meaning": "巡回の位置のずらし（1 周の割合、0〜1。k/8 で巡回の点 k）"},
+}
+C_FLUX_SLOT = "G09_G11_Candy"        # P3_Gimmicks の子。C のモジュールの配備先
+C_MODULE = "P3CandyStreet"
+
+
+def _c_gimmick(gid: str) -> dict:
+    hits = [g for g in _load("layout/areas/C_candy.json")["Hero_or_Gimmick"] if g["gimmick_id"] == gid]
+    if len(hits) != 1:
+        raise ValueError(f"C_candy: expected one {gid}, found {len(hits)}")
+    return hits[0]
+
+
+def g09() -> dict:
+    """G09 の大釜。攪拌棒の Pivot（回転は Blender の +Z まわり、揺れは W04 の wobble_tilt_deg）、液面、泡・煙の取付位置。"""
+    g = _c_gimmick("G09")
+    rest = g["rest_pose"]
+    lo, hi = rest["wobble_tilt_deg"]
+    if g["motion_axis"] != "+Z" or any(abs(x) > 1e-9 for x in rest["stir_rod_rotation_deg"]) or abs(lo + hi) > 1e-9:
+        raise ValueError(f"G09: unsupported motion {g['motion_axis']} {rest}")
+    parts = g["sub_parts"]
+    return {"gimmick_id": "G09", "district": "C_candy", "asset_id": g["asset_id"], "stir_pivot": parts["stir_rod_pivot"],
+            "liquid": parts["liquid_surface"], "attach": {k: parts[v["attach"]] for k, v in G09_PARTICLES.items()},
+            "wobble_deg": hi, "clear_radius_m": g["clear_radius_m"], "managed_fields": ["position", "scale"]}
+
+
+def trig_coefficients(values: list[float]) -> tuple[list[float], list[float]]:
+    """閉じた N 点（N は偶数）を等間隔の角度 2πk/N で通る三角補間の係数 a_n・b_n（n = 0〜N/2）。
+    x(θ) = Σ a_n cos nθ + b_n sin nθ。θ = 2πk/N で値 k を通る。"""
+    n_pts = len(values)
+    if n_pts < 4 or n_pts % 2:
+        raise ValueError(f"trig interpolation needs an even number of points, got {n_pts}")
+    half = n_pts // 2
+    a = [2.0 / n_pts * sum(v * math.cos(2 * math.pi * n * k / n_pts) for k, v in enumerate(values)) for n in range(half + 1)]
+    b = [2.0 / n_pts * sum(v * math.sin(2 * math.pi * n * k / n_pts) for k, v in enumerate(values)) for n in range(half + 1)]
+    a[0] /= 2.0
+    a[half] /= 2.0
+    b[0] = b[half] = 0.0
+    return a, b
+
+
+def trig_eval(coef: tuple[list[float], list[float]], theta: float, derivative: bool = False) -> float:
+    a, b = coef
+    if derivative:
+        return sum(n * (-a[n] * math.sin(n * theta) + b[n] * math.cos(n * theta)) for n in range(len(a)))
+    return sum(a[n] * math.cos(n * theta) + b[n] * math.sin(n * theta) for n in range(len(a)))
+
+
+def g11() -> dict:
+    """G11 の巡回。8 点の経路（Blender の世界座標）を三角補間の係数にし、高さは W04 の範囲に収める。
+
+    乗せる物は仮モデル CCD_M08_FlyingWitchProxy_001（M08 の素材の宣言の親。M08 と点光源 2 つはその子）と、巡回路の
+    CarrierPivot（W04 の motion_root。取付位置 CarrierAttach の親）。どちらも同じ姿勢で動かす。
+    """
+    g = _c_gimmick("G11")
+    wps = [[float(c) for c in w] for w in g["patrol_loop_waypoints_m"]]
+    if not g.get("patrol_loop_closed") or len(wps) != 8:
+        raise ValueError(f"G11: expected a closed loop of 8 waypoints, got {len(wps)}")
+    loop = next(a for a in _load("assets/manifest/C_candy.json")["assets"] if a["asset_id"] == g["asset_id"])
+    roots = loop["hierarchy"]["motion_roots"]
+    if len(roots) != 1:
+        raise ValueError(f"G11: expected one carrier pivot, got {roots}")
+    carrier = next(p for p in loop["parts"] if p["part_id"] == roots[0])
+    origin = [float(c) for c in loop["origin_world"]]
+    rider = g["rider_asset_id"]
+    coef = [trig_coefficients([w[i] for w in wps]) for i in range(3)]
+    lo, hi = float(g["min_altitude_m"]), float(g["max_altitude_m"])
+    if any(not (lo - 1e-9 <= w[2] <= hi + 1e-9) for w in wps):
+        raise ValueError("G11: a waypoint is outside the altitude range")
+    # 仮モデルの基準姿勢は巡回の点 0 で、正面（+Y）が点 0 の接線の向き（θ = 0 の接線は +Y）
+    pivot_world = [origin[i] + float(carrier["pivot_local"][i]) for i in range(3)]
+    if max(abs(pivot_world[i] - wps[0][i]) for i in range(3)) > 1e-6:
+        raise ValueError(f"G11: carrier pivot {pivot_world} is not at waypoint 0 {wps[0]}")
+    return {"gimmick_id": "G11", "district": "C_candy", "loop_asset_id": g["asset_id"], "loop_origin": origin,
+            "carrier": carrier["part_id"], "rider": rider, "waypoints": wps, "altitude_m": [lo, hi], "coefficients": coef,
+            "managed_fields": ["scale"]}
+
+
+def g11_pose(theta: float, g: dict | None = None) -> tuple[list[float], float]:
+    """θ（ラジアン）の位置（Blender の世界座標、高さは範囲に収める）と、進む向き（Resonite の Y まわりの角度、ラジアン。
+    ローカル +Z（= Blender の +Y、魔女の正面）が (sin ψ, cos ψ) を向く）。"""
+    g = g or g11()
+    c = g["coefficients"]
+    lo, hi = g["altitude_m"]
+    x, y = trig_eval(c[0], theta), trig_eval(c[1], theta)
+    z = min(max(trig_eval(c[2], theta), lo), hi)
+    return [x, y, z], math.atan2(trig_eval(c[0], theta, True), trig_eval(c[1], theta, True))
+
+
+def g09_liquid_base(declaration: dict) -> dict:
+    """C の宣言の液面の 1 つ目の材質（P2 のエメラルド）の AlbedoColor と、EmissiveColor との比（sRGB の値の 3 成分の平均）。"""
+    g = g09()
+    found = []
+    stack = [declaration]
+    while stack:
+        n = stack.pop()
+        if n["slot"]["name"] == g["liquid"]:
+            found.append(n)
+        stack.extend(n.get("children", []))
+    if len(found) != 1:
+        raise ValueError(f"C declaration: expected one {g['liquid']}, found {len(found)}")
+    comps = found[0].get("components", [])
+    mine = [c for c in comps if c.get("key") == G09_LIQUID_MATERIAL_KEY]
+    if len(mine) == 1:
+        albedo = [float(x) for x in mine[0]["initialFields"]["AlbedoColor"]]
+        emissive = [float(x) for x in mine[0]["initialFields"]["EmissiveColor"]]
+    else:
+        raise ValueError(f"C declaration: expected one {G09_LIQUID_MATERIAL_KEY} (export C with the G09 material first)")
+    gain = sum(e / a for e, a in zip(emissive[:3], albedo[:3])) / 3.0
+    return {"albedo": albedo, "emissive": emissive, "glow_gain": gain}
 
 
 def _b_gimmick(gid: str) -> dict:
@@ -213,9 +358,13 @@ def driven_slots() -> dict[str, dict[str, list[str]]]:
     a = g01()
     d = g13()
     b5, b6 = g05(), g06()
+    c9, c11 = g09(), g11()
     return {
         a["district"]: {p["motion_root"]: a["managed_fields"] for p in a["pumpkins"]},
         d["district"]: {d["motion_root"]: d["managed_fields"]},
         b5["district"]: {**{g["motion_root"]: b5["managed_fields"] for g in b5["ghosts"]},
                          **{h["motion_root"]: b6["managed_fields"] for h in b6["hinges"]}},
+        # G09 は攪拌棒の Pivot の回転だけ、G11 は仮モデルの root と CarrierPivot の位置と回転
+        c9["district"]: {c9["stir_pivot"]: c9["managed_fields"], c11["rider"]: c11["managed_fields"],
+                         c11["carrier"]: c11["managed_fields"]},
     }
