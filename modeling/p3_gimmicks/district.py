@@ -20,6 +20,9 @@ modeling/p2_static/export_p2.py から、当たり判定（colliders.compose）�
 - G09・G11（W10-C）: C の攪拌棒の Pivot に回転の中継 1 つ（managedFields ["position", "scale"]）、魔女の仮モデルの root
   （M08 の素材の宣言の親）と巡回路の CarrierPivot に位置・回転の中継 2 つずつ（managedFields ["scale"]）。液面の専用の材質と
   泡・煙の粒子（add_g09_effects）。それぞれを ProtoFlux（flux/P3CandyStreet.pg）が drive する
+- G15（W10-D）: D の列車の先頭車の root（M06 の素材の宣言の親の親）と客車の root に位置・回転の中継 2 つずつ（managedFields
+  ["scale"]）、4 つの車輪に回転の中継 1 つずつ（managedFields ["position", "scale"]）。それぞれを ProtoFlux（flux/P3GhostTrain.pg）が
+  drive する。G13 の Spinner は変えない
 """
 
 from __future__ import annotations
@@ -56,6 +59,12 @@ def relay_members(key: str, name: str) -> tuple[str, list[str]] | None:
             return "g09", ["Rotation"]
         if name in {gimmicks.g11()["rider"], gimmicks.g11()["carrier"]}:
             return "g11", ["Position", "Rotation"]
+    if key == gimmicks.g15()["district"]:
+        g15 = gimmicks.g15()
+        if name in {g15["engine"], g15["car"]}:
+            return "g15", ["Position", "Rotation"]
+        if name in g15["wheels"]:
+            return "g15", ["Rotation"]   # 車輪は軸まわりの回転だけ（位置は静的な apply が管理し続ける）
     return None
 
 

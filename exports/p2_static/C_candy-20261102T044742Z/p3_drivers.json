@@ -1,0 +1,132 @@
+[
+  {
+    "slot": "C_candy/CCD_MagicCauldron_001/CCD_MagicCauldron_001_StirRodPivot",
+    "managedFields": [
+      "position",
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        0.0,
+        1.159999966621399,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "relays": [
+      "p3_g09_rotation_object_CCD_MagicCauldron_001_StirRodPivot_267810e8"
+    ]
+  },
+  {
+    "slot": "C_candy/CCD_M08_FlyingWitchProxy_001",
+    "managedFields": [
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        43.20000076293945,
+        10.199999809265137,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "relays": [
+      "p3_g11_position_object_CCD_M08_FlyingWitchProxy_001_51212c6a",
+      "p3_g11_rotation_object_CCD_M08_FlyingWitchProxy_001_51212c6a"
+    ]
+  },
+  {
+    "slot": "C_candy/CCD_WitchPatrolLoop_001/CCD_WitchPatrolLoop_001_CarrierPivot",
+    "managedFields": [
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        10.200000762939453,
+        10.199999809265137,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "relays": [
+      "p3_g11_position_object_CCD_WitchPatrolLoop_001_CarrierPivot_b48107f8",
+      "p3_g11_rotation_object_CCD_WitchPatrolLoop_001_CarrierPivot_b48107f8"
+    ]
+  },
+  {
+    "slot": "C_candy/CCD_MagicCauldron_001/CCD_MagicCauldron_001_Liquid",
+    "g09_material": "p3_g09_lm",
+    "copied_from": "mat_material_MAT_CCD_PotionEmeraldGlow_a2f675eb",
+    "renderer": "renderer_CCD_MagicCauldron_001_Liquid_2fe1b424",
+    "fields": {
+      "Metallic": 0.0,
+      "Smoothness": 0.8499999940395355
+    },
+    "initialFields": {
+      "AlbedoColor": [
+        0.4613561380496703,
+        0.9822070722231256,
+        0.7483790695192482,
+        1.0
+      ],
+      "EmissiveColor": [
+        0.9063317443909596,
+        1.9375148161402191,
+        1.4644058923843266,
+        1
+      ]
+    }
+  },
+  {
+    "slot": "C_candy/CCD_MagicCauldron_001/CCD_MagicCauldron_001_Liquid/CCD_MagicCauldron_001_BubbleAttach",
+    "g09_particles": "bubbles",
+    "components": [
+      "p3_gb_ps",
+      "p3_gb_sty",
+      "p3_gb_rnd",
+      "p3_gb_msh",
+      "p3_gb_mat",
+      "p3_gb_emi",
+      "p3_gb_lif",
+      "p3_gb_spd",
+      "p3_gb_siz",
+      "p3_gb_gro",
+      "p3_gb_col",
+      "p3_gb_sim"
+    ]
+  },
+  {
+    "slot": "C_candy/CCD_MagicCauldron_001/CCD_MagicCauldron_001_SmokeAttach",
+    "g09_particles": "smoke",
+    "components": [
+      "p3_gs_ps",
+      "p3_gs_sty",
+      "p3_gs_rnd",
+      "p3_gs_msh",
+      "p3_gs_mat",
+      "p3_gs_emi",
+      "p3_gs_lif",
+      "p3_gs_spd",
+      "p3_gs_siz",
+      "p3_gs_gro",
+      "p3_gs_col",
+      "p3_gs_trb",
+      "p3_gs_sim"
+    ]
+  }
+]

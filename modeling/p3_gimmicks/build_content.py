@@ -59,6 +59,19 @@ ProtoGraph の式（G11。a・b は gimmicks.g11 の三角補間の係数）:
     ψ = atan2(dx/dθ, dy/dθ)                      （Resonite の Y まわり。正面 +Z が進む向きを向く）
     仮モデル: 位置 (x, z, y)、回転 Y(ψ)。CarrierPivot: 位置 (x − 33, z, y)（巡回路の root の原点を引く）、回転 Y(ψ)
 
+W10-D（G15）で足した物:
+- content/p3_gimmicks.json に G15 の値 2 つ（HMC_P3/G15Speed・G15Phase）と、モジュールの配備先 G15_GhostTrain
+- flux/P3GhostTrain.pg: 先頭車・客車の root の位置と回転、4 つの車輪の回転を出すモジュール
+- flux/p3_ghost_train.flux.json: その出力を D の中継（ValueMultiDriver）の Value へ drive で結ぶマニフェスト（worldState は D の state）
+
+ProtoGraph の式（G15。R・S・L は W05 の曲線の半径・直線の長さ・周の長さ、s_k は先頭車・客車の基準の弧の位置、r_w は車輪の半径）:
+    V = clamp(G15Speed, 0, 3)、p = clamp01(G15Phase)
+    D = V t + p L                                （基準の位置から進んだ距離。t は WorldTimeDouble）
+    u_k = L × repeat01((s_k + D) / L)            （客車は先頭車より W05 の 2.75 m 後ろ）
+    位置・向き = gimmicks.stadium_pose(u_k)       （各区間の進み具合を clamp01 で切って足す。上から見て時計回り）
+    root: 位置 (cx + x, rail, cy + y)、回転 Y(β1 + β2)
+    車輪: 回転 X(D / r_w)                         （Resonite の +X まわりの正 = 上端が前（+Z）へ進む = 前へ転がる）
+
 ProtoGraph の式（G06。H は gimmicks.G06_HOLD、A は W03 の 85°）:
     I = clamp01(G06Intensity)、f = clamp(G06Frequency, 0, 0.2)、p = clamp01(G06Phase)
     θ = 2π (f t + p)、c = (1 − cos θ) / 2、x = clamp01((c − H) / (1 − 2H))
@@ -88,6 +101,8 @@ B_PG = PROJECT_ROOT / "flux" / f"{gimmicks.B_MODULE}.pg"
 B_MANIFEST = PROJECT_ROOT / "flux" / "p3_mansion_motion.flux.json"
 C_PG = PROJECT_ROOT / "flux" / f"{gimmicks.C_MODULE}.pg"
 C_MANIFEST = PROJECT_ROOT / "flux" / "p3_candy_street.flux.json"
+D_PG = PROJECT_ROOT / "flux" / f"{gimmicks.D_MODULE}.pg"
+D_MANIFEST = PROJECT_ROOT / "flux" / "p3_ghost_train.flux.json"
 
 
 def b2r(p) -> list[float]:
@@ -97,9 +112,9 @@ def b2r(p) -> list[float]:
 def content_doc(liquid_color: list[float]) -> dict:
     comps = [{"key": "p3_space", "type": "FrooxEngine.DynamicVariableSpace",
               "fields": {"SpaceName": gimmicks.SPACE_NAME, "OnlyDirectBinding": False}}]
-    for name, spec in {**gimmicks.G01_VARIABLES, **gimmicks.G03_VARIABLES, **gimmicks.G05_VARIABLES,
-                       **gimmicks.G06_VARIABLES, **gimmicks.G09_VARIABLES, **gimmicks.G11_VARIABLES}.items():
-        comps.append({
+
+    def variable(name: str, spec: dict) -> dict:
+        return {
             "key": spec["key"],
             "type": "[FrooxEngine]FrooxEngine.DynamicValueVariable<float>",
             "fields": {"VariableName": f"{gimmicks.SPACE_NAME}/{name}"},
@@ -107,7 +122,11 @@ def content_doc(liquid_color: list[float]) -> dict:
             "identityFields": ["VariableName"],
             # 値は Resonite の中で変えてよい（ショーなど）。apply し直しても戻さない
             "initialFields": {"Value": spec["default"]},
-        })
+        }
+
+    for name, spec in {**gimmicks.G01_VARIABLES, **gimmicks.G03_VARIABLES, **gimmicks.G05_VARIABLES,
+                       **gimmicks.G06_VARIABLES, **gimmicks.G09_VARIABLES, **gimmicks.G11_VARIABLES}.items():
+        comps.append(variable(name, spec))
     # W10-C: 液面の色（I02 が書く）。既定は P2 の液面の AlbedoColor（sRGB）
     comps.append({
         "key": gimmicks.G09_COLOR_KEY,
@@ -116,6 +135,9 @@ def content_doc(liquid_color: list[float]) -> dict:
         "identityFields": ["VariableName"],
         "initialFields": {"Value": [float(x) for x in liquid_color]},
     })
+    # W10-D: G15 の値（前の子の並びを変えないよう、末尾に足す）
+    for name, spec in gimmicks.G15_VARIABLES.items():
+        comps.append(variable(name, spec))
     return {
         "schemaVersion": "1",
         "ownership": {"key": gimmicks.P3_OWNERSHIP},
@@ -130,6 +152,8 @@ def content_doc(liquid_color: list[float]) -> dict:
             {"slot": {"key": "p3_g0506", "name": gimmicks.B_FLUX_SLOT,
                       "position": [0, 0, 0], "rotation": [0, 0, 0, 1], "scale": [1, 1, 1]}},
             {"slot": {"key": "p3_g0911", "name": gimmicks.C_FLUX_SLOT,
+                      "position": [0, 0, 0], "rotation": [0, 0, 0, 1], "scale": [1, 1, 1]}},
+            {"slot": {"key": "p3_g15", "name": gimmicks.D_FLUX_SLOT,
                       "position": [0, 0, 0], "rotation": [0, 0, 0, 1], "scale": [1, 1, 1]}},
         ],
         # 撮影のカメラ（resoloop capture の bookmark。ワールドには何も作らない）。座標は Resonite の世界座標
@@ -161,6 +185,9 @@ CAMERAS = {
     "g11_patrol_overview": {"position": [14.0, 22.0, -22.0], "target": [34.0, 9.0, 0.0], "fieldOfView": 55, "width": 1600, "height": 900},
     # G11: 巡回の点 2（(33, 10.4, 9.5)。G11Phase 0.25・G11Frequency 0 で止めて撮る）の魔女を南西から近くで
     "g11_witch_close": {"position": [29.0, 11.6, 4.5], "target": [33.0, 10.8, 9.5], "fieldOfView": 45, "width": 1600, "height": 900},
+    # G15: 南の上から線路の全体（中心は (12, *, -31.5)）、南東の柵の外から南の曲線
+    "g15_train_loop": {"position": [12.0, 13.0, -45.0], "target": [12.0, 0.6, -31.5], "fieldOfView": 55, "width": 1600, "height": 900},
+    "g15_train_curve": {"position": [19.5, 2.4, -39.5], "target": [13.5, 0.8, -35.0], "fieldOfView": 50, "width": 1600, "height": 900},
 }
 
 
@@ -627,6 +654,146 @@ def manifest_c(keys: dict[str, str]) -> dict:
     }
 
 
+def d_keys(state_dir: Path) -> dict[str, str]:
+    """D の state から、G15 の先頭車・客車の root と 4 つの車輪の Slot のキーを探す（パスで照合し、1 つに決まらなければ止める）。"""
+    state = json.loads((state_dir / "p2_D_amusement.json").read_text(encoding="utf-8"))
+    g = gimmicks.g15()
+    base = f"{gimmicks.P2_ROOT}/{g['district']}/{g['asset_id']}"
+    rows = {g["engine"]: f"{base}/{g['engine']}", g["car"]: f"{base}/{g['car']}"}
+    rows.update({w: f"{base}/{spec['parent']}/{w}" for w, spec in g["wheels"].items()})
+    keys: dict[str, str] = {}
+    for part, want in rows.items():
+        hits = [k for k, v in state["slots"].items() if v.get("path") == want]
+        if len(hits) != 1:
+            raise SystemExit(f"{want}: {len(hits)} Slots in the D state")
+        keys[part] = hits[0]
+    return keys
+
+
+def d_rest(declaration: dict | None = None) -> dict[str, list[float]]:
+    """D の最新の宣言の、G15 の先頭車・客車の root と車輪の基準の位置（Resonite の親のローカル）。回転が単位でない、root が
+    基準の弧の位置の経路の上に無い、車輪の軸の高さが半径でないときは止める（式は基準の回転を単位として組んでいる）。"""
+    doc = declaration or rest_pose.latest_declaration(gimmicks.g15()["district"])
+    g = gimmicks.g15()
+    asset = None
+    stack = [doc]
+    while stack:
+        n = stack.pop()
+        if n["slot"]["name"] == g["asset_id"]:
+            if asset is not None:
+                raise SystemExit(f"D declaration: {g['asset_id']} appears twice")
+            asset = n
+        stack.extend(n.get("children", []))
+    if asset is None:
+        raise SystemExit(f"D declaration: {g['asset_id']} not found (export D first)")
+    out: dict[str, list[float]] = {}
+    for root in (g["engine"], g["car"]):
+        node = next((c for c in asset.get("children", []) if c["slot"]["name"] == root), None)
+        if node is None:
+            raise SystemExit(f"D declaration: {root} is not a child of {g['asset_id']}")
+        nodes = {root: node, **{c["slot"]["name"]: c for c in node.get("children", []) if c["slot"]["name"] in g["wheels"]}}
+        for name, n in nodes.items():
+            rot = n["slot"].get("rotation") or [0.0, 0.0, 0.0, 1.0]
+            if max(abs(a - b) for a, b in zip(rot, (0.0, 0.0, 0.0, 1.0))) > 1e-6:
+                raise SystemExit(f"D declaration: {name} rest rotation {rot} is not identity")
+            out[name] = [float(x) for x in (n["slot"].get("position") or [0.0, 0.0, 0.0])]
+    missing = [w for w in g["wheels"] if w not in out]
+    if missing:
+        raise SystemExit(f"D declaration: wheels {missing} are not under the engine or the car")
+    for root in (g["engine"], g["car"]):
+        want, _ = gimmicks.g15_car_pose(g["rest_arc_m"][root], g)
+        if max(abs(a - b) for a, b in zip(out[root], want)) > 1e-4:
+            raise SystemExit(f"D declaration: {root} rest {out[root]} is not on the loop at {g['rest_arc_m'][root]} m ({want})")
+    for w, spec in g["wheels"].items():
+        if abs(out[w][1] - spec["radius_m"]) > 1e-4:
+            raise SystemExit(f"D declaration: wheel {w} axle height {out[w][1]} is not its radius {spec['radius_m']}")
+    return out
+
+
+def wheel_outputs() -> list[tuple[str, str]]:
+    """ProtoGraph の車輪の出力の名前と部品（gimmicks.g15 の wheels の順）。"""
+    return [(f"W{i}Rotation", w) for i, w in enumerate(gimmicks.g15()["wheels"], start=1)]
+
+
+def protograph_d(rest: dict[str, list[float]]) -> str:
+    g = gimmicks.g15()
+    v = gimmicks.G15_VARIABLES
+    name = gimmicks.SPACE_NAME
+    r, s, length = g["radius_m"], g["straight_m"], g["length_m"]
+    half = math.pi * r
+    cx, cy = g["center_local_blender"]
+    lines = [
+        "// Generated by modeling/p3_gimmicks/build_content.py (W10-D, G15). Do not edit by hand.",
+        "// Local presentation: every user evaluates the output Drives from the shared WorldTimeDouble and the",
+        "// HMC_P3 dynamic variables. No impulses and no synchronized writes.",
+        f"// Stadium loop: radius {r} m, straights {s} m, length {length:.6f} m, clockwise from above (W05 G15_ghost_train_loop)",
+        f"module {gimmicks.D_MODULE}",
+        "out EnginePosition: float3",
+        "out EngineRotation: floatQ",
+        "out CarPosition: float3",
+        "out CarRotation: floatQ",
+    ]
+    lines += [f"out {o}: floatQ" for o, _ in wheel_outputs()]
+    sp = v["G15Speed"]
+    lines += [
+        "where {",
+        "    T = WorldTimeDouble;",
+        f'    SpeedIn = DynamicVariableValueInput<float>(VariableName = "{name}/G15Speed");',
+        f'    PhaseIn = DynamicVariableValueInput<float>(VariableName = "{name}/G15Phase");',
+        "    // A missing variable reads as 0: the train stays at its rest position on the west straight.",
+        "    V0 = SpeedIn.Value;",
+        f"    V = if V0 < {_f(sp['min'])} then {_f(sp['min'])} else if V0 > {_f(sp['max'])} then {_f(sp['max'])} else V0;",
+        "    P = Clamp01_Float(PhaseIn.Value);",
+        "    // Distance travelled from the rest pose (m). The wheels turn by Dist / radius, so they never jump at the loop seam.",
+        f"    Dist = T * (V->as<double>) + (P->as<double>) * {_f(length)}d;",
+    ]
+    for tag, root in (("E", g["engine"]), ("C", g["car"])):
+        s0 = g["rest_arc_m"][root]
+        rail = rest[root][1]
+        out = "Engine" if tag == "E" else "Car"
+        lines += [
+            f"    // {root}: rest arc {s0} m",
+            f"    {tag}U = {_f(length)}d * Repeat01_Double((Dist + {_f(s0)}d) * {_f(1.0 / length)}d);",
+            f"    {tag}D1 = {_f(s)}d * Clamp01_Double({tag}U * {_f(1.0 / s)}d);",
+            f"    {tag}B1 = {_f(math.pi)}d * Clamp01_Double(({tag}U - {_f(s)}d) * {_f(1.0 / half)}d);",
+            f"    {tag}D2 = {_f(s)}d * Clamp01_Double(({tag}U - {_f(s + half)}d) * {_f(1.0 / s)}d);",
+            f"    {tag}B2 = {_f(math.pi)}d * Clamp01_Double(({tag}U - {_f(2.0 * s + half)}d) * {_f(1.0 / half)}d);",
+            f"    {tag}X = {_f(cx - r)}d - {_f(r)}d * Cos_Double({tag}B1) + {_f(r)}d * Cos_Double({tag}B2);",
+            f"    {tag}Y = {_f(cy - s / 2.0)}d + {tag}D1 + {_f(r)}d * Sin_Double({tag}B1) - {tag}D2 - {_f(r)}d * Sin_Double({tag}B2);",
+            f"    {tag}H = ({tag}B1 + {tag}B2) * 0.5d;",
+            f"    {out}Position = Pack_Float3({tag}X->as<float>, {_f(rail)}, {tag}Y->as<float>);",
+            f"    {out}Rotation = Pack_FloatQ(0.0, Sin_Double({tag}H)->as<float>, 0.0, Cos_Double({tag}H)->as<float>);",
+        ]
+    for out, w in wheel_outputs():
+        rad = g["wheels"][w]["radius_m"]
+        lines += [
+            f"    // {w}: radius {rad} m, rolls about +X",
+            f"    {out[:-8]}H = Dist * {_f(0.5 / rad)}d;",
+            f"    {out} = Pack_FloatQ(Sin_Double({out[:-8]}H)->as<float>, 0.0, 0.0, Cos_Double({out[:-8]}H)->as<float>);",
+        ]
+    lines.append("}")
+    return "\n".join(lines) + "\n"
+
+
+def manifest_d(keys: dict[str, str]) -> dict:
+    g = gimmicks.g15()
+    bindings = {}
+    for out, root in (("Engine", g["engine"]), ("Car", g["car"])):
+        k = keys[root]
+        bindings[f"{out}Position"] = {"target": f"$member:{district.relay_key(k, 'Position', 'g15')}.Value", "mode": "drive"}
+        bindings[f"{out}Rotation"] = {"target": f"$member:{district.relay_key(k, 'Rotation', 'g15')}.Value", "mode": "drive"}
+    for out, w in wheel_outputs():
+        bindings[out] = {"target": f"$member:{district.relay_key(keys[w], 'Rotation', 'g15')}.Value", "mode": "drive"}
+    return {
+        "schemaVersion": "1",
+        "projectDirectory": ".",
+        "parent": f"{gimmicks.P3_ROOT_PATH}/{gimmicks.D_FLUX_SLOT}",
+        "worldState": "../.resoloop/state/p2_D_amusement.json",
+        "deployState": "../.resoloop/flux-state/p3_ghost_train.json",
+        "modules": [{"name": "p3-ghost-train", "source": D_PG.name, "module": gimmicks.D_MODULE, "bindings": bindings}],
+    }
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--state-dir", type=Path, default=DEFAULT_STATE_DIR)
@@ -645,6 +812,9 @@ def main(argv: list[str] | None = None) -> int:
     B_MANIFEST.write_text(json.dumps(manifest_b(bkeys), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     C_PG.write_text(protograph_c(crest), encoding="utf-8")
     C_MANIFEST.write_text(json.dumps(manifest_c(ckeys), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    dkeys = d_keys(args.state_dir)
+    D_PG.write_text(protograph_d(d_rest()), encoding="utf-8")
+    D_MANIFEST.write_text(json.dumps(manifest_d(dkeys), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"content": CONTENT.relative_to(PROJECT_ROOT).as_posix(), "protograph": PG.relative_to(PROJECT_ROOT).as_posix(),
                       "manifest": MANIFEST.relative_to(PROJECT_ROOT).as_posix(), "bodies": keys,
                       "g03_protograph": G03_PG.relative_to(PROJECT_ROOT).as_posix(),
@@ -653,7 +823,9 @@ def main(argv: list[str] | None = None) -> int:
                       "b_manifest": B_MANIFEST.relative_to(PROJECT_ROOT).as_posix(), "b_slots": bkeys,
                       "c_protograph": C_PG.relative_to(PROJECT_ROOT).as_posix(),
                       "c_manifest": C_MANIFEST.relative_to(PROJECT_ROOT).as_posix(), "c_slots": ckeys,
-                      "g09_liquid_base": crest["liquid"]},
+                      "g09_liquid_base": crest["liquid"],
+                      "d_protograph": D_PG.relative_to(PROJECT_ROOT).as_posix(),
+                      "d_manifest": D_MANIFEST.relative_to(PROJECT_ROOT).as_posix(), "d_slots": dkeys},
                      ensure_ascii=False, indent=2))
     return 0
 

@@ -1,0 +1,723 @@
+{
+  "problems": [],
+  "before": {
+    "G15Speed": 2.2,
+    "G15Phase": 0.0
+  },
+  "frozen_engine_waypoint_0": {
+    "params": {
+      "G15Speed": 0.0,
+      "G15Phase": 0.9172969
+    },
+    "relay": {
+      "engine": {
+        "u_m": 0.0,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0,
+        "waypoint": 0,
+        "waypoint_error_m": 0.0,
+        "waypoint_yaw_error_deg": 0.0
+      },
+      "car": {
+        "u_m": 33.5243,
+        "position_error_m": 1e-06,
+        "heading_error_deg": 0.0
+      },
+      "DAM_GhostTrain_001_CarWheelFront_001": {
+        "q_error": 1.2e-06
+      },
+      "DAM_GhostTrain_001_CarWheelRear_001": {
+        "q_error": 1.2e-06
+      },
+      "DAM_GhostTrain_001_EngineWheelFront": {
+        "q_error": 9e-07
+      },
+      "DAM_GhostTrain_001_EngineWheelRear": {
+        "q_error": 9e-07
+      }
+    },
+    "slot": {
+      "engine": {
+        "u_m": 0.0,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0,
+        "waypoint": 0,
+        "waypoint_error_m": 0.0,
+        "waypoint_yaw_error_deg": 0.0
+      },
+      "car": {
+        "u_m": 33.5243,
+        "position_error_m": 1e-06,
+        "heading_error_deg": 0.0
+      },
+      "DAM_GhostTrain_001_CarWheelFront_001": {
+        "q_error": 1.2e-06
+      },
+      "DAM_GhostTrain_001_CarWheelRear_001": {
+        "q_error": 1.2e-06
+      },
+      "DAM_GhostTrain_001_EngineWheelFront": {
+        "q_error": 9e-07
+      },
+      "DAM_GhostTrain_001_EngineWheelRear": {
+        "q_error": 9e-07
+      }
+    },
+    "problems": []
+  },
+  "frozen_engine_waypoint_3": {
+    "params": {
+      "G15Speed": 0.0,
+      "G15Phase": 0.07628403
+    },
+    "relay": {
+      "engine": {
+        "u_m": 5.7672,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0,
+        "waypoint": 3,
+        "waypoint_error_m": 4.8e-05,
+        "waypoint_yaw_error_deg": 0.0001
+      },
+      "car": {
+        "u_m": 3.0172,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0
+      },
+      "DAM_GhostTrain_001_CarWheelFront_001": {
+        "q_error": 1e-07
+      },
+      "DAM_GhostTrain_001_CarWheelRear_001": {
+        "q_error": 1e-07
+      },
+      "DAM_GhostTrain_001_EngineWheelFront": {
+        "q_error": 1e-07
+      },
+      "DAM_GhostTrain_001_EngineWheelRear": {
+        "q_error": 1e-07
+      }
+    },
+    "slot": {
+      "engine": {
+        "u_m": 5.7672,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0,
+        "waypoint": 3,
+        "waypoint_error_m": 4.8e-05,
+        "waypoint_yaw_error_deg": 0.0001
+      },
+      "car": {
+        "u_m": 3.0172,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0
+      },
+      "DAM_GhostTrain_001_CarWheelFront_001": {
+        "q_error": 2e-07
+      },
+      "DAM_GhostTrain_001_CarWheelRear_001": {
+        "q_error": 2e-07
+      },
+      "DAM_GhostTrain_001_EngineWheelFront": {
+        "q_error": 1e-07
+      },
+      "DAM_GhostTrain_001_EngineWheelRear": {
+        "q_error": 1e-07
+      }
+    },
+    "problems": []
+  },
+  "frozen_engine_waypoint_6": {
+    "params": {
+      "G15Speed": 0.0,
+      "G15Phase": 0.2224323
+    },
+    "relay": {
+      "engine": {
+        "u_m": 11.0686,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0,
+        "waypoint": 6,
+        "waypoint_error_m": 0.0,
+        "waypoint_yaw_error_deg": 0.0
+      },
+      "car": {
+        "u_m": 8.3186,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0
+      },
+      "DAM_GhostTrain_001_CarWheelFront_001": {
+        "q_error": 0.0
+      },
+      "DAM_GhostTrain_001_CarWheelRear_001": {
+        "q_error": 0.0
+      },
+      "DAM_GhostTrain_001_EngineWheelFront": {
+        "q_error": 0.0
+      },
+      "DAM_GhostTrain_001_EngineWheelRear": {
+        "q_error": 0.0
+      }
+    },
+    "slot": {
+      "engine": {
+        "u_m": 11.0686,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0,
+        "waypoint": 6,
+        "waypoint_error_m": 0.0,
+        "waypoint_yaw_error_deg": 0.0
+      },
+      "car": {
+        "u_m": 8.3186,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0
+      },
+      "DAM_GhostTrain_001_CarWheelFront_001": {
+        "q_error": 1e-07
+      },
+      "DAM_GhostTrain_001_CarWheelRear_001": {
+        "q_error": 1e-07
+      },
+      "DAM_GhostTrain_001_EngineWheelFront": {
+        "q_error": 1e-07
+      },
+      "DAM_GhostTrain_001_EngineWheelRear": {
+        "q_error": 1e-07
+      }
+    },
+    "problems": []
+  },
+  "frozen_engine_waypoint_10": {
+    "params": {
+      "G15Speed": 0.0,
+      "G15Phase": 0.4172969
+    },
+    "relay": {
+      "engine": {
+        "u_m": 18.1372,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0,
+        "waypoint": 10,
+        "waypoint_error_m": 0.0,
+        "waypoint_yaw_error_deg": 0.0
+      },
+      "car": {
+        "u_m": 15.3872,
+        "position_error_m": 1e-06,
+        "heading_error_deg": 0.0
+      },
+      "DAM_GhostTrain_001_CarWheelFront_001": {
+        "q_error": 1.2e-06
+      },
+      "DAM_GhostTrain_001_CarWheelRear_001": {
+        "q_error": 1.2e-06
+      },
+      "DAM_GhostTrain_001_EngineWheelFront": {
+        "q_error": 1.2e-06
+      },
+      "DAM_GhostTrain_001_EngineWheelRear": {
+        "q_error": 1.2e-06
+      }
+    },
+    "slot": {
+      "engine": {
+        "u_m": 18.1372,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0,
+        "waypoint": 10,
+        "waypoint_error_m": 0.0,
+        "waypoint_yaw_error_deg": 0.0
+      },
+      "car": {
+        "u_m": 15.3872,
+        "position_error_m": 1e-06,
+        "heading_error_deg": 0.0
+      },
+      "DAM_GhostTrain_001_CarWheelFront_001": {
+        "q_error": 1.2e-06
+      },
+      "DAM_GhostTrain_001_CarWheelRear_001": {
+        "q_error": 1.2e-06
+      },
+      "DAM_GhostTrain_001_EngineWheelFront": {
+        "q_error": 1.2e-06
+      },
+      "DAM_GhostTrain_001_EngineWheelRear": {
+        "q_error": 1.2e-06
+      }
+    },
+    "problems": []
+  },
+  "frozen_engine_waypoint_13": {
+    "params": {
+      "G15Speed": 0.0,
+      "G15Phase": 0.57628405
+    },
+    "relay": {
+      "engine": {
+        "u_m": 23.9043,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0,
+        "waypoint": 13,
+        "waypoint_error_m": 4.8e-05,
+        "waypoint_yaw_error_deg": 0.0001
+      },
+      "car": {
+        "u_m": 21.1543,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0
+      },
+      "DAM_GhostTrain_001_CarWheelFront_001": {
+        "q_error": 1e-07
+      },
+      "DAM_GhostTrain_001_CarWheelRear_001": {
+        "q_error": 1e-07
+      },
+      "DAM_GhostTrain_001_EngineWheelFront": {
+        "q_error": 1e-07
+      },
+      "DAM_GhostTrain_001_EngineWheelRear": {
+        "q_error": 1e-07
+      }
+    },
+    "slot": {
+      "engine": {
+        "u_m": 23.9043,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0,
+        "waypoint": 13,
+        "waypoint_error_m": 4.8e-05,
+        "waypoint_yaw_error_deg": 0.0001
+      },
+      "car": {
+        "u_m": 21.1543,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0
+      },
+      "DAM_GhostTrain_001_CarWheelFront_001": {
+        "q_error": 1e-07
+      },
+      "DAM_GhostTrain_001_CarWheelRear_001": {
+        "q_error": 1e-07
+      },
+      "DAM_GhostTrain_001_EngineWheelFront": {
+        "q_error": 1e-07
+      },
+      "DAM_GhostTrain_001_EngineWheelRear": {
+        "q_error": 1e-07
+      }
+    },
+    "problems": []
+  },
+  "frozen_engine_waypoint_16": {
+    "params": {
+      "G15Speed": 0.0,
+      "G15Phase": 0.7224323
+    },
+    "relay": {
+      "engine": {
+        "u_m": 29.2058,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0,
+        "waypoint": 16,
+        "waypoint_error_m": 0.0,
+        "waypoint_yaw_error_deg": 0.0
+      },
+      "car": {
+        "u_m": 26.4558,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0
+      },
+      "DAM_GhostTrain_001_CarWheelFront_001": {
+        "q_error": 1.2e-06
+      },
+      "DAM_GhostTrain_001_CarWheelRear_001": {
+        "q_error": 1.2e-06
+      },
+      "DAM_GhostTrain_001_EngineWheelFront": {
+        "q_error": 1.2e-06
+      },
+      "DAM_GhostTrain_001_EngineWheelRear": {
+        "q_error": 1.2e-06
+      }
+    },
+    "slot": {
+      "engine": {
+        "u_m": 29.2058,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0,
+        "waypoint": 16,
+        "waypoint_error_m": 0.0,
+        "waypoint_yaw_error_deg": 0.0
+      },
+      "car": {
+        "u_m": 26.4558,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0
+      },
+      "DAM_GhostTrain_001_CarWheelFront_001": {
+        "q_error": 1.2e-06
+      },
+      "DAM_GhostTrain_001_CarWheelRear_001": {
+        "q_error": 1.2e-06
+      },
+      "DAM_GhostTrain_001_EngineWheelFront": {
+        "q_error": 1.2e-06
+      },
+      "DAM_GhostTrain_001_EngineWheelRear": {
+        "q_error": 1.2e-06
+      }
+    },
+    "problems": []
+  },
+  "frozen_engine_waypoint_19": {
+    "params": {
+      "G15Speed": 0.0,
+      "G15Phase": 0.8685806
+    },
+    "relay": {
+      "engine": {
+        "u_m": 34.5072,
+        "position_error_m": 1e-06,
+        "heading_error_deg": 0.0,
+        "waypoint": 19,
+        "waypoint_error_m": 4.8e-05,
+        "waypoint_yaw_error_deg": 0.0001
+      },
+      "car": {
+        "u_m": 31.7572,
+        "position_error_m": 1e-06,
+        "heading_error_deg": 0.0
+      },
+      "DAM_GhostTrain_001_CarWheelFront_001": {
+        "q_error": 1.8e-06
+      },
+      "DAM_GhostTrain_001_CarWheelRear_001": {
+        "q_error": 1.8e-06
+      },
+      "DAM_GhostTrain_001_EngineWheelFront": {
+        "q_error": 1.6e-06
+      },
+      "DAM_GhostTrain_001_EngineWheelRear": {
+        "q_error": 1.6e-06
+      }
+    },
+    "slot": {
+      "engine": {
+        "u_m": 34.5072,
+        "position_error_m": 1e-06,
+        "heading_error_deg": 0.0,
+        "waypoint": 19,
+        "waypoint_error_m": 4.8e-05,
+        "waypoint_yaw_error_deg": 0.0001
+      },
+      "car": {
+        "u_m": 31.7572,
+        "position_error_m": 1e-06,
+        "heading_error_deg": 0.0
+      },
+      "DAM_GhostTrain_001_CarWheelFront_001": {
+        "q_error": 1.8e-06
+      },
+      "DAM_GhostTrain_001_CarWheelRear_001": {
+        "q_error": 1.8e-06
+      },
+      "DAM_GhostTrain_001_EngineWheelFront": {
+        "q_error": 1.6e-06
+      },
+      "DAM_GhostTrain_001_EngineWheelRear": {
+        "q_error": 1.6e-06
+      }
+    },
+    "problems": []
+  },
+  "frozen_car_waypoint_6": {
+    "params": {
+      "G15Speed": 0.0,
+      "G15Phase": 0.29824346
+    },
+    "relay": {
+      "engine": {
+        "u_m": 13.8186,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0
+      },
+      "car": {
+        "u_m": 11.0686,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0,
+        "waypoint": 6,
+        "waypoint_error_m": 0.0,
+        "waypoint_yaw_error_deg": 0.0
+      },
+      "DAM_GhostTrain_001_CarWheelFront_001": {
+        "q_error": 3e-07
+      },
+      "DAM_GhostTrain_001_CarWheelRear_001": {
+        "q_error": 3e-07
+      },
+      "DAM_GhostTrain_001_EngineWheelFront": {
+        "q_error": 2e-07
+      },
+      "DAM_GhostTrain_001_EngineWheelRear": {
+        "q_error": 2e-07
+      }
+    },
+    "slot": {
+      "engine": {
+        "u_m": 13.8186,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0
+      },
+      "car": {
+        "u_m": 11.0686,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0,
+        "waypoint": 6,
+        "waypoint_error_m": 0.0,
+        "waypoint_yaw_error_deg": 0.0
+      },
+      "DAM_GhostTrain_001_CarWheelFront_001": {
+        "q_error": 3e-07
+      },
+      "DAM_GhostTrain_001_CarWheelRear_001": {
+        "q_error": 3e-07
+      },
+      "DAM_GhostTrain_001_EngineWheelFront": {
+        "q_error": 2e-07
+      },
+      "DAM_GhostTrain_001_EngineWheelRear": {
+        "q_error": 2e-07
+      }
+    },
+    "problems": []
+  },
+  "frozen_car_waypoint_16": {
+    "params": {
+      "G15Speed": 0.0,
+      "G15Phase": 0.79824346
+    },
+    "relay": {
+      "engine": {
+        "u_m": 31.9557,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0
+      },
+      "car": {
+        "u_m": 29.2057,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0,
+        "waypoint": 16,
+        "waypoint_error_m": 0.0,
+        "waypoint_yaw_error_deg": 0.0
+      },
+      "DAM_GhostTrain_001_CarWheelFront_001": {
+        "q_error": 3e-07
+      },
+      "DAM_GhostTrain_001_CarWheelRear_001": {
+        "q_error": 3e-07
+      },
+      "DAM_GhostTrain_001_EngineWheelFront": {
+        "q_error": 3e-07
+      },
+      "DAM_GhostTrain_001_EngineWheelRear": {
+        "q_error": 3e-07
+      }
+    },
+    "slot": {
+      "engine": {
+        "u_m": 31.9557,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0
+      },
+      "car": {
+        "u_m": 29.2057,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0,
+        "waypoint": 16,
+        "waypoint_error_m": 0.0,
+        "waypoint_yaw_error_deg": 0.0
+      },
+      "DAM_GhostTrain_001_CarWheelFront_001": {
+        "q_error": 3e-07
+      },
+      "DAM_GhostTrain_001_CarWheelRear_001": {
+        "q_error": 3e-07
+      },
+      "DAM_GhostTrain_001_EngineWheelFront": {
+        "q_error": 3e-07
+      },
+      "DAM_GhostTrain_001_EngineWheelRear": {
+        "q_error": 3e-07
+      }
+    },
+    "problems": []
+  },
+  "frozen_phase_1.5": {
+    "params": {
+      "G15Speed": 0.0,
+      "G15Phase": 1.5
+    },
+    "relay": {
+      "engine": {
+        "u_m": 3.0,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0
+      },
+      "car": {
+        "u_m": 0.25,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0
+      },
+      "DAM_GhostTrain_001_CarWheelFront_001": {
+        "q_error": 0.0
+      },
+      "DAM_GhostTrain_001_CarWheelRear_001": {
+        "q_error": 0.0
+      },
+      "DAM_GhostTrain_001_EngineWheelFront": {
+        "q_error": 0.0
+      },
+      "DAM_GhostTrain_001_EngineWheelRear": {
+        "q_error": 0.0
+      }
+    },
+    "slot": {
+      "engine": {
+        "u_m": 3.0,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0
+      },
+      "car": {
+        "u_m": 0.25,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0
+      },
+      "DAM_GhostTrain_001_CarWheelFront_001": {
+        "q_error": 0.0
+      },
+      "DAM_GhostTrain_001_CarWheelRear_001": {
+        "q_error": 0.0
+      },
+      "DAM_GhostTrain_001_EngineWheelFront": {
+        "q_error": 0.0
+      },
+      "DAM_GhostTrain_001_EngineWheelRear": {
+        "q_error": 0.0
+      }
+    },
+    "problems": []
+  },
+  "frozen_phase_-1": {
+    "params": {
+      "G15Speed": 0.0,
+      "G15Phase": -1.0
+    },
+    "relay": {
+      "engine": {
+        "u_m": 3.0,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0
+      },
+      "car": {
+        "u_m": 0.25,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0
+      },
+      "DAM_GhostTrain_001_CarWheelFront_001": {
+        "q_error": 0.0
+      },
+      "DAM_GhostTrain_001_CarWheelRear_001": {
+        "q_error": 0.0
+      },
+      "DAM_GhostTrain_001_EngineWheelFront": {
+        "q_error": 0.0
+      },
+      "DAM_GhostTrain_001_EngineWheelRear": {
+        "q_error": 0.0
+      }
+    },
+    "slot": {
+      "engine": {
+        "u_m": 3.0,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0
+      },
+      "car": {
+        "u_m": 0.25,
+        "position_error_m": 0.0,
+        "heading_error_deg": 0.0
+      },
+      "DAM_GhostTrain_001_CarWheelFront_001": {
+        "q_error": 0.0
+      },
+      "DAM_GhostTrain_001_CarWheelRear_001": {
+        "q_error": 0.0
+      },
+      "DAM_GhostTrain_001_EngineWheelFront": {
+        "q_error": 0.0
+      },
+      "DAM_GhostTrain_001_EngineWheelRear": {
+        "q_error": 0.0
+      }
+    },
+    "problems": []
+  },
+  "speed_-1": {
+    "max_move_m": 0.0,
+    "samples": 3
+  },
+  "speed_1.1": {
+    "problems": [],
+    "m_per_s": 1.0997,
+    "expected": 1.1,
+    "max_step_m": 2.035,
+    "max_residual_m": 0.153,
+    "max_residual_over_bound": 0.116,
+    "max_read_half_s": 0.925,
+    "samples": 8
+  },
+  "speed_10.0": {
+    "problems": [],
+    "m_per_s": 3.03,
+    "expected": 3.0,
+    "max_step_m": 5.09,
+    "max_residual_m": 0.163,
+    "max_residual_over_bound": 0.059,
+    "max_read_half_s": 0.857,
+    "samples": 8
+  },
+  "clock": {
+    "problems": [],
+    "engine": {
+      "m_per_s": 0.05,
+      "advance_m": 1.9702
+    },
+    "car": {
+      "m_per_s": 0.05,
+      "advance_m": 1.9701
+    },
+    "DAM_GhostTrain_001_CarWheelFront_001": {
+      "rad_per_s": 0.24988,
+      "expected_from_measured_speed": 0.24998
+    },
+    "DAM_GhostTrain_001_CarWheelRear_001": {
+      "rad_per_s": 0.24985,
+      "expected_from_measured_speed": 0.24998
+    },
+    "DAM_GhostTrain_001_EngineWheelFront": {
+      "rad_per_s": 0.238,
+      "expected_from_measured_speed": 0.2381
+    },
+    "DAM_GhostTrain_001_EngineWheelRear": {
+      "rad_per_s": 0.23801,
+      "expected_from_measured_speed": 0.2381
+    },
+    "samples": 18
+  },
+  "restored": {
+    "G15Speed": 2.2,
+    "G15Phase": 0.0
+  },
+  "ok": true
+}

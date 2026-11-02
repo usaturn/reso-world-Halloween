@@ -1,0 +1,30 @@
+[
+  {
+    "slot": "D_amusement/DAM_Carousel_001/DAM_Carousel_001_TurnRoot",
+    "managedFields": [
+      "position",
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        0.0,
+        0.36000001430511475,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "spinner": {
+      "component": "p3_spinner_object_DAM_Carousel_001_TurnRoot_53401a13",
+      "_speed": [
+        0.0,
+        -18.0,
+        0.0
+      ]
+    }
+  }
+]

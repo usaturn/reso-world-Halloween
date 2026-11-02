@@ -165,9 +165,11 @@ def build_d_amusement_common_placements() -> list[dict[str, Any]]:
             "scale": [1.0, 1.0, 1.0],
         },
         {
+            # W10-D (#61): moved south from y=-38.4 (the poles stood inside the G15 train's swept path on the south
+            # curve); the poles now clear the train by >= 0.50 m and the pumpkin cups turntable by ~0.48 m
             "instance_name": "DAM_GarlandFlag_003",
             "common_asset_id": "CMN_GarlandFlag_001",
-            "position": [11.5, -38.4, 0.0],
+            "position": [11.5, -39.25, 0.0],
             "rotation_euler_deg": [0.0, 0.0, 0.0],
             "scale": [1.0, 1.0, 1.0],
         },
