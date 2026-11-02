@@ -71,6 +71,7 @@ ProtoGraph の式（G15。R・S・L は W05 の曲線の半径・直線の長さ
     位置・向き = gimmicks.stadium_pose(u_k)       （各区間の進み具合を clamp01 で切って足す。上から見て時計回り）
     root: 位置 (cx + x, rail, cy + y)、回転 Y(β1 + β2)
     車輪: 回転 X(D / r_w)                         （Resonite の +X まわりの正 = 上端が前（+Z）へ進む = 前へ転がる）
+    検査用の時計: Clock1 = Clock2 = t              （列車と線路の asset root の ValueField<double>。verify_d.py が位置と同じ observe で読む）
 
 ProtoGraph の式（G06。H は gimmicks.G06_HOLD、A は W03 の 85°）:
     I = clamp01(G06Intensity)、f = clamp(G06Frequency, 0, 0.2)、p = clamp01(G06Phase)
@@ -734,6 +735,7 @@ def protograph_d(rest: dict[str, list[float]]) -> str:
         "out CarRotation: floatQ",
     ]
     lines += [f"out {o}: floatQ" for o, _ in wheel_outputs()]
+    lines += [f"out Clock{i}: double" for i, _ in enumerate(gimmicks.G15_CLOCK_KEYS, start=1)]
     sp = v["G15Speed"]
     lines += [
         "where {",
@@ -771,6 +773,8 @@ def protograph_d(rest: dict[str, list[float]]) -> str:
             f"    {out[:-8]}H = Dist * {_f(0.5 / rad)}d;",
             f"    {out} = Pack_FloatQ(Sin_Double({out[:-8]}H)->as<float>, 0.0, 0.0, Cos_Double({out[:-8]}H)->as<float>);",
         ]
+    lines.append("    // Clocks for the live check (verify_d.py reads Clock1, the train, then Clock2 in one observe)")
+    lines += [f"    Clock{i} = T;" for i, _ in enumerate(gimmicks.G15_CLOCK_KEYS, start=1)]
     lines.append("}")
     return "\n".join(lines) + "\n"
 
@@ -784,6 +788,8 @@ def manifest_d(keys: dict[str, str]) -> dict:
         bindings[f"{out}Rotation"] = {"target": f"$member:{district.relay_key(k, 'Rotation', 'g15')}.Value", "mode": "drive"}
     for out, w in wheel_outputs():
         bindings[out] = {"target": f"$member:{district.relay_key(keys[w], 'Rotation', 'g15')}.Value", "mode": "drive"}
+    for i, k in enumerate(gimmicks.G15_CLOCK_KEYS, start=1):
+        bindings[f"Clock{i}"] = {"target": f"$member:{k}.Value", "mode": "drive"}
     return {
         "schemaVersion": "1",
         "projectDirectory": ".",

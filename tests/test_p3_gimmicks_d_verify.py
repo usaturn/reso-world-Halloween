@@ -4,8 +4,11 @@ Why these tests exist (create-reso-world AGENTS.md, test criterion S): ``verify_
 car and the wheels in the world follow the stadium loop of the W05 data, clockwise, at the HMC_P3 speed, with the car
 2.75 m behind, the wheels rolling forward, and the swept train staying out of the W01 routes and the boxes of the other
 objects. If one of its guards broke, it would report a car at the wrong distance, a wheel that rolls backwards, a loop
-formula that misses the W05 waypoints, a train running anticlockwise or facing backwards, a stuck car, a wrong speed or a
-train that crosses the main route as passing, with no error.
+formula that misses the W05 waypoints, a train running anticlockwise or facing backwards, a car gap that shrinks only in
+motion, a speed that only matches on average, a wrong speed or a train that crosses the main route as passing, with no
+error. The live positions are judged against the world clock read in the same observe (two clock fields driven with
+WorldTimeDouble around the train's relays), because the wall-clock estimate of the read time was too loose (GPT review of
+PR #66, M-1 and M-2).
 Each test keeps one guard and also passes the correct state, so an implementation that rejects everything fails.
 """
 
@@ -64,15 +67,13 @@ def test_frozen_sample_finds_a_wrong_car_gap_a_reversed_wheel_and_a_loop_formula
     assert any("from waypoint 6" in p for p in off["problems"])
 
 
-def _samples(speed: float, n: int = 12, dt: float = 2.5, sign: float = 1.0, lag_s: float = 0.25,
-             heading_off_deg: float = 0.0, car_stuck: bool = False) -> list[dict]:
+def _samples(speed: float, n: int = 12, dt: float = 2.5, sign: float = 1.0, heading_off_deg: float = 0.0) -> list[dict]:
+    """動いている間の全部の駆動の値の観察（check_sample）。"""
     out = []
     for i in range(n):
         t = 1000.0 + i * dt
         ue = G["rest_arc_m"][G["engine"]] + sign * speed * t
-        uc = ue - G["arc_offset_m"] + sign * speed * lag_s
-        if car_stuck:
-            uc = G["rest_arc_m"][G["car"]] + sign * speed * 1000.0
+        uc = ue - G["arc_offset_m"]
         vals = {}
         vals["engine_pos"], vals["engine_rot"] = _pose(ue, heading_off_deg=heading_off_deg)
         vals["car_pos"], vals["car_rot"] = _pose(uc, heading_off_deg=heading_off_deg)
@@ -80,33 +81,55 @@ def _samples(speed: float, n: int = 12, dt: float = 2.5, sign: float = 1.0, lag_
             vals[w] = _q(v.wheel_q(speed * t, spec["radius_m"]))
         s = v.check_sample(vals)
         s["t"] = t
-        s["half"] = 0.5
         out.append(s)
     return out
 
 
-def test_motion_checks_find_an_anticlockwise_or_backward_facing_train_a_stuck_car_and_a_wrong_speed():
+def _clocked(speed: float, n: int = 16, step: float = 0.115, engine_err=None, car_err=None,
+             formula_speed: float | None = None) -> list[dict]:
+    """「時計 1 → 先頭車 → 客車 → 時計 2」を、1 つ step 秒ずつ順に読んだ観察（2026-11-02 の実測の読み方）。engine_err・car_err は
+    ワールドの時刻 t の位置の誤差（m）の関数。formula_speed はモジュールの速さ（既定は speed）。"""
+    out = []
+    fs = speed if formula_speed is None else formula_speed
+    for i in range(n):
+        t1 = 8000.0 + 1.5 * i
+        te, tc, t2 = t1 + step, t1 + 2 * step, t1 + 3 * step
+        ue = G["rest_arc_m"][G["engine"]] + fs * te + (engine_err(te) if engine_err else 0.0)
+        uc = G["rest_arc_m"][G["car"]] + fs * tc + (car_err(tc) if car_err else 0.0)
+        vals = {"ck1": t1, "ck2": t2, "engine_pos": _pose(ue)[0], "car_pos": _pose(uc)[0]}
+        out.append(v.clocked_sample(vals))
+    return out
+
+
+def test_motion_checks_find_an_anticlockwise_or_backward_facing_train():
     good = _samples(2.2)
     assert v.check_clockwise(good)["problems"] == []
     assert v.check_travel(good)["problems"] == []
-    assert v.check_gap(good, G, 2.2)["problems"] == []
-    assert v.check_speed([(s["t"], s["engine"]["u_m"]) for s in good], 2.2, L, "engine")["problems"] == []
     # 反時計回り（弧の位置が減る）
     assert v.check_clockwise(_samples(2.2, sign=-1.0))["problems"]
     # 後ろを向いて進む（正面が 180° 逆）。動いている間の向きの検査とは別に、進んだ向きで見つける
     assert v.check_travel(_samples(2.2, heading_off_deg=180.0))["problems"]
-    # 客車が止まっている・先へ出ている（同じ観察の中の弧の差が、読み取りの遅れ（0〜実行時間 1 秒）の範囲の外）
-    assert v.check_gap(_samples(2.2, car_stuck=True), G, 2.2)["problems"]
-    assert v.check_gap(_samples(2.2, lag_s=-0.2), G, 2.2)["problems"]
+
+
+def test_clocked_check_finds_a_car_gap_that_shrinks_in_motion_a_periodic_speed_and_a_wrong_speed():
+    params = {"G15Speed": 2.2, "G15Phase": 0.0}
+    good = v.check_clocked(_clocked(2.2), params)
+    assert good["problems"] == [] and good["judged"] == 16
+    # 客車の式に +0.5 × V（動いている間だけ車間が 1.1 m 縮む。PR #66 の GPT のレビュー M-1）
+    m1 = v.check_clocked(_clocked(2.2, car_err=lambda t: 0.5 * 2.2), params)
+    assert any(p.startswith("car: arc") for p in m1["problems"])
+    # 客車の式に −0.5 × V（動いている間だけ遅れて車間が広がる）
+    lag = v.check_clocked(_clocked(2.2, car_err=lambda t: -0.5 * 2.2), params)
+    assert any(p.startswith("car: arc") for p in lag["problems"])
+    # 平均の速さは合うが周期的に揺れる距離 D = V (t + 0.4 cos(2πt/20))（M-2）
+    m2 = v.check_clocked(_clocked(2.2, engine_err=lambda t: 2.2 * 0.4 * math.cos(2 * math.pi * t / 20.0),
+                                  car_err=lambda t: 2.2 * 0.4 * math.cos(2 * math.pi * t / 20.0)), params)
+    assert any(p.startswith(("engine: arc", "car: arc")) for p in m2["problems"])
     # 速さが 2 倍
-    fast = _samples(4.4, dt=1.2)
-    assert v.check_speed([(s["t"], s["engine"]["u_m"]) for s in fast], 2.2, L, "engine")["problems"]
-    # 平均の速さは合うが、途中で時刻から ±3 m 外れる式は外れる。読んだ時刻の見積もりの幅（±0.5 秒 × 2.2 m/s）の中のばらつきは通る
-    ts = [1000.0 + 2.5 * i for i in range(16)]
-    wobble = [(t, (3.0 + 2.2 * t + 3.0 * math.sin(2 * math.pi * i / 16)) % L) for i, t in enumerate(ts)]
-    assert any("off the line of the clock" in p for p in v.check_speed(wobble, 2.2, L, "engine", [0.5] * 16)["problems"])
-    jitter = [(t, (3.0 + 2.2 * t + (0.9 if i % 2 else -0.9)) % L) for i, t in enumerate(ts)]
-    assert v.check_speed(jitter, 2.2, L, "engine", [0.5] * 16)["problems"] == []
+    assert v.check_clocked(_clocked(2.2, formula_speed=4.4), params)["problems"]
+    # 時計の幅が広すぎる観察（1 つ 0.4 秒）は判定せず、判定できた観察が足りなければ問題にする（黙って合格にしない）
+    wide = v.check_clocked(_clocked(2.2, step=0.4), params)
+    assert wide["judged"] == 0 and any("clock window" in p for p in wide["problems"])
 
 
 def _clock_series(speed: float, wheel_sign: float) -> list[tuple[float, dict]]:
@@ -114,7 +137,7 @@ def _clock_series(speed: float, wheel_sign: float) -> list[tuple[float, dict]]:
     for i in range(10):
         t = 50.0 + 4.0 * i
         d = speed * t
-        vals = {}
+        vals = {"ck1": t - 0.4, "ck2": t + 0.4}
         vals["engine_pos"], _ = _pose(G["rest_arc_m"][G["engine"]] + d)
         vals["car_pos"], _ = _pose(G["rest_arc_m"][G["car"]] + d)
         for w, spec in G["wheels"].items():

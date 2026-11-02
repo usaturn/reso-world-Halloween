@@ -12,16 +12,17 @@
   Drives が Slot のメンバーを指し有効か
 - 時刻を止めた標本: G15Speed を 0、G15Phase を 0.5 にし、先頭車・客車・車輪の Slot そのものの姿勢を読み、式に照合してから値を
   戻す。窓の間で比べる（同じ位相の位置の差 1 cm 以内）
-- 先頭車の中継の位置だけを続けて観察（1 回 約 1.5 秒）: 経路の弧の位置 u の速さ、各観察と直線の差
+- 時計で挟んだ観察を続ける（1 回 約 1.5 秒）: 1 回の observe で「時計 1 → 先頭車の位置 → 客車の位置 → 時計 2」を読み（時計は
+  モジュールが WorldTimeDouble を drive する検査用の ValueField<double>）、先頭車・客車の弧の位置が、時計 1 と時計 2 のワールドの
+  時刻の式の位置の間にあるか（車間・速さ・時刻からのずれを、壁の時計に頼らずに見る）。ワールドの時刻に対する速さ、上から見て時計回り
 - 全部の駆動の値を続けて観察: 先頭車・客車が経路の上（1 cm 以内）・レールの上面の高さ、向きが経路の接線（読み取りの時刻のずれの
-  分を許す）、進んだ向きと正面の向き、上から見て時計回り、先頭車と客車の弧の差、車輪が +X まわりだけで回っているか
-- 窓の間の時刻の基準: 各窓の u − V t（t は壁の時計）が窓の間で合うか（u が時刻から決まり、漂わない）
+  分を許す）、進んだ向きと正面の向き、車輪が +X まわりだけで回っているか
 
 検査（--param-check）
 - 時刻を止めた標本: G15Phase を、先頭車か客車が W05 の経路点に来る値にし、位置・向きを経路点のデータと（中継の値と Slot そのもの
   の両方で）照合する。車輪の回転は進んだ距離 G15Phase × L ÷ 半径
 - 範囲の外の値: G15Phase 1.5 → 1（収めないと周の反対側）・-1 → 0、G15Speed -1 → 0（止まる）・10 → 3 m/s
-- 速さを変える: G15Speed 1.1 m/s（既定の半分）で測った速さ
+- 速さを変える: G15Speed 1.1 m/s（既定の半分）。速さの確認はどれも時計で挟んだ観察で、ワールドの時刻の式と照合する
 - ゆっくりの時刻（G15Speed = 0.05 m/s）で、先頭車・客車の進みと車輪の回転の進み（+X まわりの正 = 前へ転がる）が、時刻と半径の
   とおりか
 - どれも元に戻し、戻ったかを確かめる
@@ -63,22 +64,22 @@ FROZEN_DEG_TOL = 0.05
 FROZEN_Q_TOL = 1e-4
 SPEED_TOL = 0.05
 MAX_STEP_M = 15.0            # 隣の観察の間に進み得る弧の長さの上限（周 36.27 m を連続にする前提は半周未満）
-# 各観察と、弧の位置を連続にして当てはめた直線の差の許容。observe の時刻は前後の中点で見積もるので、読んだ時刻は中点から最大で
-# 実行時間の半分ずれる。観察ごとに「実行時間の半分 × 速さ + RESIDUAL_MARGIN_M」を許す（2026-11-02 の窓 2 は 1 回 最大 約 4.8 秒で、
-# 一律 1.0 m の許容を 1.32 m で超えた）。平均の速さだけが合い、途中で時刻から外れる式を見つける
-RESIDUAL_MARGIN_M = 0.3
-# 同じ観察の中の先頭車と客車の弧の差。客車を後に読むので、読む時刻の差 × 速さだけ 2.75 m より短く見える（2026-11-02 の実測で
-# 多くは 0.48〜0.64 m = 約 0.25 秒、遅い回に 1.10 m = 約 0.5 秒）。読む時刻の差はそのコマンドの実行時間を超えないので、短く見える分が
-# 0〜速さ × 実行時間（と GAP_TOL_M）の中かを見る（止まった・遅れた・先へ出た客車を見つける）。正確な弧の差は時刻を止めた標本で見る
-GAP_TOL_M = 0.05
+# 時計で挟んだ観察（PR #66 の GPT のレビュー M-1・M-2）。1 回の observe で「時計 1 → 先頭車の位置 → 客車の位置 → 時計 2」を読み
+# （時計は列車と線路の asset root の ValueField<double>。モジュールが WorldTimeDouble を drive する）、読んだ位置が、時計 1 と時計 2 の
+# ワールドの時刻の式の位置の間（と CLOCKED_TOL_M・FRAME_SLACK_S の分）にあるかを見る。observe は書いた順に Component を 1 つずつ読む
+# （2026-11-02 の試しで 1 つ 約 0.115 秒。4 つで時計の幅 約 0.35 秒）。先頭車は時計 1 から、客車は時計 2 から 約 0.115 秒（2.2 m/s で
+# 約 0.25 m）離れて読まれるので、それより大きく時刻から外れる式（客車の車間の誤り、平均の速さだけ合う周期的な揺れ）を見つける。
+# 壁の時計の見積もりには頼らない。時計の幅が CLOCK_SPREAD_MAX_S を超えた観察は判定しない（保留。判定できた観察が MIN_JUDGED 未満なら問題）
+CLOCKED_TOL_M = 0.01
+FRAME_SLACK_S = 0.034        # 2 フレーム（60 fps）。駆動の評価と読み取りのフレームのずれの分
+CLOCK_SPREAD_MAX_S = 0.8
+MIN_JUDGED = 4
 CLOCK_SPEED = 0.05           # ゆっくりの時刻（m/秒）。車輪は 約 0.24 rad/秒
-# ゆっくりの時刻の観察の長さ。observe の時刻は前後の中点で見積もるので、1 回にかかる時間が変わる（2026-11-02 の試しで 3.6 → 2.3 秒）
-# と傾きがずれる（20 秒の試しで −5%）。40 秒にして、先頭車・客車の速さは 5% 以内、車輪の回る速さは同じ観察の先頭車の速さ ÷ 半径と
-# 1% 以内で比べる（時刻の見積もりに左右されない関係）
+# ゆっくりの時刻の観察の長さ。先頭車・客車の速さはワールドの時刻（時計の中点）に対して 2% 以内、車輪の回る速さは同じ観察の先頭車
+# （客車）の速さ ÷ 半径と 1% 以内で比べる
 CLOCK_WAIT_S = 40.0
-CLOCK_TOL = 0.05
+CLOCK_TOL = 0.02
 WHEEL_RATIO_TOL = 0.01
-CLOCK_OFFSET_TOL_M = 1.6     # 窓の間の u − V t の差（observe の時刻の見積もりのずれ ±0.7 秒 × 2.2 m/s の分）
 DRIFT_TOL_M = 0.01
 DRIFT_TOL_DEG = 0.5
 LOCAL_TOL = 1e-4
@@ -106,6 +107,14 @@ def selectors(keys: dict[str, str], g: dict | None = None) -> dict[str, str]:
     for w in g["wheels"]:
         sels[w] = relay_sel(keys[w], "Rotation")
     return sels
+
+
+def clock_selectors() -> dict[str, str]:
+    """検査用の時計（時計 1 は列車、時計 2 は線路の asset root）。observe で列車の値の前と後に置く。"""
+    return {f"ck{i}": f"$member:{k}.Value" for i, k in enumerate(gimmicks.G15_CLOCK_KEYS, start=1)}
+
+
+CLOCKED = ("ck1", "engine_pos", "car_pos", "ck2")   # 時計で挟んで読む順
 
 
 # ---- 式と照合 ------------------------------------------------------------------------------------------------------------
@@ -185,28 +194,64 @@ def timed_span(args: list[str]) -> tuple[float, float, dict]:
     return (t0 + t1) / 2.0, (t1 - t0) / 2.0, data
 
 
-def check_speed(samples: list[tuple[float, float]], want: float, length: float, name: str,
-                halves: list[float] | None = None) -> dict:
-    """弧の位置の速さ（m/秒）を HMC_P3 の速さと比べ、各観察の直線からの差を、その観察の時刻の見積もりの幅（halves の秒 × 速さ）
-    と RESIDUAL_MARGIN_M の和と比べる。隣の観察の間の進みが大きすぎれば測れないとする。"""
-    out: dict = {"problems": []}
-    if len(samples) < 4:
-        return {"problems": [f"{name}: too few observations ({len(samples)})"]}
-    halves = halves or [0.0] * len(samples)
-    steps = [(b[1] - a[1]) % length for a, b in zip(samples, samples[1:])]
-    if max(steps) > MAX_STEP_M:
-        out["problems"].append(f"{name}: a step of {max(steps):.2f} m is too large to follow the loop")
-    speed, resid = fit_line(unwrap_loop(samples, length))
-    bounds = [max(want, 0.0) * h + RESIDUAL_MARGIN_M for h in halves]
-    worst = max(range(len(resid)), key=lambda i: abs(resid[i]) / bounds[i])
-    out.update({"m_per_s": round(speed, 4), "expected": round(want, 4), "max_step_m": round(max(steps), 3),
-                "max_residual_m": round(max(abs(r) for r in resid), 3), "max_residual_over_bound": round(abs(resid[worst]) / bounds[worst], 3),
-                "max_read_half_s": round(max(halves), 3), "samples": len(samples)})
-    if want <= 0 or abs(speed - want) > SPEED_TOL * want:
-        out["problems"].append(f"{name}: {speed:.3f} m/s != {want:.3f} m/s")
-    if abs(resid[worst]) > bounds[worst]:
-        out["problems"].append(f"{name}: an observation is {abs(resid[worst]):.2f} m off the line of the clock "
-                               f"(tolerance {bounds[worst]:.2f} m for a read window of +-{halves[worst]:.2f} s)")
+def clocked_sample(v: dict, g: dict | None = None) -> dict:
+    """「時計 1 → 先頭車の位置 → 客車の位置 → 時計 2」の観察の値から、時計の時刻と、先頭車・客車の弧の位置・経路からのずれ・
+    水平の位置（線路の中心のローカル）。"""
+    g = g or gimmicks.g15()
+    cx, cy = g["center_local_blender"]
+    out: dict = {"t1": float(v["ck1"]), "t2": float(v["ck2"])}
+    for name in ("engine", "car"):
+        p = v[f"{name}_pos"]
+        tx, ty = float(p["x"]) - cx, float(p["z"]) - cy
+        u, off = gimmicks.stadium_arc(tx, ty, g["radius_m"], g["straight_m"])
+        out[name] = {"u_m": u, "path_error_m": off, "height_error_m": abs(float(p["y"]) - g["rail_local_z"]), "plan": [tx, ty]}
+    return out
+
+
+def check_clocked(samples: list[dict], params: dict, g: dict | None = None) -> dict:
+    """時計で挟んだ観察（clocked_sample）を、ワールドの時刻の式と照合する。先頭車・客車の弧の位置が、時計 1 の時刻の式の位置から
+    0〜速さ × 時計の幅（と CLOCKED_TOL_M・FRAME_SLACK_S の分）の中か。経路からのずれ・高さも見る。速さは、弧の位置を時計 1 の時刻の
+    式の位置との差で連続にし、時計の中点に当てはめた傾き（ワールドの時刻に対する速さ）。"""
+    g = g or gimmicks.g15()
+    speed, phase, length = params["G15Speed"], params["G15Phase"], g["length_m"]
+    slack = CLOCKED_TOL_M + speed * FRAME_SLACK_S
+    problems, judged, offsets = [], [], {"engine": [], "car": []}
+    series: dict[str, list[tuple[float, float]]] = {"engine": [], "car": []}
+    for s in samples:
+        spread = s["t2"] - s["t1"]
+        if spread < 0:
+            problems.append(f"clock 2 ({s['t2']:.3f}) is earlier than clock 1 ({s['t1']:.3f}): the reads are out of order")
+            continue
+        if spread > CLOCK_SPREAD_MAX_S:
+            continue
+        judged.append(spread)
+        for name in ("engine", "car"):
+            r = s[name]
+            base = g["rest_arc_m"][g[name]] + speed * s["t1"] + phase * length
+            d = (r["u_m"] - base) % length
+            if d > length / 2.0:
+                d -= length
+            offsets[name].append(d)
+            series[name].append(((s["t1"] + s["t2"]) / 2.0, base + d))
+            if not (-slack <= d <= speed * spread + slack):
+                problems.append(f"{name}: arc {r['u_m']:.3f} m is {d:+.3f} m from the clock-1 position, outside "
+                                f"0..{speed * spread:.3f} m (clock window {spread:.3f} s)")
+            if r["path_error_m"] > PATH_TOL_M or r["height_error_m"] > HEIGHT_TOL_M:
+                problems.append(f"{name}: {r['path_error_m']:.4f} m off the loop, height off {r['height_error_m']:.4f} m")
+    if len(judged) < MIN_JUDGED:
+        problems.append(f"only {len(judged)} observations had a clock window of {CLOCK_SPREAD_MAX_S} s or less")
+    out: dict = {"samples": len(samples), "judged": len(judged),
+                 "clock_window_s": [round(min(judged), 4), round(max(judged), 4)] if judged else None}
+    for name in ("engine", "car"):
+        if offsets[name]:
+            out[f"{name}_after_clock1_m"] = [round(min(offsets[name]), 4), round(max(offsets[name]), 4)]
+        if len(series[name]) >= 2:
+            sp, _ = fit_line(series[name])
+            out[f"{name}_m_per_s"] = round(sp, 5)
+            if speed > 0 and abs(sp - speed) > SPEED_TOL * speed:
+                problems.append(f"{name}: {sp:.4f} m/s against the world clock != {speed}")
+    out["expected_m_per_s"] = speed
+    out["problems"] = problems
     return out
 
 
@@ -239,18 +284,6 @@ def check_travel(samples: list[dict]) -> dict:
     return {"errors_deg": rows, "problems": problems}
 
 
-def check_gap(samples: list[dict], g: dict, speed: float) -> dict:
-    """同じ観察の中の先頭車と客車の弧の差（m）。同じ式なら W05 の 2.75 m より、客車を後に読む時刻の差 × 速さだけ短く見える。
-    短く見える分（lag）が 0〜speed × その観察の実行時間（2 × half）の中か（客車が止まった・遅れた・先へ出た式を見つける）。"""
-    rows = [(g["arc_offset_m"] - s["gap_m"], speed * 2.0 * s.get("half", 0.0) + GAP_TOL_M) for s in samples]
-    bad = [(x, hi) for x, hi in rows if not (-GAP_TOL_M <= x <= hi)]
-    problems = [f"engine-car arc gap is {g['arc_offset_m'] - bad[0][0]:.3f} m (expected {g['arc_offset_m']} m less 0..{bad[0][1]:.2f} m "
-                f"of read lag)"] if bad else []
-    lags = [x for x, _ in rows]
-    return {"lag_m": [round(min(lags), 4), round(max(lags), 4)] if lags else None,
-            "lag_over_bound": round(max(x / hi for x, hi in rows), 3) if rows else None, "problems": problems}
-
-
 def check_wheels_turn(samples: list[dict], g: dict) -> dict:
     """動いている間に車輪の角度が変わっているか（止まった車輪を見つける。速さと向きはゆっくりの時刻で見る）。"""
     problems = []
@@ -261,14 +294,6 @@ def check_wheels_turn(samples: list[dict], g: dict) -> dict:
         if spread[w] < 1.0:
             problems.append(f"{w}: wheel did not turn while the train moved")
     return {"max_step_deg": spread, "problems": problems}
-
-
-def clock_offset(samples: list[tuple[float, float]], speed: float, length: float) -> float:
-    """u − V t（m、0〜L）の円の平均。時刻から決まる u なら、窓が変わっても同じ値。"""
-    k = 2.0 * math.pi / length
-    s = sum(math.sin(k * (u - speed * t)) for t, u in samples)
-    c = sum(math.cos(k * (u - speed * t)) for t, u in samples)
-    return (math.atan2(s, c) / k) % length
 
 
 # ---- 時刻を止めた標本 ---------------------------------------------------------------------------------------------------
@@ -598,8 +623,9 @@ def frozen_probe(url: str, raw: list, phase: float = 0.5) -> dict:
             "problems": problems}
 
 
-def check_drift(probes: list[dict], offsets: list[float], length: float) -> dict:
-    """窓ごとの時刻を止めた標本を最初の窓と比べ（同じ位相の位置の差 1 cm 以内、車輪の回転の差）、u − V t の差も見る。"""
+def check_drift(probes: list[dict]) -> dict:
+    """窓ごとの時刻を止めた標本を最初の窓と比べる（同じ位相の位置の差 1 cm 以内、車輪の回転の差）。時刻からのずれは、各窓の時計で
+    挟んだ観察（check_clocked）がワールドの時刻の式と直接比べる。"""
     rows, problems = [], []
     if len(probes) < 2:
         return {"rows": rows, "problems": ["drift: needs two windows"]}
@@ -616,18 +642,26 @@ def check_drift(probes: list[dict], offsets: list[float], length: float) -> dict
             dq = q_close(q, p["slots"]["wheels"][w])
             if dq > math.radians(DRIFT_TOL_DEG) / 2.0:
                 problems.append(f"drift: {w} rotation differs {dq:.5f} at the same phase by window {i}")
-    for i, off in enumerate(offsets[1:], start=2):
-        d = abs((off - offsets[0] + length / 2.0) % length - length / 2.0)
-        rows.append({"window": i, "clock_offset_diff_m": round(d, 3)})
-        if d > CLOCK_OFFSET_TOL_M:
-            problems.append(f"drift: u - V t moved {d:.2f} m between windows 1 and {i}")
-    return {"rows": rows, "clock_offsets_m": [round(o, 3) for o in offsets], "problems": problems}
+    return {"rows": rows, "problems": problems}
 
 
-def observe_window(url: str, duration: float, engine_duration: float, raw: list) -> dict:
+def clocked_series(url: str, seconds: float, raw: list, label: str, g: dict, sels: dict[str, str]) -> list[dict]:
+    """「時計 1 → 先頭車の位置 → 客車の位置 → 時計 2」を seconds 秒の間続けて観察する。"""
+    order = [sels[n] for n in CLOCKED]
+    out = []
+    t_end = time.time() + seconds
+    while time.time() < t_end:
+        t, half, obs = timed_span(["resoloop", "observe", *order, "--state", str(D_STATE), "--url", url, "--json"])
+        raw.append({"kind": label, "t": t, "half": half, "data": obs})
+        out.append(clocked_sample(read_values(obs["data"]["values"], sels), g))
+    return out
+
+
+def observe_window(url: str, duration: float, clock_duration: float, raw: list) -> dict:
     g = gimmicks.g15()
     keys = d_keys(STATE_DIR)
     sels = selectors(keys, g)
+    csels = {**sels, **clock_selectors()}
     params_raw = observe_params(url)
     params = params_of(params_raw)
     window: dict = {"started_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "params": params_raw, "samples": [],
@@ -637,41 +671,26 @@ def observe_window(url: str, duration: float, engine_duration: float, raw: list)
     window["structure_start"] = check_structure(hier["data"])
     window["relay_problems"] = check_relays(url, keys)
     window["frozen_probe"] = frozen_probe(url, raw)
-    # 先頭車の位置だけを続けて観察する（1 回 約 1.5 秒）
-    eng, eng_half = [], []
-    t_end = time.time() + engine_duration
-    while time.time() < t_end:
-        t, half, obs = timed_span(["resoloop", "observe", sels["engine_pos"], "--state", str(D_STATE), "--url", url, "--json"])
-        raw.append({"kind": "engine", "t": t, "half": half, "data": obs})
-        pos = obs["data"]["values"][sels["engine_pos"]]["member"]["value"]
-        cx, cy = g["center_local_blender"]
-        eng.append((t, gimmicks.stadium_arc(float(pos["x"]) - cx, float(pos["z"]) - cy, g["radius_m"], g["straight_m"])[0]))
-        eng_half.append(half)
-    # 全部の駆動の値
+    # 時計で挟んだ先頭車・客車の位置（ワールドの時刻の式との照合、速さ、時計回り）
+    clocked = clocked_series(url, clock_duration, raw, "clocked", g, csels)
+    window["clocked"] = check_clocked(clocked, params, g)
+    window["clockwise"] = check_clockwise(clocked)
+    # 全部の駆動の値（経路・向き・進んだ向き・車輪）
     t_end = time.time() + duration
     while time.time() < t_end:
         t, half, obs = timed_span(["resoloop", "observe", *sels.values(), "--state", str(D_STATE), "--url", url, "--json"])
         raw.append({"kind": "all", "t": t, "half": half, "data": obs})
         s = check_sample(read_values(obs["data"]["values"], sels), g)
         s["t"] = round(t, 3)
-        s["half"] = round(half, 3)
         window["samples"].append(s)
     hier2 = d_hierarchy(url)
     raw.append({"kind": "hierarchy_end", "data": hier2})
     window["structure_end"] = check_structure(hier2["data"])
     smp = window["samples"]
-    speed = params["G15Speed"]
-    halves = [s["half"] for s in smp]
-    window["speeds"] = {"engine_only": check_speed(eng, speed, g["length_m"], "engine", eng_half),
-                        "engine": check_speed([(s["t"], s["engine"]["u_m"]) for s in smp], speed, g["length_m"], "engine (all)", halves),
-                        "car": check_speed([(s["t"], s["car"]["u_m"]) for s in smp], speed, g["length_m"], "car (all)", halves)}
-    window["clockwise"] = check_clockwise(smp)
     window["travel"] = check_travel(smp)
-    window["gap"] = check_gap(smp, g, speed)
     window["wheels"] = check_wheels_turn(smp, g)
-    window["clock_offset_m"] = clock_offset(eng, speed, g["length_m"]) if eng else None
     window["summary"] = {
-        "samples": len(smp), "engine_samples": len(eng),
+        "samples": len(smp), "clocked_samples": len(clocked),
         "path_error_m": round(max(max(s["engine"]["path_error_m"], s["car"]["path_error_m"]) for s in smp), 5),
         "height_error_m": round(max(max(s["engine"]["height_error_m"], s["car"]["height_error_m"]) for s in smp), 6),
         "heading_error_deg": round(max(max(abs(s["engine"]["heading_error_deg"]), abs(s["car"]["heading_error_deg"])) for s in smp), 3),
@@ -679,9 +698,7 @@ def observe_window(url: str, duration: float, engine_duration: float, raw: list)
     }
     for s in smp:
         window["problems"].extend(s["problems"])
-    for part in ("engine_only", "engine", "car"):
-        window["problems"] += window["speeds"][part]["problems"]
-    window["problems"] += (window["clockwise"]["problems"] + window["travel"]["problems"] + window["gap"]["problems"]
+    window["problems"] += (window["clocked"]["problems"] + window["clockwise"]["problems"] + window["travel"]["problems"]
                            + window["wheels"]["problems"] + window["relay_problems"] + window["frozen_probe"]["problems"]
                            + window["structure_start"]["problems"] + window["structure_end"]["problems"])
     window["ok"] = not window["problems"]
@@ -720,13 +737,18 @@ def _arc(pos: dict, g: dict) -> float:
     return gimmicks.stadium_arc(float(pos["x"]) - cx, float(pos["z"]) - cy, g["radius_m"], g["straight_m"])[0]
 
 
+def _world_t(t: float, v: dict) -> float:
+    """観察の時刻。時計（ck1・ck2）を読んでいればその中点（ワールドの時刻）、無ければ壁の時計の見積もり t。"""
+    return (float(v["ck1"]) + float(v["ck2"])) / 2.0 if "ck1" in v and "ck2" in v else t
+
+
 def check_clock(series: list[tuple[float, dict]], speed: float, g: dict) -> dict:
     """ゆっくりの時刻の観察の列から、先頭車・客車の弧の速さを HMC_P3 の速さと、車輪の +X まわりの回る速さ（rad/秒）を、同じ観察の
-    列で測った先頭車（客車の車輪は客車）の速さ ÷ 半径と比べる。車輪の角度が増える（+X まわりの正 = 上端が前へ進む）ことで、前へ
-    転がる向きを確かめる。"""
+    列で測った先頭車（客車の車輪は客車）の速さ ÷ 半径と比べる。時刻は時計で読んだワールドの時刻（_world_t）。車輪の角度が増える
+    （+X まわりの正 = 上端が前へ進む）ことで、前へ転がる向きを確かめる。"""
     out: dict = {"problems": []}
     for name in ("engine", "car"):
-        u = unwrap_loop([(t, _arc(v[f"{name}_pos"], g)) for t, v, *_ in series], g["length_m"])
+        u = unwrap_loop([(_world_t(t, v), _arc(v[f"{name}_pos"], g)) for t, v, *_ in series], g["length_m"])
         sp, _ = fit_line(u)
         out[name] = {"m_per_s": round(sp, 5), "advance_m": round(u[-1][1] - u[0][1], 4)}
         out[f"_{name}_speed"] = sp
@@ -738,7 +760,7 @@ def check_clock(series: list[tuple[float, dict]], speed: float, g: dict) -> dict
             a = math.radians(wheel_angle(q_of(v[w]))[0])
             acc = a if prev is None else acc + (a - prev + math.pi) % (2 * math.pi) - math.pi
             prev = a
-            angs.append((t, acc))
+            angs.append((_world_t(t, v), acc))
         rate, _ = fit_line(angs)
         moved = out["_engine_speed"] if spec["parent"] == g["engine"] else out["_car_speed"]
         want = moved / spec["radius_m"]
@@ -755,6 +777,7 @@ def param_check(url: str, raw: list) -> dict:
     g = gimmicks.g15()
     keys = d_keys(STATE_DIR)
     sels = selectors(keys, g)
+    csels = {**sels, **clock_selectors()}
     ids = _ids(url)
     before = observe_params(url)
     out["before"] = before
@@ -780,22 +803,19 @@ def param_check(url: str, raw: list) -> dict:
             out[f"frozen_{label}"] = case
             out["problems"].extend(case["problems"])
         put("G15Phase", before["G15Phase"])
-        # 2) 範囲の外の速さ -1（止まる）: 3 秒あけた 2 回の観察が同じ
-        put("G15Speed", -1.0)
-        time.sleep(1.0)
-        s = _series(url, sels, ["engine_pos"], 4.0, raw, "speed_-1")
-        moved = max(math.dist([float(a["engine_pos"][k]) for k in "xyz"], [float(b["engine_pos"][k]) for k in "xyz"])
-                    for (_, a, _), (_, b, _) in zip(s, s[1:])) if len(s) > 1 else math.inf
-        out["speed_-1"] = {"max_move_m": round(moved, 6), "samples": len(s)}
-        if moved > 1e-4:
-            out["problems"].append(f"G15Speed -1: the train moved {moved:.4f} m (expected to stop)")
-        # 3) 速さを変える（1.1 は既定の半分、10 は 3 m/s に収まる）
-        for value in SPEED_CASES:
+        # 2) 範囲の外の速さ -1（0 に収まり止まる）と、速さを変える（1.1 は既定の半分、10 は 3 m/s に収まる）。時計で挟んだ観察で、
+        #    ワールドの時刻の式（収めた速さ）と照合する。-1 は止まった基準の位置（と、観察の間に動いていないこと）
+        for value in (-1.0, *SPEED_CASES):
             put("G15Speed", value)
             time.sleep(1.0)
-            want = params_of({**before, "G15Speed": value})["G15Speed"]
-            s = _series(url, sels, ["engine_pos"], 12.0, raw, f"speed_{value}")
-            res = check_speed([(t, _arc(v["engine_pos"], g)) for t, v, _ in s], want, length, f"G15Speed {value}", [h for *_, h in s])
+            want = params_of({**before, "G15Speed": value})
+            s = clocked_series(url, 6.0 if value < 0 else 12.0, raw, f"speed_{value}", g, csels)
+            res = check_clocked(s, want, g)
+            if value < 0:
+                us = [x["engine"]["u_m"] for x in s]
+                res["max_move_m"] = round(max(us) - min(us), 6) if us else None
+                if not us or res["max_move_m"] > 1e-4:
+                    res["problems"].append(f"G15Speed -1: the train moved {res['max_move_m']} m (expected to stop)")
             out[f"speed_{value}"] = res
             out["problems"].extend(res["problems"])
     finally:
@@ -805,7 +825,7 @@ def param_check(url: str, raw: list) -> dict:
     try:
         put("G15Speed", CLOCK_SPEED)
         time.sleep(1.0)
-        s = _series(url, sels, ["engine_pos", "car_pos", *g["wheels"]], CLOCK_WAIT_S, raw, "clock")
+        s = _series(url, csels, ["ck1", "engine_pos", "car_pos", *g["wheels"], "ck2"], CLOCK_WAIT_S, raw, "clock")
         out["clock"] = check_clock(s, CLOCK_SPEED, g)
         out["clock"]["samples"] = len(s)
         out["problems"].extend(out["clock"]["problems"])
@@ -826,7 +846,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--windows", type=int, default=1)
     ap.add_argument("--gap", type=float, default=300.0, help="窓と窓の間の秒数")
     ap.add_argument("--duration", type=float, default=40.0, help="全部の駆動の値を観察する秒数")
-    ap.add_argument("--engine-duration", type=float, default=20.0, help="先頭車の位置だけを観察する秒数")
+    ap.add_argument("--clock-duration", type=float, default=30.0, help="時計で挟んだ先頭車・客車の位置を観察する秒数")
     ap.add_argument("--param-check", action="store_true")
     args = ap.parse_args(argv)
     if args.raw_out.exists():
@@ -839,15 +859,16 @@ def main(argv: list[str] | None = None) -> int:
         for i in range(args.windows):
             if i:
                 time.sleep(args.gap)
-            wins.append(observe_window(args.url, args.duration, args.engine_duration, raw))
+            wins.append(observe_window(args.url, args.duration, args.clock_duration, raw))
         env = envelopes()
-        drift = check_drift([w["frozen_probe"] for w in wins], [w["clock_offset_m"] for w in wins], gimmicks.g15()["length_m"])
+        drift = check_drift([w["frozen_probe"] for w in wins])
         result = {"windows": wins, "gap_s": args.gap if args.windows > 1 else None, "drift": drift, "envelopes": env,
                   "envelope_problems": envelope_problems(env),
                   "tolerances": {"path_m": PATH_TOL_M, "height_m": HEIGHT_TOL_M, "heading_deg": HEADING_TOL_DEG,
                                  "travel_deg": TRAVEL_TOL_DEG, "frozen_pos_m": FROZEN_POS_TOL_M, "frozen_deg": FROZEN_DEG_TOL,
-                                 "speed": SPEED_TOL, "residual_margin_m": RESIDUAL_MARGIN_M, "gap_m": GAP_TOL_M, "drift_m": DRIFT_TOL_M,
-                                 "clock_offset_m": CLOCK_OFFSET_TOL_M, "local": LOCAL_TOL}}
+                                 "speed": SPEED_TOL, "clocked_m": CLOCKED_TOL_M, "frame_slack_s": FRAME_SLACK_S,
+                                 "clock_spread_max_s": CLOCK_SPREAD_MAX_S, "min_judged": MIN_JUDGED, "drift_m": DRIFT_TOL_M,
+                                 "local": LOCAL_TOL}}
         drift_problems = drift["problems"] if args.windows > 1 else []
         result["ok"] = all(w["ok"] for w in wins) and not result["envelope_problems"] and not drift_problems
     args.raw_out.parent.mkdir(parents=True, exist_ok=True)
@@ -855,7 +876,7 @@ def main(argv: list[str] | None = None) -> int:
     if not args.param_check:
         # コミットする記録には観察の列を入れない（要約と問題だけ）。列は --raw-out にある
         for w in result["windows"]:
-            w["samples"] = [{"t": s["t"], "half_s": s["half"], "gap_m": round(s["gap_m"], 4),
+            w["samples"] = [{"t": s["t"], "gap_m": round(s["gap_m"], 4),
                              **{n: {k: round(s[n][k], 4) for k in ("u_m", "path_error_m", "heading_error_deg")} for n in ("engine", "car")}}
                             for s in w["samples"]]
             w["structure_start"]["rows"] = len(w["structure_start"]["rows"])
@@ -864,7 +885,7 @@ def main(argv: list[str] | None = None) -> int:
     args.output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     summary = {k: v for k, v in result.items() if k not in ("windows",) and not k.startswith("frozen_")}
     if not args.param_check:
-        summary["windows"] = [{"ok": w["ok"], "summary": w["summary"], "speeds": w["speeds"], "gap": w["gap"],
+        summary["windows"] = [{"ok": w["ok"], "summary": w["summary"], "clocked": w["clocked"],
                                "clockwise": w["clockwise"], "problems": w["problems"][:10]} for w in result["windows"]]
     print(json.dumps(summary, ensure_ascii=False, indent=1, default=str)[:6000])
     return 0 if result["ok"] else 1

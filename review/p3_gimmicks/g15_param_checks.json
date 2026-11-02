@@ -663,57 +663,94 @@
     },
     "problems": []
   },
-  "speed_-1": {
-    "max_move_m": 0.0,
-    "samples": 3
+  "speed_-1.0": {
+    "samples": 4,
+    "judged": 4,
+    "clock_window_s": [
+      0.3329,
+      0.367
+    ],
+    "engine_after_clock1_m": [
+      0.0,
+      0.0
+    ],
+    "engine_m_per_s": 0.0,
+    "car_after_clock1_m": [
+      0.0,
+      0.0
+    ],
+    "car_m_per_s": 0.0,
+    "expected_m_per_s": 0.0,
+    "problems": [],
+    "max_move_m": 0.0
   },
   "speed_1.1": {
-    "problems": [],
-    "m_per_s": 1.0997,
-    "expected": 1.1,
-    "max_step_m": 2.035,
-    "max_residual_m": 0.153,
-    "max_residual_over_bound": 0.116,
-    "max_read_half_s": 0.925,
-    "samples": 8
+    "samples": 5,
+    "judged": 5,
+    "clock_window_s": [
+      0.3335,
+      0.5801
+    ],
+    "engine_after_clock1_m": [
+      0.1193,
+      0.3555
+    ],
+    "engine_m_per_s": 1.09645,
+    "car_after_clock1_m": [
+      0.248,
+      0.483
+    ],
+    "car_m_per_s": 1.09677,
+    "expected_m_per_s": 1.1,
+    "problems": []
   },
   "speed_10.0": {
-    "problems": [],
-    "m_per_s": 3.03,
-    "expected": 3.0,
-    "max_step_m": 5.09,
-    "max_residual_m": 0.163,
-    "max_residual_over_bound": 0.059,
-    "max_read_half_s": 0.857,
-    "samples": 8
+    "samples": 6,
+    "judged": 6,
+    "clock_window_s": [
+      0.3326,
+      0.3505
+    ],
+    "engine_after_clock1_m": [
+      0.3445,
+      0.409
+    ],
+    "engine_m_per_s": 2.99801,
+    "car_after_clock1_m": [
+      0.6933,
+      0.7473
+    ],
+    "car_m_per_s": 2.99691,
+    "expected_m_per_s": 3.0,
+    "problems": []
   },
   "clock": {
     "problems": [],
     "engine": {
-      "m_per_s": 0.05,
-      "advance_m": 1.9702
+      "m_per_s": 0.04995,
+      "advance_m": 1.9045
     },
     "car": {
-      "m_per_s": 0.05,
-      "advance_m": 1.9701
+      "m_per_s": 0.04994,
+      "advance_m": 1.9032
     },
     "DAM_GhostTrain_001_CarWheelFront_001": {
-      "rad_per_s": 0.24988,
-      "expected_from_measured_speed": 0.24998
+      "rad_per_s": 0.24997,
+      "expected_from_measured_speed": 0.24971
     },
     "DAM_GhostTrain_001_CarWheelRear_001": {
-      "rad_per_s": 0.24985,
-      "expected_from_measured_speed": 0.24998
+      "rad_per_s": 0.24993,
+      "expected_from_measured_speed": 0.24971
     },
     "DAM_GhostTrain_001_EngineWheelFront": {
-      "rad_per_s": 0.238,
-      "expected_from_measured_speed": 0.2381
+      "rad_per_s": 0.23808,
+      "expected_from_measured_speed": 0.23787
     },
     "DAM_GhostTrain_001_EngineWheelRear": {
-      "rad_per_s": 0.23801,
-      "expected_from_measured_speed": 0.2381
+      "rad_per_s": 0.23828,
+      "expected_from_measured_speed": 0.23787
     },
-    "samples": 18
+    "samples": 14
   },
   "restored": {
     "G15Speed": 2.2,

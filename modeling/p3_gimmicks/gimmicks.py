@@ -136,6 +136,10 @@ G15_VARIABLES = {
 }
 D_FLUX_SLOT = "G15_GhostTrain"       # P3_Gimmicks の子。D のモジュールの配備先
 D_MODULE = "P3GhostTrain"
+# 検査用の時計（PR #66 の GPT のレビュー M-1・M-2）。列車と線路の asset root に ValueField<double> を 1 つずつ置き、モジュールが
+# WorldTimeDouble を drive する。1 回の observe で「時計 1 → 列車の中継 → 時計 2」の順に読み、位置を読んだワールドの時刻を挟む
+# （verify_d.py）。キーは 10 文字未満
+G15_CLOCK_KEYS = ("p3_g15ck1", "p3_g15ck2")
 
 
 def _c_gimmick(gid: str) -> dict:

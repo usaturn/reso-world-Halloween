@@ -11,6 +11,8 @@ out W1Rotation: floatQ
 out W2Rotation: floatQ
 out W3Rotation: floatQ
 out W4Rotation: floatQ
+out Clock1: double
+out Clock2: double
 where {
     T = WorldTimeDouble;
     SpeedIn = DynamicVariableValueInput<float>(VariableName = "HMC_P3/G15Speed");
@@ -55,4 +57,7 @@ where {
     // DAM_GhostTrain_001_EngineWheelRear: radius 0.21 m, rolls about +X
     W4H = Dist * 2.380952380952381d;
     W4Rotation = Pack_FloatQ(Sin_Double(W4H)->as<float>, 0.0, 0.0, Cos_Double(W4H)->as<float>);
+    // Clocks for the live check (verify_d.py reads Clock1, the train, then Clock2 in one observe)
+    Clock1 = T;
+    Clock2 = T;
 }
