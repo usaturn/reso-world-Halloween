@@ -9,7 +9,8 @@ replaced; the second keeps a moved non-driven Slot, and a moved TurnRoot positio
 to the P2 checks. W10-B added B: the ghosts' FloatPivots (position and rotation driven) and the door hinges (only the
 rotation driven; a moved hinge position must stay visible, it is where W09R-B put the door on M03's opening). W10-C added
 C to the observed tree (the stirring rod pivot, the witch proxy that carries M08, and the patrol loop's carrier pivot);
-``apply_rest_pose`` stops when a district with driven Slots is not observed.
+``apply_rest_pose`` stops when a district with driven Slots is not observed. W10-D added the G15 ghost train to D (the
+engine and car roots, and their four wheels whose rotation only is driven) so that the observed tree stays complete.
 """
 
 from __future__ import annotations
@@ -46,6 +47,16 @@ def _world(moved_pedestal: bool = False, moved_turn_root: bool = False, moved_hi
     d_decl = [_decl("DAM_Carousel_001", children=[
         _decl("DAM_Carousel_001_Base"),
         _decl(g13["motion_root"], pos=(0.0, 0.36, 0.0), children=[_decl("DAM_Carousel_001_SeatRoot_001", pos=(3.35, 1.05, 0.0))])])]
+    # W10-D: G15 の列車（先頭車・客車の root は位置と回転、車輪は回転だけを駆動する）
+    g15 = gimmicks.g15()
+    train_live, train_decl = [], []
+    for root_name, rest_z, live_z in ((g15["engine"], 1.0, 6.2), (g15["car"], -1.75, 5.9)):
+        wheels = [w for w, spec in g15["wheels"].items() if spec["parent"] == root_name]
+        train_live.append(_live(root_name, pos=(3.1, 0.14, live_z), rot=(0.0, 0.5, 0.0, 0.866),
+                                children=[_live(w, pos=(0.0, 0.2, 0.5), rot=(0.6, 0.0, 0.0, 0.8)) for w in wheels]))
+        train_decl.append(_decl(root_name, pos=(0.0, 0.14, rest_z), children=[_decl(w, pos=(0.0, 0.2, 0.5)) for w in wheels]))
+    d_live.append(_live(g15["asset_id"], pos=(7.5, 0.0, -31.5), children=train_live))
+    d_decl.append(_decl(g15["asset_id"], pos=(7.5, 0.0, -31.5), children=train_decl))
     b_live, b_decl = [], []
     for g in gimmicks.g05()["ghosts"]:
         b_live.append(_live(g["asset_id"], children=[_live(g["motion_root"], pos=(0.0, 0.3, 0.0), rot=(0.0, 0.17, 0.0, 0.985),

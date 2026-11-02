@@ -1,0 +1,611 @@
+{
+  "key": "A_plaza",
+  "source": "model.apply.json",
+  "output": "p2.apply.json",
+  "collider_fields": {
+    "Type": "Static",
+    "CharacterCollider": true,
+    "Sidedness": "DualSided"
+  },
+  "counts": {
+    "mesh": 40,
+    "fixed_collision": 2,
+    "none": 68,
+    "mesh_slots": 110,
+    "object_roots": 47
+  },
+  "objects": [
+    {
+      "slot": "A_plaza/APL_ClusterPumpkin_GateEast_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_ClusterPumpkin_GateEast_001"
+    },
+    {
+      "slot": "A_plaza/APL_ClusterPumpkin_GateWest_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_ClusterPumpkin_GateWest_001"
+    },
+    {
+      "slot": "A_plaza/APL_DancingPumpkin_001/APL_DancingPumpkin_001_Body",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_DancingPumpkin_001/APL_DancingPumpkin_001_Body/APL_DancingPumpkin_001_GlowAttach",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_DancingPumpkin_001/APL_DancingPumpkin_001_Pedestal",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_DancingPumpkin_001/APL_DancingPumpkin_001_Pedestal"
+    },
+    {
+      "slot": "A_plaza/APL_DancingPumpkin_002/APL_DancingPumpkin_002_Body",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_DancingPumpkin_002/APL_DancingPumpkin_002_Body/APL_DancingPumpkin_002_GlowAttach",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_DancingPumpkin_002/APL_DancingPumpkin_002_Pedestal",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_DancingPumpkin_002/APL_DancingPumpkin_002_Pedestal"
+    },
+    {
+      "slot": "A_plaza/APL_DancingPumpkin_003/APL_DancingPumpkin_003_Body",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_DancingPumpkin_003/APL_DancingPumpkin_003_Body/APL_DancingPumpkin_003_GlowAttach",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_DancingPumpkin_003/APL_DancingPumpkin_003_Pedestal",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_DancingPumpkin_003/APL_DancingPumpkin_003_Pedestal"
+    },
+    {
+      "slot": "A_plaza/APL_DancingPumpkin_004/APL_DancingPumpkin_004_Body",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_DancingPumpkin_004/APL_DancingPumpkin_004_Body/APL_DancingPumpkin_004_GlowAttach",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_DancingPumpkin_004/APL_DancingPumpkin_004_Pedestal",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_DancingPumpkin_004/APL_DancingPumpkin_004_Pedestal"
+    },
+    {
+      "slot": "A_plaza/APL_DancingPumpkin_005/APL_DancingPumpkin_005_Body",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_DancingPumpkin_005/APL_DancingPumpkin_005_Body/APL_DancingPumpkin_005_GlowAttach",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_DancingPumpkin_005/APL_DancingPumpkin_005_Pedestal",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_DancingPumpkin_005/APL_DancingPumpkin_005_Pedestal"
+    },
+    {
+      "slot": "A_plaza/APL_DancingPumpkin_006/APL_DancingPumpkin_006_Body",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_DancingPumpkin_006/APL_DancingPumpkin_006_Body/APL_DancingPumpkin_006_GlowAttach",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_DancingPumpkin_006/APL_DancingPumpkin_006_Pedestal",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_DancingPumpkin_006/APL_DancingPumpkin_006_Pedestal"
+    },
+    {
+      "slot": "A_plaza/APL_EntranceApproach_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_EntranceApproach_001"
+    },
+    {
+      "slot": "A_plaza/APL_EntranceGateProxy_001/APL_EntranceGateProxy_001_Arch",
+      "policy": "fixed_collision",
+      "reason": "Meshy の仮モデル M01 の静的な部分。差し替えの範囲の外の兄弟 Slot に置く",
+      "collider_slot": "A_plaza/APL_EntranceGateProxy_001/APL_EntranceGateProxy_001_Arch_FixedCollision"
+    },
+    {
+      "slot": "A_plaza/APL_EntranceGateProxy_001/APL_EntranceGateProxy_001_Arch/APL_EntranceGateProxy_001_BannerAttach",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "A_plaza/APL_EntranceGateProxy_001/APL_EntranceGateProxy_001_Arch/APL_EntranceGateProxy_001_LanternAttachLeft",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "A_plaza/APL_EntranceGateProxy_001/APL_EntranceGateProxy_001_Arch/APL_EntranceGateProxy_001_LanternAttachRight",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "A_plaza/APL_EntranceGateProxy_001/APL_EntranceGateProxy_001_DoorLeft",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_EntranceGateProxy_001/APL_EntranceGateProxy_001_DoorRight",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_EntranceGuideSign_001/APL_EntranceGuideSign_001_SignPost",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_EntranceGuideSign_001/APL_EntranceGuideSign_001_SignPost"
+    },
+    {
+      "slot": "A_plaza/APL_EntranceGuideSign_001/APL_EntranceGuideSign_001_SignPost/APL_EntranceGuideSign_001_LightAttach",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "A_plaza/APL_EntranceLamp_GateLeft_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_EntranceLamp_GateLeft_001"
+    },
+    {
+      "slot": "A_plaza/APL_EntranceLamp_GateRight_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_EntranceLamp_GateRight_001"
+    },
+    {
+      "slot": "A_plaza/APL_FireworksSwitch_001/APL_FireworksSwitch_001_Lever",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_FireworksSwitch_001/APL_FireworksSwitch_001_Pedestal",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_FireworksSwitch_001/APL_FireworksSwitch_001_Pedestal"
+    },
+    {
+      "slot": "A_plaza/APL_FireworksSwitch_001/APL_FireworksSwitch_001_Pedestal/APL_FireworksSwitch_001_LaunchSignalAttach",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "A_plaza/APL_FloatingCandy_001/APL_FloatingCandy_001_OrbitHub/APL_FloatingCandy_001_CandyBody",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_FloatingCandy_001/APL_FloatingCandy_001_OrbitHub/APL_FloatingCandy_001_CandyBody/APL_FloatingCandy_001_SparkleAttach",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_FloatingCandy_002/APL_FloatingCandy_002_OrbitHub/APL_FloatingCandy_002_CandyBody",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_FloatingCandy_002/APL_FloatingCandy_002_OrbitHub/APL_FloatingCandy_002_CandyBody/APL_FloatingCandy_002_SparkleAttach",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_FloatingCandy_003/APL_FloatingCandy_003_OrbitHub/APL_FloatingCandy_003_CandyBody",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_FloatingCandy_003/APL_FloatingCandy_003_OrbitHub/APL_FloatingCandy_003_CandyBody/APL_FloatingCandy_003_SparkleAttach",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_FloatingCandy_004/APL_FloatingCandy_004_OrbitHub/APL_FloatingCandy_004_CandyBody",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_FloatingCandy_004/APL_FloatingCandy_004_OrbitHub/APL_FloatingCandy_004_CandyBody/APL_FloatingCandy_004_SparkleAttach",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_Fountain_001/APL_Fountain_001_Basin",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_Fountain_001/APL_Fountain_001_Basin"
+    },
+    {
+      "slot": "A_plaza/APL_Fountain_001/APL_Fountain_001_Basin/APL_Fountain_001_LightAttach",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "A_plaza/APL_Fountain_001/APL_Fountain_001_Basin/APL_Fountain_001_SoundAttach",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "A_plaza/APL_Fountain_001/APL_Fountain_001_Basin/APL_Fountain_001_WaterAttach",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "A_plaza/APL_Fountain_001/APL_Fountain_001_Water",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_GiantJackProxy_001/APL_GiantJackProxy_001_Body",
+      "policy": "fixed_collision",
+      "reason": "Meshy の仮モデル M02 の静的な部分。差し替えの範囲の外の兄弟 Slot に置く",
+      "collider_slot": "A_plaza/APL_GiantJackProxy_001/APL_GiantJackProxy_001_Body_FixedCollision"
+    },
+    {
+      "slot": "A_plaza/APL_GiantJackProxy_001/APL_GiantJackProxy_001_Body/APL_GiantJackProxy_001_EyeLightAttach",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "A_plaza/APL_GiantJackProxy_001/APL_GiantJackProxy_001_Body/APL_GiantJackProxy_001_InteriorLightAttach",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "A_plaza/APL_GiantJackProxy_001/APL_GiantJackProxy_001_Body/APL_GiantJackProxy_001_MouthReactionAttach",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "A_plaza/APL_JackInteractionPedestal_001/APL_JackInteractionPedestal_001_Base",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_JackInteractionPedestal_001/APL_JackInteractionPedestal_001_Base"
+    },
+    {
+      "slot": "A_plaza/APL_JackInteractionPedestal_001/APL_JackInteractionPedestal_001_OrbButton",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_JackInteractionPedestal_001/APL_JackInteractionPedestal_001_OrbButton/APL_JackInteractionPedestal_001_EffectAttach",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_OuterFence_NE_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_OuterFence_NE_001"
+    },
+    {
+      "slot": "A_plaza/APL_OuterFence_NW_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_OuterFence_NW_001"
+    },
+    {
+      "slot": "A_plaza/APL_PeriodicShowRig_001/APL_PeriodicShowRig_001_Pylons",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_PeriodicShowRig_001/APL_PeriodicShowRig_001_Pylons"
+    },
+    {
+      "slot": "A_plaza/APL_PeriodicShowRig_001/APL_PeriodicShowRig_001_Pylons/APL_PeriodicShowRig_001_FireworksBurstAttach",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "A_plaza/APL_PeriodicShowRig_001/APL_PeriodicShowRig_001_Pylons/APL_PeriodicShowRig_001_FireworksLaunchAttach",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "A_plaza/APL_PeriodicShowRig_001/APL_PeriodicShowRig_001_Pylons/APL_PeriodicShowRig_001_GhostOrbitAttach_E",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "A_plaza/APL_PeriodicShowRig_001/APL_PeriodicShowRig_001_Pylons/APL_PeriodicShowRig_001_GhostOrbitAttach_N",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "A_plaza/APL_PeriodicShowRig_001/APL_PeriodicShowRig_001_Pylons/APL_PeriodicShowRig_001_GhostOrbitAttach_S",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "A_plaza/APL_PeriodicShowRig_001/APL_PeriodicShowRig_001_Pylons/APL_PeriodicShowRig_001_GhostOrbitAttach_W",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "A_plaza/APL_PeriodicShowRig_001/APL_PeriodicShowRig_001_Pylons/APL_PeriodicShowRig_001_HappyHalloweenBannerAttach",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "A_plaza/APL_PeriodicShowRig_001/APL_PeriodicShowRig_001_Pylons/APL_PeriodicShowRig_001_ShowLightAttach_NE",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "A_plaza/APL_PeriodicShowRig_001/APL_PeriodicShowRig_001_Pylons/APL_PeriodicShowRig_001_ShowLightAttach_NW",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "A_plaza/APL_PeriodicShowRig_001/APL_PeriodicShowRig_001_Pylons/APL_PeriodicShowRig_001_ShowLightAttach_SE",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "A_plaza/APL_PeriodicShowRig_001/APL_PeriodicShowRig_001_Pylons/APL_PeriodicShowRig_001_ShowLightAttach_SW",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "A_plaza/APL_PhotoArch_001/APL_PhotoArch_001_ArchStage",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_PhotoArch_001/APL_PhotoArch_001_ArchStage"
+    },
+    {
+      "slot": "A_plaza/APL_PhotoArch_001/APL_PhotoArch_001_ArchStage/APL_PhotoArch_001_SpotLightAttach",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "A_plaza/APL_PhotoArch_001/APL_PhotoArch_001_ArchStage/APL_PhotoArch_001_StandMarker",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "A_plaza/APL_PhotoSpotLantern_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_PhotoSpotLantern_001"
+    },
+    {
+      "slot": "A_plaza/APL_PlazaBench_NE_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_PlazaBench_NE_001"
+    },
+    {
+      "slot": "A_plaza/APL_PlazaBench_NW_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_PlazaBench_NW_001"
+    },
+    {
+      "slot": "A_plaza/APL_PlazaBench_SW_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_PlazaBench_SW_001"
+    },
+    {
+      "slot": "A_plaza/APL_PlazaPaving_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_PlazaPaving_001"
+    },
+    {
+      "slot": "A_plaza/APL_PortalGarland_East_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_PortalGarland_East_001"
+    },
+    {
+      "slot": "A_plaza/APL_PortalGarland_North_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_PortalGarland_North_001"
+    },
+    {
+      "slot": "A_plaza/APL_PortalGarland_West_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_PortalGarland_West_001"
+    },
+    {
+      "slot": "A_plaza/APL_PortalLamp_EastSouth_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_PortalLamp_EastSouth_001"
+    },
+    {
+      "slot": "A_plaza/APL_PortalLamp_NorthEast_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_PortalLamp_NorthEast_001"
+    },
+    {
+      "slot": "A_plaza/APL_PortalLamp_SouthWest_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_PortalLamp_SouthWest_001"
+    },
+    {
+      "slot": "A_plaza/APL_PortalLamp_WestNorth_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_PortalLamp_WestNorth_001"
+    },
+    {
+      "slot": "A_plaza/APL_SeqLantern_001/APL_SeqLantern_001_LanternHead",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_SeqLantern_001/APL_SeqLantern_001_LanternHead/APL_SeqLantern_001_LightAttach",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_SeqLantern_001/APL_SeqLantern_001_Pillar",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_SeqLantern_001/APL_SeqLantern_001_Pillar"
+    },
+    {
+      "slot": "A_plaza/APL_SeqLantern_002/APL_SeqLantern_002_LanternHead",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_SeqLantern_002/APL_SeqLantern_002_LanternHead/APL_SeqLantern_002_LightAttach",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_SeqLantern_002/APL_SeqLantern_002_Pillar",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_SeqLantern_002/APL_SeqLantern_002_Pillar"
+    },
+    {
+      "slot": "A_plaza/APL_SeqLantern_003/APL_SeqLantern_003_LanternHead",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_SeqLantern_003/APL_SeqLantern_003_LanternHead/APL_SeqLantern_003_LightAttach",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_SeqLantern_003/APL_SeqLantern_003_Pillar",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_SeqLantern_003/APL_SeqLantern_003_Pillar"
+    },
+    {
+      "slot": "A_plaza/APL_SeqLantern_004/APL_SeqLantern_004_LanternHead",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_SeqLantern_004/APL_SeqLantern_004_LanternHead/APL_SeqLantern_004_LightAttach",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_SeqLantern_004/APL_SeqLantern_004_Pillar",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_SeqLantern_004/APL_SeqLantern_004_Pillar"
+    },
+    {
+      "slot": "A_plaza/APL_SeqLantern_005/APL_SeqLantern_005_LanternHead",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_SeqLantern_005/APL_SeqLantern_005_LanternHead/APL_SeqLantern_005_LightAttach",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_SeqLantern_005/APL_SeqLantern_005_Pillar",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_SeqLantern_005/APL_SeqLantern_005_Pillar"
+    },
+    {
+      "slot": "A_plaza/APL_SeqLantern_006/APL_SeqLantern_006_LanternHead",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_SeqLantern_006/APL_SeqLantern_006_LanternHead/APL_SeqLantern_006_LightAttach",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_SeqLantern_006/APL_SeqLantern_006_Pillar",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_SeqLantern_006/APL_SeqLantern_006_Pillar"
+    },
+    {
+      "slot": "A_plaza/APL_SeqLantern_007/APL_SeqLantern_007_LanternHead",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_SeqLantern_007/APL_SeqLantern_007_LanternHead/APL_SeqLantern_007_LightAttach",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_SeqLantern_007/APL_SeqLantern_007_Pillar",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_SeqLantern_007/APL_SeqLantern_007_Pillar"
+    },
+    {
+      "slot": "A_plaza/APL_SeqLantern_008/APL_SeqLantern_008_LanternHead",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_SeqLantern_008/APL_SeqLantern_008_LanternHead/APL_SeqLantern_008_LightAttach",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_SeqLantern_008/APL_SeqLantern_008_Pillar",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_SeqLantern_008/APL_SeqLantern_008_Pillar"
+    },
+    {
+      "slot": "A_plaza/APL_TrickOrTreatStand_001/APL_TrickOrTreatStand_001_Button",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "A_plaza/APL_TrickOrTreatStand_001/APL_TrickOrTreatStand_001_Stand",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "A_plaza/APL_TrickOrTreatStand_001/APL_TrickOrTreatStand_001_Stand"
+    },
+    {
+      "slot": "A_plaza/APL_TrickOrTreatStand_001/APL_TrickOrTreatStand_001_Stand/APL_TrickOrTreatStand_001_CandyPopAttach",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    }
+  ]
+}

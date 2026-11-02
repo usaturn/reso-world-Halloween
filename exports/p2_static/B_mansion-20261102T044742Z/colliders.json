@@ -1,0 +1,272 @@
+{
+  "key": "B_mansion",
+  "source": "model.apply.json",
+  "output": "p2.apply.json",
+  "collider_fields": {
+    "Type": "Static",
+    "CharacterCollider": true,
+    "Sidedness": "DualSided"
+  },
+  "counts": {
+    "mesh": 27,
+    "fixed_collision": 1,
+    "none": 17,
+    "mesh_slots": 45,
+    "object_roots": 31
+  },
+  "objects": [
+    {
+      "slot": "B_mansion/BMN_CMN_Bench_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "B_mansion/BMN_CMN_Bench_001"
+    },
+    {
+      "slot": "B_mansion/BMN_CMN_Bench_002",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "B_mansion/BMN_CMN_Bench_002"
+    },
+    {
+      "slot": "B_mansion/BMN_CMN_Fence_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "B_mansion/BMN_CMN_Fence_001"
+    },
+    {
+      "slot": "B_mansion/BMN_CMN_Fence_002",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "B_mansion/BMN_CMN_Fence_002"
+    },
+    {
+      "slot": "B_mansion/BMN_CMN_Fence_003",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "B_mansion/BMN_CMN_Fence_003"
+    },
+    {
+      "slot": "B_mansion/BMN_CMN_Fence_004",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "B_mansion/BMN_CMN_Fence_004"
+    },
+    {
+      "slot": "B_mansion/BMN_CMN_Lantern_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "B_mansion/BMN_CMN_Lantern_001"
+    },
+    {
+      "slot": "B_mansion/BMN_CMN_Lantern_002",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "B_mansion/BMN_CMN_Lantern_002"
+    },
+    {
+      "slot": "B_mansion/BMN_CMN_SmallPumpkin_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "B_mansion/BMN_CMN_SmallPumpkin_001"
+    },
+    {
+      "slot": "B_mansion/BMN_CMN_SmallPumpkin_002",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "B_mansion/BMN_CMN_SmallPumpkin_002"
+    },
+    {
+      "slot": "B_mansion/BMN_CMN_StreetLamp_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "B_mansion/BMN_CMN_StreetLamp_001"
+    },
+    {
+      "slot": "B_mansion/BMN_CMN_StreetLamp_002",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "B_mansion/BMN_CMN_StreetLamp_002"
+    },
+    {
+      "slot": "B_mansion/BMN_CMN_StreetLamp_003",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "B_mansion/BMN_CMN_StreetLamp_003"
+    },
+    {
+      "slot": "B_mansion/BMN_CMN_StreetLamp_004",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "B_mansion/BMN_CMN_StreetLamp_004"
+    },
+    {
+      "slot": "B_mansion/BMN_CourtyardGround_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "B_mansion/BMN_CourtyardGround_001"
+    },
+    {
+      "slot": "B_mansion/BMN_DeadTree_001/BMN_DeadTree_001_LanternHook",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "B_mansion/BMN_DeadTree_001/BMN_DeadTree_001_Trunk",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "B_mansion/BMN_DeadTree_001/BMN_DeadTree_001_Trunk"
+    },
+    {
+      "slot": "B_mansion/BMN_DeadTree_002/BMN_DeadTree_002_LanternHook",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "B_mansion/BMN_DeadTree_002/BMN_DeadTree_002_Trunk",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "B_mansion/BMN_DeadTree_002/BMN_DeadTree_002_Trunk"
+    },
+    {
+      "slot": "B_mansion/BMN_EntranceHall_001/BMN_EntranceHall_001_ChandelierHook",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "B_mansion/BMN_EntranceHall_001/BMN_EntranceHall_001_Room",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "B_mansion/BMN_EntranceHall_001/BMN_EntranceHall_001_Room"
+    },
+    {
+      "slot": "B_mansion/BMN_FloatingGhost_001/BMN_FloatingGhost_001_FloatPivot/BMN_FloatingGhost_001_GhostBody",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "B_mansion/BMN_FloatingGhost_001/BMN_FloatingGhost_001_FloatPivot/BMN_FloatingGhost_001_LanternCharm",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "B_mansion/BMN_FloatingGhost_002/BMN_FloatingGhost_002_FloatPivot/BMN_FloatingGhost_002_GhostBody",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "B_mansion/BMN_FloatingGhost_002/BMN_FloatingGhost_002_FloatPivot/BMN_FloatingGhost_002_LanternCharm",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "B_mansion/BMN_FrontGate_001/BMN_FrontGate_001_Arch",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "B_mansion/BMN_FrontGate_001/BMN_FrontGate_001_Arch"
+    },
+    {
+      "slot": "B_mansion/BMN_FrontGate_001/BMN_FrontGate_001_HookEast",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "B_mansion/BMN_FrontGate_001/BMN_FrontGate_001_HookWest",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "B_mansion/BMN_MansionBell_001/BMN_MansionBell_001_BellHinge/BMN_MansionBell_001_BellBody",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "B_mansion/BMN_MansionBell_001/BMN_MansionBell_001_SoundPoint",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "B_mansion/BMN_MansionBell_001/BMN_MansionBell_001_Stand",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "B_mansion/BMN_MansionBell_001/BMN_MansionBell_001_Stand"
+    },
+    {
+      "slot": "B_mansion/BMN_MansionDoubleDoor_001/BMN_MansionDoubleDoor_001_Frame",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "B_mansion/BMN_MansionDoubleDoor_001/BMN_MansionDoubleDoor_001_Frame"
+    },
+    {
+      "slot": "B_mansion/BMN_MansionDoubleDoor_001/BMN_MansionDoubleDoor_001_HingeLeft/BMN_MansionDoubleDoor_001_LeafLeft",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "B_mansion/BMN_MansionDoubleDoor_001/BMN_MansionDoubleDoor_001_HingeRight/BMN_MansionDoubleDoor_001_LeafRight",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "B_mansion/BMN_MansionPlaceholder_001",
+      "policy": "fixed_collision",
+      "reason": "Meshy の仮モデル M03 の静的な部分。差し替えの範囲の外の兄弟 Slot に置く",
+      "collider_slot": "B_mansion/BMN_MansionPlaceholder_001_FixedCollision"
+    },
+    {
+      "slot": "B_mansion/BMN_Tombstone_001/BMN_Tombstone_001_StaticBase",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "B_mansion/BMN_Tombstone_001/BMN_Tombstone_001_StaticBase"
+    },
+    {
+      "slot": "B_mansion/BMN_Tombstone_001/BMN_Tombstone_001_TiltHinge/BMN_Tombstone_001_Slab",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "B_mansion/BMN_Tombstone_002/BMN_Tombstone_002_StaticBase",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "B_mansion/BMN_Tombstone_002/BMN_Tombstone_002_StaticBase"
+    },
+    {
+      "slot": "B_mansion/BMN_Tombstone_002/BMN_Tombstone_002_TiltHinge/BMN_Tombstone_002_Slab",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "B_mansion/BMN_Tombstone_003",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "B_mansion/BMN_Tombstone_003"
+    },
+    {
+      "slot": "B_mansion/BMN_Tombstone_004",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "B_mansion/BMN_Tombstone_004"
+    },
+    {
+      "slot": "B_mansion/BMN_WindowGhost_001/BMN_WindowGhost_001_PeekPivot/BMN_WindowGhost_001_GhostBody",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "B_mansion/BMN_WindowGhost_001/BMN_WindowGhost_001_WindowFrame",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "B_mansion/BMN_WindowGhost_001/BMN_WindowGhost_001_WindowFrame"
+    },
+    {
+      "slot": "B_mansion/BMN_WindowGhost_002/BMN_WindowGhost_002_PeekPivot/BMN_WindowGhost_002_GhostBody",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "B_mansion/BMN_WindowGhost_002/BMN_WindowGhost_002_WindowFrame",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "B_mansion/BMN_WindowGhost_002/BMN_WindowGhost_002_WindowFrame"
+    }
+  ]
+}

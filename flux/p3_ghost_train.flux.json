@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "1",
+  "projectDirectory": ".",
+  "parent": "Root/HalloweenMagicalCarnival/P3_Gimmicks/G15_GhostTrain",
+  "worldState": "../.resoloop/state/p2_D_amusement.json",
+  "deployState": "../.resoloop/flux-state/p3_ghost_train.json",
+  "modules": [
+    {
+      "name": "p3-ghost-train",
+      "source": "P3GhostTrain.pg",
+      "module": "P3GhostTrain",
+      "bindings": {
+        "EnginePosition": {
+          "target": "$member:p3_g15_position_object_DAM_GhostTrain_001_EngineRoot_3a4b021a.Value",
+          "mode": "drive"
+        },
+        "EngineRotation": {
+          "target": "$member:p3_g15_rotation_object_DAM_GhostTrain_001_EngineRoot_3a4b021a.Value",
+          "mode": "drive"
+        },
+        "CarPosition": {
+          "target": "$member:p3_g15_position_object_DAM_GhostTrain_001_CarRoot_001_45b21607.Value",
+          "mode": "drive"
+        },
+        "CarRotation": {
+          "target": "$member:p3_g15_rotation_object_DAM_GhostTrain_001_CarRoot_001_45b21607.Value",
+          "mode": "drive"
+        },
+        "W1Rotation": {
+          "target": "$member:p3_g15_rotation_object_DAM_GhostTrain_001_CarWheelFront_001_6b9fe074.Value",
+          "mode": "drive"
+        },
+        "W2Rotation": {
+          "target": "$member:p3_g15_rotation_object_DAM_GhostTrain_001_CarWheelRear_001_5ac93bf1.Value",
+          "mode": "drive"
+        },
+        "W3Rotation": {
+          "target": "$member:p3_g15_rotation_object_DAM_GhostTrain_001_EngineWheelFront_f1579547.Value",
+          "mode": "drive"
+        },
+        "W4Rotation": {
+          "target": "$member:p3_g15_rotation_object_DAM_GhostTrain_001_EngineWheelRear_5dd04df7.Value",
+          "mode": "drive"
+        },
+        "Clock1": {
+          "target": "$member:p3_g15ck1.Value",
+          "mode": "drive"
+        },
+        "Clock2": {
+          "target": "$member:p3_g15ck2.Value",
+          "mode": "drive"
+        }
+      }
+    }
+  ]
+}

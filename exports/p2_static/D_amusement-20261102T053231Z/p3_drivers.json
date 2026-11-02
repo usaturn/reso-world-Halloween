@@ -1,0 +1,168 @@
+[
+  {
+    "slot": "D_amusement/DAM_Carousel_001/DAM_Carousel_001_TurnRoot",
+    "managedFields": [
+      "position",
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        0.0,
+        0.36000001430511475,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "spinner": {
+      "component": "p3_spinner_object_DAM_Carousel_001_TurnRoot_53401a13",
+      "_speed": [
+        0.0,
+        -18.0,
+        0.0
+      ]
+    }
+  },
+  {
+    "slot": "D_amusement/DAM_GhostTrain_001/DAM_GhostTrain_001_EngineRoot",
+    "managedFields": [
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        0.0,
+        0.14000000059604645,
+        1.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "relays": [
+      "p3_g15_position_object_DAM_GhostTrain_001_EngineRoot_3a4b021a",
+      "p3_g15_rotation_object_DAM_GhostTrain_001_EngineRoot_3a4b021a"
+    ]
+  },
+  {
+    "slot": "D_amusement/DAM_GhostTrain_001/DAM_GhostTrain_001_CarRoot_001",
+    "managedFields": [
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        0.0,
+        0.14000000059604645,
+        -1.75
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "relays": [
+      "p3_g15_position_object_DAM_GhostTrain_001_CarRoot_001_45b21607",
+      "p3_g15_rotation_object_DAM_GhostTrain_001_CarRoot_001_45b21607"
+    ]
+  },
+  {
+    "slot": "D_amusement/DAM_GhostTrain_001/DAM_GhostTrain_001_CarRoot_001/DAM_GhostTrain_001_CarWheelFront_001",
+    "managedFields": [
+      "position",
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        0.0,
+        0.20000000298023224,
+        0.6800003051757812
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "relays": [
+      "p3_g15_rotation_object_DAM_GhostTrain_001_CarWheelFront_001_6b9fe074"
+    ]
+  },
+  {
+    "slot": "D_amusement/DAM_GhostTrain_001/DAM_GhostTrain_001_CarRoot_001/DAM_GhostTrain_001_CarWheelRear_001",
+    "managedFields": [
+      "position",
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        0.0,
+        0.20000000298023224,
+        -0.779998779296875
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "relays": [
+      "p3_g15_rotation_object_DAM_GhostTrain_001_CarWheelRear_001_5ac93bf1"
+    ]
+  },
+  {
+    "slot": "D_amusement/DAM_GhostTrain_001/DAM_GhostTrain_001_EngineRoot/DAM_GhostTrain_001_EngineWheelFront",
+    "managedFields": [
+      "position",
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        0.0,
+        0.20999999344348907,
+        0.4139995574951172
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "relays": [
+      "p3_g15_rotation_object_DAM_GhostTrain_001_EngineWheelFront_f1579547"
+    ]
+  },
+  {
+    "slot": "D_amusement/DAM_GhostTrain_001/DAM_GhostTrain_001_EngineRoot/DAM_GhostTrain_001_EngineWheelRear",
+    "managedFields": [
+      "position",
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        0.0,
+        0.20999999344348907,
+        -0.4139995574951172
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "relays": [
+      "p3_g15_rotation_object_DAM_GhostTrain_001_EngineWheelRear_5dd04df7"
+    ]
+  }
+]

@@ -20,6 +20,9 @@ modeling/p2_static/export_p2.py から、当たり判定（colliders.compose）�
 - G09・G11（W10-C）: C の攪拌棒の Pivot に回転の中継 1 つ（managedFields ["position", "scale"]）、魔女の仮モデルの root
   （M08 の素材の宣言の親）と巡回路の CarrierPivot に位置・回転の中継 2 つずつ（managedFields ["scale"]）。液面の専用の材質と
   泡・煙の粒子（add_g09_effects）。それぞれを ProtoFlux（flux/P3CandyStreet.pg）が drive する
+- G15（W10-D）: D の列車の先頭車の root（M06 の素材の宣言の親の親）と客車の root に位置・回転の中継 2 つずつ（managedFields
+  ["scale"]）、4 つの車輪に回転の中継 1 つずつ（managedFields ["position", "scale"]）。それぞれを ProtoFlux（flux/P3GhostTrain.pg）が
+  drive する。G13 の Spinner は変えない。検査用の時計（add_g15_clock）を列車と線路の asset root に 1 つずつ足す
 """
 
 from __future__ import annotations
@@ -56,6 +59,12 @@ def relay_members(key: str, name: str) -> tuple[str, list[str]] | None:
             return "g09", ["Rotation"]
         if name in {gimmicks.g11()["rider"], gimmicks.g11()["carrier"]}:
             return "g11", ["Position", "Rotation"]
+    if key == gimmicks.g15()["district"]:
+        g15 = gimmicks.g15()
+        if name in {g15["engine"], g15["car"]}:
+            return "g15", ["Position", "Rotation"]
+        if name in g15["wheels"]:
+            return "g15", ["Rotation"]   # 車輪は軸まわりの回転だけ（位置は静的な apply が管理し続ける）
     return None
 
 
@@ -280,11 +289,36 @@ def add_g09_effects(doc: dict, key: str) -> list[dict]:
     return rows
 
 
+def add_g15_clock(doc: dict, key: str) -> list[dict]:
+    """W10-D（G15）: 検査用の時計（ValueField<double>。gimmicks.G15_CLOCK_KEYS）を、列車の asset root と線路の asset root に 1 つずつ
+    足す（同じ Slot に同じ型を 2 つ置くと、再接続の後に見分ける手掛かりが無い。resoloop の APPLY_COMPONENT_IDENTITY_RISK）。
+    ProtoFlux（flux/P3GhostTrain.pg）が WorldTimeDouble を drive するので Value は initialFields。動く物ではなく、見た目も変えない。"""
+    g = gimmicks.g15()
+    if key != g["district"]:
+        return []
+    owners = (g["asset_id"], g["track_asset_id"])
+    hits: dict[str, list[tuple[list[str], dict]]] = {}
+    _find_named(doc, [doc["slot"]["name"]], set(owners), hits)
+    rows = []
+    for owner, k in zip(owners, gimmicks.G15_CLOCK_KEYS):
+        found = hits.get(owner, [])
+        if len(found) != 1:
+            raise ValueError(f"{key}: expected one Slot named {owner}, found {len(found)}")
+        chain, node = found[0]
+        comps = node.setdefault("components", [])
+        if any(c.get("key") == k for c in comps):
+            raise ValueError(f"{key}: {k} is already declared")
+        comps.append({"key": k, "type": "[FrooxEngine]FrooxEngine.ValueField<double>", "initialFields": {"Value": 0.0}})
+        rows.append({"slot": "/".join(chain), "g15_clock": k})
+    return rows
+
+
 def add_drivers_in_file(p2_path: Path, key: str) -> list[dict]:
-    """p2.apply.json を読み、add_drivers・add_g03_material・add_g09_effects を適用して書き戻す（対象が無いキーではファイルを変えない）。"""
+    """p2.apply.json を読み、add_drivers・add_g03_material・add_g09_effects・add_g15_clock を適用して書き戻す（対象が無いキーでは
+    ファイルを変えない）。"""
     if key not in gimmicks.driven_slots() and key != gimmicks.g03()["district"]:
         return []
     doc = json.loads(p2_path.read_text(encoding="utf-8"))
-    rows = add_drivers(doc, key) + add_g03_material(doc, key) + add_g09_effects(doc, key)
+    rows = add_drivers(doc, key) + add_g03_material(doc, key) + add_g09_effects(doc, key) + add_g15_clock(doc, key)
     p2_path.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return rows

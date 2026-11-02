@@ -124,6 +124,24 @@ C_FLUX_SLOT = "G09_G11_Candy"        # P3_Gimmicks の子。C のモジュール
 C_MODULE = "P3CandyStreet"
 
 
+# W10-D: G15 おばけ列車の周回（D 南・パンプキン遊園地）。経路（スタジアム型）・推奨の速さ・先頭車と客車の弧の差は W05 の
+# layout/areas/D_amusement.json の gimmick_specs.G15_ghost_train_loop、部品は assets/manifest/D_amusement.json から読む。
+# ProtoFlux のモジュールは D 用に 1 つ（worldState は D の state。G13 の Spinner と同じ地区。docs/p3-gimmicks.md 19 章）
+G15_VARIABLES = {
+    # 既定は W05 の recommended_speed_m_per_sec（g15() が食い違いを止める）
+    "G15Speed": {"key": "g15_speed", "default": 2.2, "min": 0.0, "max": 3.0,
+                 "meaning": "周回の速さ（m/秒。既定は W05 の推奨 2.2 m/s で 1 周 約 16.5 秒）。0 で止まる"},
+    "G15Phase": {"key": "g15_phase", "default": 0.0, "min": 0.0, "max": 1.0,
+                 "meaning": "周回の位置のずらし（1 周の割合、0〜1。0 で W05 の基準の位置）"},
+}
+D_FLUX_SLOT = "G15_GhostTrain"       # P3_Gimmicks の子。D のモジュールの配備先
+D_MODULE = "P3GhostTrain"
+# 検査用の時計（PR #66 の GPT のレビュー M-1・M-2）。列車と線路の asset root に ValueField<double> を 1 つずつ置き、モジュールが
+# WorldTimeDouble を drive する。1 回の observe で「時計 1 → 列車の中継 → 時計 2」の順に読み、位置を読んだワールドの時刻を挟む
+# （verify_d.py）。キーは 10 文字未満
+G15_CLOCK_KEYS = ("p3_g15ck1", "p3_g15ck2")
+
+
 def _c_gimmick(gid: str) -> dict:
     hits = [g for g in _load("layout/areas/C_candy.json")["Hero_or_Gimmick"] if g["gimmick_id"] == gid]
     if len(hits) != 1:
@@ -324,6 +342,127 @@ def g13() -> dict:
     }
 
 
+def stadium_pose(u: float, radius: float, straight: float) -> tuple[float, float, float]:
+    """スタジアム型の閉じた経路の、始点からの弧の長さ u（0〜周の長さ）の位置と向き。
+
+    線路の中心のローカル（Blender の x・y）で、始点は西の直線の南の端 (−R, −S/2)。西の直線を +Y へ → 北の半円 → 東の直線を −Y へ
+    → 南の半円の順（上から見て時計回り。W05 の stadium_oval_clockwise）。各区間の進み具合を 0〜1 に収めて足すので、区間の分岐が
+    要らない（ProtoFlux の式も同じ形。build_content.protograph_d）:
+        d1 = S·clamp01(u/S)、β1 = π·clamp01((u − S)/πR)、d2 = S·clamp01((u − S − πR)/S)、β2 = π·clamp01((u − 2S − πR)/πR)
+        x = −R − R cos β1 + R cos β2、y = −S/2 + d1 + R sin β1 − d2 − R sin β2
+    返す 3 つ目は進む向き θ = β1 + β2（ラジアン）。正面（Blender の +Y = Resonite の +Z）を Resonite の Y まわりに θ 回した向き
+    （Blender の Z まわりは −θ。W05 の yaw_z_deg）。
+    """
+    r, s = float(radius), float(straight)
+    half = math.pi * r
+
+    def c01(x: float) -> float:
+        return min(max(x, 0.0), 1.0)
+
+    d1 = s * c01(u / s)
+    b1 = math.pi * c01((u - s) / half)
+    d2 = s * c01((u - s - half) / s)
+    b2 = math.pi * c01((u - 2.0 * s - half) / half)
+    x = -r - r * math.cos(b1) + r * math.cos(b2)
+    y = -s / 2.0 + d1 + r * math.sin(b1) - d2 - r * math.sin(b2)
+    return x, y, b1 + b2
+
+
+def stadium_arc(x: float, y: float, radius: float, straight: float) -> tuple[float, float]:
+    """stadium_pose の逆。線路の中心のローカルの水平の位置に最も近い経路の点の弧の位置 u と、経路からの距離。"""
+    r, s = float(radius), float(straight)
+    half = math.pi * r
+    if y > s / 2.0:            # 北の半円（中心 (0, S/2)）。β1 = π − α
+        a = math.atan2(y - s / 2.0, x)
+        return s + r * (math.pi - a), abs(math.hypot(x, y - s / 2.0) - r)
+    if y < -s / 2.0:           # 南の半円（中心 (0, −S/2)）。β2 = −α
+        a = math.atan2(y + s / 2.0, x)
+        return 2.0 * s + half + r * (-a), abs(math.hypot(x, y + s / 2.0) - r)
+    if x < 0.0:                # 西の直線（+Y へ）
+        return y + s / 2.0, abs(x + r)
+    return s + half + (s / 2.0 - y), abs(x - r)   # 東の直線（−Y へ）
+
+
+def g15() -> dict:
+    """G15 のおばけ列車。経路（スタジアム型）・速さ・先頭車と客車の弧の差と、駆動する Slot（先頭車・客車の root と 4 つの車輪）。
+
+    - 経路の式（stadium_pose）が W05 の経路点 20 個（位置と向き）と周の長さに合わなければ止める（式とデータの食い違い）
+    - 位置は列車の asset root（DAM_GhostTrain_001）のローカル。線路の中心の asset root からの差（Blender）と、レールの上面の高さ
+    - 先頭車・客車の基準の弧の位置は、アセット一覧の pivot_local（基準姿勢）を経路に照らして求める（build_content が宣言とも照合する）
+    - 車輪は先頭車・客車の root の子で名前に Wheel を含む部品。root の原点はレールの上面なので、軸の高さ（pivot_local の z）が半径
+    """
+    spec = _load("layout/areas/D_amusement.json")["gimmick_specs"]["G15_ghost_train_loop"]
+    if (spec["loop_shape"] != "stadium_oval_clockwise" or spec["forward_axis_local"] != "+Y" or spec["up_axis_local"] != "+Z"
+            or spec["wheel_spin_axis_local"] != "+X"):
+        raise ValueError(f"G15: unsupported loop {spec['loop_shape']} {spec['forward_axis_local']} {spec['wheel_spin_axis_local']}")
+    r, s = float(spec["curve_radius_m"]), float(spec["straight_length_m"])
+    length = 2.0 * s + 2.0 * math.pi * r
+    if abs(length - float(spec["total_loop_length_m"])) > 1e-3:
+        raise ValueError(f"G15: loop length {length} != {spec['total_loop_length_m']}")
+    # 経路点の位置・向きは弧の上（曲線は 22.5° ごと）。distance_m は曲線を弦で足した値なので使わない（弧の長さとの差は最大
+    # 約 0.18 m。周の長さ total_loop_length_m は弧の長さ）。位置から弧の位置を求め、式の位置・向きと照合する
+    arcs = []
+    for w in spec["waypoints"]:
+        px, py = (float(c) for c in w["position_local"][:2])
+        u, off = stadium_arc(px, py, r, s)
+        x, y, th = stadium_pose(u, r, s)
+        dyaw = (math.degrees(-th) - float(w["yaw_z_deg"]) + 180.0) % 360.0 - 180.0
+        if off > 1e-3 or math.hypot(x - px, y - py) > 1e-3 or abs(dyaw) > 0.01 \
+                or abs(float(w["position_local"][2]) - float(spec["rail_top_z_world_m"])) > 1e-6:
+            raise ValueError(f"G15: waypoint {w['index']} {w['position_local']} {w['yaw_z_deg']} is not on the loop "
+                             f"(u {u}, off {off}, yaw {-math.degrees(th)})")
+        arcs.append(u)
+    if arcs != sorted(arcs) or arcs[0] > 1e-6:
+        raise ValueError(f"G15: waypoints are not in the travel order from the start {arcs}")
+    speed = float(spec["recommended_speed_m_per_sec"])
+    if abs(G15_VARIABLES["G15Speed"]["default"] - speed) > 1e-9:
+        raise ValueError(f"G15: G15Speed default {G15_VARIABLES['G15Speed']['default']} != W05 {speed}")
+    asset = next(a for a in _load("assets/manifest/D_amusement.json")["assets"] if a["asset_id"] == spec["train_asset_id"])
+    roots = asset["hierarchy"]["motion_roots"]
+    if len(roots) != 2:
+        raise ValueError(f"G15: expected the engine and one car, got {roots}")
+    parts = {p["part_id"]: p for p in asset["parts"]}
+    engine, car = (next(r_ for r_ in roots if "Engine" in r_), next(r_ for r_ in roots if "Car" in r_))
+    origin = [float(c) for c in asset["origin_world"]]
+    center = [float(spec["track_center_world"][i]) - origin[i] for i in range(2)]
+    rail = float(spec["rail_top_z_world_m"]) - origin[2]
+    rest_arc = {}
+    for name in (engine, car):
+        p = parts[name]["pivot_local"]
+        if abs(float(p[2]) - rail) > 1e-6:
+            raise ValueError(f"G15: {name} rest height {p[2]} is not the rail top {rail}")
+        # 基準姿勢は西の直線の上（x = −R、向き +Y）。弧の位置 u = y + S/2
+        tx, ty = float(p[0]) - center[0], float(p[1]) - center[1]
+        u = ty + s / 2.0
+        x, y, _ = stadium_pose(u, r, s)
+        if not (0.0 <= u <= s) or math.hypot(x - tx, y - ty) > 1e-6:
+            raise ValueError(f"G15: {name} rest {p} is not on the west straight")
+        rest_arc[name] = u
+    gap = rest_arc[engine] - rest_arc[car]
+    if abs(gap - float(spec["engine_to_car_arc_offset_m"])) > 1e-6:
+        raise ValueError(f"G15: rest arc gap {gap} != {spec['engine_to_car_arc_offset_m']}")
+    wheels = {}
+    for pid, p in parts.items():
+        if "Wheel" in pid and p["parent_part"] in (engine, car):
+            wheels[pid] = {"parent": p["parent_part"], "radius_m": float(p["pivot_local"][2]),
+                           "rest_local_blender": [float(c) for c in p["pivot_local"]]}
+    if sorted(w["parent"] for w in wheels.values()) != sorted([engine, engine, car, car]):
+        raise ValueError(f"G15: expected two wheels on the engine and the car, got {sorted(wheels)}")
+    return {"gimmick_id": "G15", "district": "D_amusement", "asset_id": asset["asset_id"], "track_asset_id": spec["track_asset_id"],
+            "engine": engine, "car": car, "wheels": dict(sorted(wheels.items())), "radius_m": r, "straight_m": s, "length_m": length,
+            "center_local_blender": center, "rail_local_z": rail, "rest_arc_m": rest_arc, "arc_offset_m": gap, "speed_m_s": speed,
+            "waypoints": spec["waypoints"], "waypoint_arc_m": arcs, "origin_world": origin,
+            "managed_fields": ["scale"], "wheel_managed_fields": ["position", "scale"]}
+
+
+def g15_car_pose(u: float, g: dict | None = None) -> tuple[list[float], float]:
+    """弧の位置 u の、列車の asset root のローカルの位置（Resonite の (x, y, z)）と、Resonite の Y まわりの向き（ラジアン）。"""
+    g = g or g15()
+    x, y, th = stadium_pose(u % g["length_m"], g["radius_m"], g["straight_m"])
+    c = g["center_local_blender"]
+    return [c[0] + x, g["rail_local_z"], c[1] + y], th
+
+
 def g01() -> dict:
     """G01 の 6 体。motion_root（_Body）・基準姿勢・範囲・位相。"""
     rows = []
@@ -357,11 +496,16 @@ def driven_slots() -> dict[str, dict[str, list[str]]]:
     """地区ごとの、P3 が位置・回転を駆動する Slot の名前と、静的な apply が管理し続ける変換（managedFields）。"""
     a = g01()
     d = g13()
+    d15 = g15()
     b5, b6 = g05(), g06()
     c9, c11 = g09(), g11()
+    if d15["district"] != d["district"]:
+        raise ValueError("G13 and G15 are expected in the same district")
     return {
         a["district"]: {p["motion_root"]: a["managed_fields"] for p in a["pumpkins"]},
-        d["district"]: {d["motion_root"]: d["managed_fields"]},
+        # G13 は TurnRoot の回転だけ、G15 は先頭車・客車の root の位置と回転と、4 つの車輪の回転だけ
+        d["district"]: {d["motion_root"]: d["managed_fields"], d15["engine"]: d15["managed_fields"], d15["car"]: d15["managed_fields"],
+                        **{w: d15["wheel_managed_fields"] for w in d15["wheels"]}},
         b5["district"]: {**{g["motion_root"]: b5["managed_fields"] for g in b5["ghosts"]},
                          **{h["motion_root"]: b6["managed_fields"] for h in b6["hinges"]}},
         # G09 は攪拌棒の Pivot の回転だけ、G11 は仮モデルの root と CarrierPivot の位置と回転
