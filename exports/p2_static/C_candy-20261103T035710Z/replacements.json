@@ -1,0 +1,14 @@
+[
+  {
+    "meshy_id": "M04",
+    "slot": "C_candy/CCD_M04_CandyWorkshopProxy_001",
+    "component": "renderer_CCD_M04_CandyWorkshopProxy_001_6bfae411",
+    "Enabled": false
+  },
+  {
+    "meshy_id": "M08",
+    "slot": "C_candy/CCD_M08_FlyingWitchProxy_001",
+    "component": "renderer_CCD_M08_FlyingWitchProxy_001_51212c6a",
+    "Enabled": false
+  }
+]

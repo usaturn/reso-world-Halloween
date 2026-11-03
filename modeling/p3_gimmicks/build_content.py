@@ -73,6 +73,23 @@ ProtoGraph の式（G15。R・S・L は W05 の曲線の半径・直線の長さ
     車輪: 回転 X(D / r_w)                         （Resonite の +X まわりの正 = 上端が前（+Z）へ進む = 前へ転がる）
     検査用の時計: Clock1 = Clock2 = t              （列車と線路の asset root の ValueField<double>。verify_d.py が位置と同じ observe で読む）
 
+W10-E（G18・G20）で足した物:
+- content/p3_gimmicks.json に G18・G20 の値 4 つ（HMC_P3/G18Intensity・G18Speed・G20BellSwing・G20BellInterval）と、モジュールの
+  配備先 G18_G20_Forest
+- flux/P3ForestClock.pg: キノコ 14 個の個体ごとの材質の EmissiveColor、時針・分針・鐘の Pivot の回転、検査用の時計を出すモジュール
+- flux/p3_forest_clock.flux.json: その出力を E の材質・中継・時計へ drive で結ぶマニフェスト（worldState は E の state）
+
+ProtoGraph の式（G18。i は個体、T_i・φ_i・lo_i・hi_i は W06 の period_s・phase_s・intensity_min・max、E0 は P2 の発光（線形））:
+    I = clamp(G18Intensity, 0, 2)、S = clamp(G18Speed, 0, 3)
+    θ_i = 2π (S t + φ_i) / T_i                  （t は WorldTimeDouble）
+    発光_i = I (lo_i + (hi_i − lo_i)(0.5 + 0.5 sin θ_i)) × E0    （Linear の colorX。I = 1 で P2 の発光の lo〜hi 倍）
+ProtoGraph の式（G20。L は見る人の端末のローカル時刻 ToLocalTime(UtcNow)、s は L の 0 時からの秒）:
+    時針 = Z(2π × repeat01(s / 43200))、分針 = Z(2π × repeat01(s / 3600))   （Pivot のローカル +Z まわりの正 = 前から見て時計回り）
+    A = 25° × clamp01(G20BellSwing)、N = clamp(G20BellInterval, 20, 3600)
+    τ = N × repeat01(s / N)、x = clamp01(τ / 12)
+    鐘 = X(A (1 − x)² sin(2π × 6 x))           （節目から 12 秒で 6 往復して真下に戻り、次の節目まで止まる）
+    検査用の時計: Clock1 = Clock2 = (t, s)       （時計塔の asset root と鐘の腕木の ValueField<double2>。verify_e.py が同じ observe で読む）
+
 ProtoGraph の式（G06。H は gimmicks.G06_HOLD、A は W03 の 85°）:
     I = clamp01(G06Intensity)、f = clamp(G06Frequency, 0, 0.2)、p = clamp01(G06Phase)
     θ = 2π (f t + p)、c = (1 − cos θ) / 2、x = clamp01((c − H) / (1 − 2H))
@@ -104,6 +121,8 @@ C_PG = PROJECT_ROOT / "flux" / f"{gimmicks.C_MODULE}.pg"
 C_MANIFEST = PROJECT_ROOT / "flux" / "p3_candy_street.flux.json"
 D_PG = PROJECT_ROOT / "flux" / f"{gimmicks.D_MODULE}.pg"
 D_MANIFEST = PROJECT_ROOT / "flux" / "p3_ghost_train.flux.json"
+E_PG = PROJECT_ROOT / "flux" / f"{gimmicks.E_MODULE}.pg"
+E_MANIFEST = PROJECT_ROOT / "flux" / "p3_forest_clock.flux.json"
 
 
 def b2r(p) -> list[float]:
@@ -139,6 +158,9 @@ def content_doc(liquid_color: list[float]) -> dict:
     # W10-D: G15 の値（前の子の並びを変えないよう、末尾に足す）
     for name, spec in gimmicks.G15_VARIABLES.items():
         comps.append(variable(name, spec))
+    # W10-E: G18・G20 の値（前の子の並びを変えないよう、末尾に足す）
+    for name, spec in {**gimmicks.G18_VARIABLES, **gimmicks.G20_VARIABLES}.items():
+        comps.append(variable(name, spec))
     return {
         "schemaVersion": "1",
         "ownership": {"key": gimmicks.P3_OWNERSHIP},
@@ -155,6 +177,8 @@ def content_doc(liquid_color: list[float]) -> dict:
             {"slot": {"key": "p3_g0911", "name": gimmicks.C_FLUX_SLOT,
                       "position": [0, 0, 0], "rotation": [0, 0, 0, 1], "scale": [1, 1, 1]}},
             {"slot": {"key": "p3_g15", "name": gimmicks.D_FLUX_SLOT,
+                      "position": [0, 0, 0], "rotation": [0, 0, 0, 1], "scale": [1, 1, 1]}},
+            {"slot": {"key": "p3_g1820", "name": gimmicks.E_FLUX_SLOT,
                       "position": [0, 0, 0], "rotation": [0, 0, 0, 1], "scale": [1, 1, 1]}},
         ],
         # 撮影のカメラ（resoloop capture の bookmark。ワールドには何も作らない）。座標は Resonite の世界座標
@@ -189,6 +213,12 @@ CAMERAS = {
     # G15: 南の上から線路の全体（中心は (12, *, -31.5)）、南東の柵の外から南の曲線
     "g15_train_loop": {"position": [12.0, 13.0, -45.0], "target": [12.0, 0.6, -31.5], "fieldOfView": 55, "width": 1600, "height": 900},
     "g15_train_curve": {"position": [19.5, 2.4, -39.5], "target": [13.5, 0.8, -35.0], "fieldOfView": 50, "width": 1600, "height": 900},
+    # G18: 東の木道の上から森の北のキノコ（Tall・Medium・Cluster）、南の休憩所の大きなキノコのまわり
+    "g18_mushrooms": {"position": [-20.0, 3.5, 12.0], "target": [-33.0, 1.0, 2.0], "fieldOfView": 60, "width": 1600, "height": 900},
+    "g18_mushrooms_south": {"position": [-28.0, 2.2, -4.0], "target": [-38.0, 1.5, -11.0], "fieldOfView": 60, "width": 1600, "height": 900},
+    # G20: 東の正面から文字盤（中心は (-38.15, 8.03, 0)）、北から鐘（吊り点は (-37.05, 10.95, 0)。前後の揺れが横に見える）
+    "g20_clock": {"position": [-31.0, 7.0, 0.0], "target": [-38.1, 8.03, 0.0], "fieldOfView": 35, "width": 1600, "height": 900},
+    "g20_bell": {"position": [-36.6, 10.0, 6.0], "target": [-37.1, 10.6, 0.0], "fieldOfView": 40, "width": 1600, "height": 900},
 }
 
 
@@ -800,6 +830,134 @@ def manifest_d(keys: dict[str, str]) -> dict:
     }
 
 
+def e_keys(state_dir: Path) -> dict[str, str]:
+    """E の state から、G20 の時針・分針・鐘の Pivot の Slot のキーを探す（パスで照合し、1 つに決まらなければ止める）。"""
+    state = json.loads((state_dir / "p2_E_forest.json").read_text(encoding="utf-8"))
+    g = gimmicks.g20()
+    base = f"{gimmicks.P2_ROOT}/{g['district']}/{g['asset_id']}"
+    keys: dict[str, str] = {}
+    for part in [h["pivot"] for h in g["hands"].values()] + [g["bell"]["pivot"]]:
+        hits = [k for k, v in state["slots"].items() if v.get("path") == f"{base}/{part}"]
+        if len(hits) != 1:
+            raise SystemExit(f"{base}/{part}: {len(hits)} Slots in the E state")
+        keys[part] = hits[0]
+    return keys
+
+
+def e_rest(declaration: dict | None = None) -> dict:
+    """E の最新の宣言の、G18 の個体ごとの材質の発光の基準（線形の [r, g, b]）。G20 の Pivot の基準の回転が単位でない（式は基準の
+    回転を単位として組んでいる）、Pivot が時計塔の asset root の子でないときは止める。"""
+    doc = declaration or rest_pose.latest_declaration(gimmicks.g20()["district"])
+    g = gimmicks.g20()
+    asset = None
+    stack = [doc]
+    while stack:
+        n = stack.pop()
+        if n["slot"]["name"] == g["asset_id"]:
+            if asset is not None:
+                raise SystemExit(f"E declaration: {g['asset_id']} appears twice")
+            asset = n
+        stack.extend(n.get("children", []))
+    if asset is None:
+        raise SystemExit(f"E declaration: {g['asset_id']} not found (export E first)")
+    for part in [h["pivot"] for h in g["hands"].values()] + [g["bell"]["pivot"]]:
+        node = next((c for c in asset.get("children", []) if c["slot"]["name"] == part), None)
+        if node is None:
+            raise SystemExit(f"E declaration: {part} is not a child of {g['asset_id']}")
+        rot = node["slot"].get("rotation") or [0.0, 0.0, 0.0, 1.0]
+        if max(abs(a - b) for a, b in zip(rot, (0.0, 0.0, 0.0, 1.0))) > 1e-6:
+            raise SystemExit(f"E declaration: {part} rest rotation {rot} is not identity")
+    srgb = gimmicks.g18_base_emissive(doc)
+    return {"glow_linear": [gimmicks.srgb_to_linear(c) for c in srgb[:3]], "glow_srgb": srgb}
+
+
+def protograph_e(rest: dict) -> str:
+    g18, g20 = gimmicks.g18(), gimmicks.g20()
+    v = {**gimmicks.G18_VARIABLES, **gimmicks.G20_VARIABLES}
+    name = gimmicks.SPACE_NAME
+    e0 = [round(float(x), 6) for x in rest["glow_linear"]]
+
+    def clamp(var: str, spec: dict) -> str:
+        return (f"if {var}0 < {_f(spec['min'])} then {_f(spec['min'])} "
+                f"else if {var}0 > {_f(spec['max'])} then {_f(spec['max'])} else {var}0")
+
+    lines = [
+        "// Generated by modeling/p3_gimmicks/build_content.py (W10-E, G18 and G20). Do not edit by hand.",
+        "// Local presentation: every user evaluates the output Drives. G18 uses the shared WorldTimeDouble, G20 uses the",
+        "// viewer's own local clock (ToLocalTime(UtcNow), the 2026-11-03 decision). No impulses and no synchronized writes.",
+        f"// E0 (P2 mushroom glow, linear) = {tuple(e0)}",
+        f"module {gimmicks.E_MODULE}",
+    ]
+    lines += [f"out M{i:02d}Emissive: colorX" for i, _ in enumerate(g18["individuals"], start=1)]
+    lines += ["out HourRotation: floatQ", "out MinuteRotation: floatQ", "out BellRotation: floatQ"]
+    lines += [f"out Clock{i}: double2" for i, _ in enumerate(gimmicks.G20_CLOCK_KEYS, start=1)]
+    lines += [
+        "where {",
+        "    T = WorldTimeDouble;",
+        f'    IntensityIn = DynamicVariableValueInput<float>(VariableName = "{name}/G18Intensity");',
+        f'    SpeedIn = DynamicVariableValueInput<float>(VariableName = "{name}/G18Speed");',
+        f'    SwingIn = DynamicVariableValueInput<float>(VariableName = "{name}/G20BellSwing");',
+        f'    IntervalIn = DynamicVariableValueInput<float>(VariableName = "{name}/G20BellInterval");',
+        "    // A missing variable reads as 0: the mushrooms go dark and the bell stays still (the interval clamps to its minimum).",
+        "    I0 = IntensityIn.Value;",
+        f"    I = {clamp('I', v['G18Intensity'])};",
+        "    S0 = SpeedIn.Value;",
+        f"    S = {clamp('S', v['G18Speed'])};",
+        "    St = T * (S->as<double>);",
+    ]
+    for i, r in enumerate(g18["individuals"], start=1):
+        lo, hi = r["intensity"]
+        lines += [
+            f"    // {r['instance']}: period {r['period_s']} s, phase {r['phase_s']} s, intensity {lo}..{hi}",
+            f"    Th{i:02d} = (St + {_f(r['phase_s'])}d) * {_f(2.0 * math.pi / r['period_s'])}d;",
+            f"    K{i:02d} = I * ({_f(lo + (hi - lo) / 2.0)} + {_f((hi - lo) / 2.0)} * (Sin_Double(Th{i:02d})->as<float>));",
+            f"    M{i:02d}Emissive = Pack_ColorX(K{i:02d} * {_f(e0[0])}, K{i:02d} * {_f(e0[1])}, K{i:02d} * {_f(e0[2])}, 1.0, ColorProfile.Linear);",
+        ]
+    a = math.radians(g20["bell"]["max_deg"])
+    lines += [
+        "    // G20: the viewer's local time of day (s)",
+        "    L = ToLocalTime(UtcNow);",
+        "    Sod = (DateTimeHour(L)->as<double>) * 3600.0d + (DateTimeMinute(L)->as<double>) * 60.0d"
+        " + (DateTimeSecond(L)->as<double>) + (DateTimeMillisecond(L)->as<double>) * 0.001d;",
+        "    // Hands: clockwise seen from the front = positive about the pivot's local +Z (half angles for the quaternion)",
+        f"    HourH = Repeat01_Double(Sod * {_f(1.0 / g20['hands']['hour']['period_s'])}d) * {_f(math.pi)}d;",
+        f"    MinuteH = Repeat01_Double(Sod * {_f(1.0 / g20['hands']['minute']['period_s'])}d) * {_f(math.pi)}d;",
+        "    HourRotation = Pack_FloatQ(0.0, 0.0, Sin_Double(HourH)->as<float>, Cos_Double(HourH)->as<float>);",
+        "    MinuteRotation = Pack_FloatQ(0.0, 0.0, Sin_Double(MinuteH)->as<float>, Cos_Double(MinuteH)->as<float>);",
+        "    // Bell: swings for a fixed time after each mark (a multiple of the interval since local midnight), then hangs still",
+        "    W = Clamp01_Float(SwingIn.Value);",
+        "    N0 = IntervalIn.Value;",
+        f"    N = ({clamp('N', v['G20BellInterval'])})->as<double>;",
+        "    Tau = Repeat01_Double(Sod / N) * N;",
+        f"    X = Clamp01_Double(Tau * {_f(1.0 / gimmicks.G20_BELL_DURATION_S)}d);",
+        f"    BellH = (W->as<double>) * {_f(a / 2.0)}d * (1.0d - X) * (1.0d - X) * Sin_Double(X * {_f(2.0 * math.pi * gimmicks.G20_BELL_SWINGS)}d);",
+        "    BellRotation = Pack_FloatQ(Sin_Double(BellH)->as<float>, 0.0, 0.0, Cos_Double(BellH)->as<float>);",
+        "    // Clocks for the live check (verify_e.py reads Clock1, the drives, then Clock2 in one observe)",
+    ]
+    lines += [f"    Clock{i} = Pack_Double2(T, Sod);" for i, _ in enumerate(gimmicks.G20_CLOCK_KEYS, start=1)]
+    lines.append("}")
+    return "\n".join(lines) + "\n"
+
+
+def manifest_e(keys: dict[str, str]) -> dict:
+    g18, g20 = gimmicks.g18(), gimmicks.g20()
+    bindings = {f"M{i:02d}Emissive": {"target": f"$member:{r['material_key']}.EmissiveColor", "mode": "drive"}
+                for i, r in enumerate(g18["individuals"], start=1)}
+    for out, part in (("HourRotation", g20["hands"]["hour"]["pivot"]), ("MinuteRotation", g20["hands"]["minute"]["pivot"]),
+                      ("BellRotation", g20["bell"]["pivot"])):
+        bindings[out] = {"target": f"$member:{district.relay_key(keys[part], 'Rotation', 'g20')}.Value", "mode": "drive"}
+    for i, k in enumerate(gimmicks.G20_CLOCK_KEYS, start=1):
+        bindings[f"Clock{i}"] = {"target": f"$member:{k}.Value", "mode": "drive"}
+    return {
+        "schemaVersion": "1",
+        "projectDirectory": ".",
+        "parent": f"{gimmicks.P3_ROOT_PATH}/{gimmicks.E_FLUX_SLOT}",
+        "worldState": "../.resoloop/state/p2_E_forest.json",
+        "deployState": "../.resoloop/flux-state/p3_forest_clock.json",
+        "modules": [{"name": "p3-forest-clock", "source": E_PG.name, "module": gimmicks.E_MODULE, "bindings": bindings}],
+    }
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--state-dir", type=Path, default=DEFAULT_STATE_DIR)
@@ -821,6 +979,10 @@ def main(argv: list[str] | None = None) -> int:
     dkeys = d_keys(args.state_dir)
     D_PG.write_text(protograph_d(d_rest()), encoding="utf-8")
     D_MANIFEST.write_text(json.dumps(manifest_d(dkeys), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    ekeys = e_keys(args.state_dir)
+    erest = e_rest()
+    E_PG.write_text(protograph_e(erest), encoding="utf-8")
+    E_MANIFEST.write_text(json.dumps(manifest_e(ekeys), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"content": CONTENT.relative_to(PROJECT_ROOT).as_posix(), "protograph": PG.relative_to(PROJECT_ROOT).as_posix(),
                       "manifest": MANIFEST.relative_to(PROJECT_ROOT).as_posix(), "bodies": keys,
                       "g03_protograph": G03_PG.relative_to(PROJECT_ROOT).as_posix(),
@@ -831,7 +993,9 @@ def main(argv: list[str] | None = None) -> int:
                       "c_manifest": C_MANIFEST.relative_to(PROJECT_ROOT).as_posix(), "c_slots": ckeys,
                       "g09_liquid_base": crest["liquid"],
                       "d_protograph": D_PG.relative_to(PROJECT_ROOT).as_posix(),
-                      "d_manifest": D_MANIFEST.relative_to(PROJECT_ROOT).as_posix(), "d_slots": dkeys},
+                      "d_manifest": D_MANIFEST.relative_to(PROJECT_ROOT).as_posix(), "d_slots": dkeys,
+                      "e_protograph": E_PG.relative_to(PROJECT_ROOT).as_posix(),
+                      "e_manifest": E_MANIFEST.relative_to(PROJECT_ROOT).as_posix(), "e_slots": ekeys, "g18_base": erest},
                      ensure_ascii=False, indent=2))
     return 0
 

@@ -23,6 +23,10 @@ modeling/p2_static/export_p2.py から、当たり判定（colliders.compose）�
 - G15（W10-D）: D の列車の先頭車の root（M06 の素材の宣言の親の親）と客車の root に位置・回転の中継 2 つずつ（managedFields
   ["scale"]）、4 つの車輪に回転の中継 1 つずつ（managedFields ["position", "scale"]）。それぞれを ProtoFlux（flux/P3GhostTrain.pg）が
   drive する。G13 の Spinner は変えない。検査用の時計（add_g15_clock）を列車と線路の asset root に 1 つずつ足す
+- G18・G20（W10-E）: E のキノコ 14 個の発光の部品（_Glow）に、共有の発光の材質を写した個体ごとの材質を足し、各 _Glow の
+  MeshRenderer だけをそれに付け替える（add_g18_materials。同じ材質を使う池は変えない）。時計塔の時針・分針・鐘の Pivot に回転の
+  中継 1 つずつ（managedFields ["position", "scale"]）。検査用の時計（add_g20_clock）を時計塔の asset root と鐘の腕木に 1 つずつ足す。
+  それぞれを ProtoFlux（flux/P3ForestClock.pg）が drive する
 """
 
 from __future__ import annotations
@@ -65,6 +69,10 @@ def relay_members(key: str, name: str) -> tuple[str, list[str]] | None:
             return "g15", ["Position", "Rotation"]
         if name in g15["wheels"]:
             return "g15", ["Rotation"]   # 車輪は軸まわりの回転だけ（位置は静的な apply が管理し続ける）
+    if key == gimmicks.g20()["district"]:
+        g20 = gimmicks.g20()
+        if name in {h["pivot"] for h in g20["hands"].values()} | {g20["bell"]["pivot"]}:
+            return "g20", ["Rotation"]   # 針と鐘は軸まわりの回転だけ（位置は静的な apply が管理し続ける）
     return None
 
 
@@ -313,12 +321,95 @@ def add_g15_clock(doc: dict, key: str) -> list[dict]:
     return rows
 
 
+def add_g18_materials(doc: dict, key: str) -> list[dict]:
+    """W10-E（G18）: キノコの個体ごとに、発光の部品（_Glow）の MeshRenderer だけへ、共有の発光の材質を写した専用の材質を付ける。
+
+    - 各 _Glow の Slot に PBS_Metallic（キー gimmicks.g18 の material_key、p3_g18_01〜）を足す。fields は元の材質と同じ値（見た目は
+      P2 と同じ）。EmissiveColor は ProtoFlux（flux/P3ForestClock.pg）が drive するので、元の値を initialFields に置く（G03 と同じ）
+    - _Glow の MeshRenderer の Materials の、元の材質への参照だけを専用の材質へ付け替える。同じ材質を使うほかの MeshRenderer（池の
+      EFR_Pond_001 の睡蓮）と元の材質（Blender_Providers の下）は変えない
+    - _Glow の Slot が 1 つでない、MeshRenderer・材質が 1 つでない、個体ごとに元の材質が違う、すでに足してあるときは止める
+    """
+    g = gimmicks.g18()
+    if key != g["district"]:
+        return []
+    names = {r["glow_part"] for r in g["individuals"]}
+    hits: dict[str, list[tuple[list[str], dict]]] = {}
+    _find_named(doc, [doc["slot"]["name"]], names, hits)
+    rows: list[dict] = []
+    source_key = None
+    for r in g["individuals"]:
+        found = hits.get(r["glow_part"], [])
+        if len(found) != 1:
+            raise ValueError(f"{key}: expected one Slot named {r['glow_part']}, found {len(found)}")
+        chain, node = found[0]
+        comps = node.setdefault("components", [])
+        if any(c.get("key") == r["material_key"] for c in comps):
+            raise ValueError(f"{key}: {r['material_key']} is already declared")
+        renderers = [c for c in comps if c.get("type") == "FrooxEngine.MeshRenderer"]
+        if len(renderers) != 1:
+            raise ValueError(f"{key}/{r['glow_part']}: expected one MeshRenderer, found {len(renderers)}")
+        mats = renderers[0]["fields"]["Materials"]
+        if len(mats) != 1 or not str(mats[0]).startswith("$component:"):
+            raise ValueError(f"{key}/{r['glow_part']}: expected one material reference, found {mats}")
+        this = mats[0].split(":", 1)[1]
+        if source_key not in (None, this):
+            raise ValueError(f"{key}/{r['glow_part']}: glow material {this} differs from {source_key}")
+        source_key = this
+        rows.append({"slot": "/".join(chain), "g18_material": r["material_key"], "renderer": renderers[0]["key"], "node": node})
+    sources = []
+    stack = [doc]
+    while stack:
+        n = stack.pop()
+        sources += [c for c in n.get("components", []) if c.get("key") == source_key]
+        stack.extend(n.get("children", []))
+    if len(sources) != 1 or sources[0].get("type") != "FrooxEngine.PBS_Metallic":
+        raise ValueError(f"{key}: material {source_key} is not one PBS_Metallic ({len(sources)} found)")
+    src_fields = dict(sources[0]["fields"])
+    if "EmissiveColor" not in src_fields:
+        raise ValueError(f"{key}: material {source_key} has no EmissiveColor")
+    emissive = src_fields.pop("EmissiveColor")
+    for row in rows:
+        node = row.pop("node")
+        node["components"].append({"key": row["g18_material"], "type": "FrooxEngine.PBS_Metallic", "fields": dict(src_fields),
+                                   "initialFields": {"EmissiveColor": emissive}})
+        renderer = next(c for c in node["components"] if c.get("key") == row["renderer"])
+        renderer["fields"]["Materials"] = [_component_ref(row["g18_material"])]
+        row.update({"copied_from": source_key, "fields": src_fields, "initialFields": {"EmissiveColor": emissive}})
+    return rows
+
+
+def add_g20_clock(doc: dict, key: str) -> list[dict]:
+    """W10-E（G20）: 検査用の時計（ValueField<double2>。gimmicks.G20_CLOCK_KEYS）を、時計塔の asset root と鐘の腕木に 1 つずつ足す
+    （W10-D の add_g15_clock と同じ理由で別の Slot）。ProtoFlux（flux/P3ForestClock.pg）が (WorldTimeDouble, ローカル時刻の 0 時から
+    の秒) を drive するので Value は initialFields。動く物ではなく、見た目も変えない。"""
+    g = gimmicks.g20()
+    if key != g["district"]:
+        return []
+    owners = (g["asset_id"], g["bracket"])
+    hits: dict[str, list[tuple[list[str], dict]]] = {}
+    _find_named(doc, [doc["slot"]["name"]], set(owners), hits)
+    rows = []
+    for owner, k in zip(owners, gimmicks.G20_CLOCK_KEYS):
+        found = hits.get(owner, [])
+        if len(found) != 1:
+            raise ValueError(f"{key}: expected one Slot named {owner}, found {len(found)}")
+        chain, node = found[0]
+        comps = node.setdefault("components", [])
+        if any(c.get("key") == k for c in comps):
+            raise ValueError(f"{key}: {k} is already declared")
+        comps.append({"key": k, "type": "[FrooxEngine]FrooxEngine.ValueField<double2>", "initialFields": {"Value": [0.0, 0.0]}})
+        rows.append({"slot": "/".join(chain), "g20_clock": k})
+    return rows
+
+
 def add_drivers_in_file(p2_path: Path, key: str) -> list[dict]:
-    """p2.apply.json を読み、add_drivers・add_g03_material・add_g09_effects・add_g15_clock を適用して書き戻す（対象が無いキーでは
-    ファイルを変えない）。"""
+    """p2.apply.json を読み、add_drivers・add_g03_material・add_g09_effects・add_g15_clock・add_g18_materials・add_g20_clock を
+    適用して書き戻す（対象が無いキーではファイルを変えない）。"""
     if key not in gimmicks.driven_slots() and key != gimmicks.g03()["district"]:
         return []
     doc = json.loads(p2_path.read_text(encoding="utf-8"))
-    rows = add_drivers(doc, key) + add_g03_material(doc, key) + add_g09_effects(doc, key) + add_g15_clock(doc, key)
+    rows = (add_drivers(doc, key) + add_g03_material(doc, key) + add_g09_effects(doc, key) + add_g15_clock(doc, key)
+            + add_g18_materials(doc, key) + add_g20_clock(doc, key))
     p2_path.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return rows

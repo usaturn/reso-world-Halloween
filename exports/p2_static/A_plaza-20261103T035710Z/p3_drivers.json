@@ -1,0 +1,164 @@
+[
+  {
+    "slot": "A_plaza/APL_DancingPumpkin_001/APL_DancingPumpkin_001_Body",
+    "managedFields": [
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        -2.384185791015625e-07,
+        0.23999999463558197,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "relays": [
+      "p3_g01_position_object_APL_DancingPumpkin_001_Body_03e2e07e",
+      "p3_g01_rotation_object_APL_DancingPumpkin_001_Body_03e2e07e"
+    ]
+  },
+  {
+    "slot": "A_plaza/APL_DancingPumpkin_002/APL_DancingPumpkin_002_Body",
+    "managedFields": [
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        2.384185791015625e-07,
+        0.23999999463558197,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "relays": [
+      "p3_g01_position_object_APL_DancingPumpkin_002_Body_5d184b43",
+      "p3_g01_rotation_object_APL_DancingPumpkin_002_Body_5d184b43"
+    ]
+  },
+  {
+    "slot": "A_plaza/APL_DancingPumpkin_003/APL_DancingPumpkin_003_Body",
+    "managedFields": [
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        0.0,
+        0.23999999463558197,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "relays": [
+      "p3_g01_position_object_APL_DancingPumpkin_003_Body_7861c989",
+      "p3_g01_rotation_object_APL_DancingPumpkin_003_Body_7861c989"
+    ]
+  },
+  {
+    "slot": "A_plaza/APL_DancingPumpkin_004/APL_DancingPumpkin_004_Body",
+    "managedFields": [
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        0.0,
+        0.23999999463558197,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "relays": [
+      "p3_g01_position_object_APL_DancingPumpkin_004_Body_4c9fcd98",
+      "p3_g01_rotation_object_APL_DancingPumpkin_004_Body_4c9fcd98"
+    ]
+  },
+  {
+    "slot": "A_plaza/APL_DancingPumpkin_005/APL_DancingPumpkin_005_Body",
+    "managedFields": [
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        0.0,
+        0.23999999463558197,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "relays": [
+      "p3_g01_position_object_APL_DancingPumpkin_005_Body_355eedbb",
+      "p3_g01_rotation_object_APL_DancingPumpkin_005_Body_355eedbb"
+    ]
+  },
+  {
+    "slot": "A_plaza/APL_DancingPumpkin_006/APL_DancingPumpkin_006_Body",
+    "managedFields": [
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        0.0,
+        0.23999999463558197,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "relays": [
+      "p3_g01_position_object_APL_DancingPumpkin_006_Body_f7ad3fc6",
+      "p3_g01_rotation_object_APL_DancingPumpkin_006_Body_f7ad3fc6"
+    ]
+  },
+  {
+    "slot": "A_plaza/APL_Fountain_001/APL_Fountain_001_Water",
+    "g03_material": "p3_g03_wm",
+    "copied_from": "mat_material_MAT_APL_MagicWater_f767b0c9",
+    "renderer": "renderer_APL_Fountain_001_Water_60ea084e",
+    "fields": {
+      "AlbedoColor": [
+        0.6180314265202079,
+        0.8094681526358262,
+        0.9822070722231256,
+        1.0
+      ],
+      "Metallic": 0.10000000149011612,
+      "Smoothness": 0.8400000035762787
+    },
+    "initialFields": {
+      "EmissiveColor": [
+        0.7379853775837317,
+        0.9955912752701731,
+        1.2814730337957763,
+        1
+      ]
+    }
+  }
+]

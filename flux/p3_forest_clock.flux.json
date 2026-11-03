@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "1",
+  "projectDirectory": ".",
+  "parent": "Root/HalloweenMagicalCarnival/P3_Gimmicks/G18_G20_Forest",
+  "worldState": "../.resoloop/state/p2_E_forest.json",
+  "deployState": "../.resoloop/flux-state/p3_forest_clock.json",
+  "modules": [
+    {
+      "name": "p3-forest-clock",
+      "source": "P3ForestClock.pg",
+      "module": "P3ForestClock",
+      "bindings": {
+        "M01Emissive": {
+          "target": "$member:p3_g18_01.EmissiveColor",
+          "mode": "drive"
+        },
+        "M02Emissive": {
+          "target": "$member:p3_g18_02.EmissiveColor",
+          "mode": "drive"
+        },
+        "M03Emissive": {
+          "target": "$member:p3_g18_03.EmissiveColor",
+          "mode": "drive"
+        },
+        "M04Emissive": {
+          "target": "$member:p3_g18_04.EmissiveColor",
+          "mode": "drive"
+        },
+        "M05Emissive": {
+          "target": "$member:p3_g18_05.EmissiveColor",
+          "mode": "drive"
+        },
+        "M06Emissive": {
+          "target": "$member:p3_g18_06.EmissiveColor",
+          "mode": "drive"
+        },
+        "M07Emissive": {
+          "target": "$member:p3_g18_07.EmissiveColor",
+          "mode": "drive"
+        },
+        "M08Emissive": {
+          "target": "$member:p3_g18_08.EmissiveColor",
+          "mode": "drive"
+        },
+        "M09Emissive": {
+          "target": "$member:p3_g18_09.EmissiveColor",
+          "mode": "drive"
+        },
+        "M10Emissive": {
+          "target": "$member:p3_g18_10.EmissiveColor",
+          "mode": "drive"
+        },
+        "M11Emissive": {
+          "target": "$member:p3_g18_11.EmissiveColor",
+          "mode": "drive"
+        },
+        "M12Emissive": {
+          "target": "$member:p3_g18_12.EmissiveColor",
+          "mode": "drive"
+        },
+        "M13Emissive": {
+          "target": "$member:p3_g18_13.EmissiveColor",
+          "mode": "drive"
+        },
+        "M14Emissive": {
+          "target": "$member:p3_g18_14.EmissiveColor",
+          "mode": "drive"
+        },
+        "HourRotation": {
+          "target": "$member:p3_g20_rotation_object_EFR_ClockTower_001_HourHandPivot_1ea68a38.Value",
+          "mode": "drive"
+        },
+        "MinuteRotation": {
+          "target": "$member:p3_g20_rotation_object_EFR_ClockTower_001_MinuteHandPivot_61540952.Value",
+          "mode": "drive"
+        },
+        "BellRotation": {
+          "target": "$member:p3_g20_rotation_object_EFR_ClockTower_001_BellPivot_fc63160b.Value",
+          "mode": "drive"
+        },
+        "Clock1": {
+          "target": "$member:p3_g20ck1.Value",
+          "mode": "drive"
+        },
+        "Clock2": {
+          "target": "$member:p3_g20ck2.Value",
+          "mode": "drive"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,157 @@
+{
+  "before": {
+    "G18Intensity": 1.0,
+    "G18Speed": 1.0,
+    "G20BellSwing": 1.0,
+    "G20BellInterval": 3600.0
+  },
+  "cases": [
+    {
+      "case": "G18Intensity 0.5 (G18Speed 0)",
+      "params": {
+        "G18Intensity": 0.5,
+        "G18Speed": 0.0,
+        "G20BellSwing": 1.0,
+        "G20BellInterval": 3600.0
+      },
+      "problems": [],
+      "levels_range": [
+        0.1758,
+        0.48706
+      ]
+    },
+    {
+      "case": "G18Intensity 3.0 (G18Speed 0)",
+      "params": {
+        "G18Intensity": 2.0,
+        "G18Speed": 0.0,
+        "G20BellSwing": 1.0,
+        "G20BellInterval": 3600.0
+      },
+      "problems": [],
+      "levels_range": [
+        0.70321,
+        1.94823
+      ]
+    },
+    {
+      "case": "G18Intensity -1.0 (G18Speed 0)",
+      "params": {
+        "G18Intensity": 0.0,
+        "G18Speed": 0.0,
+        "G20BellSwing": 1.0,
+        "G20BellInterval": 3600.0
+      },
+      "problems": [],
+      "levels_range": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "case": "G18Speed 0.05 (clocked)",
+      "params": {
+        "G18Intensity": 1.0,
+        "G18Speed": 0.05,
+        "G20BellSwing": 1.0,
+        "G20BellInterval": 3600.0
+      },
+      "judged": 14,
+      "clock_window_s": [
+        0.2506,
+        0.3343
+      ],
+      "problems": []
+    },
+    {
+      "case": "G18Speed 2.0 (clocked)",
+      "params": {
+        "G18Intensity": 1.0,
+        "G18Speed": 2.0,
+        "G20BellSwing": 1.0,
+        "G20BellInterval": 3600.0
+      },
+      "judged": 14,
+      "clock_window_s": [
+        0.2512,
+        0.3324
+      ],
+      "problems": []
+    },
+    {
+      "case": "G18Speed -1.0 (clamped to 0, frozen)",
+      "params": {
+        "G18Intensity": 1.0,
+        "G18Speed": 0.0,
+        "G20BellSwing": 1.0,
+        "G20BellInterval": 3600.0
+      },
+      "problems": []
+    },
+    {
+      "case": "G20BellSwing 3.0, G20BellInterval 20.0",
+      "params": {
+        "G18Intensity": 1.0,
+        "G18Speed": 1.0,
+        "G20BellSwing": 1.0,
+        "G20BellInterval": 20.0
+      },
+      "judged": 24,
+      "bell_max_deg": 18.11,
+      "marks": [
+        {
+          "mark_local_s": 51380.0,
+          "observed_during": 6,
+          "max_deg": 13.846
+        },
+        {
+          "mark_local_s": 51400.0,
+          "observed_during": 7,
+          "max_deg": 18.11
+        }
+      ],
+      "problems": []
+    },
+    {
+      "case": "G20BellSwing 0.5, G20BellInterval 20.0",
+      "params": {
+        "G18Intensity": 1.0,
+        "G18Speed": 1.0,
+        "G20BellSwing": 0.5,
+        "G20BellInterval": 20.0
+      },
+      "judged": 14,
+      "bell_max_deg": 11.09,
+      "marks": [
+        {
+          "mark_local_s": 51440.0,
+          "observed_during": 4,
+          "max_deg": 11.09
+        }
+      ],
+      "problems": []
+    },
+    {
+      "case": "G20BellSwing 1.0, G20BellInterval 5.0",
+      "params": {
+        "G18Intensity": 1.0,
+        "G18Speed": 1.0,
+        "G20BellSwing": 1.0,
+        "G20BellInterval": 20.0
+      },
+      "judged": 13,
+      "bell_max_deg": 19.337,
+      "marks": [
+        {
+          "mark_local_s": 51460.0,
+          "observed_during": 7,
+          "max_deg": 19.337
+        }
+      ],
+      "problems": []
+    }
+  ],
+  "problems": [],
+  "restore_problems": [],
+  "ok": true
+}

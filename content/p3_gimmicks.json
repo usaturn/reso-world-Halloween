@@ -310,6 +310,58 @@
       "initialFields": {
         "Value": 0.0
       }
+    },
+    {
+      "key": "g18_amp",
+      "type": "[FrooxEngine]FrooxEngine.DynamicValueVariable<float>",
+      "fields": {
+        "VariableName": "HMC_P3/G18Intensity"
+      },
+      "identityFields": [
+        "VariableName"
+      ],
+      "initialFields": {
+        "Value": 1.0
+      }
+    },
+    {
+      "key": "g18_speed",
+      "type": "[FrooxEngine]FrooxEngine.DynamicValueVariable<float>",
+      "fields": {
+        "VariableName": "HMC_P3/G18Speed"
+      },
+      "identityFields": [
+        "VariableName"
+      ],
+      "initialFields": {
+        "Value": 1.0
+      }
+    },
+    {
+      "key": "g20_swing",
+      "type": "[FrooxEngine]FrooxEngine.DynamicValueVariable<float>",
+      "fields": {
+        "VariableName": "HMC_P3/G20BellSwing"
+      },
+      "identityFields": [
+        "VariableName"
+      ],
+      "initialFields": {
+        "Value": 1.0
+      }
+    },
+    {
+      "key": "g20_int",
+      "type": "[FrooxEngine]FrooxEngine.DynamicValueVariable<float>",
+      "fields": {
+        "VariableName": "HMC_P3/G20BellInterval"
+      },
+      "identityFields": [
+        "VariableName"
+      ],
+      "initialFields": {
+        "Value": 3600.0
+      }
     }
   ],
   "children": [
@@ -405,6 +457,28 @@
       "slot": {
         "key": "p3_g15",
         "name": "G15_GhostTrain",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "slot": {
+        "key": "p3_g1820",
+        "name": "G18_G20_Forest",
         "position": [
           0,
           0,
@@ -663,6 +737,66 @@
         -35.0
       ],
       "fieldOfView": 50,
+      "width": 1600,
+      "height": 900
+    },
+    "g18_mushrooms": {
+      "position": [
+        -20.0,
+        3.5,
+        12.0
+      ],
+      "target": [
+        -33.0,
+        1.0,
+        2.0
+      ],
+      "fieldOfView": 60,
+      "width": 1600,
+      "height": 900
+    },
+    "g18_mushrooms_south": {
+      "position": [
+        -28.0,
+        2.2,
+        -4.0
+      ],
+      "target": [
+        -38.0,
+        1.5,
+        -11.0
+      ],
+      "fieldOfView": 60,
+      "width": 1600,
+      "height": 900
+    },
+    "g20_clock": {
+      "position": [
+        -31.0,
+        7.0,
+        0.0
+      ],
+      "target": [
+        -38.1,
+        8.03,
+        0.0
+      ],
+      "fieldOfView": 35,
+      "width": 1600,
+      "height": 900
+    },
+    "g20_bell": {
+      "position": [
+        -36.6,
+        10.0,
+        6.0
+      ],
+      "target": [
+        -37.1,
+        10.6,
+        0.0
+      ],
+      "fieldOfView": 40,
       "width": 1600,
       "height": 900
     }
