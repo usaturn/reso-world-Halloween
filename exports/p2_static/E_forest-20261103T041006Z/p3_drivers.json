@@ -1,0 +1,415 @@
+[
+  {
+    "slot": "E_forest/EFR_ClockTower_001/EFR_ClockTower_001_HourHandPivot",
+    "managedFields": [
+      "position",
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        0.001500000013038516,
+        8.031999588012695,
+        0.41899871826171875
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "relays": [
+      "p3_g20_rotation_object_EFR_ClockTower_001_HourHandPivot_1ea68a38"
+    ]
+  },
+  {
+    "slot": "E_forest/EFR_ClockTower_001/EFR_ClockTower_001_MinuteHandPivot",
+    "managedFields": [
+      "position",
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        0.001500000013038516,
+        8.031999588012695,
+        0.4589996337890625
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "relays": [
+      "p3_g20_rotation_object_EFR_ClockTower_001_MinuteHandPivot_61540952"
+    ]
+  },
+  {
+    "slot": "E_forest/EFR_ClockTower_001/EFR_ClockTower_001_BellPivot",
+    "managedFields": [
+      "position",
+      "scale"
+    ],
+    "rest": {
+      "position": [
+        0.001500000013038516,
+        10.949999809265137,
+        1.4500007629394531
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "relays": [
+      "p3_g20_rotation_object_EFR_ClockTower_001_BellPivot_fc63160b"
+    ]
+  },
+  {
+    "slot": "E_forest/EFR_MushroomTall_001/EFR_MushroomTall_001_Glow",
+    "g18_material": "p3_g18_01",
+    "renderer": "renderer_EFR_MushroomTall_001_Glow_b8a1d9a6",
+    "copied_from": "mat_material_MAT_EFR_MushGlow_21f3b3b0",
+    "fields": {
+      "AlbedoColor": [
+        0.8543058250926958,
+        0.9639762404456368,
+        0.9999999999999999,
+        1.0
+      ],
+      "Metallic": 0.0,
+      "Smoothness": 0.5999999940395355
+    },
+    "initialFields": {
+      "EmissiveColor": [
+        1.2065819444790795,
+        1.5535675783654364,
+        1.657898464158728,
+        1
+      ]
+    }
+  },
+  {
+    "slot": "E_forest/EFR_MushroomTall_002/EFR_MushroomTall_002_Glow",
+    "g18_material": "p3_g18_02",
+    "renderer": "renderer_EFR_MushroomTall_002_Glow_1f123ab3",
+    "copied_from": "mat_material_MAT_EFR_MushGlow_21f3b3b0",
+    "fields": {
+      "AlbedoColor": [
+        0.8543058250926958,
+        0.9639762404456368,
+        0.9999999999999999,
+        1.0
+      ],
+      "Metallic": 0.0,
+      "Smoothness": 0.5999999940395355
+    },
+    "initialFields": {
+      "EmissiveColor": [
+        1.2065819444790795,
+        1.5535675783654364,
+        1.657898464158728,
+        1
+      ]
+    }
+  },
+  {
+    "slot": "E_forest/EFR_MushroomTall_003/EFR_MushroomTall_003_Glow",
+    "g18_material": "p3_g18_03",
+    "renderer": "renderer_EFR_MushroomTall_003_Glow_29cdc62b",
+    "copied_from": "mat_material_MAT_EFR_MushGlow_21f3b3b0",
+    "fields": {
+      "AlbedoColor": [
+        0.8543058250926958,
+        0.9639762404456368,
+        0.9999999999999999,
+        1.0
+      ],
+      "Metallic": 0.0,
+      "Smoothness": 0.5999999940395355
+    },
+    "initialFields": {
+      "EmissiveColor": [
+        1.2065819444790795,
+        1.5535675783654364,
+        1.657898464158728,
+        1
+      ]
+    }
+  },
+  {
+    "slot": "E_forest/EFR_MushroomTall_004/EFR_MushroomTall_004_Glow",
+    "g18_material": "p3_g18_04",
+    "renderer": "renderer_EFR_MushroomTall_004_Glow_980ff589",
+    "copied_from": "mat_material_MAT_EFR_MushGlow_21f3b3b0",
+    "fields": {
+      "AlbedoColor": [
+        0.8543058250926958,
+        0.9639762404456368,
+        0.9999999999999999,
+        1.0
+      ],
+      "Metallic": 0.0,
+      "Smoothness": 0.5999999940395355
+    },
+    "initialFields": {
+      "EmissiveColor": [
+        1.2065819444790795,
+        1.5535675783654364,
+        1.657898464158728,
+        1
+      ]
+    }
+  },
+  {
+    "slot": "E_forest/EFR_MushroomTall_005/EFR_MushroomTall_005_Glow",
+    "g18_material": "p3_g18_05",
+    "renderer": "renderer_EFR_MushroomTall_005_Glow_b3e860b0",
+    "copied_from": "mat_material_MAT_EFR_MushGlow_21f3b3b0",
+    "fields": {
+      "AlbedoColor": [
+        0.8543058250926958,
+        0.9639762404456368,
+        0.9999999999999999,
+        1.0
+      ],
+      "Metallic": 0.0,
+      "Smoothness": 0.5999999940395355
+    },
+    "initialFields": {
+      "EmissiveColor": [
+        1.2065819444790795,
+        1.5535675783654364,
+        1.657898464158728,
+        1
+      ]
+    }
+  },
+  {
+    "slot": "E_forest/EFR_MushroomMedium_001/EFR_MushroomMedium_001_Glow",
+    "g18_material": "p3_g18_06",
+    "renderer": "renderer_EFR_MushroomMedium_001_Glow_91248781",
+    "copied_from": "mat_material_MAT_EFR_MushGlow_21f3b3b0",
+    "fields": {
+      "AlbedoColor": [
+        0.8543058250926958,
+        0.9639762404456368,
+        0.9999999999999999,
+        1.0
+      ],
+      "Metallic": 0.0,
+      "Smoothness": 0.5999999940395355
+    },
+    "initialFields": {
+      "EmissiveColor": [
+        1.2065819444790795,
+        1.5535675783654364,
+        1.657898464158728,
+        1
+      ]
+    }
+  },
+  {
+    "slot": "E_forest/EFR_MushroomMedium_002/EFR_MushroomMedium_002_Glow",
+    "g18_material": "p3_g18_07",
+    "renderer": "renderer_EFR_MushroomMedium_002_Glow_0e914381",
+    "copied_from": "mat_material_MAT_EFR_MushGlow_21f3b3b0",
+    "fields": {
+      "AlbedoColor": [
+        0.8543058250926958,
+        0.9639762404456368,
+        0.9999999999999999,
+        1.0
+      ],
+      "Metallic": 0.0,
+      "Smoothness": 0.5999999940395355
+    },
+    "initialFields": {
+      "EmissiveColor": [
+        1.2065819444790795,
+        1.5535675783654364,
+        1.657898464158728,
+        1
+      ]
+    }
+  },
+  {
+    "slot": "E_forest/EFR_MushroomMedium_003/EFR_MushroomMedium_003_Glow",
+    "g18_material": "p3_g18_08",
+    "renderer": "renderer_EFR_MushroomMedium_003_Glow_74c45a4e",
+    "copied_from": "mat_material_MAT_EFR_MushGlow_21f3b3b0",
+    "fields": {
+      "AlbedoColor": [
+        0.8543058250926958,
+        0.9639762404456368,
+        0.9999999999999999,
+        1.0
+      ],
+      "Metallic": 0.0,
+      "Smoothness": 0.5999999940395355
+    },
+    "initialFields": {
+      "EmissiveColor": [
+        1.2065819444790795,
+        1.5535675783654364,
+        1.657898464158728,
+        1
+      ]
+    }
+  },
+  {
+    "slot": "E_forest/EFR_MushroomCluster_001/EFR_MushroomCluster_001_Glow",
+    "g18_material": "p3_g18_09",
+    "renderer": "renderer_EFR_MushroomCluster_001_Glow_d2e96426",
+    "copied_from": "mat_material_MAT_EFR_MushGlow_21f3b3b0",
+    "fields": {
+      "AlbedoColor": [
+        0.8543058250926958,
+        0.9639762404456368,
+        0.9999999999999999,
+        1.0
+      ],
+      "Metallic": 0.0,
+      "Smoothness": 0.5999999940395355
+    },
+    "initialFields": {
+      "EmissiveColor": [
+        1.2065819444790795,
+        1.5535675783654364,
+        1.657898464158728,
+        1
+      ]
+    }
+  },
+  {
+    "slot": "E_forest/EFR_MushroomCluster_002/EFR_MushroomCluster_002_Glow",
+    "g18_material": "p3_g18_10",
+    "renderer": "renderer_EFR_MushroomCluster_002_Glow_7457ba98",
+    "copied_from": "mat_material_MAT_EFR_MushGlow_21f3b3b0",
+    "fields": {
+      "AlbedoColor": [
+        0.8543058250926958,
+        0.9639762404456368,
+        0.9999999999999999,
+        1.0
+      ],
+      "Metallic": 0.0,
+      "Smoothness": 0.5999999940395355
+    },
+    "initialFields": {
+      "EmissiveColor": [
+        1.2065819444790795,
+        1.5535675783654364,
+        1.657898464158728,
+        1
+      ]
+    }
+  },
+  {
+    "slot": "E_forest/EFR_MushroomCluster_004/EFR_MushroomCluster_004_Glow",
+    "g18_material": "p3_g18_11",
+    "renderer": "renderer_EFR_MushroomCluster_004_Glow_9808e1e3",
+    "copied_from": "mat_material_MAT_EFR_MushGlow_21f3b3b0",
+    "fields": {
+      "AlbedoColor": [
+        0.8543058250926958,
+        0.9639762404456368,
+        0.9999999999999999,
+        1.0
+      ],
+      "Metallic": 0.0,
+      "Smoothness": 0.5999999940395355
+    },
+    "initialFields": {
+      "EmissiveColor": [
+        1.2065819444790795,
+        1.5535675783654364,
+        1.657898464158728,
+        1
+      ]
+    }
+  },
+  {
+    "slot": "E_forest/EFR_MushroomCluster_006/EFR_MushroomCluster_006_Glow",
+    "g18_material": "p3_g18_12",
+    "renderer": "renderer_EFR_MushroomCluster_006_Glow_90d3db73",
+    "copied_from": "mat_material_MAT_EFR_MushGlow_21f3b3b0",
+    "fields": {
+      "AlbedoColor": [
+        0.8543058250926958,
+        0.9639762404456368,
+        0.9999999999999999,
+        1.0
+      ],
+      "Metallic": 0.0,
+      "Smoothness": 0.5999999940395355
+    },
+    "initialFields": {
+      "EmissiveColor": [
+        1.2065819444790795,
+        1.5535675783654364,
+        1.657898464158728,
+        1
+      ]
+    }
+  },
+  {
+    "slot": "E_forest/EFR_MushroomCluster_008/EFR_MushroomCluster_008_Glow",
+    "g18_material": "p3_g18_13",
+    "renderer": "renderer_EFR_MushroomCluster_008_Glow_4de5111e",
+    "copied_from": "mat_material_MAT_EFR_MushGlow_21f3b3b0",
+    "fields": {
+      "AlbedoColor": [
+        0.8543058250926958,
+        0.9639762404456368,
+        0.9999999999999999,
+        1.0
+      ],
+      "Metallic": 0.0,
+      "Smoothness": 0.5999999940395355
+    },
+    "initialFields": {
+      "EmissiveColor": [
+        1.2065819444790795,
+        1.5535675783654364,
+        1.657898464158728,
+        1
+      ]
+    }
+  },
+  {
+    "slot": "E_forest/EFR_MushroomGiant_001/EFR_MushroomGiant_001_Glow",
+    "g18_material": "p3_g18_14",
+    "renderer": "renderer_EFR_MushroomGiant_001_Glow_816e18e1",
+    "copied_from": "mat_material_MAT_EFR_MushGlow_21f3b3b0",
+    "fields": {
+      "AlbedoColor": [
+        0.8543058250926958,
+        0.9639762404456368,
+        0.9999999999999999,
+        1.0
+      ],
+      "Metallic": 0.0,
+      "Smoothness": 0.5999999940395355
+    },
+    "initialFields": {
+      "EmissiveColor": [
+        1.2065819444790795,
+        1.5535675783654364,
+        1.657898464158728,
+        1
+      ]
+    }
+  },
+  {
+    "slot": "E_forest/EFR_ClockTower_001",
+    "g20_clock": "p3_g20ck1"
+  },
+  {
+    "slot": "E_forest/EFR_ClockTower_001/EFR_ClockTower_001_BellBracket",
+    "g20_clock": "p3_g20ck2"
+  }
+]

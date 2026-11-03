@@ -1,0 +1,986 @@
+{
+  "windows": [
+    {
+      "started_at": "2026-11-03T06:01:10Z",
+      "params": {
+        "G18Intensity": 1.0,
+        "G18Speed": 1.0,
+        "G20BellSwing": 1.0,
+        "G20BellInterval": 3600.0
+      },
+      "problems": [],
+      "structure_start": {
+        "tower": {
+          "rows": 11,
+          "dial_axis_offset_m": {
+            "hour": 0.0,
+            "minute": 0.0
+          }
+        },
+        "problems": []
+      },
+      "relay_problems": [],
+      "pivots_start": {
+        "local_s": [
+          54116.98,
+          54120.564
+        ],
+        "rows": {
+          "hour": {
+            "slot_deg": 90.9898,
+            "formula_deg": [
+              90.9746,
+              91.005
+            ]
+          },
+          "minute": {
+            "slot_deg": 11.8781,
+            "formula_deg": [
+              11.6946,
+              12.0598
+            ]
+          },
+          "bell": {
+            "slot_deg": 0.0,
+            "formula_deg": [
+              -0.0,
+              -0.0
+            ]
+          }
+        },
+        "problems": []
+      },
+      "frozen_probe": {
+        "params": {
+          "G18Intensity": 1.0,
+          "G18Speed": 0.0,
+          "G20BellSwing": 1.0,
+          "G20BellInterval": 3600.0
+        },
+        "levels": {
+          "p3_g18_01": 0.675,
+          "p3_g18_02": 0.949461,
+          "p3_g18_03": 0.548206,
+          "p3_g18_04": 0.354903,
+          "p3_g18_05": 0.401132,
+          "p3_g18_06": 0.351605,
+          "p3_g18_07": 0.355885,
+          "p3_g18_08": 0.360493,
+          "p3_g18_09": 0.364752,
+          "p3_g18_10": 0.974113,
+          "p3_g18_11": 0.509375,
+          "p3_g18_12": 0.353958,
+          "p3_g18_13": 0.509727,
+          "p3_g18_14": 0.36641
+        },
+        "rows": [
+          {
+            "instance": "EFR_MushroomTall_001",
+            "level": 0.675,
+            "expected": 0.675
+          },
+          {
+            "instance": "EFR_MushroomTall_002",
+            "level": 0.94946,
+            "expected": 0.94946
+          },
+          {
+            "instance": "EFR_MushroomTall_003",
+            "level": 0.54821,
+            "expected": 0.54821
+          },
+          {
+            "instance": "EFR_MushroomTall_004",
+            "level": 0.3549,
+            "expected": 0.3549
+          },
+          {
+            "instance": "EFR_MushroomTall_005",
+            "level": 0.40113,
+            "expected": 0.40113
+          },
+          {
+            "instance": "EFR_MushroomMedium_001",
+            "level": 0.3516,
+            "expected": 0.3516
+          },
+          {
+            "instance": "EFR_MushroomMedium_002",
+            "level": 0.35589,
+            "expected": 0.35589
+          },
+          {
+            "instance": "EFR_MushroomMedium_003",
+            "level": 0.36049,
+            "expected": 0.36049
+          },
+          {
+            "instance": "EFR_MushroomCluster_001",
+            "level": 0.36475,
+            "expected": 0.36475
+          },
+          {
+            "instance": "EFR_MushroomCluster_002",
+            "level": 0.97411,
+            "expected": 0.97411
+          },
+          {
+            "instance": "EFR_MushroomCluster_004",
+            "level": 0.50937,
+            "expected": 0.50937
+          },
+          {
+            "instance": "EFR_MushroomCluster_006",
+            "level": 0.35396,
+            "expected": 0.35396
+          },
+          {
+            "instance": "EFR_MushroomCluster_008",
+            "level": 0.50973,
+            "expected": 0.50973
+          },
+          {
+            "instance": "EFR_MushroomGiant_001",
+            "level": 0.36641,
+            "expected": 0.36641
+          }
+        ],
+        "problems": []
+      },
+      "frozen_probe_restore": [],
+      "g18_clocked": {
+        "samples": 14,
+        "judged": 14,
+        "clock_window_s": [
+          0.3493,
+          0.5994
+        ],
+        "levels_seen": {
+          "EFR_MushroomTall_001": [
+            0.3556,
+            0.7555
+          ],
+          "EFR_MushroomTall_002": [
+            0.6708,
+            0.9021
+          ],
+          "EFR_MushroomTall_003": [
+            0.8932,
+            0.9808
+          ],
+          "EFR_MushroomTall_004": [
+            0.3766,
+            0.8443
+          ],
+          "EFR_MushroomTall_005": [
+            0.6488,
+            0.9167
+          ],
+          "EFR_MushroomMedium_001": [
+            0.5238,
+            0.9078
+          ],
+          "EFR_MushroomMedium_002": [
+            0.7158,
+            0.9959
+          ],
+          "EFR_MushroomMedium_003": [
+            0.7411,
+            0.9848
+          ],
+          "EFR_MushroomCluster_001": [
+            0.7026,
+            0.7528
+          ],
+          "EFR_MushroomCluster_002": [
+            0.3762,
+            0.5497
+          ],
+          "EFR_MushroomCluster_004": [
+            0.4064,
+            0.8503
+          ],
+          "EFR_MushroomCluster_006": [
+            0.9908,
+            0.9998
+          ],
+          "EFR_MushroomCluster_008": [
+            0.8648,
+            0.9057
+          ],
+          "EFR_MushroomGiant_001": [
+            0.3901,
+            0.807
+          ]
+        },
+        "problems": []
+      },
+      "g18_all": {
+        "samples": 5,
+        "neighbour_pairs": [
+          {
+            "pair": [
+              "EFR_MushroomTall_001",
+              "EFR_MushroomMedium_002"
+            ],
+            "max_level_diff": 0.5475
+          },
+          {
+            "pair": [
+              "EFR_MushroomTall_001",
+              "EFR_MushroomCluster_002"
+            ],
+            "max_level_diff": 0.5442
+          },
+          {
+            "pair": [
+              "EFR_MushroomTall_002",
+              "EFR_MushroomCluster_006"
+            ],
+            "max_level_diff": 0.6134
+          },
+          {
+            "pair": [
+              "EFR_MushroomTall_003",
+              "EFR_MushroomCluster_001"
+            ],
+            "max_level_diff": 0.4552
+          },
+          {
+            "pair": [
+              "EFR_MushroomTall_004",
+              "EFR_MushroomMedium_003"
+            ],
+            "max_level_diff": 0.574
+          },
+          {
+            "pair": [
+              "EFR_MushroomTall_004",
+              "EFR_MushroomCluster_008"
+            ],
+            "max_level_diff": 0.3282
+          },
+          {
+            "pair": [
+              "EFR_MushroomTall_005",
+              "EFR_MushroomMedium_002"
+            ],
+            "max_level_diff": 0.4
+          },
+          {
+            "pair": [
+              "EFR_MushroomMedium_001",
+              "EFR_MushroomCluster_001"
+            ],
+            "max_level_diff": 0.5064
+          },
+          {
+            "pair": [
+              "EFR_MushroomMedium_001",
+              "EFR_MushroomCluster_004"
+            ],
+            "max_level_diff": 0.6027
+          },
+          {
+            "pair": [
+              "EFR_MushroomCluster_006",
+              "EFR_MushroomGiant_001"
+            ],
+            "max_level_diff": 0.4056
+          }
+        ],
+        "problems": []
+      },
+      "g20_clocked": {
+        "samples": 11,
+        "judged": 11,
+        "clock_window_s": [
+          0.518,
+          0.724
+        ],
+        "hand_error_deg": {
+          "hour": 0.0015,
+          "minute": 0.0058
+        },
+        "tip_error_deg": 0.0226,
+        "bell_max_deg": 0.0,
+        "bell_rung_samples": 0,
+        "bell_still_samples": 11,
+        "bell_unjudged_samples": 0,
+        "local_vs_utc": {
+          "offset_hours": [
+            9.0
+          ],
+          "residual_s": [
+            1.014,
+            1.333
+          ],
+          "expected_offset_hours": 9.0
+        },
+        "problems": []
+      },
+      "pivots_end": {
+        "local_s": [
+          54225.592,
+          54230.125
+        ],
+        "rows": {
+          "hour": {
+            "slot_deg": 91.8991,
+            "formula_deg": [
+              91.8796,
+              91.918
+            ]
+          },
+          "minute": {
+            "slot_deg": 22.7891,
+            "formula_deg": [
+              22.5558,
+              23.0159
+            ]
+          },
+          "bell": {
+            "slot_deg": 0.0,
+            "formula_deg": [
+              -0.0,
+              -0.0
+            ]
+          }
+        },
+        "problems": []
+      },
+      "structure_end": {
+        "tower": {
+          "rows": 11,
+          "dial_axis_offset_m": {
+            "hour": 0.0,
+            "minute": 0.0
+          }
+        },
+        "problems": []
+      },
+      "ok": true
+    },
+    {
+      "started_at": "2026-11-03T06:09:35Z",
+      "params": {
+        "G18Intensity": 1.0,
+        "G18Speed": 1.0,
+        "G20BellSwing": 1.0,
+        "G20BellInterval": 3600.0
+      },
+      "problems": [],
+      "structure_start": {
+        "tower": {
+          "rows": 11,
+          "dial_axis_offset_m": {
+            "hour": 0.0,
+            "minute": 0.0
+          }
+        },
+        "problems": []
+      },
+      "relay_problems": [],
+      "pivots_start": {
+        "local_s": [
+          54626.409,
+          54631.102
+        ],
+        "rows": {
+          "hour": {
+            "slot_deg": 95.241,
+            "formula_deg": [
+              95.2198,
+              95.2595
+            ]
+          },
+          "minute": {
+            "slot_deg": 62.8925,
+            "formula_deg": [
+              62.6375,
+              63.1136
+            ]
+          },
+          "bell": {
+            "slot_deg": 0.0,
+            "formula_deg": [
+              -0.0,
+              -0.0
+            ]
+          }
+        },
+        "problems": []
+      },
+      "frozen_probe": {
+        "params": {
+          "G18Intensity": 1.0,
+          "G18Speed": 0.0,
+          "G20BellSwing": 1.0,
+          "G20BellInterval": 3600.0
+        },
+        "levels": {
+          "p3_g18_01": 0.675,
+          "p3_g18_02": 0.949461,
+          "p3_g18_03": 0.548206,
+          "p3_g18_04": 0.354903,
+          "p3_g18_05": 0.401132,
+          "p3_g18_06": 0.351605,
+          "p3_g18_07": 0.355885,
+          "p3_g18_08": 0.360493,
+          "p3_g18_09": 0.364752,
+          "p3_g18_10": 0.974113,
+          "p3_g18_11": 0.509375,
+          "p3_g18_12": 0.353958,
+          "p3_g18_13": 0.509727,
+          "p3_g18_14": 0.36641
+        },
+        "rows": [
+          {
+            "instance": "EFR_MushroomTall_001",
+            "level": 0.675,
+            "expected": 0.675
+          },
+          {
+            "instance": "EFR_MushroomTall_002",
+            "level": 0.94946,
+            "expected": 0.94946
+          },
+          {
+            "instance": "EFR_MushroomTall_003",
+            "level": 0.54821,
+            "expected": 0.54821
+          },
+          {
+            "instance": "EFR_MushroomTall_004",
+            "level": 0.3549,
+            "expected": 0.3549
+          },
+          {
+            "instance": "EFR_MushroomTall_005",
+            "level": 0.40113,
+            "expected": 0.40113
+          },
+          {
+            "instance": "EFR_MushroomMedium_001",
+            "level": 0.3516,
+            "expected": 0.3516
+          },
+          {
+            "instance": "EFR_MushroomMedium_002",
+            "level": 0.35589,
+            "expected": 0.35589
+          },
+          {
+            "instance": "EFR_MushroomMedium_003",
+            "level": 0.36049,
+            "expected": 0.36049
+          },
+          {
+            "instance": "EFR_MushroomCluster_001",
+            "level": 0.36475,
+            "expected": 0.36475
+          },
+          {
+            "instance": "EFR_MushroomCluster_002",
+            "level": 0.97411,
+            "expected": 0.97411
+          },
+          {
+            "instance": "EFR_MushroomCluster_004",
+            "level": 0.50937,
+            "expected": 0.50937
+          },
+          {
+            "instance": "EFR_MushroomCluster_006",
+            "level": 0.35396,
+            "expected": 0.35396
+          },
+          {
+            "instance": "EFR_MushroomCluster_008",
+            "level": 0.50973,
+            "expected": 0.50973
+          },
+          {
+            "instance": "EFR_MushroomGiant_001",
+            "level": 0.36641,
+            "expected": 0.36641
+          }
+        ],
+        "problems": []
+      },
+      "frozen_probe_restore": [],
+      "g18_clocked": {
+        "samples": 21,
+        "judged": 21,
+        "clock_window_s": [
+          0.3653,
+          0.5463
+        ],
+        "levels_seen": {
+          "EFR_MushroomTall_001": [
+            0.3986,
+            0.8079
+          ],
+          "EFR_MushroomTall_002": [
+            0.4989,
+            0.8976
+          ],
+          "EFR_MushroomTall_003": [
+            0.4292,
+            0.7286
+          ],
+          "EFR_MushroomTall_004": [
+            0.3531,
+            0.9269
+          ],
+          "EFR_MushroomTall_005": [
+            0.3516,
+            0.9556
+          ],
+          "EFR_MushroomMedium_001": [
+            0.4634,
+            0.8093
+          ],
+          "EFR_MushroomMedium_002": [
+            0.7878,
+            0.9974
+          ],
+          "EFR_MushroomMedium_003": [
+            0.376,
+            0.9955
+          ],
+          "EFR_MushroomCluster_001": [
+            0.3503,
+            0.9975
+          ],
+          "EFR_MushroomCluster_002": [
+            0.3721,
+            0.9764
+          ],
+          "EFR_MushroomCluster_004": [
+            0.5425,
+            0.8297
+          ],
+          "EFR_MushroomCluster_006": [
+            0.3569,
+            0.82
+          ],
+          "EFR_MushroomCluster_008": [
+            0.3527,
+            0.989
+          ],
+          "EFR_MushroomGiant_001": [
+            0.6096,
+            0.9984
+          ]
+        },
+        "problems": []
+      },
+      "g18_all": {
+        "samples": 7,
+        "neighbour_pairs": [
+          {
+            "pair": [
+              "EFR_MushroomTall_001",
+              "EFR_MushroomMedium_002"
+            ],
+            "max_level_diff": 0.6067
+          },
+          {
+            "pair": [
+              "EFR_MushroomTall_001",
+              "EFR_MushroomCluster_002"
+            ],
+            "max_level_diff": 0.6142
+          },
+          {
+            "pair": [
+              "EFR_MushroomTall_002",
+              "EFR_MushroomCluster_006"
+            ],
+            "max_level_diff": 0.5082
+          },
+          {
+            "pair": [
+              "EFR_MushroomTall_003",
+              "EFR_MushroomCluster_001"
+            ],
+            "max_level_diff": 0.6336
+          },
+          {
+            "pair": [
+              "EFR_MushroomTall_004",
+              "EFR_MushroomMedium_003"
+            ],
+            "max_level_diff": 0.2705
+          },
+          {
+            "pair": [
+              "EFR_MushroomTall_004",
+              "EFR_MushroomCluster_008"
+            ],
+            "max_level_diff": 0.4039
+          },
+          {
+            "pair": [
+              "EFR_MushroomTall_005",
+              "EFR_MushroomMedium_002"
+            ],
+            "max_level_diff": 0.6373
+          },
+          {
+            "pair": [
+              "EFR_MushroomMedium_001",
+              "EFR_MushroomCluster_001"
+            ],
+            "max_level_diff": 0.6493
+          },
+          {
+            "pair": [
+              "EFR_MushroomMedium_001",
+              "EFR_MushroomCluster_004"
+            ],
+            "max_level_diff": 0.482
+          },
+          {
+            "pair": [
+              "EFR_MushroomCluster_006",
+              "EFR_MushroomGiant_001"
+            ],
+            "max_level_diff": 0.4903
+          }
+        ],
+        "problems": []
+      },
+      "g20_clocked": {
+        "samples": 14,
+        "judged": 14,
+        "clock_window_s": [
+          0.498,
+          0.633
+        ],
+        "hand_error_deg": {
+          "hour": 0.0012,
+          "minute": 0.0052
+        },
+        "tip_error_deg": 0.0229,
+        "bell_max_deg": 0.0,
+        "bell_rung_samples": 0,
+        "bell_still_samples": 14,
+        "bell_unjudged_samples": 0,
+        "local_vs_utc": {
+          "offset_hours": [
+            9.0
+          ],
+          "residual_s": [
+            0.737,
+            0.86
+          ],
+          "expected_offset_hours": 9.0
+        },
+        "problems": []
+      },
+      "pivots_end": {
+        "local_s": [
+          54751.386,
+          54754.92
+        ],
+        "rows": {
+          "hour": {
+            "slot_deg": 96.2764,
+            "formula_deg": [
+              96.2613,
+              96.2913
+            ]
+          },
+          "minute": {
+            "slot_deg": 75.317,
+            "formula_deg": [
+              75.1352,
+              75.4954
+            ]
+          },
+          "bell": {
+            "slot_deg": 0.0,
+            "formula_deg": [
+              -0.0,
+              -0.0
+            ]
+          }
+        },
+        "problems": []
+      },
+      "structure_end": {
+        "tower": {
+          "rows": 11,
+          "dial_axis_offset_m": {
+            "hour": 0.0,
+            "minute": 0.0
+          }
+        },
+        "problems": []
+      },
+      "ok": true
+    }
+  ],
+  "gap_s": 300.0,
+  "drift": {
+    "rows": [
+      {
+        "window": 2,
+        "max_level_diff": 0.0
+      }
+    ],
+    "problems": []
+  },
+  "envelopes": {
+    "walk_clearance_z_m": 2.8,
+    "parts": {
+      "EFR_ClockTower_001_HourHandPivot": {
+        "points": 171,
+        "box_world": {
+          "min": [
+            -38.081,
+            -0.6215,
+            7.412
+          ],
+          "max": [
+            -38.051,
+            0.6185,
+            8.652
+          ]
+        },
+        "w06_envelope": {
+          "min": [
+            -38.081,
+            -0.6215,
+            7.412
+          ],
+          "max": [
+            -38.051,
+            0.6185,
+            8.652
+          ]
+        },
+        "beyond_w06_m": 0.0,
+        "lowest_above_walk_m": 4.612,
+        "points_in_zones": {}
+      },
+      "EFR_ClockTower_001_MinuteHandPivot": {
+        "points": 233,
+        "box_world": {
+          "min": [
+            -38.047,
+            -0.9315,
+            7.102
+          ],
+          "max": [
+            -38.011,
+            0.9285,
+            8.962
+          ]
+        },
+        "w06_envelope": {
+          "min": [
+            -38.047,
+            -0.9315,
+            7.102
+          ],
+          "max": [
+            -38.011,
+            0.9285,
+            8.962
+          ]
+        },
+        "beyond_w06_m": 0.0,
+        "lowest_above_walk_m": 4.302,
+        "points_in_zones": {}
+      },
+      "EFR_ClockTower_001_BellPivot": {
+        "points": 1205,
+        "box_world": {
+          "min": [
+            -37.6502,
+            -0.3615,
+            10.202
+          ],
+          "max": [
+            -36.4498,
+            0.3585,
+            11.0025
+          ]
+        },
+        "w06_envelope": {
+          "min": [
+            -37.6502,
+            -0.3615,
+            10.202
+          ],
+          "max": [
+            -36.4498,
+            0.3585,
+            11.0025
+          ]
+        },
+        "beyond_w06_m": 0.0,
+        "lowest_above_walk_m": 7.402,
+        "points_in_zones": {}
+      }
+    }
+  },
+  "expected_utc_offset_hours": 9.0,
+  "g18_neighbour_sync": [
+    {
+      "pair": [
+        "EFR_MushroomTall_001",
+        "EFR_MushroomMedium_002"
+      ],
+      "periods_s": [
+        3.2,
+        4.78
+      ],
+      "beat_period_s": 9.7,
+      "share_synced": 0.0,
+      "longest_synced_s": 0.0
+    },
+    {
+      "pair": [
+        "EFR_MushroomTall_001",
+        "EFR_MushroomCluster_002"
+      ],
+      "periods_s": [
+        3.2,
+        3.87
+      ],
+      "beat_period_s": 18.5,
+      "share_synced": 0.0,
+      "longest_synced_s": 0.0
+    },
+    {
+      "pair": [
+        "EFR_MushroomTall_002",
+        "EFR_MushroomCluster_006"
+      ],
+      "periods_s": [
+        4.03,
+        5.53
+      ],
+      "beat_period_s": 14.9,
+      "share_synced": 0.0,
+      "longest_synced_s": 0.0
+    },
+    {
+      "pair": [
+        "EFR_MushroomTall_003",
+        "EFR_MushroomCluster_001"
+      ],
+      "periods_s": [
+        4.86,
+        6.44
+      ],
+      "beat_period_s": 19.8,
+      "share_synced": 0.0,
+      "longest_synced_s": 0.0
+    },
+    {
+      "pair": [
+        "EFR_MushroomTall_004",
+        "EFR_MushroomMedium_003"
+      ],
+      "periods_s": [
+        5.69,
+        5.61
+      ],
+      "beat_period_s": 399.0,
+      "share_synced": 0.056,
+      "longest_synced_s": 41.9
+    },
+    {
+      "pair": [
+        "EFR_MushroomTall_004",
+        "EFR_MushroomCluster_008"
+      ],
+      "periods_s": [
+        5.69,
+        6.36
+      ],
+      "beat_period_s": 54.0,
+      "share_synced": 0.0,
+      "longest_synced_s": 0.0
+    },
+    {
+      "pair": [
+        "EFR_MushroomTall_005",
+        "EFR_MushroomMedium_002"
+      ],
+      "periods_s": [
+        6.52,
+        4.78
+      ],
+      "beat_period_s": 17.9,
+      "share_synced": 0.0,
+      "longest_synced_s": 0.0
+    },
+    {
+      "pair": [
+        "EFR_MushroomMedium_001",
+        "EFR_MushroomCluster_001"
+      ],
+      "periods_s": [
+        3.95,
+        6.44
+      ],
+      "beat_period_s": 10.2,
+      "share_synced": 0.0,
+      "longest_synced_s": 0.0
+    },
+    {
+      "pair": [
+        "EFR_MushroomMedium_001",
+        "EFR_MushroomCluster_004"
+      ],
+      "periods_s": [
+        3.95,
+        4.7
+      ],
+      "beat_period_s": 24.8,
+      "share_synced": 0.0,
+      "longest_synced_s": 0.0
+    },
+    {
+      "pair": [
+        "EFR_MushroomCluster_006",
+        "EFR_MushroomGiant_001"
+      ],
+      "periods_s": [
+        5.53,
+        3.79
+      ],
+      "beat_period_s": 12.0,
+      "share_synced": 0.0,
+      "longest_synced_s": 0.0
+    }
+  ],
+  "envelope_problems": [],
+  "tolerances": {
+    "level": 0.003,
+    "hue": 0.001,
+    "frozen_level": 0.0001,
+    "frame_slack_s": 0.034,
+    "clock_spread_max_s": 1.2,
+    "min_judged": 4,
+    "hand_deg": 0.05,
+    "tip_deg": 0.1,
+    "axis": 0.0001,
+    "bell_deg": 0.3,
+    "still_deg": 0.001,
+    "bell_spread_max_s": 0.3,
+    "min_bell_judged_per_mark": 2,
+    "dial_axis_m": 0.01,
+    "tz_residual_s": 5.0,
+    "sync_min_diff": 0.1,
+    "local": 0.0001,
+    "envelope_m": 0.01
+  },
+  "ok": true
+}

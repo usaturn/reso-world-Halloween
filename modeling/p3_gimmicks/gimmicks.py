@@ -142,6 +142,35 @@ D_MODULE = "P3GhostTrain"
 G15_CLOCK_KEYS = ("p3_g15ck1", "p3_g15ck2")
 
 
+# W10-E: G18 キノコの発光・G20 時計の針と鐘（E 西・魔法の森）。キノコの個体ごとの周期・位相・強さの範囲は W06 の
+# assets/manifest/E_forest.json の glow_individuals、時計塔の部品・軸・範囲は同じファイルの EFR_ClockTower_001 の motion から読む。
+# ProtoFlux のモジュールは E 用に 1 つ（worldState は E の state。docs/p3-gimmicks.md 20 章）
+G18_VARIABLES = {
+    "G18Intensity": {"key": "g18_amp", "default": 1.0, "min": 0.0, "max": 2.0,
+                     "meaning": "発光の強さの倍率（1 で W06 の強さの範囲（P2 の発光の 0.35〜1.0 倍）、0 で発光なし、2 は定期ショーの盛り上がり）"},
+    "G18Speed": {"key": "g18_speed", "default": 1.0, "min": 0.0, "max": 3.0,
+                 "meaning": "明るさの変化の速さの倍率（1 で各個体の W06 の周期 period_s、0 で時刻を止める）"},
+}
+# G20 の時刻の基準は、見る人の端末のローカル時刻（2026-11-03 の利用者の決定。ProtoFlux の ToLocalTime(UtcNow)）。針も鐘も
+# その時刻だけから決まる（同期する書き込み・インパルスは無い）
+G20_VARIABLES = {
+    "G20BellSwing": {"key": "g20_swing", "default": 1.0, "min": 0.0, "max": 1.0,
+                     "meaning": "鐘の揺れの大きさ（1 で W06 の ±25° まで、0 で揺れない）"},
+    "G20BellInterval": {"key": "g20_int", "default": 3600.0, "min": 20.0, "max": 3600.0,
+                        "meaning": "鐘の節目の間隔（秒。既定 3600 で毎正時。ローカル時刻の 0 時からの秒がこの倍数になるたびに揺れ始める）"},
+}
+# 鐘の揺れ: 節目からの秒 τ、x = clamp01(τ / DURATION) で、角度 = A (1 − x)² sin(2π SWINGS x)。x = 1（DURATION 秒の後）で 0 に
+# 戻り、次の節目まで真下のまま。|角度| ≤ A なので W06 の ±25° を超えない
+G20_BELL_DURATION_S = 12.0
+G20_BELL_SWINGS = 6                  # DURATION の間の往復の回数（1 往復 2 秒）
+E_FLUX_SLOT = "G18_G20_Forest"       # P3_Gimmicks の子。E のモジュールの配備先
+E_MODULE = "P3ForestClock"
+G18_MATERIAL_PREFIX = "p3_g18_"       # E の宣言に足すキノコの個体ごとの材質のキー（p3_g18_01〜14。10 文字未満）
+# 検査用の時計（W10-D と同じ）。時計塔の asset root と鐘の腕木に ValueField<double2> を 1 つずつ置き、モジュールが
+# (WorldTimeDouble, ローカル時刻の 0 時からの秒) を drive する。G18 はワールドの時刻、G20 はローカル時刻で照合する（verify_e.py）
+G20_CLOCK_KEYS = ("p3_g20ck1", "p3_g20ck2")
+
+
 def _c_gimmick(gid: str) -> dict:
     hits = [g for g in _load("layout/areas/C_candy.json")["Hero_or_Gimmick"] if g["gimmick_id"] == gid]
     if len(hits) != 1:
@@ -463,6 +492,122 @@ def g15_car_pose(u: float, g: dict | None = None) -> tuple[list[float], float]:
     return [c[0] + x, g["rail_local_z"], c[1] + y], th
 
 
+def g18() -> dict:
+    """G18 のキノコ。W06 のアセット一覧で gimmick_ids に G18 を持つアセットの glow_individuals（個体・発光の部品・周期・位相・
+    強さの範囲）を、アセット一覧の並びのまま並べる（材質のキー p3_g18_01〜 の番号はこの順）。
+
+    発光の部品が取付位置（attachment_point）でない、周期・強さの範囲がおかしい、個体の名前が重なるときは止める。
+    """
+    rows = []
+    for a in _load("assets/manifest/E_forest.json")["assets"]:
+        if "G18" not in (a.get("gimmick_ids") or []):
+            continue
+        attach = set(a["hierarchy"]["attachment_points"])
+        for ind in a.get("glow_individuals") or []:
+            part = ind["glow_part"]
+            if part != f"{ind['instance']}_Glow" or part.replace(ind["instance"], a["asset_id"]) not in attach:
+                raise ValueError(f"G18 {ind['instance']}: {part} is not the asset's glow attachment point")
+            lo, hi, period = float(ind["intensity_min"]), float(ind["intensity_max"]), float(ind["period_s"])
+            if not (0.0 <= lo < hi) or period <= 0.0:
+                raise ValueError(f"G18 {ind['instance']}: intensity {lo}..{hi}, period {period}")
+            rows.append({"instance": ind["instance"], "glow_part": part, "asset_id": a["asset_id"], "period_s": period,
+                         "phase_s": float(ind["phase_s"]), "intensity": (lo, hi),
+                         "material_key": f"{G18_MATERIAL_PREFIX}{len(rows) + 1:02d}"})
+    if len({r["instance"] for r in rows}) != len(rows) or not rows:
+        raise ValueError(f"G18: individuals {[r['instance'] for r in rows]}")
+    return {"gimmick_id": "G18", "district": "E_forest", "individuals": rows}
+
+
+def g18_level(t: float, ind: dict, intensity: float = 1.0, speed: float = 1.0) -> float:
+    """G18 の個体 ind の、ワールドの時刻 t の発光の倍率（P2 の発光にかける値）。モジュールと同じ式・同じ範囲の収め方。
+
+    I = clamp(G18Intensity, 0, 2)、S = clamp(G18Speed, 0, 3)、θ = 2π (S t + phase_s) / period_s、
+    倍率 = I (lo + (hi − lo)(0.5 + 0.5 sin θ))。I = 1 で W06 の強さの範囲 lo〜hi の中を、個体の周期で滑らかに変わる
+    """
+    v = G18_VARIABLES
+    i = min(max(float(intensity), v["G18Intensity"]["min"]), v["G18Intensity"]["max"])
+    s = min(max(float(speed), v["G18Speed"]["min"]), v["G18Speed"]["max"])
+    lo, hi = ind["intensity"]
+    th = 2.0 * math.pi * (s * t + ind["phase_s"]) / ind["period_s"]
+    return i * (lo + (hi - lo) * (0.5 + 0.5 * math.sin(th)))
+
+
+def g18_base_emissive(declaration: dict) -> list[float]:
+    """E の宣言のキノコの個体ごとの材質（district.add_g18_materials）の EmissiveColor の初期値（sRGB の [r, g, b, a]）。どれも同じ
+    （共有の材質を写した値）でなければ止める。"""
+    keys = {r["material_key"] for r in g18()["individuals"]}
+    found = {}
+    stack = [declaration]
+    while stack:
+        n = stack.pop()
+        for c in n.get("components", []):
+            if c.get("key") in keys:
+                if c["key"] in found:
+                    raise ValueError(f"E declaration: {c['key']} appears twice")
+                found[c["key"]] = [float(x) for x in c["initialFields"]["EmissiveColor"]]
+        stack.extend(n.get("children", []))
+    if set(found) != keys:
+        raise ValueError(f"E declaration: G18 materials {sorted(keys - set(found))} are missing (export E with the G18 materials first)")
+    values = list(found.values())
+    if any(v != values[0] for v in values):
+        raise ValueError(f"E declaration: G18 materials start from different glow colours {found}")
+    return values[0]
+
+
+def g20() -> dict:
+    """G20 の時計塔。時針・分針・鐘の Pivot と、回る軸・範囲（W06 のアセット一覧の EFR_ClockTower_001 の motion）。
+
+    - 針: Blender の Pivot のローカル −Y まわりの正 = 前から見て時計回り、基準は 12 時、1 周は時針 12 時間・分針 1 時間
+      （notes の "One turn per 12 h"・"One turn per hour"）。Resonite では Pivot のローカル +Z まわりの正（軸の入れ替えで右手系と
+      左手系が入れ替わり、−Y_B まわりの +θ = −Z_R まわりの −θ = +Z_R まわりの +θ）
+    - 鐘: Blender の Pivot のローカル X まわりに ±25°、基準は真下。Resonite では Pivot のローカル +X まわり（向きの符号は逆だが、
+      揺れは左右対称なので、前後のどちらから振れ始めるかだけが変わる）
+    - 軸・範囲・部品がこの形でなければ止める（式とデータの食い違い）
+    """
+    asset = next(a for a in _load("assets/manifest/E_forest.json")["assets"] if "G20" in (a.get("gimmick_ids") or []))
+    motions = {m["part_name"]: m for m in asset["motion"] if m.get("gimmick_id") == "G20"}
+    roots = asset["hierarchy"]["motion_roots"]
+    hour = next(n for n in roots if "HourHand" in n)
+    minute = next(n for n in roots if "MinuteHand" in n)
+    bell = next(n for n in roots if "Bell" in n)
+    turns = {hour: (12.0 * 3600.0, "12 h"), minute: (3600.0, "hour")}
+    for name, (period, word) in turns.items():
+        m = motions[name]
+        if (m["motion_type"] != "rotation" or m["axis"] != "-Y" or m["axis_frame"] != "pivot local (Blender)"
+                or (m["range"]["min"], m["range"]["max"]) != (0.0, 360.0) or word not in m["notes"] or "12:00" not in m["notes"]):
+            raise ValueError(f"G20 {name}: unsupported motion {m['motion_type']} {m['axis']} {m['range']} {m['notes']}")
+    b = motions[bell]
+    if b["motion_type"] != "oscillation" or b["axis"] != "X" or (b["range"]["min"], b["range"]["max"]) != (-25.0, 25.0):
+        raise ValueError(f"G20 {bell}: unsupported motion {b['motion_type']} {b['axis']} {b['range']}")
+    rows = {"hour": {"pivot": hour, "visual": motions[hour]["visual_part"], "period_s": turns[hour][0],
+                     "pivot_local_blender": [float(c) for c in motions[hour]["pivot_local"]]},
+            "minute": {"pivot": minute, "visual": motions[minute]["visual_part"], "period_s": turns[minute][0],
+                       "pivot_local_blender": [float(c) for c in motions[minute]["pivot_local"]]}}
+    return {"gimmick_id": "G20", "district": "E_forest", "asset_id": asset["asset_id"], "hands": rows,
+            "bell": {"pivot": bell, "visual": b["visual_part"], "max_deg": float(b["range"]["max"]),
+                     "pivot_local_blender": [float(c) for c in b["pivot_local"]]},
+            "bracket": next(p["part_id"] for p in asset["parts"] if p["part_id"].endswith("_BellBracket")),
+            "dial_centre_local_blender": [float(c) for c in asset["replacement_slot"]["dial_centre_local"]],
+            "managed_fields": ["position", "scale"]}
+
+
+def g20_hand_angle(sod: float, period_s: float) -> float:
+    """ローカル時刻の 0 時からの秒 sod の、針の角度（ラジアン、12 時から前から見て時計回り、0〜2π）。"""
+    return 2.0 * math.pi * ((float(sod) / period_s) % 1.0)
+
+
+def g20_bell_angle(sod: float, swing: float = 1.0, interval: float = 3600.0, max_deg: float = 25.0) -> float:
+    """ローカル時刻の 0 時からの秒 sod の、鐘の角度（度。Resonite の Pivot のローカル +X まわり）。モジュールと同じ式・同じ範囲の
+    収め方。τ = sod mod N（N = clamp(G20BellInterval, 20, 3600)）、x = clamp01(τ / DURATION)、
+    角度 = A (1 − x)² sin(2π SWINGS x)（A = max_deg × clamp01(G20BellSwing)）。"""
+    v = G20_VARIABLES
+    a = max_deg * min(max(float(swing), v["G20BellSwing"]["min"]), v["G20BellSwing"]["max"])
+    n = min(max(float(interval), v["G20BellInterval"]["min"]), v["G20BellInterval"]["max"])
+    tau = (float(sod) / n % 1.0) * n
+    x = min(max(tau / G20_BELL_DURATION_S, 0.0), 1.0)
+    return a * (1.0 - x) ** 2 * math.sin(2.0 * math.pi * G20_BELL_SWINGS * x)
+
+
 def g01() -> dict:
     """G01 の 6 体。motion_root（_Body）・基準姿勢・範囲・位相。"""
     rows = []
@@ -499,6 +644,7 @@ def driven_slots() -> dict[str, dict[str, list[str]]]:
     d15 = g15()
     b5, b6 = g05(), g06()
     c9, c11 = g09(), g11()
+    e20 = g20()
     if d15["district"] != d["district"]:
         raise ValueError("G13 and G15 are expected in the same district")
     return {
@@ -511,4 +657,7 @@ def driven_slots() -> dict[str, dict[str, list[str]]]:
         # G09 は攪拌棒の Pivot の回転だけ、G11 は仮モデルの root と CarrierPivot の位置と回転
         c9["district"]: {c9["stir_pivot"]: c9["managed_fields"], c11["rider"]: c11["managed_fields"],
                          c11["carrier"]: c11["managed_fields"]},
+        # G20 は時針・分針・鐘の Pivot の回転だけ（G18 のキノコは動かさない。材質の発光だけ）
+        e20["district"]: {**{h["pivot"]: e20["managed_fields"] for h in e20["hands"].values()},
+                          e20["bell"]["pivot"]: e20["managed_fields"]},
     }

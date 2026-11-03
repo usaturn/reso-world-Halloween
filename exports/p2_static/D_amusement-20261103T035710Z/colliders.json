@@ -1,0 +1,339 @@
+{
+  "key": "D_amusement",
+  "source": "model.apply.json",
+  "output": "p2.apply.json",
+  "collider_fields": {
+    "Type": "Static",
+    "CharacterCollider": true,
+    "Sidedness": "DualSided"
+  },
+  "counts": {
+    "mesh": 30,
+    "fixed_collision": 0,
+    "none": 28,
+    "mesh_slots": 58,
+    "object_roots": 28
+  },
+  "objects": [
+    {
+      "slot": "D_amusement/DAM_AmusementPlaza_001/DAM_AmusementPlaza_001_EastCourt",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_AmusementPlaza_001/DAM_AmusementPlaza_001_EastCourt"
+    },
+    {
+      "slot": "D_amusement/DAM_AmusementPlaza_001/DAM_AmusementPlaza_001_Promenade",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_AmusementPlaza_001/DAM_AmusementPlaza_001_Promenade"
+    },
+    {
+      "slot": "D_amusement/DAM_AmusementPlaza_001/DAM_AmusementPlaza_001_WestCourt",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_AmusementPlaza_001/DAM_AmusementPlaza_001_WestCourt"
+    },
+    {
+      "slot": "D_amusement/DAM_Bench_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_Bench_001"
+    },
+    {
+      "slot": "D_amusement/DAM_Bench_002",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_Bench_002"
+    },
+    {
+      "slot": "D_amusement/DAM_Bench_003",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_Bench_003"
+    },
+    {
+      "slot": "D_amusement/DAM_CarnivalStall_001/DAM_CarnivalStall_001_Att_Lantern",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "D_amusement/DAM_CarnivalStall_001/DAM_CarnivalStall_001_Att_Sign",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "D_amusement/DAM_CarnivalStall_001/DAM_CarnivalStall_001_Body",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_CarnivalStall_001/DAM_CarnivalStall_001_Body"
+    },
+    {
+      "slot": "D_amusement/DAM_Carousel_001/DAM_Carousel_001_Base",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_Carousel_001/DAM_Carousel_001_Base"
+    },
+    {
+      "slot": "D_amusement/DAM_Carousel_001/DAM_Carousel_001_TurnRoot/DAM_Carousel_001_Att_M05_Canopy",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "D_amusement/DAM_Carousel_001/DAM_Carousel_001_TurnRoot/DAM_Carousel_001_Att_M05_CenterCasing",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "D_amusement/DAM_Carousel_001/DAM_Carousel_001_TurnRoot/DAM_Carousel_001_Floor",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "D_amusement/DAM_Carousel_001/DAM_Carousel_001_TurnRoot/DAM_Carousel_001_M05_Canopy",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "D_amusement/DAM_Carousel_001/DAM_Carousel_001_TurnRoot/DAM_Carousel_001_M05_CenterCasing",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "D_amusement/DAM_Carousel_001/DAM_Carousel_001_TurnRoot/DAM_Carousel_001_Poles",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "D_amusement/DAM_Carousel_001/DAM_Carousel_001_TurnRoot/DAM_Carousel_001_SeatRoot_001/DAM_Carousel_001_Seat_001",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "D_amusement/DAM_Carousel_001/DAM_Carousel_001_TurnRoot/DAM_Carousel_001_SeatRoot_002/DAM_Carousel_001_Seat_002",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "D_amusement/DAM_Carousel_001/DAM_Carousel_001_TurnRoot/DAM_Carousel_001_SeatRoot_003/DAM_Carousel_001_Seat_003",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "D_amusement/DAM_Carousel_001/DAM_Carousel_001_TurnRoot/DAM_Carousel_001_SeatRoot_004/DAM_Carousel_001_Seat_004",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "D_amusement/DAM_Fence_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_Fence_001"
+    },
+    {
+      "slot": "D_amusement/DAM_Fence_002",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_Fence_002"
+    },
+    {
+      "slot": "D_amusement/DAM_Fence_003",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_Fence_003"
+    },
+    {
+      "slot": "D_amusement/DAM_GarlandFlag_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_GarlandFlag_001"
+    },
+    {
+      "slot": "D_amusement/DAM_GarlandFlag_002",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_GarlandFlag_002"
+    },
+    {
+      "slot": "D_amusement/DAM_GarlandFlag_003",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_GarlandFlag_003"
+    },
+    {
+      "slot": "D_amusement/DAM_GhostTrain_001/DAM_GhostTrain_001_CarRoot_001/DAM_GhostTrain_001_CarBody_001",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "D_amusement/DAM_GhostTrain_001/DAM_GhostTrain_001_CarRoot_001/DAM_GhostTrain_001_CarWheelFront_001",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "D_amusement/DAM_GhostTrain_001/DAM_GhostTrain_001_CarRoot_001/DAM_GhostTrain_001_CarWheelRear_001",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "D_amusement/DAM_GhostTrain_001/DAM_GhostTrain_001_EngineRoot/DAM_GhostTrain_001_Att_CouplerRear",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "D_amusement/DAM_GhostTrain_001/DAM_GhostTrain_001_EngineRoot/DAM_GhostTrain_001_Att_Headlamp",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "D_amusement/DAM_GhostTrain_001/DAM_GhostTrain_001_EngineRoot/DAM_GhostTrain_001_Att_M06_Engine",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "D_amusement/DAM_GhostTrain_001/DAM_GhostTrain_001_EngineRoot/DAM_GhostTrain_001_EngineWheelFront",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "D_amusement/DAM_GhostTrain_001/DAM_GhostTrain_001_EngineRoot/DAM_GhostTrain_001_EngineWheelRear",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "D_amusement/DAM_GhostTrain_001/DAM_GhostTrain_001_EngineRoot/DAM_GhostTrain_001_M06_EngineShell",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "D_amusement/DAM_Lantern_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_Lantern_001"
+    },
+    {
+      "slot": "D_amusement/DAM_Lantern_002",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_Lantern_002"
+    },
+    {
+      "slot": "D_amusement/DAM_PumpkinCups_001/DAM_PumpkinCups_001_Base",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_PumpkinCups_001/DAM_PumpkinCups_001_Base"
+    },
+    {
+      "slot": "D_amusement/DAM_PumpkinCups_001/DAM_PumpkinCups_001_TurnRoot/DAM_PumpkinCups_001_Att_CenterTop",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "D_amusement/DAM_PumpkinCups_001/DAM_PumpkinCups_001_TurnRoot/DAM_PumpkinCups_001_CupRoot_001/DAM_PumpkinCups_001_Cup_001",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "D_amusement/DAM_PumpkinCups_001/DAM_PumpkinCups_001_TurnRoot/DAM_PumpkinCups_001_CupRoot_002/DAM_PumpkinCups_001_Cup_002",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "D_amusement/DAM_PumpkinCups_001/DAM_PumpkinCups_001_TurnRoot/DAM_PumpkinCups_001_CupRoot_003/DAM_PumpkinCups_001_Cup_003",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "D_amusement/DAM_PumpkinCups_001/DAM_PumpkinCups_001_TurnRoot/DAM_PumpkinCups_001_Turntable",
+      "policy": "none",
+      "reason": "可動部品（motion_roots とその子孫）。Spec §8・§11"
+    },
+    {
+      "slot": "D_amusement/DAM_SmallPumpkin_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_SmallPumpkin_001"
+    },
+    {
+      "slot": "D_amusement/DAM_SmallPumpkin_002",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_SmallPumpkin_002"
+    },
+    {
+      "slot": "D_amusement/DAM_SmallPumpkin_003",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_SmallPumpkin_003"
+    },
+    {
+      "slot": "D_amusement/DAM_StreetLamp_001",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_StreetLamp_001"
+    },
+    {
+      "slot": "D_amusement/DAM_StreetLamp_002",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_StreetLamp_002"
+    },
+    {
+      "slot": "D_amusement/DAM_StreetLamp_003",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_StreetLamp_003"
+    },
+    {
+      "slot": "D_amusement/DAM_StreetLamp_004",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_StreetLamp_004"
+    },
+    {
+      "slot": "D_amusement/DAM_StreetLamp_005",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_StreetLamp_005"
+    },
+    {
+      "slot": "D_amusement/DAM_StreetLamp_006",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_StreetLamp_006"
+    },
+    {
+      "slot": "D_amusement/DAM_TicketBooth_001/DAM_TicketBooth_001_Att_Lantern",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "D_amusement/DAM_TicketBooth_001/DAM_TicketBooth_001_Att_Sign",
+      "policy": "none",
+      "reason": "取付位置（attachment_points）"
+    },
+    {
+      "slot": "D_amusement/DAM_TicketBooth_001/DAM_TicketBooth_001_Body",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_TicketBooth_001/DAM_TicketBooth_001_Body"
+    },
+    {
+      "slot": "D_amusement/DAM_TrainTrack_001/DAM_TrainTrack_001_LoopGuide",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_TrainTrack_001/DAM_TrainTrack_001_LoopGuide"
+    },
+    {
+      "slot": "D_amusement/DAM_TrainTrack_001/DAM_TrainTrack_001_Rails",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_TrainTrack_001/DAM_TrainTrack_001_Rails"
+    },
+    {
+      "slot": "D_amusement/DAM_TrainTrack_001/DAM_TrainTrack_001_Sleepers",
+      "policy": "mesh",
+      "reason": "静的なメッシュ",
+      "collider_slot": "D_amusement/DAM_TrainTrack_001/DAM_TrainTrack_001_Sleepers"
+    }
+  ]
+}

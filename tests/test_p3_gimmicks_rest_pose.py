@@ -11,6 +11,7 @@ rotation driven; a moved hinge position must stay visible, it is where W09R-B pu
 C to the observed tree (the stirring rod pivot, the witch proxy that carries M08, and the patrol loop's carrier pivot);
 ``apply_rest_pose`` stops when a district with driven Slots is not observed. W10-D added the G15 ghost train to D (the
 engine and car roots, and their four wheels whose rotation only is driven) so that the observed tree stays complete.
+W10-E added E for the same reason (the G20 hour, minute and bell pivots of the clock tower, rotation only).
 """
 
 from __future__ import annotations
@@ -77,10 +78,19 @@ def _world(moved_pedestal: bool = False, moved_turn_root: bool = False, moved_hi
     c_decl = [_decl(g09["asset_id"], pos=(34.4, 0.0, 5.2), children=[_decl(g09["stir_pivot"], pos=(0.0, 1.16, 0.0))]),
               _decl(g11["rider"], pos=(43.2, 10.2, 0.0), children=[_decl("M08")]),
               _decl(g11["loop_asset_id"], pos=(33.0, 0.0, 0.0), children=[_decl(g11["carrier"], pos=(10.2, 10.2, 0.0))])]
+    # W10-E: G20 の時計塔（時針・分針・鐘の Pivot は回転だけを駆動する）
+    g20 = gimmicks.g20()
+    pivots = [h["pivot"] for h in g20["hands"].values()] + [g20["bell"]["pivot"]]
+    e_live = [_live(g20["asset_id"], pos=(-38.5, 0.0, 0.0), children=[
+        _live(n, pos=(0.0015, 8.032, 0.419 + 0.04 * i), rot=(0.0, 0.0, 0.38, 0.92)) for i, n in enumerate(pivots)])]
+    e_decl = [_decl(g20["asset_id"], pos=(-38.5, 0.0, 0.0), children=[
+        _decl(n, pos=(0.0015, 8.032, 0.419 + 0.04 * i)) for i, n in enumerate(pivots)])]
     root = _live("HalloweenMagicalCarnival", children=[_live("A_plaza", children=a_live), _live("D_amusement", children=d_live),
-                                                       _live("B_mansion", children=b_live), _live("C_candy", children=c_live)])
+                                                       _live("B_mansion", children=b_live), _live("C_candy", children=c_live),
+                                                       _live("E_forest", children=e_live)])
     decls = {"A_plaza": _decl("A_plaza", children=a_decl), "D_amusement": _decl("D_amusement", children=d_decl),
-             "B_mansion": _decl("B_mansion", children=b_decl), "C_candy": _decl("C_candy", children=c_decl)}
+             "B_mansion": _decl("B_mansion", children=b_decl), "C_candy": _decl("C_candy", children=c_decl),
+             "E_forest": _decl("E_forest", children=e_decl)}
     return root, decls
 
 

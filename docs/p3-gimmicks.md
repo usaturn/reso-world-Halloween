@@ -6,6 +6,7 @@
 - W10-B（#59）の **G05 おばけの浮遊**・**G06 屋敷の扉の開閉**は 17 章（方式の追記: B 用の 1 つのモジュール、回転だけを駆動する蝶番の中継と `managedFields`、開閉の往復の式）
 - W10-C（#60）の **G09 大釜の攪拌と泡・煙**・**G11 魔女の巡回**は 18 章（方式の追記: C 用の 1 つのモジュール、素材の宣言の親（仮モデルの root）を動かす、8 点を通る三角補間の経路、液面の専用の材質、PhotonDust の粒子）
 - W10-D（#61）の **G15 おばけ列車の周回**は 19 章（方式の追記: D 用の 1 つのモジュール、進んだ距離から弧の位置を決めるスタジアム型の経路、先頭車と客車の弧の差、進んだ距離 ÷ 半径で回す車輪。W05 の旗 1 つの位置の修正）
+- W10-E（#62）の **G18 キノコの発光**・**G20 時計の針と鐘**は 20 章（方式の追記: E 用の 1 つのモジュール、共有の材質を個体ごとに写した発光、見る人の端末のローカル時刻で進む針、節目からの時刻の関数で一度だけ揺れる鐘。これで先行 10 種類が揃った。先行 10 種類のまとめは 20.10）
 
 - 担当: Claude Code（Opus 5.5）、2026-11-01（UTC）。apply・配備したのはこのセッションだけ。GPT のレビューは PR で 1 回（14 章）
 - 着手前の確認事項: W08 #41 の回答（issuecomment-6545243021）をそのまま使う（#56 の本文。起票したセッションの判断）
@@ -21,6 +22,7 @@
 - W10-B（#59、2026-11-01）も同じ版。記録は親の checkout の `tmp/w10b/`
 - W10-C（#60、2026-11-01）も同じ版。記録は親の checkout の `tmp/w10c/`
 - W10-D（#61、2026-11-02）も同じ版（Resonite 2026.10.29.1239、ResoniteLink 0.13.1.0、resoloop 0.2.0、Flux-SDK 1.9.0・managed data 2026.9.18.82、Blender 5.0.1）。記録は親の checkout の `tmp/w10d/`
+- W10-E（#62、2026-11-03）も同じ版（Resonite 2026.10.29.1239、ResoniteLink 0.13.1.0、resoloop 0.2.0、Flux-SDK 1.9.0・managed data 2026.9.18.82、Blender 5.0.1）。記録は親の checkout の `tmp/w10e/`。この日は resoloop の observe が 1 回 3〜8 秒と遅かった（W10-D は 1.5〜5 秒。ほとんどが resoloop の CPU の時間で、Resonite の中で 1 つの Component を読む間隔も 約 0.15 秒と W10-D の 0.115 秒より長い）
 - 駆動は、対象のワールドが Resonite の前面にあるときだけ進む（背面では `Spinner` も ProtoFlux の drive も止まって見える。最初の観察で回転が単位回転のまま変わらず、利用者に前面へ出してもらうと動いた）。観察・撮影の前に前面へ出してもらう
 
 ## 2. 方式
@@ -886,3 +888,180 @@ GPT のレビュー（19.11）で直した検査（検査用の時計で挟ん�
 - 保存・再読込の後に、中継・ProtoFlux のモジュール・HMC_P3 の値が残って動くか（P4）。この子の着手の時点でワールドは前回の保存の後に開き直されていて、W10〜W10-C の駆動はどれも動いていた（19.3・19.7）
 - 車輪が前へ転がって見えるか（一様な色の 16 角柱で見分けにくく、目では確かめていない。回る向きは四元数の式と、ゆっくりの時刻の進みとの比で確かめた。19.2 の 4）
 - VR での見え方、列車とアバターのすれ違い（当たり判定は無いのですり抜ける）、メモリの負荷
+
+## 20. W10-E（#62）G18 キノコの発光・G20 時計の針と鐘
+
+E 西・魔法の森の **G18 キノコが異なる周期で柔らかく発光する**と **G20 時計の針が進み、節目に鐘の演出が出る**の記録。これで先行 10 種類（Spec §8）が揃った。
+
+- 担当: Claude Code（Opus 5.5）、2026-11-03（UTC）。apply・配備したのはこのセッションだけ。実装は Claude、GPT がレビュー（W10 と同じ扱い。20.11）
+- 着手前の確認事項: W08 #41 の回答（issuecomment-6545243021）をそのまま使う（#62 の本文。起票したセッションの判断）
+- 利用者の決定（2026-11-03、着手の直後）: G20 の時刻の基準は**見る人の端末のローカル時刻**（選択肢は「実際の日本時間（UTC+9 固定）」「`WorldTimeDouble`」「各自のローカル時刻」の 3 つ。推奨は日本時間だった）。人によって針の位置と鐘の時刻が違う（同期しない）ことを含めて選んだ
+
+### 20.1 方式の追記
+
+| 項目 | 決めたこと | 理由 |
+|---|---|---|
+| 駆動の作り方 | ProtoFlux（`flux/P3ForestClock.pg`。E 用の 1 つのモジュール、worldState は E の state、配備先は `P3_Gimmicks/G18_G20_Forest`、deploy state は `p3_forest_clock.json`）。キノコ 14 個の個体ごとの材質の `EmissiveColor`、時計塔の時針・分針・鐘の Pivot の中継（`ValueMultiDriver<floatQ>`）の `Value`、検査用の時計 2 つを drive する | 外から変えられる値（`HMC_P3/G18*`・`G20*`）を Resonite の中から読むので、`P3_Gimmicks` の下に置く（16.1 と同じ理由）。G18 と G20 は同じ地区（E）なので 1 つのモジュールにまとめた（W10-B・C と同じ） |
+| G18 の共有の材質 | E の宣言で、キノコの発光の部品（W06 の取付位置 `<個体>_Glow`。それぞれ専用の MeshRenderer に共有の材質 `MAT_EFR_MushGlow` 1 つだけ）に、共有の材質を写した個体ごとの `PBS_Metallic`（キー `p3_g18_01`〜`14`。番号は W06 のアセット一覧の `glow_individuals` の並び）を足し、`_Glow` の MeshRenderer の `Materials` だけを付け替える（`district.add_g18_materials`）。`EmissiveColor` は元の値を `initialFields` に置く | 共有の材質は 15 個の MeshRenderer が使い、14 個がキノコの `_Glow`、1 個が池 `EFR_Pond_001`（5 つの材質のうち 4 つ目。睡蓮の光る部分）。個体ごとに周期を変えるには、少なくとも個体の数だけ発光の値が要る。池は付け替えず、元の材質の値も変えないので、見た目は P2 のまま（20.5） |
+| G18 の式 | θ_i = 2π (S t + φ_i) / T_i、倍率_i = I (lo_i + (hi_i − lo_i)(0.5 + 0.5 sin θ_i))、発光_i = 倍率_i × E0（Linear の colorX。E0 は P2 の発光 (1.536, 2.752, 3.2) 線形）。t は `WorldTimeDouble`、T_i・φ_i・lo_i・hi_i は W06 の `period_s`（3.2〜6.52 秒）・`phase_s`・`intensity_min`（0.35）・`intensity_max`（1.0） | 「柔らかく」= 正弦で滑らかに。倍率 1 が P2 の明るさ（W06 の `intensity_max`）。色合いは変えず明るさだけを変える（3 つの成分に同じ倍率）。周期が全部違うので、隣の個体と揃わない（20.5 の観察で近くの組の倍率の差は最大 0.24〜0.65） |
+| G20 の時刻 | 見る人の端末のローカル時刻 L = `ToLocalTime(UtcNow)` の 0 時からの秒 s = 時 × 3600 + 分 × 60 + 秒 + ミリ秒 / 1000（`DateTimeHour` などの int を double に） | 利用者の決定。ProtoFlux の drive は見る人ごとにその端末で評価されるので、各自の端末のタイムゾーンの時刻になる。Flux-SDK に `LocalNow` は無く、`ToLocalTime`（`DateTime` → `DateTime`）と `UtcNow` の組で作る |
+| G20 の針 | 時針 = Z(2π × repeat01(s / 43200))、分針 = Z(2π × repeat01(s / 3600))（Pivot のローカル +Z まわりの正、四元数 (0, 0, sin(φ/2), cos(φ/2))）。中継は回転の 1 つずつ、`managedFields` は `["position", "scale"]`（G06 の蝶番と同じ） | W06 の「Pivot のローカル −Y_B まわりの正 = 前から見て時計回り、基準は 12 時」を Resonite に写すと、軸の入れ替えで右手系と左手系が入れ替わるので −Y_B の +θ = −Z_R の −θ = +Z_R の +θ。実機で、3 時の針の先が W06 の「前から見た右 = −X_B（−X_R）」を向くことを確かめた（20.5。針の先の向きの照合） |
+| G20 の鐘 | 節目（s が `G20BellInterval` の倍数。既定 3600 で毎正時）からの秒 τ = N × repeat01(s / N)、x = clamp01(τ / 12)、角度 = A (1 − x)² sin(2π × 6 x)（A = 25° × `G20BellSwing`）、Pivot のローカル +X まわり。中継は回転の 1 つ | 一度だけの演出を、インパルスやタイマーを使わない「節目からの時刻の関数」にした。12 秒で 6 往復して真下に戻り（x = 1 で (1 − x)² = 0）、次の節目まで止まる。\|角度\| ≤ A なので W06 の ±25° を超えない（最初の山で 約 23°）。途中参加の人は、揺れている途中なら同じ揺れの続きを見て、揺れの後なら止まった鐘を見る（鳴り直さない）。演出は見る人ごとに計算されるだけで、何も生成しない（参加者ごとに重ならない） |
+| 外から変えられる値 | `HMC_P3/G18Intensity`（既定 1、0〜2。0 で消える、2 は定期ショーの盛り上がり）・`G18Speed`（既定 1、0〜3。0 で時刻を止める）・`G20BellSwing`（既定 1、0〜1）・`G20BellInterval`（既定 3600 秒、20〜3600）。`P3_Gimmicks` の `DynamicValueVariable<float>`（キー `g18_amp`・`g18_speed`・`g20_swing`・`g20_int`、`initialFields`）。モジュールの中で範囲に収める | W11 のショーが Resonite の中から変えられる。`G20BellInterval` は確かめのために節目を短くする値（最小 20 秒 > 揺れの 12 秒）。確かめた後に 3600 に戻した（20.5） |
+| 検査用の時計 | 時計塔の asset root と鐘の腕木に `ValueField<double2>` を 1 つずつ（キー `p3_g20ck1`・`p3_g20ck2`）置き、モジュールが (`WorldTimeDouble`, s) を drive する | W10-D と同じ（observe に時刻が無い）。G18 はワールドの時刻、G20 はローカル時刻で照合するので、2 つの時刻を 1 つの値で読む。同じ Slot に同じ型を 2 つ置かない（`APPLY_COMPONENT_IDENTITY_RISK`） |
+| 当たり判定 | 付けない。針・鐘・キノコは P2 から当たり判定が無い（鐘の腕木の `MeshCollider` は静的なまま） | Spec §11。針・鐘は高さ 7〜11 m で、人の届く高さより上（20.5 の包絡） |
+
+採らなかった方法:
+
+- **G18 で共有の材質そのものを drive する**: 14 個と池が同じ明るさで一斉に変わり、「異なる周期」にならない
+- **周期の近い個体をまとめて材質を減らす**: W06 の周期は 14 個とも違う（3.2〜6.52 秒）。まとめると W06 のデータの周期を変えることになる。分けて増えるのは材質の Component 14 個（負荷は 20.9）
+- **キノコごとに発光用の Slot（点光源や別のメッシュ）を足す**: Spec §11「すべてに実ライトを付けない」。見た目のメッシュを足すと形が変わる
+- **G20 を日本時間（UTC+9 固定）や `WorldTimeDouble` にする**: 利用者に 3 つを示して、各自のローカル時刻に決まった（日本時間は全員が同じ時刻・本当の時刻を見る、`WorldTimeDouble` はほかのギミックと同じ共有の時刻だが本当の時刻は指さない）
+- **鐘をインパルス（`FireOnTrue`・`DelayTimeSpan` など）で一度だけ鳴らす**: 実行する人の数だけ鳴り、途中参加の人の分の扱いが要る。時刻の関数なら同期も状態も要らない
+- **鐘を正時の数だけ鳴らす（1 時に 1 回、2 時に 2 回）**: 演出の長さが時刻で変わり、2 人以上で同じ演出を見るとき（日本時間の場合）以外に利点が少ない。W11 の定期ショーの演出の候補として handoff に書いた
+
+### 20.2 Reflection・Flux-SDK・Blender で確かめたこと
+
+1. **Flux-SDK（`resoloop flux node search`・`describe`、managed data 2026.9.18.82、3,320 ノード）**: `UtcNow`（`DateTime`）、`ToLocalTime`（`DateTime` → `DateTime`）、`DateTimeHour`・`DateTimeMinute`・`DateTimeSecond`・`DateTimeMillisecond`（`DateTime` → `int`）、`LocalTimeOffset`（`TimeSpan`。候補として見た）、`Pack_Double2`、`Repeat01_Double`・`Clamp01_Double`。`LocalNow` は無い。`resoloop flux check` で `ToLocalTime(UtcNow)`・`DateTimeHour(L)->as<double>`・`Sod / N`（double の割り算）が書けることを試しのファイル（scratchpad、コミットしない）で確かめ、`flux/P3ForestClock.pg` はヒント 4 件（`DynamicVariableValueInput` の代わりに `~input<T>` が使える）だけでコンパイル成功
+2. **Reflection（`resoloop type describe`・`specialize`）**: `[FrooxEngine]FrooxEngine.ValueField<double2>`（`Value: double2`）、`FrooxEngine.PBS_Metallic` の `EmissiveColor`（`colorX`）
+3. **E の宣言**: キノコの発光の部品 `<個体>_Glow` 14 個は、それぞれ MeshRenderer 1 つに共有の材質 `MAT_EFR_MushGlow`（`AlbedoColor` (0.854, 0.964, 1.0)、`EmissiveColor` sRGB (1.2066, 1.5536, 1.6579) = 線形 (1.536, 2.752, 3.2)）1 つだけ。同じ材質を使うほかの物は池 `EFR_Pond_001` だけ（5 つの材質の 4 つ目）。時計塔の Pivot 3 つは asset root（Resonite の Y まわり +90°）の子で、基準の回転は単位、メッシュは子の `_HourHand`・`_MinuteHand`・`_Bell`
+4. **Blender の確かめ**（保存しない一時的なスクリプト。親の checkout の `tmp/w10e/blender_sweep/sweep_e.py`・`sweep_e.json`）: E の `.blend` に M07 の `.blend` を W09R-E と同じく `_Body` の下に置き、鐘を ±25°（0.5° ごと）、時針・分針を 1 周（3° ごと）回して、M07・鐘の腕木・もう一方の針との三角形の交差と最短距離を数えた（`mathutils.bvhtree`）
+   - 鐘と M07: 交差 0、最短 0.292 m（−25° のとき）
+   - 鐘と腕木: どの角度でも交差がある。腕木の吊り棒（半径 2.2 cm）の先が、基準姿勢で鐘の上の金具（幅 12 cm・高さ 10 cm の箱）に 1 cm 入っている（W06 の形。吊り点）ため。±22° より大きく振ると、金具の上面の縁が吊り棒の側面を横切り、交差する三角形が 5 → 11 になる。どれも吊り点から 3 cm 以内の金具の中で、外からは見えない。腕木の屋根（下面は吊り点の 0.17 m 上）には届かない
+   - 針と M07: 交差 0、最短は時針 1.94 cm・分針 5.45 cm（W09R-E の 1.25 cm は軸受けまでの隙間の別の測り方）。針どうし: 交差 0、最短 1.0 cm。腕木とは 1.7 m 以上
+
+### 20.3 保存の後の最初の diff
+
+何も変える前（03:58:46〜04:00:03Z）に、今の `main` のまま 6 キーを export した宣言（`exports/p2_static/<key>-20261103T035710Z`。W10〜W10-D の駆動は入っている）で、全 19 宣言（`content/main.json`・6 キー・M01 の 3 つ・M02・M03・M04・M05 の 2 つ・M06・M07・M08・`content/p3_gimmicks.json`）の diff を取った。どれも変更 0・警告 0（no-op 29・184・668・339・349・389・780・16・15・15・17・16・18・15・15・15・16・19・29。W10-D の完了時と同じ数）。資産の作り直し・重複は無い。W10〜W10-D の 5 つのモジュール（`P3PlazaDance`・`P3FountainGlow`・`P3MansionMotion`・`P3CandyStreet`・`P3GhostTrain`）は配備されたまま（`P3_Gimmicks` の下の Slot・Component は 193・249、74・86、136・174、223・291、204・250）。W08 の root の下は Slot 1,576・Component 2,818（W10-D の完了時と同じ。利用者が手で変えた所は無い）
+
+- 新しい worktree の準備: 全キーの `.blend` の作り直し（03:49〜03:55Z、約 6.5 分。確認画像を描く）、Blender の確かめ（20.2 の 4）のための M07 の `.blend`（約 1 分。M07 のビルドが書き換えた `assets/manifest/M07.json` と、全キーの確認画像は戻した）、Git の外の `p2_bundles/<M>-<UTC>/` を同じ名前の `exports/p2_meshy/` へ写した（`SHA256SUMS` が全 9 つ一致）
+- apply の前のスナップショット: 親の checkout の `tmp/w10e/01_snapshot_before_20261103T040010Z`（W08 の root 全体。最初の diff の後、最初の apply まで書き込みは無い）
+
+### 20.4 手順
+
+4 章の手順に、次を足す（`T` は親の checkout の `tmp/w10e/`）。
+
+```sh
+uv run python modeling/p2_static/export_p2.py --url "$URL" --key E_forest   # キノコの個体ごとの材質、時計塔の中継と managedFields、検査用の時計を足した p2.apply.json と p3_drivers.json
+resoloop diff exports/p2_static/E_forest-<UTC>/p2.apply.json --state "$ST/p2_E_forest.json" --brief --report "$T/<新しいファイル>" --url "$URL" --json
+resoloop apply exports/p2_static/E_forest-<UTC>/p2.apply.json --state "$ST/p2_E_forest.json" --url "$URL" --json
+uv run python modeling/p3_gimmicks/build_content.py   # E の state から Pivot のキーを、E の最新の export から発光の基準を読み、flux/P3ForestClock.pg・flux/p3_forest_clock.flux.json も作る
+resoloop diff content/p3_gimmicks.json --state "$ST/p3_gimmicks.json" --brief --report "$T/<新しいファイル>" --url "$URL" --json
+resoloop apply content/p3_gimmicks.json --state "$ST/p3_gimmicks.json" --url "$URL" --json
+uv run python modeling/p3_gimmicks/deploy_flux.py --url "$URL" --manifest flux/p3_forest_clock.flux.json --report "$T/<新しいファイル>"
+# 同じ diff・apply・配備をもう 1 回行い、変更 0・書き込み 0・配備 no-op を確かめる
+uv run python modeling/p3_gimmicks/verify_e.py --url "$URL" --raw-out "$T/<新しいファイル>" --output review/p3_gimmicks/g18_g20_live_checks.json --windows 2 --gap 300
+uv run python modeling/p3_gimmicks/verify_e.py --url "$URL" --raw-out "$T/<新しいファイル>" --output review/p3_gimmicks/g18_g20_param_checks.json --param-check
+```
+
+- `build_content.py` は E の state に時計塔の Pivot が無いと止まり、E の最新の export で Pivot の基準の回転が単位でない、キノコの個体ごとの材質が 14 個揃わない・発光の初期値が個体ごとに違うと止まる。`gimmicks.g18()`・`g20()` は W06 のアセット一覧の発光の部品・軸・範囲・周期の説明がこの形でなければ止まる
+- G18・G20 の deploy state は親の checkout の `.resoloop/flux-state/p3_forest_clock.json`
+- `verify_e.py` の窓は、時計で挟んだ G18 を 30 秒（2 個ずつ、14 個を一巡するまで）、14 個を続けて 20 秒、時計で挟んだ G20 を 30 秒観察する。窓の最初の時刻を止めた標本と `--param-check` は HMC_P3 の値を変えて測り、最後に元に戻ったかを確かめる（途中でキノコが止まり、鐘が 20 秒ごとに揺れるので、確認中に見ている人がいれば伝える）
+
+### 20.5 G18・G20 の結果
+
+最終の実行（GPT のレビュー（20.11）で直した検査）: `verify_e.py --windows 2 --gap 300`（06:01:10Z と 06:09:35Z の 2 つの窓。間の 5 分は resoloop を実行していない。`review/p3_gimmicks/g18_g20_live_checks.json`）と `--param-check`（05:49〜05:53Z。`g18_g20_param_checks.json`）。どれも問題 0。そのほか、正時をまたいだ既定の鐘の観察 2 回（04:59:15〜05:00:35Z と 05:59:20〜06:00:34Z。親の checkout の `tmp/w10e/bell_hour_raw.json`・`bell_hour2_raw.json`）、直す前の検査での 2 つの窓（05:18:13Z・05:26:26Z）と `--param-check`（05:13Z。どちらも合格）、試しの 1 つの窓 2 回（04:18Z・04:25Z）・`--param-check`（04:30Z）・2 つの窓（04:35Z・04:44Z）を実行した。04:35Z の 2 つの窓の 2 つ目で「近くの組が揃って変わる」の判定が外れ、判定をデータからの記録に替えた（この節の「揃わない」の行）
+
+| 項目 | 結果 |
+|---|---|
+| G18 の式（時計で挟んだ照合） | 両方の窓で 14 個とも、2 個ずつ「時計 1 → 発光 → 発光 → 時計 2」を読んだ倍率（線形の色 ÷ P2 の発光）が、時計 1・2 の間のワールドの時刻の式の値の範囲の中（許容 0.003）。判定した観察 14・21 回、時計の幅 0.35〜0.60 秒。3 つの成分の倍率の差は 0.001 未満（色合いは P2 のまま）。ゆっくりの時刻（`G18Speed` 0.05。変化は 1/20）と速い時刻（2）でも 14 個とも式の範囲の中（時計の幅 0.23〜0.32 秒。ゆっくりの時刻の範囲は 1 回 最大 0.01 程度なので、周期・位相を細かく見る） |
+| G18 の個体ごとの位相・強さ | 時刻を止めた標本（`G18Speed` = 0）で 14 個とも I (lo + (hi − lo)(0.5 + 0.5 sin(2π φ / T))) と 1e-4 以内（`G18Intensity` 1・0.5・3 → 2・−1 → 0 のそれぞれ）。0.5 で倍率 0.176〜0.487、2 で 0.703〜1.948、0 で消える。2 つの窓の標本の差は 0.0（漂わない） |
+| G18 の強さの範囲 | 14 個を続けて読んだ観察（5・7 回）と時計で挟んだ観察で、倍率は 0.3503〜0.9998（W06 の 0.35〜1.0 の中） |
+| 揃わない | 近くの組 10 組（発光の部品が最も近い個体どうし）の、観察した倍率の差の最大は 0.27〜0.65。W06 のデータから求めると、9 組は 20 秒続けて揃う（倍率の差 0.1 未満）ことが無い。`EFR_MushroomTall_004`（5.69 秒）と `EFR_MushroomMedium_003`（5.61 秒、2.6 m 離れている）だけは、位相の差が 399 秒で一巡し、最長 41.9 秒揃って見える（時間の 5.6%）。最初の 2 つの窓の 2 つ目（04:44Z）はちょうどその時間に当たり、観察した差の最大が 0.028 で「揃って変わる」の判定が外れた。周期が違うのでまたずれていく（W06 のデータどおり）。利用者の決定で W06 のデータのままにし（20.9）、判定は「データからの記録」（`verify_e.sync_report`、`g18_neighbour_sync`）に替えた。同じ出力に結ばれた組（モジュールの誤り）は、個体ごとの式と照合する時計で挟んだ照合が見つける |
+| G20 の針 | 両方の窓で、「時計 1 → 時針 → 分針 → 鐘 → 時計 2」を読んだ中継の角度が、時計のローカル時刻の式の値の範囲の中（判定した観察 11・14 回。時計の幅 0.50〜0.72 秒）。時計の幅の中点の式との差は時針 0.0015°・分針 0.0058° 以下（分針 6°/分、時針 0.5°/分）。回転は Pivot のローカル Z（Blender の Y）まわりだけ（ほかの成分 1e-4 未満）。針の先（Pivot のローカル +Y を回した向き）が、前から見て 12 時から時計回りの向き（W06: 3 時 = −X_B）と 0.03° 以内 |
+| G20 の時刻の基準 | 時計のローカル時刻は、この端末の UTC（壁の時計）に +9:00 を足した値と 1 秒前後の差（observe の実行時間の半分の中）。+9:00 は、Resonite を動かしている端末（この端末と同じ）のタイムゾーン（`TZ=Asia/Tokyo`）から入力した期待の値（`--utc-offset-hours`。GPT のレビュー M-3）と一致。`ToLocalTime` が抜けて UTC のまま動けば差は 0 で外れる。針はその時刻（撮影でも 14:00 過ぎに 2 時を指す。20.8） |
+| Pivot そのもの | 両方の窓の最初と最後（4 回）に、「時計 → hierarchy → 時計」で時針・分針・鐘の Pivot の Slot の回転を読み、挟んだローカル時刻（3.5〜4.7 秒の幅）の式の範囲の中（例: 06:01Z の時針 90.990°（式 90.975〜91.005°）・分針 11.878°（11.695〜12.060°）、06:12Z の分針 75.317°（75.135〜75.495°））。鐘は真下。中継の値だけでなく、Pivot が中継に追従している（GPT のレビュー M-2） |
+| 文字盤の中心 | 時針・分針の Pivot の位置（Resonite のローカル x・y = Blender の x・z）と、M07 の文字盤の中心（`review/M07/checks.json` の `dial.centre_local_m`）のずれ 0.0 m（許容 1 cm）。針の回る範囲は W06 の包絡と一致し、M07 の面とは交差しない（20.2 の 4。W09R の検査の `check_dial_hands` も合格。20.7） |
+| G20 の鐘（既定） | 正時を 2 回観察した。ローカル時刻 14:00:00（日本時間）の節目の後に揺れ（最大 22.99°。式の最初の山 約 23°）、節目の前と、節目から 12 秒の後の 27 回の観察は真下（角度 0）。15:00:00 の節目の後も揺れ（最大 15.27°）、前後の 21 回は真下。ただし、どちらも揺れている間の観察（6 回・3 回）は時計の幅が 0.3 秒を超え（14:00 は 5 つの Component を読んだ 0.47〜0.61 秒、15:00 は鐘だけで 0.24〜0.43 秒のうち揺れている間の 3 回）、GPT のレビュー M-1 で直した判定では式との照合に数えない（15:00 の観察の判定は「観察した節目 0」で外れた）。式との照合は、同じ式の間隔を 20 秒にした値の確認で行った（次の行）。どちらの観察も、範囲の超過・節目の間の揺れ・X 軸以外の回転は 0。2 つの窓は節目の間で、鐘は真下のまま |
+| G20 の鐘（節目の間隔を短く） | 鐘だけを時計で挟んで読み（時計の幅 0.23〜0.32 秒）、`G20BellInterval` 20 秒で、節目（ローカル時刻の秒が 20 の倍数）ごとに揺れ、時計の幅 0.3 秒以下の観察（節目ごとに 2〜5 回）がすべて式の範囲の中、節目の間（12〜20 秒）は真下（鳴り直さない）。`G20BellSwing` 3 → 1 に収まり 2 つの節目で最大 22.38°・12.01°（観察の間隔で山を外すことがある）、0.5 で最大 8.75°（12.5° 以内）、`G20BellInterval` 5 → 20 に収まり最大 6.68° |
+| 戻した値 | `G18Intensity` 1、`G18Speed` 1、`G20BellSwing` 1、`G20BellInterval` 3600（変える前と同じ。違えば問題にする） |
+| 構造 | 両方の窓の最初と最後で、時計塔の子孫 11 個が宣言と同じパスで同じローカルの変換（Pivot は回転を除く）。中継 3 つは有効で、`Drives` は自分の Pivot の `Rotation` を指す |
+| 共有の材質 | E のすべての MeshRenderer（115 個）の `Materials` が、G18 を足す前の宣言（同じ export の `model.apply.json`）の並びと同じ（キノコの 14 個の `_Glow` だけ個体ごとの材質）。池 `EFR_Pond_001` は共有の材質のまま。共有の材質の値は G18 を足す前の宣言の値のまま（発光も P2 のまま）、個体ごとの材質の `EmissiveColor` 以外の値もそれと同じ（基準を G18 を足す前の宣言にしたのは GPT のレビュー m-1） |
+| はみ出し（包絡） | 時針・分針を 1 周（5° ごと）、鐘を ±25°（1° ごと）回したバンドルのメッシュの点の外接箱は、W06 の包絡（`motion_envelopes`）と一致（はみ出し 0.0 m）。いちばん低い点は歩く高さ（2.8 m）より 4.30 m（分針）・4.61 m（時針）・7.40 m（鐘）上。E の除外範囲（主動線・視線・入口）と鑑賞位置（時計と鐘を見る前庭 `EFR_View_Forecourt` を含む）に入る点 0。キノコは動かない |
+| 常駐しない | 2 つの窓の間の 5 分は resoloop を実行せず、2 つ目の窓で G18 の式・G20 の針が時刻どおり。正時の鐘も、接続していない間の時刻から決まる式どおり |
+| 当たり判定 | 付けない（20.1）。針・鐘・キノコの下に `MeshCollider` は無く、P2 の宣言のまま |
+| 利用者の確認 | 問題なし・60 fps 前後（20.9） |
+
+- 生の観察は親の checkout の `tmp/w10e/e_windows_raw_2.json`・`e_param_raw_2.json`・`bell_hour_raw.json`（Git の対象外。ResoniteLink の ID を含む）。試しは `e_try1_raw.json`・`e_try2_raw.json`・`e_param_try1_raw.json`・`e_windows_raw_1.json`
+- 1 回目の試し（04:18Z）は、observe が遅く（1 章の注）、時計の幅 0.62〜0.80 秒の観察が多くて、判定に使う上限（0.8 秒）の中の観察が足りず外れた。上限を 1.2 秒にした（時計の幅が広いほど式の範囲も広く判定は緩むが、細かい照合はゆっくりの時刻で行う）
+
+### 20.6 diff・apply・配備と、再適用・所有範囲
+
+| 時刻（UTC） | 宣言・操作 | diff | apply・配備 |
+|---|---|---|---|
+| 03:58〜04:00 | 全 19 宣言（20.3。`<key>-20261103T035710Z`） | どれも変更 0・警告 0 | — |
+| 04:10〜04:11 | E（`E_forest-20261103T041006Z`。キノコの個体ごとの材質 14、時計塔の Pivot 3 つの中継と `managedFields`、時計 2） | 作成 19（`p3_g18_01`〜`14` の `PBS_Metallic`、Pivot の `ValueMultiDriver<floatQ>` 3、`ValueField<double2>` 2）・更新 14（キノコの `_Glow` の MeshRenderer の `Materials`。「one or more fields differ or depend on a new target」）・no-op 766・警告 0。`managedFields` の追加は今の値と同じで変更にならない | Component の追加 19・更新 14（資産は変更なし 115、取り込み 0） |
+| 04:11 | P3（`content/p3_gimmicks.json`） | 作成 5（Slot `G18_G20_Forest`、値の Component 4）・no-op 29 | Slot の作成 1・Component の追加 4 |
+| 04:11 | ProtoFlux（`deploy_flux.py --manifest flux/p3_forest_clock.flux.json`） | — | モジュール `P3ForestClock` を `P3_Gimmicks/G18_G20_Forest` の下に作成（`action` create、drive の結び先 19 個がすべて解決） |
+| 04:12 | E・P3 の 2 回目の diff（動いている最中） | どちらも変更 0・警告 0（E は no-op 799、P3 は 34）。針・鐘の回転とキノコの発光は差分にならない | — |
+| 04:12〜04:13 | E・P3 の 2 回目の apply、2 回目の配備 | — | apply はどれも書き込み 0（作成・更新・削除 0、資産の取り込み 0）。配備は `no-op`（「source and transitive dependency hashes match deploy state」） |
+
+### 20.7 既存の検査
+
+- 動いている状態（04:48〜04:58Z）で実行した（親の checkout の `tmp/w10e/prev_checks.sh`）。どれも直していない（`rest_pose.py` は `gimmicks.driven_slots()` に E の Pivot を足しただけで、Pivot の回転も基準姿勢に戻す）
+- W10 の G01・G13（`verify_live.py`、1 つの窓 30 秒）: 合格（G13 17.966°/s、上から見て反時計回り）。W10-A の G03（`verify_g03.py`）: 合格（A の MeshRenderer 110 個の材質の並びも基準どおり）。W10-B の G05・G06（`verify_b.py`）: 合格（おばけの上下 −0.099〜+0.350 m・揺れ ±20° 以内、扉 0〜85.0°）。W10-C の G09・G11（`verify_c.py`）: 合格（攪拌 59.88°/s、巡回 8.00°/s）。W10-D の G15（`verify_d.py`、1 つの窓）: 合格（時計で挟んだ照合で先頭車 2.19994・客車 2.19986 m/s）。親の checkout の `tmp/w10e/p3_prev_live_1.json`・`g03_prev_live_1.json`・`b_prev_live_1.json`・`c_prev_live_1.json`・`d_prev_live_1.json`。W10 の `live_checks.json`・`param_checks.json` は書き換えていない
+- W09R（`modeling/p2_meshy/verify_live.py`）: 全項目合格（M01〜M08 の 9 行、5 地区の数）。今回は state の URL の更新は要らなかった（W10-D の保存の後、ワールドは開き直されていない）。E の数の照合は、P3 が足した Component 19（材質 14、中継 3、時計 2。キーの `p3_` で数える）を加えて一致（Slot 196・Component 501）。基準姿勢への置き換えは 23 個（W10-D までの 20 個と、時計塔の Pivot 3 つ）。W08 の root の下は Slot 1,985・Component 3,336。`tmp/w10e/p2_meshy_live_1.json`。`review/p2_meshy/live_checks.json` は書き換えていない
+- W08（`modeling/p2_static/verify_live.py`）: W09R 以降の既知の 11 件のまま（項目は 11 章と同じ）。E の件は実物と宣言の Component がどちらも 19 増えた（482 / 403 → 501 / 422）だけで、G18・G20 による失敗は 0（`tmp/w10e/p2_static_checks_1.json`）。`review/p2_static/live_checks.json` は書き換えていない
+
+### 20.8 撮影（`review/p3_gimmicks/`、1600×900、カメラは `content/p3_gimmicks.json` の `cameras`。05:00:50〜05:01:00Z）
+
+- `g18_mushrooms.jpg`（東の木道の上から森の北）・`g18_mushrooms_south.jpg`（南の休憩所の大きなキノコのまわり）: キノコの傘の裏と斑点が個体ごとに違う明るさで光る（1 枚の中で明るい物と暗い物が混ざる）。池の睡蓮の光り方は P2 のまま。黒い面・透けなし
+- `g20_clock.jpg`（東の正面から文字盤）: 撮影した 14:00:5x（日本時間）に、分針は 12 の少し右、時針は 2 を指す（前から見て時計回り）。針は M07 の文字盤の中心の軸の上で、文字盤の前
+- `g20_bell.jpg`（北から鐘）: 節目の間で、鐘は腕木の下に真下に下がっている。撮影の `scene.json` は親の checkout の `tmp/w10e/capture_scenes/`（コミットしない）
+
+### 20.9 実機の確認と負荷
+
+- 利用者の確認（確認事項 6、2026-11-03 05:02〜05:12Z ごろ）: 「問題なし」。デスクトップで、キノコの発光（周期のばらつき・明るさ）、時計の針（利用者の端末の時刻を時計回りに指す）、鐘（確認のため `G20BellInterval` を一時的に 20 秒にして、20 秒ごとに 12 秒揺れて止まる）を見た。確認の後に 3600 に戻した（05:13Z）
+- 利用者の決定（同じ確認のとき）: 周期の近い組 `EFR_MushroomTall_004`・`EFR_MushroomMedium_003` が約 6.7 分ごとに最長約 42 秒揃って見える件（20.5）は、W06 のデータのままにする（選択肢は「W06 のデータのまま」（推奨）と「片方の周期を変えて E を作り直す」）。W06 への要望として `handoff/W10-E.md` 6.3 に書いた
+- 負荷（確認事項 8）: W08 の基準と同じ端末で 60 fps 前後（利用者の確認。森の中か時計塔の前）
+- 足した物: E の Component 19（材質 14、中継 3、時計 2）、P3 の宣言の Slot 1・Component 4、モジュール `P3ForestClock` の Slot 408・Component 495（親の checkout の `tmp/w10e/02_snapshot_after_*`）。W08 の root の下は Slot 1,576・Component 2,818 → 1,985・3,336。粒子なし、光源なし
+- モジュールが大きいのは、キノコ 14 個の式（個体ごとに角度・倍率・色の 3 成分）を個体ごとのノードで組んだため（1 個あたり 約 20 ノード）。60 fps 前後で、減らす必要は無かった
+
+### 20.10 先行 10 種類のまとめ
+
+先行 10 種類（Spec §8: G01・G03・G05・G06・G09・G11・G13・G15・G18・G20）が、W10・W10-A〜E の 6 つの子で揃った。どれも Resonite の中だけで動き（resoloop を常駐させない）、時刻（`WorldTimeDouble`、G20 だけは見る人のローカル時刻）と同期する HMC_P3 の値から決まる drive で、インパルス・同期する書き込みは無い。
+
+| 子 | ギミック | 駆動 | 地区に足した Component | モジュールの Slot・Component | 利用者の fps |
+|---|---|---|---|---|---|
+| W10 #56 | G13・G01 | `Spinner`、ProtoFlux `P3PlazaDance` | A 12（中継）、D 1（`Spinner`） | 192・249 | 60 前後 |
+| W10-A #58 | G03 | ProtoFlux `P3FountainGlow` | A 1（材質） | 73・86 | 60 前後 |
+| W10-B #59 | G05・G06 | ProtoFlux `P3MansionMotion` | B 6（中継） | 135・174 | 60 前後 |
+| W10-C #60 | G09・G11 | ProtoFlux `P3CandyStreet`、PhotonDust | C 31（中継 5、材質 1、粒子 25） | 222・291 | 60 前後 |
+| W10-D #61 | G15 | ProtoFlux `P3GhostTrain` | D 10（中継 8、時計 2） | 203・250 | 60 前後 |
+| W10-E #62 | G18・G20 | ProtoFlux `P3ForestClock` | E 19（材質 14、中継 3、時計 2） | 408・495 | 60 前後 |
+| 計 | 10 種類 | `Spinner` 1、モジュール 6 | 80 | 1,233・1,545 | — |
+
+- P3 の宣言（`P3_Gimmicks`）: Slot 7（root と配備先 6）、Component 27（宣言の `DynamicVariableSpace` 1・値 25 と、Resonite が足す `AI_GeneratedContent` 1）。`P3_Gimmicks` の下の全体は Slot 1,240・Component 1,572
+- W08 の root の下: P2 の完了時（W09R-E の後）の Slot 745・Component 1,684 → 先行 10 種類の後 1,985・3,336（P3 で +1,240・+1,652。モジュールが大半）。fps は W08 の基準の 60 前後のまま（どの子も利用者の確認）。粒子は G09 の泡・煙だけ（最大 16 + 24 個）、光源は P3 で増やしていない
+- 負荷で気になる所: モジュールのノード数（G18 の 14 個の式が 400 を超える）。追加の 10 種類で同じ形（個体ごとの式）が増えるなら、同じ式の個体を 1 つのノードの組で回す（ProtoFlux の値の配列や、周期だけ違う個体を 1 つの式の入力の違いにする）か、`TimeSineDriver` のような標準の Component で足りる物はそれにする（Spec §8「標準コンポーネントを優先」）。メモリ・VR・2 人以上の負荷は P4
+- 方式の定まった型（後続の子が使える）: 回転だけ（`Spinner`・中継の回転 1 つ、`managedFields` ["position", "scale"]）、位置と回転（中継 2 つ、`managedFields` ["scale"]）、閉じた経路（三角補間 G11・スタジアム型 G15）、発光（共有の材質を写した専用の材質 G03・G18、液面 G09）、粒子（G09）、一度だけの演出（G20 の鐘。節目からの時刻の関数）、検査用の時計（G15・G20）
+- 追加の 10 種類・W11 の進め方の案は `handoff/W10-E.md` 6.2
+
+### 20.11 GPT のレビュー（確認事項 7）と保存（確認事項 4）
+
+- GPT のレビュー: `codex exec --sandbox read-only -C <worktree> -o <出力> "<依頼文>" < /dev/null`（モデル gpt-6-astra、05:32〜05:43Z）。対象は PR #67 の `b5b0445`。Resonite には接続させず、checkout も変更させていない。観点は、宣言と駆動の正しさ、実測の検査、既存の検査への影響、記録の正確さ、テストの採用基準の 5 つ。全文は PR #67 のコメント
+- 結果: Major 3 件・Minor 2 件・Info 1 件（宣言と駆動・既存の検査への影響は指摘なし）。採否は「直さないと、誤った状態を合格と報告するか」で決めた
+
+| # | 重大度 | 指摘 | 採否 | 対応 |
+|---|---|---|---|---|
+| M-1 | Major | 鐘の照合を時計の幅 1.2 秒の観察でも行うので、12 秒で 3 往復する誤った式（1.85 秒ごと・幅 1.19 秒の 24 回）を合格にする | 採用 | 往復の回数の違う鐘を合格と報告するため。揺れている間の鐘は、時計の幅 0.3 秒以下の観察だけで式と照合する（`BELL_SPREAD_MAX_S`。0.3 秒なら 3〜12 往復の誤りを試した 40 通りの観察のどれでもすり抜けない）。節目ごとに、そうした観察が 2 つ以上ないと「観察した節目」に数えない（`check_bell_marks`）。広い観察は揺れを判定しない（真下と範囲の超過は判定する）。正時の観察も鐘だけを読み直した（20.5） |
+| M-2 | Major | 時系列で読むのは中継の `Value` だけで、Pivot そのものの回転を照合していない。中継の値だけが進み Pivot が追従しない状態を見分けられない | 採用 | 針が止まっていても合格と報告するため。窓の最初と最後に「時計 → hierarchy → 時計」で Pivot の Slot の回転を読み、挟んだローカル時刻の式の範囲の中かを見る（`pivot_probe`・`check_pivots`） |
+| M-3 | Major | UTC との差を 15 分の倍数に丸めた残りだけを見るので、`ToLocalTime` が抜けて時計も針も UTC で動いても合格する | 採用 | 利用者の決定（ローカル時刻）と違う時計を合格と報告するため。Resonite を動かす端末のタイムゾーンの UTC からの時間を入力（`--utc-offset-hours`。既定はこの端末のタイムゾーン = 同じ端末の Resonite のタイムゾーン、`TZ=Asia/Tokyo` で +9）にし、時計の差と照合する |
+| m-1 | Minor | 共有の材質の比較の基準を、G18 を足した後の宣言から取っている。共有の材質を変えた宣言を apply すると、池の見た目が変わっても合格する | 採用 | 池の見た目が変わった状態を合格と報告するため（W10-A のレビューの M と同じ型）。基準を G18 を足す前の宣言（`model.apply.json`）の共有の材質にし、個体ごとの材質の値もそれと照合する |
+| m-2 | Minor | 同じ出力の組のテストと周期・位相の違うテストが、同じ範囲の判定を守っている（D） | 採用 | テストの採用基準の違反。同じ出力の組を代表の 1 例にまとめ、周期・位相の例を外した |
+| I-1 | Info | handoff のテストの件数（9）と「針の式と照合の式の両方を逆にした」の説明が、コードと違う | 採用 | テストを直すので、同じ段落を実際のコードに合わせて書き直した |
+
+- テスト（S）: 指摘 M-1〜M-3・m-1 の守りに、反例と正しい状態を足した（`tests/test_p3_gimmicks_e_verify.py`。10 件）。守りを外す 20 の変異で、それぞれ狙ったテストが失敗することを確かめた。例外は `judge_bell` の「時計の幅が広い観察は揺れを判定しない」で、外しても誤った合格にはならない（広い観察は節目の観察に数えず、`check_bell_marks` が M-1 の反例を問題にする）ので、守りの重なりとしてテストしていない
+- 直した検査で実機を測り直した（20.5）
+
+#### 20.11.1 保存
+
+- GPT のレビューへの対応と実機の測り直しの後に、エージェントの依頼で利用者がワールドを 1 回保存した（2026-11-03 07:56Z より前。保存の操作の種類は記録していない）
+- 保存の後（07:56〜07:57Z）に全 19 宣言（W08 の 7 つ・Meshy の 11 個・P3。E は `E_forest-20261103T041006Z`）の diff を取り、どれも変更 0・警告 0（no-op は 20.6 と同じで、E は 799、P3 は 34。親の checkout の `tmp/w10e/diff_aftersave/`）。G18・G20 は動き続けていた（時計で挟んだ観察で、針はローカル時刻 16:57（日本時間）の式と 0.002° 以内、G18 は 7 回の観察で 14 個とも式の範囲の中）。HMC_P3 の G18・G20 の値は既定のまま（`G18Intensity` 1、`G18Speed` 1、`G20BellSwing` 1、`G20BellInterval` 3600）。保存・再読込の後に材質・中継・モジュール・時計・HMC_P3 の値が残って動くかは P4（開き直していない）
+
+### 20.12 Resonite で未確認の項目
+
+- 2 人以上での同期、途中参加（P4）。この子の確認は、使った Component・ノードの仕組みの説明（20.1）と、単独の確認まで。G20 は見る人のローカル時刻なので、タイムゾーンの違う 2 人は違う時刻の針と鐘を見る（利用者の決定。同期しないことが仕様）。G18 は `WorldTimeDouble` なので、同じワールドの人は同じ明るさを見るはず（未確認）
+- 保存・再読込の後に、材質・中継・モジュール・時計・HMC_P3 の値が残って動くか（P4）
+- 端末の時計がずれている人の G20（ローカル時刻の元は各自の端末の UTC。ずれていれば、その人だけ針と鐘がずれる）
+- VR での見え方、メモリの負荷、鐘の音（素材が無い。範囲外）
