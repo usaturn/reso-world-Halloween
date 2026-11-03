@@ -23,8 +23,9 @@ drive するので、1 回の observe で「時計 1 → 対象 → 時計 2」�
   個体ごとの式で照合する G18 の時計で挟んだ照合が見つける）
 - G20（時計で挟む）: 「時計 1 → 時針 → 分針 → 鐘 → 時計 2」を読み、針の角度がローカル時刻の式（時針 0.5°/分、分針 6°/分）の
   値の範囲の中か、針の先が前から見て時計回りの向き（W06: 3 時 = Pivot のローカル −X_B）か、回転が Pivot の Z（Blender の Y）軸の
-  まわりだけか。鐘が節目の式の値の範囲の中か（節目の間は真下）、±25° 以内か。ローカル時刻が、この端末の UTC に 15 分の倍数を
-  足した値と合うか（タイムゾーンの差と残り）
+  まわりだけか。鐘が節目の式の値の範囲の中か（節目の間は真下。揺れている間は時計の幅 0.3 秒以下の観察だけで照合）、±25° 以内か。
+  ローカル時刻が、この端末の UTC に --utc-offset-hours（既定はこの端末のタイムゾーン）を足した値と合うか
+- Pivot そのもの: 窓の最初と最後に「時計 → hierarchy → 時計」で Pivot の Slot の回転を読み、挟んだローカル時刻の式の範囲の中か
 
 検査（--param-check）
 - G18: G18Speed = 0 で G18Intensity 0.5・3（2 に収まる）・−1（0 に収まる。消える）の値を式と照合。ゆっくりの時刻（G18Speed 0.05）と
@@ -68,6 +69,10 @@ HAND_TOL_DEG = 0.05          # 針の角度と時計の幅のローカル時刻�
 TIP_TOL_DEG = 0.1            # 針の先の向きと、前から見て時計回りの向きの差
 AXIS_TOL = 1e-4              # 回転の軸以外の成分
 BELL_TOL_DEG = 0.3
+# 鐘の揺れ（1 往復 2 秒、最大 約 80°/秒）を式と照合する観察の時計の幅の上限。これより広いと、往復の回数の違う式も範囲に入る
+# （PR #67 の GPT のレビュー M-1。0.3 秒なら 3〜12 往復の誤りをすり抜けない）。広い観察は「判定しない」にする（真下の判定はする）
+BELL_SPREAD_MAX_S = 0.3
+MIN_BELL_JUDGED_PER_MARK = 2  # 節目ごとに、揺れている間の判定できた観察の数
 STILL_TOL_DEG = 1e-3         # 節目の間の鐘（真下）
 DIAL_AXIS_TOL_M = 0.01       # 針の Pivot と M07 の文字盤の中心の軸
 TZ_RESIDUAL_MAX_S = 5.0      # ローカル時刻 − (この端末の UTC + 15 分の倍数)
@@ -249,33 +254,41 @@ def _between_deg(a: float, lo: float, hi: float, tol: float) -> bool:
     return d <= span + 2.0 * tol
 
 
-def judge_bell(s: dict, swing: float, interval: float, max_deg: float, problems: list[str]) -> tuple[float, bool]:
+def judge_bell(s: dict, swing: float, interval: float, max_deg: float, problems: list[str]) -> tuple[float, str]:
     """時計で挟んだ 1 回の観察の鐘: 時計の幅の式の範囲の中か（範囲が 0 だけなら真下か）、±max_deg × swing 以内か、X 軸のまわり
-    だけか。問題を problems に足し、(角度, 節目の間か) を返す。"""
+    だけか。揺れている間の式の照合は、時計の幅が BELL_SPREAD_MAX_S 以下の観察だけで行う。問題を problems に足し、
+    (角度, "still"（節目の間）・"rung"（揺れている間を判定した）・"unjudged"（時計の幅が広くて揺れを判定しない）) を返す。"""
     ang, off = bell_angle_deg(s["bell"])
     lo, hi = _range(lambda x: gimmicks.g20_bell_angle(x, swing, interval, max_deg), s["s1"] - FRAME_SLACK_S, s["s2"] + FRAME_SLACK_S)
-    still = lo == hi == 0.0
-    if still:
+    if lo == hi == 0.0:
+        status = "still"
         if abs(ang) > STILL_TOL_DEG:
             problems.append(f"G20 bell at {ang:.3f} deg between marks (local {s['s1']:.3f} s): it should hang still")
-    elif not (lo - BELL_TOL_DEG <= ang <= hi + BELL_TOL_DEG):
-        problems.append(f"G20 bell at {ang:.3f} deg outside the formula {lo:.3f}..{hi:.3f} (local {s['s1']:.3f}..{s['s2']:.3f} s)")
+    elif s["s2"] - s["s1"] > BELL_SPREAD_MAX_S:
+        status = "unjudged"
+    else:
+        status = "rung"
+        if not (lo - BELL_TOL_DEG <= ang <= hi + BELL_TOL_DEG):
+            problems.append(f"G20 bell at {ang:.3f} deg outside the formula {lo:.3f}..{hi:.3f} (local {s['s1']:.3f}..{s['s2']:.3f} s)")
     if abs(ang) > max_deg * swing + BELL_TOL_DEG:
         problems.append(f"G20 bell at {ang:.3f} deg is beyond +-{max_deg * swing}")
     if off > AXIS_TOL:
         problems.append(f"G20 bell turns off its hanging axis ({off:.5f})")
-    return ang, still
+    return ang, status
 
 
-def check_g20_clocked(samples: list[dict], params: dict, g: dict | None = None) -> dict:
+def check_g20_clocked(samples: list[dict], params: dict, g: dict | None = None, expected_offset_h: float | None = None) -> dict:
     """samples: [{"s1", "s2"（ローカル時刻の秒）, "hour", "minute", "bell"（回転）, "utc_sod", "half"}]。
 
     針: 角度が時計 1・2 の間のローカル時刻の式の範囲の中か、先の向きが前から見て時計回りか、Z 軸のまわりだけか。
     鐘: 角度が時計の幅の式（gimmicks.g20_bell_angle）の範囲の中か、±max_deg 以内か、X 軸のまわりだけか。
-    ローカル時刻: この端末の UTC（壁の時計）との差が 15 分の倍数 ± TZ_RESIDUAL_MAX_S か。"""
+    ローカル時刻: この端末の UTC（壁の時計）との差が 15 分の倍数 ± TZ_RESIDUAL_MAX_S か。expected_offset_h（Resonite を動かす
+    端末のタイムゾーンの UTC からの時間）を渡すと、その差がそれと同じか（ToLocalTime が抜けて UTC のまま動く時計を見つける。
+    PR #67 の GPT のレビュー M-3）。"""
     g = g or gimmicks.g20()
     swing, interval, max_deg = params["G20BellSwing"], params["G20BellInterval"], g["bell"]["max_deg"]
-    problems, judged, offsets, bell_max, rung, still = [], [], [], 0.0, 0, 0
+    problems, judged, offsets, bell_max = [], [], [], 0.0
+    status_count = {"still": 0, "rung": 0, "unjudged": 0}
     hand_err = {"hour": 0.0, "minute": 0.0}
     tip_err = 0.0
     for s in samples:
@@ -300,9 +313,9 @@ def check_g20_clocked(samples: list[dict], params: dict, g: dict | None = None) 
             tip_err = max(tip_err, e)
             if e > TIP_TOL_DEG + (hi - lo) % 360.0:
                 problems.append(f"G20 {name} hand tip points {e:.3f} deg away from clockwise-from-the-front at {mid:.3f} deg")
-        ang, is_still = judge_bell(s, swing, interval, max_deg, problems)
+        ang, status = judge_bell(s, swing, interval, max_deg, problems)
         bell_max = max(bell_max, abs(ang))
-        still, rung = still + is_still, rung + (not is_still)
+        status_count[status] += 1
         if "utc_sod" in s:
             d = ((s["s1"] + s["s2"]) / 2.0 - s["utc_sod"]) % 86400.0
             d = d - 86400.0 if d > 43200.0 else d
@@ -319,10 +332,15 @@ def check_g20_clocked(samples: list[dict], params: dict, g: dict | None = None) 
             problems.append(f"G20: the local time jumps between time-zone offsets {zones}")
         if max(abs(r) - h for r, (_, _, h) in zip(resid, offsets)) > TZ_RESIDUAL_MAX_S:
             problems.append(f"G20: local time is {resid} s off this machine's UTC plus a quarter-hour offset")
+        if expected_offset_h is not None and zones != [expected_offset_h * 3600.0]:
+            problems.append(f"G20: the clock runs at UTC{[z / 3600.0 for z in zones]} h, not the expected local offset "
+                            f"{expected_offset_h} h (ToLocalTime missing?)")
+        tz["expected_offset_hours"] = expected_offset_h
     return {"samples": len(samples), "judged": len(judged),
             "clock_window_s": [round(min(judged), 4), round(max(judged), 4)] if judged else None,
             "hand_error_deg": {k: round(v, 4) for k, v in hand_err.items()}, "tip_error_deg": round(tip_err, 4),
-            "bell_max_deg": round(bell_max, 3), "bell_rung_samples": rung, "bell_still_samples": still, "local_vs_utc": tz,
+            "bell_max_deg": round(bell_max, 3), "bell_rung_samples": status_count["rung"], "bell_still_samples": status_count["still"],
+            "bell_unjudged_samples": status_count["unjudged"], "local_vs_utc": tz,
             "problems": problems}
 
 
@@ -335,19 +353,68 @@ def bell_marks(samples: list[dict], params: dict) -> list[float]:
 
 
 def check_bell_marks(samples: list[dict], params: dict, min_marks: int = 1) -> dict:
-    """節目ごとに、節目から DURATION 秒の間に揺れた観察（角度が 1° を超える）があり、その後と節目の前は真下か。"""
+    """節目ごとに、節目から DURATION 秒の間に揺れた観察（角度が 1° を超える）があるか。揺れている間の観察は、時計の幅が
+    BELL_SPREAD_MAX_S 以下（式と照合できる）の物だけを数え、MIN_BELL_JUDGED_PER_MARK 以上ある節目を「観察した節目」にする。"""
     problems, rows = [], []
     marks = bell_marks(samples, params)
     for m in marks:
         during = [s for s in samples if m <= s["s1"] and s["s2"] <= m + gimmicks.G20_BELL_DURATION_S]
+        judged = [s for s in during if s["s2"] - s["s1"] <= BELL_SPREAD_MAX_S]
         swung = max((abs(bell_angle_deg(s["bell"])[0]) for s in during), default=0.0)
-        rows.append({"mark_local_s": m, "observed_during": len(during), "max_deg": round(swung, 3)})
+        rows.append({"mark_local_s": m, "observed_during": len(during), "judged_during": len(judged), "max_deg": round(swung, 3)})
         if during and params["G20BellSwing"] > 0 and swung < 1.0:
             problems.append(f"G20 bell did not swing after the mark at local {m:.0f} s")
-    covered = [r for r in rows if r["observed_during"]]
+    covered = [r for r in rows if r["judged_during"] >= MIN_BELL_JUDGED_PER_MARK]
     if len(covered) < min_marks:
         problems.append(f"G20 bell: only {len(covered)} marks were observed while swinging (needs {min_marks})")
     return {"marks": rows, "problems": problems}
+
+
+def pivot_probe(url: str, raw: list) -> dict:
+    """時計塔の Pivot そのもの（Slot の回転）を、時計で挟んで読む（PR #67 の GPT のレビュー M-2。中継の値だけでは、Pivot が追従
+    しない状態を見分けられない）。「時計 1・2 → hierarchy → 時計 1・2」の順で、前の時計 1 と後の時計 2 のローカル時刻で挟む。"""
+    g = gimmicks.g20()
+    ck1, ck2 = clock_sels()
+    _, _, a = timed_span(["resoloop", "observe", ck1, ck2, "--state", str(E_STATE), "--url", url, "--json"])
+    hier = e_hierarchy(url, depth=3)
+    _, _, b = timed_span(["resoloop", "observe", ck1, ck2, "--state", str(E_STATE), "--url", url, "--json"])
+    raw.append({"kind": "pivot_probe", "data": [a, hier, b]})
+    tower = _child(hier["data"], g["asset_id"])
+    out = {"s1": float(a["data"]["values"][ck1]["member"]["value"]["y"]), "s2": float(b["data"]["values"][ck2]["member"]["value"]["y"])}
+    for name, part in (("hour", g["hands"]["hour"]["pivot"]), ("minute", g["hands"]["minute"]["pivot"]), ("bell", g["bell"]["pivot"])):
+        node = _child(tower, part)
+        if node is None:
+            raise SystemExit(f"{part} is not observed under {g['asset_id']}")
+        out[name] = node["rotation"]
+    return out
+
+
+def check_pivots(probe: dict, params: dict, g: dict | None = None) -> dict:
+    """pivot_probe の Pivot の回転が、挟んだローカル時刻の式の範囲の中か（針は時計回り・軸のまわりだけ、鐘は範囲が 0 なら真下）。"""
+    g = g or gimmicks.g20()
+    problems = []
+    rows = {}
+    if probe["s2"] < probe["s1"]:
+        problems.append("pivot probe: the later clock is earlier than the first one")
+    for name in ("hour", "minute"):
+        period = g["hands"][name]["period_s"]
+        ang, off = hand_angle_deg(probe[name])
+        lo = math.degrees(gimmicks.g20_hand_angle(probe["s1"] - FRAME_SLACK_S, period))
+        hi = math.degrees(gimmicks.g20_hand_angle(probe["s2"] + FRAME_SLACK_S, period))
+        rows[name] = {"slot_deg": round(ang, 4), "formula_deg": [round(lo, 4), round(hi, 4)]}
+        if not _between_deg(ang, lo, hi, HAND_TOL_DEG):
+            problems.append(f"G20 {name} hand pivot at {ang:.3f} deg is outside the local-time formula {lo:.3f}..{hi:.3f}")
+        if off > AXIS_TOL:
+            problems.append(f"G20 {name} hand pivot turns off the dial axis ({off:.5f})")
+    ang, _ = bell_angle_deg(probe["bell"])
+    lo, hi = _range(lambda x: gimmicks.g20_bell_angle(x, params["G20BellSwing"], params["G20BellInterval"], g["bell"]["max_deg"]),
+                    probe["s1"] - FRAME_SLACK_S, probe["s2"] + FRAME_SLACK_S)
+    rows["bell"] = {"slot_deg": round(ang, 4), "formula_deg": [round(lo, 4), round(hi, 4)]}
+    if lo == hi == 0.0 and abs(ang) > STILL_TOL_DEG:
+        problems.append(f"G20 bell pivot at {ang:.3f} deg between marks: it should hang still")
+    if not (lo - BELL_TOL_DEG <= ang <= hi + BELL_TOL_DEG):
+        problems.append(f"G20 bell pivot at {ang:.3f} deg outside the formula {lo:.3f}..{hi:.3f}")
+    return {"local_s": [round(probe["s1"], 3), round(probe["s2"], 3)], "rows": rows, "problems": problems}
 
 
 # ---- 構造 --------------------------------------------------------------------------------------------------------------
@@ -386,8 +453,20 @@ def declared_materials(model_doc: dict, p2_doc: dict, g: dict | None = None) -> 
     decl_problems = [f"declaration {r}: {after.get(r)} != expected {ms}" for r, ms in expected.items() if after.get(r) != ms]
     decl_problems += [f"declaration {r}: not in the baseline" for r in after if r not in expected]
     shared = sorted(r for r, ms in baseline.items() if source in ms and r not in glow)
-    return {"glow_renderers": glow, "source": source, "source_decl": comps[source][1],
-            "material_decls": {k: comps[k][1] for k in glow.values()}, "shared_renderers": shared, "expected": expected,
+    # 共有の材質と個体ごとの材質の値の基準も、G18 を足す前の宣言の共有の材質（PR #67 の GPT のレビュー m-1。後の宣言を基準に
+    # すると、共有の材質を変えた宣言を apply しても合格する）。個体ごとの材質は EmissiveColor だけを ProtoFlux が drive する
+    before: dict[str, dict] = {}
+    stack = [model_doc]
+    while stack:
+        n = stack.pop()
+        before |= {c["key"]: c for c in n.get("components", [])}
+        stack.extend(n.get("children", []))
+    if source not in before:
+        raise ValueError(f"the shared glow material {source} is not in the declaration before G18")
+    src_before = before[source]
+    copy_fields = {k: v for k, v in src_before["fields"].items() if k != "EmissiveColor"}
+    return {"glow_renderers": glow, "source": source, "source_decl": src_before,
+            "material_decls": {k: {"fields": copy_fields} for k in glow.values()}, "shared_renderers": shared, "expected": expected,
             "decl_problems": decl_problems}
 
 
@@ -678,7 +757,8 @@ def structure(url: str, decl: dict, doc: dict, raw: list, label: str) -> dict:
             "problems": tower["problems"] + mats}
 
 
-def observe_window(url: str, g18_seconds: float, all_seconds: float, g20_seconds: float, raw: list) -> dict:
+def observe_window(url: str, g18_seconds: float, all_seconds: float, g20_seconds: float, raw: list,
+                   expected_offset_h: float | None = None) -> dict:
     ed = latest_export_dir()
     doc = json.loads((ed / "p2.apply.json").read_text(encoding="utf-8"))
     decl = declared_materials(json.loads((ed / "model.apply.json").read_text(encoding="utf-8")), doc)
@@ -690,6 +770,7 @@ def observe_window(url: str, g18_seconds: float, all_seconds: float, g20_seconds
     window: dict = {"started_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "params": before, "problems": []}
     window["structure_start"] = structure(url, decl, doc, raw, "start")
     window["relay_problems"] = check_relays(url, keys)
+    window["pivots_start"] = check_pivots(pivot_probe(url, raw), params)
     try:
         window["frozen_probe"] = frozen_g18(url, raw, e0, ids)
     finally:
@@ -697,9 +778,10 @@ def observe_window(url: str, g18_seconds: float, all_seconds: float, g20_seconds
     window["g18_clocked"] = check_g18_clocked(g18_series(url, g18_seconds, raw, e0), params)
     window["g18_all"] = check_g18_all(g18_all_series(url, all_seconds, raw, e0), params)
     g20 = g20_series(url, g20_seconds, raw, keys)
-    window["g20_clocked"] = check_g20_clocked(g20, params)
+    window["g20_clocked"] = check_g20_clocked(g20, params, expected_offset_h=expected_offset_h)
+    window["pivots_end"] = check_pivots(pivot_probe(url, raw), params)
     window["structure_end"] = structure(url, decl, doc, raw, "end")
-    for k in ("structure_start", "frozen_probe", "g18_clocked", "g18_all", "g20_clocked", "structure_end"):
+    for k in ("structure_start", "pivots_start", "frozen_probe", "g18_clocked", "g18_all", "g20_clocked", "pivots_end", "structure_end"):
         window["problems"] += window[k]["problems"]
     window["problems"] += window["relay_problems"] + window["frozen_probe_restore"]
     window["ok"] = not window["problems"]
@@ -773,16 +855,17 @@ def param_check(url: str, raw: list) -> dict:
 def check_bell_only(samples: list[dict], params: dict) -> dict:
     """鐘だけを読んだ観察（時計 1 → 鐘 → 時計 2）の照合。check_g20_clocked の鐘の項目と同じ判定。"""
     g = gimmicks.g20()
-    problems, judged, mx = [], 0, 0.0
+    problems, judged, mx, unjudged = [], 0, 0.0, 0
     for s in samples:
         if not _spread_ok(s["s1"], s["s2"], "G20", problems):
             continue
         judged += 1
-        ang, _ = judge_bell(s, params["G20BellSwing"], params["G20BellInterval"], g["bell"]["max_deg"], problems)
+        ang, status = judge_bell(s, params["G20BellSwing"], params["G20BellInterval"], g["bell"]["max_deg"], problems)
+        unjudged += status == "unjudged"
         mx = max(mx, abs(ang))
     if judged < MIN_JUDGED:
         problems.append(f"G20 bell: only {judged} observations had a clock window of {CLOCK_SPREAD_MAX_S} s or less")
-    return {"judged": judged, "bell_max_deg": round(mx, 3), "problems": problems}
+    return {"judged": judged, "bell_unjudged": unjudged, "bell_max_deg": round(mx, 3), "problems": problems}
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -796,6 +879,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--all-duration", type=float, default=20.0, help="14 個を続けて読む秒数")
     ap.add_argument("--g20-duration", type=float, default=30.0, help="時計で挟んだ G20 の観察の秒数")
     ap.add_argument("--param-check", action="store_true")
+    ap.add_argument("--utc-offset-hours", type=float, default=time.localtime().tm_gmtoff / 3600.0,
+                    help="Resonite を動かす端末のタイムゾーンの UTC からの時間（既定はこの端末のタイムゾーン。G20 のローカル時刻と照合する）")
     args = ap.parse_args(argv)
     if args.raw_out.exists():
         raise SystemExit(f"{args.raw_out} already exists")
@@ -807,15 +892,17 @@ def main(argv: list[str] | None = None) -> int:
         for i in range(args.windows):
             if i:
                 time.sleep(args.gap)
-            wins.append(observe_window(args.url, args.g18_duration, args.all_duration, args.g20_duration, raw))
+            wins.append(observe_window(args.url, args.g18_duration, args.all_duration, args.g20_duration, raw, args.utc_offset_hours))
         env = envelopes()
         drift = check_drift([w["frozen_probe"] for w in wins])
         result = {"windows": wins, "gap_s": args.gap if args.windows > 1 else None, "drift": drift, "envelopes": env,
+                  "expected_utc_offset_hours": args.utc_offset_hours,
                   "g18_neighbour_sync": sync_report(),
                   "envelope_problems": envelope_problems(env),
                   "tolerances": {"level": LEVEL_TOL, "hue": HUE_TOL, "frozen_level": FROZEN_LEVEL_TOL, "frame_slack_s": FRAME_SLACK_S,
                                  "clock_spread_max_s": CLOCK_SPREAD_MAX_S, "min_judged": MIN_JUDGED, "hand_deg": HAND_TOL_DEG,
                                  "tip_deg": TIP_TOL_DEG, "axis": AXIS_TOL, "bell_deg": BELL_TOL_DEG, "still_deg": STILL_TOL_DEG,
+                                 "bell_spread_max_s": BELL_SPREAD_MAX_S, "min_bell_judged_per_mark": MIN_BELL_JUDGED_PER_MARK,
                                  "dial_axis_m": DIAL_AXIS_TOL_M, "tz_residual_s": TZ_RESIDUAL_MAX_S, "sync_min_diff": SYNC_MIN_DIFF,
                                  "local": LOCAL_TOL, "envelope_m": ENVELOPE_SLACK_M}}
         drift_problems = drift["problems"] if args.windows > 1 else []

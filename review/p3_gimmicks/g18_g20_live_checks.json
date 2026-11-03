@@ -1,7 +1,7 @@
 {
   "windows": [
     {
-      "started_at": "2026-11-03T05:18:13Z",
+      "started_at": "2026-11-03T06:01:10Z",
       "params": {
         "G18Intensity": 1.0,
         "G18Speed": 1.0,
@@ -20,6 +20,36 @@
         "problems": []
       },
       "relay_problems": [],
+      "pivots_start": {
+        "local_s": [
+          54116.98,
+          54120.564
+        ],
+        "rows": {
+          "hour": {
+            "slot_deg": 90.9898,
+            "formula_deg": [
+              90.9746,
+              91.005
+            ]
+          },
+          "minute": {
+            "slot_deg": 11.8781,
+            "formula_deg": [
+              11.6946,
+              12.0598
+            ]
+          },
+          "bell": {
+            "slot_deg": 0.0,
+            "formula_deg": [
+              -0.0,
+              -0.0
+            ]
+          }
+        },
+        "problems": []
+      },
       "frozen_probe": {
         "params": {
           "G18Intensity": 1.0,
@@ -122,168 +152,200 @@
         "samples": 14,
         "judged": 14,
         "clock_window_s": [
-          0.3494,
-          0.4662
+          0.3493,
+          0.5994
         ],
         "levels_seen": {
           "EFR_MushroomTall_001": [
-            0.8283,
-            0.9916
+            0.3556,
+            0.7555
           ],
           "EFR_MushroomTall_002": [
-            0.3689,
-            0.4563
+            0.6708,
+            0.9021
           ],
           "EFR_MushroomTall_003": [
-            0.7982,
-            0.8075
-          ],
-          "EFR_MushroomTall_004": [
-            0.6323,
-            0.8662
-          ],
-          "EFR_MushroomTall_005": [
-            0.3505,
-            0.9936
-          ],
-          "EFR_MushroomMedium_001": [
-            0.6654,
-            0.945
-          ],
-          "EFR_MushroomMedium_002": [
-            0.5536,
-            0.8144
-          ],
-          "EFR_MushroomMedium_003": [
-            0.8982,
-            0.9299
-          ],
-          "EFR_MushroomCluster_001": [
-            0.5503,
-            0.8772
-          ],
-          "EFR_MushroomCluster_002": [
-            0.3894,
-            0.7757
-          ],
-          "EFR_MushroomCluster_004": [
-            0.3831,
+            0.8932,
             0.9808
           ],
+          "EFR_MushroomTall_004": [
+            0.3766,
+            0.8443
+          ],
+          "EFR_MushroomTall_005": [
+            0.6488,
+            0.9167
+          ],
+          "EFR_MushroomMedium_001": [
+            0.5238,
+            0.9078
+          ],
+          "EFR_MushroomMedium_002": [
+            0.7158,
+            0.9959
+          ],
+          "EFR_MushroomMedium_003": [
+            0.7411,
+            0.9848
+          ],
+          "EFR_MushroomCluster_001": [
+            0.7026,
+            0.7528
+          ],
+          "EFR_MushroomCluster_002": [
+            0.3762,
+            0.5497
+          ],
+          "EFR_MushroomCluster_004": [
+            0.4064,
+            0.8503
+          ],
           "EFR_MushroomCluster_006": [
-            0.7963,
-            0.972
+            0.9908,
+            0.9998
           ],
           "EFR_MushroomCluster_008": [
-            0.5153,
-            0.6542
+            0.8648,
+            0.9057
           ],
           "EFR_MushroomGiant_001": [
-            0.8245,
-            0.8802
+            0.3901,
+            0.807
           ]
         },
         "problems": []
       },
       "g18_all": {
-        "samples": 7,
+        "samples": 5,
         "neighbour_pairs": [
           {
             "pair": [
               "EFR_MushroomTall_001",
               "EFR_MushroomMedium_002"
             ],
-            "max_level_diff": 0.6466
+            "max_level_diff": 0.5475
           },
           {
             "pair": [
               "EFR_MushroomTall_001",
               "EFR_MushroomCluster_002"
             ],
-            "max_level_diff": 0.4238
+            "max_level_diff": 0.5442
           },
           {
             "pair": [
               "EFR_MushroomTall_002",
               "EFR_MushroomCluster_006"
             ],
-            "max_level_diff": 0.6302
+            "max_level_diff": 0.6134
           },
           {
             "pair": [
               "EFR_MushroomTall_003",
               "EFR_MushroomCluster_001"
             ],
-            "max_level_diff": 0.4286
+            "max_level_diff": 0.4552
           },
           {
             "pair": [
               "EFR_MushroomTall_004",
               "EFR_MushroomMedium_003"
             ],
-            "max_level_diff": 0.2257
+            "max_level_diff": 0.574
           },
           {
             "pair": [
               "EFR_MushroomTall_004",
               "EFR_MushroomCluster_008"
             ],
-            "max_level_diff": 0.5655
+            "max_level_diff": 0.3282
           },
           {
             "pair": [
               "EFR_MushroomTall_005",
               "EFR_MushroomMedium_002"
             ],
-            "max_level_diff": 0.5986
+            "max_level_diff": 0.4
           },
           {
             "pair": [
               "EFR_MushroomMedium_001",
               "EFR_MushroomCluster_001"
             ],
-            "max_level_diff": 0.4738
+            "max_level_diff": 0.5064
           },
           {
             "pair": [
               "EFR_MushroomMedium_001",
               "EFR_MushroomCluster_004"
             ],
-            "max_level_diff": 0.5436
+            "max_level_diff": 0.6027
           },
           {
             "pair": [
               "EFR_MushroomCluster_006",
               "EFR_MushroomGiant_001"
             ],
-            "max_level_diff": 0.5501
+            "max_level_diff": 0.4056
           }
         ],
         "problems": []
       },
       "g20_clocked": {
-        "samples": 14,
-        "judged": 14,
+        "samples": 11,
+        "judged": 11,
         "clock_window_s": [
-          0.465,
-          0.535
+          0.518,
+          0.724
         ],
         "hand_error_deg": {
-          "hour": 0.0011,
-          "minute": 0.0017
+          "hour": 0.0015,
+          "minute": 0.0058
         },
-        "tip_error_deg": 0.0284,
+        "tip_error_deg": 0.0226,
         "bell_max_deg": 0.0,
         "bell_rung_samples": 0,
-        "bell_still_samples": 14,
+        "bell_still_samples": 11,
+        "bell_unjudged_samples": 0,
         "local_vs_utc": {
           "offset_hours": [
             9.0
           ],
           "residual_s": [
-            0.691,
-            1.096
-          ]
+            1.014,
+            1.333
+          ],
+          "expected_offset_hours": 9.0
+        },
+        "problems": []
+      },
+      "pivots_end": {
+        "local_s": [
+          54225.592,
+          54230.125
+        ],
+        "rows": {
+          "hour": {
+            "slot_deg": 91.8991,
+            "formula_deg": [
+              91.8796,
+              91.918
+            ]
+          },
+          "minute": {
+            "slot_deg": 22.7891,
+            "formula_deg": [
+              22.5558,
+              23.0159
+            ]
+          },
+          "bell": {
+            "slot_deg": 0.0,
+            "formula_deg": [
+              -0.0,
+              -0.0
+            ]
+          }
         },
         "problems": []
       },
@@ -300,7 +362,7 @@
       "ok": true
     },
     {
-      "started_at": "2026-11-03T05:26:26Z",
+      "started_at": "2026-11-03T06:09:35Z",
       "params": {
         "G18Intensity": 1.0,
         "G18Speed": 1.0,
@@ -319,6 +381,36 @@
         "problems": []
       },
       "relay_problems": [],
+      "pivots_start": {
+        "local_s": [
+          54626.409,
+          54631.102
+        ],
+        "rows": {
+          "hour": {
+            "slot_deg": 95.241,
+            "formula_deg": [
+              95.2198,
+              95.2595
+            ]
+          },
+          "minute": {
+            "slot_deg": 62.8925,
+            "formula_deg": [
+              62.6375,
+              63.1136
+            ]
+          },
+          "bell": {
+            "slot_deg": 0.0,
+            "formula_deg": [
+              -0.0,
+              -0.0
+            ]
+          }
+        },
+        "problems": []
+      },
       "frozen_probe": {
         "params": {
           "G18Intensity": 1.0,
@@ -421,65 +513,65 @@
         "samples": 21,
         "judged": 21,
         "clock_window_s": [
-          0.3329,
-          0.4996
+          0.3653,
+          0.5463
         ],
         "levels_seen": {
           "EFR_MushroomTall_001": [
-            0.5463,
-            0.8319
+            0.3986,
+            0.8079
           ],
           "EFR_MushroomTall_002": [
-            0.5134,
-            0.9141
+            0.4989,
+            0.8976
           ],
           "EFR_MushroomTall_003": [
-            0.35,
-            0.4862
+            0.4292,
+            0.7286
           ],
           "EFR_MushroomTall_004": [
-            0.6383,
-            0.667
+            0.3531,
+            0.9269
           ],
           "EFR_MushroomTall_005": [
-            0.3866,
-            0.952
+            0.3516,
+            0.9556
           ],
           "EFR_MushroomMedium_001": [
-            0.499,
-            0.8211
+            0.4634,
+            0.8093
           ],
           "EFR_MushroomMedium_002": [
-            0.8733,
-            0.9936
+            0.7878,
+            0.9974
           ],
           "EFR_MushroomMedium_003": [
-            0.508,
-            0.797
+            0.376,
+            0.9955
           ],
           "EFR_MushroomCluster_001": [
-            0.3541,
-            0.8926
+            0.3503,
+            0.9975
           ],
           "EFR_MushroomCluster_002": [
-            0.4447,
-            0.9984
+            0.3721,
+            0.9764
           ],
           "EFR_MushroomCluster_004": [
-            0.3565,
-            0.3853
+            0.5425,
+            0.8297
           ],
           "EFR_MushroomCluster_006": [
-            0.3668,
-            0.9328
+            0.3569,
+            0.82
           ],
           "EFR_MushroomCluster_008": [
-            0.3593,
-            1.0
+            0.3527,
+            0.989
           ],
           "EFR_MushroomGiant_001": [
-            0.4152,
-            0.947
+            0.6096,
+            0.9984
           ]
         },
         "problems": []
@@ -492,97 +584,129 @@
               "EFR_MushroomTall_001",
               "EFR_MushroomMedium_002"
             ],
-            "max_level_diff": 0.6133
+            "max_level_diff": 0.6067
           },
           {
             "pair": [
               "EFR_MushroomTall_001",
               "EFR_MushroomCluster_002"
             ],
-            "max_level_diff": 0.5454
+            "max_level_diff": 0.6142
           },
           {
             "pair": [
               "EFR_MushroomTall_002",
               "EFR_MushroomCluster_006"
             ],
-            "max_level_diff": 0.3855
+            "max_level_diff": 0.5082
           },
           {
             "pair": [
               "EFR_MushroomTall_003",
               "EFR_MushroomCluster_001"
             ],
-            "max_level_diff": 0.6389
+            "max_level_diff": 0.6336
           },
           {
             "pair": [
               "EFR_MushroomTall_004",
               "EFR_MushroomMedium_003"
             ],
-            "max_level_diff": 0.5885
+            "max_level_diff": 0.2705
           },
           {
             "pair": [
               "EFR_MushroomTall_004",
               "EFR_MushroomCluster_008"
             ],
-            "max_level_diff": 0.5791
+            "max_level_diff": 0.4039
           },
           {
             "pair": [
               "EFR_MushroomTall_005",
               "EFR_MushroomMedium_002"
             ],
-            "max_level_diff": 0.6169
+            "max_level_diff": 0.6373
           },
           {
             "pair": [
               "EFR_MushroomMedium_001",
               "EFR_MushroomCluster_001"
             ],
-            "max_level_diff": 0.6485
+            "max_level_diff": 0.6493
           },
           {
             "pair": [
               "EFR_MushroomMedium_001",
               "EFR_MushroomCluster_004"
             ],
-            "max_level_diff": 0.5919
+            "max_level_diff": 0.482
           },
           {
             "pair": [
               "EFR_MushroomCluster_006",
               "EFR_MushroomGiant_001"
             ],
-            "max_level_diff": 0.3824
+            "max_level_diff": 0.4903
           }
         ],
         "problems": []
       },
       "g20_clocked": {
-        "samples": 15,
-        "judged": 15,
+        "samples": 14,
+        "judged": 14,
         "clock_window_s": [
-          0.465,
-          0.517
+          0.498,
+          0.633
         ],
         "hand_error_deg": {
-          "hour": 0.0011,
-          "minute": 0.0017
+          "hour": 0.0012,
+          "minute": 0.0052
         },
-        "tip_error_deg": 0.0238,
+        "tip_error_deg": 0.0229,
         "bell_max_deg": 0.0,
         "bell_rung_samples": 0,
-        "bell_still_samples": 15,
+        "bell_still_samples": 14,
+        "bell_unjudged_samples": 0,
         "local_vs_utc": {
           "offset_hours": [
             9.0
           ],
           "residual_s": [
-            0.707,
-            0.869
-          ]
+            0.737,
+            0.86
+          ],
+          "expected_offset_hours": 9.0
+        },
+        "problems": []
+      },
+      "pivots_end": {
+        "local_s": [
+          54751.386,
+          54754.92
+        ],
+        "rows": {
+          "hour": {
+            "slot_deg": 96.2764,
+            "formula_deg": [
+              96.2613,
+              96.2913
+            ]
+          },
+          "minute": {
+            "slot_deg": 75.317,
+            "formula_deg": [
+              75.1352,
+              75.4954
+            ]
+          },
+          "bell": {
+            "slot_deg": 0.0,
+            "formula_deg": [
+              -0.0,
+              -0.0
+            ]
+          }
         },
         "problems": []
       },
@@ -704,6 +828,7 @@
       }
     }
   },
+  "expected_utc_offset_hours": 9.0,
   "g18_neighbour_sync": [
     {
       "pair": [
@@ -849,6 +974,8 @@
     "axis": 0.0001,
     "bell_deg": 0.3,
     "still_deg": 0.001,
+    "bell_spread_max_s": 0.3,
+    "min_bell_judged_per_mark": 2,
     "dial_axis_m": 0.01,
     "tz_residual_s": 5.0,
     "sync_min_diff": 0.1,

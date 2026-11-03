@@ -58,8 +58,8 @@
       },
       "judged": 14,
       "clock_window_s": [
-        0.2506,
-        0.3343
+        0.2333,
+        0.2685
       ],
       "problems": []
     },
@@ -73,8 +73,8 @@
       },
       "judged": 14,
       "clock_window_s": [
-        0.2512,
-        0.3324
+        0.2335,
+        0.3153
       ],
       "problems": []
     },
@@ -96,18 +96,20 @@
         "G20BellSwing": 1.0,
         "G20BellInterval": 20.0
       },
-      "judged": 24,
-      "bell_max_deg": 18.11,
+      "judged": 21,
+      "bell_max_deg": 22.378,
       "marks": [
         {
-          "mark_local_s": 51380.0,
+          "mark_local_s": 53480.0,
           "observed_during": 6,
-          "max_deg": 13.846
+          "judged_during": 5,
+          "max_deg": 22.378
         },
         {
-          "mark_local_s": 51400.0,
-          "observed_during": 7,
-          "max_deg": 18.11
+          "mark_local_s": 53500.0,
+          "observed_during": 5,
+          "judged_during": 5,
+          "max_deg": 12.006
         }
       ],
       "problems": []
@@ -120,13 +122,14 @@
         "G20BellSwing": 0.5,
         "G20BellInterval": 20.0
       },
-      "judged": 14,
-      "bell_max_deg": 11.09,
+      "judged": 10,
+      "bell_max_deg": 8.745,
       "marks": [
         {
-          "mark_local_s": 51440.0,
-          "observed_during": 4,
-          "max_deg": 11.09
+          "mark_local_s": 53540.0,
+          "observed_during": 3,
+          "judged_during": 2,
+          "max_deg": 8.745
         }
       ],
       "problems": []
@@ -140,12 +143,13 @@
         "G20BellInterval": 20.0
       },
       "judged": 13,
-      "bell_max_deg": 19.337,
+      "bell_max_deg": 6.675,
       "marks": [
         {
-          "mark_local_s": 51460.0,
-          "observed_during": 7,
-          "max_deg": 19.337
+          "mark_local_s": 53560.0,
+          "observed_during": 6,
+          "judged_during": 5,
+          "max_deg": 6.675
         }
       ],
       "problems": []
